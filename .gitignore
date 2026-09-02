@@ -14,3 +14,7 @@ migration/redefine-*.js
 migration/rebind-*.js
 migration/repoint-*.js
 migration/rawhex-*.js
+
+# React library build + generated style bundle
+dist/
+src/styles.css

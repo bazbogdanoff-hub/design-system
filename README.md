@@ -39,11 +39,36 @@ Type: shape from `text.*`, colour from `color.text.*` — kept separate.
 
 `npm run preview` → `preview/index.html`, a self-contained swatch + type sheet.
 
+## React component library
+
+`src/components/` — React + TypeScript, CSS Modules against the token vars,
+Radix Primitives for interactive components. Built with Vite (ES + CJS + d.ts).
+
+```
+npm run build          # tokens -> build/, then vite -> dist/
+```
+
+Consume (from a real app):
+
+```
+npm i github:bazbogdanoff-hub/design-system
+```
+```tsx
+import '@bazbogdanoff/design-system/styles.css';   // once, at app root
+import { Card } from '@bazbogdanoff/design-system';
+```
+
+Per-component: spec in `docs/components/<Name>.md`, code in
+`src/components/<Name>/`. Workflow + Figma↔React rules:
+`.claude/skills/design-system-conventions/references/component-build.md`.
+
+**Built:** `Card`.
+
 ## Status
 
-Bootstrapping. Colour tokens defined; spacing / radius / typography and the
-component library are next. The Tailwind palette import is scaffolding to be
-pruned once the semantic layer is stable.
+Tokens (colour / type / radius / spacing) done and mirrored in Figma. Component
+library started — building components one at a time from `docs/components/*`.
+The Tailwind palette import is scaffolding, to be pruned once components settle.
 
 ## Skills
 

@@ -1,20 +1,56 @@
 {
-  "name": "design-system",
+  "name": "@bazbogdanoff/design-system",
   "version": "0.1.0",
   "description": "Logistics CRM design system — tokens + React component library",
   "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "gen:primitives": "node scripts/generate-primitives.mjs",
     "build:tokens": "style-dictionary build --config style-dictionary.config.mjs",
-    "tokens": "npm run gen:primitives && npm run build:tokens && node scripts/generate-typography-css.mjs",
-    "preview": "npm run tokens && node scripts/generate-preview.mjs"
+    "tokens": "npm run gen:primitives && npm run build:tokens && node scripts/generate-typography-css.mjs && node scripts/bundle-styles.mjs",
+    "preview": "npm run tokens && node scripts/generate-preview.mjs",
+    "build": "npm run tokens && vite build && node scripts/finalize-dist.mjs",
+    "typecheck": "tsc --noEmit",
+    "prepare": "npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "UNLICENSED",
   "private": true,
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.1.1",
+    "clsx": "^2.1.1"
+  },
   "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "style-dictionary": "^4.4.0",
-    "tailwindcss": "^3.4.19"
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5",
+    "vite-plugin-dts": "^4.4.0"
   }
 }

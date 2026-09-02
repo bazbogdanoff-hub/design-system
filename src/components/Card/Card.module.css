@@ -1,0 +1,47 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-card-background-default);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-card);
+}
+
+/* Glass inner-shadow — from the Figma INNER_SHADOW (#f0f0f0, offset 4/4, blur 16).
+   Not a token: hand-tuned effect, dropped by `flat`. */
+.card[data-elevation='raised'] {
+  box-shadow: inset 4px 4px 16px #f0f0f0;
+}
+
+.card[data-padding='none'] { padding: 0; }
+.card[data-padding='sm'] { padding: var(--space-16); }
+.card[data-padding='md'] { padding: var(--space-20); }
+.card[data-padding='lg'] { padding: var(--space-24); }
+
+.card[data-interactive] {
+  cursor: pointer;
+  transition: background-color 120ms ease;
+}
+.card[data-interactive]:hover {
+  background: var(--color-card-background-hover);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+.section[data-spacing='none'] { gap: 0; }
+.section[data-spacing='sm'] { gap: var(--space-8); }
+.section[data-spacing='md'] { gap: var(--space-12); }
+.section[data-spacing='lg'] { gap: var(--space-16); }
+
+.section[data-divider] {
+  padding-bottom: var(--space-16);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.section[data-muted] {
+  padding: var(--space-12);
+  background: var(--color-surface-subtle);
+  border-radius: var(--radius-panel);
+}
