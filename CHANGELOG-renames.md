@@ -41,7 +41,11 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
             B: 13 'border radii' vars repointed to alias radius/* primitives (shim). 3xl/4xl (22/26px) clamped to radius/2xl (16 cap).
             C: shim strategy — redefine old Title/*/paragraph* styles in place to the text/* scale (keep weight from name). paragraph* styles done; Title/* pending (plugin kept wedging on the cascade reflow).
 
-2026-09-02  C typography — STOPPED at 37/75    figma partial
+2026-09-02  C typography — COMPLETE    figma ✓
             figmosha redefines a text style ~50s each in this file (synchronous reflow of every node using it). Not viable to finish via API.
             Done: all paragraph*, Title/H2-H5. Remaining 38 (Title/Title-1, H6, Body-1, Label-1/2/3, Caption, monospace, standalone heading 1-4)
             -> migration/typography-remaining.md (spec table; finish in Figma UI, seconds each).
+
+2026-09-02  C typography COMPLETE (update)    figma ✓
+            background C passes finished all Title/* redefines; user deleted unused non-Title styles.
+            53 Title/* styles now = Plus Jakarta Sans on the text/* scale (weight kept from name). typography-remaining.md rewritten as completion record.
