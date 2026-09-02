@@ -1,74 +1,48 @@
 # Card
 
-A surface that groups related content. A padded box — nothing more. Sections,
-dividers, footers, headers are the **consumer's composition**, or belong to a
-specific card type built on top of `Card` (see [architecture.md](../architecture.md)).
+A surface that groups related content — a padded box, nothing more. Always the
+glass look. Sections, dividers, footers, clickable behaviour are the consumer's
+composition, or a specific card type built on top (see [architecture.md](../architecture.md)).
 
 ## API
 
 ```tsx
-<Card padding="none|sm|md|lg" elevation="raised|flat" interactive asChild>
-  {children}
-</Card>
+<Card padding="none|sm|md|lg" asChild>{children}</Card>
 ```
 
-| prop | values | default | Figma variant | notes |
-|---|---|---|---|---|
-| `padding` | `none` `sm` `md` `lg` | `md` | `padding` | all-sides: 0 / **12** / **16** / **20** (`space/12` · `space/16` · `space/20`) |
-| `elevation` | `raised` `flat` | `raised` | `elevation` | `raised` = glass inner-shadow + border; `flat` = border only |
-| `interactive` | `boolean` | `false` | **code-only, not a Figma variant** | hover bg + `cursor: pointer`; consumer provides the interaction semantics |
-| `asChild` | `boolean` | `false` | — | render as another element (`<a>`, router `<Link>`) |
+| prop | values | default | Figma variant |
+|---|---|---|---|
+| `padding` | `none` `sm` `md` `lg` | `md` | `padding` |
+| `asChild` | `boolean` | `false` | — |
 
-`className`, `style`, `...divProps` pass through to the root.
+`className`, `style`, `...divProps` pass through to the root. No `elevation`, no
+`interactive`/hover — a clickable-card state comes later, with alpha tokens.
 
-## Tokens
+## Appearance (fixed — no variants beyond padding)
 
-| target | token / value |
+| aspect | token / value |
 |---|---|
-| fill | `color/card/background/default` → `color/surface/card` (`#fcfcfc`) |
-| fill, interactive hover | `color/card/background/hover` → `color/surface/subtle` |
-| border | `color/card/border` → `color/border/default`, 1px |
-| radius | `radius/card` → `radius/container` (16) |
-| **glass effect** | `box-shadow: inset 4px 4px 16px #f0f0f0` — **not a token**, from the Figma `INNER_SHADOW`; `flat` drops it |
-| padding | `space/16` · `space/20` · `space/24` |
+| fill | `color/card/background/default` → `color/surface/card` → `#fcfcfc` |
+| radius | `radius/card` → `radius/container` → 16 |
+| border | **top + left only, 1.5px**, `color/card/border` → `color/border/highlight` → `#ffffff`. Right / bottom: **0**. |
+| inner shadow | `inset 4px 4px 16px #f0f0f0` — "vignette xs", **not a token** (hand-tuned in `Card.module.css`) |
+| padding | `space/12` · `space/16` · `space/20` |
 
 ## Figma build
 
-- Component set **`Card`**. Variant properties: `padding` (`none|sm|md|lg`) ·
-  `elevation` (`raised|flat`). **8 variants** (4 × 2) in a 4-col × 2-row grid.
-  Do **not** add `interactive` as a variant — it's a code-only prop; show a
-  hover example on a docs board instead.
-- **One `SLOT`** for content. No `Card Section`, no `Show header/footer`,
-  no `Slot count` — drop all of those.
-- Base variant: **width 320**, height **hug** (auto-layout VERTICAL, gap 0,
-  padding from the variant). Fill the slot with a placeholder — a subheading +
-  2 body lines + a Button instance — so each variant renders ~150–180px tall
-  and the padding differences read clearly.
-- Effect = your existing `INNER_SHADOW` (#f0f0f0, offset 4/4, blur 16) — on the
-  `raised` variants only; `flat` has none.
-
-### Colour bindings (per layer)
-
-| Figma layer | bind to (Component collection) | resolves to |
-|---|---|---|
-| Card frame **fill** | `color/card/background/default` | `color/surface/card` → `#fcfcfc` |
-| Card frame **stroke** (1px) | `color/card/border` | `color/border/default` → zinc.200 |
-| Card frame **corner radius** | `radius/card` | `radius/container` → 16 |
-| inner-shadow effect colour | **leave raw `#f0f0f0`** — effects aren't tokenised | — |
-| (docs board only) hover fill | `color/card/background/hover` | `color/surface/subtle` → zinc.50 |
-
-No layer inside `Card` binds to a semantic token directly — always the
-`color/card/*` component tokens, so the whole card retints from one place.
-
-## Full-bleed footers / dividers
-
-Not `Card`'s job. When a specific card type needs an edge-to-edge muted footer or
-internal divider, that component (usually app-level / L3) handles the negative
-margin once, internally. A `<Divider bleed>` primitive may be added later if the
-need is broad — not before.
+- Component set **`Card`** — **one variant property**: `padding` (`none|sm|md|lg`) → **4 variants** in a row.
+- Open auto-layout frame (VERTICAL, gap 0), no `SLOT` property — instances append
+  content directly. Empty by default.
+- Base variant: width **320**, height **hug**.
+- Bindings:
+  - fill → `color/card/background/default`
+  - corner radius → `radius/card`
+  - stroke: **top 1.5 / left 1.5 / right 0 / bottom 0**, colour → `color/card/border`
+  - effect: your `vignette xs` inner-shadow (`#f0f0f0`, offset 4/4, blur 16, spread 0)
+- Showcase content (subheading + 2 body lines + Button) lives on a **docs board**,
+  dropped into Card instances there — not in the component.
 
 ## a11y
 
-Plain `<div>`. When `interactive`, the consumer supplies semantics (`asChild` +
-`<a>`/`<button>`, or `role`/`tabIndex`/key handlers). The component only provides
-the hover affordance.
+Plain `<div>` (or via `asChild`, whatever element the consumer picks). Purely
+presentational — no roles, no focus handling.

@@ -184,6 +184,10 @@
       "focus": {
         "$value": "{color.brand.500}",
         "$description": "Focus ring"
+      },
+      "highlight": {
+        "$value": "{color.white}",
+        "$description": "White edge highlight for glass / raised surfaces (asymmetric top-left catch)"
       }
     },
     "icon": {

@@ -81,12 +81,12 @@
         },
         "hover": {
           "$value": "{color.surface.subtle}",
-          "$description": "Clickable / navigable cards only"
+          "$description": "Reserved — for the future interactive-card hover state (not used yet)"
         }
       },
       "border": {
-        "$value": "{color.border.default}",
-        "$description": "Base card border. The glass/vignette inner-shadow + border override on effect-heavy cards is NOT a token — leave those effects untouched."
+        "$value": "{color.border.highlight}",
+        "$description": "The asymmetric glass catch (top + left, 1.5px, white). Widths + the inner-shadow are hand-tuned in the CSS, not tokens."
       }
     },
     "input": {

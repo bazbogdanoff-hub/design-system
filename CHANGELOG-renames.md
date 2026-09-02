@@ -49,3 +49,6 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 2026-09-02  C typography COMPLETE (update)    figma ✓
             background C passes finished all Title/* redefines; user deleted unused non-Title styles.
             53 Title/* styles now = Plus Jakarta Sans on the text/* scale (weight kept from name). typography-remaining.md rewritten as completion record.
+
+2026-09-02  +color.border.highlight (white); card.border -> highlight    tokens ✓ build ✓ figma ✓
+            Card finalised: padding-only (12/16/20), no elevation/interactive, asymmetric glass border (top+left 1.5px white), vignette-xs inner shadow #f0f0f0 (not tokenised)

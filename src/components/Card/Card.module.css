@@ -2,13 +2,12 @@
   display: flex;
   flex-direction: column;
   background: var(--color-card-background-default);
-  border: 1px solid var(--color-card-border);
   border-radius: var(--radius-card);
-}
 
-/* Glass inner-shadow — from the Figma INNER_SHADOW (#f0f0f0, offset 4/4, blur 16).
-   Not a token: hand-tuned effect, dropped by `flat`. */
-.card[data-elevation='raised'] {
+  /* Glass — "vignette xs". Hand-tuned to match the Figma effect; NOT tokens.
+     Asymmetric catch on the top + left only (right / bottom = 0). */
+  border-top: 1.5px solid var(--color-card-border);
+  border-left: 1.5px solid var(--color-card-border);
   box-shadow: inset 4px 4px 16px #f0f0f0;
 }
 
@@ -16,11 +15,3 @@
 .card[data-padding='sm'] { padding: var(--space-12); }
 .card[data-padding='md'] { padding: var(--space-16); }
 .card[data-padding='lg'] { padding: var(--space-20); }
-
-.card[data-interactive] {
-  cursor: pointer;
-  transition: background-color 120ms ease;
-}
-.card[data-interactive]:hover {
-  background: var(--color-card-background-hover);
-}

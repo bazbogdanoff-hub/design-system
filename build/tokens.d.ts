@@ -34,9 +34,9 @@ export const ColorButtonDangerText: string;
 export const ColorButtonDisabledBackground: string;
 export const ColorButtonDisabledText: string;
 export const ColorCardBackgroundDefault: string;
-/** Clickable / navigable cards only */
+/** Reserved — for the future interactive-card hover state (not used yet) */
 export const ColorCardBackgroundHover: string;
-/** Base card border. The glass/vignette inner-shadow + border override on effect-heavy cards is NOT a token — leave those effects untouched. */
+/** The asymmetric glass catch (top + left, 1.5px, white). Widths + the inner-shadow are hand-tuned in the CSS, not tokens. */
 export const ColorCardBorder: string;
 export const ColorInputBackgroundDefault: string;
 export const ColorInputBackgroundDisabled: string;
@@ -398,6 +398,8 @@ export const ColorBorderBrand: string;
 export const ColorBorderDanger: string;
 /** Focus ring */
 export const ColorBorderFocus: string;
+/** White edge highlight for glass / raised surfaces (asymmetric top-left catch) */
+export const ColorBorderHighlight: string;
 /** Standalone UI icons */
 export const ColorIconDefault: string;
 /** Decorative / secondary icons */

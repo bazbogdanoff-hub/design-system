@@ -353,6 +353,7 @@
   --color-border-subtle: var(--color-zinc-100); /** Faint separators */
   --color-border-strong: var(--color-zinc-300); /** Emphasized / hover borders */
   --color-border-danger: var(--color-red-600); /** Invalid input */
+  --color-border-highlight: var(--color-white); /** White edge highlight for glass / raised surfaces (asymmetric top-left catch) */
   --color-icon-default: var(--color-zinc-700); /** Standalone UI icons */
   --color-icon-subtle: var(--color-zinc-500); /** Decorative / secondary icons */
   --color-icon-danger: var(--color-red-600);
@@ -479,8 +480,8 @@
   --color-button-disabled-background: var(--color-background-disabled);
   --color-button-disabled-text: var(--color-text-disabled);
   --color-card-background-default: var(--color-surface-card);
-  --color-card-background-hover: var(--color-surface-subtle); /** Clickable / navigable cards only */
-  --color-card-border: var(--color-border-default); /** Base card border. The glass/vignette inner-shadow + border override on effect-heavy cards is NOT a token — leave those effects untouched. */
+  --color-card-background-hover: var(--color-surface-subtle); /** Reserved — for the future interactive-card hover state (not used yet) */
+  --color-card-border: var(--color-border-highlight); /** The asymmetric glass catch (top + left, 1.5px, white). Widths + the inner-shadow are hand-tuned in the CSS, not tokens. */
   --color-input-background-default: var(--color-surface-default);
   --color-input-background-disabled: var(--color-background-disabled);
   --color-input-text: var(--color-text-default);

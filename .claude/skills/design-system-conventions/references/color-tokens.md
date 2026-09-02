@@ -116,6 +116,7 @@ A `surface` sits *on* the `background`. Shadow or separating border → it's a s
 | `border.brand` | `brand.600` | selected input, active tab | `brand.400` |
 | `border.danger` | `red.600` | invalid input | `red.400` |
 | `border.focus` | `brand.500` | focus ring | `brand.400` |
+| `border.highlight` | `white` | white edge catch for glass / raised surfaces | `white` |
 
 ### `color.icon.*`
 
