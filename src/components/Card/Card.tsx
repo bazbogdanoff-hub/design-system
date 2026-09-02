@@ -7,7 +7,7 @@ export type CardPadding = 'none' | 'sm' | 'md' | 'lg';
 export type CardElevation = 'raised' | 'flat';
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  /** Inner padding on all sides. `none` · `sm` (16) · `md` (20, default) · `lg` (24). */
+  /** Inner padding on all sides. `none` · `sm` (12) · `md` (16, default) · `lg` (20). */
   padding?: CardPadding;
   /** `raised` adds the glass inner-shadow; `flat` is border only. */
   elevation?: CardElevation;

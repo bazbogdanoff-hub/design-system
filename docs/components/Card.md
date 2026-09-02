@@ -14,9 +14,9 @@ specific card type built on top of `Card` (see [architecture.md](../architecture
 
 | prop | values | default | Figma variant | notes |
 |---|---|---|---|---|
-| `padding` | `none` `sm` `md` `lg` | `md` | `padding` | all-sides: 0 / 16 / 20 / 24 (`space/16‑24`) |
+| `padding` | `none` `sm` `md` `lg` | `md` | `padding` | all-sides: 0 / **12** / **16** / **20** (`space/12` · `space/16` · `space/20`) |
 | `elevation` | `raised` `flat` | `raised` | `elevation` | `raised` = glass inner-shadow + border; `flat` = border only |
-| `interactive` | `boolean` | `false` | `interactive` (bool) | hover bg + `cursor: pointer`; consumer provides the interaction semantics |
+| `interactive` | `boolean` | `false` | **code-only, not a Figma variant** | hover bg + `cursor: pointer`; consumer provides the interaction semantics |
 | `asChild` | `boolean` | `false` | — | render as another element (`<a>`, router `<Link>`) |
 
 `className`, `style`, `...divProps` pass through to the root.
@@ -34,13 +34,31 @@ specific card type built on top of `Card` (see [architecture.md](../architecture
 
 ## Figma build
 
-- Component set **`Card`**. Variant props: `padding` (`none|sm|md|lg`),
-  `elevation` (`raised|flat`); boolean prop `interactive`.
+- Component set **`Card`**. Variant properties: `padding` (`none|sm|md|lg`) ·
+  `elevation` (`raised|flat`). **8 variants** (4 × 2) in a 4-col × 2-row grid.
+  Do **not** add `interactive` as a variant — it's a code-only prop; show a
+  hover example on a docs board instead.
 - **One `SLOT`** for content. No `Card Section`, no `Show header/footer`,
-  no `Slot count` — drop all of those. Keep a docs board with example fills.
-- Base: fill `color/card/background/default`, radius `radius/card`, 1px stroke
-  `color/card/border`, effect = your `INNER_SHADOW` on `elevation=raised` only.
-- Auto-layout VERTICAL, gap 0, padding per the `padding` variant.
+  no `Slot count` — drop all of those.
+- Base variant: **width 320**, height **hug** (auto-layout VERTICAL, gap 0,
+  padding from the variant). Fill the slot with a placeholder — a subheading +
+  2 body lines + a Button instance — so each variant renders ~150–180px tall
+  and the padding differences read clearly.
+- Effect = your existing `INNER_SHADOW` (#f0f0f0, offset 4/4, blur 16) — on the
+  `raised` variants only; `flat` has none.
+
+### Colour bindings (per layer)
+
+| Figma layer | bind to (Component collection) | resolves to |
+|---|---|---|
+| Card frame **fill** | `color/card/background/default` | `color/surface/card` → `#fcfcfc` |
+| Card frame **stroke** (1px) | `color/card/border` | `color/border/default` → zinc.200 |
+| Card frame **corner radius** | `radius/card` | `radius/container` → 16 |
+| inner-shadow effect colour | **leave raw `#f0f0f0`** — effects aren't tokenised | — |
+| (docs board only) hover fill | `color/card/background/hover` | `color/surface/subtle` → zinc.50 |
+
+No layer inside `Card` binds to a semantic token directly — always the
+`color/card/*` component tokens, so the whole card retints from one place.
 
 ## Full-bleed footers / dividers
 

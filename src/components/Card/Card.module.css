@@ -13,9 +13,9 @@
 }
 
 .card[data-padding='none'] { padding: 0; }
-.card[data-padding='sm'] { padding: var(--space-16); }
-.card[data-padding='md'] { padding: var(--space-20); }
-.card[data-padding='lg'] { padding: var(--space-24); }
+.card[data-padding='sm'] { padding: var(--space-12); }
+.card[data-padding='md'] { padding: var(--space-16); }
+.card[data-padding='lg'] { padding: var(--space-20); }
 
 .card[data-interactive] {
   cursor: pointer;
