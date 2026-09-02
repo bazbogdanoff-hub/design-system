@@ -1,68 +1,56 @@
 # Card
 
-A surface that groups related content. Compound: `Card` + `Card.Section`.
+A surface that groups related content. A padded box — nothing more. Sections,
+dividers, footers, headers are the **consumer's composition**, or belong to a
+specific card type built on top of `Card` (see [architecture.md](../architecture.md)).
 
-## Anatomy
+## API
 
+```tsx
+<Card padding="none|sm|md|lg" elevation="raised|flat" interactive asChild>
+  {children}
+</Card>
 ```
-Card                         container — fcfcfc fill, 16px radius, glass inner-shadow
-└─ Card.Section  (×N)         a content region; own spacing, optional divider / muted bg
-   └─ (your content)
-```
-
-`Card` provides the surface + radius + glass effect + outer padding. Each
-`Card.Section` is a vertical stack of content with its own internal gap; a
-divider line sits between adjacent sections when asked.
-
-## Props
-
-### `Card`
 
 | prop | values | default | Figma variant | notes |
 |---|---|---|---|---|
-| `padding` | `none` `sm` `md` `lg` | `md` | `padding` | outer padding: none / 16 / 20 / 24 (`space/16‑24`) |
+| `padding` | `none` `sm` `md` `lg` | `md` | `padding` | all-sides: 0 / 16 / 20 / 24 (`space/16‑24`) |
 | `elevation` | `raised` `flat` | `raised` | `elevation` | `raised` = glass inner-shadow + border; `flat` = border only |
-| `interactive` | `boolean` | `false` | `interactive` (bool) | hover bg (`color/surface/subtle`) + `cursor: pointer`; use for whole-card links |
+| `interactive` | `boolean` | `false` | `interactive` (bool) | hover bg + `cursor: pointer`; consumer provides the interaction semantics |
 | `asChild` | `boolean` | `false` | — | render as another element (`<a>`, router `<Link>`) |
 
-Standard: `className`, `style`, `...divProps` pass through to the root.
-
-### `Card.Section`
-
-| prop | values | default | Figma variant | notes |
-|---|---|---|---|---|
-| `spacing` | `none` `sm` `md` `lg` | `md` | `spacing` | internal gap: 0 / 8 / 12 / 16 (`space/8‑16`) |
-| `divider` | `boolean` | `false` | `divider` (bool) | 1px bottom border (`color/border/subtle`) — omit on the last section |
-| `muted` | `boolean` | `false` | `muted` (bool) | subtle fill (`color/surface/subtle`) — e.g. a footer/toolbar row |
-
-Standard div props pass through.
+`className`, `style`, `...divProps` pass through to the root.
 
 ## Tokens
 
 | target | token / value |
 |---|---|
-| Card fill | `color/card/background/default` → `color/surface/card` (`#fcfcfc`) |
-| Card fill (interactive hover) | `color/card/background/hover` → `color/surface/subtle` |
-| Card border | `color/card/border` → `color/border/default` |
-| Card radius | `radius/card` → `radius/container` (16) |
-| **Card glass effect** | `box-shadow: inset 4px 4px 16px #f0f0f0` — **NOT a token.** From the Figma `INNER_SHADOW`. `flat` elevation drops it. |
-| Card outer padding | `space/16` · `space/20` · `space/24` |
-| Section gap | `space/8` · `space/12` · `space/16` |
-| Section divider | `1px solid color/border/subtle` |
-| Section muted fill | `color/surface/subtle` |
+| fill | `color/card/background/default` → `color/surface/card` (`#fcfcfc`) |
+| fill, interactive hover | `color/card/background/hover` → `color/surface/subtle` |
+| border | `color/card/border` → `color/border/default`, 1px |
+| radius | `radius/card` → `radius/container` (16) |
+| **glass effect** | `box-shadow: inset 4px 4px 16px #f0f0f0` — **not a token**, from the Figma `INNER_SHADOW`; `flat` drops it |
+| padding | `space/16` · `space/20` · `space/24` |
 
 ## Figma build
 
-- **Rename** `Card` → keep `Card`; `Card Section` → `Card.Section` (or nest: component name `Section`, published under `Card/`).
-- **`Card` component set** — variant props: `padding` (`none|sm|md|lg`), `elevation` (`raised|flat`); boolean prop `interactive`.
-  - Drop `Show header/content/footer` and `Slot count` — in code you compose `Card.Section` children freely; those Figma helpers don't map to props. Keep a couple of example instances on a docs board instead.
-  - Base: fill `color/card/background/default`, corner radius `radius/card`, stroke 1px `color/card/border`, effect = your existing `INNER_SHADOW` (leave it — the `raised` variant has it, `flat` doesn't).
-  - Auto-layout VERTICAL, gap 0, padding per `padding` variant.
-- **`Card.Section` component set** — `spacing` (`none|sm|md|lg`), booleans `divider`, `muted`. A `SLOT` for content.
-  - Auto-layout VERTICAL, gap per `spacing`; padding 0 (the Card owns outer padding); optional bottom `Border` rectangle bound to `color/border/subtle`; optional fill `color/surface/subtle` when `muted`.
+- Component set **`Card`**. Variant props: `padding` (`none|sm|md|lg`),
+  `elevation` (`raised|flat`); boolean prop `interactive`.
+- **One `SLOT`** for content. No `Card Section`, no `Show header/footer`,
+  no `Slot count` — drop all of those. Keep a docs board with example fills.
+- Base: fill `color/card/background/default`, radius `radius/card`, 1px stroke
+  `color/card/border`, effect = your `INNER_SHADOW` on `elevation=raised` only.
+- Auto-layout VERTICAL, gap 0, padding per the `padding` variant.
+
+## Full-bleed footers / dividers
+
+Not `Card`'s job. When a specific card type needs an edge-to-edge muted footer or
+internal divider, that component (usually app-level / L3) handles the negative
+margin once, internally. A `<Divider bleed>` primitive may be added later if the
+need is broad — not before.
 
 ## a11y
 
-Plain `<div>`. When `interactive`, the consumer supplies the semantics
-(`asChild` + `<a>`/`<button>`, or `role` + `tabIndex` + key handlers) — the
-component only provides the hover affordance, not the interaction.
+Plain `<div>`. When `interactive`, the consumer supplies semantics (`asChild` +
+`<a>`/`<button>`, or `role`/`tabIndex`/key handlers). The component only provides
+the hover affordance.

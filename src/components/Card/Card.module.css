@@ -24,24 +24,3 @@
 .card[data-interactive]:hover {
   background: var(--color-card-background-hover);
 }
-
-.section {
-  display: flex;
-  flex-direction: column;
-}
-
-.section[data-spacing='none'] { gap: 0; }
-.section[data-spacing='sm'] { gap: var(--space-8); }
-.section[data-spacing='md'] { gap: var(--space-12); }
-.section[data-spacing='lg'] { gap: var(--space-16); }
-
-.section[data-divider] {
-  padding-bottom: var(--space-16);
-  border-bottom: 1px solid var(--color-border-subtle);
-}
-
-.section[data-muted] {
-  padding: var(--space-12);
-  background: var(--color-surface-subtle);
-  border-radius: var(--radius-panel);
-}

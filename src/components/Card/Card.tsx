@@ -7,7 +7,7 @@ export type CardPadding = 'none' | 'sm' | 'md' | 'lg';
 export type CardElevation = 'raised' | 'flat';
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  /** Outer padding. `none` · `sm` (16) · `md` (20) · `lg` (24). */
+  /** Inner padding on all sides. `none` · `sm` (16) · `md` (20, default) · `lg` (24). */
   padding?: CardPadding;
   /** `raised` adds the glass inner-shadow; `flat` is border only. */
   elevation?: CardElevation;
@@ -17,7 +17,12 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   asChild?: boolean;
 }
 
-const CardRoot = forwardRef<HTMLDivElement, CardProps>(function Card(
+/**
+ * A surface that groups related content. A padded box — nothing more.
+ * Sections, dividers, footers etc. are the consumer's composition, or belong
+ * to a specific card type built on top of this.
+ */
+export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
   { padding = 'md', elevation = 'raised', interactive = false, asChild = false, className, ...rest },
   ref,
 ) {
@@ -33,32 +38,3 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(function Card(
     />
   );
 });
-
-export type CardSectionSpacing = 'none' | 'sm' | 'md' | 'lg';
-
-export interface CardSectionProps extends HTMLAttributes<HTMLDivElement> {
-  /** Internal gap between children. `none` · `sm` (8) · `md` (12) · `lg` (16). */
-  spacing?: CardSectionSpacing;
-  /** 1px bottom border — omit on the last section. */
-  divider?: boolean;
-  /** Subtle fill — e.g. a footer / toolbar row. */
-  muted?: boolean;
-}
-
-const CardSection = forwardRef<HTMLDivElement, CardSectionProps>(function CardSection(
-  { spacing = 'md', divider = false, muted = false, className, ...rest },
-  ref,
-) {
-  return (
-    <div
-      ref={ref}
-      className={cn(styles.section, className)}
-      data-spacing={spacing}
-      data-divider={divider || undefined}
-      data-muted={muted || undefined}
-      {...rest}
-    />
-  );
-});
-
-export const Card = Object.assign(CardRoot, { Section: CardSection });
