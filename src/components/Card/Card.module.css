@@ -1,16 +1,14 @@
 .card {
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   background: var(--color-card-background-default);
   border-radius: var(--radius-card);
 
-  /* Glass — both layers are inset box-shadows so they never affect layout size
-     (matches the Figma effect stack; a stroke would inflate a hug-sized frame).
-     Hand-tuned to the Figma "vignette xs" — NOT tokens, except the catch colour. */
-  box-shadow:
-    inset 1.5px 1.5px 0 0 var(--color-card-border), /* asymmetric white catch, top + left */
-    inset 4px 4px 16px #f0f0f0;                      /* vignette xs */
+  /* Glass — "vignette xs". Hand-tuned to match the Figma effect; NOT tokens.
+     Asymmetric catch on the top + left only (right / bottom = 0). */
+  border-top: 1.5px solid var(--color-card-border);
+  border-left: 1.5px solid var(--color-card-border);
+  box-shadow: inset 4px 4px 16px #f0f0f0;
 }
 
 .card[data-padding='none'] { padding: 0; }

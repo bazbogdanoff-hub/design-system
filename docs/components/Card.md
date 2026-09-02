@@ -24,8 +24,8 @@ composition, or a specific card type built on top (see [architecture.md](../arch
 |---|---|
 | fill | `color/card/background/default` → `color/surface/card` → `#fcfcfc` |
 | radius | `radius/card` → `radius/container` → 16 |
-| border | an **inner-shadow effect**, not a stroke — `inner shadow · white · X 1.5 · Y 1.5 · blur 0 · spread 0`, colour → `color/card/border` (→ `color/border/highlight` → `#ffffff`). A stroke inflates a hug-sized auto-layout frame; an effect doesn't. |
-| vignette | `inner shadow · #f0f0f0 · X 4 · Y 4 · blur 16 · spread 0` — "vignette xs", **not a token** |
+| border | **top + left only, 1.5px**, `color/card/border` → `color/border/highlight` → `#ffffff`. Right / bottom: **0**. |
+| inner shadow | `inset 4px 4px 16px #f0f0f0` — "vignette xs", **not a token** (hand-tuned in `Card.module.css`) |
 | padding | `space/12` · `space/16` · `space/20` |
 
 ## Figma build
