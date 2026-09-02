@@ -1,0 +1,54 @@
+{
+  "font": {
+    "family": {
+      "sans": {
+        "$type": "fontFamily",
+        "$value": "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+      },
+      "mono": {
+        "$type": "fontFamily",
+        "$value": "ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace"
+      }
+    },
+    "size": {
+      "$type": "dimension",
+      "10": { "$value": "0.625rem", "$description": "10px" },
+      "12": { "$value": "0.75rem", "$description": "12px" },
+      "13": { "$value": "0.8125rem", "$description": "13px" },
+      "14": { "$value": "0.875rem", "$description": "14px" },
+      "15": { "$value": "0.9375rem", "$description": "15px" },
+      "16": { "$value": "1rem", "$description": "16px" },
+      "18": { "$value": "1.125rem", "$description": "18px" },
+      "20": { "$value": "1.25rem", "$description": "20px" },
+      "24": { "$value": "1.5rem", "$description": "24px" },
+      "28": { "$value": "1.75rem", "$description": "28px" },
+      "32": { "$value": "2rem", "$description": "32px" },
+      "36": { "$value": "2.25rem", "$description": "36px" },
+      "48": { "$value": "3rem", "$description": "48px" },
+      "64": { "$value": "4rem", "$description": "64px" }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "medium": { "$value": 500 },
+      "semibold": { "$value": 600 },
+      "bold": { "$value": 700 },
+      "extrabold": { "$value": 800 }
+    },
+    "lineHeight": {
+      "$type": "number",
+      "none": { "$value": 1, "$description": "display / single-line" },
+      "tight": { "$value": 1.15 },
+      "snug": { "$value": 1.3 },
+      "normal": { "$value": 1.5, "$description": "body default" },
+      "relaxed": { "$value": 1.65 }
+    },
+    "letterSpacing": {
+      "$type": "dimension",
+      "tighter": { "$value": "-0.02em", "$description": "large display" },
+      "tight": { "$value": "-0.01em" },
+      "normal": { "$value": "0em" },
+      "wide": { "$value": "0.01em" },
+      "wider": { "$value": "0.03em", "$description": "overlines / all-caps" }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "color": {
+    "brand": {
+      "50": {
+        "$value": "{color.indigo.50}"
+      },
+      "100": {
+        "$value": "{color.indigo.100}"
+      },
+      "200": {
+        "$value": "{color.indigo.200}"
+      },
+      "300": {
+        "$value": "{color.indigo.300}"
+      },
+      "400": {
+        "$value": "{color.indigo.400}"
+      },
+      "500": {
+        "$value": "{color.indigo.500}"
+      },
+      "600": {
+        "$value": "{color.indigo.600}"
+      },
+      "700": {
+        "$value": "{color.indigo.700}"
+      },
+      "800": {
+        "$value": "{color.indigo.800}"
+      },
+      "900": {
+        "$value": "{color.indigo.900}"
+      },
+      "950": {
+        "$value": "{color.indigo.950}"
+      }
+    },
+    "extra": {
+      "card": {
+        "$value": "#fcfcfc",
+        "$description": "warm near-white card fill — product override"
+      }
+    }
+  }
+}

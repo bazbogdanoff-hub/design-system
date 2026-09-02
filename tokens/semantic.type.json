@@ -1,0 +1,32 @@
+{
+  "text": {
+    "$type": "typography",
+    "display": {
+      "xl": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.64}", "fontWeight": "{font.weight.bold}", "lineHeight": "{font.lineHeight.none}", "letterSpacing": "{font.letterSpacing.tighter}" }, "$description": "Hero / auth / empty-state headline" },
+      "lg": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.48}", "fontWeight": "{font.weight.bold}", "lineHeight": "{font.lineHeight.none}", "letterSpacing": "{font.letterSpacing.tighter}" } },
+      "md": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.36}", "fontWeight": "{font.weight.bold}", "lineHeight": "{font.lineHeight.tight}", "letterSpacing": "{font.letterSpacing.tight}" } }
+    },
+    "heading": {
+      "xl": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.32}", "fontWeight": "{font.weight.bold}", "lineHeight": "{font.lineHeight.tight}", "letterSpacing": "{font.letterSpacing.tight}" }, "$description": "Page title" },
+      "lg": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.28}", "fontWeight": "{font.weight.semibold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.tight}" } },
+      "md": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.24}", "fontWeight": "{font.weight.semibold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.tight}" }, "$description": "Section / card title" },
+      "sm": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.20}", "fontWeight": "{font.weight.semibold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.normal}" } },
+      "xs": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.18}", "fontWeight": "{font.weight.semibold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.normal}" }, "$description": "Subsection / group label" }
+    },
+    "body": {
+      "lg": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.16}", "fontWeight": "{font.weight.medium}", "lineHeight": "{font.lineHeight.normal}", "letterSpacing": "{font.letterSpacing.normal}" } },
+      "md": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.15}", "fontWeight": "{font.weight.medium}", "lineHeight": "{font.lineHeight.normal}", "letterSpacing": "{font.letterSpacing.normal}" }, "$description": "Default body / table cell" },
+      "sm": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.14}", "fontWeight": "{font.weight.medium}", "lineHeight": "{font.lineHeight.normal}", "letterSpacing": "{font.letterSpacing.normal}" } },
+      "xs": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.13}", "fontWeight": "{font.weight.medium}", "lineHeight": "{font.lineHeight.normal}", "letterSpacing": "{font.letterSpacing.normal}" }, "$description": "Dense secondary text" }
+    },
+    "label": {
+      "lg": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.16}", "fontWeight": "{font.weight.semibold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.normal}" } },
+      "md": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.14}", "fontWeight": "{font.weight.semibold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.normal}" }, "$description": "Button / input / tab label" },
+      "sm": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.13}", "fontWeight": "{font.weight.semibold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.normal}" }, "$description": "Table header / chip" },
+      "xs": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.12}", "fontWeight": "{font.weight.semibold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.wide}" } }
+    },
+    "overline": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.10}", "fontWeight": "{font.weight.extrabold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.wider}" }, "$description": "All-caps section kicker — apply text-transform: uppercase in the component" },
+    "caption": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.12}", "fontWeight": "{font.weight.medium}", "lineHeight": "{font.lineHeight.normal}", "letterSpacing": "{font.letterSpacing.normal}" }, "$description": "Helper text, timestamps, footnotes" },
+    "code": { "$value": { "fontFamily": "{font.family.mono}", "fontSize": "{font.size.13}", "fontWeight": "{font.weight.medium}", "lineHeight": "{font.lineHeight.normal}", "letterSpacing": "{font.letterSpacing.normal}" }, "$description": "Inline IDs, JSON, tracking numbers" }
+  }
+}

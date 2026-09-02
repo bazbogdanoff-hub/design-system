@@ -1,0 +1,25 @@
+{
+  "note": "old text-style name -> new text/* style name. All weight variants (Medium/SemiBold/Bold/ExtraBold/Regular) collapse to one target — the weight inconsistency gets fixed when components are built. Node rebind: for each TEXT node, if its textStyle name matches a prefix key, set textStyleId to the new style.",
+  "byPrefix": {
+    "Title/Title-1/": "text/display/xl",
+    "Title/Title-2/": "text/display/xl",
+    "Title/H1/":      "text/display/lg",
+    "Title/H2/":      "text/display/lg",
+    "Title/H3/":      "text/display/md",
+    "Title/H4/":      "text/heading/xl",
+    "Title/H5/":      "text/heading/md",
+    "Title/H6/":      "text/heading/sm",
+    "Title/Body-1/":  "text/body/lg",
+    "Title/Label-1/": "text/label/lg",
+    "Title/label-1/": "text/label/lg",
+    "Title/Label-2/": "text/label/md",
+    "Title/Label-3/": "text/label/xs",
+    "Title/Caption/Caption-1/": "text/caption",
+    "Title/Caption/Caption-2/": "text/caption",
+    "paragraph large/": "text/body/lg",
+    "paragraph small/": "text/body/sm",
+    "paragraph mini/":  "text/caption",
+    "paragraph/":       "text/body/lg",
+    "Text sm/":         "text/body/sm"
+  }
+}

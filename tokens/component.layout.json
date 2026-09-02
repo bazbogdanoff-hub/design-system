@@ -1,0 +1,11 @@
+{
+  "radius": {
+    "card": { "$value": "{radius.container}" },
+    "modal": { "$value": "{radius.container}" },
+    "table": { "$value": "{radius.panel}" },
+    "popover": { "$value": "{radius.panel}" },
+    "button": { "$value": "{radius.control}" },
+    "input": { "$value": "{radius.control}" },
+    "badge": { "$value": "{radius.chip}" }
+  }
+}

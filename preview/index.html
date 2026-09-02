@@ -1,0 +1,2962 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design tokens — preview</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap');
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-button-ghost-background-default: rgba(0, 0, 0, 0);
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  --color-gray-950: #030712;
+  --color-zinc-50: #fafafa;
+  --color-zinc-100: #f4f4f5;
+  --color-zinc-200: #e4e4e7;
+  --color-zinc-300: #d4d4d8;
+  --color-zinc-400: #a1a1aa;
+  --color-zinc-500: #71717a;
+  --color-zinc-600: #52525b;
+  --color-zinc-700: #3f3f46;
+  --color-zinc-800: #27272a;
+  --color-zinc-900: #18181b;
+  --color-zinc-950: #09090b;
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+  --color-neutral-950: #0a0a0a;
+  --color-stone-50: #fafaf9;
+  --color-stone-100: #f5f5f4;
+  --color-stone-200: #e7e5e4;
+  --color-stone-300: #d6d3d1;
+  --color-stone-400: #a8a29e;
+  --color-stone-500: #78716c;
+  --color-stone-600: #57534e;
+  --color-stone-700: #44403c;
+  --color-stone-800: #292524;
+  --color-stone-900: #1c1917;
+  --color-stone-950: #0c0a09;
+  --color-red-50: #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-200: #fecaca;
+  --color-red-300: #fca5a5;
+  --color-red-400: #f87171;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+  --color-red-800: #991b1b;
+  --color-red-900: #7f1d1d;
+  --color-red-950: #450a0a;
+  --color-orange-50: #fff7ed;
+  --color-orange-100: #ffedd5;
+  --color-orange-200: #fed7aa;
+  --color-orange-300: #fdba74;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-orange-600: #ea580c;
+  --color-orange-700: #c2410c;
+  --color-orange-800: #9a3412;
+  --color-orange-900: #7c2d12;
+  --color-orange-950: #431407;
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-200: #fde68a;
+  --color-amber-300: #fcd34d;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+  --color-amber-700: #b45309;
+  --color-amber-800: #92400e;
+  --color-amber-900: #78350f;
+  --color-amber-950: #451a03;
+  --color-yellow-50: #fefce8;
+  --color-yellow-100: #fef9c3;
+  --color-yellow-200: #fef08a;
+  --color-yellow-300: #fde047;
+  --color-yellow-400: #facc15;
+  --color-yellow-500: #eab308;
+  --color-yellow-600: #ca8a04;
+  --color-yellow-700: #a16207;
+  --color-yellow-800: #854d0e;
+  --color-yellow-900: #713f12;
+  --color-yellow-950: #422006;
+  --color-lime-50: #f7fee7;
+  --color-lime-100: #ecfccb;
+  --color-lime-200: #d9f99d;
+  --color-lime-300: #bef264;
+  --color-lime-400: #a3e635;
+  --color-lime-500: #84cc16;
+  --color-lime-600: #65a30d;
+  --color-lime-700: #4d7c0f;
+  --color-lime-800: #3f6212;
+  --color-lime-900: #365314;
+  --color-lime-950: #1a2e05;
+  --color-green-50: #f0fdf4;
+  --color-green-100: #dcfce7;
+  --color-green-200: #bbf7d0;
+  --color-green-300: #86efac;
+  --color-green-400: #4ade80;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+  --color-green-700: #15803d;
+  --color-green-800: #166534;
+  --color-green-900: #14532d;
+  --color-green-950: #052e16;
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-200: #a7f3d0;
+  --color-emerald-300: #6ee7b7;
+  --color-emerald-400: #34d399;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+  --color-emerald-800: #065f46;
+  --color-emerald-900: #064e3b;
+  --color-emerald-950: #022c22;
+  --color-teal-50: #f0fdfa;
+  --color-teal-100: #ccfbf1;
+  --color-teal-200: #99f6e4;
+  --color-teal-300: #5eead4;
+  --color-teal-400: #2dd4bf;
+  --color-teal-500: #14b8a6;
+  --color-teal-600: #0d9488;
+  --color-teal-700: #0f766e;
+  --color-teal-800: #115e59;
+  --color-teal-900: #134e4a;
+  --color-teal-950: #042f2e;
+  --color-cyan-50: #ecfeff;
+  --color-cyan-100: #cffafe;
+  --color-cyan-200: #a5f3fc;
+  --color-cyan-300: #67e8f9;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
+  --color-cyan-700: #0e7490;
+  --color-cyan-800: #155e75;
+  --color-cyan-900: #164e63;
+  --color-cyan-950: #083344;
+  --color-sky-50: #f0f9ff;
+  --color-sky-100: #e0f2fe;
+  --color-sky-200: #bae6fd;
+  --color-sky-300: #7dd3fc;
+  --color-sky-400: #38bdf8;
+  --color-sky-500: #0ea5e9;
+  --color-sky-600: #0284c7;
+  --color-sky-700: #0369a1;
+  --color-sky-800: #075985;
+  --color-sky-900: #0c4a6e;
+  --color-sky-950: #082f49;
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+  --color-blue-800: #1e40af;
+  --color-blue-900: #1e3a8a;
+  --color-blue-950: #172554;
+  --color-indigo-50: #eef2ff;
+  --color-indigo-100: #e0e7ff;
+  --color-indigo-200: #c7d2fe;
+  --color-indigo-300: #a5b4fc;
+  --color-indigo-400: #818cf8;
+  --color-indigo-500: #6366f1;
+  --color-indigo-600: #4f46e5;
+  --color-indigo-700: #4338ca;
+  --color-indigo-800: #3730a3;
+  --color-indigo-900: #312e81;
+  --color-indigo-950: #1e1b4b;
+  --color-violet-50: #f5f3ff;
+  --color-violet-100: #ede9fe;
+  --color-violet-200: #ddd6fe;
+  --color-violet-300: #c4b5fd;
+  --color-violet-400: #a78bfa;
+  --color-violet-500: #8b5cf6;
+  --color-violet-600: #7c3aed;
+  --color-violet-700: #6d28d9;
+  --color-violet-800: #5b21b6;
+  --color-violet-900: #4c1d95;
+  --color-violet-950: #2e1065;
+  --color-purple-50: #faf5ff;
+  --color-purple-100: #f3e8ff;
+  --color-purple-200: #e9d5ff;
+  --color-purple-300: #d8b4fe;
+  --color-purple-400: #c084fc;
+  --color-purple-500: #a855f7;
+  --color-purple-600: #9333ea;
+  --color-purple-700: #7e22ce;
+  --color-purple-800: #6b21a8;
+  --color-purple-900: #581c87;
+  --color-purple-950: #3b0764;
+  --color-fuchsia-50: #fdf4ff;
+  --color-fuchsia-100: #fae8ff;
+  --color-fuchsia-200: #f5d0fe;
+  --color-fuchsia-300: #f0abfc;
+  --color-fuchsia-400: #e879f9;
+  --color-fuchsia-500: #d946ef;
+  --color-fuchsia-600: #c026d3;
+  --color-fuchsia-700: #a21caf;
+  --color-fuchsia-800: #86198f;
+  --color-fuchsia-900: #701a75;
+  --color-fuchsia-950: #4a044e;
+  --color-pink-50: #fdf2f8;
+  --color-pink-100: #fce7f3;
+  --color-pink-200: #fbcfe8;
+  --color-pink-300: #f9a8d4;
+  --color-pink-400: #f472b6;
+  --color-pink-500: #ec4899;
+  --color-pink-600: #db2777;
+  --color-pink-700: #be185d;
+  --color-pink-800: #9d174d;
+  --color-pink-900: #831843;
+  --color-pink-950: #500724;
+  --color-rose-50: #fff1f2;
+  --color-rose-100: #ffe4e6;
+  --color-rose-200: #fecdd3;
+  --color-rose-300: #fda4af;
+  --color-rose-400: #fb7185;
+  --color-rose-500: #f43f5e;
+  --color-rose-600: #e11d48;
+  --color-rose-700: #be123c;
+  --color-rose-800: #9f1239;
+  --color-rose-900: #881337;
+  --color-rose-950: #4c0519;
+  --color-background-overlay: rgba(2, 6, 23, 0.7); /** Modal / drawer scrim. RAW value with alpha — there is no alpha primitive tier yet */
+  --radius-none: 0;
+  --radius-xs: 0.125rem; /** 2px */
+  --radius-sm: 0.25rem; /** 4px */
+  --radius-md: 0.375rem; /** 6px */
+  --radius-lg: 0.5rem; /** 8px */
+  --radius-xl: 0.75rem; /** 12px */
+  --radius-2xl: 1rem; /** 16px — largest; the outer content cards */
+  --radius-full: 9999px; /** pills, avatars, dots */
+  --space-0: 0;
+  --space-2: 0.125rem; /** 2px — hairline gap */
+  --space-4: 0.25rem; /** 4px */
+  --space-6: 0.375rem; /** 6px */
+  --space-8: 0.5rem; /** 8px */
+  --space-10: 0.625rem; /** 10px */
+  --space-12: 0.75rem; /** 12px */
+  --space-16: 1rem; /** 16px */
+  --space-20: 1.25rem; /** 20px */
+  --space-24: 1.5rem; /** 24px */
+  --space-32: 2rem; /** 32px */
+  --space-40: 2.5rem; /** 40px */
+  --space-48: 3rem; /** 48px */
+  --space-64: 4rem; /** 64px */
+  --space-80: 5rem; /** 80px */
+  --space-96: 6rem; /** 96px */
+  --font-family-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  --font-size-10: 0.625rem; /** 10px */
+  --font-size-12: 0.75rem; /** 12px */
+  --font-size-13: 0.8125rem; /** 13px */
+  --font-size-14: 0.875rem; /** 14px */
+  --font-size-15: 0.9375rem; /** 15px */
+  --font-size-16: 1rem; /** 16px */
+  --font-size-18: 1.125rem; /** 18px */
+  --font-size-20: 1.25rem; /** 20px */
+  --font-size-24: 1.5rem; /** 24px */
+  --font-size-28: 1.75rem; /** 28px */
+  --font-size-32: 2rem; /** 32px */
+  --font-size-36: 2.25rem; /** 36px */
+  --font-size-48: 3rem; /** 48px */
+  --font-size-64: 4rem; /** 64px */
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-line-height-none: 1; /** display / single-line */
+  --font-line-height-tight: 1.15;
+  --font-line-height-snug: 1.3;
+  --font-line-height-normal: 1.5; /** body default */
+  --font-line-height-relaxed: 1.65;
+  --font-letter-spacing-tighter: -0.02em; /** large display */
+  --font-letter-spacing-tight: -0.01em;
+  --font-letter-spacing-normal: 0em;
+  --font-letter-spacing-wide: 0.01em;
+  --font-letter-spacing-wider: 0.03em; /** overlines / all-caps */
+  --color-brand-50: var(--color-indigo-50);
+  --color-brand-100: var(--color-indigo-100);
+  --color-brand-200: var(--color-indigo-200);
+  --color-brand-300: var(--color-indigo-300);
+  --color-brand-400: var(--color-indigo-400);
+  --color-brand-500: var(--color-indigo-500);
+  --color-brand-600: var(--color-indigo-600);
+  --color-brand-700: var(--color-indigo-700);
+  --color-brand-800: var(--color-indigo-800);
+  --color-brand-900: var(--color-indigo-900);
+  --color-brand-950: var(--color-indigo-950);
+  --color-modal-scrim: var(--color-background-overlay);
+  --color-background-default: var(--color-slate-50); /** Page / app canvas */
+  --color-background-subtle: var(--color-slate-100); /** Inset zones, striped rows, panels flush with the page */
+  --color-background-emphasis: var(--color-slate-900); /** High-contrast fills: tooltips, inverse callouts */
+  --color-background-disabled: var(--color-slate-100); /** Disabled control fill */
+  --color-background-danger-default: var(--color-red-600); /** Destructive button */
+  --color-background-danger-hover: var(--color-red-700);
+  --color-background-danger-subtle: var(--color-red-50); /** Error banner / callout fill */
+  --color-background-success: var(--color-green-600); /** Solid success badge / button */
+  --color-background-success-subtle: var(--color-green-50); /** Success banner fill */
+  --color-background-warning: var(--color-amber-500); /** Solid warning badge */
+  --color-background-warning-subtle: var(--color-amber-50); /** Warning banner fill */
+  --color-background-info: var(--color-blue-600); /** Solid info badge */
+  --color-background-info-subtle: var(--color-blue-50); /** Info banner fill */
+  --color-surface-default: var(--color-white); /** Card, panel, modal, menu, sheet */
+  --color-surface-subtle: var(--color-slate-50); /** Nested surface, table header row */
+  --color-surface-raised: var(--color-white); /** Surface carrying an elevation shadow: popover, dropdown */
+  --color-surface-sunken: var(--color-slate-100); /** Wells, code blocks, inset track */
+  --color-text-default: var(--color-slate-900); /** Body copy, headings */
+  --color-text-subtle: var(--color-slate-700); /** Secondary text, field labels */
+  --color-text-muted: var(--color-slate-500); /** Placeholder, timestamps, hints */
+  --color-text-disabled: var(--color-slate-400); /** Disabled control text */
+  --color-text-danger: var(--color-red-700); /** Validation errors, destructive labels */
+  --color-text-success: var(--color-green-700);
+  --color-text-warning: var(--color-amber-700);
+  --color-text-info: var(--color-blue-700);
+  --color-text-on-brand: var(--color-white); /** Text on color.background.brand* */
+  --color-text-on-emphasis: var(--color-slate-50); /** Text on color.background.emphasis */
+  --color-text-on-danger: var(--color-white); /** Text on color.background.danger* */
+  --color-border-default: var(--color-slate-200); /** Inputs, cards, dividers */
+  --color-border-subtle: var(--color-slate-100); /** Faint separators */
+  --color-border-strong: var(--color-slate-300); /** Emphasized / hover borders */
+  --color-border-danger: var(--color-red-600); /** Invalid input */
+  --color-icon-default: var(--color-slate-700); /** Standalone UI icons */
+  --color-icon-subtle: var(--color-slate-500); /** Decorative / secondary icons */
+  --color-icon-danger: var(--color-red-600);
+  --color-icon-success: var(--color-green-600);
+  --color-icon-on-brand: var(--color-white); /** Icon on a brand fill */
+  --color-icon-on-emphasis: var(--color-slate-50); /** Icon on color.background.emphasis */
+  --radius-container: var(--radius-2xl); /** 16px — outermost content card in a carded layout */
+  --radius-panel: var(--radius-xl); /** 12px — nested card, section, menu, popover, sheet */
+  --radius-control: var(--radius-lg); /** 8px — button, input, select, textarea */
+  --radius-chip: var(--radius-md); /** 6px — badge, tag, checkbox, small toggle */
+  --radius-pill: var(--radius-full); /** pill button, avatar, status dot */
+  --text-display-xl-font-family: var(--font-family-sans); /** Hero / auth / empty-state headline */
+  --text-display-xl-font-size: var(--font-size-64); /** Hero / auth / empty-state headline */
+  --text-display-xl-font-weight: var(--font-weight-bold); /** Hero / auth / empty-state headline */
+  --text-display-xl-line-height: var(--font-line-height-none); /** Hero / auth / empty-state headline */
+  --text-display-xl-letter-spacing: var(--font-letter-spacing-tighter); /** Hero / auth / empty-state headline */
+  --text-display-lg-font-family: var(--font-family-sans);
+  --text-display-lg-font-size: var(--font-size-48);
+  --text-display-lg-font-weight: var(--font-weight-bold);
+  --text-display-lg-line-height: var(--font-line-height-none);
+  --text-display-lg-letter-spacing: var(--font-letter-spacing-tighter);
+  --text-display-md-font-family: var(--font-family-sans);
+  --text-display-md-font-size: var(--font-size-36);
+  --text-display-md-font-weight: var(--font-weight-bold);
+  --text-display-md-line-height: var(--font-line-height-tight);
+  --text-display-md-letter-spacing: var(--font-letter-spacing-tight);
+  --text-heading-xl-font-family: var(--font-family-sans); /** Page title */
+  --text-heading-xl-font-size: var(--font-size-32); /** Page title */
+  --text-heading-xl-font-weight: var(--font-weight-bold); /** Page title */
+  --text-heading-xl-line-height: var(--font-line-height-tight); /** Page title */
+  --text-heading-xl-letter-spacing: var(--font-letter-spacing-tight); /** Page title */
+  --text-heading-lg-font-family: var(--font-family-sans);
+  --text-heading-lg-font-size: var(--font-size-28);
+  --text-heading-lg-font-weight: var(--font-weight-semibold);
+  --text-heading-lg-line-height: var(--font-line-height-snug);
+  --text-heading-lg-letter-spacing: var(--font-letter-spacing-tight);
+  --text-heading-md-font-family: var(--font-family-sans); /** Section / card title */
+  --text-heading-md-font-size: var(--font-size-24); /** Section / card title */
+  --text-heading-md-font-weight: var(--font-weight-semibold); /** Section / card title */
+  --text-heading-md-line-height: var(--font-line-height-snug); /** Section / card title */
+  --text-heading-md-letter-spacing: var(--font-letter-spacing-tight); /** Section / card title */
+  --text-heading-sm-font-family: var(--font-family-sans);
+  --text-heading-sm-font-size: var(--font-size-20);
+  --text-heading-sm-font-weight: var(--font-weight-semibold);
+  --text-heading-sm-line-height: var(--font-line-height-snug);
+  --text-heading-sm-letter-spacing: var(--font-letter-spacing-normal);
+  --text-heading-xs-font-family: var(--font-family-sans); /** Subsection / group label */
+  --text-heading-xs-font-size: var(--font-size-18); /** Subsection / group label */
+  --text-heading-xs-font-weight: var(--font-weight-semibold); /** Subsection / group label */
+  --text-heading-xs-line-height: var(--font-line-height-snug); /** Subsection / group label */
+  --text-heading-xs-letter-spacing: var(--font-letter-spacing-normal); /** Subsection / group label */
+  --text-body-lg-font-family: var(--font-family-sans);
+  --text-body-lg-font-size: var(--font-size-16);
+  --text-body-lg-font-weight: var(--font-weight-medium);
+  --text-body-lg-line-height: var(--font-line-height-normal);
+  --text-body-lg-letter-spacing: var(--font-letter-spacing-normal);
+  --text-body-md-font-family: var(--font-family-sans); /** Default body / table cell */
+  --text-body-md-font-size: var(--font-size-15); /** Default body / table cell */
+  --text-body-md-font-weight: var(--font-weight-medium); /** Default body / table cell */
+  --text-body-md-line-height: var(--font-line-height-normal); /** Default body / table cell */
+  --text-body-md-letter-spacing: var(--font-letter-spacing-normal); /** Default body / table cell */
+  --text-body-sm-font-family: var(--font-family-sans);
+  --text-body-sm-font-size: var(--font-size-14);
+  --text-body-sm-font-weight: var(--font-weight-medium);
+  --text-body-sm-line-height: var(--font-line-height-normal);
+  --text-body-sm-letter-spacing: var(--font-letter-spacing-normal);
+  --text-body-xs-font-family: var(--font-family-sans); /** Dense secondary text */
+  --text-body-xs-font-size: var(--font-size-13); /** Dense secondary text */
+  --text-body-xs-font-weight: var(--font-weight-medium); /** Dense secondary text */
+  --text-body-xs-line-height: var(--font-line-height-normal); /** Dense secondary text */
+  --text-body-xs-letter-spacing: var(--font-letter-spacing-normal); /** Dense secondary text */
+  --text-label-lg-font-family: var(--font-family-sans);
+  --text-label-lg-font-size: var(--font-size-16);
+  --text-label-lg-font-weight: var(--font-weight-semibold);
+  --text-label-lg-line-height: var(--font-line-height-snug);
+  --text-label-lg-letter-spacing: var(--font-letter-spacing-normal);
+  --text-label-md-font-family: var(--font-family-sans); /** Button / input / tab label */
+  --text-label-md-font-size: var(--font-size-14); /** Button / input / tab label */
+  --text-label-md-font-weight: var(--font-weight-semibold); /** Button / input / tab label */
+  --text-label-md-line-height: var(--font-line-height-snug); /** Button / input / tab label */
+  --text-label-md-letter-spacing: var(--font-letter-spacing-normal); /** Button / input / tab label */
+  --text-label-sm-font-family: var(--font-family-sans); /** Table header / chip */
+  --text-label-sm-font-size: var(--font-size-13); /** Table header / chip */
+  --text-label-sm-font-weight: var(--font-weight-semibold); /** Table header / chip */
+  --text-label-sm-line-height: var(--font-line-height-snug); /** Table header / chip */
+  --text-label-sm-letter-spacing: var(--font-letter-spacing-normal); /** Table header / chip */
+  --text-label-xs-font-family: var(--font-family-sans);
+  --text-label-xs-font-size: var(--font-size-12);
+  --text-label-xs-font-weight: var(--font-weight-semibold);
+  --text-label-xs-line-height: var(--font-line-height-snug);
+  --text-label-xs-letter-spacing: var(--font-letter-spacing-wide);
+  --text-overline-font-family: var(--font-family-sans); /** All-caps section kicker — apply text-transform: uppercase in the component */
+  --text-overline-font-size: var(--font-size-10); /** All-caps section kicker — apply text-transform: uppercase in the component */
+  --text-overline-font-weight: var(--font-weight-extrabold); /** All-caps section kicker — apply text-transform: uppercase in the component */
+  --text-overline-line-height: var(--font-line-height-snug); /** All-caps section kicker — apply text-transform: uppercase in the component */
+  --text-overline-letter-spacing: var(--font-letter-spacing-wider); /** All-caps section kicker — apply text-transform: uppercase in the component */
+  --text-caption-font-family: var(--font-family-sans); /** Helper text, timestamps, footnotes */
+  --text-caption-font-size: var(--font-size-12); /** Helper text, timestamps, footnotes */
+  --text-caption-font-weight: var(--font-weight-medium); /** Helper text, timestamps, footnotes */
+  --text-caption-line-height: var(--font-line-height-normal); /** Helper text, timestamps, footnotes */
+  --text-caption-letter-spacing: var(--font-letter-spacing-normal); /** Helper text, timestamps, footnotes */
+  --text-code-font-family: var(--font-family-mono); /** Inline IDs, JSON, tracking numbers */
+  --text-code-font-size: var(--font-size-13); /** Inline IDs, JSON, tracking numbers */
+  --text-code-font-weight: var(--font-weight-medium); /** Inline IDs, JSON, tracking numbers */
+  --text-code-line-height: var(--font-line-height-normal); /** Inline IDs, JSON, tracking numbers */
+  --text-code-letter-spacing: var(--font-letter-spacing-normal); /** Inline IDs, JSON, tracking numbers */
+  --color-button-primary-text: var(--color-text-on-brand);
+  --color-button-secondary-background-default: var(--color-surface-default);
+  --color-button-secondary-background-hover: var(--color-background-subtle);
+  --color-button-secondary-background-active: var(--color-background-subtle);
+  --color-button-secondary-text: var(--color-text-default);
+  --color-button-secondary-border: var(--color-border-default);
+  --color-button-danger-background-default: var(--color-background-danger-default);
+  --color-button-danger-background-hover: var(--color-background-danger-hover);
+  --color-button-danger-text: var(--color-text-on-danger);
+  --color-button-disabled-background: var(--color-background-disabled);
+  --color-button-disabled-text: var(--color-text-disabled);
+  --color-card-background-default: var(--color-surface-default);
+  --color-card-background-hover: var(--color-surface-subtle); /** Clickable / navigable cards only */
+  --color-card-border: var(--color-border-default);
+  --color-input-background-default: var(--color-surface-default);
+  --color-input-background-disabled: var(--color-background-disabled);
+  --color-input-text: var(--color-text-default);
+  --color-input-placeholder: var(--color-text-muted);
+  --color-input-label: var(--color-text-subtle);
+  --color-input-border-default: var(--color-border-default);
+  --color-input-border-hover: var(--color-border-strong);
+  --color-input-border-danger: var(--color-border-danger);
+  --color-badge-neutral-background: var(--color-background-subtle);
+  --color-badge-neutral-text: var(--color-text-subtle);
+  --color-badge-success-background: var(--color-background-success-subtle);
+  --color-badge-success-text: var(--color-text-success);
+  --color-badge-warning-background: var(--color-background-warning-subtle);
+  --color-badge-warning-text: var(--color-text-warning);
+  --color-badge-danger-background: var(--color-background-danger-subtle);
+  --color-badge-danger-text: var(--color-text-danger);
+  --color-badge-info-background: var(--color-background-info-subtle);
+  --color-badge-info-text: var(--color-text-info);
+  --color-table-header-background: var(--color-surface-subtle);
+  --color-table-header-text: var(--color-text-subtle);
+  --color-table-row-background-default: var(--color-surface-default);
+  --color-table-row-background-hover: var(--color-background-subtle);
+  --color-table-border: var(--color-border-subtle);
+  --color-modal-background: var(--color-surface-raised);
+  --color-modal-border: var(--color-border-default);
+  --color-background-brand-default: var(--color-brand-600); /** Primary button, active nav item, selected state */
+  --color-background-brand-hover: var(--color-brand-700);
+  --color-background-brand-active: var(--color-brand-800);
+  --color-background-brand-subtle: var(--color-brand-50); /** Tinted brand fill: selected row, info banner */
+  --color-text-brand: var(--color-brand-700); /** Links, brand-colored labels */
+  --color-border-brand: var(--color-brand-600); /** Selected input, active tab */
+  --color-border-focus: var(--color-brand-500); /** Focus ring */
+  --color-icon-brand: var(--color-brand-600);
+  --radius-card: var(--radius-container);
+  --radius-modal: var(--radius-container);
+  --radius-table: var(--radius-panel);
+  --radius-popover: var(--radius-panel);
+  --radius-button: var(--radius-control);
+  --radius-input: var(--radius-control);
+  --radius-badge: var(--radius-chip);
+  --color-button-primary-background-default: var(--color-background-brand-default);
+  --color-button-primary-background-hover: var(--color-background-brand-hover);
+  --color-button-primary-background-active: var(--color-background-brand-active);
+  --color-button-ghost-background-hover: var(--color-background-brand-subtle);
+  --color-button-ghost-background-active: var(--color-background-brand-subtle);
+  --color-button-ghost-text: var(--color-text-brand);
+  --color-input-border-focus: var(--color-border-focus);
+  --color-badge-brand-background: var(--color-background-brand-subtle);
+  --color-badge-brand-text: var(--color-text-brand);
+  --color-table-row-background-selected: var(--color-background-brand-subtle);
+}
+
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+.text-display-xl {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-64);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-height-none);
+  letter-spacing: var(--font-letter-spacing-tighter);
+}
+
+.text-display-lg {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-48);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-height-none);
+  letter-spacing: var(--font-letter-spacing-tighter);
+}
+
+.text-display-md {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-36);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-height-tight);
+  letter-spacing: var(--font-letter-spacing-tight);
+}
+
+.text-heading-xl {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-32);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-height-tight);
+  letter-spacing: var(--font-letter-spacing-tight);
+}
+
+.text-heading-lg {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-28);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-snug);
+  letter-spacing: var(--font-letter-spacing-tight);
+}
+
+.text-heading-md {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-snug);
+  letter-spacing: var(--font-letter-spacing-tight);
+}
+
+.text-heading-sm {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-snug);
+  letter-spacing: var(--font-letter-spacing-normal);
+}
+
+.text-heading-xs {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-snug);
+  letter-spacing: var(--font-letter-spacing-normal);
+}
+
+.text-body-lg {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--font-line-height-normal);
+  letter-spacing: var(--font-letter-spacing-normal);
+}
+
+.text-body-md {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-15);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--font-line-height-normal);
+  letter-spacing: var(--font-letter-spacing-normal);
+}
+
+.text-body-sm {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--font-line-height-normal);
+  letter-spacing: var(--font-letter-spacing-normal);
+}
+
+.text-body-xs {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--font-line-height-normal);
+  letter-spacing: var(--font-letter-spacing-normal);
+}
+
+.text-label-lg {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-snug);
+  letter-spacing: var(--font-letter-spacing-normal);
+}
+
+.text-label-md {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-snug);
+  letter-spacing: var(--font-letter-spacing-normal);
+}
+
+.text-label-sm {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-snug);
+  letter-spacing: var(--font-letter-spacing-normal);
+}
+
+.text-label-xs {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-snug);
+  letter-spacing: var(--font-letter-spacing-wide);
+}
+
+.text-overline {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--font-line-height-snug);
+  letter-spacing: var(--font-letter-spacing-wider);
+  text-transform: uppercase;
+}
+
+.text-caption {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--font-line-height-normal);
+  letter-spacing: var(--font-letter-spacing-normal);
+}
+
+.text-code {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--font-line-height-normal);
+  letter-spacing: var(--font-letter-spacing-normal);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; font: var(--text-body-md-font-weight) var(--text-body-md-font-size)/var(--text-body-md-line-height) var(--font-family-sans);
+  background: var(--color-background-default); color: var(--color-text-default); padding: 40px; }
+.spec { display: flex; align-items: baseline; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--color-border-subtle); }
+.spec .nm { margin-left: auto; flex: none; font-size: 11px; color: var(--color-text-muted); font-family: var(--font-family-mono); }
+h1 { font-size: 20px; margin: 0 0 4px; }
+.sub { color: var(--color-text-muted); margin: 0 0 32px; }
+h2 { font-size: 15px; text-transform: uppercase; letter-spacing: .08em; color: var(--color-text-subtle);
+  border-bottom: 1px solid var(--color-border-default); padding-bottom: 8px; margin: 40px 0 8px; }
+h3 { font-size: 13px; margin: 20px 0 8px; color: var(--color-text-subtle); font-weight: 600; }
+h3 .c { color: var(--color-text-muted); font-weight: 400; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 8px; }
+.sw { display: flex; gap: 10px; align-items: center; padding: 6px; border: 1px solid var(--color-border-subtle);
+  border-radius: 8px; background: var(--color-surface-default); }
+.chip { width: 40px; height: 40px; border-radius: 6px; flex: none;
+  border: 1px solid var(--color-border-default);
+  background-image: linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc),
+    linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc);
+  background-size: 12px 12px; background-position: 0 0, 6px 6px; }
+.meta { min-width: 0; display: flex; flex-direction: column; }
+.nm { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.val { font-size: 11px; color: var(--color-text-muted); }
+.a { color: var(--color-text-brand); }
+.rbox { width: 56px; height: 56px; flex: none; background: var(--color-background-brand-subtle);
+  border: 1.5px solid var(--color-border-brand); border-bottom: none; border-right: none; }
+.spacecol { display: flex; flex-direction: column; gap: 4px; }
+.spacerow { display: flex; align-items: center; gap: 12px; }
+.spacerow .nm { width: 72px; flex: none; }
+.spacerow .bar { height: 14px; background: var(--color-background-brand); border-radius: 2px; flex: none; }
+.spacerow .val { flex: none; }
+</style>
+</head>
+<body>
+<h1>Logistics CRM — design tokens</h1>
+<p class="sub">353 colour vars + 19 text styles · generated from <code>build/</code> · Plus Jakarta Sans · neutral = slate · brand = indigo</p>
+
+<h2>Typography <span style="font-weight:400;text-transform:none;letter-spacing:0">— text.* semantic styles</span></h2>
+<div class="spec"><span class="text-display-xl">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">display-xl · 64px</code></div><div class="spec"><span class="text-display-lg">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">display-lg · 48px</code></div><div class="spec"><span class="text-display-md">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">display-md · 36px</code></div><div class="spec"><span class="text-heading-xl">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">heading-xl · 32px</code></div><div class="spec"><span class="text-heading-lg">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">heading-lg · 28px</code></div><div class="spec"><span class="text-heading-md">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">heading-md · 24px</code></div><div class="spec"><span class="text-heading-sm">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">heading-sm · 20px</code></div><div class="spec"><span class="text-heading-xs">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">heading-xs · 18px</code></div><div class="spec"><span class="text-body-lg">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">body-lg · 16px</code></div><div class="spec"><span class="text-body-md">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">body-md · 15px</code></div><div class="spec"><span class="text-body-sm">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">body-sm · 14px</code></div><div class="spec"><span class="text-body-xs">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">body-xs · 13px</code></div><div class="spec"><span class="text-label-lg">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">label-lg · 16px</code></div><div class="spec"><span class="text-label-md">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">label-md · 14px</code></div><div class="spec"><span class="text-label-sm">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">label-sm · 13px</code></div><div class="spec"><span class="text-label-xs">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">label-xs · 12px</code></div><div class="spec"><span class="text-overline">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">overline · 10px</code></div><div class="spec"><span class="text-caption">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">caption · 12px</code></div><div class="spec"><span class="text-code">Track shipment #48213 — Rotterdam to Hamburg</span><code class="nm">code · 13px</code></div>
+
+<h2>Radius <span style="font-weight:400;text-transform:none;letter-spacing:0">— scale · semantic · component</span></h2>
+<div class="grid">
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-none)"></div>
+    <div class="meta"><code class="nm">none</code><span class="val">0</span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-xs)"></div>
+    <div class="meta"><code class="nm">xs</code><span class="val">0.125rem</span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-sm)"></div>
+    <div class="meta"><code class="nm">sm</code><span class="val">0.25rem</span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-md)"></div>
+    <div class="meta"><code class="nm">md</code><span class="val">0.375rem</span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-lg)"></div>
+    <div class="meta"><code class="nm">lg</code><span class="val">0.5rem</span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-xl)"></div>
+    <div class="meta"><code class="nm">xl</code><span class="val">0.75rem</span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-2xl)"></div>
+    <div class="meta"><code class="nm">2xl</code><span class="val">1rem</span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-full)"></div>
+    <div class="meta"><code class="nm">full</code><span class="val">9999px</span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-container)"></div>
+    <div class="meta"><code class="nm">container</code><span class="val">1rem <span class="a">← radius-2xl</span></span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-panel)"></div>
+    <div class="meta"><code class="nm">panel</code><span class="val">0.75rem <span class="a">← radius-xl</span></span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-control)"></div>
+    <div class="meta"><code class="nm">control</code><span class="val">0.5rem <span class="a">← radius-lg</span></span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-chip)"></div>
+    <div class="meta"><code class="nm">chip</code><span class="val">0.375rem <span class="a">← radius-md</span></span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-pill)"></div>
+    <div class="meta"><code class="nm">pill</code><span class="val">9999px <span class="a">← radius-full</span></span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-card)"></div>
+    <div class="meta"><code class="nm">card</code><span class="val">1rem <span class="a">← radius-container</span></span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-modal)"></div>
+    <div class="meta"><code class="nm">modal</code><span class="val">1rem <span class="a">← radius-container</span></span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-table)"></div>
+    <div class="meta"><code class="nm">table</code><span class="val">0.75rem <span class="a">← radius-panel</span></span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-popover)"></div>
+    <div class="meta"><code class="nm">popover</code><span class="val">0.75rem <span class="a">← radius-panel</span></span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-button)"></div>
+    <div class="meta"><code class="nm">button</code><span class="val">0.5rem <span class="a">← radius-control</span></span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-input)"></div>
+    <div class="meta"><code class="nm">input</code><span class="val">0.5rem <span class="a">← radius-control</span></span></div>
+  </div>
+  <div class="sw">
+    <div class="rbox" style="border-radius:var(--radius-badge)"></div>
+    <div class="meta"><code class="nm">badge</code><span class="val">0.375rem <span class="a">← radius-chip</span></span></div>
+  </div></div>
+
+<h2>Spacing <span style="font-weight:400;text-transform:none;letter-spacing:0">— space.* (no semantic tier)</span></h2>
+<div class="spacecol">
+  <div class="spacerow"><code class="nm">space.0</code>
+    <span class="bar" style="width:var(--space-0)"></span><span class="val">0</span></div>
+  <div class="spacerow"><code class="nm">space.2</code>
+    <span class="bar" style="width:var(--space-2)"></span><span class="val">0.125rem</span></div>
+  <div class="spacerow"><code class="nm">space.4</code>
+    <span class="bar" style="width:var(--space-4)"></span><span class="val">0.25rem</span></div>
+  <div class="spacerow"><code class="nm">space.6</code>
+    <span class="bar" style="width:var(--space-6)"></span><span class="val">0.375rem</span></div>
+  <div class="spacerow"><code class="nm">space.8</code>
+    <span class="bar" style="width:var(--space-8)"></span><span class="val">0.5rem</span></div>
+  <div class="spacerow"><code class="nm">space.10</code>
+    <span class="bar" style="width:var(--space-10)"></span><span class="val">0.625rem</span></div>
+  <div class="spacerow"><code class="nm">space.12</code>
+    <span class="bar" style="width:var(--space-12)"></span><span class="val">0.75rem</span></div>
+  <div class="spacerow"><code class="nm">space.16</code>
+    <span class="bar" style="width:var(--space-16)"></span><span class="val">1rem</span></div>
+  <div class="spacerow"><code class="nm">space.20</code>
+    <span class="bar" style="width:var(--space-20)"></span><span class="val">1.25rem</span></div>
+  <div class="spacerow"><code class="nm">space.24</code>
+    <span class="bar" style="width:var(--space-24)"></span><span class="val">1.5rem</span></div>
+  <div class="spacerow"><code class="nm">space.32</code>
+    <span class="bar" style="width:var(--space-32)"></span><span class="val">2rem</span></div>
+  <div class="spacerow"><code class="nm">space.40</code>
+    <span class="bar" style="width:var(--space-40)"></span><span class="val">2.5rem</span></div>
+  <div class="spacerow"><code class="nm">space.48</code>
+    <span class="bar" style="width:var(--space-48)"></span><span class="val">3rem</span></div>
+  <div class="spacerow"><code class="nm">space.64</code>
+    <span class="bar" style="width:var(--space-64)"></span><span class="val">4rem</span></div>
+  <div class="spacerow"><code class="nm">space.80</code>
+    <span class="bar" style="width:var(--space-80)"></span><span class="val">5rem</span></div>
+  <div class="spacerow"><code class="nm">space.96</code>
+    <span class="bar" style="width:var(--space-96)"></span><span class="val">6rem</span></div></div>
+
+<h2>Semantic <span style="font-weight:400;text-transform:none;letter-spacing:0">— the colour API components use</span></h2>
+<h3>color.background.* <span class="c">18</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-background-overlay)"></div>
+      <div class="meta">
+        <code class="nm">background-overlay</code>
+        <span class="val">rgba(2, 6, 23, 0.7)</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-background-default)"></div>
+      <div class="meta">
+        <code class="nm">background-default</code>
+        <span class="val">#f8fafc <span class="a">← slate-50</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-background-subtle)"></div>
+      <div class="meta">
+        <code class="nm">background-subtle</code>
+        <span class="val">#f1f5f9 <span class="a">← slate-100</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-background-emphasis)"></div>
+      <div class="meta">
+        <code class="nm">background-emphasis</code>
+        <span class="val">#0f172a <span class="a">← slate-900</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-background-disabled)"></div>
+      <div class="meta">
+        <code class="nm">background-disabled</code>
+        <span class="val">#f1f5f9 <span class="a">← slate-100</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-background-danger-default)"></div>
+      <div class="meta">
+        <code class="nm">background-danger-default</code>
+        <span class="val">#dc2626 <span class="a">← red-600</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-background-danger-hover)"></div>
+      <div class="meta">
+        <code class="nm">background-danger-hover</code>
+        <span class="val">#b91c1c <span class="a">← red-700</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-background-danger-subtle)"></div>
+      <div class="meta">
+        <code class="nm">background-danger-subtle</code>
+        <span class="val">#fef2f2 <span class="a">← red-50</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-background-success)"></div>
+      <div class="meta">
+        <code class="nm">background-success</code>
+        <span class="val">#16a34a <span class="a">← green-600</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-background-success-subtle)"></div>
+      <div class="meta">
+        <code class="nm">background-success-subtle</code>
+        <span class="val">#f0fdf4 <span class="a">← green-50</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-background-warning)"></div>
+      <div class="meta">
+        <code class="nm">background-warning</code>
+        <span class="val">#f59e0b <span class="a">← amber-500</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-background-warning-subtle)"></div>
+      <div class="meta">
+        <code class="nm">background-warning-subtle</code>
+        <span class="val">#fffbeb <span class="a">← amber-50</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-background-info)"></div>
+      <div class="meta">
+        <code class="nm">background-info</code>
+        <span class="val">#2563eb <span class="a">← blue-600</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-background-info-subtle)"></div>
+      <div class="meta">
+        <code class="nm">background-info-subtle</code>
+        <span class="val">#eff6ff <span class="a">← blue-50</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-background-brand-default)"></div>
+      <div class="meta">
+        <code class="nm">background-brand-default</code>
+        <span class="val">#4f46e5 <span class="a">← brand-600</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-background-brand-hover)"></div>
+      <div class="meta">
+        <code class="nm">background-brand-hover</code>
+        <span class="val">#4338ca <span class="a">← brand-700</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-background-brand-active)"></div>
+      <div class="meta">
+        <code class="nm">background-brand-active</code>
+        <span class="val">#3730a3 <span class="a">← brand-800</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-background-brand-subtle)"></div>
+      <div class="meta">
+        <code class="nm">background-brand-subtle</code>
+        <span class="val">#eef2ff <span class="a">← brand-50</span></span>
+      </div>
+    </div></div><h3>color.surface.* <span class="c">4</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-surface-default)"></div>
+      <div class="meta">
+        <code class="nm">surface-default</code>
+        <span class="val">#ffffff <span class="a">← white</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-surface-subtle)"></div>
+      <div class="meta">
+        <code class="nm">surface-subtle</code>
+        <span class="val">#f8fafc <span class="a">← slate-50</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-surface-raised)"></div>
+      <div class="meta">
+        <code class="nm">surface-raised</code>
+        <span class="val">#ffffff <span class="a">← white</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-surface-sunken)"></div>
+      <div class="meta">
+        <code class="nm">surface-sunken</code>
+        <span class="val">#f1f5f9 <span class="a">← slate-100</span></span>
+      </div>
+    </div></div><h3>color.text.* <span class="c">12</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-text-default)"></div>
+      <div class="meta">
+        <code class="nm">text-default</code>
+        <span class="val">#0f172a <span class="a">← slate-900</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-text-subtle)"></div>
+      <div class="meta">
+        <code class="nm">text-subtle</code>
+        <span class="val">#334155 <span class="a">← slate-700</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-text-muted)"></div>
+      <div class="meta">
+        <code class="nm">text-muted</code>
+        <span class="val">#64748b <span class="a">← slate-500</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-text-disabled)"></div>
+      <div class="meta">
+        <code class="nm">text-disabled</code>
+        <span class="val">#94a3b8 <span class="a">← slate-400</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-text-danger)"></div>
+      <div class="meta">
+        <code class="nm">text-danger</code>
+        <span class="val">#b91c1c <span class="a">← red-700</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-text-success)"></div>
+      <div class="meta">
+        <code class="nm">text-success</code>
+        <span class="val">#15803d <span class="a">← green-700</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-text-warning)"></div>
+      <div class="meta">
+        <code class="nm">text-warning</code>
+        <span class="val">#b45309 <span class="a">← amber-700</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-text-info)"></div>
+      <div class="meta">
+        <code class="nm">text-info</code>
+        <span class="val">#1d4ed8 <span class="a">← blue-700</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-text-on-brand)"></div>
+      <div class="meta">
+        <code class="nm">text-on-brand</code>
+        <span class="val">#ffffff <span class="a">← white</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-text-on-emphasis)"></div>
+      <div class="meta">
+        <code class="nm">text-on-emphasis</code>
+        <span class="val">#f8fafc <span class="a">← slate-50</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-text-on-danger)"></div>
+      <div class="meta">
+        <code class="nm">text-on-danger</code>
+        <span class="val">#ffffff <span class="a">← white</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-text-brand)"></div>
+      <div class="meta">
+        <code class="nm">text-brand</code>
+        <span class="val">#4338ca <span class="a">← brand-700</span></span>
+      </div>
+    </div></div><h3>color.border.* <span class="c">6</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-border-default)"></div>
+      <div class="meta">
+        <code class="nm">border-default</code>
+        <span class="val">#e2e8f0 <span class="a">← slate-200</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-border-subtle)"></div>
+      <div class="meta">
+        <code class="nm">border-subtle</code>
+        <span class="val">#f1f5f9 <span class="a">← slate-100</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-border-strong)"></div>
+      <div class="meta">
+        <code class="nm">border-strong</code>
+        <span class="val">#cbd5e1 <span class="a">← slate-300</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-border-danger)"></div>
+      <div class="meta">
+        <code class="nm">border-danger</code>
+        <span class="val">#dc2626 <span class="a">← red-600</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-border-brand)"></div>
+      <div class="meta">
+        <code class="nm">border-brand</code>
+        <span class="val">#4f46e5 <span class="a">← brand-600</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-border-focus)"></div>
+      <div class="meta">
+        <code class="nm">border-focus</code>
+        <span class="val">#6366f1 <span class="a">← brand-500</span></span>
+      </div>
+    </div></div><h3>color.icon.* <span class="c">7</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-icon-default)"></div>
+      <div class="meta">
+        <code class="nm">icon-default</code>
+        <span class="val">#334155 <span class="a">← slate-700</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-icon-subtle)"></div>
+      <div class="meta">
+        <code class="nm">icon-subtle</code>
+        <span class="val">#64748b <span class="a">← slate-500</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-icon-danger)"></div>
+      <div class="meta">
+        <code class="nm">icon-danger</code>
+        <span class="val">#dc2626 <span class="a">← red-600</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-icon-success)"></div>
+      <div class="meta">
+        <code class="nm">icon-success</code>
+        <span class="val">#16a34a <span class="a">← green-600</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-icon-on-brand)"></div>
+      <div class="meta">
+        <code class="nm">icon-on-brand</code>
+        <span class="val">#ffffff <span class="a">← white</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-icon-on-emphasis)"></div>
+      <div class="meta">
+        <code class="nm">icon-on-emphasis</code>
+        <span class="val">#f8fafc <span class="a">← slate-50</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-icon-brand)"></div>
+      <div class="meta">
+        <code class="nm">icon-brand</code>
+        <span class="val">#4f46e5 <span class="a">← brand-600</span></span>
+      </div>
+    </div></div>
+
+<h2>Component</h2>
+<h3>color.button.* <span class="c">18</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-button-ghost-background-default)"></div>
+      <div class="meta">
+        <code class="nm">button-ghost-background-default</code>
+        <span class="val">rgba(0, 0, 0, 0)</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-button-primary-text)"></div>
+      <div class="meta">
+        <code class="nm">button-primary-text</code>
+        <span class="val">#ffffff <span class="a">← text-on-brand</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-button-secondary-background-default)"></div>
+      <div class="meta">
+        <code class="nm">button-secondary-background-default</code>
+        <span class="val">#ffffff <span class="a">← surface-default</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-button-secondary-background-hover)"></div>
+      <div class="meta">
+        <code class="nm">button-secondary-background-hover</code>
+        <span class="val">#f1f5f9 <span class="a">← background-subtle</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-button-secondary-background-active)"></div>
+      <div class="meta">
+        <code class="nm">button-secondary-background-active</code>
+        <span class="val">#f1f5f9 <span class="a">← background-subtle</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-button-secondary-text)"></div>
+      <div class="meta">
+        <code class="nm">button-secondary-text</code>
+        <span class="val">#0f172a <span class="a">← text-default</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-button-secondary-border)"></div>
+      <div class="meta">
+        <code class="nm">button-secondary-border</code>
+        <span class="val">#e2e8f0 <span class="a">← border-default</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-button-danger-background-default)"></div>
+      <div class="meta">
+        <code class="nm">button-danger-background-default</code>
+        <span class="val">#dc2626 <span class="a">← background-danger-default</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-button-danger-background-hover)"></div>
+      <div class="meta">
+        <code class="nm">button-danger-background-hover</code>
+        <span class="val">#b91c1c <span class="a">← background-danger-hover</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-button-danger-text)"></div>
+      <div class="meta">
+        <code class="nm">button-danger-text</code>
+        <span class="val">#ffffff <span class="a">← text-on-danger</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-button-disabled-background)"></div>
+      <div class="meta">
+        <code class="nm">button-disabled-background</code>
+        <span class="val">#f1f5f9 <span class="a">← background-disabled</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-button-disabled-text)"></div>
+      <div class="meta">
+        <code class="nm">button-disabled-text</code>
+        <span class="val">#94a3b8 <span class="a">← text-disabled</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-button-primary-background-default)"></div>
+      <div class="meta">
+        <code class="nm">button-primary-background-default</code>
+        <span class="val">#4f46e5 <span class="a">← background-brand-default</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-button-primary-background-hover)"></div>
+      <div class="meta">
+        <code class="nm">button-primary-background-hover</code>
+        <span class="val">#4338ca <span class="a">← background-brand-hover</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-button-primary-background-active)"></div>
+      <div class="meta">
+        <code class="nm">button-primary-background-active</code>
+        <span class="val">#3730a3 <span class="a">← background-brand-active</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-button-ghost-background-hover)"></div>
+      <div class="meta">
+        <code class="nm">button-ghost-background-hover</code>
+        <span class="val">#eef2ff <span class="a">← background-brand-subtle</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-button-ghost-background-active)"></div>
+      <div class="meta">
+        <code class="nm">button-ghost-background-active</code>
+        <span class="val">#eef2ff <span class="a">← background-brand-subtle</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-button-ghost-text)"></div>
+      <div class="meta">
+        <code class="nm">button-ghost-text</code>
+        <span class="val">#4338ca <span class="a">← text-brand</span></span>
+      </div>
+    </div></div><h3>color.card.* <span class="c">3</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-card-background-default)"></div>
+      <div class="meta">
+        <code class="nm">card-background-default</code>
+        <span class="val">#ffffff <span class="a">← surface-default</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-card-background-hover)"></div>
+      <div class="meta">
+        <code class="nm">card-background-hover</code>
+        <span class="val">#f8fafc <span class="a">← surface-subtle</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-card-border)"></div>
+      <div class="meta">
+        <code class="nm">card-border</code>
+        <span class="val">#e2e8f0 <span class="a">← border-default</span></span>
+      </div>
+    </div></div><h3>color.input.* <span class="c">9</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-input-background-default)"></div>
+      <div class="meta">
+        <code class="nm">input-background-default</code>
+        <span class="val">#ffffff <span class="a">← surface-default</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-input-background-disabled)"></div>
+      <div class="meta">
+        <code class="nm">input-background-disabled</code>
+        <span class="val">#f1f5f9 <span class="a">← background-disabled</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-input-text)"></div>
+      <div class="meta">
+        <code class="nm">input-text</code>
+        <span class="val">#0f172a <span class="a">← text-default</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-input-placeholder)"></div>
+      <div class="meta">
+        <code class="nm">input-placeholder</code>
+        <span class="val">#64748b <span class="a">← text-muted</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-input-label)"></div>
+      <div class="meta">
+        <code class="nm">input-label</code>
+        <span class="val">#334155 <span class="a">← text-subtle</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-input-border-default)"></div>
+      <div class="meta">
+        <code class="nm">input-border-default</code>
+        <span class="val">#e2e8f0 <span class="a">← border-default</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-input-border-hover)"></div>
+      <div class="meta">
+        <code class="nm">input-border-hover</code>
+        <span class="val">#cbd5e1 <span class="a">← border-strong</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-input-border-danger)"></div>
+      <div class="meta">
+        <code class="nm">input-border-danger</code>
+        <span class="val">#dc2626 <span class="a">← border-danger</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-input-border-focus)"></div>
+      <div class="meta">
+        <code class="nm">input-border-focus</code>
+        <span class="val">#6366f1 <span class="a">← border-focus</span></span>
+      </div>
+    </div></div><h3>color.badge.* <span class="c">12</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-badge-neutral-background)"></div>
+      <div class="meta">
+        <code class="nm">badge-neutral-background</code>
+        <span class="val">#f1f5f9 <span class="a">← background-subtle</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-badge-neutral-text)"></div>
+      <div class="meta">
+        <code class="nm">badge-neutral-text</code>
+        <span class="val">#334155 <span class="a">← text-subtle</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-badge-success-background)"></div>
+      <div class="meta">
+        <code class="nm">badge-success-background</code>
+        <span class="val">#f0fdf4 <span class="a">← background-success-subtle</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-badge-success-text)"></div>
+      <div class="meta">
+        <code class="nm">badge-success-text</code>
+        <span class="val">#15803d <span class="a">← text-success</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-badge-warning-background)"></div>
+      <div class="meta">
+        <code class="nm">badge-warning-background</code>
+        <span class="val">#fffbeb <span class="a">← background-warning-subtle</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-badge-warning-text)"></div>
+      <div class="meta">
+        <code class="nm">badge-warning-text</code>
+        <span class="val">#b45309 <span class="a">← text-warning</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-badge-danger-background)"></div>
+      <div class="meta">
+        <code class="nm">badge-danger-background</code>
+        <span class="val">#fef2f2 <span class="a">← background-danger-subtle</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-badge-danger-text)"></div>
+      <div class="meta">
+        <code class="nm">badge-danger-text</code>
+        <span class="val">#b91c1c <span class="a">← text-danger</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-badge-info-background)"></div>
+      <div class="meta">
+        <code class="nm">badge-info-background</code>
+        <span class="val">#eff6ff <span class="a">← background-info-subtle</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-badge-info-text)"></div>
+      <div class="meta">
+        <code class="nm">badge-info-text</code>
+        <span class="val">#1d4ed8 <span class="a">← text-info</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-badge-brand-background)"></div>
+      <div class="meta">
+        <code class="nm">badge-brand-background</code>
+        <span class="val">#eef2ff <span class="a">← background-brand-subtle</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-badge-brand-text)"></div>
+      <div class="meta">
+        <code class="nm">badge-brand-text</code>
+        <span class="val">#4338ca <span class="a">← text-brand</span></span>
+      </div>
+    </div></div><h3>color.table.* <span class="c">6</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-table-header-background)"></div>
+      <div class="meta">
+        <code class="nm">table-header-background</code>
+        <span class="val">#f8fafc <span class="a">← surface-subtle</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-table-header-text)"></div>
+      <div class="meta">
+        <code class="nm">table-header-text</code>
+        <span class="val">#334155 <span class="a">← text-subtle</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-table-row-background-default)"></div>
+      <div class="meta">
+        <code class="nm">table-row-background-default</code>
+        <span class="val">#ffffff <span class="a">← surface-default</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-table-row-background-hover)"></div>
+      <div class="meta">
+        <code class="nm">table-row-background-hover</code>
+        <span class="val">#f1f5f9 <span class="a">← background-subtle</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-table-border)"></div>
+      <div class="meta">
+        <code class="nm">table-border</code>
+        <span class="val">#f1f5f9 <span class="a">← border-subtle</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-table-row-background-selected)"></div>
+      <div class="meta">
+        <code class="nm">table-row-background-selected</code>
+        <span class="val">#eef2ff <span class="a">← background-brand-subtle</span></span>
+      </div>
+    </div></div><h3>color.modal.* <span class="c">3</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-modal-scrim)"></div>
+      <div class="meta">
+        <code class="nm">modal-scrim</code>
+        <span class="val">rgba(2, 6, 23, 0.7) <span class="a">← background-overlay</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-modal-background)"></div>
+      <div class="meta">
+        <code class="nm">modal-background</code>
+        <span class="val">#ffffff <span class="a">← surface-raised</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-modal-border)"></div>
+      <div class="meta">
+        <code class="nm">modal-border</code>
+        <span class="val">#e2e8f0 <span class="a">← border-default</span></span>
+      </div>
+    </div></div>
+
+<h2>Brand ramp</h2>
+<h3>color.brand.* → indigo <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-brand-50)"></div>
+      <div class="meta">
+        <code class="nm">brand-50</code>
+        <span class="val">#eef2ff <span class="a">← indigo-50</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-brand-100)"></div>
+      <div class="meta">
+        <code class="nm">brand-100</code>
+        <span class="val">#e0e7ff <span class="a">← indigo-100</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-brand-200)"></div>
+      <div class="meta">
+        <code class="nm">brand-200</code>
+        <span class="val">#c7d2fe <span class="a">← indigo-200</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-brand-300)"></div>
+      <div class="meta">
+        <code class="nm">brand-300</code>
+        <span class="val">#a5b4fc <span class="a">← indigo-300</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-brand-400)"></div>
+      <div class="meta">
+        <code class="nm">brand-400</code>
+        <span class="val">#818cf8 <span class="a">← indigo-400</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-brand-500)"></div>
+      <div class="meta">
+        <code class="nm">brand-500</code>
+        <span class="val">#6366f1 <span class="a">← indigo-500</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-brand-600)"></div>
+      <div class="meta">
+        <code class="nm">brand-600</code>
+        <span class="val">#4f46e5 <span class="a">← indigo-600</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-brand-700)"></div>
+      <div class="meta">
+        <code class="nm">brand-700</code>
+        <span class="val">#4338ca <span class="a">← indigo-700</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-brand-800)"></div>
+      <div class="meta">
+        <code class="nm">brand-800</code>
+        <span class="val">#3730a3 <span class="a">← indigo-800</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-brand-900)"></div>
+      <div class="meta">
+        <code class="nm">brand-900</code>
+        <span class="val">#312e81 <span class="a">← indigo-900</span></span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-brand-950)"></div>
+      <div class="meta">
+        <code class="nm">brand-950</code>
+        <span class="val">#1e1b4b <span class="a">← indigo-950</span></span>
+      </div>
+    </div></div>
+
+<h2>Primitives <span style="font-weight:400;text-transform:none;letter-spacing:0">— full Tailwind palette, prune later</span></h2>
+<h3>slate <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-slate-50)"></div>
+      <div class="meta">
+        <code class="nm">slate-50</code>
+        <span class="val">#f8fafc</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-slate-100)"></div>
+      <div class="meta">
+        <code class="nm">slate-100</code>
+        <span class="val">#f1f5f9</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-slate-200)"></div>
+      <div class="meta">
+        <code class="nm">slate-200</code>
+        <span class="val">#e2e8f0</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-slate-300)"></div>
+      <div class="meta">
+        <code class="nm">slate-300</code>
+        <span class="val">#cbd5e1</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-slate-400)"></div>
+      <div class="meta">
+        <code class="nm">slate-400</code>
+        <span class="val">#94a3b8</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-slate-500)"></div>
+      <div class="meta">
+        <code class="nm">slate-500</code>
+        <span class="val">#64748b</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-slate-600)"></div>
+      <div class="meta">
+        <code class="nm">slate-600</code>
+        <span class="val">#475569</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-slate-700)"></div>
+      <div class="meta">
+        <code class="nm">slate-700</code>
+        <span class="val">#334155</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-slate-800)"></div>
+      <div class="meta">
+        <code class="nm">slate-800</code>
+        <span class="val">#1e293b</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-slate-900)"></div>
+      <div class="meta">
+        <code class="nm">slate-900</code>
+        <span class="val">#0f172a</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-slate-950)"></div>
+      <div class="meta">
+        <code class="nm">slate-950</code>
+        <span class="val">#020617</span>
+      </div>
+    </div></div><h3>gray <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-gray-50)"></div>
+      <div class="meta">
+        <code class="nm">gray-50</code>
+        <span class="val">#f9fafb</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-gray-100)"></div>
+      <div class="meta">
+        <code class="nm">gray-100</code>
+        <span class="val">#f3f4f6</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-gray-200)"></div>
+      <div class="meta">
+        <code class="nm">gray-200</code>
+        <span class="val">#e5e7eb</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-gray-300)"></div>
+      <div class="meta">
+        <code class="nm">gray-300</code>
+        <span class="val">#d1d5db</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-gray-400)"></div>
+      <div class="meta">
+        <code class="nm">gray-400</code>
+        <span class="val">#9ca3af</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-gray-500)"></div>
+      <div class="meta">
+        <code class="nm">gray-500</code>
+        <span class="val">#6b7280</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-gray-600)"></div>
+      <div class="meta">
+        <code class="nm">gray-600</code>
+        <span class="val">#4b5563</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-gray-700)"></div>
+      <div class="meta">
+        <code class="nm">gray-700</code>
+        <span class="val">#374151</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-gray-800)"></div>
+      <div class="meta">
+        <code class="nm">gray-800</code>
+        <span class="val">#1f2937</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-gray-900)"></div>
+      <div class="meta">
+        <code class="nm">gray-900</code>
+        <span class="val">#111827</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-gray-950)"></div>
+      <div class="meta">
+        <code class="nm">gray-950</code>
+        <span class="val">#030712</span>
+      </div>
+    </div></div><h3>zinc <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-zinc-50)"></div>
+      <div class="meta">
+        <code class="nm">zinc-50</code>
+        <span class="val">#fafafa</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-zinc-100)"></div>
+      <div class="meta">
+        <code class="nm">zinc-100</code>
+        <span class="val">#f4f4f5</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-zinc-200)"></div>
+      <div class="meta">
+        <code class="nm">zinc-200</code>
+        <span class="val">#e4e4e7</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-zinc-300)"></div>
+      <div class="meta">
+        <code class="nm">zinc-300</code>
+        <span class="val">#d4d4d8</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-zinc-400)"></div>
+      <div class="meta">
+        <code class="nm">zinc-400</code>
+        <span class="val">#a1a1aa</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-zinc-500)"></div>
+      <div class="meta">
+        <code class="nm">zinc-500</code>
+        <span class="val">#71717a</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-zinc-600)"></div>
+      <div class="meta">
+        <code class="nm">zinc-600</code>
+        <span class="val">#52525b</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-zinc-700)"></div>
+      <div class="meta">
+        <code class="nm">zinc-700</code>
+        <span class="val">#3f3f46</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-zinc-800)"></div>
+      <div class="meta">
+        <code class="nm">zinc-800</code>
+        <span class="val">#27272a</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-zinc-900)"></div>
+      <div class="meta">
+        <code class="nm">zinc-900</code>
+        <span class="val">#18181b</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-zinc-950)"></div>
+      <div class="meta">
+        <code class="nm">zinc-950</code>
+        <span class="val">#09090b</span>
+      </div>
+    </div></div><h3>neutral <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-neutral-50)"></div>
+      <div class="meta">
+        <code class="nm">neutral-50</code>
+        <span class="val">#fafafa</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-neutral-100)"></div>
+      <div class="meta">
+        <code class="nm">neutral-100</code>
+        <span class="val">#f5f5f5</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-neutral-200)"></div>
+      <div class="meta">
+        <code class="nm">neutral-200</code>
+        <span class="val">#e5e5e5</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-neutral-300)"></div>
+      <div class="meta">
+        <code class="nm">neutral-300</code>
+        <span class="val">#d4d4d4</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-neutral-400)"></div>
+      <div class="meta">
+        <code class="nm">neutral-400</code>
+        <span class="val">#a3a3a3</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-neutral-500)"></div>
+      <div class="meta">
+        <code class="nm">neutral-500</code>
+        <span class="val">#737373</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-neutral-600)"></div>
+      <div class="meta">
+        <code class="nm">neutral-600</code>
+        <span class="val">#525252</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-neutral-700)"></div>
+      <div class="meta">
+        <code class="nm">neutral-700</code>
+        <span class="val">#404040</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-neutral-800)"></div>
+      <div class="meta">
+        <code class="nm">neutral-800</code>
+        <span class="val">#262626</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-neutral-900)"></div>
+      <div class="meta">
+        <code class="nm">neutral-900</code>
+        <span class="val">#171717</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-neutral-950)"></div>
+      <div class="meta">
+        <code class="nm">neutral-950</code>
+        <span class="val">#0a0a0a</span>
+      </div>
+    </div></div><h3>stone <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-stone-50)"></div>
+      <div class="meta">
+        <code class="nm">stone-50</code>
+        <span class="val">#fafaf9</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-stone-100)"></div>
+      <div class="meta">
+        <code class="nm">stone-100</code>
+        <span class="val">#f5f5f4</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-stone-200)"></div>
+      <div class="meta">
+        <code class="nm">stone-200</code>
+        <span class="val">#e7e5e4</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-stone-300)"></div>
+      <div class="meta">
+        <code class="nm">stone-300</code>
+        <span class="val">#d6d3d1</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-stone-400)"></div>
+      <div class="meta">
+        <code class="nm">stone-400</code>
+        <span class="val">#a8a29e</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-stone-500)"></div>
+      <div class="meta">
+        <code class="nm">stone-500</code>
+        <span class="val">#78716c</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-stone-600)"></div>
+      <div class="meta">
+        <code class="nm">stone-600</code>
+        <span class="val">#57534e</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-stone-700)"></div>
+      <div class="meta">
+        <code class="nm">stone-700</code>
+        <span class="val">#44403c</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-stone-800)"></div>
+      <div class="meta">
+        <code class="nm">stone-800</code>
+        <span class="val">#292524</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-stone-900)"></div>
+      <div class="meta">
+        <code class="nm">stone-900</code>
+        <span class="val">#1c1917</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-stone-950)"></div>
+      <div class="meta">
+        <code class="nm">stone-950</code>
+        <span class="val">#0c0a09</span>
+      </div>
+    </div></div><h3>red <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-red-50)"></div>
+      <div class="meta">
+        <code class="nm">red-50</code>
+        <span class="val">#fef2f2</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-red-100)"></div>
+      <div class="meta">
+        <code class="nm">red-100</code>
+        <span class="val">#fee2e2</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-red-200)"></div>
+      <div class="meta">
+        <code class="nm">red-200</code>
+        <span class="val">#fecaca</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-red-300)"></div>
+      <div class="meta">
+        <code class="nm">red-300</code>
+        <span class="val">#fca5a5</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-red-400)"></div>
+      <div class="meta">
+        <code class="nm">red-400</code>
+        <span class="val">#f87171</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-red-500)"></div>
+      <div class="meta">
+        <code class="nm">red-500</code>
+        <span class="val">#ef4444</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-red-600)"></div>
+      <div class="meta">
+        <code class="nm">red-600</code>
+        <span class="val">#dc2626</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-red-700)"></div>
+      <div class="meta">
+        <code class="nm">red-700</code>
+        <span class="val">#b91c1c</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-red-800)"></div>
+      <div class="meta">
+        <code class="nm">red-800</code>
+        <span class="val">#991b1b</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-red-900)"></div>
+      <div class="meta">
+        <code class="nm">red-900</code>
+        <span class="val">#7f1d1d</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-red-950)"></div>
+      <div class="meta">
+        <code class="nm">red-950</code>
+        <span class="val">#450a0a</span>
+      </div>
+    </div></div><h3>orange <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-orange-50)"></div>
+      <div class="meta">
+        <code class="nm">orange-50</code>
+        <span class="val">#fff7ed</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-orange-100)"></div>
+      <div class="meta">
+        <code class="nm">orange-100</code>
+        <span class="val">#ffedd5</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-orange-200)"></div>
+      <div class="meta">
+        <code class="nm">orange-200</code>
+        <span class="val">#fed7aa</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-orange-300)"></div>
+      <div class="meta">
+        <code class="nm">orange-300</code>
+        <span class="val">#fdba74</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-orange-400)"></div>
+      <div class="meta">
+        <code class="nm">orange-400</code>
+        <span class="val">#fb923c</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-orange-500)"></div>
+      <div class="meta">
+        <code class="nm">orange-500</code>
+        <span class="val">#f97316</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-orange-600)"></div>
+      <div class="meta">
+        <code class="nm">orange-600</code>
+        <span class="val">#ea580c</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-orange-700)"></div>
+      <div class="meta">
+        <code class="nm">orange-700</code>
+        <span class="val">#c2410c</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-orange-800)"></div>
+      <div class="meta">
+        <code class="nm">orange-800</code>
+        <span class="val">#9a3412</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-orange-900)"></div>
+      <div class="meta">
+        <code class="nm">orange-900</code>
+        <span class="val">#7c2d12</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-orange-950)"></div>
+      <div class="meta">
+        <code class="nm">orange-950</code>
+        <span class="val">#431407</span>
+      </div>
+    </div></div><h3>amber <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-amber-50)"></div>
+      <div class="meta">
+        <code class="nm">amber-50</code>
+        <span class="val">#fffbeb</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-amber-100)"></div>
+      <div class="meta">
+        <code class="nm">amber-100</code>
+        <span class="val">#fef3c7</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-amber-200)"></div>
+      <div class="meta">
+        <code class="nm">amber-200</code>
+        <span class="val">#fde68a</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-amber-300)"></div>
+      <div class="meta">
+        <code class="nm">amber-300</code>
+        <span class="val">#fcd34d</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-amber-400)"></div>
+      <div class="meta">
+        <code class="nm">amber-400</code>
+        <span class="val">#fbbf24</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-amber-500)"></div>
+      <div class="meta">
+        <code class="nm">amber-500</code>
+        <span class="val">#f59e0b</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-amber-600)"></div>
+      <div class="meta">
+        <code class="nm">amber-600</code>
+        <span class="val">#d97706</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-amber-700)"></div>
+      <div class="meta">
+        <code class="nm">amber-700</code>
+        <span class="val">#b45309</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-amber-800)"></div>
+      <div class="meta">
+        <code class="nm">amber-800</code>
+        <span class="val">#92400e</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-amber-900)"></div>
+      <div class="meta">
+        <code class="nm">amber-900</code>
+        <span class="val">#78350f</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-amber-950)"></div>
+      <div class="meta">
+        <code class="nm">amber-950</code>
+        <span class="val">#451a03</span>
+      </div>
+    </div></div><h3>yellow <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-yellow-50)"></div>
+      <div class="meta">
+        <code class="nm">yellow-50</code>
+        <span class="val">#fefce8</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-yellow-100)"></div>
+      <div class="meta">
+        <code class="nm">yellow-100</code>
+        <span class="val">#fef9c3</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-yellow-200)"></div>
+      <div class="meta">
+        <code class="nm">yellow-200</code>
+        <span class="val">#fef08a</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-yellow-300)"></div>
+      <div class="meta">
+        <code class="nm">yellow-300</code>
+        <span class="val">#fde047</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-yellow-400)"></div>
+      <div class="meta">
+        <code class="nm">yellow-400</code>
+        <span class="val">#facc15</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-yellow-500)"></div>
+      <div class="meta">
+        <code class="nm">yellow-500</code>
+        <span class="val">#eab308</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-yellow-600)"></div>
+      <div class="meta">
+        <code class="nm">yellow-600</code>
+        <span class="val">#ca8a04</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-yellow-700)"></div>
+      <div class="meta">
+        <code class="nm">yellow-700</code>
+        <span class="val">#a16207</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-yellow-800)"></div>
+      <div class="meta">
+        <code class="nm">yellow-800</code>
+        <span class="val">#854d0e</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-yellow-900)"></div>
+      <div class="meta">
+        <code class="nm">yellow-900</code>
+        <span class="val">#713f12</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-yellow-950)"></div>
+      <div class="meta">
+        <code class="nm">yellow-950</code>
+        <span class="val">#422006</span>
+      </div>
+    </div></div><h3>lime <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-lime-50)"></div>
+      <div class="meta">
+        <code class="nm">lime-50</code>
+        <span class="val">#f7fee7</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-lime-100)"></div>
+      <div class="meta">
+        <code class="nm">lime-100</code>
+        <span class="val">#ecfccb</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-lime-200)"></div>
+      <div class="meta">
+        <code class="nm">lime-200</code>
+        <span class="val">#d9f99d</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-lime-300)"></div>
+      <div class="meta">
+        <code class="nm">lime-300</code>
+        <span class="val">#bef264</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-lime-400)"></div>
+      <div class="meta">
+        <code class="nm">lime-400</code>
+        <span class="val">#a3e635</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-lime-500)"></div>
+      <div class="meta">
+        <code class="nm">lime-500</code>
+        <span class="val">#84cc16</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-lime-600)"></div>
+      <div class="meta">
+        <code class="nm">lime-600</code>
+        <span class="val">#65a30d</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-lime-700)"></div>
+      <div class="meta">
+        <code class="nm">lime-700</code>
+        <span class="val">#4d7c0f</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-lime-800)"></div>
+      <div class="meta">
+        <code class="nm">lime-800</code>
+        <span class="val">#3f6212</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-lime-900)"></div>
+      <div class="meta">
+        <code class="nm">lime-900</code>
+        <span class="val">#365314</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-lime-950)"></div>
+      <div class="meta">
+        <code class="nm">lime-950</code>
+        <span class="val">#1a2e05</span>
+      </div>
+    </div></div><h3>green <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-green-50)"></div>
+      <div class="meta">
+        <code class="nm">green-50</code>
+        <span class="val">#f0fdf4</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-green-100)"></div>
+      <div class="meta">
+        <code class="nm">green-100</code>
+        <span class="val">#dcfce7</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-green-200)"></div>
+      <div class="meta">
+        <code class="nm">green-200</code>
+        <span class="val">#bbf7d0</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-green-300)"></div>
+      <div class="meta">
+        <code class="nm">green-300</code>
+        <span class="val">#86efac</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-green-400)"></div>
+      <div class="meta">
+        <code class="nm">green-400</code>
+        <span class="val">#4ade80</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-green-500)"></div>
+      <div class="meta">
+        <code class="nm">green-500</code>
+        <span class="val">#22c55e</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-green-600)"></div>
+      <div class="meta">
+        <code class="nm">green-600</code>
+        <span class="val">#16a34a</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-green-700)"></div>
+      <div class="meta">
+        <code class="nm">green-700</code>
+        <span class="val">#15803d</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-green-800)"></div>
+      <div class="meta">
+        <code class="nm">green-800</code>
+        <span class="val">#166534</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-green-900)"></div>
+      <div class="meta">
+        <code class="nm">green-900</code>
+        <span class="val">#14532d</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-green-950)"></div>
+      <div class="meta">
+        <code class="nm">green-950</code>
+        <span class="val">#052e16</span>
+      </div>
+    </div></div><h3>emerald <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-emerald-50)"></div>
+      <div class="meta">
+        <code class="nm">emerald-50</code>
+        <span class="val">#ecfdf5</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-emerald-100)"></div>
+      <div class="meta">
+        <code class="nm">emerald-100</code>
+        <span class="val">#d1fae5</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-emerald-200)"></div>
+      <div class="meta">
+        <code class="nm">emerald-200</code>
+        <span class="val">#a7f3d0</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-emerald-300)"></div>
+      <div class="meta">
+        <code class="nm">emerald-300</code>
+        <span class="val">#6ee7b7</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-emerald-400)"></div>
+      <div class="meta">
+        <code class="nm">emerald-400</code>
+        <span class="val">#34d399</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-emerald-500)"></div>
+      <div class="meta">
+        <code class="nm">emerald-500</code>
+        <span class="val">#10b981</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-emerald-600)"></div>
+      <div class="meta">
+        <code class="nm">emerald-600</code>
+        <span class="val">#059669</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-emerald-700)"></div>
+      <div class="meta">
+        <code class="nm">emerald-700</code>
+        <span class="val">#047857</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-emerald-800)"></div>
+      <div class="meta">
+        <code class="nm">emerald-800</code>
+        <span class="val">#065f46</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-emerald-900)"></div>
+      <div class="meta">
+        <code class="nm">emerald-900</code>
+        <span class="val">#064e3b</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-emerald-950)"></div>
+      <div class="meta">
+        <code class="nm">emerald-950</code>
+        <span class="val">#022c22</span>
+      </div>
+    </div></div><h3>teal <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-teal-50)"></div>
+      <div class="meta">
+        <code class="nm">teal-50</code>
+        <span class="val">#f0fdfa</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-teal-100)"></div>
+      <div class="meta">
+        <code class="nm">teal-100</code>
+        <span class="val">#ccfbf1</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-teal-200)"></div>
+      <div class="meta">
+        <code class="nm">teal-200</code>
+        <span class="val">#99f6e4</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-teal-300)"></div>
+      <div class="meta">
+        <code class="nm">teal-300</code>
+        <span class="val">#5eead4</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-teal-400)"></div>
+      <div class="meta">
+        <code class="nm">teal-400</code>
+        <span class="val">#2dd4bf</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-teal-500)"></div>
+      <div class="meta">
+        <code class="nm">teal-500</code>
+        <span class="val">#14b8a6</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-teal-600)"></div>
+      <div class="meta">
+        <code class="nm">teal-600</code>
+        <span class="val">#0d9488</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-teal-700)"></div>
+      <div class="meta">
+        <code class="nm">teal-700</code>
+        <span class="val">#0f766e</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-teal-800)"></div>
+      <div class="meta">
+        <code class="nm">teal-800</code>
+        <span class="val">#115e59</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-teal-900)"></div>
+      <div class="meta">
+        <code class="nm">teal-900</code>
+        <span class="val">#134e4a</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-teal-950)"></div>
+      <div class="meta">
+        <code class="nm">teal-950</code>
+        <span class="val">#042f2e</span>
+      </div>
+    </div></div><h3>cyan <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-cyan-50)"></div>
+      <div class="meta">
+        <code class="nm">cyan-50</code>
+        <span class="val">#ecfeff</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-cyan-100)"></div>
+      <div class="meta">
+        <code class="nm">cyan-100</code>
+        <span class="val">#cffafe</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-cyan-200)"></div>
+      <div class="meta">
+        <code class="nm">cyan-200</code>
+        <span class="val">#a5f3fc</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-cyan-300)"></div>
+      <div class="meta">
+        <code class="nm">cyan-300</code>
+        <span class="val">#67e8f9</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-cyan-400)"></div>
+      <div class="meta">
+        <code class="nm">cyan-400</code>
+        <span class="val">#22d3ee</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-cyan-500)"></div>
+      <div class="meta">
+        <code class="nm">cyan-500</code>
+        <span class="val">#06b6d4</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-cyan-600)"></div>
+      <div class="meta">
+        <code class="nm">cyan-600</code>
+        <span class="val">#0891b2</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-cyan-700)"></div>
+      <div class="meta">
+        <code class="nm">cyan-700</code>
+        <span class="val">#0e7490</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-cyan-800)"></div>
+      <div class="meta">
+        <code class="nm">cyan-800</code>
+        <span class="val">#155e75</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-cyan-900)"></div>
+      <div class="meta">
+        <code class="nm">cyan-900</code>
+        <span class="val">#164e63</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-cyan-950)"></div>
+      <div class="meta">
+        <code class="nm">cyan-950</code>
+        <span class="val">#083344</span>
+      </div>
+    </div></div><h3>sky <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-sky-50)"></div>
+      <div class="meta">
+        <code class="nm">sky-50</code>
+        <span class="val">#f0f9ff</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-sky-100)"></div>
+      <div class="meta">
+        <code class="nm">sky-100</code>
+        <span class="val">#e0f2fe</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-sky-200)"></div>
+      <div class="meta">
+        <code class="nm">sky-200</code>
+        <span class="val">#bae6fd</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-sky-300)"></div>
+      <div class="meta">
+        <code class="nm">sky-300</code>
+        <span class="val">#7dd3fc</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-sky-400)"></div>
+      <div class="meta">
+        <code class="nm">sky-400</code>
+        <span class="val">#38bdf8</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-sky-500)"></div>
+      <div class="meta">
+        <code class="nm">sky-500</code>
+        <span class="val">#0ea5e9</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-sky-600)"></div>
+      <div class="meta">
+        <code class="nm">sky-600</code>
+        <span class="val">#0284c7</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-sky-700)"></div>
+      <div class="meta">
+        <code class="nm">sky-700</code>
+        <span class="val">#0369a1</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-sky-800)"></div>
+      <div class="meta">
+        <code class="nm">sky-800</code>
+        <span class="val">#075985</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-sky-900)"></div>
+      <div class="meta">
+        <code class="nm">sky-900</code>
+        <span class="val">#0c4a6e</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-sky-950)"></div>
+      <div class="meta">
+        <code class="nm">sky-950</code>
+        <span class="val">#082f49</span>
+      </div>
+    </div></div><h3>blue <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-blue-50)"></div>
+      <div class="meta">
+        <code class="nm">blue-50</code>
+        <span class="val">#eff6ff</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-blue-100)"></div>
+      <div class="meta">
+        <code class="nm">blue-100</code>
+        <span class="val">#dbeafe</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-blue-200)"></div>
+      <div class="meta">
+        <code class="nm">blue-200</code>
+        <span class="val">#bfdbfe</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-blue-300)"></div>
+      <div class="meta">
+        <code class="nm">blue-300</code>
+        <span class="val">#93c5fd</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-blue-400)"></div>
+      <div class="meta">
+        <code class="nm">blue-400</code>
+        <span class="val">#60a5fa</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-blue-500)"></div>
+      <div class="meta">
+        <code class="nm">blue-500</code>
+        <span class="val">#3b82f6</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-blue-600)"></div>
+      <div class="meta">
+        <code class="nm">blue-600</code>
+        <span class="val">#2563eb</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-blue-700)"></div>
+      <div class="meta">
+        <code class="nm">blue-700</code>
+        <span class="val">#1d4ed8</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-blue-800)"></div>
+      <div class="meta">
+        <code class="nm">blue-800</code>
+        <span class="val">#1e40af</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-blue-900)"></div>
+      <div class="meta">
+        <code class="nm">blue-900</code>
+        <span class="val">#1e3a8a</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-blue-950)"></div>
+      <div class="meta">
+        <code class="nm">blue-950</code>
+        <span class="val">#172554</span>
+      </div>
+    </div></div><h3>indigo <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-indigo-50)"></div>
+      <div class="meta">
+        <code class="nm">indigo-50</code>
+        <span class="val">#eef2ff</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-indigo-100)"></div>
+      <div class="meta">
+        <code class="nm">indigo-100</code>
+        <span class="val">#e0e7ff</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-indigo-200)"></div>
+      <div class="meta">
+        <code class="nm">indigo-200</code>
+        <span class="val">#c7d2fe</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-indigo-300)"></div>
+      <div class="meta">
+        <code class="nm">indigo-300</code>
+        <span class="val">#a5b4fc</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-indigo-400)"></div>
+      <div class="meta">
+        <code class="nm">indigo-400</code>
+        <span class="val">#818cf8</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-indigo-500)"></div>
+      <div class="meta">
+        <code class="nm">indigo-500</code>
+        <span class="val">#6366f1</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-indigo-600)"></div>
+      <div class="meta">
+        <code class="nm">indigo-600</code>
+        <span class="val">#4f46e5</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-indigo-700)"></div>
+      <div class="meta">
+        <code class="nm">indigo-700</code>
+        <span class="val">#4338ca</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-indigo-800)"></div>
+      <div class="meta">
+        <code class="nm">indigo-800</code>
+        <span class="val">#3730a3</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-indigo-900)"></div>
+      <div class="meta">
+        <code class="nm">indigo-900</code>
+        <span class="val">#312e81</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-indigo-950)"></div>
+      <div class="meta">
+        <code class="nm">indigo-950</code>
+        <span class="val">#1e1b4b</span>
+      </div>
+    </div></div><h3>violet <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-violet-50)"></div>
+      <div class="meta">
+        <code class="nm">violet-50</code>
+        <span class="val">#f5f3ff</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-violet-100)"></div>
+      <div class="meta">
+        <code class="nm">violet-100</code>
+        <span class="val">#ede9fe</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-violet-200)"></div>
+      <div class="meta">
+        <code class="nm">violet-200</code>
+        <span class="val">#ddd6fe</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-violet-300)"></div>
+      <div class="meta">
+        <code class="nm">violet-300</code>
+        <span class="val">#c4b5fd</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-violet-400)"></div>
+      <div class="meta">
+        <code class="nm">violet-400</code>
+        <span class="val">#a78bfa</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-violet-500)"></div>
+      <div class="meta">
+        <code class="nm">violet-500</code>
+        <span class="val">#8b5cf6</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-violet-600)"></div>
+      <div class="meta">
+        <code class="nm">violet-600</code>
+        <span class="val">#7c3aed</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-violet-700)"></div>
+      <div class="meta">
+        <code class="nm">violet-700</code>
+        <span class="val">#6d28d9</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-violet-800)"></div>
+      <div class="meta">
+        <code class="nm">violet-800</code>
+        <span class="val">#5b21b6</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-violet-900)"></div>
+      <div class="meta">
+        <code class="nm">violet-900</code>
+        <span class="val">#4c1d95</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-violet-950)"></div>
+      <div class="meta">
+        <code class="nm">violet-950</code>
+        <span class="val">#2e1065</span>
+      </div>
+    </div></div><h3>purple <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-purple-50)"></div>
+      <div class="meta">
+        <code class="nm">purple-50</code>
+        <span class="val">#faf5ff</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-purple-100)"></div>
+      <div class="meta">
+        <code class="nm">purple-100</code>
+        <span class="val">#f3e8ff</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-purple-200)"></div>
+      <div class="meta">
+        <code class="nm">purple-200</code>
+        <span class="val">#e9d5ff</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-purple-300)"></div>
+      <div class="meta">
+        <code class="nm">purple-300</code>
+        <span class="val">#d8b4fe</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-purple-400)"></div>
+      <div class="meta">
+        <code class="nm">purple-400</code>
+        <span class="val">#c084fc</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-purple-500)"></div>
+      <div class="meta">
+        <code class="nm">purple-500</code>
+        <span class="val">#a855f7</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-purple-600)"></div>
+      <div class="meta">
+        <code class="nm">purple-600</code>
+        <span class="val">#9333ea</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-purple-700)"></div>
+      <div class="meta">
+        <code class="nm">purple-700</code>
+        <span class="val">#7e22ce</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-purple-800)"></div>
+      <div class="meta">
+        <code class="nm">purple-800</code>
+        <span class="val">#6b21a8</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-purple-900)"></div>
+      <div class="meta">
+        <code class="nm">purple-900</code>
+        <span class="val">#581c87</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-purple-950)"></div>
+      <div class="meta">
+        <code class="nm">purple-950</code>
+        <span class="val">#3b0764</span>
+      </div>
+    </div></div><h3>fuchsia <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-fuchsia-50)"></div>
+      <div class="meta">
+        <code class="nm">fuchsia-50</code>
+        <span class="val">#fdf4ff</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-fuchsia-100)"></div>
+      <div class="meta">
+        <code class="nm">fuchsia-100</code>
+        <span class="val">#fae8ff</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-fuchsia-200)"></div>
+      <div class="meta">
+        <code class="nm">fuchsia-200</code>
+        <span class="val">#f5d0fe</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-fuchsia-300)"></div>
+      <div class="meta">
+        <code class="nm">fuchsia-300</code>
+        <span class="val">#f0abfc</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-fuchsia-400)"></div>
+      <div class="meta">
+        <code class="nm">fuchsia-400</code>
+        <span class="val">#e879f9</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-fuchsia-500)"></div>
+      <div class="meta">
+        <code class="nm">fuchsia-500</code>
+        <span class="val">#d946ef</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-fuchsia-600)"></div>
+      <div class="meta">
+        <code class="nm">fuchsia-600</code>
+        <span class="val">#c026d3</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-fuchsia-700)"></div>
+      <div class="meta">
+        <code class="nm">fuchsia-700</code>
+        <span class="val">#a21caf</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-fuchsia-800)"></div>
+      <div class="meta">
+        <code class="nm">fuchsia-800</code>
+        <span class="val">#86198f</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-fuchsia-900)"></div>
+      <div class="meta">
+        <code class="nm">fuchsia-900</code>
+        <span class="val">#701a75</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-fuchsia-950)"></div>
+      <div class="meta">
+        <code class="nm">fuchsia-950</code>
+        <span class="val">#4a044e</span>
+      </div>
+    </div></div><h3>pink <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-pink-50)"></div>
+      <div class="meta">
+        <code class="nm">pink-50</code>
+        <span class="val">#fdf2f8</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-pink-100)"></div>
+      <div class="meta">
+        <code class="nm">pink-100</code>
+        <span class="val">#fce7f3</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-pink-200)"></div>
+      <div class="meta">
+        <code class="nm">pink-200</code>
+        <span class="val">#fbcfe8</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-pink-300)"></div>
+      <div class="meta">
+        <code class="nm">pink-300</code>
+        <span class="val">#f9a8d4</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-pink-400)"></div>
+      <div class="meta">
+        <code class="nm">pink-400</code>
+        <span class="val">#f472b6</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-pink-500)"></div>
+      <div class="meta">
+        <code class="nm">pink-500</code>
+        <span class="val">#ec4899</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-pink-600)"></div>
+      <div class="meta">
+        <code class="nm">pink-600</code>
+        <span class="val">#db2777</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-pink-700)"></div>
+      <div class="meta">
+        <code class="nm">pink-700</code>
+        <span class="val">#be185d</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-pink-800)"></div>
+      <div class="meta">
+        <code class="nm">pink-800</code>
+        <span class="val">#9d174d</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-pink-900)"></div>
+      <div class="meta">
+        <code class="nm">pink-900</code>
+        <span class="val">#831843</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-pink-950)"></div>
+      <div class="meta">
+        <code class="nm">pink-950</code>
+        <span class="val">#500724</span>
+      </div>
+    </div></div><h3>rose <span class="c">11</span></h3><div class="grid"><div class="sw">
+      <div class="chip" style="background:var(--color-rose-50)"></div>
+      <div class="meta">
+        <code class="nm">rose-50</code>
+        <span class="val">#fff1f2</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-rose-100)"></div>
+      <div class="meta">
+        <code class="nm">rose-100</code>
+        <span class="val">#ffe4e6</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-rose-200)"></div>
+      <div class="meta">
+        <code class="nm">rose-200</code>
+        <span class="val">#fecdd3</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-rose-300)"></div>
+      <div class="meta">
+        <code class="nm">rose-300</code>
+        <span class="val">#fda4af</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-rose-400)"></div>
+      <div class="meta">
+        <code class="nm">rose-400</code>
+        <span class="val">#fb7185</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-rose-500)"></div>
+      <div class="meta">
+        <code class="nm">rose-500</code>
+        <span class="val">#f43f5e</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-rose-600)"></div>
+      <div class="meta">
+        <code class="nm">rose-600</code>
+        <span class="val">#e11d48</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-rose-700)"></div>
+      <div class="meta">
+        <code class="nm">rose-700</code>
+        <span class="val">#be123c</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-rose-800)"></div>
+      <div class="meta">
+        <code class="nm">rose-800</code>
+        <span class="val">#9f1239</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-rose-900)"></div>
+      <div class="meta">
+        <code class="nm">rose-900</code>
+        <span class="val">#881337</span>
+      </div>
+    </div><div class="sw">
+      <div class="chip" style="background:var(--color-rose-950)"></div>
+      <div class="meta">
+        <code class="nm">rose-950</code>
+        <span class="val">#4c0519</span>
+      </div>
+    </div></div>
+</body>
+</html>

@@ -1,0 +1,231 @@
+{
+  "color": {
+    "background": {
+      "default": {
+        "$value": "{color.zinc.50}",
+        "$description": "Page / app canvas"
+      },
+      "subtle": {
+        "$value": "{color.zinc.100}",
+        "$description": "Inset zones, striped rows, panels flush with the page"
+      },
+      "emphasis": {
+        "$value": "{color.zinc.900}",
+        "$description": "High-contrast fills: tooltips, inverse callouts"
+      },
+      "disabled": {
+        "$value": "{color.zinc.100}",
+        "$description": "Disabled control fill"
+      },
+      "overlay": {
+        "$value": "#09090bb3",
+        "$description": "Modal / drawer scrim. RAW value with alpha — there is no alpha primitive tier yet"
+      },
+      "brand": {
+        "default": {
+          "$value": "{color.brand.600}",
+          "$description": "Primary button, active nav item, selected state"
+        },
+        "hover": {
+          "$value": "{color.brand.700}"
+        },
+        "active": {
+          "$value": "{color.brand.800}"
+        }
+      },
+      "brand-subtle": {
+        "$value": "{color.brand.50}",
+        "$description": "Tinted brand fill: selected row, info banner"
+      },
+      "danger": {
+        "default": {
+          "$value": "{color.red.600}",
+          "$description": "Destructive button"
+        },
+        "hover": {
+          "$value": "{color.red.700}"
+        }
+      },
+      "danger-subtle": {
+        "$value": "{color.red.50}",
+        "$description": "Error banner / callout fill"
+      },
+      "success": {
+        "$value": "{color.green.600}",
+        "$description": "Solid success badge / button"
+      },
+      "success-subtle": {
+        "$value": "{color.green.50}",
+        "$description": "Success banner fill"
+      },
+      "warning": {
+        "$value": "{color.amber.500}",
+        "$description": "Solid warning badge"
+      },
+      "warning-subtle": {
+        "$value": "{color.amber.50}",
+        "$description": "Warning banner fill"
+      },
+      "warning-strong": {
+        "$value": "{color.orange.500}",
+        "$description": "Orange alert accent — the warning pill/icon in the alert system, distinct from amber warning"
+      },
+      "warning-strong-subtle": {
+        "$value": "{color.orange.50}",
+        "$description": "Orange warning pill fill"
+      },
+      "info": {
+        "$value": "{color.blue.600}",
+        "$description": "Solid info badge"
+      },
+      "info-subtle": {
+        "$value": "{color.blue.50}",
+        "$description": "Info banner fill"
+      }
+    },
+    "surface": {
+      "default": {
+        "$value": "{color.white}",
+        "$description": "Panel, modal, menu, sheet"
+      },
+      "card": {
+        "$value": "{color.extra.card}",
+        "$description": "Card fill — warm near-white #fcfcfc (product override, not on the Tailwind scale)"
+      },
+      "subtle": {
+        "$value": "{color.zinc.50}",
+        "$description": "Nested surface, table header row"
+      },
+      "raised": {
+        "$value": "{color.white}",
+        "$description": "Surface carrying an elevation shadow: popover, dropdown"
+      },
+      "sunken": {
+        "$value": "{color.zinc.100}",
+        "$description": "Wells, code blocks, inset track"
+      }
+    },
+    "text": {
+      "default": {
+        "$value": "{color.zinc.900}",
+        "$description": "Main headings — h1/h2, page titles"
+      },
+      "strong": {
+        "$value": "{color.zinc.800}",
+        "$description": "Subheadings — h3–h6, section/card titles"
+      },
+      "subtle": {
+        "$value": "{color.zinc.500}",
+        "$description": "Body text — the default reading colour for paragraphs and UI copy"
+      },
+      "muted": {
+        "$value": "{color.zinc.400}",
+        "$description": "Muted / de-emphasised text — hints, placeholders, timestamps, captions"
+      },
+      "disabled": {
+        "$value": "{color.zinc.300}",
+        "$description": "Disabled control text"
+      },
+      "brand": {
+        "$value": "{color.brand.700}",
+        "$description": "Links, brand-colored labels"
+      },
+      "danger": {
+        "$value": "{color.red.700}",
+        "$description": "Validation errors, destructive labels"
+      },
+      "success": {
+        "$value": "{color.green.700}"
+      },
+      "warning": {
+        "$value": "{color.amber.700}"
+      },
+      "warning-strong": {
+        "$value": "{color.orange.700}",
+        "$description": "Orange warning-pill text"
+      },
+      "info": {
+        "$value": "{color.blue.700}"
+      },
+      "on-brand": {
+        "$value": "{color.white}",
+        "$description": "Text on color.background.brand*"
+      },
+      "on-emphasis": {
+        "$value": "{color.zinc.50}",
+        "$description": "Text on color.background.emphasis"
+      },
+      "on-danger": {
+        "$value": "{color.white}",
+        "$description": "Text on color.background.danger*"
+      }
+    },
+    "border": {
+      "default": {
+        "$value": "{color.zinc.200}",
+        "$description": "Inputs, cards, dividers"
+      },
+      "subtle": {
+        "$value": "{color.zinc.100}",
+        "$description": "Faint separators"
+      },
+      "strong": {
+        "$value": "{color.zinc.300}",
+        "$description": "Emphasized / hover borders"
+      },
+      "brand": {
+        "$value": "{color.brand.600}",
+        "$description": "Selected input, active tab"
+      },
+      "danger": {
+        "$value": "{color.red.600}",
+        "$description": "Invalid input"
+      },
+      "focus": {
+        "$value": "{color.brand.500}",
+        "$description": "Focus ring"
+      }
+    },
+    "icon": {
+      "default": {
+        "$value": "{color.zinc.700}",
+        "$description": "Standalone UI icons"
+      },
+      "subtle": {
+        "$value": "{color.zinc.500}",
+        "$description": "Decorative / secondary icons"
+      },
+      "brand": {
+        "$value": "{color.brand.600}"
+      },
+      "danger": {
+        "$value": "{color.red.600}"
+      },
+      "success": {
+        "$value": "{color.green.600}"
+      },
+      "warning-strong": {
+        "$value": "{color.orange.600}",
+        "$description": "Orange warning-pill icon"
+      },
+      "on-brand": {
+        "$value": "{color.white}",
+        "$description": "Icon on a brand fill"
+      },
+      "on-emphasis": {
+        "$value": "{color.zinc.50}",
+        "$description": "Icon on color.background.emphasis"
+      }
+    },
+    "chart": {
+      "1": { "$value": "{color.brand.500}", "$description": "Categorical series 1 — placeholder palette, revisit with the real chart component" },
+      "2": { "$value": "{color.cyan.500}" },
+      "3": { "$value": "{color.amber.500}" },
+      "4": { "$value": "{color.emerald.500}" },
+      "5": { "$value": "{color.rose.500}" },
+      "6": { "$value": "{color.violet.500}" },
+      "7": { "$value": "{color.sky.600}" },
+      "8": { "$value": "{color.lime.500}" }
+    }
+  }
+}

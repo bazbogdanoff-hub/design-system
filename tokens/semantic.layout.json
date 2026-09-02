@@ -1,0 +1,9 @@
+{
+  "radius": {
+    "container": { "$value": "{radius.2xl}", "$description": "16px — outermost content card in a carded layout" },
+    "panel": { "$value": "{radius.xl}", "$description": "12px — nested card, section, menu, popover, sheet" },
+    "control": { "$value": "{radius.lg}", "$description": "8px — button, input, select, textarea" },
+    "chip": { "$value": "{radius.md}", "$description": "6px — badge, tag, checkbox, small toggle" },
+    "pill": { "$value": "{radius.full}", "$description": "pill button, avatar, status dot" }
+  }
+}

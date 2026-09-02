@@ -1,0 +1,221 @@
+{
+  "color": {
+    "button": {
+      "primary": {
+        "background": {
+          "default": {
+            "$value": "{color.background.brand.default}"
+          },
+          "hover": {
+            "$value": "{color.background.brand.hover}"
+          },
+          "active": {
+            "$value": "{color.background.brand.active}"
+          }
+        },
+        "text": {
+          "$value": "{color.text.on-brand}"
+        }
+      },
+      "secondary": {
+        "background": {
+          "default": {
+            "$value": "{color.surface.default}"
+          },
+          "hover": {
+            "$value": "{color.background.subtle}"
+          },
+          "active": {
+            "$value": "{color.background.subtle}"
+          }
+        },
+        "text": {
+          "$value": "{color.text.default}"
+        },
+        "border": {
+          "$value": "{color.border.default}"
+        }
+      },
+      "ghost": {
+        "background": {
+          "default": {
+            "$value": "transparent"
+          },
+          "hover": {
+            "$value": "{color.background.brand-subtle}"
+          },
+          "active": {
+            "$value": "{color.background.brand-subtle}"
+          }
+        },
+        "text": {
+          "$value": "{color.text.brand}"
+        }
+      },
+      "danger": {
+        "background": {
+          "default": {
+            "$value": "{color.background.danger.default}"
+          },
+          "hover": {
+            "$value": "{color.background.danger.hover}"
+          }
+        },
+        "text": {
+          "$value": "{color.text.on-danger}"
+        }
+      },
+      "disabled": {
+        "background": {
+          "$value": "{color.background.disabled}"
+        },
+        "text": {
+          "$value": "{color.text.disabled}"
+        }
+      }
+    },
+    "card": {
+      "background": {
+        "default": {
+          "$value": "{color.surface.card}"
+        },
+        "hover": {
+          "$value": "{color.surface.subtle}",
+          "$description": "Clickable / navigable cards only"
+        }
+      },
+      "border": {
+        "$value": "{color.border.default}",
+        "$description": "Base card border. The glass/vignette inner-shadow + border override on effect-heavy cards is NOT a token — leave those effects untouched."
+      }
+    },
+    "input": {
+      "background": {
+        "default": {
+          "$value": "{color.surface.default}"
+        },
+        "disabled": {
+          "$value": "{color.background.disabled}"
+        }
+      },
+      "text": {
+        "$value": "{color.text.default}"
+      },
+      "placeholder": {
+        "$value": "{color.text.muted}"
+      },
+      "label": {
+        "$value": "{color.text.subtle}"
+      },
+      "border": {
+        "default": {
+          "$value": "{color.border.default}"
+        },
+        "hover": {
+          "$value": "{color.border.strong}"
+        },
+        "focus": {
+          "$value": "{color.border.focus}"
+        },
+        "danger": {
+          "$value": "{color.border.danger}"
+        }
+      }
+    },
+    "badge": {
+      "neutral": {
+        "background": {
+          "$value": "{color.background.subtle}"
+        },
+        "text": {
+          "$value": "{color.text.subtle}"
+        }
+      },
+      "brand": {
+        "background": {
+          "$value": "{color.background.brand-subtle}"
+        },
+        "text": {
+          "$value": "{color.text.brand}"
+        }
+      },
+      "success": {
+        "background": {
+          "$value": "{color.background.success-subtle}"
+        },
+        "text": {
+          "$value": "{color.text.success}"
+        }
+      },
+      "warning": {
+        "background": {
+          "$value": "{color.background.warning-subtle}"
+        },
+        "text": {
+          "$value": "{color.text.warning}"
+        }
+      },
+      "warning-strong": {
+        "background": {
+          "$value": "{color.background.warning-strong-subtle}"
+        },
+        "text": {
+          "$value": "{color.text.warning-strong}"
+        }
+      },
+      "danger": {
+        "background": {
+          "$value": "{color.background.danger-subtle}"
+        },
+        "text": {
+          "$value": "{color.text.danger}"
+        }
+      },
+      "info": {
+        "background": {
+          "$value": "{color.background.info-subtle}"
+        },
+        "text": {
+          "$value": "{color.text.info}"
+        }
+      }
+    },
+    "table": {
+      "header": {
+        "background": {
+          "$value": "{color.surface.subtle}"
+        },
+        "text": {
+          "$value": "{color.text.subtle}"
+        }
+      },
+      "row": {
+        "background": {
+          "default": {
+            "$value": "{color.surface.default}"
+          },
+          "hover": {
+            "$value": "{color.background.subtle}"
+          },
+          "selected": {
+            "$value": "{color.background.brand-subtle}"
+          }
+        }
+      },
+      "border": {
+        "$value": "{color.border.subtle}"
+      }
+    },
+    "modal": {
+      "background": {
+        "$value": "{color.surface.raised}"
+      },
+      "border": {
+        "$value": "{color.border.default}"
+      },
+      "scrim": {
+        "$value": "{color.background.overlay}"
+      }
+    }
+  }
+}

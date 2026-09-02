@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-09-02T15:48:27.502Z",
+  "primitives": {
+    "colors": 256,
+    "floats": 24
+  },
+  "semantic": {
+    "aliases": 65,
+    "raws": 1
+  },
+  "component": {
+    "aliases": 59,
+    "raws": 1
+  },
+  "textStyles": 19,
+  "runOrder": [
+    "build-01-primitives.js",
+    "build-02-semantic.js",
+    "build-03-component.js",
+    "build-04-text-styles-1.js",
+    "build-04-text-styles-2.js",
+    "build-04-text-styles-3.js",
+    "build-04-text-styles-4.js"
+  ]
+}

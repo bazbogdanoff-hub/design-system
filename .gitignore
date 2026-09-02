@@ -1,0 +1,16 @@
+node_modules/
+*.log
+.DS_Store
+.env
+
+# audit: large raw Figma dumps are throwaway (findings.json + report.md are kept)
+audit/raw/
+
+# migration: generated snippets + scratch are throwaway.
+# Kept: mapping.json, typography-map.json, journal.jsonl, build-manifest.json, *.md
+migration/_*
+migration/build-*.js
+migration/redefine-*.js
+migration/rebind-*.js
+migration/repoint-*.js
+migration/rawhex-*.js

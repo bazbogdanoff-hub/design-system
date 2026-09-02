@@ -1,0 +1,91 @@
+{
+  "generatedAt": "2026-09-02",
+  "scope": "the 24 Base screen instances on page 'Project'",
+  "note": "old variable name -> new variable name. figma-safe-edit walks every bound paint on the screens; if its variable's name is a key here, it rebinds to the value. 'skip' = leave the binding untouched (glass/vignette effects). Names not in either list are reported as leftovers.",
+
+  "map": {
+    "shadcn colors/general/heading small":         "color/text/default",
+    "shadcn colors/general/heading":               "color/text/default",
+    "shadcn colors/general/secondary text":        "color/text/subtle",
+    "shadcn colors/general/secondary heading text":"color/text/subtle",
+    "shadcn colors/general/gray text":             "color/text/subtle",
+    "shadcn colors/general/tertiary text":         "color/text/muted",
+    "shadcn colors/general/muted foreground":      "color/text/muted",
+    "shadcn colors/general/Stroke":                "color/border/default",
+    "shadcn colors/general/input":                 "color/border/default",
+    "shadcn colors/general/border":                "color/border/subtle",
+    "shadcn colors/general/4 element":             "color/border/strong",
+    "shadcn colors/general/primary border":        "color/border/brand",
+    "shadcn colors/general/card":                  "color/surface/card",
+    "shadcn colors/general/background":            "color/surface/default",
+    "shadcn colors/general/Scroller":              "color/background/subtle",
+    "shadcn colors/general/actual muted":          "color/background/subtle",
+    "shadcn colors/general/gray bg":               "color/background/subtle",
+
+    "theme/neutrals/0":   "color/white",
+    "theme/neutrals/50":  "color/zinc/50",
+    "theme/neutrals/300": "color/zinc/200",
+    "theme/neutrals/400": "color/zinc/200",
+    "theme/neutrals/600": "color/zinc/300",
+    "theme/neutrals/700": "color/zinc/400",
+    "theme/neutrals/800": "color/zinc/500",
+    "theme/neutrals/950": "color/zinc/700",
+    "tw-raw/neutral/900": "color/zinc/900",
+
+    "primary/primary":   "color/background/brand/default",
+    "primary/Button":    "color/background/brand/default",
+    "primary/accent":    "color/background/brand/hover",
+    "primary/bg":        "color/background/brand-subtle",
+    "primary/secondary": "color/background/brand-subtle",
+    "primary/active":    "color/background/brand-subtle",
+    "primary/text":      "color/text/brand",
+
+    "severity/critical/text":  "color/text/danger",
+    "severity/critical/bg":    "color/background/danger-subtle",
+    "severity/critical/Table": "color/background/danger-subtle",
+    "severity/critical/fill":  "color/background/danger/default",
+    "severity/attention/text": "color/text/warning",
+    "severity/attention/bg":   "color/background/warning-subtle",
+    "severity/attention/fill": "color/background/warning",
+    "severity/warning/text":   "color/text/warning-strong",
+    "severity/warning/bg":     "color/background/warning-strong-subtle",
+    "severity/warning/fill":   "color/background/warning-strong",
+    "severity/low/text":       "color/text/success",
+    "severity/low/bg":         "color/background/success-subtle",
+    "severity/low/fill":       "color/background/success",
+    "Green/60":                "color/text/success",
+
+    "chart colors/chart main": "color/chart/1",
+    "chart colors/chart risk": "color/chart/3",
+
+    "Card/Main color":              "color/surface/card",
+    "Additional colors/primary":    "color/background/brand/default",
+    "Additional colors/Indigo":     "color/indigo/600",
+    "Additional colors/Violet":     "color/violet/600",
+    "Additional colors/Fuchsia":    "color/fuchsia/600",
+    "Additional colors/Pink":       "color/pink/600",
+    "Additional colors/Rose":       "color/rose/600",
+    "Additional colors/Orange":     "color/orange/600",
+    "Additional colors/Yellow":     "color/yellow/600",
+    "Additional colors/Green":      "color/green/600",
+    "Additional colors/Emerald":    "color/emerald/600",
+    "Additional colors/Cyan":       "color/cyan/600"
+  },
+
+  "skip": [
+    "shadcn colors/general/glass border",
+    "shadcn colors/general/primary glass border",
+    "alpha/white/switch/alpha-001",
+    "alpha/black/switch/alpha-333",
+    "alpha/black/switch/alpha-10"
+  ],
+
+  "rawHex": {
+    "#15adc3b2": "skip — teal glass fill (effect)",
+    "#15adc31a": "skip — teal glass (effect)",
+    "#ffffff1a": "skip — white glass highlight (effect)",
+    "#4040401a": "skip — dark scrim (effect)",
+    "#ffffff":   "color/surface/default",
+    "#989898":   "manual — mid grey, low count, check context"
+  }
+}
