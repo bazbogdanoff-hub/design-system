@@ -47,7 +47,7 @@ Per **`tone`** (each pair is a component token → semantic `-subtle` / status t
 | `neutral` | `background.subtle` — zinc 100 | `text.subtle` — zinc 500 |
 | `brand` | `background.brand-subtle` — indigo 100 | `text.brand` — indigo 700 |
 | `success` | `background.success-subtle` — green 100 | `text.success` — green 700 |
-| `warning` | `background.warning-subtle` — amber 100 | `text.warning` — amber 700 |
+| `warning` | `background.warning-subtle` — amber 100 | `color.amber.600` — amber 600 (one step lighter than `text.warning`, to separate from `warning-strong`) |
 | `warning-strong` | `background.warning-strong-subtle` — orange 100 | `text.warning-strong` — orange 700 |
 | `danger` | `background.danger-subtle` — red 100 | `text.danger` — red 700 |
 

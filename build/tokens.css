@@ -315,6 +315,7 @@
   --color-brand-800: var(--color-indigo-800);
   --color-brand-900: var(--color-indigo-900);
   --color-brand-950: var(--color-indigo-950);
+  --color-badge-warning-text: var(--color-amber-600); /** One step lighter than text.warning (amber.700) — deliberate primitive alias so the amber `warning` badge is clearly distinct from the orange `warning-strong` badge. Small contrast tradeoff (~3.2:1) accepted for level differentiation. */
   --color-modal-scrim: var(--color-background-overlay);
   --color-background-default: var(--color-zinc-50); /** Page / app canvas */
   --color-background-subtle: var(--color-zinc-100); /** Inset zones, striped rows, panels flush with the page */
@@ -495,7 +496,6 @@
   --color-badge-success-background: var(--color-background-success-subtle);
   --color-badge-success-text: var(--color-text-success);
   --color-badge-warning-background: var(--color-background-warning-subtle);
-  --color-badge-warning-text: var(--color-text-warning);
   --color-badge-warning-strong-background: var(--color-background-warning-strong-subtle);
   --color-badge-warning-strong-text: var(--color-text-warning-strong);
   --color-badge-danger-background: var(--color-background-danger-subtle);

@@ -54,6 +54,7 @@ export const ColorBadgeBrandText: string;
 export const ColorBadgeSuccessBackground: string;
 export const ColorBadgeSuccessText: string;
 export const ColorBadgeWarningBackground: string;
+/** One step lighter than text.warning (amber.700) — deliberate primitive alias so the amber `warning` badge is clearly distinct from the orange `warning-strong` badge. Small contrast tradeoff (~3.2:1) accepted for level differentiation. */
 export const ColorBadgeWarningText: string;
 export const ColorBadgeWarningStrongBackground: string;
 export const ColorBadgeWarningStrongText: string;

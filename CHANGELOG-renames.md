@@ -13,6 +13,10 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  color.badge.warning.text: text.warning → color.amber.600 (one step lighter)    tokens ✓  build ✓  figma ✓  docs ✓  src —
+            amber `warning` and orange `warning-strong` badge text were near-identical (amber.700 vs orange.700). Lighten warning to amber.600.
+            Deliberate component-tier primitive alias (like color.surface.card). Contrast ~3.2:1 on amber.100 — accepted: level differentiation is the bigger a11y win. build-03 re-run.
+
 2026-09-03  Badge gains `warning-strong` tone (orange) + warning-strong-subtle 50->100    tokens ✓  build ✓  figma ✓  docs ✓  src ✓
             Needed for SeverityBadge `attention`. background.warning-strong-subtle orange.50 -> orange.100 (parity with the other -subtle tones).
             BadgeTone union + `.badge[data-tone=warning-strong]` + Badge.md row. Figma Badge set: +3 variants (warning-strong x sm/md/lg), now 18.
