@@ -4,14 +4,16 @@
   background: var(--color-card-background-default);
   border-radius: var(--radius-card);
 
-  /* Glass — "vignette xs". Hand-tuned to match the Figma effect; NOT tokens.
-     Asymmetric catch on the top + left only (right / bottom = 0). */
-  border-top: 1.5px solid var(--color-card-border);
-  border-left: 1.5px solid var(--color-card-border);
-  box-shadow: inset 4px 4px 16px #f0f0f0;
+  /* Glass — matches the Figma "Card" effect stack; hand-tuned, NOT tokens.
+     Both insets so they're layout-neutral (Figma strokesIncludedInLayout: false):
+     1) 1.5px white catch, top + left only  -> color/card/border
+     2) "vignette xs" inner shadow          -> offset 4/4, blur 16, #f0f0f0 */
+  box-shadow:
+    inset 1.5px 1.5px 0 0 var(--color-card-border),
+    inset 4px 4px 16px 0 #f0f0f0;
 }
 
 .card[data-padding='none'] { padding: 0; }
-.card[data-padding='sm'] { padding: var(--space-12); }
-.card[data-padding='md'] { padding: var(--space-16); }
-.card[data-padding='lg'] { padding: var(--space-20); }
+.card[data-padding='sm']   { padding: var(--space-12); }
+.card[data-padding='md']   { padding: var(--space-16); }
+.card[data-padding='lg']   { padding: var(--space-20); }
