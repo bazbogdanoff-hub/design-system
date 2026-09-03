@@ -65,16 +65,17 @@ by overriding `font-weight` with a `font.weight.*` primitive when genuinely need
 | `text.body.md` | 15 | medium | normal | normal | **default body / table cell** |
 | `text.body.sm` | 14 | medium | normal | normal | |
 | `text.body.xs` | 13 | medium | normal | normal | dense secondary text |
-| `text.label.lg` | 16 | semibold | snug | normal | |
-| `text.label.md` | 14 | semibold | snug | normal | button / input / tab label |
-| `text.label.sm` | 13 | semibold | snug | normal | table header / chip |
-| `text.label.xs` | 12 | semibold | snug | wide | |
+| `text.label.lg` | 16 | **bold** | snug | normal | |
+| `text.label.md` | 14 | **bold** | snug | normal | button / input / tab label |
+| `text.label.sm` | 13 | **bold** | snug | normal | table header / chip / badge |
+| `text.label.xs` | 12 | **bold** | snug | wide | |
 | `text.overline` | 10 | extrabold | snug | wider | all-caps kicker (`text-transform: uppercase`) |
 | `text.caption` | 12 | medium | normal | normal | helper text, timestamps, footnotes |
 | `text.code` | 13 | medium (mono) | normal | normal | inline IDs, JSON, tracking numbers |
 
-Weight tiers follow your spec: display 64–24 top out at **bold**; body/label/small
-12–20 can go up to **extrabold** (used only by `overline`).
+Weight tiers: display + `heading.xl` are **bold**, lower headings **semibold**;
+body is **medium**; the whole **`label` ramp is `bold`** (owner's call — badges,
+buttons, tabs, table headers all run bold); `overline` is **extrabold**.
 
 ### Label ramp — leading trim (Figma-only)
 

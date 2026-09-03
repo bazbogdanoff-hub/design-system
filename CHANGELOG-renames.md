@@ -13,6 +13,15 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  Badge reconcile — label ramp → bold, `*-subtle` bg → 100    figma ✓  tokens ✓  build ✓  docs ✓  src PENDING
+            E: `text.label.{lg,md,sm,xs}` weight semibold → **bold** (owner's call; affects button/input/tab/table-header too). Figma styles already switched.
+            G: `background.{brand,success,warning,danger}-subtle` → primitive **100** (was 50), for stronger badge fills.
+               Side effects (shared semantic token): ghost-button hover/active tint, selected table-row tint, and all *-subtle banners/callouts also go one step stronger.
+               `info-subtle` + `warning-strong-subtle` left at 50 → semantic-layer asymmetry, flagged for parity decision.
+            Figma `Badge` set built: 15 variants (tone×size), icon = boolean + instance-swap component property, leading icon.
+            Still to fix in Figma before src: `Variant`→`tone` / `Size`→`size` prop rename; radius rebind `radius/lg|md` → `radius/badge`;
+            strip redundant font-property overrides on the Label node (keep style + colour only); icon-bool default true→false, size default lg→md.
+
 2026-09-03  Figma text styles — bind family/size/weight to font/* primitives    figma ✓
             build-01 now also creates font primitives: font/family/{sans,mono} (STRING), font/size/{10..64} (FLOAT), font/weight/{medium,semibold,bold,extrabold} (FLOAT).
             build-04 binds fontFamily + fontSize + fontWeight on all 19 text/* styles.

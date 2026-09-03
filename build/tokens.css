@@ -322,11 +322,11 @@
   --color-background-disabled: var(--color-zinc-100); /** Disabled control fill */
   --color-background-danger-default: var(--color-red-600); /** Destructive button */
   --color-background-danger-hover: var(--color-red-700);
-  --color-background-danger-subtle: var(--color-red-50); /** Error banner / callout fill */
+  --color-background-danger-subtle: var(--color-red-100); /** Error banner / callout fill */
   --color-background-success: var(--color-green-600); /** Solid success badge / button */
-  --color-background-success-subtle: var(--color-green-50); /** Success banner fill */
+  --color-background-success-subtle: var(--color-green-100); /** Success banner fill */
   --color-background-warning: var(--color-amber-500); /** Solid warning badge */
-  --color-background-warning-subtle: var(--color-amber-50); /** Warning banner fill */
+  --color-background-warning-subtle: var(--color-amber-100); /** Warning banner fill */
   --color-background-warning-strong: var(--color-orange-500); /** Orange alert accent — the warning pill/icon in the alert system, distinct from amber warning */
   --color-background-warning-strong-subtle: var(--color-orange-50); /** Orange warning pill fill */
   --color-background-info: var(--color-blue-600); /** Solid info badge */
@@ -435,22 +435,22 @@
   --text-body-xs-letter-spacing: var(--font-letter-spacing-normal); /** Dense secondary text */
   --text-label-lg-font-family: var(--font-family-sans);
   --text-label-lg-font-size: var(--font-size-16);
-  --text-label-lg-font-weight: var(--font-weight-semibold);
+  --text-label-lg-font-weight: var(--font-weight-bold);
   --text-label-lg-line-height: var(--font-line-height-snug);
   --text-label-lg-letter-spacing: var(--font-letter-spacing-normal);
   --text-label-md-font-family: var(--font-family-sans); /** Button / input / tab label */
   --text-label-md-font-size: var(--font-size-14); /** Button / input / tab label */
-  --text-label-md-font-weight: var(--font-weight-semibold); /** Button / input / tab label */
+  --text-label-md-font-weight: var(--font-weight-bold); /** Button / input / tab label */
   --text-label-md-line-height: var(--font-line-height-snug); /** Button / input / tab label */
   --text-label-md-letter-spacing: var(--font-letter-spacing-normal); /** Button / input / tab label */
   --text-label-sm-font-family: var(--font-family-sans); /** Table header / chip */
   --text-label-sm-font-size: var(--font-size-13); /** Table header / chip */
-  --text-label-sm-font-weight: var(--font-weight-semibold); /** Table header / chip */
+  --text-label-sm-font-weight: var(--font-weight-bold); /** Table header / chip */
   --text-label-sm-line-height: var(--font-line-height-snug); /** Table header / chip */
   --text-label-sm-letter-spacing: var(--font-letter-spacing-normal); /** Table header / chip */
   --text-label-xs-font-family: var(--font-family-sans);
   --text-label-xs-font-size: var(--font-size-12);
-  --text-label-xs-font-weight: var(--font-weight-semibold);
+  --text-label-xs-font-weight: var(--font-weight-bold);
   --text-label-xs-line-height: var(--font-line-height-snug);
   --text-label-xs-letter-spacing: var(--font-letter-spacing-wide);
   --text-overline-font-family: var(--font-family-sans); /** All-caps section kicker — apply text-transform: uppercase in the component */
@@ -512,7 +512,7 @@
   --color-background-brand-default: var(--color-brand-600); /** Primary button, active nav item, selected state */
   --color-background-brand-hover: var(--color-brand-700);
   --color-background-brand-active: var(--color-brand-800);
-  --color-background-brand-subtle: var(--color-brand-50); /** Tinted brand fill: selected row, info banner */
+  --color-background-brand-subtle: var(--color-brand-100); /** Tinted brand fill: selected row, info banner */
   --color-text-brand: var(--color-brand-700); /** Links, brand-colored labels */
   --color-border-brand: var(--color-brand-600); /** Selected input, active tab */
   --color-border-focus: var(--color-brand-500); /** Focus ring */

@@ -64,16 +64,16 @@ Structure notes:
 | `background.brand.default` | `brand.600` | primary button, active nav item, selected state | `brand.500` |
 | `background.brand.hover` | `brand.700` | hover of `background.brand` | `brand.400` |
 | `background.brand.active` | `brand.800` | pressed / active | `brand.300` |
-| `background.brand-subtle` | `brand.50` | tinted brand fill: selected row, info banner | `brand.950` |
+| `background.brand-subtle` | `brand.100` | tinted brand fill: selected row, badge, info banner | `brand.950` |
 | `background.danger.default` | `red.600` | destructive button | `red.500` |
 | `background.danger.hover` | `red.700` | hover of `background.danger` | `red.400` |
-| `background.danger-subtle` | `red.50` | error banner / callout fill | `red.950` |
+| `background.danger-subtle` | `red.100` | error banner / callout / badge fill | `red.950` |
 | `background.success` | `green.600` | solid success badge / button | `green.500` |
-| `background.success-subtle` | `green.50` | success banner fill | `green.950` |
+| `background.success-subtle` | `green.100` | success banner / badge fill | `green.950` |
 | `background.warning` | `amber.500` | solid warning badge | `amber.400` |
-| `background.warning-subtle` | `amber.50` | warning banner fill | `amber.950` |
+| `background.warning-subtle` | `amber.100` | warning banner / badge fill | `amber.950` |
 | `background.info` | `blue.600` | solid info badge | `blue.500` |
-| `background.info-subtle` | `blue.50` | info banner fill | `blue.950` |
+| `background.info-subtle` | `blue.50` | info banner fill *(still 50 — brand/success/warning/danger moved to 100 for badges; revisit for parity)* | `blue.950` |
 
 ### `color.surface.*` — raised containers
 

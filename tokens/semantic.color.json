@@ -34,7 +34,7 @@
         }
       },
       "brand-subtle": {
-        "$value": "{color.brand.50}",
+        "$value": "{color.brand.100}",
         "$description": "Tinted brand fill: selected row, info banner"
       },
       "danger": {
@@ -47,7 +47,7 @@
         }
       },
       "danger-subtle": {
-        "$value": "{color.red.50}",
+        "$value": "{color.red.100}",
         "$description": "Error banner / callout fill"
       },
       "success": {
@@ -55,7 +55,7 @@
         "$description": "Solid success badge / button"
       },
       "success-subtle": {
-        "$value": "{color.green.50}",
+        "$value": "{color.green.100}",
         "$description": "Success banner fill"
       },
       "warning": {
@@ -63,7 +63,7 @@
         "$description": "Solid warning badge"
       },
       "warning-subtle": {
-        "$value": "{color.amber.50}",
+        "$value": "{color.amber.100}",
         "$description": "Warning banner fill"
       },
       "warning-strong": {

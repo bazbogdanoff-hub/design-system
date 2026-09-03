@@ -20,10 +20,10 @@
       "xs": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.13}", "fontWeight": "{font.weight.medium}", "lineHeight": "{font.lineHeight.normal}", "letterSpacing": "{font.letterSpacing.normal}" }, "$description": "Dense secondary text" }
     },
     "label": {
-      "lg": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.16}", "fontWeight": "{font.weight.semibold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.normal}" } },
-      "md": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.14}", "fontWeight": "{font.weight.semibold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.normal}" }, "$description": "Button / input / tab label" },
-      "sm": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.13}", "fontWeight": "{font.weight.semibold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.normal}" }, "$description": "Table header / chip" },
-      "xs": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.12}", "fontWeight": "{font.weight.semibold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.wide}" } }
+      "lg": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.16}", "fontWeight": "{font.weight.bold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.normal}" } },
+      "md": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.14}", "fontWeight": "{font.weight.bold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.normal}" }, "$description": "Button / input / tab label" },
+      "sm": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.13}", "fontWeight": "{font.weight.bold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.normal}" }, "$description": "Table header / chip" },
+      "xs": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.12}", "fontWeight": "{font.weight.bold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.wide}" } }
     },
     "overline": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.10}", "fontWeight": "{font.weight.extrabold}", "lineHeight": "{font.lineHeight.snug}", "letterSpacing": "{font.letterSpacing.wider}" }, "$description": "All-caps section kicker — apply text-transform: uppercase in the component" },
     "caption": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.12}", "fontWeight": "{font.weight.medium}", "lineHeight": "{font.lineHeight.normal}", "letterSpacing": "{font.letterSpacing.normal}" }, "$description": "Helper text, timestamps, footnotes" },
