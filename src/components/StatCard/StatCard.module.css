@@ -1,0 +1,52 @@
+/* Card provides the glass surface + lg padding. StatCard lays out its slot. */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-16);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-family: var(--text-heading-sm-font-family);
+  font-size: var(--text-heading-sm-font-size);
+  font-weight: var(--text-heading-sm-font-weight);
+  line-height: var(--text-heading-sm-line-height);
+  letter-spacing: var(--text-heading-sm-letter-spacing);
+  color: var(--color-text-subtle);
+}
+
+.value {
+  font-family: var(--text-display-md-font-family);
+  font-size: var(--text-display-md-font-size);
+  font-weight: var(--text-display-md-font-weight);
+  line-height: var(--text-display-md-line-height);
+  letter-spacing: var(--text-display-md-letter-spacing);
+  color: var(--color-text-default);
+}
+
+.badge {
+  flex: none;
+}
+
+/* the StatButton row — buttons share the width evenly (Figma: FILL) */
+.stats {
+  display: flex;
+  gap: var(--space-16);
+}
+
+.stats > * {
+  flex: 1 1 0;
+  min-width: 0;
+}

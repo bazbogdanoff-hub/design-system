@@ -13,6 +13,12 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  StatCard (was `Dashboard card`) — reworked in Figma + built    figma ✓  docs ✓  src ✓  build ✓
+            L2. Renamed `Dashboard card`→`StatCard`; property `variant`(Default/has badge)→`badge`(false/true) — stays a variant because content sits in Card's slot
+            and slot content cannot take component properties. Layers: div→`header`/`stats`; root fill→transparent. All placeholder text→"Label"/"0".
+            Composes `Card padding=lg` (nested, never detached). React: src/components/StatCard/ — typed label/value, optional `badge` slot, `children` = StatButton row (flex:1 each).
+            Figma has 2 fixed StatButtons; React children is any count (documented divergence).
+
 2026-09-03  StatButton — reworked in Figma + built in React    figma ✓  docs ✓  src ✓  build ✓
             First interactive component + first Claude-built Figma component. From kit `Stat - button` (copy renamed `StatButton`).
             Figma via bridge (checkpoint `safe-edit: pre StatButton rework`): props Variant→tone(default/danger), Size→size(sm/lg), +state(default/hover) = 8 variants.

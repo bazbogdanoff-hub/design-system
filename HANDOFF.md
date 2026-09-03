@@ -191,9 +191,7 @@ Shared glass-button shadow pair `Viginette/2xs` / `Viginette/2xs hover`
 
 ### Next components
 
-`Button`, then `Input`, `Tab`, `Alert` (from `Info message`),
-`StatCard` (the "In transit 118 ↓122%" summary card — a `Card` composing a
-headline stat + a row of `StatButton`s).
+`Button`, then `Input`, `Tab`, `Alert` (from `Info message`).
 
 Workflow per component (`.claude/skills/design-system-conventions/references/component-build.md`):
 1. write `docs/components/<Name>.md` spec

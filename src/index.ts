@@ -16,3 +16,6 @@ export type {
 
 export { StatButton } from './components/StatButton';
 export type { StatButtonProps, StatButtonTone, StatButtonSize } from './components/StatButton';
+
+export { StatCard } from './components/StatCard';
+export type { StatCardProps } from './components/StatCard';
