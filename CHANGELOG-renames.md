@@ -13,6 +13,13 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  Figma text styles rebuilt from tokens — clean `text/*` set    figma ✓  tokens —  build —
+            No `text/*` styles existed (only the 53 legacy `Title/*`; the earlier build was lost, likely a version restore — HANDOFF §6).
+            Regenerated all 19 from tokens/*.type.json via tokens-to-figma.mjs → build-04-text-styles-{1..4}.js (all creates, 0 updates, no reflow).
+            NEW in generator: `text/label/*` get `leadingTrim: CAP_HEIGHT` (single-line UI labels drop into components with no line-height override);
+            each style carries its token `$description`. `Title/*` left intact — cleared during the screen rebuild.
+            leadingTrim is Figma-only (no DTCG field) — documented as a label-ramp convention.
+
 2026-09-03  Card border decision resolved    src ✓  build ✓  figma ✓  docs ✓
             Figma extract confirms: inside stroke, strokesIncludedInLayout: false, top/left 1.5px, right/bottom 0.
             Card.module.css border-top/border-left → single `box-shadow` (inset white catch + inset vignette xs),

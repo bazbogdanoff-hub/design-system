@@ -76,6 +76,17 @@ by overriding `font-weight` with a `font.weight.*` primitive when genuinely need
 Weight tiers follow your spec: display 64–24 top out at **bold**; body/label/small
 12–20 can go up to **extrabold** (used only by `overline`).
 
+### Label ramp — leading trim (Figma-only)
+
+`text/label/*` Figma styles carry `leadingTrim: CAP_HEIGHT`. `label` is the
+single-line UI ramp (button / input / tab / table-header / chip / badge text);
+trimming the leading to cap height means the style drops into an auto-layout
+frame with a predictable box and **no per-component line-height override**.
+`body` / `heading` / `display` are **not** trimmed (multi-line text needs the
+leading). DTCG has no `leadingTrim` field, so this lives only on the Figma
+style — in code the equivalent is `line-height: 1` on a single-line label, or
+just centring the label in a fixed-height control.
+
 `32` is used by `heading.xl`; the other in-between sizes (`15`, `13`) sit in
 `body`/`label` where a half-step matters.
 

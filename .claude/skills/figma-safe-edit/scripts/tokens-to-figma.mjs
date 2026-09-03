@@ -106,6 +106,10 @@ const textStyles = [];
       letterSpacingPct: +(num(v.letterSpacing) * 100).toFixed(2),
       uppercase: path.at(-1) === 'overline',
       mono: /mono/.test(String(v.fontFamily)),
+      // Single-line UI labels: trim the leading to cap height so they drop into
+      // buttons / badges / tabs with no per-component line-height override.
+      trim: path[0] === 'label',
+      description: node.$description || '',
     });
     return;
   }
@@ -195,7 +199,9 @@ for (const s of SPEC) {
   st.fontSize = s.size;
   st.lineHeight = { unit: 'PERCENT', value: s.lineHeightPct };
   st.letterSpacing = { unit: 'PERCENT', value: s.letterSpacingPct };
-  if (s.uppercase) st.textCase = 'UPPER';
+  st.textCase = s.uppercase ? 'UPPER' : 'ORIGINAL';
+  if ('leadingTrim' in st) st.leadingTrim = s.trim ? 'CAP_HEIGHT' : 'NONE';
+  if (s.description) st.description = s.description;
 }
 return { created, updated, names: SPEC.map((s) => s.name), missingFonts: [...missingFonts] };
 `;
