@@ -13,6 +13,11 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  Card border decision resolved    src ✓  build ✓  figma ✓  docs ✓
+            Figma extract confirms: inside stroke, strokesIncludedInLayout: false, top/left 1.5px, right/bottom 0.
+            Card.module.css border-top/border-left → single `box-shadow` (inset white catch + inset vignette xs),
+            layout-neutral to match. Card.tsx unchanged. Figma Card set matches docs/components/Card.md 1:1.
+
 2026-09-02  neutral hue gray → slate (colder / more premium)    tokens/semantic.color.json ✓  docs ✓  build ✓  figma PENDING  src —
             (all `{color.gray.NN}` semantic aliases repointed to `{color.slate.NN}`; both hues still in primitives — `gray` is now a prune candidate)
 

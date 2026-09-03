@@ -142,7 +142,7 @@ JSON. `--out <file>` for big dumps. Exit 2 = bridge down, 3 = plugin not open.
 
 ## 7 · Component work — where to resume
 
-### Card — one open decision
+### Card — DONE (`dbf7767`)
 
 `docs/components/Card.md` is the spec. Final API:
 ```tsx
@@ -152,16 +152,12 @@ padding 0/12/16/20 (`space/*`), default `md`. No elevation, no interactive/hover
 (deferred to when alpha tokens land). Fixed glass look: `#fcfcfc` fill, radius 16,
 top+left 1.5px white catch, `inset 4px 4px 16px #f0f0f0` vignette.
 
-**OPEN:** `Card.module.css` currently uses `border-top`/`border-left` (reverted
-from a `box-shadow: inset` version). On an auto-height element CSS `border` adds
-to height — to match Figma `Card normal` (`strokesIncludedInLayout: false`) the
-border should be `box-shadow: inset 1.5px 1.5px 0 0 var(--color-card-border)`.
-**Ask the user which they want before changing it.** In Figma they've already set
-the stroke to Excluded on their component.
-
-Then: user builds `Card` in Figma (4 padding variants, open auto-layout, inner-
-shadow effects, bindings per the doc). Then extract the built component and
-reconcile.
+Border decision **resolved**: Figma uses an inside stroke with
+`strokesIncludedInLayout: false` (top/left 1.5, right/bottom 0). `Card.module.css`
+now uses a single `box-shadow` (inset white catch + inset vignette) — layout-
+neutral, matches Figma. Figma `Card` set extracted and reconciled: matches the
+doc 1:1 (also tokenised the vignette effect as `viginette/both/xs/*` — harmless,
+CSS still hardcodes the values). `Card.tsx` unchanged.
 
 ### Next components
 
