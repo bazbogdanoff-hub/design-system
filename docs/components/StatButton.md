@@ -41,8 +41,8 @@ button.stat
 └─ ArrowUpRight   (lg + showArrow only, pushed right)
 ```
 
-- `sm` — column, hug both. ~68px tall.
-- `lg` — row, `space-between`; label/value block left, arrow right. ~73px tall.
+- `sm` — column, hug both. ~70px tall.
+- `lg` — row, `space-between`; label/value block left, arrow right. ~75px tall.
 
 ## Appearance
 
@@ -70,18 +70,22 @@ Not tokenised (effect, hand-tuned); extracted into the CSS with its Figma origin
 |---|---|
 | `:hover` | shadow → `Viginette/2xs hover` |
 | `:focus-visible` **and** `:active` | the white top-left catch becomes a **full 1.5px primary border** (`color/card/border-active`) — identical for both. No outline ring |
-| `:disabled` | 50% opacity, `cursor: default`, no hover/active |
+| `:disabled` | 70% opacity, `cursor: default`, no hover/active |
 
-Figma carries only `state = default | hover` as real variants (the two with an
-actual visual change); `focus` / `active` / `disabled` are code-only.
+Figma carries the full `state` axis (`default` · `hover` · `active` · `focus` ·
+`disabled`) as variants for documentation; in code they're all CSS
+(`active` == `focus`).
 
 ## Figma
 
-Component set **`StatButton`** — `tone` (2) × `size` (2) × `state` (2) = 8
-variants, plus `Show arrow` (bool) + `arrow` (instance-swap). Rebuilt from the
-kit `Stat - button`: all colour / radius / spacing / type rebound to the new
-collections; `state=hover` swaps the effect style; `Text Combination` kit
-instance detached into a plain `content` frame.
+Component set **`StatButton`** — `tone` (2) × `size` (2) × `state` (5:
+default/hover/active/focus/disabled) = 20 variants, plus `Show arrow` (bool) +
+`arrow` (instance-swap). Rebuilt from the kit `Stat - button`: all colour /
+radius / spacing / type rebound to the new collections; `Text Combination` kit
+instance detached into a plain `content` frame. Text layers default to
+`label` = "Label" / `value` = "0". Per-state: `hover` → `Viginette/2xs hover`;
+`active`/`focus` → 4-side `color/card/border-active` stroke; `disabled` → 0.7
+opacity.
 
 ## a11y
 
