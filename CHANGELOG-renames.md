@@ -13,6 +13,12 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  Figma text styles — bind family/size/weight to font/* primitives    figma ✓
+            build-01 now also creates font primitives: font/family/{sans,mono} (STRING), font/size/{10..64} (FLOAT), font/weight/{medium,semibold,bold,extrabold} (FLOAT).
+            build-04 binds fontFamily + fontSize + fontWeight on all 19 text/* styles.
+            NOT bound: lineHeight / letterSpacing — Figma force-converts a bound variable on those fields to PIXELS,
+            which destroys a ratio line-height / em tracking. They stay raw PERCENT on each style. (font/lineHeight+letterSpacing vars created then removed.)
+
 2026-09-03  Figma text styles rebuilt from tokens — clean `text/*` set    figma ✓  tokens —  build —
             No `text/*` styles existed (only the 53 legacy `Title/*`; the earlier build was lost, likely a version restore — HANDOFF §6).
             Regenerated all 19 from tokens/*.type.json via tokens-to-figma.mjs → build-04-text-styles-{1..4}.js (all creates, 0 updates, no reflow).

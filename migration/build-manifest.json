@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-09-03T10:45:59.687Z",
+  "generatedAt": "2026-09-03T10:53:54.513Z",
   "primitives": {
     "colors": 256,
-    "floats": 24
+    "floats": 42
   },
   "semantic": {
     "aliases": 66,
