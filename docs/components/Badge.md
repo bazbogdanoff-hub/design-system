@@ -15,7 +15,7 @@ warning / critical) use `SeverityBadge`, which composes this. See
 
 | prop | values | default | Figma |
 |---|---|---|---|
-| `tone` | `neutral` `brand` `success` `warning` `danger` | `neutral` | variant `tone` |
+| `tone` | `neutral` `brand` `success` `warning` `warning-strong` `danger` | `neutral` | variant `tone` |
 | `size` | `sm` `md` `lg` | `md` | variant `size` |
 | `icon` | `ReactNode` — leading icon | — | component property `Icon` (bool + instance-swap) |
 | `asChild` | `boolean` | `false` | — |
@@ -48,6 +48,7 @@ Per **`tone`** (each pair is a component token → semantic `-subtle` / status t
 | `brand` | `background.brand-subtle` — indigo 100 | `text.brand` — indigo 700 |
 | `success` | `background.success-subtle` — green 100 | `text.success` — green 700 |
 | `warning` | `background.warning-subtle` — amber 100 | `text.warning` — amber 700 |
+| `warning-strong` | `background.warning-strong-subtle` — orange 100 | `text.warning-strong` — orange 700 |
 | `danger` | `background.danger-subtle` — red 100 | `text.danger` — red 700 |
 
 Icon colour = `currentColor` (the tone's text colour). The icon box is `1em`

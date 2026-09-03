@@ -13,6 +13,10 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  Badge gains `warning-strong` tone (orange) + warning-strong-subtle 50->100    tokens ✓  build ✓  figma ✓  docs ✓  src ✓
+            Needed for SeverityBadge `attention`. background.warning-strong-subtle orange.50 -> orange.100 (parity with the other -subtle tones).
+            BadgeTone union + `.badge[data-tone=warning-strong]` + Badge.md row. Figma Badge set: +3 variants (warning-strong x sm/md/lg), now 18.
+
 2026-09-03  Badge: per-size radius + lg padding    tokens ✓  build ✓  figma ✓  docs ✓  src ✓
             radius scale has no 10 → `radius.badge` becomes per-size: sm `{radius.chip}` 6 · md `{radius.control}` 8 · lg `{radius.panel}` 12
             (larger badge borrows the next radius role up). Only component radius that is per-size. Generator regex broadened; build-03 re-run (+3 vars); 15 Figma variants rebound.

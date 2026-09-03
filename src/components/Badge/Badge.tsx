@@ -3,11 +3,17 @@ import { Slot } from '@radix-ui/react-slot';
 import { cn } from '../../lib/cn';
 import styles from './Badge.module.css';
 
-export type BadgeTone = 'neutral' | 'brand' | 'success' | 'warning' | 'danger';
+export type BadgeTone =
+  | 'neutral'
+  | 'brand'
+  | 'success'
+  | 'warning'
+  | 'warning-strong'
+  | 'danger';
 export type BadgeSize = 'sm' | 'md' | 'lg';
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
-  /** Semantic colour. `neutral` (default) · `brand` · `success` · `warning` · `danger`. */
+  /** Semantic colour. `neutral` (default) · `brand` · `success` · `warning` · `warning-strong` (orange) · `danger`. */
   tone?: BadgeTone;
   /** `sm` (13) · `md` (14, default) · `lg` (16). */
   size?: BadgeSize;

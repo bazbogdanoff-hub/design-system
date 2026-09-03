@@ -71,8 +71,8 @@
         "$description": "Orange alert accent — the warning pill/icon in the alert system, distinct from amber warning"
       },
       "warning-strong-subtle": {
-        "$value": "{color.orange.50}",
-        "$description": "Orange warning pill fill"
+        "$value": "{color.orange.100}",
+        "$description": "Orange warning/attention pill fill (matches the other -subtle tones at 100)"
       },
       "info": {
         "$value": "{color.blue.600}",

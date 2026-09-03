@@ -328,7 +328,7 @@
   --color-background-warning: var(--color-amber-500); /** Solid warning badge */
   --color-background-warning-subtle: var(--color-amber-100); /** Warning banner fill */
   --color-background-warning-strong: var(--color-orange-500); /** Orange alert accent — the warning pill/icon in the alert system, distinct from amber warning */
-  --color-background-warning-strong-subtle: var(--color-orange-50); /** Orange warning pill fill */
+  --color-background-warning-strong-subtle: var(--color-orange-100); /** Orange warning/attention pill fill (matches the other -subtle tones at 100) */
   --color-background-info: var(--color-blue-600); /** Solid info badge */
   --color-background-info-subtle: var(--color-blue-50); /** Info banner fill */
   --color-surface-default: var(--color-white); /** Panel, modal, menu, sheet */

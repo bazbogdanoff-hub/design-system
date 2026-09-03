@@ -345,7 +345,7 @@ export const ColorBackgroundWarning: string;
 export const ColorBackgroundWarningSubtle: string;
 /** Orange alert accent — the warning pill/icon in the alert system, distinct from amber warning */
 export const ColorBackgroundWarningStrong: string;
-/** Orange warning pill fill */
+/** Orange warning/attention pill fill (matches the other -subtle tones at 100) */
 export const ColorBackgroundWarningStrongSubtle: string;
 /** Solid info badge */
 export const ColorBackgroundInfo: string;
