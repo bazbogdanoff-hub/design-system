@@ -74,7 +74,7 @@
   font-weight: var(--text-heading-md-font-weight);
   line-height: var(--text-heading-md-line-height);
   letter-spacing: var(--text-heading-md-letter-spacing);
-  color: var(--color-text-default);
+  color: var(--color-text-strong);
 }
 
 .stat[data-size='lg'] .value {

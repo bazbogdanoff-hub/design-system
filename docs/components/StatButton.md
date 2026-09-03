@@ -57,7 +57,7 @@ button.stat
 | padding | `space/8` block · `space/12` inline |
 | gap (lg, block↔arrow) | `space/8` |
 | label | `text/body/sm` · `color/text/subtle` |
-| value | `sm` `text/heading/md` · `lg` `text/heading/lg`; colour `color/text/default`, or `color/text/danger` when `tone="danger"` |
+| value | `sm` `text/heading/md` · `lg` `text/heading/lg`; colour `color/text/strong` (one step lighter than a main card heading), or `color/text/danger` when `tone="danger"` |
 | arrow | 24px, `color/text/subtle` |
 
 The glass shadow pair (`Viginette/2xs` / `…hover`) is the **shared glass-button
