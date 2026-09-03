@@ -13,6 +13,11 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  Badge: per-size radius + lg padding    tokens ✓  build ✓  figma ✓  docs ✓  src ✓
+            radius scale has no 10 → `radius.badge` becomes per-size: sm `{radius.chip}` 6 · md `{radius.control}` 8 · lg `{radius.panel}` 12
+            (larger badge borrows the next radius role up). Only component radius that is per-size. Generator regex broadened; build-03 re-run (+3 vars); 15 Figma variants rebound.
+            lg padding `space/8` → `space/10` (owner) — heights now ~sm27 / md32 / lg38.
+
 2026-09-03  label ramp: line-height snug → tight (1.15), cap-trim REVERTED    tokens ✓  build ✓  figma ✓  docs ✓  src ✓
             `leadingTrim: CAP_HEIGHT` on `text/label/*` clipped descenders (14px label measured ~10px) and — being smaller
             than a 1em icon — made badges jump height when the icon toggled.
