@@ -516,6 +516,7 @@
   --color-text-brand: var(--color-brand-700); /** Links, brand-colored labels */
   --color-border-brand: var(--color-brand-600); /** Selected input, active tab */
   --color-border-focus: var(--color-brand-500); /** Focus ring */
+  --color-border-highlight-active: var(--color-brand-500); /** Glass edge highlight when the surface is focused/active — a full 1.5px primary border that replaces the white top-left catch */
   --color-icon-brand: var(--color-brand-600);
   --color-chart-1: var(--color-brand-500); /** Categorical series 1 — placeholder palette, revisit with the real chart component */
   --radius-card: var(--radius-container);
@@ -533,6 +534,7 @@
   --color-button-ghost-background-hover: var(--color-background-brand-subtle);
   --color-button-ghost-background-active: var(--color-background-brand-subtle);
   --color-button-ghost-text: var(--color-text-brand);
+  --color-card-border-active: var(--color-border-highlight-active); /** Focused/active glass border — full 1.5px primary, replaces the white top-left catch. Shared by Card, StatButton, and other glass buttons. */
   --color-input-border-focus: var(--color-border-focus);
   --color-badge-brand-background: var(--color-background-brand-subtle);
   --color-badge-brand-text: var(--color-text-brand);

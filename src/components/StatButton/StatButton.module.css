@@ -38,11 +38,15 @@
     0 2px 12px 0 rgba(0, 0, 0, 0.25);
 }
 
-/* focus and active are identical — the focus ring */
+/* focus and active are identical — the top-left white catch becomes a full
+   1.5px primary border (the glass focus treatment; shared by all glass surfaces). */
 .stat:focus-visible,
 .stat:active:not(:disabled) {
-  outline: 2px solid var(--color-border-focus);
-  outline-offset: 2px;
+  outline: none;
+  box-shadow:
+    inset 0 0 0 1.5px var(--color-card-border-active),
+    inset 2px 2px 12px 0 #f0f0f0,
+    0 1px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .stat:disabled {

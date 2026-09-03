@@ -50,7 +50,8 @@ button.stat
 |---|---|
 | surface | `color/card/background/default` (#fcfcfc) |
 | radius | `radius/control` → 8 |
-| catch | 1.5px white, top + left (`color/card/border`) |
+| catch (rest / hover) | 1.5px white, top + left (`color/card/border`) |
+| border (focus / active) | **full** 1.5px primary (`color/card/border-active` → brand 500) — replaces the catch |
 | shadow (rest) | `Viginette/2xs` → `inset 2px 2px 12px #f0f0f0`, `0 1px 8px rgba(0,0,0,.20)` |
 | shadow (hover) | `Viginette/2xs hover` → drop shadow deepens to `0 2px 12px rgba(0,0,0,.25)` |
 | padding | `space/8` block · `space/12` inline |
@@ -68,7 +69,7 @@ Not tokenised (effect, hand-tuned); extracted into the CSS with its Figma origin
 | state | treatment |
 |---|---|
 | `:hover` | shadow → `Viginette/2xs hover` |
-| `:focus-visible` **and** `:active` | 2px `color/border/focus` ring, 2px offset — identical |
+| `:focus-visible` **and** `:active` | the white top-left catch becomes a **full 1.5px primary border** (`color/card/border-active`) — identical for both. No outline ring |
 | `:disabled` | 50% opacity, `cursor: default`, no hover/active |
 
 Figma carries only `state = default | hover` as real variants (the two with an

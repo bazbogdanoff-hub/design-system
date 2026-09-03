@@ -188,6 +188,10 @@
       "highlight": {
         "$value": "{color.white}",
         "$description": "White edge highlight for glass / raised surfaces (asymmetric top-left catch)"
+      },
+      "highlight-active": {
+        "$value": "{color.brand.500}",
+        "$description": "Glass edge highlight when the surface is focused/active — a full 1.5px primary border that replaces the white top-left catch"
       }
     },
     "icon": {

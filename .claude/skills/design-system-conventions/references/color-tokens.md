@@ -117,6 +117,7 @@ A `surface` sits *on* the `background`. Shadow or separating border → it's a s
 | `border.danger` | `red.600` | invalid input | `red.400` |
 | `border.focus` | `brand.500` | focus ring | `brand.400` |
 | `border.highlight` | `white` | white edge catch for glass / raised surfaces | `white` |
+| `border.highlight-active` | `brand.500` | focused/active glass surface — full 1.5px primary border replacing the white catch | `brand.400` |
 
 ### `color.icon.*`
 

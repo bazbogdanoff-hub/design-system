@@ -87,6 +87,10 @@
       "border": {
         "$value": "{color.border.highlight}",
         "$description": "The asymmetric glass catch (top + left, 1.5px, white). Widths + the inner-shadow are hand-tuned in the CSS, not tokens."
+      },
+      "border-active": {
+        "$value": "{color.border.highlight-active}",
+        "$description": "Focused/active glass border — full 1.5px primary, replaces the white top-left catch. Shared by Card, StatButton, and other glass buttons."
       }
     },
     "input": {

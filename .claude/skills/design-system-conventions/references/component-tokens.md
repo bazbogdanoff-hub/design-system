@@ -46,9 +46,10 @@ Procedure:
 
 | Token | → semantic |
 |---|---|
-| `card.background.default` | `surface.default` |
-| `card.background.hover` | `surface.subtle` *(clickable cards only)* |
-| `card.border` | `border.default` |
+| `card.background.default` | `surface.card` |
+| `card.background.hover` | `surface.subtle` *(clickable cards only, not used yet)* |
+| `card.border` | `border.highlight` — white top-left glass catch |
+| `card.border-active` | `border.highlight-active` — full primary border on focus/active; shared by StatButton + other glass buttons |
 
 ### `input`
 

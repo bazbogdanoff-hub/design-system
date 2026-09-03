@@ -38,6 +38,8 @@ export const ColorCardBackgroundDefault: string;
 export const ColorCardBackgroundHover: string;
 /** The asymmetric glass catch (top + left, 1.5px, white). Widths + the inner-shadow are hand-tuned in the CSS, not tokens. */
 export const ColorCardBorder: string;
+/** Focused/active glass border — full 1.5px primary, replaces the white top-left catch. Shared by Card, StatButton, and other glass buttons. */
+export const ColorCardBorderActive: string;
 export const ColorInputBackgroundDefault: string;
 export const ColorInputBackgroundDisabled: string;
 export const ColorInputText: string;
@@ -401,6 +403,8 @@ export const ColorBorderDanger: string;
 export const ColorBorderFocus: string;
 /** White edge highlight for glass / raised surfaces (asymmetric top-left catch) */
 export const ColorBorderHighlight: string;
+/** Glass edge highlight when the surface is focused/active — a full 1.5px primary border that replaces the white top-left catch */
+export const ColorBorderHighlightActive: string;
 /** Standalone UI icons */
 export const ColorIconDefault: string;
 /** Decorative / secondary icons */
