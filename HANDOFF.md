@@ -170,9 +170,17 @@ component property). Label ramp is now **bold** system-wide (owner's call);
 **low (green) / attention (orange) / warning (amber) / critical (red)**, pill +
 icon-only forms, no free text.
 
+### SeverityBadge — DONE
+
+`docs/components/SeverityBadge.md` + `src/components/SeverityBadge/` (SeverityBadge.tsx, SeverityIcon.tsx,
+SeverityBadge.module.css). `level` (low/attention/warning/critical) x `size` (sm/md/lg)
+x `format` (pill|icon). pill = a Badge instance in the mapped tone + the level label,
+NO icon. icon = the bare alert-triangle (16/20/24) in the tone colour. Figma set =
+24 variants nesting Badge; triangle path extracted verbatim into SeverityIcon.
+
 ### Next components
 
-`SeverityBadge`, then `Button`, `Input`, `Tab`, `Alert` (from `Info message`),
+`Button`, then `Button`, `Input`, `Tab`, `Alert` (from `Info message`),
 `StatCard` (from `Stat - button`).
 
 Workflow per component (`.claude/skills/design-system-conventions/references/component-build.md`):

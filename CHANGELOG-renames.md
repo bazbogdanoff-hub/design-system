@@ -13,6 +13,12 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  SeverityBadge — built (Figma + React)    figma ✓  docs ✓  src ✓  build ✓
+            L2. docs/components/SeverityBadge.md + src/components/SeverityBadge/. level(4) x size(3) x format(2) = 24 Figma variants.
+            pill = <Badge tone={map} size>{label}</Badge>, NO icon (colour+bold text carry severity). icon = bare alert-triangle 16/20/24 in tone colour.
+            level->tone: low=success, attention=warning, warning=warning-strong, critical=danger. Triangle path extracted verbatim from Figma vector (evenodd punch for the !).
+            Reconcile: Badge icon-bool default re-fixed to false; SeverityBadge icon frames had stray foreign radius binds (removed by owner); level order fixed to severity order.
+
 2026-09-03  color.badge.warning.text: text.warning → color.amber.600 (one step lighter)    tokens ✓  build ✓  figma ✓  docs ✓  src —
             amber `warning` and orange `warning-strong` badge text were near-identical (amber.700 vs orange.700). Lighten warning to amber.600.
             Deliberate component-tier primitive alias (like color.surface.card). Contrast ~3.2:1 on amber.100 — accepted: level differentiation is the bigger a11y win. build-03 re-run.

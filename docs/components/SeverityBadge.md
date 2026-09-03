@@ -1,11 +1,12 @@
 # SeverityBadge
 
-An **L2 pattern** — a fixed 4-level severity indicator, icon-forward. Composes
-[`Badge`](./Badge.md) for its chrome (fill / radius / label style, per the token
-contract). The level *is* the content: no free text, no custom icon, no `tone`.
+An **L2 pattern** — a fixed 4-level severity indicator. Composes
+[`Badge`](./Badge.md) for the `pill` form; the `icon` form is the bare triangle
+glyph for when there's no room for a chip. The level *is* the content: no free
+text, no `tone`, no custom icon.
 
-For product-entity status (`shipment delayed`, `PO overdue`) this stays in the
-**app** — the app maps its status onto a `level`. See [architecture.md](../architecture.md).
+Product-entity status (`shipment delayed`, `PO overdue`) stays in the **app** —
+the app maps its status onto a `level`. See [architecture.md](../architecture.md).
 
 ## API
 
@@ -17,15 +18,14 @@ For product-entity status (`shipment delayed`, `PO overdue`) this stays in the
 |---|---|---|---|
 | `level` | `low` `attention` `warning` `critical` | — (required) | variant `level` |
 | `size` | `sm` `md` `lg` | `md` | variant `size` |
-| `format` | `pill` (icon + label) · `icon` (icon only) | `pill` | variant `format` |
+| `format` | `pill` (coloured text chip) · `icon` (bare triangle) | `pill` | variant `format` |
 
-`className`, `style`, `...spanProps` pass through. `format="icon"` sets
-`role="img"` + `aria-label` = the level name automatically; `pill` has the label
-as visible text and needs neither.
+`className`, `style`, `...spanProps` pass through. `format="icon"` gets
+`role="img"` + `aria-label` = the level name; `pill` shows the label as text.
 
-= **4 levels × 3 sizes × 2 formats = 24 variants** in Figma.
+= **4 levels × 3 sizes × 2 formats = 24 Figma variants.**
 
-## Level → tone · label · icon
+## Level → tone · label
 
 Severity escalates **low → attention → warning → critical**. "Warning" outranks
 "attention" (something is *wrong*, not just *notable*).
@@ -37,65 +37,47 @@ Severity escalates **low → attention → warning → critical**. "Warning" out
 | `warning` | `warning-strong` | orange | "Warning" |
 | `critical` | `danger` | red | "Critical" |
 
-**The tone names describe colour, not rank** — so level `attention` maps to tone
-`warning` (amber) and level `warning` maps to tone `warning-strong` (orange).
-Deliberate; don't "fix" it.
+**The tone names describe colour, not rank** — level `attention` → tone `warning`
+(amber), level `warning` → tone `warning-strong` (orange). Deliberate.
 
-**Icon: the same alert-triangle shape for every level** — only the colour
-changes (= the tone's text colour, `currentColor`). Deliberately not four
-different glyphs: the colour carries the severity, one shape keeps it calm and
-unambiguous.
+## `pill`
 
-## Sizes
+A `Badge` instance — `tone` = the mapped tone, `size` = `size`, children = the
+level label. **No icon** — the colour + bold label carry the severity. Inherits
+Badge's sizing, per-size radius, height model, tokens. Heights match Badge
+exactly: sm 27 · md 32 · lg 38.
 
-Icon is **prominent** — bigger than a plain Badge's `1em` — because severity has
-to be scannable at a glance:
+```tsx
+<Badge tone={TONE[level]} size={size}>{LABEL[level]}</Badge>
+```
 
-| `size` | Badge label style | icon | Figma height (pill) |
-|---|---|---|---|
-| `sm` | `text/label/sm` (13) | **16** | ~28 |
-| `md` | `text/label/md` (14) | **20** | ~36 |
-| `lg` | `text/label/lg` (16) | **24** | ~44 |
+## `icon`
 
-`format="icon"` is a **square** at those heights — the icon centred in a
-`radius/badge/<size>` box with the tone fill, no label.
+Just the severity triangle — **no chip, no background, no radius**. A square box
+sized to the icon, `color` = the tone's text colour, the triangle inherits it
+via `currentColor`.
 
-## Composition
+| `size` | icon |
+|---|---|
+| `sm` | 16 |
+| `md` | 20 |
+| `lg` | 24 |
 
-- **pill:** a `Badge` instance (`tone` = the mapped tone, `size` = `size`), icon
-  slot filled with the `SeverityIcon` for the level, label text = the level name.
-- **icon:** a `Badge` instance with the icon slot filled and **no label** — Badge's
-  uniform padding makes it square. Larger icon than a default badge.
-
-Both let a change to `Badge` (padding, radius, height model, a token) flow
-through. Never a detached copy.
-
-### `Badge` change this needs
-
-Badge's `.icon` box is currently hard-wired to `1em`. Change it to
-`var(--badge-icon-size, 1em)` so SeverityBadge (and any future icon-forward
-composition) can set `--badge-icon-size: 24px|20px|16px` per size. Default `1em`
-keeps every existing badge identical. Done when SeverityBadge's code is written.
+For dense table cells / list rows where "Attention" won't fit. `role="img"` +
+`aria-label={level}`.
 
 ## SeverityIcon
 
-**One shape** (alert-triangle) at **3 sizes — 24 / 20 / 16**. A real designed
-icon, not a placeholder. Colour comes from the parent (`currentColor`), so the
-icon itself is level-agnostic.
-
-- **Figma:** a `SeverityIcon` component set, `size` (3) = 3 variants (add a
-  `level` axis only if the shape ever needs to differ per level — today it
-  doesn't). Vector fill bound to `color/badge/<tone>/text` in context, or left
-  to inherit. Sits on the `Components` page next to `Badge`.
-- **React:** `src/components/SeverityBadge/SeverityIcon.tsx` — one inline-SVG
-  component taking a numeric `size`, `fill: currentColor`. Path extracted
-  verbatim from the Figma build. Internal to `SeverityBadge`, not exported from
-  the package root.
+`src/components/SeverityBadge/SeverityIcon.tsx` — one inline-SVG component, the
+filled alert-triangle (`!` punched out, `fill-rule: evenodd`). `viewBox="0 0 24
+24"`, `fill: currentColor`, `size` prop (16 / 20 / 24). Path extracted verbatim
+from the Figma vector. **Internal to `SeverityBadge`** — not exported from the
+package root. Figma: the triangle vector lives inside each `format=icon` variant,
+fill bound to `color/badge/<tone>/text`.
 
 ## a11y
 
 - `pill` — the label is real text; nothing extra.
-- `icon` — `role="img"` + `aria-label={level}`. If it also links or triggers,
-  the consumer wraps it and moves the label there.
-- The icon itself is always `aria-hidden` (decorative — the text or the
-  `aria-label` carries meaning).
+- `icon` — `role="img"` + `aria-label={level}` on the wrapper; the SVG is
+  `aria-hidden`. If it also links or triggers, the consumer wraps it and moves
+  the label there.

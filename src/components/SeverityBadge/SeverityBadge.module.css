@@ -1,0 +1,20 @@
+/* format="icon" — bare triangle, no chip. Colour = the level's tone text colour;
+   SeverityIcon inherits it via currentColor. Sized by SeverityIcon's `size`. */
+.icon {
+  display: inline-flex;
+  vertical-align: middle;
+  line-height: 0;
+}
+
+.icon[data-level='low'] {
+  color: var(--color-badge-success-text);
+}
+.icon[data-level='attention'] {
+  color: var(--color-badge-warning-text);
+}
+.icon[data-level='warning'] {
+  color: var(--color-badge-warning-strong-text);
+}
+.icon[data-level='critical'] {
+  color: var(--color-badge-danger-text);
+}
