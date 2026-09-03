@@ -27,12 +27,19 @@ as visible text and needs neither.
 
 ## Level → tone · label · icon
 
+Severity escalates **low → attention → warning → critical**. "Warning" outranks
+"attention" (something is *wrong*, not just *notable*).
+
 | level | Badge tone | colour | label | icon (shape) |
 |---|---|---|---|---|
 | `low` | `success` | green | "Low" | arrow-down-circle |
-| `attention` | `warning-strong` | orange | "Attention" | alert-circle |
-| `warning` | `warning` | amber | "Warning" | alert-triangle |
+| `attention` | `warning` | amber / yellow | "Attention" | alert-circle |
+| `warning` | `warning-strong` | orange | "Warning" | alert-triangle |
 | `critical` | `danger` | red | "Critical" | alert-octagon |
+
+**The tone names describe colour, not rank** — so level `attention` maps to tone
+`warning` (amber) and level `warning` maps to tone `warning-strong` (orange).
+Deliberate; don't "fix" it.
 
 Escalating containment on the icon — circle → triangle → octagon as it worsens;
 `low` is the outlier (a direction, not an alarm). Icon colour = the tone's text
