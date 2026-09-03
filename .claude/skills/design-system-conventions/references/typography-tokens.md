@@ -65,10 +65,10 @@ by overriding `font-weight` with a `font.weight.*` primitive when genuinely need
 | `text.body.md` | 15 | medium | normal | normal | **default body / table cell** |
 | `text.body.sm` | 14 | medium | normal | normal | |
 | `text.body.xs` | 13 | medium | normal | normal | dense secondary text |
-| `text.label.lg` | 16 | **bold** | snug | normal | |
-| `text.label.md` | 14 | **bold** | snug | normal | button / input / tab label |
-| `text.label.sm` | 13 | **bold** | snug | normal | table header / chip / badge |
-| `text.label.xs` | 12 | **bold** | snug | wide | |
+| `text.label.lg` | 16 | **bold** | tight | normal | |
+| `text.label.md` | 14 | **bold** | tight | normal | button / input / tab label |
+| `text.label.sm` | 13 | **bold** | tight | normal | table header / chip / badge |
+| `text.label.xs` | 12 | **bold** | tight | wide | |
 | `text.overline` | 10 | extrabold | snug | wider | all-caps kicker (`text-transform: uppercase`) |
 | `text.caption` | 12 | medium | normal | normal | helper text, timestamps, footnotes |
 | `text.code` | 13 | medium (mono) | normal | normal | inline IDs, JSON, tracking numbers |
@@ -77,16 +77,18 @@ Weight tiers: display + `heading.xl` are **bold**, lower headings **semibold**;
 body is **medium**; the whole **`label` ramp is `bold`** (owner's call — badges,
 buttons, tabs, table headers all run bold); `overline` is **extrabold**.
 
-### Label ramp — leading trim (Figma-only)
+### Label ramp — tight line-height, no trim
 
-`text/label/*` Figma styles carry `leadingTrim: CAP_HEIGHT`. `label` is the
-single-line UI ramp (button / input / tab / table-header / chip / badge text);
-trimming the leading to cap height means the style drops into an auto-layout
-frame with a predictable box and **no per-component line-height override**.
-`body` / `heading` / `display` are **not** trimmed (multi-line text needs the
-leading). DTCG has no `leadingTrim` field, so this lives only on the Figma
-style — in code the equivalent is `line-height: 1` on a single-line label, or
-just centring the label in a fixed-height control.
+`text/label/*` is the single-line UI ramp (button / input / tab / table-header /
+chip / badge). It runs at **line-height `tight` (1.15)** — small enough that the
+label box, not the content around it, sets a component's height: a `1em` leading
+icon fits inside the box, so toggling an icon never changes the badge/button
+height. `body` / `heading` / `display` keep `normal`/`snug` (multi-line text
+needs the leading).
+
+We briefly used `leadingTrim: CAP_HEIGHT` here — reverted, it clipped descenders
+(a 14px label measured ~10px). Tight line-height gives the same predictable box
+without amputating the glyphs. No trim on any style.
 
 `32` is used by `heading.xl`; the other in-between sizes (`15`, `13`) sit in
 `body`/`label` where a half-step matters.

@@ -6,11 +6,12 @@
   border-radius: var(--radius-badge);
 
   /* label shape — `text/label/*`; size sets font-size per data-size below.
-     line-height 1 keeps a single-line box (Figma trims to cap height). */
+     tight line-height (1.15) keeps the label box small enough that a 1em icon
+     never grows the badge — height is stable with or without an icon. */
   font-family: var(--text-label-md-font-family);
   font-weight: var(--text-label-md-font-weight);
   letter-spacing: var(--text-label-md-letter-spacing);
-  line-height: 1;
+  line-height: var(--text-label-md-line-height);
   white-space: nowrap;
 
   /* default tone = neutral */

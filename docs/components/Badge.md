@@ -34,11 +34,11 @@ axes.
 Per **`size`** (padding + gap bind `space/*`; radius is `radius/badge` → 6px for
 all sizes):
 
-| `size` | label style | padding (all sides) | gap | Figma height |
-|---|---|---|---|---|
-| `sm` | `text/label/sm` — 13 / bold | `space/6` (6) | `space/4` (4) | ~22 |
-| `md` | `text/label/md` — 14 / bold | `space/8` (8) | `space/6` (6) | ~26 |
-| `lg` | `text/label/lg` — 16 / bold | `space/8` (8) | `space/6` (6) | ~28 |
+| `size` | label style | padding (all sides) | gap | icon | height |
+|---|---|---|---|---|---|
+| `sm` | `text/label/sm` — 13 / bold | `space/6` (6) | `space/4` (4) | 13 (1em) | ~27 |
+| `md` | `text/label/md` — 14 / bold | `space/8` (8) | `space/6` (6) | 14 (1em) | ~32 |
+| `lg` | `text/label/lg` — 16 / bold | `space/8` (8) | `space/6` (6) | 16 (1em) | ~34 |
 
 Per **`tone`** (each pair is a component token → semantic `-subtle` / status text):
 
@@ -51,16 +51,15 @@ Per **`tone`** (each pair is a component token → semantic `-subtle` / status t
 | `danger` | `background.danger-subtle` — red 100 | `text.danger` — red 700 |
 
 Icon colour = `currentColor` (the tone's text colour). The icon box is `1em`
-square so it tracks the label size (Figma uses fixed 14/16/20px placeholders;
-the real icon component will define its own sizing).
+square — same as the label font-size (16 / 14 / 13).
 
-### Height note
+### Height is stable with or without an icon
 
-Figma heights are emergent: `padding + cap-height` (the `text/label/*` styles
-carry `leadingTrim: CAP_HEIGHT`). In CSS the label runs at `line-height: 1`, so a
-browser renders the badge ~2–4px taller than the Figma frame. Acceptable — the
-badge hugs its content and never sits in a fixed vertical rhythm. If exact parity
-is ever needed, switch the size rules to explicit `height` + centred content.
+`text/label/*` runs at line-height `tight` (1.15), so the label box (~18 / 16 /
+15px) is *larger* than the `1em` icon. Toggling the icon changes the badge
+**width only** — never the height. The badge stays hug in both axes; heights land
+around sm 27 / md 32 / lg 34. Figma and CSS match (both use the token
+line-height; no trim, no hardcoded value).
 
 ## Figma build
 

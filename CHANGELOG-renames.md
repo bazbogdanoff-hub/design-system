@@ -13,6 +13,14 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  label ramp: line-height snug → tight (1.15), cap-trim REVERTED    tokens ✓  build ✓  figma ✓  docs ✓  src ✓
+            `leadingTrim: CAP_HEIGHT` on `text/label/*` clipped descenders (14px label measured ~10px) and — being smaller
+            than a 1em icon — made badges jump height when the icon toggled.
+            Fix: `text.label.{lg,md,sm,xs}` lineHeight snug → **tight** (1.15), leadingTrim → NONE everywhere.
+            Generator: dropped the label-trim logic, forces leadingTrim NONE. Re-ran text-style slices 3+4.
+            Badge: icons resized 20/16/14 → **1em** (16/14/13) so icon < label box → height stable w/ or w/o icon.
+            Badge.module.css: line-height hardcoded 1 → var(--text-label-md-line-height). Heights now ~sm27/md32/lg34, Figma == CSS.
+
 2026-09-03  Badge — built (Figma + React)    figma ✓  tokens ✓  build ✓  docs ✓  src ✓
             docs/components/Badge.md + src/components/Badge/. tone (neutral/brand/success/warning/danger) × size (sm/md/lg),
             optional leading `icon` slot, asChild, root <span> inline-flex. Reconciled A-D + weight rebind against the Figma set:

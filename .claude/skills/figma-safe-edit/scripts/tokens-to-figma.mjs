@@ -127,9 +127,6 @@ const textStyles = [];
       weightKey: refKey(v.fontWeight, 'weight'),
       uppercase: path.at(-1) === 'overline',
       mono: /mono/.test(String(v.fontFamily)),
-      // Single-line UI labels: trim the leading to cap height so they drop into
-      // buttons / badges / tabs with no per-component line-height override.
-      trim: path[0] === 'label',
       description: node.$description || '',
     });
     return;
@@ -231,7 +228,10 @@ for (const s of SPEC) {
   st.lineHeight = { unit: 'PERCENT', value: s.lineHeightPct };
   st.letterSpacing = { unit: 'PERCENT', value: s.letterSpacingPct };
   st.textCase = s.uppercase ? 'UPPER' : 'ORIGINAL';
-  if ('leadingTrim' in st) st.leadingTrim = s.trim ? 'CAP_HEIGHT' : 'NONE';
+  // No leading trim anywhere — the label ramp uses a tight line-height (1.15)
+  // instead; cap-height trim clipped descenders. Force NONE so a re-run clears
+  // any style that still has CAP_HEIGHT from an earlier build.
+  if ('leadingTrim' in st) st.leadingTrim = 'NONE';
   if (s.description) st.description = s.description;
   // Bind family / size / weight to font/* primitives (idempotent).
   // NOT lineHeight / letterSpacing: Figma force-converts a bound variable on

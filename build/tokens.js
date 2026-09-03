@@ -517,25 +517,25 @@ export const TextLabelLgFontFamily =
   "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
 export const TextLabelLgFontSize = "1rem";
 export const TextLabelLgFontWeight = 700;
-export const TextLabelLgLineHeight = 1.3;
+export const TextLabelLgLineHeight = 1.15;
 export const TextLabelLgLetterSpacing = "0em";
 export const TextLabelMdFontFamily =
   "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Button / input / tab label
 export const TextLabelMdFontSize = "0.875rem"; // Button / input / tab label
 export const TextLabelMdFontWeight = 700; // Button / input / tab label
-export const TextLabelMdLineHeight = 1.3; // Button / input / tab label
+export const TextLabelMdLineHeight = 1.15; // Button / input / tab label
 export const TextLabelMdLetterSpacing = "0em"; // Button / input / tab label
 export const TextLabelSmFontFamily =
   "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Table header / chip
 export const TextLabelSmFontSize = "0.8125rem"; // Table header / chip
 export const TextLabelSmFontWeight = 700; // Table header / chip
-export const TextLabelSmLineHeight = 1.3; // Table header / chip
+export const TextLabelSmLineHeight = 1.15; // Table header / chip
 export const TextLabelSmLetterSpacing = "0em"; // Table header / chip
 export const TextLabelXsFontFamily =
   "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
 export const TextLabelXsFontSize = "0.75rem";
 export const TextLabelXsFontWeight = 700;
-export const TextLabelXsLineHeight = 1.3;
+export const TextLabelXsLineHeight = 1.15;
 export const TextLabelXsLetterSpacing = "0.01em";
 export const TextOverlineFontFamily =
   "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // All-caps section kicker — apply text-transform: uppercase in the component
