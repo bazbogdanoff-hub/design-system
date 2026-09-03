@@ -13,7 +13,15 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
-2026-09-03  Badge reconcile — label ramp → bold, `*-subtle` bg → 100    figma ✓  tokens ✓  build ✓  docs ✓  src PENDING
+2026-09-03  Badge — built (Figma + React)    figma ✓  tokens ✓  build ✓  docs ✓  src ✓
+            docs/components/Badge.md + src/components/Badge/. tone (neutral/brand/success/warning/danger) × size (sm/md/lg),
+            optional leading `icon` slot, asChild, root <span> inline-flex. Reconciled A-D + weight rebind against the Figma set:
+            A `Variant`/`Size` → `tone`/`size` (user); B radius → `radius/badge` 6px (user); C label nodes now use text/label/* clean
+            (no overrides — node == style once ramp went bold); D icon-bool default false, default variant → neutral/md;
+            C+ text/label/* fontWeight rebound Weights/Bold → font/weight/bold.
+            Height: Figma padding+cap-trim vs CSS line-height:1 → browser renders ~2-4px taller; accepted (hug component).
+
+2026-09-03  Badge reconcile — label ramp → bold, `*-subtle` bg → 100    figma ✓  tokens ✓  build ✓  docs ✓
             E: `text.label.{lg,md,sm,xs}` weight semibold → **bold** (owner's call; affects button/input/tab/table-header too). Figma styles already switched.
             G: `background.{brand,success,warning,danger}-subtle` → primitive **100** (was 50), for stronger badge fills.
                Side effects (shared semantic token): ghost-button hover/active tint, selected table-row tint, and all *-subtle banners/callouts also go one step stronger.

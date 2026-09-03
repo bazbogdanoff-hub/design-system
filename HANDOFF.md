@@ -159,10 +159,21 @@ neutral, matches Figma. Figma `Card` set extracted and reconciled: matches the
 doc 1:1 (also tokenised the vignette effect as `viginette/both/xs/*` — harmless,
 CSS still hardcodes the values). `Card.tsx` unchanged.
 
+### Badge — DONE
+
+`docs/components/Badge.md` + `src/components/Badge/`. `tone` (neutral/brand/
+success/warning/danger) × `size` (sm/md/lg) + optional leading `icon` slot +
+`asChild`. Root `<span>`, inline-flex. Figma set reconciled (15 variants, icon =
+component property). Label ramp is now **bold** system-wide (owner's call);
+`background.{brand,success,warning,danger}-subtle` moved 50 → 100.
+`SeverityBadge` (L2, composes Badge) is the next natural follow-up — fixed scale
+**low (green) / attention (orange) / warning (amber) / critical (red)**, pill +
+icon-only forms, no free text.
+
 ### Next components
 
-`Badge` next (user's pick order: small, exercises `tone` prop + status-pill).
-Then `Button`, `Input`, `Tab`, `Alert` (from `Info message`), `StatCard` (from `Stat - button`).
+`SeverityBadge`, then `Button`, `Input`, `Tab`, `Alert` (from `Info message`),
+`StatCard` (from `Stat - button`).
 
 Workflow per component (`.claude/skills/design-system-conventions/references/component-build.md`):
 1. write `docs/components/<Name>.md` spec
