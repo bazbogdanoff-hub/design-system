@@ -178,10 +178,22 @@ x `format` (pill|icon). pill = a Badge instance in the mapped tone + the level l
 NO icon. icon = the bare alert-triangle (16/20/24) in the tone colour. Figma set =
 24 variants nesting Badge; triangle path extracted verbatim into SeverityIcon.
 
+### StatButton — DONE
+
+First interactive component; first one Claude built in Figma (via bridge, on a
+`safe-edit:` checkpoint). `docs/components/StatButton.md` + `src/components/StatButton/`.
+`tone` (default/danger) × `size` (sm/lg) × `state` (default/hover) = 8 Figma
+variants + `Show arrow` bool. React = plain `<button>`, states as CSS
+(`:hover` deepens shadow, `:focus-visible`+`:active` = same ring, `:disabled` dims).
+Shared glass-button shadow pair `Viginette/2xs` / `Viginette/2xs hover`
+(rest/hover) — **reuse for Button**. Effect styles still ref the un-migrated
+`effects/` shim collection — fine, effects were never in scope.
+
 ### Next components
 
-`Button`, then `Button`, `Input`, `Tab`, `Alert` (from `Info message`),
-`StatCard` (from `Stat - button`).
+`Button`, then `Input`, `Tab`, `Alert` (from `Info message`),
+`StatCard` (the "In transit 118 ↓122%" summary card — a `Card` composing a
+headline stat + a row of `StatButton`s).
 
 Workflow per component (`.claude/skills/design-system-conventions/references/component-build.md`):
 1. write `docs/components/<Name>.md` spec

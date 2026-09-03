@@ -13,6 +13,15 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  StatButton — reworked in Figma + built in React    figma ✓  docs ✓  src ✓  build ✓
+            First interactive component + first Claude-built Figma component. From kit `Stat - button` (copy renamed `StatButton`).
+            Figma via bridge (checkpoint `safe-edit: pre StatButton rework`): props Variant→tone(default/danger), Size→size(sm/lg), +state(default/hover) = 8 variants.
+            Rebound ALL colour/radius/spacing/type to new collections: radius/control, color/card/background/default, color/card/border, space/8+12,
+            text/body/sm (label), text/heading/md|lg (value), color/text/subtle|default|danger. Detached kit `Text Combination` → plain `content` frame.
+            state=hover swaps effect style `Viginette/2xs` → `Viginette/2xs hover` (the shared glass-button rest/hover treatment). Arrow rebound.
+            (effect styles themselves still ref the `effects/` + shadcn-alpha shims — out of scope, effects not migrated.)
+            React: `src/components/StatButton/` — `<button>`, no asChild (Slot can't wrap structural children). States = CSS (:hover, :focus-visible+:active ring, :disabled).
+
 2026-09-03  SeverityBadge — built (Figma + React)    figma ✓  docs ✓  src ✓  build ✓
             L2. docs/components/SeverityBadge.md + src/components/SeverityBadge/. level(4) x size(3) x format(2) = 24 Figma variants.
             pill = <Badge tone={map} size>{label}</Badge>, NO icon (colour+bold text carry severity). icon = bare alert-triangle 16/20/24 in tone colour.
