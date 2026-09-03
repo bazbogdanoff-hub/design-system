@@ -13,3 +13,6 @@ export type {
   SeverityBadgeSize,
   SeverityBadgeFormat,
 } from './components/SeverityBadge';
+
+export { StatButton } from './components/StatButton';
+export type { StatButtonProps, StatButtonTone, StatButtonSize } from './components/StatButton';

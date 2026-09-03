@@ -1,0 +1,91 @@
+.stat {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  padding: var(--space-8) var(--space-12);
+  border: 0;
+  border-radius: var(--radius-control);
+  background: var(--color-card-background-default);
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  transition: box-shadow 120ms ease;
+
+  /* glass — "Viginette/2xs" from Figma, hand-tuned (NOT tokens):
+     1) 1.5px white catch, top + left  → color/card/border
+     2) inner vignette  → inset 2px 2px 12px #f0f0f0
+     3) drop shadow     → 0 1px 8px rgba(0,0,0,.20) */
+  box-shadow:
+    inset 1.5px 1.5px 0 0 var(--color-card-border),
+    inset 2px 2px 12px 0 #f0f0f0,
+    0 1px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.stat[data-size='lg'] {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+/* hover — "Viginette/2xs hover": deeper, wider drop shadow */
+.stat:hover:not(:disabled) {
+  box-shadow:
+    inset 1.5px 1.5px 0 0 var(--color-card-border),
+    inset 2px 2px 12px 0 #f0f0f0,
+    0 2px 12px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* focus and active are identical — the focus ring */
+.stat:focus-visible,
+.stat:active:not(:disabled) {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.stat:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--text-body-sm-font-weight);
+  line-height: var(--text-body-sm-line-height);
+  letter-spacing: var(--text-body-sm-letter-spacing);
+  color: var(--color-text-subtle);
+}
+
+.value {
+  font-family: var(--text-heading-md-font-family);
+  font-size: var(--text-heading-md-font-size);
+  font-weight: var(--text-heading-md-font-weight);
+  line-height: var(--text-heading-md-line-height);
+  letter-spacing: var(--text-heading-md-letter-spacing);
+  color: var(--color-text-default);
+}
+
+.stat[data-size='lg'] .value {
+  font-size: var(--text-heading-lg-font-size);
+  line-height: var(--text-heading-lg-line-height);
+  letter-spacing: var(--text-heading-lg-letter-spacing);
+}
+
+.stat[data-tone='danger'] .value {
+  color: var(--color-text-danger);
+}
+
+.arrow {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  color: var(--color-text-subtle);
+}
