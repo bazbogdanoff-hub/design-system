@@ -31,14 +31,14 @@ axes.
 
 ## Appearance
 
-Per **`size`** (padding + gap bind `space/*`; radius is `radius/badge` → 6px for
-all sizes):
+Per **`size`** (padding + gap bind `space/*`; radius per size — bigger badge,
+softer corner):
 
-| `size` | label style | padding (all sides) | gap | icon | height |
-|---|---|---|---|---|---|
-| `sm` | `text/label/sm` — 13 / bold | `space/6` (6) | `space/4` (4) | 13 (1em) | ~27 |
-| `md` | `text/label/md` — 14 / bold | `space/8` (8) | `space/6` (6) | 14 (1em) | ~32 |
-| `lg` | `text/label/lg` — 16 / bold | `space/8` (8) | `space/6` (6) | 16 (1em) | ~34 |
+| `size` | label style | padding (all sides) | gap | radius | icon | height |
+|---|---|---|---|---|---|---|
+| `sm` | `text/label/sm` — 13 / bold | `space/6` (6) | `space/4` (4) | `radius/badge/sm` — 6 | 13 (1em) | ~27 |
+| `md` | `text/label/md` — 14 / bold | `space/8` (8) | `space/6` (6) | `radius/badge/md` — 8 | 14 (1em) | ~32 |
+| `lg` | `text/label/lg` — 16 / bold | `space/10` (10) | `space/6` (6) | `radius/badge/lg` — 12 | 16 (1em) | ~38 |
 
 Per **`tone`** (each pair is a component token → semantic `-subtle` / status text):
 
@@ -67,7 +67,7 @@ line-height; no trim, no hardcoded value).
 - `icon` is a **component property**, not a variant axis: a `BOOLEAN` (default
   `false`) toggling a leading instance-swap slot.
 - Auto-layout HORIZONTAL, hug × hug, centre align. Fill → `color/badge/<tone>/background`,
-  radius → `radius/badge`, label style `text/label/<size>` + colour
+  radius → `radius/badge/<size>`, label style `text/label/<size>` + colour
   `color/badge/<tone>/text`, icon vector fill → `color/badge/<tone>/text`.
 - No stroke, no effects.
 

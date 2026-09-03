@@ -428,7 +428,12 @@ export const RadiusTable: string;
 export const RadiusPopover: string;
 export const RadiusButton: string;
 export const RadiusInput: string;
-export const RadiusBadge: string;
+/** 6 — small badge */
+export const RadiusBadgeSm: string;
+/** 8 — medium badge */
+export const RadiusBadgeMd: string;
+/** 12 — large badge; borrows the next radius role up so the corner stays proportional to the taller pill */
+export const RadiusBadgeLg: string;
 export const RadiusNone: string;
 /** 2px */
 export const RadiusXs: string;

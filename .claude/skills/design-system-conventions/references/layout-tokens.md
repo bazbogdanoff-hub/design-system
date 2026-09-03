@@ -82,7 +82,13 @@ Nesting reads correctly — an inner element's radius is always ≤ its containe
 | `radius.popover` | `radius.panel` | 12 |
 | `radius.button` | `radius.control` | 8 |
 | `radius.input` | `radius.control` | 8 |
-| `radius.badge` | `radius.chip` | 6 |
+| `radius.badge.sm` | `radius.chip` | 6 |
+| `radius.badge.md` | `radius.control` | 8 |
+| `radius.badge.lg` | `radius.panel` | 12 |
+
+`radius.badge` is **per-size** (the only component radius that is): a larger
+badge is taller, so it borrows the next radius role up to keep the corner
+looking proportional. `--radius-badge-sm|md|lg` in CSS.
 
 Components reference the **component** or **semantic** radius token, never the raw
 scale. `$type: "dimension"` is declared once, on the `radius` group in

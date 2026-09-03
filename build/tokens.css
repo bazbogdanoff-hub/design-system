@@ -524,7 +524,9 @@
   --radius-popover: var(--radius-panel);
   --radius-button: var(--radius-control);
   --radius-input: var(--radius-control);
-  --radius-badge: var(--radius-chip);
+  --radius-badge-sm: var(--radius-chip); /** 6 — small badge */
+  --radius-badge-md: var(--radius-control); /** 8 — medium badge */
+  --radius-badge-lg: var(--radius-panel); /** 12 — large badge; borrows the next radius role up so the corner stays proportional to the taller pill */
   --color-button-primary-background-default: var(--color-background-brand-default);
   --color-button-primary-background-hover: var(--color-background-brand-hover);
   --color-button-primary-background-active: var(--color-background-brand-active);

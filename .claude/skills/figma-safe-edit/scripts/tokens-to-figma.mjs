@@ -99,7 +99,7 @@ for (const [p, raw] of Object.entries(rawByPath)) {
 // ---------- 03 · component (aliases) ------------------------------------
 const compAliases = [];
 for (const [p, raw] of Object.entries(rawByPath)) {
-  if (!isColorComponent(p) && !/^radius\.(card|modal|table|popover|button|input|badge)$/.test(p)) continue;
+  if (!isColorComponent(p) && !/^radius\.(card|modal|table|popover|button|input|badge)(\.(sm|md|lg))?$/.test(p)) continue;
   const m = typeof raw === 'string' && raw.match(/^\{(.+)\}$/);
   if (m) compAliases.push({ name: figName(p), target: figName(m[1]), type: p.startsWith('color') ? 'COLOR' : 'FLOAT' });
   else if (raw === 'transparent') compAliases.push({ name: figName(p), raw: '#00000000', type: 'COLOR' });

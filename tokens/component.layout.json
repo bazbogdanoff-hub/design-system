@@ -6,6 +6,10 @@
     "popover": { "$value": "{radius.panel}" },
     "button": { "$value": "{radius.control}" },
     "input": { "$value": "{radius.control}" },
-    "badge": { "$value": "{radius.chip}" }
+    "badge": {
+      "sm": { "$value": "{radius.chip}", "$description": "6 — small badge" },
+      "md": { "$value": "{radius.control}", "$description": "8 — medium badge" },
+      "lg": { "$value": "{radius.panel}", "$description": "12 — large badge; borrows the next radius role up so the corner stays proportional to the taller pill" }
+    }
   }
 }
