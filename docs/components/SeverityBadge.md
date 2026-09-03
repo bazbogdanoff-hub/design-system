@@ -30,20 +30,21 @@ as visible text and needs neither.
 Severity escalates **low → attention → warning → critical**. "Warning" outranks
 "attention" (something is *wrong*, not just *notable*).
 
-| level | Badge tone | colour | label | icon (shape) |
-|---|---|---|---|---|
-| `low` | `success` | green | "Low" | arrow-down-circle |
-| `attention` | `warning` | amber / yellow | "Attention" | alert-circle |
-| `warning` | `warning-strong` | orange | "Warning" | alert-triangle |
-| `critical` | `danger` | red | "Critical" | alert-octagon |
+| level | Badge tone | colour | label |
+|---|---|---|---|
+| `low` | `success` | green | "Low" |
+| `attention` | `warning` | amber / yellow | "Attention" |
+| `warning` | `warning-strong` | orange | "Warning" |
+| `critical` | `danger` | red | "Critical" |
 
 **The tone names describe colour, not rank** — so level `attention` maps to tone
 `warning` (amber) and level `warning` maps to tone `warning-strong` (orange).
 Deliberate; don't "fix" it.
 
-Escalating containment on the icon — circle → triangle → octagon as it worsens;
-`low` is the outlier (a direction, not an alarm). Icon colour = the tone's text
-colour (`currentColor`).
+**Icon: the same alert-triangle shape for every level** — only the colour
+changes (= the tone's text colour, `currentColor`). Deliberately not four
+different glyphs: the colour carries the severity, one shape keeps it calm and
+unambiguous.
 
 ## Sizes
 
@@ -78,16 +79,18 @@ keeps every existing badge identical. Done when SeverityBadge's code is written.
 
 ## SeverityIcon
 
-Four icon components, **one per level**, each at **3 sizes (24 / 20 / 16)** —
-these are real designed icons, not placeholders.
+**One shape** (alert-triangle) at **3 sizes — 24 / 20 / 16**. A real designed
+icon, not a placeholder. Colour comes from the parent (`currentColor`), so the
+icon itself is level-agnostic.
 
-- **Figma:** a `SeverityIcon` component set, `level` (4) × `size` (3) = 12
-  variants. Vector fill bound to `color/badge/<tone>/text` so the icon inherits
-  the level colour. Sits on the `Components` page next to `Badge`.
-- **React:** `src/components/SeverityBadge/icons/` — 4 inline-SVG components
-  (`LowIcon`, `AttentionIcon`, `WarningIcon`, `CriticalIcon`), each taking a
-  numeric `size`. Paths extracted verbatim from the Figma build. Not exported
-  from the package root — internal to `SeverityBadge`.
+- **Figma:** a `SeverityIcon` component set, `size` (3) = 3 variants (add a
+  `level` axis only if the shape ever needs to differ per level — today it
+  doesn't). Vector fill bound to `color/badge/<tone>/text` in context, or left
+  to inherit. Sits on the `Components` page next to `Badge`.
+- **React:** `src/components/SeverityBadge/SeverityIcon.tsx` — one inline-SVG
+  component taking a numeric `size`, `fill: currentColor`. Path extracted
+  verbatim from the Figma build. Internal to `SeverityBadge`, not exported from
+  the package root.
 
 ## a11y
 
