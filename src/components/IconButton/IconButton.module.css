@@ -1,0 +1,66 @@
+/* Square icon-only button. The glass skin comes from Button's `.surface`
+   (imported); this file is just the square layout + per-variant×size dimensions.
+   Sizes = the matching Button height (primary 36/40/44/56 · secondary+tertiary
+   28/32/36/40). font-size sets the 1em icon. TODO: size/control/* tokens. */
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  padding: 0;
+  user-select: none;
+}
+
+.iconButton[data-variant='secondary'][data-size='sm'],
+.iconButton[data-variant='tertiary'][data-size='sm'] {
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  border-radius: var(--radius-button-secondary-sm);
+}
+.iconButton[data-variant='secondary'][data-size='md'],
+.iconButton[data-variant='tertiary'][data-size='md'] {
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  border-radius: var(--radius-button-secondary-md);
+}
+.iconButton[data-variant='secondary'][data-size='lg'],
+.iconButton[data-variant='tertiary'][data-size='lg'] {
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  border-radius: var(--radius-button-secondary-lg);
+}
+.iconButton[data-variant='secondary'][data-size='xl'],
+.iconButton[data-variant='tertiary'][data-size='xl'] {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: var(--radius-button-secondary-xl);
+}
+
+.iconButton[data-variant='primary'][data-size='sm'] {
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  border-radius: var(--radius-button-primary-sm);
+}
+.iconButton[data-variant='primary'][data-size='md'] {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: var(--radius-button-primary-md);
+}
+.iconButton[data-variant='primary'][data-size='lg'] {
+  width: 44px;
+  height: 44px;
+  font-size: 20px;
+  border-radius: var(--radius-button-primary-lg);
+}
+.iconButton[data-variant='primary'][data-size='xl'] {
+  width: 56px;
+  height: 56px;
+  font-size: 22px;
+  border-radius: var(--radius-button-primary-xl);
+}

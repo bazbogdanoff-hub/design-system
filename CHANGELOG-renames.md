@@ -13,6 +13,12 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  Button + IconButton — React build    src ✓  docs ✓  build ✓
+            src/components/Button/ (Button.tsx, Button.module.css, Spinner.tsx) + src/components/IconButton/. variant (primary/secondary/tertiary) × size (sm/md/lg/xl).
+            Shared `.surface` CSS module class (variant colour/border/shadow/state, [data-variant]-keyed) — IconButton imports it. States all CSS (:hover, :focus-visible+:active identical, :disabled).
+            `loading` → <Spinner> (animated arc) in the leading slot, trailing icon hidden, label stays, aria-busy, interaction blocked. asChild via Slot/Slottable. IconButton requires aria-label (TS-enforced).
+            Heights literal px in CSS (28/32/36/40 · 36/40/44/56) — size/control/* tokens TODO. tsc + build clean.
+
 2026-09-03  IconButton (Figma, Claude-built by cloning Button)    figma ✓  src —
             Separate component (square, one icon, no label, aria-label required). Cloned the 48-variant Button set: deleted leading/trailing icon bools + trailingIconSwap, renamed leadingIconSwap→iconSwap; kept loading/size/variant/state.
             Each variant made square = the Button height for that variant×size (primary 36/40/44/56, secondary+tertiary 28/32/36/40), icon centred, sized per variant. Reuses ALL color/button/*, Viginette styles, radius/button/*, states — 0 new tokens. 0 old bindings.
