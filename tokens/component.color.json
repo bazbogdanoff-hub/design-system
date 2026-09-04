@@ -24,6 +24,10 @@
           },
           "hover": {
             "$value": "#7a85f8"
+          },
+          "active": {
+            "$value": "{color.white}",
+            "$description": "Full 1.5px white border on focus / active — high contrast on the brand fill (parallels color.button.secondary.border.active)."
           }
         },
         "shadow": {

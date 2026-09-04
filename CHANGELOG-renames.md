@@ -13,6 +13,10 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  +color.button.primary.border.active = white; Button Figma done (bar loading/tertiary)    tokens ✓  build ✓  figma ✓  src —
+            full 1.5px white border on primary focus/active (parallels secondary.border.active). Applied to 4 primary active variants. primary active shadow aligned to rest (Viginette/2xs primary) by owner.
+            Button component set = 32 variants, all bindings clean, heights/radius/labels/states done. Remaining: loading state, tertiary variant, React build.
+
 2026-09-03  Button — cleanup + owner states/heights    figma ✓ (0 old bindings)  src —
             32 variants (4 sizes × 2 variants × 4 states). Owner: heights (sec 28/32/36/40, pri 36/40/44/56), primary active+disabled, made Viginette/2xs primary + hover styles, disabled 0.7.
             Claude: stroke weights unbound from stroke/glass elements/* → raw 1.5/0/0/1.5 catch (active 1.5 all-side), INSIDE + not-in-layout; secondary hover → Viginette/2xs hover; md-secondary padding xs → space/8.

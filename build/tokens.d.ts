@@ -23,6 +23,8 @@ export const ColorButtonPrimaryIcon: string;
 /** Glass catch on the coloured primary surface — hand-tuned, not on the palette. */
 export const ColorButtonPrimaryBorderDefault: string;
 export const ColorButtonPrimaryBorderHover: string;
+/** Full 1.5px white border on focus / active — high contrast on the brand fill (parallels color.button.secondary.border.active). */
+export const ColorButtonPrimaryBorderActive: string;
 /** Inner-shadow colour for the 'Viginette primary 2xs' effect style (hand-tuned). */
 export const ColorButtonPrimaryShadowDefault: string;
 export const ColorButtonPrimaryShadowHover: string;

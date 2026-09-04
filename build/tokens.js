@@ -20,6 +20,7 @@ export const ColorButtonPrimaryText = "#ffffff";
 export const ColorButtonPrimaryIcon = "#ffffff";
 export const ColorButtonPrimaryBorderDefault = "#aab1f9"; // Glass catch on the coloured primary surface — hand-tuned, not on the palette.
 export const ColorButtonPrimaryBorderHover = "#7a85f8";
+export const ColorButtonPrimaryBorderActive = "#ffffff"; // Full 1.5px white border on focus / active — high contrast on the brand fill (parallels color.button.secondary.border.active).
 export const ColorButtonPrimaryShadowDefault = "#6570e1"; // Inner-shadow colour for the 'Viginette primary 2xs' effect style (hand-tuned).
 export const ColorButtonPrimaryShadowHover = "#4e51ed";
 export const ColorButtonSecondaryBackgroundDefault = "#fcfcfc"; // Same glass surface as Card / StatButton — #fcfcfc, unchanged by state (hover swaps the shadow, not the fill).
