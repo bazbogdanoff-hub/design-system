@@ -13,6 +13,11 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  Button tertiary variant (Claude-built) + color.button.tertiary tokens    tokens ✓  build ✓  figma ✓  src —
+            color.button.ghost → tertiary: text {default {color.text.strong}, active {color.text.brand}}, icon {default {color.icon.default}, active {color.icon.brand}}. ghost vars removed.
+            16 tertiary variants cloned from secondary, surface stripped (no fill/stroke/effect). Same label styles / icon sizes / heights as secondary. hover → underline; active → underline + brand colour; disabled → 0.7 opacity.
+            Button component set is now 48 variants (16 × primary/secondary/tertiary) — Figma complete. Remaining: React build.
+
 2026-09-03  Button loading spinner — all 32 variants    figma ✓  src —
             `loading` boolean (owner renamed from Spinner). `Loading` layer = child 0 (leading), AUTO, hidden by default, ref `loading#10059:0`. spinner size = icon size per variant:
             primary xl22/lg20/md20/sm16, secondary xl20/lg18/md16/sm14; fill → color/button/{variant}/icon. Claude: fixed primary sm 18→16, cloned Loading into all 16 secondary variants.

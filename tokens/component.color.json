@@ -64,20 +64,20 @@
           }
         }
       },
-      "ghost": {
-        "background": {
+      "tertiary": {
+        "text": {
           "default": {
-            "$value": "transparent"
-          },
-          "hover": {
-            "$value": "{color.background.brand-subtle}"
+            "$value": "{color.text.strong}",
+            "$description": "Text-only button — same colour as the secondary label at rest; hover adds an underline."
           },
           "active": {
-            "$value": "{color.background.brand-subtle}"
+            "$value": "{color.text.brand}",
+            "$description": "Hover→underline, active→this ('turns primary colour') + underline."
           }
         },
-        "text": {
-          "$value": "{color.text.brand}"
+        "icon": {
+          "default": { "$value": "{color.icon.default}" },
+          "active": { "$value": "{color.icon.brand}" }
         }
       },
       "danger": {

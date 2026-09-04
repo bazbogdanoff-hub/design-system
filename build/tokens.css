@@ -8,7 +8,6 @@
   --color-button-primary-border-hover: #7a85f8;
   --color-button-primary-shadow-default: #6570e1; /** Inner-shadow colour for the 'Viginette primary 2xs' effect style (hand-tuned). */
   --color-button-primary-shadow-hover: #4e51ed;
-  --color-button-ghost-background-default: rgba(0, 0, 0, 0);
   --color-white: #ffffff;
   --color-black: #000000;
   --color-slate-50: #f8fafc;
@@ -485,6 +484,8 @@
   --color-button-primary-icon: var(--color-icon-on-brand);
   --color-button-secondary-text: var(--color-text-strong);
   --color-button-secondary-icon: var(--color-icon-default);
+  --color-button-tertiary-text-default: var(--color-text-strong); /** Text-only button — same colour as the secondary label at rest; hover adds an underline. */
+  --color-button-tertiary-icon-default: var(--color-icon-default);
   --color-button-danger-background-default: var(--color-background-danger-default);
   --color-button-danger-background-hover: var(--color-background-danger-hover);
   --color-button-danger-text: var(--color-text-on-danger);
@@ -547,9 +548,8 @@
   --radius-badge-lg: var(--radius-control); /** 8 — large badge */
   --color-button-secondary-background-default: var(--color-card-background-default); /** Same glass surface as Card / StatButton — #fcfcfc, unchanged by state (hover swaps the shadow, not the fill). */
   --color-button-secondary-border-default: var(--color-card-border); /** White glass catch (top + left) at rest / hover. */
-  --color-button-ghost-background-hover: var(--color-background-brand-subtle);
-  --color-button-ghost-background-active: var(--color-background-brand-subtle);
-  --color-button-ghost-text: var(--color-text-brand);
+  --color-button-tertiary-text-active: var(--color-text-brand); /** Hover→underline, active→this ('turns primary colour') + underline. */
+  --color-button-tertiary-icon-active: var(--color-icon-brand);
   --color-card-border-active: var(--color-border-highlight-active); /** Focused/active glass border — full 1.5px primary, replaces the white top-left catch. Shared by Card, StatButton, and other glass buttons. */
   --color-input-border-focus: var(--color-border-focus);
   --color-badge-brand-background: var(--color-background-brand-subtle);

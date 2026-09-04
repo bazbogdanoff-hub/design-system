@@ -36,10 +36,12 @@ export const ColorButtonSecondaryIcon: string;
 export const ColorButtonSecondaryBorderDefault: string;
 /** Full 1.5px primary border on focus / active. */
 export const ColorButtonSecondaryBorderActive: string;
-export const ColorButtonGhostBackgroundDefault: string;
-export const ColorButtonGhostBackgroundHover: string;
-export const ColorButtonGhostBackgroundActive: string;
-export const ColorButtonGhostText: string;
+/** Text-only button — same colour as the secondary label at rest; hover adds an underline. */
+export const ColorButtonTertiaryTextDefault: string;
+/** Hover→underline, active→this ('turns primary colour') + underline. */
+export const ColorButtonTertiaryTextActive: string;
+export const ColorButtonTertiaryIconDefault: string;
+export const ColorButtonTertiaryIconActive: string;
 export const ColorButtonDangerBackgroundDefault: string;
 export const ColorButtonDangerBackgroundHover: string;
 export const ColorButtonDangerText: string;
