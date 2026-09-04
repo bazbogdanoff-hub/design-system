@@ -13,6 +13,11 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  Page (L2) + AppShell content fix + layout guides    src ✓  docs ✓  build ✓  figma ✓
+            AppShell content slot: padding→0, gap→0, overflow hidden — scroll/padding move to Page. + sidebar=collapsed(64)|expanded(240) variants.
+            src/components/Page: layout scroll (default, whole page scrolls, padded) | fixed (grid rows auto/1fr/auto, only Page.Body scrolls). Page.Header/Body/Footer, bleed per region, title→heading/xl.
+            Figma: "Page — layout guide" set (layout=scroll|fixed) — labelled region reference. docs/components/Page.md.
+
 2026-09-03  AppShell built in Figma (matches React)    figma ✓
             AppShell COMPONENT: 1440x900, sidebar 64xFILL (background/emphasis, pad space/12) + main gutter (space/12, left space/8) + content surface (background/subtle, radius/container, pad+gap space/20).
             All new-token bound. MANUAL follow-up: convert content (+ sidebar) frames to Figma Slots — figma.createSlot is not in the plugin API. Screens become AppShell instances with the content slot filled.

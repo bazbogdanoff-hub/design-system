@@ -1,0 +1,79 @@
+/* Page owns scroll + padding + sticky regions inside the AppShell content slot.
+   Content padding is `space/20`; regions can `bleed` it away horizontally.
+   Padding values are literal-ish (via space tokens) — the AppShell exposes
+   nothing, so they live here. */
+.page {
+  --_page-pad: var(--space-20);
+
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+/* ---- scroll layout — the whole page scrolls -------------------------------- */
+.page[data-layout='scroll'] {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.page[data-layout='scroll'][data-padded] {
+  padding: var(--_page-pad);
+}
+/* in scroll layout the regions are just flow blocks, no sticky */
+.page[data-layout='scroll'] .header {
+  padding: 0;
+  margin-bottom: var(--space-16);
+}
+.page[data-layout='scroll'] .body,
+.page[data-layout='scroll'] .footer {
+  padding: 0;
+}
+
+/* ---- fixed layout — grid, only .body scrolls ------------------------------- */
+.page[data-layout='fixed'] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  overflow: hidden;
+}
+.page[data-layout='fixed'] .header {
+  padding: var(--_page-pad) var(--_page-pad) var(--space-16);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+.page[data-layout='fixed'] .body {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--space-16) var(--_page-pad) var(--_page-pad);
+}
+.page[data-layout='fixed'] .footer {
+  padding: var(--space-12) var(--_page-pad);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+/* ---- bleed: region goes flush to the content-card edge ------------------- */
+.header[data-bleed],
+.body[data-bleed],
+.footer[data-bleed] {
+  padding-inline: 0;
+}
+
+/* ---- header internals --------------------------------------------------- */
+.headerRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+.title {
+  margin: 0;
+  font-family: var(--text-heading-xl-font-family);
+  font-size: var(--text-heading-xl-font-size);
+  font-weight: var(--text-heading-xl-font-weight);
+  line-height: var(--text-heading-xl-line-height);
+  letter-spacing: var(--text-heading-xl-letter-spacing);
+  color: var(--color-text-default);
+}
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  flex: none;
+}

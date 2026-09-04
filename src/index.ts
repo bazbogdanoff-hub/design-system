@@ -32,6 +32,8 @@ export { Stack } from './components/Stack';
 export type { StackProps } from './components/Stack';
 export { AppShell } from './components/AppShell';
 export type { AppShellProps } from './components/AppShell';
+export { Page } from './components/Page';
+export type { PageProps, PageHeaderProps, PageLayout } from './components/Page';
 
 export { breakpoints, up, down } from './lib/breakpoints';
 export type { Breakpoint } from './lib/breakpoints';
