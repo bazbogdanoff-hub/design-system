@@ -13,6 +13,10 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  AppShell built in Figma (matches React)    figma ✓
+            AppShell COMPONENT: 1440x900, sidebar 64xFILL (background/emphasis, pad space/12) + main gutter (space/12, left space/8) + content surface (background/subtle, radius/container, pad+gap space/20).
+            All new-token bound. MANUAL follow-up: convert content (+ sidebar) frames to Figma Slots — figma.createSlot is not in the plugin API. Screens become AppShell instances with the content slot filled.
+
 2026-09-03  Layout: breakpoints + Box/Stack + AppShell    src ✓  docs ✓  build ✓
             src/lib/breakpoints.ts (sm640/md768/lg1024/xl1280/2xl1536 + up()/down() helpers; not DTCG). src/components/Box (p/px/py/bg/radius/border, token-mapped) + Stack (direction/gap/align/justify/wrap/columns).
             src/components/AppShell: fixed 64px sidebar rail (empty dark bar, sidebar slot) + padded main whose rounded content surface scrolls (100dvw/dvh, only .content scrolls). dims literal for now (size/app/* TODO).
