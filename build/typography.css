@@ -98,6 +98,14 @@
   letter-spacing: var(--font-letter-spacing-normal);
 }
 
+.text-label-xl {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-height-tight);
+  letter-spacing: var(--font-letter-spacing-normal);
+}
+
 .text-label-lg {
   font-family: var(--font-family-sans);
   font-size: var(--font-size-16);

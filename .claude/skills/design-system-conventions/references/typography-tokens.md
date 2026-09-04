@@ -65,6 +65,7 @@ by overriding `font-weight` with a `font.weight.*` primitive when genuinely need
 | `text.body.md` | 15 | medium | normal | normal | **default body / table cell** |
 | `text.body.sm` | 14 | medium | normal | normal | |
 | `text.body.xs` | 13 | medium | normal | normal | dense secondary text |
+| `text.label.xl` | 18 | **bold** | tight | normal | xl / 56px primary button |
 | `text.label.lg` | 16 | **bold** | tight | normal | |
 | `text.label.md` | 14 | **bold** | tight | normal | button / input / tab label |
 | `text.label.sm` | 13 | **bold** | tight | normal | table header / chip / badge |

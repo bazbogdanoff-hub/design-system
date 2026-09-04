@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T10:43:05.072Z",
+  "generatedAt": "2026-09-04T10:47:06.390Z",
   "primitives": {
     "colors": 256,
     "floats": 42
@@ -12,7 +12,7 @@
     "aliases": 69,
     "raws": 5
   },
-  "textStyles": 19,
+  "textStyles": 20,
   "runOrder": [
     "build-01-primitives.js",
     "build-02-semantic.js",

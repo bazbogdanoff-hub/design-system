@@ -20,6 +20,7 @@
       "xs": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.13}", "fontWeight": "{font.weight.medium}", "lineHeight": "{font.lineHeight.normal}", "letterSpacing": "{font.letterSpacing.normal}" }, "$description": "Dense secondary text" }
     },
     "label": {
+      "xl": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.18}", "fontWeight": "{font.weight.bold}", "lineHeight": "{font.lineHeight.tight}", "letterSpacing": "{font.letterSpacing.normal}" }, "$description": "xl / 56px primary button" },
       "lg": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.16}", "fontWeight": "{font.weight.bold}", "lineHeight": "{font.lineHeight.tight}", "letterSpacing": "{font.letterSpacing.normal}" } },
       "md": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.14}", "fontWeight": "{font.weight.bold}", "lineHeight": "{font.lineHeight.tight}", "letterSpacing": "{font.letterSpacing.normal}" }, "$description": "Button / input / tab label" },
       "sm": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "{font.size.13}", "fontWeight": "{font.weight.bold}", "lineHeight": "{font.lineHeight.tight}", "letterSpacing": "{font.letterSpacing.normal}" }, "$description": "Table header / chip" },

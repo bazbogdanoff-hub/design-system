@@ -658,6 +658,16 @@ export const TextBodyXsFontWeight: number;
 export const TextBodyXsLineHeight: number;
 /** Dense secondary text */
 export const TextBodyXsLetterSpacing: string;
+/** xl / 56px primary button */
+export const TextLabelXlFontFamily: string;
+/** xl / 56px primary button */
+export const TextLabelXlFontSize: string;
+/** xl / 56px primary button */
+export const TextLabelXlFontWeight: number;
+/** xl / 56px primary button */
+export const TextLabelXlLineHeight: number;
+/** xl / 56px primary button */
+export const TextLabelXlLetterSpacing: string;
 export const TextLabelLgFontFamily: string;
 export const TextLabelLgFontSize: string;
 export const TextLabelLgFontWeight: number;

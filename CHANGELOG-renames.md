@@ -13,6 +13,9 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  +text.label.xl (18px) — label ramp now 5 (18/16/14/13/12)    tokens ✓  build ✓  figma ✓  docs ✓
+            for the xl / 56px primary button. bold, tight lh, no trim, bound family/size/weight like the rest. 20 text/* styles total. build-04 slices 3+4 rerun.
+
 2026-09-03  radius.button → per variant × size (radius follows height)    tokens ✓  build ✓  figma ✓  docs ✓
             primary & secondary have different heights at the same size name, so radius must key on both. secondary {sm 6, md/lg/xl 8}; primary {sm/md 8, lg/xl 12}.
             build-03 rerun: +8 radius/button/{primary,secondary}/* vars, 4 per-size orphans removed; 28 Button variants rebound. `--radius-button-<variant>-<size>` in CSS.

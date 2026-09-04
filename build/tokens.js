@@ -528,6 +528,12 @@ export const TextBodyXsFontSize = "0.8125rem"; // Dense secondary text
 export const TextBodyXsFontWeight = 500; // Dense secondary text
 export const TextBodyXsLineHeight = 1.5; // Dense secondary text
 export const TextBodyXsLetterSpacing = "0em"; // Dense secondary text
+export const TextLabelXlFontFamily =
+  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // xl / 56px primary button
+export const TextLabelXlFontSize = "1.125rem"; // xl / 56px primary button
+export const TextLabelXlFontWeight = 700; // xl / 56px primary button
+export const TextLabelXlLineHeight = 1.15; // xl / 56px primary button
+export const TextLabelXlLetterSpacing = "0em"; // xl / 56px primary button
 export const TextLabelLgFontFamily =
   "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
 export const TextLabelLgFontSize = "1rem";
