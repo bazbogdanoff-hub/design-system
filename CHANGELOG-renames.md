@@ -13,6 +13,11 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  Button — cleanup + owner states/heights    figma ✓ (0 old bindings)  src —
+            32 variants (4 sizes × 2 variants × 4 states). Owner: heights (sec 28/32/36/40, pri 36/40/44/56), primary active+disabled, made Viginette/2xs primary + hover styles, disabled 0.7.
+            Claude: stroke weights unbound from stroke/glass elements/* → raw 1.5/0/0/1.5 catch (active 1.5 all-side), INSIDE + not-in-layout; secondary hover → Viginette/2xs hover; md-secondary padding xs → space/8.
+            LEFT (non-loading/tertiary): primary focus/active border colour (reuses border/default #aab1f9, low contrast on the indigo fill — recommend +color.button.primary.border.active = white); primary active uses hover shadow vs secondary active rest shadow (align?); no separate focus state (active covers it).
+
 2026-09-03  +text.label.xl (18px) — label ramp now 5 (18/16/14/13/12)    tokens ✓  build ✓  figma ✓  docs ✓
             for the xl / 56px primary button. bold, tight lh, no trim, bound family/size/weight like the rest. 20 text/* styles total. build-04 slices 3+4 rerun.
 
