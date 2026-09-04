@@ -5,10 +5,18 @@
     "table": { "$value": "{radius.panel}" },
     "popover": { "$value": "{radius.panel}" },
     "button": {
-      "sm": { "$value": "{radius.chip}", "$description": "6 — small button" },
-      "md": { "$value": "{radius.control}", "$description": "8" },
-      "lg": { "$value": "{radius.control}", "$description": "8" },
-      "xl": { "$value": "{radius.control}", "$description": "8" }
+      "secondary": {
+        "sm": { "$value": "{radius.chip}", "$description": "6 — ~28px tall" },
+        "md": { "$value": "{radius.control}", "$description": "8 — ~32" },
+        "lg": { "$value": "{radius.control}", "$description": "8 — ~36" },
+        "xl": { "$value": "{radius.control}", "$description": "8 — ~40" }
+      },
+      "primary": {
+        "sm": { "$value": "{radius.control}", "$description": "8 — ~36px tall" },
+        "md": { "$value": "{radius.control}", "$description": "8 — ~40" },
+        "lg": { "$value": "{radius.panel}", "$description": "12 — ~44" },
+        "xl": { "$value": "{radius.panel}", "$description": "12 — ~56" }
+      }
     },
     "input": { "$value": "{radius.control}" },
     "badge": {

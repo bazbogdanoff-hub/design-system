@@ -441,14 +441,22 @@ export const RadiusCard: string;
 export const RadiusModal: string;
 export const RadiusTable: string;
 export const RadiusPopover: string;
-/** 6 — small button */
-export const RadiusButtonSm: string;
-/** 8 */
-export const RadiusButtonMd: string;
-/** 8 */
-export const RadiusButtonLg: string;
-/** 8 */
-export const RadiusButtonXl: string;
+/** 6 — ~28px tall */
+export const RadiusButtonSecondarySm: string;
+/** 8 — ~32 */
+export const RadiusButtonSecondaryMd: string;
+/** 8 — ~36 */
+export const RadiusButtonSecondaryLg: string;
+/** 8 — ~40 */
+export const RadiusButtonSecondaryXl: string;
+/** 8 — ~36px tall */
+export const RadiusButtonPrimarySm: string;
+/** 8 — ~40 */
+export const RadiusButtonPrimaryMd: string;
+/** 12 — ~44 */
+export const RadiusButtonPrimaryLg: string;
+/** 12 — ~56 */
+export const RadiusButtonPrimaryXl: string;
 export const RadiusInput: string;
 /** 6 — small badge */
 export const RadiusBadgeSm: string;

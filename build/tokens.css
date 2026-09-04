@@ -527,10 +527,14 @@
   --radius-modal: var(--radius-container);
   --radius-table: var(--radius-panel);
   --radius-popover: var(--radius-panel);
-  --radius-button-sm: var(--radius-chip); /** 6 — small button */
-  --radius-button-md: var(--radius-control); /** 8 */
-  --radius-button-lg: var(--radius-control); /** 8 */
-  --radius-button-xl: var(--radius-control); /** 8 */
+  --radius-button-secondary-sm: var(--radius-chip); /** 6 — ~28px tall */
+  --radius-button-secondary-md: var(--radius-control); /** 8 — ~32 */
+  --radius-button-secondary-lg: var(--radius-control); /** 8 — ~36 */
+  --radius-button-secondary-xl: var(--radius-control); /** 8 — ~40 */
+  --radius-button-primary-sm: var(--radius-control); /** 8 — ~36px tall */
+  --radius-button-primary-md: var(--radius-control); /** 8 — ~40 */
+  --radius-button-primary-lg: var(--radius-panel); /** 12 — ~44 */
+  --radius-button-primary-xl: var(--radius-panel); /** 12 — ~56 */
   --radius-input: var(--radius-control);
   --radius-badge-sm: var(--radius-chip); /** 6 — small badge */
   --radius-badge-md: var(--radius-control); /** 8 — medium badge */

@@ -84,10 +84,15 @@ Nesting reads correctly — an inner element's radius is always ≤ its containe
 | `radius.badge.sm` | `radius.chip` | 6 |
 | `radius.badge.md` | `radius.control` | 8 |
 | `radius.badge.lg` | `radius.control` | 8 |
-| `radius.button.sm` | `radius.chip` | 6 |
-| `radius.button.{md,lg,xl}` | `radius.control` | 8 |
+| `radius.button.secondary.{sm}` | `radius.chip` | 6 |
+| `radius.button.secondary.{md,lg,xl}` | `radius.control` | 8 |
+| `radius.button.primary.{sm,md}` | `radius.control` | 8 |
+| `radius.button.primary.{lg,xl}` | `radius.panel` | 12 |
 
-`radius.badge` and `radius.button` are **per-size** (badge sm 6 / md,lg 8; button sm 6 / md,lg,xl 8) — the small step gets the tighter chip radius. `--radius-badge-*` / `--radius-button-*` in CSS.
+`radius.badge` is per-size; `radius.button` is per-**variant × size** because
+primary and secondary have different heights at the same `size` name, and the
+radius follows the height (taller pill → softer corner). `--radius-badge-*` /
+`--radius-button-<variant>-*` in CSS.
 
 Components reference the **component** or **semantic** radius token, never the raw
 scale. `$type: "dimension"` is declared once, on the `radius` group in

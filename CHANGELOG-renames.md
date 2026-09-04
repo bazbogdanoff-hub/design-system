@@ -13,6 +13,10 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  radius.button → per variant × size (radius follows height)    tokens ✓  build ✓  figma ✓  docs ✓
+            primary & secondary have different heights at the same size name, so radius must key on both. secondary {sm 6, md/lg/xl 8}; primary {sm/md 8, lg/xl 12}.
+            build-03 rerun: +8 radius/button/{primary,secondary}/* vars, 4 per-size orphans removed; 28 Button variants rebound. `--radius-button-<variant>-<size>` in CSS.
+
 2026-09-03  radius tweak: Badge lg 12→8, Button per-size    tokens ✓  build ✓  figma ✓  docs ✓
             radius.badge.lg {radius.panel}→{radius.control} (8). radius.button leaf → per-size {sm {radius.chip} 6, md/lg/xl {radius.control} 8}.
             build-03 rerun: +4 radius/button/* vars, orphan radius/button removed; Badge lg auto-updated via alias, Button 28 variants rebound per size.
