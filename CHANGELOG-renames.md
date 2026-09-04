@@ -13,6 +13,11 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  Button loading spinner — all 32 variants    figma ✓  src —
+            `loading` boolean (owner renamed from Spinner). `Loading` layer = child 0 (leading), AUTO, hidden by default, ref `loading#10059:0`. spinner size = icon size per variant:
+            primary xl22/lg20/md20/sm16, secondary xl20/lg18/md16/sm14; fill → color/button/{variant}/icon. Claude: fixed primary sm 18→16, cloned Loading into all 16 secondary variants.
+            Figma cannot invert a boolean → loading does NOT auto-hide the icon layers; React does `{loading ? <Spinner/> : leadingIcon}`. Button Figma now complete bar the tertiary variant.
+
 2026-09-03  +color.button.primary.border.active = white; Button Figma done (bar loading/tertiary)    tokens ✓  build ✓  figma ✓  src —
             full 1.5px white border on primary focus/active (parallels secondary.border.active). Applied to 4 primary active variants. primary active shadow aligned to rest (Viginette/2xs primary) by owner.
             Button component set = 32 variants, all bindings clean, heights/radius/labels/states done. Remaining: loading state, tertiary variant, React build.
