@@ -13,6 +13,11 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  Button (Nova kit) — property rename + partial token rebind    figma ~  src —
+            props: Size/Variant/State → size/variant/state; Show left/right icon → leadingIcon/trailingIcon (bool); left/right icon → leadingIconSwap/trailingIconSwap.
+            size values Extrasmall/Small/Default/Large → sm/md/lg/xl (ascending). 28 variants: radius radius-md→radius/button, gap out-of-scale→space/6, label Title/Label-1/*→text/label/md, stray text stroke removed.
+            Owner had already bound color/button/{primary,secondary}/* to fills/strokes/text/icon + primary shadow. LEFT: padding (out-of-scale, height-driven — owner), stroke geometry, state=invalid (drop?), primary missing states, per-size label, loading. checkpoint: safe-edit: pre Button property rename.
+
 2026-09-03  secondary Button tokens (glass, neutral = StatButton surface)    tokens ✓  build ✓  figma ✓  src —
             color.button.secondary reworked: background.default -> {color.card.background.default} (#fcfcfc, state-invariant fill). text -> {color.text.strong}. +icon -> {color.icon.default}.
             border.default -> {color.card.border} (white catch), border.active -> {color.card.border-active} (primary, focus/active). Dropped background.hover/active + old border leaf.
