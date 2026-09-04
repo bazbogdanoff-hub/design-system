@@ -89,33 +89,23 @@ regions and the header.
   <Page layout="fixed">
     <Page.Header title="Dashboard" />
     <Page.Body>
-      <Stack gap="lg">
-        <Stack direction="row" columns gap="md">{/* KPI tiles */}</Stack>
-        <Stack direction="row" columns gap="md">{/* chart + activity */}</Stack>
-      </Stack>
+      <Grid gap="lg">
+        <Grid.Item span={4}><StatCard … /></Grid.Item>
+        <Grid.Item span={4}><StatCard … /></Grid.Item>
+        <Grid.Item span={4}><StatCard … /></Grid.Item>
+        <Grid.Item span={8}><Card>{/* chart */}</Card></Grid.Item>
+        <Grid.Item span={4}><Card>{/* activity */}</Card></Grid.Item>
+      </Grid>
     </Page.Body>
   </Page>
 </AppShell>
 ```
 
-### Column widths — stretch columns at the 1440 design width, `space/16` gutter
-
-| | sidebar 64 (`Page.Body` inner 1316) | sidebar 240 (inner 1140) |
-|---|---|---|
-| 4-up (KPI tiles) | 317 | 273 |
-| 3-up | 428 | 369 |
-| 2-up (chart + activity) | 650 | 562 |
-
-`<Stack direction="row" columns>` — each child `flex: 1 1 0`, equal width + height.
+Content inside `Page.Body` lays out on [`Grid`](./Grid.md)'s 12 columns — see
+that doc for column widths and the Figma grid guide.
 
 ## Figma
 
-`Page — layout guide` — a 2-variant reference (`layout=scroll` / `layout=fixed`)
-showing the region structure, what's pinned, what scrolls, and where `bleed`
-applies.
-
-`Content columns — layout guide` — `sidebar=collapsed | expanded`, showing the
-stretch-column card widths (4/3/2-up) for each sidebar state.
-
-Both are guides, not instanced components; screen frames compose `AppShell` +
-`Page` + their own content.
+No layout-guide components in the file — the [`Grid`](./Grid.md) doc's
+`Content grid — layout guide` is the only one. `Page` itself is a code-only
+contract; screen frames compose `AppShell` + their content directly.

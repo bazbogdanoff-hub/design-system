@@ -13,6 +13,11 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  Layout guides consolidated — columns-only, 12 always    figma ✓  docs ✓
+            Row grids don't divide the content area cleanly (876 ÷ 8 = 90.5); decided: **12-column grid, no row grid, rows flow by content height.**
+            Owner deleting \`Page — layout guide\` and \`Content columns — layout guide\` from Figma; kept only \`Content grid — layout guide\` (12-col, sidebar=collapsed|expanded).
+            docs/components/Page.md + Grid.md updated to reference only the grid guide; Page's dashboard example now uses \`Grid\`/\`Grid.Item\` instead of \`Stack columns\`.
+
 2026-09-03  Grid (12-col) + Figma grid guide    src ✓  docs ✓  build ✓  figma ✓
             src/components/Grid: Grid + Grid.Item, CSS grid repeat(12,1fr), span/spanSm/start, token gap. Uneven splits = different spans.
             Figma "Content grid — layout guide" (sidebar=collapsed|expanded): 12 columns + example rows 4·4·4 / 8·4 / 3·3·6 / 5·4·3 with px. 1 col = 95 (sidebar 64) / 80 (sidebar 240) at 1440.
