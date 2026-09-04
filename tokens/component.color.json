@@ -39,20 +39,25 @@
       "secondary": {
         "background": {
           "default": {
-            "$value": "{color.surface.default}"
-          },
-          "hover": {
-            "$value": "{color.background.subtle}"
-          },
-          "active": {
-            "$value": "{color.background.subtle}"
+            "$value": "{color.card.background.default}",
+            "$description": "Same glass surface as Card / StatButton — #fcfcfc, unchanged by state (hover swaps the shadow, not the fill)."
           }
         },
         "text": {
-          "$value": "{color.text.default}"
+          "$value": "{color.text.strong}"
+        },
+        "icon": {
+          "$value": "{color.icon.default}"
         },
         "border": {
-          "$value": "{color.border.default}"
+          "default": {
+            "$value": "{color.card.border}",
+            "$description": "White glass catch (top + left) at rest / hover."
+          },
+          "active": {
+            "$value": "{color.card.border-active}",
+            "$description": "Full 1.5px primary border on focus / active."
+          }
         }
       },
       "ghost": {

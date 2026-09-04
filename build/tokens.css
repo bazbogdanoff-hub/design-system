@@ -477,11 +477,8 @@
   --color-button-primary-background-hover: var(--color-brand-500);
   --color-button-primary-text: var(--color-text-on-brand);
   --color-button-primary-icon: var(--color-icon-on-brand);
-  --color-button-secondary-background-default: var(--color-surface-default);
-  --color-button-secondary-background-hover: var(--color-background-subtle);
-  --color-button-secondary-background-active: var(--color-background-subtle);
-  --color-button-secondary-text: var(--color-text-default);
-  --color-button-secondary-border: var(--color-border-default);
+  --color-button-secondary-text: var(--color-text-strong);
+  --color-button-secondary-icon: var(--color-icon-default);
   --color-button-danger-background-default: var(--color-background-danger-default);
   --color-button-danger-background-hover: var(--color-background-danger-hover);
   --color-button-danger-text: var(--color-text-on-danger);
@@ -535,6 +532,8 @@
   --radius-badge-sm: var(--radius-chip); /** 6 — small badge */
   --radius-badge-md: var(--radius-control); /** 8 — medium badge */
   --radius-badge-lg: var(--radius-panel); /** 12 — large badge; borrows the next radius role up so the corner stays proportional to the taller pill */
+  --color-button-secondary-background-default: var(--color-card-background-default); /** Same glass surface as Card / StatButton — #fcfcfc, unchanged by state (hover swaps the shadow, not the fill). */
+  --color-button-secondary-border-default: var(--color-card-border); /** White glass catch (top + left) at rest / hover. */
   --color-button-ghost-background-hover: var(--color-background-brand-subtle);
   --color-button-ghost-background-active: var(--color-background-brand-subtle);
   --color-button-ghost-text: var(--color-text-brand);
@@ -543,4 +542,5 @@
   --color-badge-brand-background: var(--color-background-brand-subtle);
   --color-badge-brand-text: var(--color-text-brand);
   --color-table-row-background-selected: var(--color-background-brand-subtle);
+  --color-button-secondary-border-active: var(--color-card-border-active); /** Full 1.5px primary border on focus / active. */
 }

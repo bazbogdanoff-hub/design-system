@@ -13,6 +13,11 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  secondary Button tokens (glass, neutral = StatButton surface)    tokens ✓  build ✓  figma ✓  src —
+            color.button.secondary reworked: background.default -> {color.card.background.default} (#fcfcfc, state-invariant fill). text -> {color.text.strong}. +icon -> {color.icon.default}.
+            border.default -> {color.card.border} (white catch), border.active -> {color.card.border-active} (primary, focus/active). Dropped background.hover/active + old border leaf.
+            Reuses the shared Viginette/2xs <-> hover effect styles (no secondary-specific shadow token). build-03 rerun (+3 vars, 3 orphans removed). checkpoint safe-edit: pre secondary-button tokens.
+
 2026-09-03  primary Button tokens (glass, coloured)    tokens ✓  build ✓  figma ✓  src —
             color.button.primary reworked: background.default {color.brand.400} / .hover {color.brand.500} (button-only gimmick — semantic brand stays 600).
             +text {on-brand} +icon {on-brand}. +border.default #aab1f9 / .hover #7a85f8 (glass catch, hand-tuned). +shadow.default #6570e1 / .hover #4e51ed

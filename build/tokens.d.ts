@@ -26,11 +26,14 @@ export const ColorButtonPrimaryBorderHover: string;
 /** Inner-shadow colour for the 'Viginette primary 2xs' effect style (hand-tuned). */
 export const ColorButtonPrimaryShadowDefault: string;
 export const ColorButtonPrimaryShadowHover: string;
+/** Same glass surface as Card / StatButton — #fcfcfc, unchanged by state (hover swaps the shadow, not the fill). */
 export const ColorButtonSecondaryBackgroundDefault: string;
-export const ColorButtonSecondaryBackgroundHover: string;
-export const ColorButtonSecondaryBackgroundActive: string;
 export const ColorButtonSecondaryText: string;
-export const ColorButtonSecondaryBorder: string;
+export const ColorButtonSecondaryIcon: string;
+/** White glass catch (top + left) at rest / hover. */
+export const ColorButtonSecondaryBorderDefault: string;
+/** Full 1.5px primary border on focus / active. */
+export const ColorButtonSecondaryBorderActive: string;
 export const ColorButtonGhostBackgroundDefault: string;
 export const ColorButtonGhostBackgroundHover: string;
 export const ColorButtonGhostBackgroundActive: string;
