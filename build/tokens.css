@@ -527,11 +527,14 @@
   --radius-modal: var(--radius-container);
   --radius-table: var(--radius-panel);
   --radius-popover: var(--radius-panel);
-  --radius-button: var(--radius-control);
+  --radius-button-sm: var(--radius-chip); /** 6 — small button */
+  --radius-button-md: var(--radius-control); /** 8 */
+  --radius-button-lg: var(--radius-control); /** 8 */
+  --radius-button-xl: var(--radius-control); /** 8 */
   --radius-input: var(--radius-control);
   --radius-badge-sm: var(--radius-chip); /** 6 — small badge */
   --radius-badge-md: var(--radius-control); /** 8 — medium badge */
-  --radius-badge-lg: var(--radius-panel); /** 12 — large badge; borrows the next radius role up so the corner stays proportional to the taller pill */
+  --radius-badge-lg: var(--radius-control); /** 8 — large badge */
   --color-button-secondary-background-default: var(--color-card-background-default); /** Same glass surface as Card / StatButton — #fcfcfc, unchanged by state (hover swaps the shadow, not the fill). */
   --color-button-secondary-border-default: var(--color-card-border); /** White glass catch (top + left) at rest / hover. */
   --color-button-ghost-background-hover: var(--color-background-brand-subtle);

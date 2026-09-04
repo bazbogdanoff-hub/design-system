@@ -13,6 +13,10 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  radius tweak: Badge lg 12→8, Button per-size    tokens ✓  build ✓  figma ✓  docs ✓
+            radius.badge.lg {radius.panel}→{radius.control} (8). radius.button leaf → per-size {sm {radius.chip} 6, md/lg/xl {radius.control} 8}.
+            build-03 rerun: +4 radius/button/* vars, orphan radius/button removed; Badge lg auto-updated via alias, Button 28 variants rebound per size.
+
 2026-09-03  Button (Nova kit) — property rename + partial token rebind    figma ~  src —
             props: Size/Variant/State → size/variant/state; Show left/right icon → leadingIcon/trailingIcon (bool); left/right icon → leadingIconSwap/trailingIconSwap.
             size values Extrasmall/Small/Default/Large → sm/md/lg/xl (ascending). 28 variants: radius radius-md→radius/button, gap out-of-scale→space/6, label Title/Label-1/*→text/label/md, stray text stroke removed.

@@ -31,14 +31,14 @@ axes.
 
 ## Appearance
 
-Per **`size`** (padding + gap bind `space/*`; radius per size — bigger badge,
-softer corner):
+Per **`size`** (padding + gap bind `space/*`; radius `radius/badge/<size>` — 6 for
+`sm`, 8 for `md`/`lg`):
 
 | `size` | label style | padding (all sides) | gap | radius | icon | height |
 |---|---|---|---|---|---|---|
 | `sm` | `text/label/sm` — 13 / bold | `space/6` (6) | `space/4` (4) | `radius/badge/sm` — 6 | 13 (1em) | ~27 |
 | `md` | `text/label/md` — 14 / bold | `space/8` (8) | `space/6` (6) | `radius/badge/md` — 8 | 14 (1em) | ~32 |
-| `lg` | `text/label/lg` — 16 / bold | `space/10` (10) | `space/6` (6) | `radius/badge/lg` — 12 | 16 (1em) | ~38 |
+| `lg` | `text/label/lg` — 16 / bold | `space/10` (10) | `space/6` (6) | `radius/badge/lg` — 8 | 16 (1em) | ~38 |
 
 Per **`tone`** (each pair is a component token → semantic `-subtle` / status text):
 

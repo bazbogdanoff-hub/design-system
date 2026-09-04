@@ -4,12 +4,17 @@
     "modal": { "$value": "{radius.container}" },
     "table": { "$value": "{radius.panel}" },
     "popover": { "$value": "{radius.panel}" },
-    "button": { "$value": "{radius.control}" },
+    "button": {
+      "sm": { "$value": "{radius.chip}", "$description": "6 — small button" },
+      "md": { "$value": "{radius.control}", "$description": "8" },
+      "lg": { "$value": "{radius.control}", "$description": "8" },
+      "xl": { "$value": "{radius.control}", "$description": "8" }
+    },
     "input": { "$value": "{radius.control}" },
     "badge": {
       "sm": { "$value": "{radius.chip}", "$description": "6 — small badge" },
       "md": { "$value": "{radius.control}", "$description": "8 — medium badge" },
-      "lg": { "$value": "{radius.panel}", "$description": "12 — large badge; borrows the next radius role up so the corner stays proportional to the taller pill" }
+      "lg": { "$value": "{radius.control}", "$description": "8 — large badge" }
     }
   }
 }
