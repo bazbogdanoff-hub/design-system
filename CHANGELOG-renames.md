@@ -13,6 +13,11 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  Layout: breakpoints + Box/Stack + AppShell    src ✓  docs ✓  build ✓
+            src/lib/breakpoints.ts (sm640/md768/lg1024/xl1280/2xl1536 + up()/down() helpers; not DTCG). src/components/Box (p/px/py/bg/radius/border, token-mapped) + Stack (direction/gap/align/justify/wrap/columns).
+            src/components/AppShell: fixed 64px sidebar rail (empty dark bar, sidebar slot) + padded main whose rounded content surface scrolls (100dvw/dvh, only .content scrolls). dims literal for now (size/app/* TODO).
+            docs/components/layout.md (Box+Stack) + AppShell.md (structure + stretch-columns guide + breakpoints). Screens are pages, not components.
+
 2026-09-03  Button + IconButton — React build    src ✓  docs ✓  build ✓
             src/components/Button/ (Button.tsx, Button.module.css, Spinner.tsx) + src/components/IconButton/. variant (primary/secondary/tertiary) × size (sm/md/lg/xl).
             Shared `.surface` CSS module class (variant colour/border/shadow/state, [data-variant]-keyed) — IconButton imports it. States all CSS (:hover, :focus-visible+:active identical, :disabled).

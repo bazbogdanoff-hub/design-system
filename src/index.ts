@@ -25,3 +25,13 @@ export type { ButtonProps, ButtonVariant, ButtonSize } from './components/Button
 
 export { IconButton } from './components/IconButton';
 export type { IconButtonProps } from './components/IconButton';
+
+export { Box } from './components/Box';
+export type { BoxProps } from './components/Box';
+export { Stack } from './components/Stack';
+export type { StackProps } from './components/Stack';
+export { AppShell } from './components/AppShell';
+export type { AppShellProps } from './components/AppShell';
+
+export { breakpoints, up, down } from './lib/breakpoints';
+export type { Breakpoint } from './lib/breakpoints';
