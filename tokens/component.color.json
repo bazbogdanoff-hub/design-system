@@ -4,17 +4,36 @@
       "primary": {
         "background": {
           "default": {
-            "$value": "{color.background.brand.default}"
+            "$value": "{color.brand.400}",
+            "$description": "Primary button fill — a lightened brand. Button-only gimmick: color.text.brand / color.icon.brand stay at 600 everywhere else."
           },
           "hover": {
-            "$value": "{color.background.brand.hover}"
-          },
-          "active": {
-            "$value": "{color.background.brand.active}"
+            "$value": "{color.brand.500}"
           }
         },
         "text": {
           "$value": "{color.text.on-brand}"
+        },
+        "icon": {
+          "$value": "{color.icon.on-brand}"
+        },
+        "border": {
+          "default": {
+            "$value": "#aab1f9",
+            "$description": "Glass catch on the coloured primary surface — hand-tuned, not on the palette."
+          },
+          "hover": {
+            "$value": "#7a85f8"
+          }
+        },
+        "shadow": {
+          "default": {
+            "$value": "#6570e1",
+            "$description": "Inner-shadow colour for the 'Viginette primary 2xs' effect style (hand-tuned)."
+          },
+          "hover": {
+            "$value": "#4e51ed"
+          }
         }
       },
       "secondary": {

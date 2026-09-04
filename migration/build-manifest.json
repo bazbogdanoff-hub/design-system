@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T14:33:49.043Z",
+  "generatedAt": "2026-09-04T09:46:59.857Z",
   "primitives": {
     "colors": 256,
     "floats": 42
@@ -10,7 +10,7 @@
   },
   "component": {
     "aliases": 62,
-    "raws": 1
+    "raws": 5
   },
   "textStyles": 19,
   "runOrder": [

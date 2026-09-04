@@ -15,10 +15,17 @@ export const ColorBrand900: string;
 export const ColorBrand950: string;
 /** warm near-white card fill — product override */
 export const ColorExtraCard: string;
+/** Primary button fill — a lightened brand. Button-only gimmick: color.text.brand / color.icon.brand stay at 600 everywhere else. */
 export const ColorButtonPrimaryBackgroundDefault: string;
 export const ColorButtonPrimaryBackgroundHover: string;
-export const ColorButtonPrimaryBackgroundActive: string;
 export const ColorButtonPrimaryText: string;
+export const ColorButtonPrimaryIcon: string;
+/** Glass catch on the coloured primary surface — hand-tuned, not on the palette. */
+export const ColorButtonPrimaryBorderDefault: string;
+export const ColorButtonPrimaryBorderHover: string;
+/** Inner-shadow colour for the 'Viginette primary 2xs' effect style (hand-tuned). */
+export const ColorButtonPrimaryShadowDefault: string;
+export const ColorButtonPrimaryShadowHover: string;
 export const ColorButtonSecondaryBackgroundDefault: string;
 export const ColorButtonSecondaryBackgroundHover: string;
 export const ColorButtonSecondaryBackgroundActive: string;

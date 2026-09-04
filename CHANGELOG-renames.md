@@ -13,6 +13,12 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  primary Button tokens (glass, coloured)    tokens ✓  build ✓  figma ✓  src —
+            color.button.primary reworked: background.default {color.brand.400} / .hover {color.brand.500} (button-only gimmick — semantic brand stays 600).
+            +text {on-brand} +icon {on-brand}. +border.default #aab1f9 / .hover #7a85f8 (glass catch, hand-tuned). +shadow.default #6570e1 / .hover #4e51ed
+            (inner-shadow colour for owner-made "Viginette primary 2xs" / "...hover" effect styles). Dropped background.active. build-03 rerun (+5 vars, orphan removed).
+            checkpoint safe-edit: pre primary-button tokens.
+
 2026-09-03  StatCard (was `Dashboard card`) — reworked in Figma + built    figma ✓  docs ✓  src ✓  build ✓
             L2. Renamed `Dashboard card`→`StatCard`; property `variant`(Default/has badge)→`badge`(false/true) — stays a variant because content sits in Card's slot
             and slot content cannot take component properties. Layers: div→`header`/`stats`; root fill→transparent. All placeholder text→"Label"/"0".

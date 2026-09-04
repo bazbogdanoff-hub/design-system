@@ -4,6 +4,10 @@
 
 :root {
   --color-extra-card: #fcfcfc; /** warm near-white card fill — product override */
+  --color-button-primary-border-default: #aab1f9; /** Glass catch on the coloured primary surface — hand-tuned, not on the palette. */
+  --color-button-primary-border-hover: #7a85f8;
+  --color-button-primary-shadow-default: #6570e1; /** Inner-shadow colour for the 'Viginette primary 2xs' effect style (hand-tuned). */
+  --color-button-primary-shadow-hover: #4e51ed;
   --color-button-ghost-background-default: rgba(0, 0, 0, 0);
   --color-white: #ffffff;
   --color-black: #000000;
@@ -469,7 +473,10 @@
   --text-code-font-weight: var(--font-weight-medium); /** Inline IDs, JSON, tracking numbers */
   --text-code-line-height: var(--font-line-height-normal); /** Inline IDs, JSON, tracking numbers */
   --text-code-letter-spacing: var(--font-letter-spacing-normal); /** Inline IDs, JSON, tracking numbers */
+  --color-button-primary-background-default: var(--color-brand-400); /** Primary button fill — a lightened brand. Button-only gimmick: color.text.brand / color.icon.brand stay at 600 everywhere else. */
+  --color-button-primary-background-hover: var(--color-brand-500);
   --color-button-primary-text: var(--color-text-on-brand);
+  --color-button-primary-icon: var(--color-icon-on-brand);
   --color-button-secondary-background-default: var(--color-surface-default);
   --color-button-secondary-background-hover: var(--color-background-subtle);
   --color-button-secondary-background-active: var(--color-background-subtle);
@@ -528,9 +535,6 @@
   --radius-badge-sm: var(--radius-chip); /** 6 — small badge */
   --radius-badge-md: var(--radius-control); /** 8 — medium badge */
   --radius-badge-lg: var(--radius-panel); /** 12 — large badge; borrows the next radius role up so the corner stays proportional to the taller pill */
-  --color-button-primary-background-default: var(--color-background-brand-default);
-  --color-button-primary-background-hover: var(--color-background-brand-hover);
-  --color-button-primary-background-active: var(--color-background-brand-active);
   --color-button-ghost-background-hover: var(--color-background-brand-subtle);
   --color-button-ghost-background-active: var(--color-background-brand-subtle);
   --color-button-ghost-text: var(--color-text-brand);
