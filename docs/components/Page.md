@@ -78,9 +78,44 @@ toolbars. Everything else keeps the `space/20` gutter.
   toasts). A right-edge **slide-over** is `position: absolute` within the
   content card, not the viewport.
 
+## Composition
+
+`AppShell content slot` → `<Page>` → cards. **Never cards directly in the slot** —
+the slot is dumb chrome (bg / radius / clip); `Page` owns padding, scroll, sticky
+regions and the header.
+
+```tsx
+<AppShell sidebar={<CrmSidebar/>}>
+  <Page layout="fixed">
+    <Page.Header title="Dashboard" />
+    <Page.Body>
+      <Stack gap="lg">
+        <Stack direction="row" columns gap="md">{/* KPI tiles */}</Stack>
+        <Stack direction="row" columns gap="md">{/* chart + activity */}</Stack>
+      </Stack>
+    </Page.Body>
+  </Page>
+</AppShell>
+```
+
+### Column widths — stretch columns at the 1440 design width, `space/16` gutter
+
+| | sidebar 64 (`Page.Body` inner 1316) | sidebar 240 (inner 1140) |
+|---|---|---|
+| 4-up (KPI tiles) | 317 | 273 |
+| 3-up | 428 | 369 |
+| 2-up (chart + activity) | 650 | 562 |
+
+`<Stack direction="row" columns>` — each child `flex: 1 1 0`, equal width + height.
+
 ## Figma
 
 `Page — layout guide` — a 2-variant reference (`layout=scroll` / `layout=fixed`)
 showing the region structure, what's pinned, what scrolls, and where `bleed`
-applies. It's a guide, not an instanced component; screen frames compose
-`AppShell` + their own content.
+applies.
+
+`Content columns — layout guide` — `sidebar=collapsed | expanded`, showing the
+stretch-column card widths (4/3/2-up) for each sidebar state.
+
+Both are guides, not instanced components; screen frames compose `AppShell` +
+`Page` + their own content.
