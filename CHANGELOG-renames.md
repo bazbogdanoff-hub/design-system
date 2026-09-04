@@ -13,6 +13,10 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  IconButton (Figma, Claude-built by cloning Button)    figma ✓  src —
+            Separate component (square, one icon, no label, aria-label required). Cloned the 48-variant Button set: deleted leading/trailing icon bools + trailingIconSwap, renamed leadingIconSwap→iconSwap; kept loading/size/variant/state.
+            Each variant made square = the Button height for that variant×size (primary 36/40/44/56, secondary+tertiary 28/32/36/40), icon centred, sized per variant. Reuses ALL color/button/*, Viginette styles, radius/button/*, states — 0 new tokens. 0 old bindings.
+
 2026-09-03  Button tertiary variant (Claude-built) + color.button.tertiary tokens    tokens ✓  build ✓  figma ✓  src —
             color.button.ghost → tertiary: text {default {color.text.strong}, active {color.text.brand}}, icon {default {color.icon.default}, active {color.icon.brand}}. ghost vars removed.
             16 tertiary variants cloned from secondary, surface stripped (no fill/stroke/effect). Same label styles / icon sizes / heights as secondary. hover → underline; active → underline + brand colour; disabled → 0.7 opacity.
