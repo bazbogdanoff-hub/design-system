@@ -13,6 +13,11 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-03  Grid (12-col) + Figma grid guide    src ✓  docs ✓  build ✓  figma ✓
+            src/components/Grid: Grid + Grid.Item, CSS grid repeat(12,1fr), span/spanSm/start, token gap. Uneven splits = different spans.
+            Figma "Content grid — layout guide" (sidebar=collapsed|expanded): 12 columns + example rows 4·4·4 / 8·4 / 3·3·6 / 5·4·3 with px. 1 col = 95 (sidebar 64) / 80 (sidebar 240) at 1440.
+            Practice note: 12-col grid is standard for dashboards — established component widths, uneven splits, re-span at breakpoints.
+
 2026-09-03  Page (L2) + AppShell content fix + layout guides    src ✓  docs ✓  build ✓  figma ✓
             AppShell content slot: padding→0, gap→0, overflow hidden — scroll/padding move to Page. + sidebar=collapsed(64)|expanded(240) variants.
             src/components/Page: layout scroll (default, whole page scrolls, padded) | fixed (grid rows auto/1fr/auto, only Page.Body scrolls). Page.Header/Body/Footer, bleed per region, title→heading/xl.

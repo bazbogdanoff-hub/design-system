@@ -1,0 +1,25 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols, 12), minmax(0, 1fr));
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.grid[data-gap='none'] { gap: 0; }
+.grid[data-gap='xs'] { gap: var(--space-4); }
+.grid[data-gap='sm'] { gap: var(--space-8); }
+.grid[data-gap='md'] { gap: var(--space-12); }
+.grid[data-gap='lg'] { gap: var(--space-16); }
+.grid[data-gap='xl'] { gap: var(--space-20); }
+
+.item {
+  min-width: 0;
+  grid-column: var(--start, auto) / span var(--span, var(--grid-cols, 12));
+}
+
+/* below lg (sidebar collapse / narrow desktop) use span-sm if given */
+@media (max-width: 1023px) {
+  .item {
+    grid-column: span var(--span-sm, var(--span, var(--grid-cols, 12)));
+  }
+}

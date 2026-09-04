@@ -30,6 +30,8 @@ export { Box } from './components/Box';
 export type { BoxProps } from './components/Box';
 export { Stack } from './components/Stack';
 export type { StackProps } from './components/Stack';
+export { Grid } from './components/Grid';
+export type { GridProps, GridItemProps } from './components/Grid';
 export { AppShell } from './components/AppShell';
 export type { AppShellProps } from './components/AppShell';
 export { Page } from './components/Page';
