@@ -2,6 +2,21 @@
  * Do not edit directly, this file was auto-generated.
  */
 
+export const ColorAlphaBlack1 = "#00000003"; // 1% black — barely-there wash
+export const ColorAlphaBlack3 = "#00000008"; // 3% black — default hover wash
+export const ColorAlphaBlack5 = "#0000000d";
+export const ColorAlphaBlack10 = "#0000001a";
+export const ColorAlphaBlack15 = "#00000026";
+export const ColorAlphaBlack20 = "#00000033";
+export const ColorAlphaBlack25 = "#00000040";
+export const ColorAlphaBlack30 = "#0000004d";
+export const ColorAlphaBlack40 = "#00000066";
+export const ColorAlphaBlack50 = "#00000080";
+export const ColorAlphaBlack60 = "#00000099";
+export const ColorAlphaBlack70 = "#000000b3";
+export const ColorAlphaBlack80 = "#000000cc";
+export const ColorAlphaBlack90 = "#000000e6";
+export const ColorAlphaBlack100 = "#000000";
 export const ColorBrand50 = "#eef2ff";
 export const ColorBrand100 = "#e0e7ff";
 export const ColorBrand200 = "#c7d2fe";
@@ -67,12 +82,15 @@ export const ColorBadgeInfoText = "#1d4ed8";
 export const ColorTableHeaderBackground = "#fafafa";
 export const ColorTableHeaderText = "#71717a";
 export const ColorTableRowBackgroundDefault = "#ffffff";
-export const ColorTableRowBackgroundHover = "#f4f4f5";
 export const ColorTableRowBackgroundSelected = "#e0e7ff";
+export const ColorTableRowShadowHover = "#00000008"; // Inset shadow, not a fill — the row has no background by default, hover darkens via an inner-shadow wash instead of swapping a fill. Shared with scrollableArea.row.shadow.hover.
 export const ColorTableBorder = "#f4f4f5";
 export const ColorModalBackground = "#ffffff";
 export const ColorModalBorder = "#e4e4e7";
 export const ColorModalScrim = "#09090bb3";
+export const ColorScrollableAreaBackground = "#f4f4f5"; // Recessed/inset scroll track, same intent as other inset zones
+export const ColorScrollableAreaShadow = "#00000026"; // Inner-shadow tint at the scroll edges. Was a raw #00000026 before the alpha-black primitive ramp existed — now a proper alias, same value (15%).
+export const ColorScrollableAreaRowShadowHover = "#00000008"; // Inset shadow, not a fill — rows have no background by default. Shared with table.row.shadow.hover.
 export const ColorWhite = "#ffffff";
 export const ColorBlack = "#000000";
 export const ColorSlate50 = "#f8fafc";
@@ -321,7 +339,8 @@ export const ColorBackgroundDefault = "#fafafa"; // Page / app canvas
 export const ColorBackgroundSubtle = "#f4f4f5"; // Inset zones, striped rows, panels flush with the page
 export const ColorBackgroundEmphasis = "#18181b"; // High-contrast fills: tooltips, inverse callouts
 export const ColorBackgroundDisabled = "#f4f4f5"; // Disabled control fill
-export const ColorBackgroundOverlay = "#09090bb3"; // Modal / drawer scrim. RAW value with alpha — there is no alpha primitive tier yet
+export const ColorBackgroundOverlay = "#09090bb3"; // Modal / drawer scrim. RAW value (not a pure alpha-black step — intentionally zinc-950-tinted, kept as-is)
+export const ColorBackgroundOverlaySubtle = "#00000008"; // Neutral hover/press wash — layers on top of whatever's underneath instead of replacing it (row hover, list-item hover, etc.), unlike background.subtle which is an opaque swap
 export const ColorBackgroundBrandDefault = "#4f46e5"; // Primary button, active nav item, selected state
 export const ColorBackgroundBrandHover = "#4338ca";
 export const ColorBackgroundBrandActive = "#3730a3";
@@ -532,31 +551,31 @@ export const TextBodyXsLetterSpacing = "0em"; // Dense secondary text
 export const TextLabelXlFontFamily =
   "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // xl / 56px primary button
 export const TextLabelXlFontSize = "1.125rem"; // xl / 56px primary button
-export const TextLabelXlFontWeight = 700; // xl / 56px primary button
+export const TextLabelXlFontWeight = 600; // xl / 56px primary button
 export const TextLabelXlLineHeight = 1.15; // xl / 56px primary button
 export const TextLabelXlLetterSpacing = "0em"; // xl / 56px primary button
 export const TextLabelLgFontFamily =
   "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
 export const TextLabelLgFontSize = "1rem";
-export const TextLabelLgFontWeight = 700;
+export const TextLabelLgFontWeight = 600;
 export const TextLabelLgLineHeight = 1.15;
 export const TextLabelLgLetterSpacing = "0em";
 export const TextLabelMdFontFamily =
   "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Button / input / tab label
 export const TextLabelMdFontSize = "0.875rem"; // Button / input / tab label
-export const TextLabelMdFontWeight = 700; // Button / input / tab label
+export const TextLabelMdFontWeight = 600; // Button / input / tab label
 export const TextLabelMdLineHeight = 1.15; // Button / input / tab label
 export const TextLabelMdLetterSpacing = "0em"; // Button / input / tab label
 export const TextLabelSmFontFamily =
   "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Table header / chip
 export const TextLabelSmFontSize = "0.8125rem"; // Table header / chip
-export const TextLabelSmFontWeight = 700; // Table header / chip
+export const TextLabelSmFontWeight = 600; // Table header / chip
 export const TextLabelSmLineHeight = 1.15; // Table header / chip
 export const TextLabelSmLetterSpacing = "0em"; // Table header / chip
 export const TextLabelXsFontFamily =
   "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
 export const TextLabelXsFontSize = "0.75rem";
-export const TextLabelXsFontWeight = 700;
+export const TextLabelXsFontWeight = 600;
 export const TextLabelXsLineHeight = 1.15;
 export const TextLabelXsLetterSpacing = "0.01em";
 export const TextOverlineFontFamily =

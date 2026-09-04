@@ -1,0 +1,9 @@
+.scrollableArea {
+  overflow-y: auto;
+  /* required for overflow to actually clip/scroll when this sits inside a
+     flex column (Stack) — a flex child's default min-height:auto stops it
+     shrinking below its content otherwise */
+  min-height: 0;
+  background: var(--color-scrollable-area-background);
+  box-shadow: inset 0 0 4px 0 var(--color-scrollable-area-shadow);
+}

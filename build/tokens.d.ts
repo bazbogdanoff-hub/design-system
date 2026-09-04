@@ -2,6 +2,23 @@
  * Do not edit directly, this file was auto-generated.
  */
 
+/** 1% black — barely-there wash */
+export const ColorAlphaBlack1: string;
+/** 3% black — default hover wash */
+export const ColorAlphaBlack3: string;
+export const ColorAlphaBlack5: string;
+export const ColorAlphaBlack10: string;
+export const ColorAlphaBlack15: string;
+export const ColorAlphaBlack20: string;
+export const ColorAlphaBlack25: string;
+export const ColorAlphaBlack30: string;
+export const ColorAlphaBlack40: string;
+export const ColorAlphaBlack50: string;
+export const ColorAlphaBlack60: string;
+export const ColorAlphaBlack70: string;
+export const ColorAlphaBlack80: string;
+export const ColorAlphaBlack90: string;
+export const ColorAlphaBlack100: string;
 export const ColorBrand50: string;
 export const ColorBrand100: string;
 export const ColorBrand200: string;
@@ -81,12 +98,19 @@ export const ColorBadgeInfoText: string;
 export const ColorTableHeaderBackground: string;
 export const ColorTableHeaderText: string;
 export const ColorTableRowBackgroundDefault: string;
-export const ColorTableRowBackgroundHover: string;
 export const ColorTableRowBackgroundSelected: string;
+/** Inset shadow, not a fill — the row has no background by default, hover darkens via an inner-shadow wash instead of swapping a fill. Shared with scrollableArea.row.shadow.hover. */
+export const ColorTableRowShadowHover: string;
 export const ColorTableBorder: string;
 export const ColorModalBackground: string;
 export const ColorModalBorder: string;
 export const ColorModalScrim: string;
+/** Recessed/inset scroll track, same intent as other inset zones */
+export const ColorScrollableAreaBackground: string;
+/** Inner-shadow tint at the scroll edges. Was a raw #00000026 before the alpha-black primitive ramp existed — now a proper alias, same value (15%). */
+export const ColorScrollableAreaShadow: string;
+/** Inset shadow, not a fill — rows have no background by default. Shared with table.row.shadow.hover. */
+export const ColorScrollableAreaRowShadowHover: string;
 export const ColorWhite: string;
 export const ColorBlack: string;
 export const ColorSlate50: string;
@@ -339,8 +363,10 @@ export const ColorBackgroundSubtle: string;
 export const ColorBackgroundEmphasis: string;
 /** Disabled control fill */
 export const ColorBackgroundDisabled: string;
-/** Modal / drawer scrim. RAW value with alpha — there is no alpha primitive tier yet */
+/** Modal / drawer scrim. RAW value (not a pure alpha-black step — intentionally zinc-950-tinted, kept as-is) */
 export const ColorBackgroundOverlay: string;
+/** Neutral hover/press wash — layers on top of whatever's underneath instead of replacing it (row hover, list-item hover, etc.), unlike background.subtle which is an opaque swap */
+export const ColorBackgroundOverlaySubtle: string;
 /** Primary button, active nav item, selected state */
 export const ColorBackgroundBrandDefault: string;
 export const ColorBackgroundBrandHover: string;

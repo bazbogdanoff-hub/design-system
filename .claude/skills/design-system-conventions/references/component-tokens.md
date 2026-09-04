@@ -81,7 +81,8 @@ Map shipment/order statuses onto these tones in the app layer (e.g. `delivered �
 | Token | → semantic |
 |---|---|
 | `table.header.background` / `.text` | `surface.subtle` / `text.subtle` |
-| `table.row.background.default` / `.hover` / `.selected` | `surface.default` / `background.subtle` / `background.brand-subtle` |
+| `table.row.background.default` / `.selected` | `surface.default` / `background.brand-subtle` |
+| `table.row.shadow.hover` | `background.overlay-subtle` *(inset shadow, not a fill — rows have no background by default; shared with `scrollableArea.row.shadow.hover`)* |
 | `table.border` | `border.subtle` |
 
 ### `modal`
@@ -91,6 +92,14 @@ Map shipment/order statuses onto these tones in the app layer (e.g. `delivered �
 | `modal.background` | `surface.raised` |
 | `modal.border` | `border.default` |
 | `modal.scrim` | `background.overlay` |
+
+### `scrollableArea`
+
+| Token | → semantic |
+|---|---|
+| `scrollableArea.background` | `background.subtle` |
+| `scrollableArea.shadow` | `alpha-black.15` |
+| `scrollableArea.row.shadow.hover` | `background.overlay-subtle` *(inset shadow, not a fill — rows have no background by default; shared with `table.row.shadow.hover`)* |
 
 ## Figma ↔ React component mapping
 

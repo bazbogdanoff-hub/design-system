@@ -68,12 +68,13 @@ line-height/letter-spacing, see gotcha in §6) bound onto every text style.
 ### Since the last full audit, added this session
 
 - `text.label.xl` (18px) — the label ramp is now **5 steps**: xl18·lg16·md14·sm13·xs12
-- Label ramp: weight **bold** (was semibold, owner's call, system-wide — affects
-  every future button/input/tab label), line-height **tight** (1.15, was snug
-  1.3) — **`leadingTrim: CAP_HEIGHT` was tried and reverted** (clipped
-  descenders, and being shorter than a 1em icon caused height jumps on
-  Badge/StatButton when an icon toggled). Tight line-height solves the same
-  problem without amputating glyphs.
+- Label ramp: weight **semibold** (was bold for a stretch mid-session, then
+  bold→semibold again after further consideration — 2026-09-04, owner's call,
+  system-wide, affects every button/input/tab label), line-height **tight**
+  (1.15, was snug 1.3) — **`leadingTrim: CAP_HEIGHT` was tried and reverted**
+  (clipped descenders, and being shorter than a 1em icon caused height jumps
+  on Badge/StatButton when an icon toggled). Tight line-height solves the
+  same problem without amputating glyphs.
 - `color.border.highlight-active` (brand.500) + `color.card.border-active` —
   **the shared glass focus/active treatment**: the white top-left 1.5px catch
   becomes a **full 4-side 1.5px primary border** on `:focus-visible`/`:active`.
@@ -176,13 +177,19 @@ not design-system components** — they're app pages/routes that render
 screen is a frame nesting one `AppShell` instance with the slot filled, never
 a component of its own.
 
-**Figma layout guides — deliberately trimmed down to one.** `Page — layout
-guide` (region reference) and `Content columns — layout guide` (stretch-column
-widths) were built, then **deleted by the owner** in favour of a single
-**`Content grid — layout guide`** (`sidebar=collapsed|expanded`, the 12-column
-grid + example span rows 4·4·4/8·4/3·3·6/5·4·3 with pixel widths). If you see
-docs or old chat referencing the other two, they no longer exist — don't
-recreate them.
+**Figma layout guides — trimmed down to zero standalone frames.** `Page —
+layout guide` (region reference) and `Content columns — layout guide`
+(stretch-column widths) were built, then **deleted by the owner**. A third,
+`Content grid — layout guide` (`sidebar=collapsed|expanded`, 12-col grid +
+example span rows 4·4·4/8·4/3·3·6/5·4·3 with pixel widths), was also built as
+a standalone documentation frame and **later replaced**: the 12-column
+reference now lives as a **native Figma layout grid** (`layoutGrids`) set
+directly on `Page`'s own two variants (`COLUMNS`, 12 count, 16px gutter, 20px
+offset, stretch) — it shows as an editor overlay on every `Page` instance
+automatically, no separate frame needed. None of the three standalone guide
+frames exist anymore — don't recreate any of them. Note: the grid's 16px
+gutter doesn't match `Grid`'s own code default (`gap="md"` = 12px `space-12`)
+— unconfirmed whether that's intentional.
 
 **Known TODO, flagged repeatedly, not yet done:** AppShell/Page/IconButton/
 Button dimensions (sidebar width, gutter, button/control heights) are literal

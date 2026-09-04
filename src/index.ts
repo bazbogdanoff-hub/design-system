@@ -26,6 +26,18 @@ export type { ButtonProps, ButtonVariant, ButtonSize } from './components/Button
 export { IconButton } from './components/IconButton';
 export type { IconButtonProps } from './components/IconButton';
 
+export { Filter } from './components/Filter';
+export type { FilterProps, FilterSize } from './components/Filter';
+
+export { FilterIcon } from './components/FilterIcon';
+export type { FilterIconProps, FilterIconSize } from './components/FilterIcon';
+
+export { FilterBar } from './components/FilterBar';
+export type { FilterBarProps } from './components/FilterBar';
+
+export { ScrollableArea } from './components/ScrollableArea';
+export type { ScrollableAreaProps } from './components/ScrollableArea';
+
 export { Box } from './components/Box';
 export type { BoxProps } from './components/Box';
 export { Stack } from './components/Stack';

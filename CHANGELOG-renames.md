@@ -13,6 +13,72 @@ Use `✓` when a surface is updated, `—` when it doesn't apply, `PENDING` when
 
 <!-- newest first -->
 
+2026-09-04  ScrollableArea — built (Figma owner-built + React)    figma ✓  docs ✓  src ✓  build ✓
+            L1. docs/components/ScrollableArea.md + src/components/ScrollableArea/. No variants — one component both sides. overflow-y:auto + min-height:0 (flex-column gotcha, code-only) + background/shadow from color.scrollableArea.*.
+            Figma verified: fill correctly bound to color/scrollableArea/background; content slot (lowercase, single generic region) empty and ready for ScrollableAreaRow instances.
+            Found one thing worth a look: the inner-shadow effect is bound directly to color/alpha-black/15 (a primitive) instead of color/scrollableArea/shadow (the component token that aliases it) — same visual result today since scrollableArea.shadow -> alpha-black.15 is a 1:1 alias, but skips the token tier. Flagged to owner, not yet fixed.
+
+2026-09-04  table.row.background.hover → table.row.shadow.hover (renamed) + color.scrollableArea.row.shadow.hover (shared)    tokens ✓  build ✓  figma ✓
+            ScrollableArea built (owner, manual). Correction: rows (table + ScrollableAreaRow) have no fill by default, so hover can't be a background swap — it's an inset shadow instead. Moved table.row.background.hover → sibling table.row.shadow.hover, added color.scrollableArea.row.shadow.hover — both alias the same {color.background.overlay-subtle}, explicitly shared between the two components.
+            Also migrated color.scrollableArea.shadow from its earlier raw #00000026 to {color.alpha-black.15} now that the primitive exists — same value, cleaner source, one fewer raw-value exception in the file.
+            Deleted the now-orphaned color/table/row/background/hover Figma variable (nothing consumed it — Table isn't built yet). Full chain re-verified via read-back.
+
+2026-09-04  + color.alpha-black.* primitive palette + color.background.overlay-subtle semantic + table.row.background.hover repoint    tokens ✓  build ✓  figma ✓  docs ✓
+            New primitives: color.alpha-black.{1,3,5,10,15,20,25,30,40,50,60,70,80,90,100} — raw hex-alpha steps (100 aliases {color.black}), in a NEW hand-written tokens/alpha.color.json (primitives.color.json is fully regenerated from Tailwind every build, can't hand-add there). Purpose: a layerable black-alpha scale for hover/press washes that composite correctly over whatever's underneath, instead of an opaque colour swap.
+            New semantic color.background.overlay-subtle -> {color.alpha-black.3}, sibling to the existing background.overlay (modal scrim) — same "translucent black over content" family, much lighter, for row/item hover rather than a full scrim.
+            table.row.background.hover: {color.background.subtle} (opaque zinc.100) -> {color.background.overlay-subtle} (alpha wash) — matches the "add this color on top of the existing one" hover model going forward; table.row.background.selected left as the opaque brand-subtle swap (a real colour choice, not a generic wash).
+            Extended tokens-to-figma.mjs's isColorPrimitive regex (alpha-black) — same class of bug as the scrollableArea one two entries up, caught before it silently dropped anything this time. Full chain verified via read-back in Figma: color/alpha-black/3 -> color/background/overlay-subtle -> color/table/row/background/hover.
+            component-tokens.md reference updated with the scrollableArea + this table repoint.
+
+2026-09-04  + color.scrollableArea.{background,shadow} (Component tier), ahead of building ScrollableArea    tokens ✓  build ✓  figma ✓
+            Found the old draft's Scroll area instance bound to raw tw-raw/zinc/100 (collection "raw tailwind colors") for its fill and an effect style "Scroller inner shadow" bound to alpha/black/switch/alpha-15 (collection "shadcn colors", a 2-mode light/dark shim) — both old shim collections, neither semantic/component.
+            color.scrollableArea.background -> {color.background.subtle} (zinc.100 — already the exact semantic token for "inset zones, striped rows, panels flush with the page", no new semantic needed). color.scrollableArea.shadow = raw #00000026 (rgba(0,0,0,0.15)) — same accepted no-primitive-alpha-tier exception as color.background.overlay; the COLOR choice (neutral black, low alpha) is already how this system does ambient/depth shadows (Button's own third shadow layer is unbound raw rgba(0,0,0,.2)/.25 in CSS), so "Scroller inner shadow"'s color is correct — it just needed to point at our tokens instead of the shim.
+            Bug found + fixed in .claude/skills/figma-safe-edit/scripts/tokens-to-figma.mjs: isColorComponent's regex hardcoded the component list (button|card|input|badge|table|modal) and silently dropped scrollableArea on the first run (created:0, no error). Added it to the regex, reran — created:2, verified via read-back (color/scrollableArea/background aliases color/background/subtle; /shadow matches the raw value). Existing 76 Component vars confirmed unchanged (spot-checked button/primary/background/default).
+
+2026-09-04  Label ramp weight: bold → semibold (owner, reconsidered)    figma ✓  tokens ✓  build ✓  docs ✓
+            text.label.{xl,lg,md,sm,xs}: font.weight.bold → font.weight.semibold (600) in tokens/semantic.type.json. Owner had already rebound all 5 text/label/* Figma styles to font/weight/semibold before flagging it — verified via getLocalTextStylesAsync (all 5 resolve to Plus Jakarta Sans SemiBold/600). Rebuilt build/tokens.css, confirmed --text-label-*-font-weight now resolve through font-weight-semibold. No component CSS touched — Button/Badge/IconButton/StatButton all read the text.label.* var, not a hardcoded weight, so this propagated automatically. HANDOFF.md §3 updated (was previously "semibold → bold" earlier this session; now reverted back to semibold).
+
+2026-09-04  FilterBar — built (React)    docs ✓  src ✓  build ✓
+            L2. docs/components/FilterBar.md + src/components/FilterBar/. Composes Stack (direction="row" gap="md" align="center") + FilterIcon — no new CSS. children = the Filter row (required), filterIconLabel (default "Advanced filters") + onFilterIconClick forward to FilterIcon's aria-label/onClick.
+            Flat structure (icon + children as Stack siblings), not nested like Figma's slot-frame — both the holder's and slot's itemSpacing bind to the same space/12 token in Figma (= Stack gap="md"), so the extra Figma nesting is a slot-authoring necessity, not a visual distinction worth a matching DOM level.
+
+2026-09-04  Filterholder → FilterBar (Claude, renamed on owner's request), Slot → filters    figma ✓
+            Owner built the holder by hand: a FilterIcon trigger + a real Figma SLOT (already converted) holding N example Filter instances — this is the "put as many filters as needed next to the funnel trigger" pattern for a card/table header. Structure was already correct (itemSpacing bound to the same space token on both the holder and the slot, transparent fill) — just renamed for convention: PascalCase component name (parallels `Toolbar` in docs/architecture.md), slot named `filters` (lowercase, matches Page's generic single-region `content` slot vs its named regions Header/Body/Footer). React `FilterBar` not built yet.
+
+2026-09-04  Filter — icon: iconSwap fixed to a real funnel glyph (owner, manual) + FilterIcon React fix    figma ✓  docs ✓  src ✓  build ✓
+            Owner rebound `iconSwap` to the same real funnel-shaped icon (was the generic placeholder) across all 8 size×state variants — same value everywhere, still not exposed as a component property.
+            FilterIcon didn't match: it still took a consumer-supplied `icon` prop (inherited from IconButtonProps). Fixed to hardcode the icon instead — bundled src/components/FilterIcon/FunnelIcon.tsx (same pattern as the deleted-then-rebuilt Filter icons), `icon` dropped from FilterIconProps entirely (DistributiveOmit now also omits 'icon'). Negative-compile-tested: omitting aria-label AND passing `icon` both correctly fail to typecheck now.
+
+2026-09-04  FilterIcon — built (React)    docs ✓  src ✓  build ✓
+            L2. docs/components/FilterIcon.md + src/components/FilterIcon/. Thin wrapper: `IconButton` fixed to variant="secondary", size restricted to lg|xl, everything else (icon, aria-label/aria-labelledby, loading, asChild) passed through as-is — matches Filter's pattern and the Figma nest-not-duplicate structure.
+            Had to write a local `DistributiveOmit` — the built-in `Omit<IconButtonProps, 'variant'|'size'>` collapses IconButtonProps' aria-label/aria-labelledby union (Omit computes keyof over the whole union = the intersection of keys, not per-branch), which would've silently dropped the required-accessible-name guarantee. Verified with a negative compile test: FilterIcon without aria-label correctly fails to typecheck.
+
+2026-09-04  Filter — icon — rebuilt correctly (Claude, nest not clone)    figma ✓
+            size(lg/xl) × state(default/hover/active/disabled) = 8 variants (10075:13138), each nesting a real INSTANCE of the matching IconButton secondary variant — createInstance(), not clone(). Gotcha: figma.combineAsVariants rejects FRAME children ("cannot have children of type other than COMPONENT") — build each wrapper with figma.createComponent() directly, or convert a frame via figma.createComponentFromNode() before combining.
+            Wrapper hugs exactly to the nested instance's size (36x36 lg / 40x40 xl), no icon/loading exposed (icon-only trigger stays fixed, per "always only the filter icon"). Verified against IconButton's real mainComponent per variant; Button/IconButton/Badge sets confirmed untouched. checkpoint: safe-edit: build Filter — icon (nest IconButton instances). journaled: migration/journal.jsonl.
+
+2026-09-04  Filter — REBUILT correctly (owner, manual) + React simplified    figma ✓  docs ✓  src ✓  build ✓
+            The 2026-09-04 "Filter + Filter — icon" entry below was WRONG and got deleted by the owner: Claude cloned Button's nodes instead of nesting a real Button instance, breaking "never detach" (docs/architecture.md), only built state=default (missing hover/active/disabled), and invented a selected+badge-danger fill treatment that was never asked for.
+            Owner rebuilt `Filter` by hand: size(lg/xl) × state(default/hover/active/disabled) = 8 variants, each nesting a real INSTANCE of the matching Button variant (e.g. size=lg,state=hover wraps Button's own "size=lg, variant=secondary, state=hover") — not a clone. Nested Button's leadingIcon/trailingIcon/swap properties exposed up to Filter's panel via Figma's "expose nested instance properties".
+            Trailing icon deliberately differs by state: CaretDown (default/disabled, closed) vs CaretUp (hover/active, open) — owner's call, not a bug.
+            No `selected`/danger-tone axis — that idea is dropped, "icons are only icon colour" if a flagged/toggled treatment is ever needed, not a full fill swap.
+            React collapsed to a thin wrapper: `Filter` = `Button` fixed to variant="secondary", size restricted to lg|xl, everything else passed through — matches the nest-not-duplicate Figma structure. Deleted CaretDownIcon.tsx/FunnelIcon.tsx/Filter.module.css from the wrong version.
+            `Filter — icon` not yet rebuilt — next, same nest-a-real-instance technique off IconButton.
+
+2026-09-04  Page: 4 frames converted to Slots (owner, manual)    figma ✓
+            `content` (layout=scroll) + `Header`/`Body`/`Footer` (layout=fixed) — `figma.createSlot()` isn't in the plugin API, owner did the one-click conversion in Figma UI. Page is now fully composable; AppShell + Page + Grid can host real screens.
+
+2026-09-04  Filter + Filter — icon — built (Figma + React)    ⚠ REVERTED, see entry above — wrong technique (clone, not nest)
+            L2, composes Button/IconButton. docs/components/Filter.md + src/components/Filter/.
+            `Filter`: size(lg/xl) × selected(false/true) = 4 variants, cloned from Button's secondary lg/xl (not nested instances, same technique as the original IconButton clone) — Loading removed, leadingIcon/leadingIconSwap + trailingIcon/trailingIconSwap kept.
+            selected=true rebinds fill -> color/badge/danger/background, text+both icon vectors -> color/badge/danger/text, strokes/effects cleared (flat pill, no new tokens). selected had to be a VARIANT not boolean — booleans can't rebind fill colour, same reasoning as Badge's tone.
+            `Filter — icon`: size(lg/xl) = 2 variants, cloned from IconButton's secondary lg/xl, icon fixed (no swap property) — "always only the filter icon."
+            React: leadingIcon freeform ReactNode; showCaret/selected are fixed-glyph/fixed-tone booleans, not freeform — CaretDownIcon.tsx + FunnelIcon.tsx are small bundled SVGs (lib has zero icon dep otherwise, app uses Phosphor — see docs/architecture.md Icons section).
+            Verified Button/IconButton/Badge sets byte-identical before/after (clone+reparent didn't mutate the source sets). checkpoint: safe-edit: build Filter + Filter — icon components.
+
+2026-09-04  docs/architecture.md: + Icons section    docs ✓
+            No icon dependency in this repo — leadingIcon/trailingIcon/icon are ReactNode, app supplies them. CRM app uses Phosphor Icons, mostly bold/filled. Figma icon instances are showcase-only, not mirrored in code.
+
 2026-09-03  Layout guides consolidated — columns-only, 12 always    figma ✓  docs ✓
             Row grids don't divide the content area cleanly (876 ÷ 8 = 90.5); decided: **12-column grid, no row grid, rows flow by content height.**
             Owner deleting \`Page — layout guide\` and \`Content columns — layout guide\` from Figma; kept only \`Content grid — layout guide\` (12-col, sidebar=collapsed|expanded).

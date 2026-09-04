@@ -19,7 +19,11 @@
       },
       "overlay": {
         "$value": "#09090bb3",
-        "$description": "Modal / drawer scrim. RAW value with alpha — there is no alpha primitive tier yet"
+        "$description": "Modal / drawer scrim. RAW value (not a pure alpha-black step — intentionally zinc-950-tinted, kept as-is)"
+      },
+      "overlay-subtle": {
+        "$value": "{color.alpha-black.3}",
+        "$description": "Neutral hover/press wash — layers on top of whatever's underneath instead of replacing it (row hover, list-item hover, etc.), unlike background.subtle which is an opaque swap"
       },
       "brand": {
         "default": {

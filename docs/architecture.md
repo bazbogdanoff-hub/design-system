@@ -47,6 +47,18 @@ glass effect, `radius/card`, or a token won't reach it. Always:
 A Figma `ShipmentCard` is a frame containing a `Card` instance with its slot
 filled — not a detached copy of `Card` with edits.
 
+## Icons
+
+No icon dependency in this repo. Icon props (`leadingIcon`/`trailingIcon` on
+`Button`, `icon` on `IconButton`, etc.) are typed `ReactNode` — the consuming
+app supplies the element. The CRM app uses **Phosphor Icons**, mostly `bold`
+and `filled` weights (`regular` rarely) — they scale cleanly with the
+component's size scale, so no icon-specific sizing logic is needed here.
+
+In Figma, icon slots are boolean + instance-swap component properties bound
+to an icon component set that exists **only for Figma showcase** — it isn't
+mirrored in code and shouldn't be treated as this design system's icon API.
+
 ## Build order
 
 Primitives first (they unblock everything), then patterns as they prove recurring,

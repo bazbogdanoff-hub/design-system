@@ -39,6 +39,13 @@ card/button look that aren't on the Tailwind scale. When specified, they go in
 `primitives.color.json` under their own group (e.g. `color.accent.*`) as raw
 values, and a semantic token aliases them. Not invented yet.
 
+**Alpha-black ramp** — `color.alpha-black.<1|3|5|10|15|20|25|30|40|50|60|70|80|90|100>`,
+in a separate hand-written `tokens/alpha.color.json` (NOT `primitives.color.json`
+— that file is fully regenerated from Tailwind every build and would wipe a
+hand-added family). Raw hex-alpha steps (`100` aliases `{color.black}`). Meant
+to be layered on top of arbitrary content — a hover/press wash that composites
+correctly regardless of what's underneath, instead of an opaque color swap.
+
 ---
 
 ## Semantic tokens
@@ -61,6 +68,7 @@ Structure notes:
 | `background.emphasis` | `zinc.900` | high-contrast fills: tooltips, inverse callouts | `zinc.50` |
 | `background.disabled` | `zinc.100` | disabled control fill | `zinc.800` |
 | `background.overlay` | `#09090bb3` *(raw)* | modal / drawer scrim | `#09090bcc` |
+| `background.overlay-subtle` | `alpha-black.3` | hover/press wash — layers on top of whatever's underneath instead of replacing it (row hover, list-item hover) | `tbd` — likely needs `alpha-white.*` in dark mode, a black wash won't read on a dark background |
 | `background.brand.default` | `brand.600` | primary button, active nav item, selected state | `brand.500` |
 | `background.brand.hover` | `brand.700` | hover of `background.brand` | `brand.400` |
 | `background.brand.active` | `brand.800` | pressed / active | `brand.300` |

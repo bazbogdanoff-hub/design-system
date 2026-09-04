@@ -227,11 +227,14 @@
           "default": {
             "$value": "{color.surface.default}"
           },
-          "hover": {
-            "$value": "{color.background.subtle}"
-          },
           "selected": {
             "$value": "{color.background.brand-subtle}"
+          }
+        },
+        "shadow": {
+          "hover": {
+            "$value": "{color.background.overlay-subtle}",
+            "$description": "Inset shadow, not a fill — the row has no background by default, hover darkens via an inner-shadow wash instead of swapping a fill. Shared with scrollableArea.row.shadow.hover."
           }
         }
       },
@@ -248,6 +251,24 @@
       },
       "scrim": {
         "$value": "{color.background.overlay}"
+      }
+    },
+    "scrollableArea": {
+      "background": {
+        "$value": "{color.background.subtle}",
+        "$description": "Recessed/inset scroll track, same intent as other inset zones"
+      },
+      "shadow": {
+        "$value": "{color.alpha-black.15}",
+        "$description": "Inner-shadow tint at the scroll edges. Was a raw #00000026 before the alpha-black primitive ramp existed — now a proper alias, same value (15%)."
+      },
+      "row": {
+        "shadow": {
+          "hover": {
+            "$value": "{color.background.overlay-subtle}",
+            "$description": "Inset shadow, not a fill — rows have no background by default. Shared with table.row.shadow.hover."
+          }
+        }
       }
     }
   }

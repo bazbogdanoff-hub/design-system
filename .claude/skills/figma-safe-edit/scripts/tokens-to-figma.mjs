@@ -54,9 +54,9 @@ const remToNum = (s) => {
   return Number(s);
 };
 const HUES = 'slate gray zinc neutral stone red orange amber yellow lime green emerald teal cyan sky blue indigo violet purple fuchsia pink rose'.split(' ');
-const isColorPrimitive = (p) => new RegExp(`^color\\.(${HUES.join('|')}|brand|extra|white|black)(\\.|$)`).test(p);
+const isColorPrimitive = (p) => new RegExp(`^color\\.(${HUES.join('|')}|brand|extra|white|black|alpha-black)(\\.|$)`).test(p);
 const isColorSemantic = (p) => /^color\.(background|surface|text|border|icon|chart)\./.test(p);
-const isColorComponent = (p) => /^color\.(button|card|input|badge|table|modal)\./.test(p);
+const isColorComponent = (p) => /^color\.(button|card|input|badge|table|modal|scrollableArea)\./.test(p);
 
 // ---------- 01 · primitives (COLOR + FLOAT + STRING) --------------------
 // Font primitives that text styles can actually *bind* to. Only fontFamily,
