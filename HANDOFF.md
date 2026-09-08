@@ -317,6 +317,19 @@ then `size/control/*` tokens → `Input`+`Select` → `Tab` → `DataTable`.
   them) — each time, the generator silently dropped the new tokens
   (`created: 0`, no error) instead of failing loudly. Always check `created`
   count against what you expect after adding a new family.
+- **`figma.getNodeByIdAsync()` called directly on a compound sublayer ID**
+  (the `I<instance>;<override>;<node>` format Figma returns for a node nested
+  inside a component instance) **is unreliable** — hit 3 consecutive
+  connection-timeout failures on one specific ID while a trivial no-op script
+  and a bare `figma.loadAllPagesAsync()` both succeeded in between, ruling out
+  a general bridge outage. It wasn't a stale-ID problem either (re-traversing
+  from scratch returned the exact same ID string). **Fix: don't resolve
+  compound sublayer IDs directly.** Fetch the top-level instance/component by
+  its plain ID once, then reach the nested node with `.findOne((n) => n.name
+  === '...' )` tree traversal from there — worked on the first try. Prefer
+  this pattern generally for any script that targets something nested inside
+  an instance, rather than caching/reusing a compound ID across separate
+  `fig.mjs` calls.
 
 ## 7 · Where things live
 

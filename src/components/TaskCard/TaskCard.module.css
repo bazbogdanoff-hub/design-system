@@ -1,0 +1,88 @@
+.taskCard {
+  width: 100%;
+}
+
+/* the drop shadow lives on this wrapper, never on the Card instance itself —
+   Card's own inner-shadow (its default vignette) stays untouched regardless
+   of context. Hand-tuned to match Figma's DROP_SHADOW effect exactly — no
+   elevation token scale exists yet (same situation as ChartTooltip's shadow). */
+.shadow {
+  border-radius: var(--radius-panel);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.25);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-12);
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--text-heading-sm-font-family);
+  font-size: var(--text-heading-sm-font-size);
+  font-weight: var(--text-heading-sm-font-weight);
+  line-height: var(--text-heading-sm-line-height);
+  letter-spacing: var(--text-heading-sm-letter-spacing);
+  color: var(--color-text-default);
+}
+
+.description {
+  margin: 0;
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--text-body-sm-font-weight);
+  line-height: var(--text-body-sm-line-height);
+  letter-spacing: var(--text-body-sm-letter-spacing);
+  color: var(--color-text-subtle);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+/* ---------- context="queue" — 3 decorative ghosts + the real card ---------- */
+/* All layers share one grid cell (a ghost has no content of its own to size
+   by, so it stretches to match the front card's real height via the shared
+   grid row) — the classic stacked-card technique, no JS measurement needed.
+   padding-top reserves room for the furthest ghost's peek above the front
+   card. Geometry (10px higher / 20px narrower per layer back) matches the
+   original hand-built version this replaces exactly. */
+.queue {
+  display: grid;
+  padding-top: 30px;
+}
+.queue > * {
+  grid-area: 1 / 1;
+}
+
+.ghost {
+  align-self: stretch;
+  border-radius: var(--radius-panel);
+  background: var(--color-surface-default);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.25);
+}
+.ghost1 { margin: -10px 10px 0; z-index: 3; }
+.ghost2 { margin: -20px 20px 0; z-index: 2; }
+.ghost3 { margin: -30px 30px 0; z-index: 1; }
+
+.queue .shadow {
+  z-index: 4;
+}

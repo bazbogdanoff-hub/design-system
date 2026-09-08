@@ -17,6 +17,19 @@ const collByName = new Map(collections.map((c) => [c.name, c]));
 Batches are a loop over an inlined `const OPS = [ ... ]` array (put the approved
 findings' data there). Keep `OPS.length <= 20` per call.
 
+**Gotcha — compound sublayer IDs and `getNodeByIdAsync`:** a node nested inside
+a component instance has an ID like `I<instance>;<override>;<node>`. Calling
+`figma.getNodeByIdAsync()` directly on one of these has been observed to hang/
+timeout the bridge connection repeatedly, even when a trivial no-op script and
+`figma.loadAllPagesAsync()` alone both succeed in between attempts — not a
+general outage, and not a stale ID (re-deriving the same ID from scratch
+returns an identical string). If a target ID is a compound instance-sublayer
+ID, prefer fetching the top-level instance/component by its **plain** ID
+first, then reaching the nested node via `.findOne((n) => n.name === '...' )`
+tree traversal instead of resolving the compound ID directly. Plain top-level
+IDs (components, component sets, page-level frames) are unaffected — this only
+applies to the `I...;...;...` nested form.
+
 ---
 
 ## `rename` — variable

@@ -23,6 +23,9 @@ export type {
   SeverityBadgeFormat,
 } from './components/SeverityBadge';
 
+export { TaskCard } from './components/TaskCard';
+export type { TaskCardProps } from './components/TaskCard';
+
 export { StatButton } from './components/StatButton';
 export type { StatButtonProps, StatButtonTone, StatButtonSize } from './components/StatButton';
 
