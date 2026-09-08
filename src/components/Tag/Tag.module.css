@@ -1,0 +1,57 @@
+/* Mirrors text/label/* exactly (size/weight/line-height/letter-spacing) —
+   only text-transform differs. Reuses the existing --text-label-* vars
+   rather than duplicating them; a Figma text style can't compose two
+   styles together (hence text/badge-label/* existing there as a real
+   duplicate), but CSS can just layer text-transform on top. */
+.tag {
+  display: inline-block;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tag[data-size='xs'] {
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  line-height: var(--text-label-xs-line-height);
+  letter-spacing: var(--text-label-xs-letter-spacing);
+}
+.tag[data-size='sm'] {
+  font-family: var(--text-label-sm-font-family);
+  font-size: var(--text-label-sm-font-size);
+  font-weight: var(--text-label-sm-font-weight);
+  line-height: var(--text-label-sm-line-height);
+  letter-spacing: var(--text-label-sm-letter-spacing);
+}
+.tag[data-size='md'] {
+  font-family: var(--text-label-md-font-family);
+  font-size: var(--text-label-md-font-size);
+  font-weight: var(--text-label-md-font-weight);
+  line-height: var(--text-label-md-line-height);
+  letter-spacing: var(--text-label-md-letter-spacing);
+}
+.tag[data-size='lg'] {
+  font-family: var(--text-label-lg-font-family);
+  font-size: var(--text-label-lg-font-size);
+  font-weight: var(--text-label-lg-font-weight);
+  line-height: var(--text-label-lg-line-height);
+  letter-spacing: var(--text-label-lg-letter-spacing);
+}
+.tag[data-size='xl'] {
+  font-family: var(--text-label-xl-font-family);
+  font-size: var(--text-label-xl-font-size);
+  font-weight: var(--text-label-xl-font-weight);
+  line-height: var(--text-label-xl-line-height);
+  letter-spacing: var(--text-label-xl-letter-spacing);
+}
+
+.tag[data-color='brand']   { color: var(--color-category-brand-text); }
+.tag[data-color='teal']    { color: var(--color-category-teal-text); }
+.tag[data-color='rose']    { color: var(--color-category-rose-text); }
+.tag[data-color='lime']    { color: var(--color-category-lime-text); }
+.tag[data-color='fuchsia'] { color: var(--color-category-fuchsia-text); }
+.tag[data-color='cyan']    { color: var(--color-category-cyan-text); }
+.tag[data-color='pink']    { color: var(--color-category-pink-text); }
+.tag[data-color='violet']  { color: var(--color-category-violet-text); }
+.tag[data-color='emerald'] { color: var(--color-category-emerald-text); }
+.tag[data-color='blue']    { color: var(--color-category-blue-text); }

@@ -483,6 +483,26 @@ export const ColorChart6: string;
 export const ColorChart7: string;
 /** Not migrated to lime.400 — failed the lightness-band check at .400 (L 0.849, the worst offender). */
 export const ColorChart8: string;
+/** indigo.600 — reuses the existing brand primitive rather than a separate value */
+export const ColorCategoryBrandText: string;
+/** Not .700 — fails the chroma floor at that depth (reads gray), same issue as cyan. Contrast vs. own-100 is 3.3:1 — accepted per the always-a-label mitigation on the group description. */
+export const ColorCategoryTealText: string;
+/** 700, not 600 — .600 doesn't clear 4.5:1 contrast. */
+export const ColorCategoryRoseText: string;
+/** Not .700 — turns muddy-olive, indistinguishable from emerald under the stricter all-pairs test that was relaxed for this set; still the right shade under adjacent-only since lime and emerald are kept non-adjacent. Contrast vs. own-100 is 2.9:1 at .600 — accepted per the always-a-label mitigation. */
+export const ColorCategoryLimeText: string;
+/** 700, not 600 — .600 doesn't clear 4.5:1 contrast. */
+export const ColorCategoryFuchsiaText: string;
+/** Not .700 — fails the chroma floor (reads gray) at that depth. Contrast vs. own-100 is 3.3:1 — accepted per the always-a-label mitigation. */
+export const ColorCategoryCyanText: string;
+/** 700, not 600 — .600 doesn't clear 4.5:1 contrast. Kept non-adjacent to rose (its nearest Tailwind neighbor, ΔE 4.6 at dark shades — would fail right next to it). */
+export const ColorCategoryPinkText: string;
+/** Kept non-adjacent to brand/indigo (its nearest neighbor, ΔE as low as 0.9 under some CVD types at .700 — would fail right next to it). */
+export const ColorCategoryVioletText: string;
+/** 700, not 600 — .600 doesn't clear 4.5:1 contrast. */
+export const ColorCategoryEmeraldText: string;
+/** Kept non-adjacent to brand/indigo (its nearest neighbor — the two are easily confused at matching shades). */
+export const ColorCategoryBlueText: string;
 export const RadiusCard: string;
 export const RadiusPage: string;
 export const RadiusModal: string;

@@ -6,8 +6,14 @@ export type { CardProps, CardPadding } from './components/Card';
 export { Badge } from './components/Badge';
 export type { BadgeProps, BadgeTone, BadgeSize } from './components/Badge';
 
+export { Tag } from './components/Tag';
+export type { TagProps, TagSize, TagColor } from './components/Tag';
+
 export { ProgressBar } from './components/ProgressBar';
 export type { ProgressBarProps, ProgressBarSize, ProgressBarTone } from './components/ProgressBar';
+
+export { Tracker } from './components/Tracker';
+export type { TrackerProps, TrackerUrgency } from './components/Tracker';
 
 export { SeverityBadge } from './components/SeverityBadge';
 export type {
@@ -28,6 +34,9 @@ export type { ButtonProps, ButtonVariant, ButtonSize } from './components/Button
 
 export { IconButton } from './components/IconButton';
 export type { IconButtonProps } from './components/IconButton';
+
+export { IconCell } from './components/IconCell';
+export type { IconCellProps, IconCellSize, IconCellTone } from './components/IconCell';
 
 export { Filter } from './components/Filter';
 export type { FilterProps, FilterSize } from './components/Filter';

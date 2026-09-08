@@ -60,7 +60,7 @@ const remToNum = (s) => {
 };
 const HUES = 'slate gray zinc neutral stone red orange amber yellow lime green emerald teal cyan sky blue indigo violet purple fuchsia pink rose'.split(' ');
 const isColorPrimitive = (p) => new RegExp(`^color\\.(${HUES.join('|')}|brand|extra|white|black|alpha-black)(\\.|$)`).test(p);
-const isColorSemantic = (p) => /^color\.(background|surface|text|border|icon|chart)\./.test(p);
+const isColorSemantic = (p) => /^color\.(background|surface|text|border|icon|chart|category)\./.test(p);
 const isColorComponent = (p) => /^color\.(button|card|input|badge|table|modal|scrollableArea)\./.test(p);
 
 // ---------- 01 · primitives (COLOR + FLOAT + STRING) --------------------

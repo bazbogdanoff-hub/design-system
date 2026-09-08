@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-08T14:02:29.998Z",
+  "generatedAt": "2026-09-08T15:37:45.829Z",
   "primitives": {
     "colors": 271,
     "floats": 45
   },
   "semantic": {
-    "aliases": 73,
+    "aliases": 83,
     "raws": 1
   },
   "component": {

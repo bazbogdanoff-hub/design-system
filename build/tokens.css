@@ -394,6 +394,15 @@
   --color-chart-6: var(--color-violet-500); /** Not migrated to violet.400 — passed alone, but paired with sky.400 fell to CVD ΔE 5.2. .500 restores separation. */
   --color-chart-7: var(--color-sky-400); /** Migrated from sky.600 to match Figma's lighter chart ramp — passes paired with violet.500. */
   --color-chart-8: var(--color-lime-500); /** Not migrated to lime.400 — failed the lightness-band check at .400 (L 0.849, the worst offender). */
+  --color-category-teal-text: var(--color-teal-600); /** Not .700 — fails the chroma floor at that depth (reads gray), same issue as cyan. Contrast vs. own-100 is 3.3:1 — accepted per the always-a-label mitigation on the group description. */
+  --color-category-rose-text: var(--color-rose-700); /** 700, not 600 — .600 doesn't clear 4.5:1 contrast. */
+  --color-category-lime-text: var(--color-lime-600); /** Not .700 — turns muddy-olive, indistinguishable from emerald under the stricter all-pairs test that was relaxed for this set; still the right shade under adjacent-only since lime and emerald are kept non-adjacent. Contrast vs. own-100 is 2.9:1 at .600 — accepted per the always-a-label mitigation. */
+  --color-category-fuchsia-text: var(--color-fuchsia-700); /** 700, not 600 — .600 doesn't clear 4.5:1 contrast. */
+  --color-category-cyan-text: var(--color-cyan-600); /** Not .700 — fails the chroma floor (reads gray) at that depth. Contrast vs. own-100 is 3.3:1 — accepted per the always-a-label mitigation. */
+  --color-category-pink-text: var(--color-pink-700); /** 700, not 600 — .600 doesn't clear 4.5:1 contrast. Kept non-adjacent to rose (its nearest Tailwind neighbor, ΔE 4.6 at dark shades — would fail right next to it). */
+  --color-category-violet-text: var(--color-violet-600); /** Kept non-adjacent to brand/indigo (its nearest neighbor, ΔE as low as 0.9 under some CVD types at .700 — would fail right next to it). */
+  --color-category-emerald-text: var(--color-emerald-700); /** 700, not 600 — .600 doesn't clear 4.5:1 contrast. */
+  --color-category-blue-text: var(--color-blue-700); /** Kept non-adjacent to brand/indigo (its nearest neighbor — the two are easily confused at matching shades). */
   --radius-container: var(--radius-xl); /** 12px — outermost content card in a carded layout (1440 migration: was radius.2xl/16px) */
   --radius-page-container: var(--radius-4xl); /** 24px — AppShell/Page's own content viewport, distinct from a Card's container radius */
   --radius-panel: var(--radius-xl); /** 12px — nested card, section, menu, popover, sheet */
@@ -557,6 +566,7 @@
   --color-border-highlight-active: var(--color-brand-500); /** Glass edge highlight when the surface is focused/active — a full 1.5px primary border that replaces the white top-left catch */
   --color-icon-brand: var(--color-brand-600);
   --color-chart-1: var(--color-brand-400); /** Categorical series 1 — placeholder palette, revisit with the real chart component. Migrated from brand.500 to match Figma's lighter chart ramp. */
+  --color-category-brand-text: var(--color-brand-600); /** indigo.600 — reuses the existing brand primitive rather than a separate value */
   --radius-card: var(--radius-container);
   --radius-page: var(--radius-page-container);
   --radius-modal: var(--radius-container);

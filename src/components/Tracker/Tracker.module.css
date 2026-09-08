@@ -1,0 +1,38 @@
+.tracker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.label {
+  margin: 0;
+  font-family: var(--text-heading-xs-font-family);
+  font-size: var(--text-heading-xs-font-size);
+  font-weight: var(--text-heading-xs-font-weight);
+  line-height: var(--text-heading-xs-line-height);
+  letter-spacing: var(--text-heading-xs-letter-spacing);
+  color: var(--color-text-subtle);
+}
+
+.value {
+  margin: 0;
+  font-family: var(--text-display-md-font-family);
+  font-size: var(--text-display-md-font-size);
+  font-weight: var(--text-display-md-font-weight);
+  line-height: var(--text-display-md-line-height);
+  letter-spacing: var(--text-display-md-letter-spacing);
+  font-variant-numeric: tabular-nums; /* a ticking countdown shouldn't jitter width per digit */
+}
+
+/* matches whichever ProgressBar tone is showing beneath it, via the
+   -solid text tokens (text color == the bar's own fill color) */
+.value[data-tone='success'] { color: var(--color-text-success-solid); }
+.value[data-tone='warning'] { color: var(--color-text-warning-solid); }
+.value[data-tone='danger']  { color: var(--color-text-danger-solid); }
+.value[data-tone='brand']   { color: var(--color-text-brand-solid); }
