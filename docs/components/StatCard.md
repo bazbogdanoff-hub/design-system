@@ -3,7 +3,8 @@
 A dashboard summary card — **L2 pattern.** A `Card` holding a headline stat, an
 optional trend `badge`, and a row of `StatButton`s that drill into tables.
 
-Composes [`Card`](./Card.md) (locked to `padding="lg"`) — never detached.
+Composes [`Card`](./Card.md) (locked to `padding="md"`, was `"lg"` before the 1440
+migration) — never detached.
 
 ## API
 
@@ -11,7 +12,7 @@ Composes [`Card`](./Card.md) (locked to `padding="lg"`) — never detached.
 <StatCard
   label="Blocked"
   value={2}
-  badge={<Badge tone="danger" size="lg" icon={<TrendUp/>}>200%</Badge>}
+  badge={<Badge tone="danger" size="md" icon={<TrendUp/>}>200%</Badge>}
 >
   <StatButton label="Oldest wait" value="4h" showArrow onClick={…} />
   <StatButton label="By entity"  value="2 trk" showArrow onClick={…} />
@@ -30,14 +31,18 @@ Composes [`Card`](./Card.md) (locked to `padding="lg"`) — never detached.
 ## Anatomy
 
 ```
-Card (padding lg)
+Card (padding md)
 └─ div.header   (row, space-between)
 │  ├─ div.content   (column)
-│  │  ├─ span.label  — "Blocked"  · text/heading/sm · color/text/subtle
-│  │  └─ span.value  — "2"        · text/display/md · color/text/default
+│  │  ├─ span.label  — "Blocked"  · text/heading/xs · color/text/subtle
+│  │  └─ span.value  — "2"        · text/heading/xl · color/text/default
 │  └─ {badge}        — optional, flex:none
 └─ div.stats    (row, gap space/16) — <StatButton>s, each flex:1
 ```
+
+1440 migration: label moved `heading/sm` → `heading/xs`, and value moved out of
+the `display` group entirely — `display/md` → `heading/xl` (28px) — one more
+step than the automatic type-scale cascade alone would give it.
 
 `color/text/default` for the headline value (the "main" number — one step darker
 than a `StatButton` value, which is `color/text/strong`).

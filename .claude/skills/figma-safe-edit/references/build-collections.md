@@ -36,19 +36,33 @@ Each snippet returns a small object — check it after every run:
 
 - `build-01` → `{collection, created, updated, expected}`. `created + updated`
   should equal `expected` (279). A short count means a `createVariable` threw.
-- `build-02` / `03` → `{created, updated, aliased, missing}`. **`missing` must be
-  empty** — a non-empty `missing` means a primitive/semantic the alias points at
-  doesn't exist yet (ran out of order, or build-01 was incomplete).
+- `build-02` / `03` → `{created, updated, aliased, skipped, missing, drift}`.
+  **`missing` must be empty** — a non-empty `missing` means a primitive/semantic
+  the alias points at doesn't exist yet (ran out of order, or build-01 was
+  incomplete). **A non-empty `drift` is not a failure** — it lists variables
+  Figma and code already disagree on (left untouched, not overwritten); read
+  each entry (`figmaCurrentlyPointsTo` vs. `codeExpects`) and decide by hand
+  whether to update the token file to match Figma, or fix Figma to match code.
+  Never re-run expecting `drift` to resolve itself — it won't, on purpose.
 - `build-04` → `{created, updated, expected, missingFonts}`. **`missingFonts` must
   be empty.** If not, add "Plus Jakarta Sans" (weights 500/600/700/800) to the
   Figma file — Menu → Assets, or install it — then re-run.
 
 ## Idempotency — how re-running is safe
 
-Every snippet looks a variable/style up **by name** first: found → update its
-value/alias in place; not found → create. So re-running after a partial failure
-finishes the job; running twice changes nothing. Names are the identity — don't
-rename a generated variable by hand and then re-run, or you'll get a duplicate.
+Every snippet looks a variable/style up **by name** first: not found → create;
+found → depends which build. `build-01` and text styles always update the
+found variable/style to match code (primitives and font specs are meant to be
+100% code-driven, never hand-tuned in Figma). `build-02`/`03` are more
+careful, because these ARE sometimes hand-tuned in Figma ahead of a code
+change (a shade re-tune, a rename): found + already matches what code
+expects → no-op; found + Figma has something **else** → left alone entirely
+and reported in `drift`, never silently overwritten. Only a variable that's
+brand-new to Figma gets written. So re-running after a partial failure
+finishes the job; running twice with nothing changed changes nothing; running
+after Figma has drifted ahead of code reports that drift instead of erasing
+it. Names are the identity — don't rename a generated variable by hand and
+then re-run, or you'll get a duplicate.
 
 ## Gotchas
 

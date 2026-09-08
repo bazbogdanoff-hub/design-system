@@ -41,8 +41,8 @@ button.stat
 └─ ArrowUpRight   (lg + showArrow only, pushed right)
 ```
 
-- `sm` — column, hug both. ~70px tall.
-- `lg` — row, `space-between`; label/value block left, arrow right. ~75px tall.
+- `sm` — column, hug both. ~59px tall (1440 migration, was ~70px).
+- `lg` — row, `space-between`; label/value block left, arrow right. ~63px tall (was ~75px).
 
 ## Appearance
 
@@ -56,8 +56,8 @@ button.stat
 | shadow (hover) | `Viginette/2xs hover` → drop shadow deepens to `0 2px 12px rgba(0,0,0,.25)` |
 | padding | `space/8` block · `space/12` inline |
 | gap (lg, block↔arrow) | `space/8` |
-| label | `text/body/sm` · `color/text/subtle` |
-| value | `sm` `text/heading/md` · `lg` `text/heading/lg`; colour `color/text/strong` (one step lighter than a main card heading), or `color/text/danger` when `tone="danger"` |
+| label | `sm` `text/body/sm` · `lg` `text/body/md` |
+| value | `sm` `text/heading/sm` (was `heading/md`) · `lg` `text/heading/md` (was `heading/lg`) — 1440 migration, shifted one more step down than the automatic type-scale cascade alone; colour `color/text/strong` (one step lighter than a main card heading), or `color/text/danger` when `tone="danger"` |
 | arrow | 24px, `color/text/subtle` |
 
 The glass shadow pair (`Viginette/2xs` / `…hover`) is the **shared glass-button

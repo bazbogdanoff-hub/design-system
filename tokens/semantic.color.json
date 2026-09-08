@@ -9,8 +9,12 @@
         "$value": "{color.zinc.100}",
         "$description": "Inset zones, striped rows, panels flush with the page"
       },
+      "muted": {
+        "$value": "{color.zinc.300}",
+        "$description": "A visibly deeper recessed fill than subtle — the AppShell content-slot backdrop the screen sits on"
+      },
       "emphasis": {
-        "$value": "{color.zinc.900}",
+        "$value": "{color.zinc.700}",
         "$description": "High-contrast fills: tooltips, inverse callouts"
       },
       "disabled": {
@@ -148,6 +152,22 @@
         "$value": "{color.orange.700}",
         "$description": "Orange warning-pill text"
       },
+      "brand-solid": {
+        "$value": "{color.background.brand.default}",
+        "$description": "Text that must read as the same accent as a solid brand fill nearby (a bar, a dot) — aliases background.brand.default itself, not a hand-picked shade, so the two can never drift apart. NOT for text on a light/subtle background — text.brand (700) stays there; this is ~100 lighter and won't clear AA on brand-subtle."
+      },
+      "success-solid": {
+        "$value": "{color.background.success}",
+        "$description": "Text matching a solid success fill nearby — see brand-solid."
+      },
+      "warning-solid": {
+        "$value": "{color.background.warning}",
+        "$description": "Text matching a solid (amber) warning fill nearby — see brand-solid. Not warning-strong (orange) — that hue is scoped to the alert-pill system only."
+      },
+      "danger-solid": {
+        "$value": "{color.background.danger.default}",
+        "$description": "Text matching a solid danger fill nearby — see brand-solid."
+      },
       "info": {
         "$value": "{color.blue.700}"
       },
@@ -230,14 +250,14 @@
       }
     },
     "chart": {
-      "1": { "$value": "{color.brand.500}", "$description": "Categorical series 1 — placeholder palette, revisit with the real chart component" },
-      "2": { "$value": "{color.cyan.500}" },
-      "3": { "$value": "{color.amber.500}" },
-      "4": { "$value": "{color.emerald.500}" },
+      "1": { "$value": "{color.brand.400}", "$description": "Categorical series 1 — placeholder palette, revisit with the real chart component. Migrated from brand.500 to match Figma's lighter chart ramp." },
+      "2": { "$value": "{color.cyan.500}", "$description": "Not migrated to cyan.400 — failed the dataviz skill's lightness-band check at .400 (L 0.797, above the 0.77 ceiling)." },
+      "3": { "$value": "{color.amber.500}", "$description": "Not migrated to amber.400 — failed the lightness-band check at .400 (L 0.837)." },
+      "4": { "$value": "{color.emerald.600}", "$description": "Not migrated to emerald.400/500 — .400 failed the lightness-band check (L 0.773); .500 cleared it but its pair with rose.500 fell to CVD ΔE 5.6, under the 6.0 floor. .600 clears both (ΔE 8.3)." },
       "5": { "$value": "{color.rose.500}" },
-      "6": { "$value": "{color.violet.500}" },
-      "7": { "$value": "{color.sky.600}" },
-      "8": { "$value": "{color.lime.500}" }
+      "6": { "$value": "{color.violet.500}", "$description": "Not migrated to violet.400 — passed alone, but paired with sky.400 fell to CVD ΔE 5.2. .500 restores separation." },
+      "7": { "$value": "{color.sky.400}", "$description": "Migrated from sky.600 to match Figma's lighter chart ramp — passes paired with violet.500." },
+      "8": { "$value": "{color.lime.500}", "$description": "Not migrated to lime.400 — failed the lightness-band check at .400 (L 0.849, the worst offender)." }
     }
   }
 }

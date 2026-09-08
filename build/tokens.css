@@ -273,7 +273,10 @@
   --radius-md: 0.375rem; /** 6px */
   --radius-lg: 0.5rem; /** 8px */
   --radius-xl: 0.75rem; /** 12px */
-  --radius-2xl: 1rem; /** 16px — largest; the outer content cards */
+  --radius-2xl: 1rem; /** 16px */
+  --radius-3xl: 1.25rem; /** 20px */
+  --radius-4xl: 1.5rem; /** 24px — AppShell/Page's own content-viewport corner */
+  --radius-5xl: 2rem; /** 32px */
   --radius-full: 9999px; /** pills, avatars, dots */
   --space-0: 0;
   --space-2: 0.125rem; /** 2px — hairline gap */
@@ -339,7 +342,8 @@
   --color-scrollable-area-shadow: var(--color-alpha-black-15); /** Inner-shadow tint at the scroll edges. Was a raw #00000026 before the alpha-black primitive ramp existed — now a proper alias, same value (15%). */
   --color-background-default: var(--color-zinc-50); /** Page / app canvas */
   --color-background-subtle: var(--color-zinc-100); /** Inset zones, striped rows, panels flush with the page */
-  --color-background-emphasis: var(--color-zinc-900); /** High-contrast fills: tooltips, inverse callouts */
+  --color-background-muted: var(--color-zinc-300); /** A visibly deeper recessed fill than subtle — the AppShell content-slot backdrop the screen sits on */
+  --color-background-emphasis: var(--color-zinc-700); /** High-contrast fills: tooltips, inverse callouts */
   --color-background-disabled: var(--color-zinc-100); /** Disabled control fill */
   --color-background-overlay-subtle: var(--color-alpha-black-3); /** Neutral hover/press wash — layers on top of whatever's underneath instead of replacing it (row hover, list-item hover, etc.), unlike background.subtle which is an opaque swap */
   --color-background-danger-default: var(--color-red-600); /** Destructive button */
@@ -383,85 +387,86 @@
   --color-icon-warning-strong: var(--color-orange-600); /** Orange warning-pill icon */
   --color-icon-on-brand: var(--color-white); /** Icon on a brand fill */
   --color-icon-on-emphasis: var(--color-zinc-50); /** Icon on color.background.emphasis */
-  --color-chart-2: var(--color-cyan-500);
-  --color-chart-3: var(--color-amber-500);
-  --color-chart-4: var(--color-emerald-500);
+  --color-chart-2: var(--color-cyan-500); /** Not migrated to cyan.400 — failed the dataviz skill's lightness-band check at .400 (L 0.797, above the 0.77 ceiling). */
+  --color-chart-3: var(--color-amber-500); /** Not migrated to amber.400 — failed the lightness-band check at .400 (L 0.837). */
+  --color-chart-4: var(--color-emerald-600); /** Not migrated to emerald.400/500 — .400 failed the lightness-band check (L 0.773); .500 cleared it but its pair with rose.500 fell to CVD ΔE 5.6, under the 6.0 floor. .600 clears both (ΔE 8.3). */
   --color-chart-5: var(--color-rose-500);
-  --color-chart-6: var(--color-violet-500);
-  --color-chart-7: var(--color-sky-600);
-  --color-chart-8: var(--color-lime-500);
-  --radius-container: var(--radius-2xl); /** 16px — outermost content card in a carded layout */
+  --color-chart-6: var(--color-violet-500); /** Not migrated to violet.400 — passed alone, but paired with sky.400 fell to CVD ΔE 5.2. .500 restores separation. */
+  --color-chart-7: var(--color-sky-400); /** Migrated from sky.600 to match Figma's lighter chart ramp — passes paired with violet.500. */
+  --color-chart-8: var(--color-lime-500); /** Not migrated to lime.400 — failed the lightness-band check at .400 (L 0.849, the worst offender). */
+  --radius-container: var(--radius-xl); /** 12px — outermost content card in a carded layout (1440 migration: was radius.2xl/16px) */
+  --radius-page-container: var(--radius-4xl); /** 24px — AppShell/Page's own content viewport, distinct from a Card's container radius */
   --radius-panel: var(--radius-xl); /** 12px — nested card, section, menu, popover, sheet */
   --radius-control: var(--radius-lg); /** 8px — button, input, select, textarea */
   --radius-chip: var(--radius-md); /** 6px — badge, tag, checkbox, small toggle */
   --radius-pill: var(--radius-full); /** pill button, avatar, status dot */
   --text-display-xl-font-family: var(--font-family-sans); /** Hero / auth / empty-state headline */
-  --text-display-xl-font-size: var(--font-size-64); /** Hero / auth / empty-state headline */
+  --text-display-xl-font-size: var(--font-size-48); /** Hero / auth / empty-state headline */
   --text-display-xl-font-weight: var(--font-weight-bold); /** Hero / auth / empty-state headline */
   --text-display-xl-line-height: var(--font-line-height-none); /** Hero / auth / empty-state headline */
   --text-display-xl-letter-spacing: var(--font-letter-spacing-tighter); /** Hero / auth / empty-state headline */
   --text-display-lg-font-family: var(--font-family-sans);
-  --text-display-lg-font-size: var(--font-size-48);
+  --text-display-lg-font-size: var(--font-size-36);
   --text-display-lg-font-weight: var(--font-weight-bold);
   --text-display-lg-line-height: var(--font-line-height-none);
   --text-display-lg-letter-spacing: var(--font-letter-spacing-tighter);
   --text-display-md-font-family: var(--font-family-sans);
-  --text-display-md-font-size: var(--font-size-36);
+  --text-display-md-font-size: var(--font-size-32);
   --text-display-md-font-weight: var(--font-weight-bold);
   --text-display-md-line-height: var(--font-line-height-tight);
   --text-display-md-letter-spacing: var(--font-letter-spacing-tight);
   --text-heading-xl-font-family: var(--font-family-sans); /** Page title */
-  --text-heading-xl-font-size: var(--font-size-32); /** Page title */
+  --text-heading-xl-font-size: var(--font-size-28); /** Page title */
   --text-heading-xl-font-weight: var(--font-weight-bold); /** Page title */
   --text-heading-xl-line-height: var(--font-line-height-tight); /** Page title */
   --text-heading-xl-letter-spacing: var(--font-letter-spacing-tight); /** Page title */
   --text-heading-lg-font-family: var(--font-family-sans);
-  --text-heading-lg-font-size: var(--font-size-28);
+  --text-heading-lg-font-size: var(--font-size-24);
   --text-heading-lg-font-weight: var(--font-weight-semibold);
   --text-heading-lg-line-height: var(--font-line-height-snug);
   --text-heading-lg-letter-spacing: var(--font-letter-spacing-tight);
   --text-heading-md-font-family: var(--font-family-sans); /** Section / card title */
-  --text-heading-md-font-size: var(--font-size-24); /** Section / card title */
+  --text-heading-md-font-size: var(--font-size-20); /** Section / card title */
   --text-heading-md-font-weight: var(--font-weight-semibold); /** Section / card title */
   --text-heading-md-line-height: var(--font-line-height-snug); /** Section / card title */
   --text-heading-md-letter-spacing: var(--font-letter-spacing-tight); /** Section / card title */
   --text-heading-sm-font-family: var(--font-family-sans);
-  --text-heading-sm-font-size: var(--font-size-20);
+  --text-heading-sm-font-size: var(--font-size-18);
   --text-heading-sm-font-weight: var(--font-weight-semibold);
   --text-heading-sm-line-height: var(--font-line-height-snug);
   --text-heading-sm-letter-spacing: var(--font-letter-spacing-normal);
   --text-heading-xs-font-family: var(--font-family-sans); /** Subsection / group label */
-  --text-heading-xs-font-size: var(--font-size-18); /** Subsection / group label */
+  --text-heading-xs-font-size: var(--font-size-16); /** Subsection / group label */
   --text-heading-xs-font-weight: var(--font-weight-semibold); /** Subsection / group label */
   --text-heading-xs-line-height: var(--font-line-height-snug); /** Subsection / group label */
   --text-heading-xs-letter-spacing: var(--font-letter-spacing-normal); /** Subsection / group label */
   --text-body-lg-font-family: var(--font-family-sans);
-  --text-body-lg-font-size: var(--font-size-16);
+  --text-body-lg-font-size: var(--font-size-15);
   --text-body-lg-font-weight: var(--font-weight-medium);
   --text-body-lg-line-height: var(--font-line-height-normal);
   --text-body-lg-letter-spacing: var(--font-letter-spacing-normal);
   --text-body-md-font-family: var(--font-family-sans); /** Default body / table cell */
-  --text-body-md-font-size: var(--font-size-15); /** Default body / table cell */
+  --text-body-md-font-size: var(--font-size-14); /** Default body / table cell */
   --text-body-md-font-weight: var(--font-weight-medium); /** Default body / table cell */
   --text-body-md-line-height: var(--font-line-height-normal); /** Default body / table cell */
   --text-body-md-letter-spacing: var(--font-letter-spacing-normal); /** Default body / table cell */
   --text-body-sm-font-family: var(--font-family-sans);
-  --text-body-sm-font-size: var(--font-size-14);
+  --text-body-sm-font-size: var(--font-size-13);
   --text-body-sm-font-weight: var(--font-weight-medium);
   --text-body-sm-line-height: var(--font-line-height-normal);
   --text-body-sm-letter-spacing: var(--font-letter-spacing-normal);
   --text-body-xs-font-family: var(--font-family-sans); /** Dense secondary text */
-  --text-body-xs-font-size: var(--font-size-13); /** Dense secondary text */
+  --text-body-xs-font-size: var(--font-size-12); /** Dense secondary text */
   --text-body-xs-font-weight: var(--font-weight-medium); /** Dense secondary text */
   --text-body-xs-line-height: var(--font-line-height-normal); /** Dense secondary text */
   --text-body-xs-letter-spacing: var(--font-letter-spacing-normal); /** Dense secondary text */
   --text-label-xl-font-family: var(--font-family-sans); /** xl / 56px primary button */
-  --text-label-xl-font-size: var(--font-size-18); /** xl / 56px primary button */
+  --text-label-xl-font-size: var(--font-size-16); /** xl / 56px primary button */
   --text-label-xl-font-weight: var(--font-weight-semibold); /** xl / 56px primary button */
   --text-label-xl-line-height: var(--font-line-height-tight); /** xl / 56px primary button */
   --text-label-xl-letter-spacing: var(--font-letter-spacing-normal); /** xl / 56px primary button */
   --text-label-lg-font-family: var(--font-family-sans);
-  --text-label-lg-font-size: var(--font-size-16);
+  --text-label-lg-font-size: var(--font-size-15);
   --text-label-lg-font-weight: var(--font-weight-semibold);
   --text-label-lg-line-height: var(--font-line-height-tight);
   --text-label-lg-letter-spacing: var(--font-letter-spacing-normal);
@@ -491,7 +496,7 @@
   --text-caption-line-height: var(--font-line-height-normal); /** Helper text, timestamps, footnotes */
   --text-caption-letter-spacing: var(--font-letter-spacing-normal); /** Helper text, timestamps, footnotes */
   --text-code-font-family: var(--font-family-mono); /** Inline IDs, JSON, tracking numbers */
-  --text-code-font-size: var(--font-size-13); /** Inline IDs, JSON, tracking numbers */
+  --text-code-font-size: var(--font-size-12); /** Inline IDs, JSON, tracking numbers */
   --text-code-font-weight: var(--font-weight-medium); /** Inline IDs, JSON, tracking numbers */
   --text-code-line-height: var(--font-line-height-normal); /** Inline IDs, JSON, tracking numbers */
   --text-code-letter-spacing: var(--font-letter-spacing-normal); /** Inline IDs, JSON, tracking numbers */
@@ -544,23 +549,25 @@
   --color-background-brand-active: var(--color-brand-800);
   --color-background-brand-subtle: var(--color-brand-100); /** Tinted brand fill: selected row, info banner */
   --color-text-brand: var(--color-brand-700); /** Links, brand-colored labels */
+  --color-text-success-solid: var(--color-background-success); /** Text matching a solid success fill nearby — see brand-solid. */
+  --color-text-warning-solid: var(--color-background-warning); /** Text matching a solid (amber) warning fill nearby — see brand-solid. Not warning-strong (orange) — that hue is scoped to the alert-pill system only. */
+  --color-text-danger-solid: var(--color-background-danger-default); /** Text matching a solid danger fill nearby — see brand-solid. */
   --color-border-brand: var(--color-brand-600); /** Selected input, active tab */
   --color-border-focus: var(--color-brand-500); /** Focus ring */
   --color-border-highlight-active: var(--color-brand-500); /** Glass edge highlight when the surface is focused/active — a full 1.5px primary border that replaces the white top-left catch */
   --color-icon-brand: var(--color-brand-600);
-  --color-chart-1: var(--color-brand-500); /** Categorical series 1 — placeholder palette, revisit with the real chart component */
+  --color-chart-1: var(--color-brand-400); /** Categorical series 1 — placeholder palette, revisit with the real chart component. Migrated from brand.500 to match Figma's lighter chart ramp. */
   --radius-card: var(--radius-container);
+  --radius-page: var(--radius-page-container);
   --radius-modal: var(--radius-container);
   --radius-table: var(--radius-panel);
   --radius-popover: var(--radius-panel);
-  --radius-button-secondary-sm: var(--radius-chip); /** 6 — ~28px tall */
-  --radius-button-secondary-md: var(--radius-control); /** 8 — ~32 */
-  --radius-button-secondary-lg: var(--radius-control); /** 8 — ~36 */
-  --radius-button-secondary-xl: var(--radius-control); /** 8 — ~40 */
-  --radius-button-primary-sm: var(--radius-control); /** 8 — ~36px tall */
-  --radius-button-primary-md: var(--radius-control); /** 8 — ~40 */
-  --radius-button-primary-lg: var(--radius-panel); /** 12 — ~44 */
-  --radius-button-primary-xl: var(--radius-panel); /** 12 — ~56 */
+  --radius-button-2sm: var(--radius-chip); /** 6 — 1440 migration: sizes unified across variant, one radius per size now (was per-variant-per-size) */
+  --radius-button-sm: var(--radius-chip); /** 6 */
+  --radius-button-md: var(--radius-control); /** 8 */
+  --radius-button-lg: var(--radius-control); /** 8 */
+  --radius-button-xl: var(--radius-control); /** 8 */
+  --radius-button-2xl: var(--radius-panel); /** 12 — primary only */
   --radius-input: var(--radius-control);
   --radius-badge-sm: var(--radius-chip); /** 6 — small badge */
   --radius-badge-md: var(--radius-control); /** 8 — medium badge */
@@ -574,5 +581,6 @@
   --color-badge-brand-background: var(--color-background-brand-subtle);
   --color-badge-brand-text: var(--color-text-brand);
   --color-table-row-background-selected: var(--color-background-brand-subtle);
+  --color-text-brand-solid: var(--color-background-brand-default); /** Text that must read as the same accent as a solid brand fill nearby (a bar, a dot) — aliases background.brand.default itself, not a hand-picked shade, so the two can never drift apart. NOT for text on a light/subtle background — text.brand (700) stays there; this is ~100 lighter and won't clear AA on brand-subtle. */
   --color-button-secondary-border-active: var(--color-card-border-active); /** Full 1.5px primary border on focus / active. */
 }

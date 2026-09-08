@@ -1,7 +1,8 @@
 /* Square icon-only button. The glass skin comes from Button's `.surface`
-   (imported); this file is just the square layout + per-variant×size dimensions.
-   Sizes = the matching Button height (primary 36/40/44/56 · secondary+tertiary
-   28/32/36/40). font-size sets the 1em icon. TODO: size/control/* tokens. */
+   (imported); this file is just the square layout + per-size dimensions.
+   1440 migration: sizes are unified across variant now (same as Button) —
+   one exception, tertiary's `2sm` is uniquely 24px (every other combo's size
+   is purely size-driven, not variant-driven). font-size sets the 1em icon. */
 .iconButton {
   display: inline-flex;
   align-items: center;
@@ -11,56 +12,43 @@
   user-select: none;
 }
 
-.iconButton[data-variant='secondary'][data-size='sm'],
-.iconButton[data-variant='tertiary'][data-size='sm'] {
+.iconButton[data-size='2sm'] {
+  width: 28px;
+  height: 28px;
+  font-size: 12px;
+  border-radius: var(--radius-button-2sm);
+}
+.iconButton[data-variant='tertiary'][data-size='2sm'] {
+  width: 24px;
+  height: 24px;
+}
+.iconButton[data-size='sm'] {
   width: 28px;
   height: 28px;
   font-size: 14px;
-  border-radius: var(--radius-button-secondary-sm);
+  border-radius: var(--radius-button-sm);
 }
-.iconButton[data-variant='secondary'][data-size='md'],
-.iconButton[data-variant='tertiary'][data-size='md'] {
+.iconButton[data-size='md'] {
   width: 32px;
   height: 32px;
   font-size: 16px;
-  border-radius: var(--radius-button-secondary-md);
+  border-radius: var(--radius-button-md);
 }
-.iconButton[data-variant='secondary'][data-size='lg'],
-.iconButton[data-variant='tertiary'][data-size='lg'] {
+.iconButton[data-size='lg'] {
   width: 36px;
   height: 36px;
   font-size: 18px;
-  border-radius: var(--radius-button-secondary-lg);
+  border-radius: var(--radius-button-lg);
 }
-.iconButton[data-variant='secondary'][data-size='xl'],
-.iconButton[data-variant='tertiary'][data-size='xl'] {
+.iconButton[data-size='xl'] {
   width: 40px;
   height: 40px;
   font-size: 20px;
-  border-radius: var(--radius-button-secondary-xl);
+  border-radius: var(--radius-button-xl);
 }
-
-.iconButton[data-variant='primary'][data-size='sm'] {
-  width: 36px;
-  height: 36px;
-  font-size: 18px;
-  border-radius: var(--radius-button-primary-sm);
-}
-.iconButton[data-variant='primary'][data-size='md'] {
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
-  border-radius: var(--radius-button-primary-md);
-}
-.iconButton[data-variant='primary'][data-size='lg'] {
+.iconButton[data-size='2xl'] {
   width: 44px;
   height: 44px;
   font-size: 20px;
-  border-radius: var(--radius-button-primary-lg);
-}
-.iconButton[data-variant='primary'][data-size='xl'] {
-  width: 56px;
-  height: 56px;
-  font-size: 22px;
-  border-radius: var(--radius-button-primary-xl);
+  border-radius: var(--radius-button-2xl);
 }

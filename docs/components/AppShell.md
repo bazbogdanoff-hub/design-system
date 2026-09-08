@@ -23,7 +23,7 @@ the content region scrolls (never the body).
 .shell            grid  [64px | 1fr]   100dvw × 100dvh   overflow: hidden
 ├─ .sidebar       64px, full height, background/emphasis  ← sidebar slot
 └─ .main          padding var(--space-12) (gutter)
-   └─ .content    background/subtle · radius/container · padding var(--space-20)
+   └─ .content    background/muted · radius/page · padding var(--space-20)
                   overflow-y: auto   ← THE scroll container; children live here
 ```
 
@@ -31,8 +31,14 @@ the content region scrolls (never the body).
 `<AppShell sidebar={…}>…</AppShell>`. In Figma they're frames nesting one shell
 instance with the content slot filled — never a component.
 
-Dimensions (sidebar 64, gutter `space/12`, content padding `space/20`, radius
-`radius/container`) are literal in `AppShell.module.css` for now — promote to
+`radius/page` is its own component token (→ semantic `radius.page-container` →
+`radius.4xl`, 24px) — deliberately separate from `radius/container` (→
+`radius.xl`, 12px), which `Card`/`Modal` use. AppShell's content viewport is a
+different scale of surface than a card, so it earned its own radius instead of
+sharing Card's.
+
+Dimensions (sidebar 64, gutter `space/12`, content padding `space/20`) are
+literal in `AppShell.module.css` for now — promote to
 `size/app/*` tokens if a collapsed/expanded sidebar or denser mode is added.
 The `Variant=Horizontal` on the Figma `Base` foreshadows a below-`lg` collapse.
 

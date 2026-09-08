@@ -1,0 +1,22 @@
+.track {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-sunken); /* "Wells, code blocks, inset track" — literally this */
+  overflow: hidden;
+}
+
+.track[data-size='sm'] { height: var(--space-8); }
+.track[data-size='md'] { height: var(--space-12); }
+.track[data-size='lg'] { height: var(--space-16); }
+
+.fill {
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.fill[data-tone='brand']   { background: var(--color-background-brand-default); }
+.fill[data-tone='success'] { background: var(--color-background-success); }
+.fill[data-tone='warning'] { background: var(--color-background-warning); }
+.fill[data-tone='danger']  { background: var(--color-background-danger-default); }

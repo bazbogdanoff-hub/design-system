@@ -16,7 +16,7 @@ export interface StatCardProps extends HTMLAttributes<HTMLDivElement> {
 
 /**
  * A dashboard summary card (L2) — a `Card` holding a headline stat, an optional
- * trend `badge`, and a row of `StatButton`s. Composes `Card` (padding `lg`).
+ * trend `badge`, and a row of `StatButton`s. Composes `Card` (padding `md`).
  * See docs/components/StatCard.md.
  */
 export const StatCard = forwardRef<HTMLDivElement, StatCardProps>(function StatCard(
@@ -24,7 +24,7 @@ export const StatCard = forwardRef<HTMLDivElement, StatCardProps>(function StatC
   ref,
 ) {
   return (
-    <Card ref={ref} padding="lg" className={cn(styles.card, className)} {...rest}>
+    <Card ref={ref} padding="md" className={cn(styles.card, className)} {...rest}>
       <div className={styles.header}>
         <div className={styles.content}>
           <span className={styles.label}>{label}</span>

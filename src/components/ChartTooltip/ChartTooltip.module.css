@@ -1,0 +1,57 @@
+.tooltip {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  min-width: 120px;
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-panel);
+  background: var(--color-surface-raised);
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.16); /* hand-tuned elevation, not a token — no elevation scale exists yet */
+}
+
+.title {
+  font-family: var(--text-label-sm-font-family);
+  font-size: var(--text-label-sm-font-size);
+  font-weight: var(--text-label-sm-font-weight);
+  line-height: var(--text-label-sm-line-height);
+  color: var(--color-text-strong);
+  margin-bottom: var(--space-6);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-6);
+}
+
+.key {
+  flex: none;
+  width: 8px;
+  height: 2px;
+  align-self: center;
+}
+
+.value {
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--text-body-sm-line-height);
+  color: var(--color-text-strong);
+}
+
+.label {
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--text-body-sm-font-weight);
+  line-height: var(--text-body-sm-line-height);
+  color: var(--color-text-subtle);
+}

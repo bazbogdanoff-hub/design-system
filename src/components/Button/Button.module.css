@@ -108,7 +108,7 @@
 .surface[data-variant='tertiary']:focus-visible {
   outline: 2px solid var(--color-border-focus);
   outline-offset: 2px;
-  border-radius: var(--radius-button-secondary-sm);
+  border-radius: var(--radius-button-sm);
 }
 
 /* ============================================================================
@@ -122,75 +122,64 @@
   user-select: none;
 }
 
-/* height / padding-inline / gap / label style / radius — per variant × size.
-   Heights are from Figma (28/32/36/40 · 36/40/44/56); TODO: promote to
-   size/control/* tokens. */
+/* height / padding-inline / gap / label style / radius — 1440 migration:
+   unified across variant now (every variant gets the same height/padding/
+   font/radius at a given size). Two exceptions, applied as overrides below:
+   primary's gap stays a flat space/6 at every size (secondary/tertiary scale
+   4/6/8 with size); tertiary's `2sm` is uniquely 24px tall (every other
+   combo's height is purely size-driven, not variant-driven). */
+.button[data-size='2sm'],
 .button[data-size='sm'] { gap: var(--space-4); }
 .button[data-size='md'],
 .button[data-size='lg'] { gap: var(--space-6); }
-.button[data-size='xl'] { gap: var(--space-8); }
+.button[data-size='xl'],
+.button[data-size='2xl'] { gap: var(--space-8); }
+.button[data-variant='primary'] { gap: var(--space-6); }
 
-/* secondary + tertiary share the size grade */
-.button[data-variant='secondary'][data-size='sm'],
-.button[data-variant='tertiary'][data-size='sm'] {
+.button[data-size='2sm'] {
   height: 28px;
   padding-inline: var(--space-6);
   font: var(--text-label-xs-font-weight) var(--text-label-xs-font-size) / var(--text-label-xs-line-height) var(--text-label-xs-font-family);
   letter-spacing: var(--text-label-xs-letter-spacing);
-  border-radius: var(--radius-button-secondary-sm);
+  border-radius: var(--radius-button-2sm);
 }
-.button[data-variant='secondary'][data-size='md'],
-.button[data-variant='tertiary'][data-size='md'] {
-  height: 32px;
-  padding-inline: var(--space-8);
+.button[data-variant='tertiary'][data-size='2sm'] {
+  height: 24px;
+}
+.button[data-size='sm'] {
+  height: 28px;
+  padding-inline: var(--space-6);
   font: var(--text-label-sm-font-weight) var(--text-label-sm-font-size) / var(--text-label-sm-line-height) var(--text-label-sm-font-family);
   letter-spacing: var(--text-label-sm-letter-spacing);
-  border-radius: var(--radius-button-secondary-md);
+  border-radius: var(--radius-button-sm);
 }
-.button[data-variant='secondary'][data-size='lg'],
-.button[data-variant='tertiary'][data-size='lg'] {
-  height: 36px;
+.button[data-size='md'] {
+  height: 32px;
   padding-inline: var(--space-8);
   font: var(--text-label-md-font-weight) var(--text-label-md-font-size) / var(--text-label-md-line-height) var(--text-label-md-font-family);
   letter-spacing: var(--text-label-md-letter-spacing);
-  border-radius: var(--radius-button-secondary-lg);
+  border-radius: var(--radius-button-md);
 }
-.button[data-variant='secondary'][data-size='xl'],
-.button[data-variant='tertiary'][data-size='xl'] {
-  height: 40px;
-  padding-inline: var(--space-10);
-  font: var(--text-label-lg-font-weight) var(--text-label-lg-font-size) / var(--text-label-lg-line-height) var(--text-label-lg-font-family);
-  letter-spacing: var(--text-label-lg-letter-spacing);
-  border-radius: var(--radius-button-secondary-xl);
-}
-
-.button[data-variant='primary'][data-size='sm'] {
+.button[data-size='lg'] {
   height: 36px;
   padding-inline: var(--space-8);
-  font: var(--text-label-md-font-weight) var(--text-label-md-font-size) / var(--text-label-md-line-height) var(--text-label-md-font-family);
-  letter-spacing: var(--text-label-md-letter-spacing);
-  border-radius: var(--radius-button-primary-sm);
+  font: var(--text-label-lg-font-weight) var(--text-label-lg-font-size) / var(--text-label-lg-line-height) var(--text-label-lg-font-family);
+  letter-spacing: var(--text-label-lg-letter-spacing);
+  border-radius: var(--radius-button-lg);
 }
-.button[data-variant='primary'][data-size='md'] {
+.button[data-size='xl'] {
   height: 40px;
   padding-inline: var(--space-10);
-  font: var(--text-label-lg-font-weight) var(--text-label-lg-font-size) / var(--text-label-lg-line-height) var(--text-label-lg-font-family);
-  letter-spacing: var(--text-label-lg-letter-spacing);
-  border-radius: var(--radius-button-primary-md);
-}
-.button[data-variant='primary'][data-size='lg'] {
-  height: 44px;
-  padding-inline: var(--space-12);
-  font: var(--text-label-lg-font-weight) var(--text-label-lg-font-size) / var(--text-label-lg-line-height) var(--text-label-lg-font-family);
-  letter-spacing: var(--text-label-lg-letter-spacing);
-  border-radius: var(--radius-button-primary-lg);
-}
-.button[data-variant='primary'][data-size='xl'] {
-  height: 56px;
-  padding-inline: var(--space-16);
   font: var(--text-label-xl-font-weight) var(--text-label-xl-font-size) / var(--text-label-xl-line-height) var(--text-label-xl-font-family);
   letter-spacing: var(--text-label-xl-letter-spacing);
-  border-radius: var(--radius-button-primary-xl);
+  border-radius: var(--radius-button-xl);
+}
+.button[data-size='2xl'] {
+  height: 44px;
+  padding-inline: var(--space-12);
+  font: var(--text-label-xl-font-weight) var(--text-label-xl-font-size) / var(--text-label-xl-line-height) var(--text-label-xl-font-family);
+  letter-spacing: var(--text-label-xl-letter-spacing);
+  border-radius: var(--radius-button-2xl);
 }
 
 /* ---- spinner -------------------------------------------------------------- */

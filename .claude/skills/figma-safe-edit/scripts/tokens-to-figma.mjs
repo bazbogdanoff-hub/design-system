@@ -10,8 +10,13 @@
  *   node scripts/figma/fig.mjs migration/build-03-component.js
  *   node scripts/figma/fig.mjs migration/build-04-text-styles.js
  *
- * Idempotent = re-running updates values, never duplicates. Safe on a duplicate
- * file / branch only (figmosha2 has no undo).
+ * Idempotent = re-running updates values, never duplicates — AND never
+ * clobbers a variable Figma and code already disagree on (build-02/03's
+ * shared apply step skips those and reports them as `drift` instead of
+ * overwriting; see ALIAS_APPLY below). That matters because these tokens
+ * sometimes get re-tuned directly in Figma before code catches up (e.g. a
+ * shade migration) — a naive re-run would otherwise silently revert it.
+ * Safe on a duplicate file / branch only (figmosha2 has no undo).
  */
 import { readFileSync, writeFileSync, readdirSync, mkdirSync } from 'node:fs';
 
@@ -73,7 +78,7 @@ for (const [p, raw] of Object.entries(rawByPath)) {
   if (isColorPrimitive(p)) {
     const hex = resolve(raw);
     if (typeof hex === 'string' && hex.startsWith('#')) colors.push({ name: figName(p), hex });
-  } else if (/^radius\.(none|xs|sm|md|lg|xl|2xl|3xl|full)$/.test(p) || /^space\.\d+$/.test(p)) {
+  } else if (/^radius\.(none|xs|sm|md|lg|xl|2xl|3xl|4xl|5xl|full)$/.test(p) || /^space\.\d+$/.test(p)) {
     floats.push({ name: figName(p), value: remToNum(raw) });
   } else if ((m = p.match(/^font\.size\.(\d+)$/))) {
     floats.push({ name: `font/size/${m[1]}`, value: remToNum(raw) });
@@ -99,7 +104,7 @@ for (const [p, raw] of Object.entries(rawByPath)) {
 // ---------- 03 · component (aliases) ------------------------------------
 const compAliases = [];
 for (const [p, raw] of Object.entries(rawByPath)) {
-  if (!isColorComponent(p) && !/^radius\.(card|modal|table|popover|button|input|badge)(\.[a-z]+){0,2}$/.test(p)) continue;
+  if (!isColorComponent(p) && !/^radius\.(card|page|modal|table|popover|button|input|badge|scrollableArea)(\.[a-zA-Z0-9]+){0,2}$/.test(p)) continue;
   const m = typeof raw === 'string' && raw.match(/^\{(.+)\}$/);
   if (m) compAliases.push({ name: figName(p), target: figName(m[1]), type: p.startsWith('color') ? 'COLOR' : 'FLOAT' });
   else if (raw === 'transparent') compAliases.push({ name: figName(p), raw: '#00000000', type: 'COLOR' });
@@ -169,31 +174,67 @@ for (const s of STRINGS) {
 return { collection: coll.name, created, updated, expected: COLORS.length + FLOATS.length + STRINGS.length };
 `);
 
+// Drift-safe: this used to force-write every alias on every run, which is
+// idempotent ONLY when Figma and code already agree. When they don't — e.g.
+// an owner re-tunes a shade directly in Figma (the color/chart/* 500->400
+// move) before code catches up — a plain re-run silently reverts that real
+// design change back to the stale value. Now: a variable whose current
+// value already disagrees with what code expects is left alone and reported
+// in `drift`, never overwritten. Only a brand-new variable, or one that
+// already matches, gets written.
 const ALIAS_APPLY = (specVar, collName, hasRaw) => `
 const all = await figma.variables.getLocalVariablesAsync();
 const anyByName = new Map(all.map((v) => [v.name, v]));
+const byId = new Map(all.map((v) => [v.id, v]));
 const cols = await figma.variables.getLocalVariableCollectionsAsync();
 let coll = cols.find((c) => c.name === '${collName}') || figma.variables.createVariableCollection('${collName}');
 if (!coll.modes.some((m) => /^light$/i.test(m.name))) coll.renameMode(coll.modes[0].modeId, 'Light');
 const modeId = coll.modes.find((m) => /^light$/i.test(m.name)).modeId;
 const mine = new Map(all.filter((v) => v.variableCollectionId === coll.id).map((v) => [v.name, v]));
 const missing = [];
-let created = 0, updated = 0, aliased = 0;
+const drift = [];
+let created = 0, updated = 0, aliased = 0, skipped = 0;
 for (const a of ${specVar}) {
   let v = mine.get(a.name);
-  if (!v) { v = figma.variables.createVariable(a.name, coll, a.type); created++; mine.set(a.name, v); } else updated++;
+  const isNew = !v;
+  if (isNew) { v = figma.variables.createVariable(a.name, coll, a.type); created++; mine.set(a.name, v); }
   const target = anyByName.get(a.target);
   if (!target) { missing.push(a.name + ' -> ' + a.target); continue; }
+
+  if (!isNew) {
+    const current = v.valuesByMode[modeId];
+    const alreadyCorrect = current && current.type === 'VARIABLE_ALIAS' && current.id === target.id;
+    if (alreadyCorrect) { skipped++; continue; }
+    if (current !== undefined) {
+      const figmaCurrentlyPointsTo = current.type === 'VARIABLE_ALIAS'
+        ? (byId.get(current.id)?.name || current.id)
+        : '(a raw value, not an alias)';
+      drift.push({ name: a.name, figmaCurrentlyPointsTo, codeExpects: a.target });
+      continue;
+    }
+  }
   v.setValueForMode(modeId, figma.variables.createVariableAlias(target));
   aliased++;
+  if (!isNew) updated++;
 }
 ${hasRaw ? `${HEX_TO_RGB}
 for (const r of RAWS) {
   let v = mine.get(r.name);
-  if (!v) { v = figma.variables.createVariable(r.name, coll, 'COLOR'); created++; }
-  v.setValueForMode(modeId, hexToRgb(r.hex));
+  const isNew = !v;
+  if (isNew) { v = figma.variables.createVariable(r.name, coll, 'COLOR'); created++; }
+  const newVal = hexToRgb(r.hex);
+  if (!isNew) {
+    const current = v.valuesByMode[modeId];
+    const close = (x, y) => Math.abs((x ?? 0) - (y ?? 0)) < 0.001;
+    const alreadyCorrect = current && typeof current === 'object' && 'r' in current &&
+      close(current.r, newVal.r) && close(current.g, newVal.g) && close(current.b, newVal.b) && close(current.a ?? 1, newVal.a ?? 1);
+    if (alreadyCorrect) { skipped++; continue; }
+    if (current !== undefined) { drift.push({ name: r.name, figmaCurrentlyPointsTo: '(a different raw color)', codeExpects: r.hex }); continue; }
+  }
+  v.setValueForMode(modeId, newVal);
 }` : ''}
-return { collection: coll.name, created, updated, aliased, missing };
+if (drift.length) console.log('DRIFT — left untouched, code is stale relative to Figma:\\n' + drift.map((d) => '  ' + d.name + ': Figma has ' + d.figmaCurrentlyPointsTo + ', code expects ' + d.codeExpects).join('\\n'));
+return { collection: coll.name, created, updated, aliased, skipped, missing, drift };
 `;
 
 writeFileSync(`${OUT}/build-02-semantic.js`, `// generated by tokens-to-figma.mjs — run AFTER build-01

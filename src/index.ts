@@ -6,6 +6,9 @@ export type { CardProps, CardPadding } from './components/Card';
 export { Badge } from './components/Badge';
 export type { BadgeProps, BadgeTone, BadgeSize } from './components/Badge';
 
+export { ProgressBar } from './components/ProgressBar';
+export type { ProgressBarProps, ProgressBarSize, ProgressBarTone } from './components/ProgressBar';
+
 export { SeverityBadge } from './components/SeverityBadge';
 export type {
   SeverityBadgeProps,
@@ -37,6 +40,21 @@ export type { FilterBarProps } from './components/FilterBar';
 
 export { ScrollableArea } from './components/ScrollableArea';
 export type { ScrollableAreaProps } from './components/ScrollableArea';
+
+export { ChartLegend } from './components/ChartLegend';
+export type { ChartLegendProps, ChartLegendItem } from './components/ChartLegend';
+
+export { ChartTooltip } from './components/ChartTooltip';
+export type { ChartTooltipProps, ChartTooltipRow } from './components/ChartTooltip';
+
+export { BarChart } from './components/BarChart';
+export type { BarChartProps, BarChartSeries, BarChartDatum } from './components/BarChart';
+
+export { LineChart } from './components/LineChart';
+export type { LineChartProps, LineChartSeries, LineChartDatum } from './components/LineChart';
+
+export { ChartCard } from './components/ChartCard';
+export type { ChartCardProps } from './components/ChartCard';
 
 export { Box } from './components/Box';
 export type { BoxProps } from './components/Box';

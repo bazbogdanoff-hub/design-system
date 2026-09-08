@@ -1,6 +1,7 @@
 {
   "radius": {
-    "container": { "$value": "{radius.2xl}", "$description": "16px — outermost content card in a carded layout" },
+    "container": { "$value": "{radius.xl}", "$description": "12px — outermost content card in a carded layout (1440 migration: was radius.2xl/16px)" },
+    "page-container": { "$value": "{radius.4xl}", "$description": "24px — AppShell/Page's own content viewport, distinct from a Card's container radius" },
     "panel": { "$value": "{radius.xl}", "$description": "12px — nested card, section, menu, popover, sheet" },
     "control": { "$value": "{radius.lg}", "$description": "8px — button, input, select, textarea" },
     "chip": { "$value": "{radius.md}", "$description": "6px — badge, tag, checkbox, small toggle" },

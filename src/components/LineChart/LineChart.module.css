@@ -1,0 +1,70 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.svg {
+  display: block;
+  /* width/height are set as explicit SVG attributes (matching the measured
+     container 1:1, see useContainerSize) — no CSS-level scaling here, that
+     would shrink/grow the text along with the plot area. */
+}
+
+.gridline {
+  stroke: var(--color-border-subtle);
+  stroke-width: 1;
+}
+
+.axisLabel {
+  font-family: var(--text-caption-font-family);
+  font-size: var(--text-caption-font-size);
+  font-weight: var(--text-caption-font-weight);
+  fill: var(--color-text-subtle);
+}
+
+.line {
+  stroke-width: 2; /* per the skill's line-mark spec */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.area {
+  opacity: 0.1; /* a soft glow under the line, not a from-zero fill — see docs */
+}
+
+.crosshair {
+  stroke: var(--color-border-default);
+  stroke-width: 1;
+  pointer-events: none;
+}
+
+.marker {
+  stroke: var(--color-surface-default);
+  stroke-width: 2;
+  pointer-events: none;
+}
+
+.hitTarget {
+  cursor: pointer;
+  outline: none;
+}
+.hitTarget:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* Screen-reader-only table — the table-view accessibility twin of the
+   chart. Visually hidden, never `display:none` (that would remove it from
+   the accessibility tree too). */
+.srOnlyTable {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

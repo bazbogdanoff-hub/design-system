@@ -2,7 +2,7 @@
 
 The icon-only filter trigger for card/table headers — opens the
 advanced-filter / add-filter popover. **L2 pattern** — `IconButton` fixed to
-`variant="secondary"` with only the two taller sizes.
+`variant="secondary"`, restricted to `sm`/`md`.
 
 ```tsx
 <FilterIcon aria-label="Advanced filters" onClick={openAdvancedFilters} />
@@ -10,7 +10,10 @@ advanced-filter / add-filter popover. **L2 pattern** — `IconButton` fixed to
 
 | prop | values | default |
 |---|---|---|
-| `size` | `lg` (36px) · `xl` (40px) | `xl` |
+| `size` | `sm` (28px) · `md` (32px) | `md` |
+
+1440 migration: was `lg`(36)/`xl`(40), shifted with Button's own scale onto
+the two sizes one step down (see [Button.md](./Button.md)).
 
 Everything else (`loading`, `asChild`, standard button props) is
 `IconButtonProps` passed straight through — `variant`/`size` are restricted
@@ -21,7 +24,7 @@ required, same as `IconButton`.
 
 ## Figma
 
-**`Filter — icon`** — `size`(lg/xl) × `state`(default/hover/active/disabled)
+**`Filter — icon`** — `size`(sm/md) × `state`(default/hover/active/disabled)
 = 8 variants. Each nests a real instance of the matching `IconButton`
 secondary variant (not a detached copy) — same technique as `Filter`.
 `iconSwap` is bound to the same icon across all 8 variants and not exposed as

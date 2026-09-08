@@ -68,19 +68,25 @@
   color: var(--color-text-subtle);
 }
 
+.stat[data-size='lg'] .label {
+  font-size: var(--text-body-md-font-size);
+  line-height: var(--text-body-md-line-height);
+  letter-spacing: var(--text-body-md-letter-spacing);
+}
+
 .value {
-  font-family: var(--text-heading-md-font-family);
-  font-size: var(--text-heading-md-font-size);
-  font-weight: var(--text-heading-md-font-weight);
-  line-height: var(--text-heading-md-line-height);
-  letter-spacing: var(--text-heading-md-letter-spacing);
+  font-family: var(--text-heading-sm-font-family);
+  font-size: var(--text-heading-sm-font-size);
+  font-weight: var(--text-heading-sm-font-weight);
+  line-height: var(--text-heading-sm-line-height);
+  letter-spacing: var(--text-heading-sm-letter-spacing);
   color: var(--color-text-strong);
 }
 
 .stat[data-size='lg'] .value {
-  font-size: var(--text-heading-lg-font-size);
-  line-height: var(--text-heading-lg-line-height);
-  letter-spacing: var(--text-heading-lg-letter-spacing);
+  font-size: var(--text-heading-md-font-size);
+  line-height: var(--text-heading-md-line-height);
+  letter-spacing: var(--text-heading-md-letter-spacing);
 }
 
 .stat[data-tone='danger'] .value {

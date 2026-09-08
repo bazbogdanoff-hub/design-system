@@ -359,6 +359,8 @@ export const ColorRose950: string;
 export const ColorBackgroundDefault: string;
 /** Inset zones, striped rows, panels flush with the page */
 export const ColorBackgroundSubtle: string;
+/** A visibly deeper recessed fill than subtle — the AppShell content-slot backdrop the screen sits on */
+export const ColorBackgroundMuted: string;
 /** High-contrast fills: tooltips, inverse callouts */
 export const ColorBackgroundEmphasis: string;
 /** Disabled control fill */
@@ -422,6 +424,14 @@ export const ColorTextSuccess: string;
 export const ColorTextWarning: string;
 /** Orange warning-pill text */
 export const ColorTextWarningStrong: string;
+/** Text that must read as the same accent as a solid brand fill nearby (a bar, a dot) — aliases background.brand.default itself, not a hand-picked shade, so the two can never drift apart. NOT for text on a light/subtle background — text.brand (700) stays there; this is ~100 lighter and won't clear AA on brand-subtle. */
+export const ColorTextBrandSolid: string;
+/** Text matching a solid success fill nearby — see brand-solid. */
+export const ColorTextSuccessSolid: string;
+/** Text matching a solid (amber) warning fill nearby — see brand-solid. Not warning-strong (orange) — that hue is scoped to the alert-pill system only. */
+export const ColorTextWarningSolid: string;
+/** Text matching a solid danger fill nearby — see brand-solid. */
+export const ColorTextDangerSolid: string;
 export const ColorTextInfo: string;
 /** Text on color.background.brand* */
 export const ColorTextOnBrand: string;
@@ -458,35 +468,38 @@ export const ColorIconWarningStrong: string;
 export const ColorIconOnBrand: string;
 /** Icon on color.background.emphasis */
 export const ColorIconOnEmphasis: string;
-/** Categorical series 1 — placeholder palette, revisit with the real chart component */
+/** Categorical series 1 — placeholder palette, revisit with the real chart component. Migrated from brand.500 to match Figma's lighter chart ramp. */
 export const ColorChart1: string;
+/** Not migrated to cyan.400 — failed the dataviz skill's lightness-band check at .400 (L 0.797, above the 0.77 ceiling). */
 export const ColorChart2: string;
+/** Not migrated to amber.400 — failed the lightness-band check at .400 (L 0.837). */
 export const ColorChart3: string;
+/** Not migrated to emerald.400/500 — .400 failed the lightness-band check (L 0.773); .500 cleared it but its pair with rose.500 fell to CVD ΔE 5.6, under the 6.0 floor. .600 clears both (ΔE 8.3). */
 export const ColorChart4: string;
 export const ColorChart5: string;
+/** Not migrated to violet.400 — passed alone, but paired with sky.400 fell to CVD ΔE 5.2. .500 restores separation. */
 export const ColorChart6: string;
+/** Migrated from sky.600 to match Figma's lighter chart ramp — passes paired with violet.500. */
 export const ColorChart7: string;
+/** Not migrated to lime.400 — failed the lightness-band check at .400 (L 0.849, the worst offender). */
 export const ColorChart8: string;
 export const RadiusCard: string;
+export const RadiusPage: string;
 export const RadiusModal: string;
 export const RadiusTable: string;
 export const RadiusPopover: string;
-/** 6 — ~28px tall */
-export const RadiusButtonSecondarySm: string;
-/** 8 — ~32 */
-export const RadiusButtonSecondaryMd: string;
-/** 8 — ~36 */
-export const RadiusButtonSecondaryLg: string;
-/** 8 — ~40 */
-export const RadiusButtonSecondaryXl: string;
-/** 8 — ~36px tall */
-export const RadiusButtonPrimarySm: string;
-/** 8 — ~40 */
-export const RadiusButtonPrimaryMd: string;
-/** 12 — ~44 */
-export const RadiusButtonPrimaryLg: string;
-/** 12 — ~56 */
-export const RadiusButtonPrimaryXl: string;
+/** 6 — 1440 migration: sizes unified across variant, one radius per size now (was per-variant-per-size) */
+export const RadiusButton2sm: string;
+/** 6 */
+export const RadiusButtonSm: string;
+/** 8 */
+export const RadiusButtonMd: string;
+/** 8 */
+export const RadiusButtonLg: string;
+/** 8 */
+export const RadiusButtonXl: string;
+/** 12 — primary only */
+export const RadiusButton2xl: string;
 export const RadiusInput: string;
 /** 6 — small badge */
 export const RadiusBadgeSm: string;
@@ -505,12 +518,20 @@ export const RadiusMd: string;
 export const RadiusLg: string;
 /** 12px */
 export const RadiusXl: string;
-/** 16px — largest; the outer content cards */
+/** 16px */
 export const Radius2xl: string;
+/** 20px */
+export const Radius3xl: string;
+/** 24px — AppShell/Page's own content-viewport corner */
+export const Radius4xl: string;
+/** 32px */
+export const Radius5xl: string;
 /** pills, avatars, dots */
 export const RadiusFull: string;
-/** 16px — outermost content card in a carded layout */
+/** 12px — outermost content card in a carded layout (1440 migration: was radius.2xl/16px) */
 export const RadiusContainer: string;
+/** 24px — AppShell/Page's own content viewport, distinct from a Card's container radius */
+export const RadiusPageContainer: string;
 /** 12px — nested card, section, menu, popover, sheet */
 export const RadiusPanel: string;
 /** 8px — button, input, select, textarea */

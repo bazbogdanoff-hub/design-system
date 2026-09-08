@@ -39,8 +39,8 @@
   min-width: 0;
   min-height: 0;
   padding: var(--space-20);
-  border-radius: var(--radius-container);
-  background: var(--color-background-subtle);
+  border-radius: var(--radius-page);
+  background: var(--color-background-muted);
   overflow-y: auto;
   overscroll-behavior: contain;
 }

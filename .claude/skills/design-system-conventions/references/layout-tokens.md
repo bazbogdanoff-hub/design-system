@@ -58,7 +58,14 @@ name = component).
 | `radius.lg` | 0.5 | 8 |
 | `radius.xl` | 0.75 | 12 |
 | `radius.2xl` | 1 | 16 |
+| `radius.3xl` | 1.25 | 20 |
+| `radius.4xl` | 1.5 | 24 |
+| `radius.5xl` | 2 | 32 |
 | `radius.full` | — | 9999px |
+
+`3xl`/`4xl`/`5xl` added in the 1440 migration — needed once `AppShell`'s
+content viewport got its own radius, bigger than any card (see
+`radius.page-container` below).
 
 ### Semantic (the cascade)
 
@@ -66,33 +73,45 @@ Nesting reads correctly — an inner element's radius is always ≤ its containe
 
 | token | → | px | use |
 |---|---|---|---|
-| `radius.container` | `radius.2xl` | 16 | outermost content card in the carded layout — the ceiling |
+| `radius.page-container` | `radius.4xl` | 24 | `AppShell`/`Page`'s own content viewport — the real ceiling now, bigger than any card |
+| `radius.container` | `radius.xl` | 12 | outermost content card in a carded layout (1440 migration: was `radius.2xl`/16) |
 | `radius.panel` | `radius.xl` | 12 | nested card, section, menu, popover, dropdown, sheet |
 | `radius.control` | `radius.lg` | 8 | button, input, select, textarea |
 | `radius.chip` | `radius.md` | 6 | badge, tag, checkbox, small toggle |
 | `radius.pill` | `radius.full` | — | pill button, avatar, status dot |
 
+`radius.container` and `radius.panel` are now both 12 — previously distinct
+(16 vs 12), collapsed by the 1440 cut. Not necessarily wrong (same floor
+collision pattern as the type scale), just worth knowing they're identical
+today if you're deciding whether to differentiate them again later.
+
 ### Component
 
 | token | → semantic | px |
 |---|---|---|
-| `radius.card` | `radius.container` | 16 |
-| `radius.modal` | `radius.container` | 16 |
+| `radius.page` | `radius.page-container` | 24 |
+| `radius.card` | `radius.container` | 12 |
+| `radius.modal` | `radius.container` | 12 |
 | `radius.table` | `radius.panel` | 12 |
 | `radius.popover` | `radius.panel` | 12 |
 | `radius.input` | `radius.control` | 8 |
 | `radius.badge.sm` | `radius.chip` | 6 |
 | `radius.badge.md` | `radius.control` | 8 |
 | `radius.badge.lg` | `radius.control` | 8 |
-| `radius.button.secondary.{sm}` | `radius.chip` | 6 |
-| `radius.button.secondary.{md,lg,xl}` | `radius.control` | 8 |
-| `radius.button.primary.{sm,md}` | `radius.control` | 8 |
-| `radius.button.primary.{lg,xl}` | `radius.panel` | 12 |
+| `radius.button.2sm` | `radius.chip` | 6 |
+| `radius.button.sm` | `radius.chip` | 6 |
+| `radius.button.md` | `radius.control` | 8 |
+| `radius.button.lg` | `radius.control` | 8 |
+| `radius.button.xl` | `radius.control` | 8 |
+| `radius.button.2xl` | `radius.panel` | 12 |
 
-`radius.badge` is per-size; `radius.button` is per-**variant × size** because
-primary and secondary have different heights at the same `size` name, and the
-radius follows the height (taller pill → softer corner). `--radius-badge-*` /
-`--radius-button-<variant>-*` in CSS.
+`radius.badge` and `radius.button` are both per-**size** now — `radius.button`
+used to be per-variant×size (primary and secondary had different heights at
+the same `size` name, so radius followed the height), but the 1440 migration
+unified Button's heights across variant, so one flat size-keyed scale
+replaced `radius.button.{secondary,primary}.{sm,md,lg,xl}` entirely.
+`--radius-badge-*` / `--radius-button-<size>` in CSS — no more
+`--radius-button-<variant>-<size>`.
 
 Components reference the **component** or **semantic** radius token, never the raw
 scale. `$type: "dimension"` is declared once, on the `radius` group in

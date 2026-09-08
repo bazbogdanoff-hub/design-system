@@ -65,7 +65,8 @@ Structure notes:
 |---|---|---|---|
 | `background.default` | `zinc.50` | page / app canvas | `zinc.950` |
 | `background.subtle` | `zinc.100` | inset zones, striped rows, panels flush with the page | `zinc.900` |
-| `background.emphasis` | `zinc.900` | high-contrast fills: tooltips, inverse callouts | `zinc.50` |
+| `background.muted` | `zinc.300` | a visibly deeper recessed fill than subtle — AppShell's content-slot backdrop | `tbd` |
+| `background.emphasis` | `zinc.700` | high-contrast fills: tooltips, inverse callouts, **`AppShell`'s sidebar rail** | `zinc.50` |
 | `background.disabled` | `zinc.100` | disabled control fill | `zinc.800` |
 | `background.overlay` | `#09090bb3` *(raw)* | modal / drawer scrim | `#09090bcc` |
 | `background.overlay-subtle` | `alpha-black.3` | hover/press wash — layers on top of whatever's underneath instead of replacing it (row hover, list-item hover) | `tbd` — likely needs `alpha-white.*` in dark mode, a black wash won't read on a dark background |
@@ -110,9 +111,21 @@ A `surface` sits *on* the `background`. Shadow or separating border → it's a s
 | `text.success` | `green.700` | success messages | `green.300` |
 | `text.warning` | `amber.700` | warning messages | `amber.300` |
 | `text.info` | `blue.700` | informational messages | `blue.300` |
+| `text.brand-solid` | `= background.brand.default` (`brand.600`) | text that must read as the **same accent** as a solid fill nearby (a bar, a dot) — an alias of the background token itself, not a hand-picked shade, so the two can never drift apart | `= background.brand.default` |
+| `text.success-solid` | `= background.success` (`green.600`) | see `text.brand-solid` | `= background.success` |
+| `text.warning-solid` | `= background.warning` (`amber.500`) | see `text.brand-solid` — **not** `warning-strong` (orange), that hue stays scoped to the alert-pill system only | `= background.warning` |
+| `text.danger-solid` | `= background.danger.default` (`red.600`) | see `text.brand-solid` | `= background.danger.default` |
 | `text.on-brand` | `white` | text on `background.brand*` | `white` |
 | `text.on-emphasis` | `zinc.50` | text on `background.emphasis` | `zinc.900` |
 | `text.on-danger` | `white` | text on `background.danger*` | `white` |
+
+> **`*-solid` vs. the plain tone token** — `text.success` (700) is tuned for
+> AA contrast on `background.success-subtle` (green.100, ~4.56:1); its 600
+> counterpart would drop that to ~3.00:1 and fail. `text.success-solid`
+> exists for a different job entirely — text sitting *next to* a solid
+> fill (e.g. a legend label beside a bar) that needs to read as the same
+> color, not text *on top of* a light background. Never swap one for the
+> other's use case.
 
 ### `color.border.*`
 
@@ -160,7 +173,7 @@ mapping and the rule for adding a new component.
 | `color.background.warning-strong-subtle` | `orange.50` | orange pill fill |
 | `color.text.warning-strong` | `orange.700` | orange pill text |
 | `color.icon.warning-strong` | `orange.600` | orange pill icon |
-| `color.chart.1 … 8` | `brand/cyan/amber/emerald/rose/violet/sky/lime` @ 500–600 | categorical placeholder palette — **revisit when the real chart component is built** |
+| `color.chart.1 … 8` | `brand.400 / cyan.500 / amber.500 / emerald.600 / rose.500 / violet.500 / sky.400 / lime.500` | categorical palette for `BarChart`/`LineChart`. **Not a uniform `.400`** — validated against the dataviz skill's `validate_palette.js` first, and a straight `.400` migration failed lightness-band, CVD-separation, and contrast checks worse than the palette it would have replaced. Only `chart.1`/`chart.7` actually landed on `.400`; the other 6 needed `.500`/`.600` to pass. Each exception's specific reason is in `tokens/semantic.color.json`'s `$description` for that entry — read those before ever touching this palette again, and re-run the validator, don't find-replace a shade number. |
 
 `color.badge.warning-strong.{background,text}` is the component-tier pair for the orange pill.
 

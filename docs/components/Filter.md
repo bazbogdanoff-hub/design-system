@@ -1,7 +1,7 @@
 # Filter
 
 A filter trigger for card/table headers. **L2 pattern** — `Button` fixed to
-`variant="secondary"` with only the two taller sizes.
+`variant="secondary"`, restricted to `sm`/`md`.
 
 ```tsx
 <Filter leadingIcon={<CalendarIcon/>} trailingIcon={<CaretDownIcon/>} onClick={openDatePicker}>
@@ -11,7 +11,11 @@ A filter trigger for card/table headers. **L2 pattern** — `Button` fixed to
 
 | prop | values | default |
 |---|---|---|
-| `size` | `lg` (36px) · `xl` (40px) | `xl` |
+| `size` | `sm` (28px) · `md` (32px) | `md` |
+
+1440 migration: was `lg`(36)/`xl`(40) — Button's whole size scale shifted
+(see [Button.md](./Button.md)), and Filter shifted with it onto the two
+sizes one step down.
 
 Everything else (`leadingIcon`, `trailingIcon`, `loading`, `asChild`, standard
 button props) is `ButtonProps` passed straight through — `variant` and `size`
@@ -19,10 +23,10 @@ are the only two Filter fixes/restricts.
 
 ## Figma
 
-**`Filter`** — `size`(lg/xl) × `state`(default/hover/active/disabled) = 8
+**`Filter`** — `size`(sm/md) × `state`(default/hover/active/disabled) = 8
 variants. Each variant **nests a real instance of the matching `Button`
-variant** (e.g. `size=lg, state=hover` wraps an instance of Button's own
-`"size=lg, variant=secondary, state=hover"`) — not a detached copy. That's
+variant** (e.g. `size=md, state=hover` wraps an instance of Button's own
+`"size=md, variant=secondary, state=hover"`) — not a detached copy. That's
 why there's no separate token/CSS work here: Button changes propagate
 straight through. The nested Button's `leadingIcon`/`trailingIcon`/swap
 properties are exposed up to Filter's own properties panel (Figma's "expose

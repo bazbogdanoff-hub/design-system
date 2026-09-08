@@ -1,0 +1,32 @@
+.legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.swatch {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px; /* hand-tuned, not a token — a rect mirroring the bar/area mark, too small for any semantic radius step */
+}
+
+.label {
+  font-family: var(--text-body-xs-font-family);
+  font-size: var(--text-body-xs-font-size);
+  font-weight: var(--text-body-xs-font-weight);
+  line-height: var(--text-body-xs-line-height);
+  letter-spacing: var(--text-body-xs-letter-spacing);
+  color: var(--color-text-strong);
+  white-space: nowrap;
+}
