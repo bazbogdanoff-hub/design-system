@@ -1,0 +1,116 @@
+/* The bordered box lives on the WRAPPER, not the native <input> — so leading/
+   trailing icons and prepend/append text sit inside the same field, share its
+   border/background, and the whole box reacts to focus (:focus-within). The
+   <input> itself is borderless/transparent and just fills the remaining space. */
+.field {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  gap: var(--space-8);
+  padding-inline: var(--space-12);
+  border-radius: var(--radius-input);
+  background-color: var(--color-input-background-default);
+  border: 1px solid var(--color-input-border-default);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.field[data-size='sm'] { height: var(--size-control-sm); }
+.field[data-size='md'] { height: var(--size-control-md); }
+.field[data-size='lg'] { height: var(--size-control-lg); }
+
+.field:hover:not([data-disabled]):not(:focus-within) {
+  border-color: var(--color-input-border-hover);
+}
+.field:focus-within {
+  border-color: var(--color-input-border-focus);
+}
+/* error wins over the plain hover/focus border, but focus still shows on top
+   of an errored field (a11y: focus is never invisible) */
+.field[data-error] {
+  border-color: var(--color-input-border-error);
+}
+.field[data-disabled] {
+  background-color: var(--color-input-background-disabled);
+  border-color: var(--color-input-border-disabled);
+  cursor: not-allowed;
+}
+
+.input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  color: var(--color-input-text-default);
+}
+.input::placeholder {
+  color: var(--color-input-text-placeholder);
+}
+.input:disabled {
+  color: var(--color-input-text-disabled);
+  cursor: not-allowed;
+}
+
+.field[data-size='sm'] .input {
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--text-body-sm-font-weight);
+  line-height: var(--text-body-sm-line-height);
+  letter-spacing: var(--text-body-sm-letter-spacing);
+}
+.field[data-size='md'] .input {
+  font-family: var(--text-body-md-font-family);
+  font-size: var(--text-body-md-font-size);
+  font-weight: var(--text-body-md-font-weight);
+  line-height: var(--text-body-md-line-height);
+  letter-spacing: var(--text-body-md-letter-spacing);
+}
+.field[data-size='lg'] .input {
+  font-family: var(--text-body-lg-font-family);
+  font-size: var(--text-body-lg-font-size);
+  font-weight: var(--text-body-lg-font-weight);
+  line-height: var(--text-body-lg-line-height);
+  letter-spacing: var(--text-body-lg-letter-spacing);
+}
+
+/* leading / trailing icon — sized off font-size like Button's own icon slot */
+.icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  color: var(--color-input-icon);
+}
+.icon > svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+.field[data-size='sm'] .icon { font-size: 14px; }
+.field[data-size='md'] .icon { font-size: 16px; }
+.field[data-size='lg'] .icon { font-size: 18px; }
+
+/* prepend / append text — a fixed, non-editable, subtly-coloured annotation
+   (a unit, a protocol prefix) sharing the field's own type scale, never the
+   value's own text color. */
+.affix {
+  flex: none;
+  color: var(--color-input-affix);
+  white-space: nowrap;
+}
+.field[data-size='sm'] .affix {
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--text-body-sm-font-weight);
+}
+.field[data-size='md'] .affix {
+  font-family: var(--text-body-md-font-family);
+  font-size: var(--text-body-md-font-size);
+  font-weight: var(--text-body-md-font-weight);
+}
+.field[data-size='lg'] .affix {
+  font-family: var(--text-body-lg-font-family);
+  font-size: var(--text-body-lg-font-size);
+  font-weight: var(--text-body-lg-font-weight);
+}

@@ -97,11 +97,12 @@ radius: new `radius.page-container` → `radius.4xl`(24) → component
 `Button`'s whole size scale got unified across variant (was a relative scale,
 e.g. primary used to be 36/40/44/56 while secondary/tertiary were 28/32/36/40;
 now they're identical) plus two new exception sizes: `2sm` (secondary/tertiary
-only) and `2xl` (primary only) — 60 variants, was 48. `radius.button.{2sm,sm,
-md,lg,xl,2xl}` = 6,6,8,8,8,12. `IconButton` was brought to full parity
-(resized its primary sm/md/lg/xl, added the same 2sm/2xl exceptions) — also
-60 variants now. `Filter`/`FilterIcon` (which restrict Button/IconButton to
-two sizes) shifted with it: now `sm`/`md`, was `lg`/`xl`.
+only, since renamed to `xs` — see §6) and `2xl` (primary only) — 60 variants,
+was 48. `radius.button.{xs,sm,md,lg,xl,2xl}` = 6,6,8,8,8,12. `IconButton` was
+brought to full parity (resized its primary sm/md/lg/xl, added the same
+xs/2xl exceptions) — also 60 variants now. `Filter`/`FilterIcon` (which
+restrict Button/IconButton to two sizes) shifted with it: now `sm`/`md`, was
+`lg`/`xl`.
 
 New primitive ramp: `color.alpha-black.{1,3,5,10,15,20,25,30,40,50,60,70,80,
 90,100}` — a layerable black-alpha scale for hover/press washes that
@@ -179,16 +180,24 @@ class merge (`cn()` in `src/lib/cn.ts`), Radix `Slot`/`Slottable` for
 | **SeverityBadge** | L2 | composes Badge; `level`×`size`×`format`(pill/icon); pill has **no icon** (colour+bold text carries it), icon format = bare triangle |
 | **StatButton** | L2, interactive | first Claude-Figma-built component; `tone`×`size`×`state`(default/hover/active/disabled, 20 variants); shares `Viginette/2xs`/`…hover` glass shadow pair with Button |
 | **StatCard** | L2 | composes `Card padding=lg`; `badge` is a Figma *variant* not boolean (its content sits in Card's slot, which can't take component properties); `children` = StatButton row in React, 2 fixed instances in Figma |
-| **Button** | L1, interactive | `variant`(primary/secondary/tertiary) × `size`(`2sm`·`sm`·`md`·`lg`·`xl`·`2xl` — **unified across variant now**, see §3; `2sm` is secondary/tertiary-only, `2xl` primary-only) × `state`(4) = 60 variants. `leadingIcon`/`trailingIcon` (both allowed at once), `loading` (spinner in leading slot — **Figma can't invert a boolean**, so the icon-hiding-on-loading only happens in React, not the Figma reference), shared `.surface` CSS class |
-| **IconButton** | L1, interactive | square, one icon, **`aria-label` required** (TS-enforced union type); cloned from Button in Figma, now at full size parity with it (60 variants — primary resized, `2sm`/`2xl` added by cloning the nearest existing variant), imports Button's `.surface` in React — 0 new tokens |
+| **Button** | L1, interactive | `variant`(primary/secondary/tertiary) × `size`(`xs`·`sm`·`md`·`lg`·`xl`·`2xl` — **unified across variant now**, see §3; `xs` (was `2sm`) is secondary/tertiary-only, `2xl` primary-only) × `state`(4) = 60 variants. `leadingIcon`/`trailingIcon` (both allowed at once), `loading` (spinner in leading slot — **Figma can't invert a boolean**, so the icon-hiding-on-loading only happens in React, not the Figma reference), shared `.surface` CSS class |
+| **IconButton** | L1, interactive | square, one icon, **`aria-label` required** (TS-enforced union type); cloned from Button in Figma, now at full size parity with it (60 variants — primary resized, `xs`/`2xl` added by cloning the nearest existing variant), imports Button's `.surface` in React — 0 new tokens |
 | **Filter** | L2 | `Button` fixed to `variant="secondary"`, restricted to `sm`/`md`. Figma nests a real `Button` instance per size×state (not cloned) so it inherits states/tokens for free |
-| **FilterIcon** | L2 | same pattern off `IconButton`; fixed funnel icon (bundled `FunnelIcon.tsx`, not a prop — matches Figma, where `iconSwap` isn't exposed) |
-| **FilterBar** | L2 | `Stack(row, gap=md)` + a `FilterIcon` trigger + a `Filter` slot (`children` in React, a real Figma `SLOT` named `filters`) |
+| **FilterIcon** | L2 | the **add-filter** trigger off `IconButton`. Funnel at rest → **"+" on hover / press / `aria-expanded`** (pure-CSS 2-glyph swap; `FunnelIcon`/`PlusIcon` both bundled, neither a prop). Default `size` `sm`. Figma set `10075:13138` toggles the same glyphs per `state`. Future: click opens a show/hide-filters menu |
+| **FilterBar** | L2 | one flat `Stack(row, gap=md, align=center, wrap)` holding `{trigger?}{children}`. Trigger renders only if `onAddFilter` is passed (rule "always present" dropped); whole bar returns `null` with no trigger + no `Filter`s. Props: `onAddFilter`/`addFilterLabel`/`addFilterMenuOpen`. Figma: the `Filter — icon` now sits **inside** the wrapping `filters` SLOT (`layoutWrap: WRAP`), not as a pinned sibling |
 | **ScrollableArea** | L1 | generic `overflow-y:auto` container, recessed background + inner-shadow edges, no variants. `min-height:0` in the CSS (flex-column gotcha) isn't modeled in Figma |
+| **Input** | L1 | React port + Figma now at full parity. React: `size`×`state` base, extended **code-first** with `leadingIcon`/`trailingIcon` + `prependText`/`appendText` (`color.input.icon`/`color.input.affix`, both state-invariant); border/background/radius live on a wrapper span, not the native `<input>`. Figma (`10223:14055`) caught up to match: added a `filled` variant (true/false, → 30 variants: `size`×`state`×`filled`) so the set can show a typed value (`color/input/text/default`) vs placeholder; added the same 4 accessories as **boolean component properties** (non-multiplying, same mechanism as `Row`'s `hasStatus`/`hasAction`) bound to hidden-by-default layers. Fixed 2 real bugs in passing: a duplicate stale `"input"` key in `component.color.json` (silently shadowed, deleted), and `itemSpacing: 0` on every Figma variant (fine with one child, not five — set to `space/8`) |
+| **HelperText** | L1 | Icon (fixed per `tone`: `InfoIcon`/`WarningIcon`) + message, `tone` `primary`/`error` only (no `default` — never renders otherwise), icon+text always the same tone color, `role="alert"` on error. Sized to `Input`'s own icon/text scale. Named to avoid colliding with the real (not-yet-built) hover-triggered `Tooltip` popover. Figma: 6 variants (`10264:18161`), reuses the file's own `Info`/`Warning` icons — distinct from the pre-existing `Info message` (`4205:6290`), which is the future `Alert`/`Callout` precursor, left untouched |
+| **FormField** | L2 | `label` (headline, `text/label/{size}`, colored by `state`) + `children` (usually `Input`) + conditional `HelperText`. `state` `default`/`primary`/`error` — only the latter two show `helperText`. `size` cascades to a bare `Input` child (same mechanism as `LabelGroup`→`Label`); an `Input` with its own `size` wins. Named `FormField` (not "input container") — generalizes past `Input` for `Select`/`Textarea` later. Figma: 9 variants (`10264:18328`) — `content` frame wraps a sample `Input` instance (owner to convert to a Slot); `HelperText` instance present only on `primary`/`error` |
+| **EntitySummary** | L2 | Clickable entity icon (real `IconButton`, navigates to that entity's own page — **not** decorative, don't swap it for `IconCell`) + heading/description + trailing count `Badge`, on `color.background.brand-subtle`. Extracted from `RigProblemDetail`'s 3 identical columns — Figma `10264:19623` (single component, no variants) built first, React ported to match exactly. Deliberately not `Row`-based — see `EntitySummary.md` for the 3 reasons |
+| **Overlay** | L1 | modal scrim + centering layer. `createPortal` to body, `position:fixed inset:0`, fill `color/modal/scrim` (→ `alpha-black/40`, repointed from a 70% zinc tint). Backdrop-click + Escape close, scroll-lock, focus in/out. **Deferred to a future `Dialog` panel:** focus-trap, animation, `role`/`aria` (put those on your panel). z-index raw `1000` — no `z/*` scale yet. Figma `Overlay` `10261:15414`, `content` Slot for the panel |
 | **ChartLegend** | L1 | swatch+label per series, built from a screenshot, no Figma involved |
 | **ChartTooltip** | L1 | every-series-at-once hover/focus readout; positioning owned by the chart, not itself |
 | **BarChart** | L1 | stacked SVG bar chart — first data-viz component; built per the `dataviz` skill's procedure (form → validated color → marks → interaction → accessibility). No colors hardcoded — reuses `color.chart.1` + `color.background.warning-strong`, no new tokens. Visible table-view toggle not built yet (a hidden `<table>` covers the accessibility requirement) |
 | **ChartCard** | L2 | composes `Card` + `ChartLegend` + a `Filter`-based filters slot. Filters are **per-card** — a deliberate deviation from the dataviz skill's "one shared filter row" guidance, matching the product's actual mockups |
+| **Label** | L1 | `<span>`, `size` 2xs/xs/sm/md/lg/xl (mirrors `text/body/*`, **body weight**, default `md`), `color` default/subtle/muted/brand/success/warning/danger (`color.label.*`, aliases of `color.text.*`). Figma: 42 variants (`10237:14080`). Distinct from `Tag` (uppercase/semibold) and `Badge` (filled chip). New token `text.body.xl` added to complete the scale |
+| **LabelGroup** | L1 | `<div>` inline-flex, `gap: space/6`; holds `Label`s separated by real **1px vertical dividers** (not `·`), divider height = the size's font-size, colour `color/text/subtle` (fixed chrome). `size` cascades to children. Figma: 6 variants (`10238:14161`). **Is `Row`'s `description`** — size-matched (`sm`→`2xs`, `md`→`xs`, `lg`→`sm`); `Row` fills in the `size` for a bare `<LabelGroup>` |
+| **Row** (was `ScrollableAreaRow`) | L1 | `[leading? IconCell] [heading + description] [status?] [action?]`, 3 sizes (padding 8/10/12). Hover = flat wash, focus = 1px inset border, permanent 1px bottom divider (a **stroke** in Figma, never an effect — see Row.md). `status`/`action` are real Figma Slots + `hasStatus`/`hasAction` booleans; `leading` is a typed prop. `description` is a nested size-matched `LabelGroup` (18 variants, `10180:18768`). Next: drop into `ScrollableArea`'s `content` slot inside `ListCard.Body` |
 
 ### Layout / shell — built this session, **in progress**
 
@@ -207,7 +216,11 @@ class merge (`cn()` in `src/lib/cn.ts`), Radix `Slot`/`Slottable` for
 |---|---|---|
 | **ListCard** | L2 | nests a real `Card`(`padding=md`) instance — Header/Filters/Body inside it, in a `Stack (column, gap=xl)` wrapper frame. No variants (single component) — the `description` toggle lives on the nested `ListCardHeader`, not on `ListCard` itself (see below) |
 | **ListCardHeader** | L1 | heading + optional description line. `description` is a real **boolean** on `ListCardHeader`'s own definition (valid despite being nested inside `Card`'s slot — the "no boolean inside a slot" restriction only blocks a *parent* reaching into a slot from outside, not a component's own internal boolean). Exposed up via Figma's nested-instance-properties, one level only — reaches `ListCard`'s panel since `ListCardHeader` is `ListCard`'s own direct child |
-| `ScrollableAreaRow` | L1 | **not built yet** — next planned piece, goes inside `ScrollableArea`'s `content` slot inside `ListCard.Body` |
+| **Switch** | L1 | Figma only, built autonomously (owner away) — 18 variants (`10221:13885`): `size`(sm/md/lg) × `checked` × `state`(default/hover/disabled). Pill track + ellipse thumb, `checked` toggled via `primaryAxisAlignItems` MIN/MAX. React/docs not started. |
+| **Checkbox** | L1 | Figma only — 27 variants (`10222:13959`): `size` × `checked`(unchecked/checked/indeterminate) × `state`. Box + optional icon child (checkmark vector, or a dash for indeterminate); disabled icon uses `color/text/disabled`, not white. React/docs not started. |
+| **Radio** | L1 | Figma only — 18 variants (`10222:14006`): `size` × `checked` × `state`. Same frame+centered-child pattern as `Checkbox` but circular, white background retained in every state — checked signaled by border color + a dot, never a solid fill. React/docs not started. |
+| **Modal** | L2 | Owner-built, Figma only — 4 variants (`10264:14412`): `padding` (lg/md/sm/xs), each `header` (`heading` Slot + `close` `IconButton`) / `content` Slot / `footer` Slot. Layer names were Figma defaults, fixed to lowercase role names matching the rest of the file. React/docs not started. |
+| **RigProblemDetail** | L2 | Owner-built, Figma only, WIP — a `Modal` instance (`padding=sm`) with 3 columns (`truck`/`trailer`/`driver`: `EntitySummary` + `ScrollableArea` of `Row`s). Opens from a "Problems with fleet" row click. Named to mirror the Rig entity (TK/TL/DR/RG vocabulary) rather than the source list. Content (real IDs, driver surname) still placeholder. React/docs not started — no `Dialog` panel component exists yet to route this through. |
 
 **Composition rule (settled, don't re-litigate):** `AppShell` content slot →
 `<Page>` → `Grid`/`Stack` of cards. **Never cards directly in the slot** — the
@@ -259,6 +272,17 @@ then `size/control/*` tokens → `Input`+`Select` → `Tab` → `DataTable`.
   sense) — use `primaryAxisSizingMode`/`counterAxisSizingMode` on those, and
   size the instance with FILL only after it's placed inside a real auto-layout
   parent (e.g. once dropped into AppShell's content slot).
+  **Corollary, hit 3 times now (`Tracker`-in-`NextTask`, then `Row`-in-
+  `ScrollableArea`): `createInstance()` always stays `FIXED` at the master's
+  own canvas size — nothing sets `FILL` automatically just because the real
+  parent is auto-layout.** After `parent.appendChild(instance)`, always check
+  whether the instance should stretch to its real container and explicitly
+  set `layoutSizingHorizontal`/`Vertical = 'FILL'` if so — otherwise content
+  that should be near the container's edge (a trailing badge, an action
+  button) silently renders past the real visible bounds at the master's
+  original width, invisible in any render/export without an explicit
+  width/position check. Don't just eyeball a screenshot for "did the content
+  show up" — read back the instance's actual width against its parent's.
 - **`layoutGrow` only accepts `0` or `1`** in this Figma API version — no
   proportional grow values. For "span N of 12" style proportional widths,
   compute literal pixel widths and set fixed sizes instead.
@@ -317,6 +341,30 @@ then `size/control/*` tokens → `Input`+`Select` → `Tab` → `DataTable`.
   them) — each time, the generator silently dropped the new tokens
   (`created: 0`, no error) instead of failing loudly. Always check `created`
   count against what you expect after adding a new family.
+- **`Button`/`IconButton`'s `2sm` size was renamed to `xs`** (owner, in
+  Figma) — `xs` reads as the logical bottom step of the `sm`/`md`/`lg`/`xl`/
+  `2xl` scale, same idea as `2xl` being the logical top step. Renamed
+  everywhere in React (`ButtonSize`, both `.module.css` files) and docs;
+  `tokens/component.layout.json`'s `radius.button.2sm` → `radius.button.xs`.
+  The owner only renamed the **variant labels** in Figma (`size=2sm` →
+  `size=xs`), not the underlying variable — re-running the token sync
+  therefore *created* a stray duplicate `radius/button/xs` instead of
+  matching anything (the generator only creates-or-matches by name, it never
+  renames), leaving the real, already-bound variable stuck at its old name
+  `radius/button/2sm`. Fixed by hand: deleted the stray duplicate, then
+  renamed the real variable (ID-based rename, doesn't touch any of the 16
+  xs-variant bindings) — re-verified all 16 Button/IconButton `xs` variants
+  still resolve `cornerRadius: 6` through the same variable ID, now correctly
+  named. **Lesson for next time a variant label gets renamed in Figma without
+  the underlying variable being renamed too:** re-running Mode A's sync will
+  silently create an orphan rather than catching the intended rename — check
+  for exactly this (a new create where you expected zero, or two
+  similarly-named variables) before trusting the sync's `created` count.
+  Historical mentions of the literal string `2sm` tied to a specific past
+  event (the digit-leading regex bug above, the original clone-from names in
+  `IconButton.md`) were deliberately left as `2sm` rather than rewritten,
+  since they describe what the name was *at that time*, not what it's called
+  now.
 - **`figma.getNodeByIdAsync()` called directly on a compound sublayer ID**
   (the `I<instance>;<override>;<node>` format Figma returns for a node nested
   inside a component instance) **is unreliable** — hit 3 consecutive
@@ -330,6 +378,62 @@ then `size/control/*` tokens → `Input`+`Select` → `Tab` → `DataTable`.
   this pattern generally for any script that targets something nested inside
   an instance, rather than caching/reusing a compound ID across separate
   `fig.mjs` calls.
+- **Multiple unrelated top-level components share this system's names** —
+  found twice: two different "Row" components (one this system's, one
+  unrelated), and 5 matches for `/badge/i` including an unrelated Color-only
+  "Badge" and literal library junk ("Badgeeee", "IdentificationBadge"). A bare
+  `findOne(name === '...')`/`findAll(/name/i)` silently returns whichever
+  matches first — always confirm you have the right one (check its variant
+  properties/anatomy match what you expect) before editing, or address it by
+  a known-good id. When you need a reliable anchor for a *specific* screen
+  instance buried in a deep tree (not a shared component), the fix that
+  worked well: ask the owner to wrap it in a distinctively-named frame (e.g.
+  `"Claude"`) — one unambiguous `findAll` away, zero collision risk. **Caveat:
+  this only holds until someone moves the content out of the wrapper** — hit
+  exactly this once already (the wrapper went empty after the owner
+  relocated the screen inside it while working in parallel). When the anchor
+  frame comes back empty, don't assume data loss — search for the known
+  child by name across the whole page (`findAll`) and trace `.parent` upward
+  to find its new location before concluding anything is actually gone.
+- **A "convert to Slot" click appends a disambiguating numeric suffix to the
+  name** if any other layer in the file shares it — e.g. `"status (convert to
+  Slot)"` becomes `"status (convert to Slot)6"`. Match Slot names with
+  `.startsWith(...)`, never `===`, or `findOne` silently returns `null`. Once
+  the manual conversion step is done, the descriptive "(convert to Slot)"
+  suffix has no reason to stay — safe to rename the Slot node back to a plain
+  name (`status`, `action`) afterward; Figma does not require Slot names to
+  be file-unique (confirmed: renaming 18 pairs to the same two plain names
+  produced no auto-suffixing, unlike the original conversion step).
+- **A real, confirmed Figma rendering bug: an effect (e.g. `INNER_SHADOW`) on
+  a frame with no fill corrupts text rendering for that frame's descendants.**
+  Glyphs render missing/warped (e.g. hyphens vanish, letters warp toward a
+  serif substitute) specifically for **Plus Jakarta Sans as a variable font**
+  (`fontName.variationSettings`, a weight-axis instance rather than a static
+  per-weight file) — this is what actually broke `Row`'s heading/description
+  text this session, not any specific edit sequence. **Root-caused the hard
+  way**: three different theories (redefining text styles, instance-level
+  text overrides, "any sustained document activity") were each individually
+  disproven by isolated tests before the owner found the real cause by
+  inspecting the effects list directly. Once found, trivial to confirm:
+  removing the effect and using a real **stroke** instead (Figma has no
+  bottom-only-border primitive, so a 1px-bottom-only stroke via
+  `strokeBottomWeight = 1` + `strokeTopWeight/strokeLeftWeight/
+  strokeRightWeight = 0`, `strokeAlign: 'INSIDE'`,
+  `strokesIncludedInLayout: false` for layout-neutrality — same recipe as
+  Card's own inset-stroke technique) renders perfectly on the identical
+  no-fill frame. **Strokes on a no-fill frame are fine; effects on one are
+  not.** Neither closing/reopening the file nor a full Figma Desktop restart
+  ever cleared it once introduced — only reverting past the point the effect
+  was added did (confirms it's saved into the document, not merely an
+  in-memory render cache). If this recurs: check the node's `effects` array
+  first, before chasing anything else — verify via the API
+  (`node.characters`/`fontName`/`textStyleId`) that the underlying document
+  data is correct (it always was, every time, across every test this session)
+  to rule out real data corruption, then check for any effect sitting on a
+  fill-less frame. (The `build-04-text-styles-N.js` drift-safety fix from
+  earlier in this saga is still a good change — redefining an unchanged style
+  every run was real, avoidable waste — but it was not the actual cause here;
+  don't rely on it alone if this recurs.)
 
 ## 7 · Where things live
 
@@ -356,12 +460,15 @@ CHANGELOG-renames.md           every rename/decision, newest first — the detai
 
 1. Bring the bridge up (§4) — reopen Figmosha Bridge plugin in Figma Desktop,
    restart `bridge.mjs` if needed, `ping.js` to confirm.
-2. **Build `ScrollableAreaRow`** — the next planned piece, finishes `ListCard`
-   (goes in `ScrollableArea`'s `content` slot inside `ListCard.Body`). Two
-   very different row shapes were shown as reference (icon+text+timestamp vs.
-   text+text+badge) — a strong signal the row itself should stay dumb
-   (padding, divider-between, hover, freeform `children`), not bake in a
-   specific content layout.
+2. **Build `Row` in Figma** — React side is done (`src/components/Row`, see
+   `docs/components/Row.md`). The old "keep it dumb/freeform children" plan
+   here (from when only two reference shapes existed) is superseded — the
+   owner pinned down the real anatomy: `leading` (`IconCell` only, typed
+   prop) + fixed heading/description + `status`/`action` (two ordered real
+   Slots). Once built, finishes `ListCard` (goes in `ScrollableArea`'s
+   `content` slot inside `ListCard.Body`). Note: `figma.createSlot()` isn't
+   scriptable, so `status`/`action` need a manual "convert to Slot" click per
+   variant, same gap as `ListCard`'s own `content` frame.
 3. **The 1440 resize is ongoing, component by component, owner-driven** — the
    owner resizes something in Figma, tells Claude, Claude checks + resyncs
    React + documents. Check `CHANGELOG-renames.md`'s newest entries for

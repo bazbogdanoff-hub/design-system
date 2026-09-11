@@ -10,12 +10,12 @@ export type BadgeTone =
   | 'warning'
   | 'warning-strong'
   | 'danger';
-export type BadgeSize = 'sm' | 'md' | 'lg';
+export type BadgeSize = 'xs' | 'sm' | 'md' | 'lg';
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   /** Semantic colour. `neutral` (default) · `brand` · `success` · `warning` · `warning-strong` (orange) · `danger`. */
   tone?: BadgeTone;
-  /** `sm` (13) · `md` (14, default) · `lg` (16). */
+  /** `xs` (12) · `sm` (13) · `md` (14, default) · `lg` (16). */
   size?: BadgeSize;
   /** Optional leading icon, rendered in a 1em box that inherits the tone colour. */
   icon?: ReactNode;

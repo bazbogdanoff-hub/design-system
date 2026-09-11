@@ -1,9 +1,9 @@
 import type { SVGProps } from 'react';
 
-export type SeverityIconSize = 16 | 20 | 24;
+export type SeverityIconSize = 12 | 16 | 20 | 24;
 
 export interface SeverityIconProps extends Omit<SVGProps<SVGSVGElement>, 'width' | 'height'> {
-  /** Rendered square size. 16 / 20 / 24 — matches SeverityBadge sm / md / lg. */
+  /** Rendered square size. 12 / 16 / 20 / 24 — matches SeverityBadge xs / sm / md / lg. */
   size?: SeverityIconSize;
 }
 

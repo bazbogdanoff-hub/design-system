@@ -126,9 +126,9 @@
    unified across variant now (every variant gets the same height/padding/
    font/radius at a given size). Two exceptions, applied as overrides below:
    primary's gap stays a flat space/6 at every size (secondary/tertiary scale
-   4/6/8 with size); tertiary's `2sm` is uniquely 24px tall (every other
+   4/6/8 with size); tertiary's `xs` is uniquely 24px tall (every other
    combo's height is purely size-driven, not variant-driven). */
-.button[data-size='2sm'],
+.button[data-size='xs'],
 .button[data-size='sm'] { gap: var(--space-4); }
 .button[data-size='md'],
 .button[data-size='lg'] { gap: var(--space-6); }
@@ -136,14 +136,14 @@
 .button[data-size='2xl'] { gap: var(--space-8); }
 .button[data-variant='primary'] { gap: var(--space-6); }
 
-.button[data-size='2sm'] {
+.button[data-size='xs'] {
   height: 28px;
   padding-inline: var(--space-6);
   font: var(--text-label-xs-font-weight) var(--text-label-xs-font-size) / var(--text-label-xs-line-height) var(--text-label-xs-font-family);
   letter-spacing: var(--text-label-xs-letter-spacing);
-  border-radius: var(--radius-button-2sm);
+  border-radius: var(--radius-button-xs);
 }
-.button[data-variant='tertiary'][data-size='2sm'] {
+.button[data-variant='tertiary'][data-size='xs'] {
   height: 24px;
 }
 .button[data-size='sm'] {

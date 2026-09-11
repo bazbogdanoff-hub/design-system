@@ -1,0 +1,59 @@
+/* Mirrors text/body/* exactly (size / weight / line-height / letter-spacing) —
+   Label is body weight, NOT the label scale's semibold (that's Tag's job).
+   Reuses the --text-body-* vars rather than duplicating them. */
+.label {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.label[data-size='2xs'] {
+  font-family: var(--text-body-2xs-font-family);
+  font-size: var(--text-body-2xs-font-size);
+  font-weight: var(--text-body-2xs-font-weight);
+  line-height: var(--text-body-2xs-line-height);
+  letter-spacing: var(--text-body-2xs-letter-spacing);
+}
+.label[data-size='xs'] {
+  font-family: var(--text-body-xs-font-family);
+  font-size: var(--text-body-xs-font-size);
+  font-weight: var(--text-body-xs-font-weight);
+  line-height: var(--text-body-xs-line-height);
+  letter-spacing: var(--text-body-xs-letter-spacing);
+}
+.label[data-size='sm'] {
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--text-body-sm-font-weight);
+  line-height: var(--text-body-sm-line-height);
+  letter-spacing: var(--text-body-sm-letter-spacing);
+}
+.label[data-size='md'] {
+  font-family: var(--text-body-md-font-family);
+  font-size: var(--text-body-md-font-size);
+  font-weight: var(--text-body-md-font-weight);
+  line-height: var(--text-body-md-line-height);
+  letter-spacing: var(--text-body-md-letter-spacing);
+}
+.label[data-size='lg'] {
+  font-family: var(--text-body-lg-font-family);
+  font-size: var(--text-body-lg-font-size);
+  font-weight: var(--text-body-lg-font-weight);
+  line-height: var(--text-body-lg-line-height);
+  letter-spacing: var(--text-body-lg-letter-spacing);
+}
+.label[data-size='xl'] {
+  font-family: var(--text-body-xl-font-family);
+  font-size: var(--text-body-xl-font-size);
+  font-weight: var(--text-body-xl-font-weight);
+  line-height: var(--text-body-xl-line-height);
+  letter-spacing: var(--text-body-xl-letter-spacing);
+}
+
+/* color/label/* — plain aliases of the semantic text ramp, per-instance */
+.label[data-color='default'] { color: var(--color-label-default); }
+.label[data-color='subtle']  { color: var(--color-label-subtle); }
+.label[data-color='muted']   { color: var(--color-label-muted); }
+.label[data-color='brand']   { color: var(--color-label-brand); }
+.label[data-color='success'] { color: var(--color-label-success); }
+.label[data-color='warning'] { color: var(--color-label-warning); }
+.label[data-color='danger']  { color: var(--color-label-danger); }

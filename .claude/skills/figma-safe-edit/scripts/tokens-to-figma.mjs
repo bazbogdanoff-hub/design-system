@@ -61,7 +61,7 @@ const remToNum = (s) => {
 const HUES = 'slate gray zinc neutral stone red orange amber yellow lime green emerald teal cyan sky blue indigo violet purple fuchsia pink rose'.split(' ');
 const isColorPrimitive = (p) => new RegExp(`^color\\.(${HUES.join('|')}|brand|extra|white|black|alpha-black)(\\.|$)`).test(p);
 const isColorSemantic = (p) => /^color\.(background|surface|text|border|icon|chart|category)\./.test(p);
-const isColorComponent = (p) => /^color\.(button|card|input|badge|table|modal|scrollableArea)\./.test(p);
+const isColorComponent = (p) => /^color\.(button|card|input|badge|table|modal|scrollableArea|switch|checkbox|radio|label|formField|helperText)\./.test(p);
 
 // ---------- 01 · primitives (COLOR + FLOAT + STRING) --------------------
 // Font primitives that text styles can actually *bind* to. Only fontFamily,
@@ -104,7 +104,7 @@ for (const [p, raw] of Object.entries(rawByPath)) {
 // ---------- 03 · component (aliases) ------------------------------------
 const compAliases = [];
 for (const [p, raw] of Object.entries(rawByPath)) {
-  if (!isColorComponent(p) && !/^radius\.(card|page|modal|table|popover|button|input|badge|scrollableArea)(\.[a-zA-Z0-9]+){0,2}$/.test(p)) continue;
+  if (!isColorComponent(p) && !/^radius\.(card|page|modal|table|popover|button|input|badge|scrollableArea|checkbox|switch)(\.[a-zA-Z0-9]+){0,2}$/.test(p)) continue;
   const m = typeof raw === 'string' && raw.match(/^\{(.+)\}$/);
   if (m) compAliases.push({ name: figName(p), target: figName(m[1]), type: p.startsWith('color') ? 'COLOR' : 'FLOAT' });
   else if (raw === 'transparent') compAliases.push({ name: figName(p), raw: '#00000000', type: 'COLOR' });
@@ -257,12 +257,52 @@ const allVars = await figma.variables.getLocalVariablesAsync();
 const varByName = new Map(allVars.map((v) => [v.name, v]));
 const missingFonts = new Set();
 const missingVars = new Set();
-let created = 0, updated = 0;
+let created = 0, updated = 0, skipped = 0;
+
+// Drift-safe check — mirrors the variable ALIAS_APPLY pattern. Redefining an
+// already-correct text style still calls loadFontAsync + rewrites fontName/
+// fontSize/etc every time, which is not free: repeatedly doing this for a
+// VARIABLE font (one resolved via a weight axis, not a static file) has been
+// observed to destabilize that weight's render cache in the live Figma file
+// (glyphs render corrupted — missing/warped — on a transparent-fill layer,
+// only after this batch had just re-touched that exact weight). Skipping a
+// style that's already exactly right avoids re-triggering that per run.
+const close = (x, y) => Math.abs((x ?? 0) - (y ?? 0)) < 0.001;
+function alreadyCorrect(st, s, fontName) {
+  if (st.fontName.family !== fontName.family || st.fontName.style !== fontName.style) return false;
+  if (st.fontSize !== s.size) return false;
+  // Figma round-trips a PERCENT value through internal storage with float
+  // noise (115 comes back as 114.99999761581421) — exact equality here would
+  // never skip, defeating the whole point. Same tolerance as the color
+  // ALIAS_APPLY's own close() below.
+  if (st.lineHeight.unit !== 'PERCENT' || !close(st.lineHeight.value, s.lineHeightPct)) return false;
+  if (st.letterSpacing.unit !== 'PERCENT' || !close(st.letterSpacing.value, s.letterSpacingPct)) return false;
+  if (st.textCase !== (s.uppercase ? 'UPPER' : 'ORIGINAL')) return false;
+  if ('leadingTrim' in st && st.leadingTrim !== 'NONE') return false;
+  if (s.description && st.description !== s.description) return false;
+  const boundOk = (field, vname) => {
+    if (!vname) return true;
+    const v = varByName.get(vname);
+    if (!v) return true; // missing var is reported separately, don't block the skip check on it
+    return st.boundVariables && st.boundVariables[field] && st.boundVariables[field].id === v.id;
+  };
+  if (!boundOk('fontFamily', s.mono ? 'font/family/mono' : 'font/family/sans')) return false;
+  if (!boundOk('fontSize', s.sizeKey && ('font/size/' + s.sizeKey))) return false;
+  if (!boundOk('fontWeight', s.weightKey && ('font/weight/' + s.weightKey))) return false;
+  // lineHeight/letterSpacing must stay UNbound (see comment below) — reject
+  // the skip if an earlier run left them bound, so the unbind still runs.
+  if (st.boundVariables && (st.boundVariables.lineHeight || st.boundVariables.letterSpacing)) return false;
+  return true;
+}
+
 for (const s of SPEC) {
   const fontName = { family: s.mono ? 'Roboto Mono' : s.family, style: s.style };
+  const st0 = byName.get(s.name);
+  if (st0 && alreadyCorrect(st0, s, fontName)) { skipped++; continue; }
+
   try { await figma.loadFontAsync(fontName); }
   catch (e) { missingFonts.add(fontName.family + ' ' + fontName.style); continue; }
-  let st = byName.get(s.name);
+  let st = st0;
   if (!st) { st = figma.createTextStyle(); st.name = s.name; created++; } else updated++;
   st.fontName = fontName;
   st.fontSize = s.size;
@@ -293,7 +333,7 @@ for (const s of SPEC) {
   st.lineHeight = { unit: 'PERCENT', value: s.lineHeightPct };
   st.letterSpacing = { unit: 'PERCENT', value: s.letterSpacingPct };
 }
-return { created, updated, names: SPEC.map((s) => s.name), missingFonts: [...missingFonts], missingVars: [...missingVars] };
+return { created, updated, skipped, names: SPEC.map((s) => s.name), missingFonts: [...missingFonts], missingVars: [...missingVars] };
 `;
 const tsSlices = [];
 for (let i = 0; i < textStyles.length; i += 5) {

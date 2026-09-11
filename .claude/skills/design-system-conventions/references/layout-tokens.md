@@ -98,7 +98,7 @@ today if you're deciding whether to differentiate them again later.
 | `radius.badge.sm` | `radius.chip` | 6 |
 | `radius.badge.md` | `radius.control` | 8 |
 | `radius.badge.lg` | `radius.control` | 8 |
-| `radius.button.2sm` | `radius.chip` | 6 |
+| `radius.button.xs` | `radius.chip` | 6 |
 | `radius.button.sm` | `radius.chip` | 6 |
 | `radius.button.md` | `radius.control` | 8 |
 | `radius.button.lg` | `radius.control` | 8 |

@@ -10,7 +10,7 @@ A **square** icon-only button. Same glass skin, variants, sizes and states as
 | prop | values | default |
 |---|---|---|
 | `variant` | `primary` · `secondary` · `tertiary` | `secondary` |
-| `size` | `2sm` `sm` `md` `lg` `xl` `2xl` — see below, two are variant-restricted | `md` |
+| `size` | `xs` `sm` `md` `lg` `xl` `2xl` — see below, two are variant-restricted | `md` |
 | `icon` | `ReactNode` — **required** | — |
 | `loading` | `boolean` — spinner replaces the icon, interaction blocked | `false` |
 | `asChild` | `boolean` | `false` |
@@ -22,12 +22,12 @@ other button props pass through.
 
 1440 migration: unified across variant, same as `Button` — `primary` used to
 be its own taller scale (36/40/44/56), now it matches `secondary`/`tertiary`
-exactly at `sm`/`md`/`lg`/`xl`. `2sm` is `secondary`/`tertiary`-only, `2xl` is
-`primary`-only.
+exactly at `sm`/`md`/`lg`/`xl`. `xs` (renamed from `2sm`) is
+`secondary`/`tertiary`-only, `2xl` is `primary`-only.
 
 | `size` | square | icon |
 |---|---|---|
-| `2sm` | 28 × 28 (**24 × 24 for `tertiary`**) | 12 |
+| `xs` | 28 × 28 (**24 × 24 for `tertiary`**) | 12 |
 | `sm` | 28 × 28 | 14 |
 | `md` | 32 × 32 | 16 |
 | `lg` | 36 × 36 | 18 |
@@ -56,9 +56,11 @@ resized down from the old scale (36/40/44/56) to the unified one (28/32/36/40,
 both the outer frame and the inner icon/Loading instances), and 12 new
 variants added by cloning the nearest existing one (`secondary`/`2sm` off
 `secondary`/`sm`, `tertiary`/`2sm` off `tertiary`/`sm`, `primary`/`2xl` off
-`primary`/`xl`) rather than building from scratch. Radius rebound to the same
-flat `radius/button/<size>` scale `Button` uses. Verified: box size, icon
-size, and radius checked against the expected table for all 60 variants.
+`primary`/`xl`) rather than building from scratch — `2sm` here is the
+variant's name as it existed at the time; it was later renamed to `xs`, see
+above. Radius rebound to the same flat `radius/button/<size>` scale `Button`
+uses. Verified: box size, icon size, and radius checked against the expected
+table for all 60 variants.
 
 ## a11y
 

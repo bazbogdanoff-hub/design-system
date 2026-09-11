@@ -66,6 +66,14 @@
   letter-spacing: var(--font-letter-spacing-normal);
 }
 
+.text-body-xl {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--font-line-height-normal);
+  letter-spacing: var(--font-letter-spacing-normal);
+}
+
 .text-body-lg {
   font-family: var(--font-family-sans);
   font-size: var(--font-size-15);
@@ -96,6 +104,14 @@
   font-weight: var(--font-weight-medium);
   line-height: var(--font-line-height-normal);
   letter-spacing: var(--font-letter-spacing-normal);
+}
+
+.text-body-2xs {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--font-line-height-normal);
+  letter-spacing: var(--font-letter-spacing-wide);
 }
 
 .text-label-xl {

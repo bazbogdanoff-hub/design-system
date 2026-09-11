@@ -1,0 +1,22 @@
+/* Horizontal run of Label bits separated by real 1px vertical dividers.
+   itemSpacing -> space/6; divider is fixed chrome (color/text/subtle), 1px
+   wide, height = the label's font-size at this size (NOT line-height). */
+.group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.divider {
+  flex: none;
+  align-self: center;
+  width: 1px;
+  background-color: var(--color-text-subtle);
+}
+
+.group[data-size='2xs'] .divider { height: var(--text-body-2xs-font-size); }
+.group[data-size='xs'] .divider  { height: var(--text-body-xs-font-size); }
+.group[data-size='sm'] .divider  { height: var(--text-body-sm-font-size); }
+.group[data-size='md'] .divider  { height: var(--text-body-md-font-size); }
+.group[data-size='lg'] .divider  { height: var(--text-body-lg-font-size); }
+.group[data-size='xl'] .divider  { height: var(--text-body-xl-font-size); }

@@ -6,7 +6,7 @@
     "table": { "$value": "{radius.panel}" },
     "popover": { "$value": "{radius.panel}" },
     "button": {
-      "2sm": { "$value": "{radius.chip}", "$description": "6 — 1440 migration: sizes unified across variant, one radius per size now (was per-variant-per-size)" },
+      "xs": { "$value": "{radius.chip}", "$description": "6 — 1440 migration: sizes unified across variant, one radius per size now (was per-variant-per-size). Renamed from 2sm — xs reads as a logical bottom step of the sm/md/lg/xl/2xl scale, matching how 2xl reads as the logical top step." },
       "sm": { "$value": "{radius.chip}", "$description": "6" },
       "md": { "$value": "{radius.control}", "$description": "8" },
       "lg": { "$value": "{radius.control}", "$description": "8" },
@@ -18,6 +18,22 @@
       "sm": { "$value": "{radius.chip}", "$description": "6 — small badge" },
       "md": { "$value": "{radius.control}", "$description": "8 — medium badge" },
       "lg": { "$value": "{radius.control}", "$description": "8 — large badge" }
+    },
+    "checkbox": {
+      "$value": "{radius.sm}",
+      "$description": "4, flat across all sizes — a checkbox's corner rounding doesn't scale with its box size, same reasoning as radius.input staying flat across Input's sizes."
+    },
+    "switch": {
+      "$value": "{radius.full}",
+      "$description": "Pill track + circular thumb at every size — a switch is always fully rounded, no size-dependent step needed."
+    }
+  },
+  "size": {
+    "control": {
+      "$type": "dimension",
+      "sm": { "$value": "1.75rem", "$description": "28px, RAW — not aliased to space/*, which jumps 24→32 with nothing at 28. A control's height is a sizing concern, not a spacing one. Matches Button's own sm/xs height exactly, so an Input/Select and a Button of the same size step align in a toolbar. This is the size/control/* token flagged as a TODO in Button.md/HANDOFF." },
+      "md": { "$value": "2rem", "$description": "32px — matches Button md height. Could alias {space.32}; kept a sibling raw value to sm/lg instead for consistency within this group." },
+      "lg": { "$value": "2.25rem", "$description": "36px — matches Button lg height." }
     }
   }
 }

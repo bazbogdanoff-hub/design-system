@@ -121,39 +121,6 @@
         "$description": "Focused/active glass border — full 1.5px primary, replaces the white top-left catch. Shared by Card, StatButton, and other glass buttons."
       }
     },
-    "input": {
-      "background": {
-        "default": {
-          "$value": "{color.surface.default}"
-        },
-        "disabled": {
-          "$value": "{color.background.disabled}"
-        }
-      },
-      "text": {
-        "$value": "{color.text.default}"
-      },
-      "placeholder": {
-        "$value": "{color.text.muted}"
-      },
-      "label": {
-        "$value": "{color.text.subtle}"
-      },
-      "border": {
-        "default": {
-          "$value": "{color.border.default}"
-        },
-        "hover": {
-          "$value": "{color.border.strong}"
-        },
-        "focus": {
-          "$value": "{color.border.focus}"
-        },
-        "danger": {
-          "$value": "{color.border.danger}"
-        }
-      }
-    },
     "badge": {
       "neutral": {
         "background": {
@@ -268,7 +235,117 @@
             "$value": "{color.background.overlay-subtle}",
             "$description": "Inset shadow, not a fill — rows have no background by default. Shared with table.row.shadow.hover."
           }
+        },
+        "border": {
+          "focus": {
+            "$value": "{color.border.focus}",
+            "$description": "1px inset border for keyboard focus — inset (box-shadow, not outline) to stay consistent with the row's own no-fill, inset-shadow-hover treatment instead of an outer glow."
+          },
+          "divider": {
+            "$value": "{color.border.default}",
+            "$description": "Permanent 1px bottom-only divider between rows in a list — every state (default/hover/focus), unlike hover/focus which only apply on interaction. Owner changed this from border.subtle (zinc.100, \"faint separators\") to border.default (zinc.200, \"inputs, cards, dividers\") directly in Figma — a plain divider apparently read as too faint at subtle. CSS: box-shadow inset (layout-neutral, stacks with the focus ring as a second shadow layer). Figma: a real per-side stroke (strokeBottomWeight 1, others 0, INSIDE align, strokesIncludedInLayout false) — NOT an effect. An INNER_SHADOW effect on this frame (which has no fill) was confirmed to corrupt Figma's own text rendering for this file's variable-font weight; a stroke on the same no-fill frame does not. See docs/components/Row.md and HANDOFF.md §6."
+          }
         }
+      }
+    },
+    "switch": {
+      "track": {
+        "off": { "$value": "{color.surface.sunken}", "$description": "zinc.100, \"wells, code blocks, inset track\" — literally the inset-track description this token already carries, reused verbatim for the off-state track." },
+        "on": { "$value": "{color.background.brand.default}", "$description": "brand.600, same token Button primary/selected-state uses." },
+        "on-hover": { "$value": "{color.background.brand.hover}" },
+        "disabled": { "$value": "{color.background.disabled}" }
+      },
+      "thumb": {
+        "$value": "{color.white}",
+        "$description": "Always a plain white circle regardless of track state — the track color alone carries on/off/disabled."
+      }
+    },
+    "checkbox": {
+      "background": {
+        "off": { "$value": "{color.surface.default}" },
+        "on": { "$value": "{color.background.brand.default}" },
+        "on-hover": { "$value": "{color.background.brand.hover}" },
+        "disabled": { "$value": "{color.background.disabled}" }
+      },
+      "border": {
+        "off": { "$value": "{color.border.default}" },
+        "off-hover": { "$value": "{color.border.strong}" },
+        "disabled": { "$value": "{color.border.subtle}", "$description": "Same value as background.disabled (zinc.100) — a disabled checkbox reads as one flat muted shape, no separate border needed to stand out." }
+      },
+      "icon": {
+        "$value": "{color.white}",
+        "$description": "The checkmark (checked) / dash (indeterminate) glyph — always white against the brand fill."
+      }
+    },
+    "radio": {
+      "background": {
+        "$value": "{color.surface.default}",
+        "$description": "Radio keeps a plain white fill in every state, checked included — unlike Checkbox, which fills solid. The dot (see below) is what signals checked, not the fill."
+      },
+      "border": {
+        "off": { "$value": "{color.border.default}" },
+        "off-hover": { "$value": "{color.border.strong}" },
+        "on": { "$value": "{color.background.brand.default}" },
+        "on-hover": { "$value": "{color.background.brand.hover}" },
+        "disabled": { "$value": "{color.border.subtle}" }
+      },
+      "dot": {
+        "on": { "$value": "{color.background.brand.default}" },
+        "disabled": { "$value": "{color.text.disabled}" }
+      }
+    },
+    "input": {
+      "background": {
+        "default": { "$value": "{color.surface.default}" },
+        "disabled": { "$value": "{color.background.disabled}" }
+      },
+      "border": {
+        "default": { "$value": "{color.border.default}" },
+        "hover": { "$value": "{color.border.strong}" },
+        "focus": { "$value": "{color.border.focus}" },
+        "error": { "$value": "{color.border.danger}" },
+        "disabled": { "$value": "{color.border.subtle}" }
+      },
+      "text": {
+        "default": { "$value": "{color.text.default}" },
+        "placeholder": { "$value": "{color.text.muted}" },
+        "disabled": { "$value": "{color.text.disabled}" }
+      },
+      "icon": {
+        "$value": "{color.text.subtle}",
+        "$description": "Leading/trailing icon color — always subtle, doesn't change with border state (hover/focus/error don't recolor it)."
+      },
+      "affix": {
+        "$value": "{color.text.subtle}",
+        "$description": "Prepend/append text color (e.g. a fixed unit or protocol prefix inside the field) — a subtle, non-editable annotation next to the value, not the value's own text color."
+      }
+    },
+    "label": {
+      "$description": "The Label component's per-instance text color — a plain, colorable inline text bit (sentence-case, not uppercase like Tag). Just aliases the semantic text ramp; no new values. The divider between labels in a LabelGroup is NOT one of these — it's fixed chrome (color.text.subtle).",
+      "default": { "$value": "{color.text.default}" },
+      "subtle": { "$value": "{color.text.subtle}" },
+      "muted": { "$value": "{color.text.muted}" },
+      "brand": { "$value": "{color.text.brand}" },
+      "success": { "$value": "{color.text.success}" },
+      "warning": { "$value": "{color.text.warning}" },
+      "danger": { "$value": "{color.text.danger}" }
+    },
+    "formField": {
+      "label": {
+        "default": { "$value": "{color.text.strong}", "$description": "The headline above the field, at rest — matches Row's own heading color (a field label reads as a subheading, not a page heading)." },
+        "primary": { "$value": "{color.text.brand}" },
+        "error": { "$value": "{color.text.danger}" }
+      }
+    },
+    "helperText": {
+      "$description": "The icon+message row a FormField shows below its control in a non-default state. Two tones only for now — primary (an informational note) and error (validation failure) — deliberately no 'default' entry since HelperText never renders in the default state.",
+      "icon": {
+        "primary": { "$value": "{color.icon.brand}" },
+        "error": { "$value": "{color.icon.danger}" }
+      },
+      "text": {
+        "primary": { "$value": "{color.text.brand}" },
+        "error": { "$value": "{color.text.danger}" }
       }
     }
   }

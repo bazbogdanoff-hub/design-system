@@ -71,15 +71,6 @@ export const ColorCardBackgroundHover: string;
 export const ColorCardBorder: string;
 /** Focused/active glass border — full 1.5px primary, replaces the white top-left catch. Shared by Card, StatButton, and other glass buttons. */
 export const ColorCardBorderActive: string;
-export const ColorInputBackgroundDefault: string;
-export const ColorInputBackgroundDisabled: string;
-export const ColorInputText: string;
-export const ColorInputPlaceholder: string;
-export const ColorInputLabel: string;
-export const ColorInputBorderDefault: string;
-export const ColorInputBorderHover: string;
-export const ColorInputBorderFocus: string;
-export const ColorInputBorderDanger: string;
 export const ColorBadgeNeutralBackground: string;
 export const ColorBadgeNeutralText: string;
 export const ColorBadgeBrandBackground: string;
@@ -111,6 +102,66 @@ export const ColorScrollableAreaBackground: string;
 export const ColorScrollableAreaShadow: string;
 /** Inset shadow, not a fill — rows have no background by default. Shared with table.row.shadow.hover. */
 export const ColorScrollableAreaRowShadowHover: string;
+/** 1px inset border for keyboard focus — inset (box-shadow, not outline) to stay consistent with the row's own no-fill, inset-shadow-hover treatment instead of an outer glow. */
+export const ColorScrollableAreaRowBorderFocus: string;
+/** Permanent 1px bottom-only divider between rows in a list — every state (default/hover/focus), unlike hover/focus which only apply on interaction. Owner changed this from border.subtle (zinc.100, "faint separators") to border.default (zinc.200, "inputs, cards, dividers") directly in Figma — a plain divider apparently read as too faint at subtle. CSS: box-shadow inset (layout-neutral, stacks with the focus ring as a second shadow layer). Figma: a real per-side stroke (strokeBottomWeight 1, others 0, INSIDE align, strokesIncludedInLayout false) — NOT an effect. An INNER_SHADOW effect on this frame (which has no fill) was confirmed to corrupt Figma's own text rendering for this file's variable-font weight; a stroke on the same no-fill frame does not. See docs/components/Row.md and HANDOFF.md §6. */
+export const ColorScrollableAreaRowBorderDivider: string;
+/** zinc.100, "wells, code blocks, inset track" — literally the inset-track description this token already carries, reused verbatim for the off-state track. */
+export const ColorSwitchTrackOff: string;
+/** brand.600, same token Button primary/selected-state uses. */
+export const ColorSwitchTrackOn: string;
+export const ColorSwitchTrackOnHover: string;
+export const ColorSwitchTrackDisabled: string;
+/** Always a plain white circle regardless of track state — the track color alone carries on/off/disabled. */
+export const ColorSwitchThumb: string;
+export const ColorCheckboxBackgroundOff: string;
+export const ColorCheckboxBackgroundOn: string;
+export const ColorCheckboxBackgroundOnHover: string;
+export const ColorCheckboxBackgroundDisabled: string;
+export const ColorCheckboxBorderOff: string;
+export const ColorCheckboxBorderOffHover: string;
+/** Same value as background.disabled (zinc.100) — a disabled checkbox reads as one flat muted shape, no separate border needed to stand out. */
+export const ColorCheckboxBorderDisabled: string;
+/** The checkmark (checked) / dash (indeterminate) glyph — always white against the brand fill. */
+export const ColorCheckboxIcon: string;
+/** Radio keeps a plain white fill in every state, checked included — unlike Checkbox, which fills solid. The dot (see below) is what signals checked, not the fill. */
+export const ColorRadioBackground: string;
+export const ColorRadioBorderOff: string;
+export const ColorRadioBorderOffHover: string;
+export const ColorRadioBorderOn: string;
+export const ColorRadioBorderOnHover: string;
+export const ColorRadioBorderDisabled: string;
+export const ColorRadioDotOn: string;
+export const ColorRadioDotDisabled: string;
+export const ColorInputBackgroundDefault: string;
+export const ColorInputBackgroundDisabled: string;
+export const ColorInputBorderDefault: string;
+export const ColorInputBorderHover: string;
+export const ColorInputBorderFocus: string;
+export const ColorInputBorderError: string;
+export const ColorInputBorderDisabled: string;
+export const ColorInputTextDefault: string;
+export const ColorInputTextPlaceholder: string;
+export const ColorInputTextDisabled: string;
+/** Leading/trailing icon color — always subtle, doesn't change with border state (hover/focus/error don't recolor it). */
+export const ColorInputIcon: string;
+/** Prepend/append text color (e.g. a fixed unit or protocol prefix inside the field) — a subtle, non-editable annotation next to the value, not the value's own text color. */
+export const ColorInputAffix: string;
+export const ColorLabelDefault: string;
+export const ColorLabelSubtle: string;
+export const ColorLabelMuted: string;
+export const ColorLabelBrand: string;
+export const ColorLabelSuccess: string;
+export const ColorLabelWarning: string;
+export const ColorLabelDanger: string;
+/** The headline above the field, at rest — matches Row's own heading color (a field label reads as a subheading, not a page heading). */
+export const ColorFormFieldLabelDefault: string;
+export const ColorFormFieldLabelPrimary: string;
+export const ColorFormFieldLabelError: string;
+export const ColorHelperTextIconPrimary: string;
+export const ColorHelperTextIconError: string;
+export const ColorHelperTextTextPrimary: string;
+export const ColorHelperTextTextError: string;
 export const ColorWhite: string;
 export const ColorBlack: string;
 export const ColorSlate50: string;
@@ -365,7 +416,7 @@ export const ColorBackgroundMuted: string;
 export const ColorBackgroundEmphasis: string;
 /** Disabled control fill */
 export const ColorBackgroundDisabled: string;
-/** Modal / drawer scrim. RAW value (not a pure alpha-black step — intentionally zinc-950-tinted, kept as-is) */
+/** Modal / drawer scrim — the darkener behind a centered modal. Pure black at 40% (was a zinc-950 tint at ~70%; lightened + de-tinted so the interface stays readable behind the modal). `color.modal.scrim` aliases this. */
 export const ColorBackgroundOverlay: string;
 /** Neutral hover/press wash — layers on top of whatever's underneath instead of replacing it (row hover, list-item hover, etc.), unlike background.subtle which is an opaque swap */
 export const ColorBackgroundOverlaySubtle: string;
@@ -508,8 +559,8 @@ export const RadiusPage: string;
 export const RadiusModal: string;
 export const RadiusTable: string;
 export const RadiusPopover: string;
-/** 6 — 1440 migration: sizes unified across variant, one radius per size now (was per-variant-per-size) */
-export const RadiusButton2sm: string;
+/** 6 — 1440 migration: sizes unified across variant, one radius per size now (was per-variant-per-size). Renamed from 2sm — xs reads as a logical bottom step of the sm/md/lg/xl/2xl scale, matching how 2xl reads as the logical top step. */
+export const RadiusButtonXs: string;
 /** 6 */
 export const RadiusButtonSm: string;
 /** 8 */
@@ -527,6 +578,10 @@ export const RadiusBadgeSm: string;
 export const RadiusBadgeMd: string;
 /** 8 — large badge */
 export const RadiusBadgeLg: string;
+/** 4, flat across all sizes — a checkbox's corner rounding doesn't scale with its box size, same reasoning as radius.input staying flat across Input's sizes. */
+export const RadiusCheckbox: string;
+/** Pill track + circular thumb at every size — a switch is always fully rounded, no size-dependent step needed. */
+export const RadiusSwitch: string;
 export const RadiusNone: string;
 /** 2px */
 export const RadiusXs: string;
@@ -560,6 +615,12 @@ export const RadiusControl: string;
 export const RadiusChip: string;
 /** pill button, avatar, status dot */
 export const RadiusPill: string;
+/** 28px, RAW — not aliased to space/*, which jumps 24→32 with nothing at 28. A control's height is a sizing concern, not a spacing one. Matches Button's own sm/xs height exactly, so an Input/Select and a Button of the same size step align in a toolbar. This is the size/control/* token flagged as a TODO in Button.md/HANDOFF. */
+export const SizeControlSm: string;
+/** 32px — matches Button md height. Could alias 2rem; kept a sibling raw value to sm/lg instead for consistency within this group. */
+export const SizeControlMd: string;
+/** 36px — matches Button lg height. */
+export const SizeControlLg: string;
 export const Space0: string;
 /** 2px — hairline gap */
 export const Space2: string;
@@ -699,6 +760,16 @@ export const TextHeadingXsFontWeight: number;
 export const TextHeadingXsLineHeight: number;
 /** Subsection / group label */
 export const TextHeadingXsLetterSpacing: string;
+/** Largest body step — completes the body scale to match the label/heading ranges; used by Label's xl size so LabelGroup can render at 16px in body weight rather than the label scale's semibold. */
+export const TextBodyXlFontFamily: string;
+/** Largest body step — completes the body scale to match the label/heading ranges; used by Label's xl size so LabelGroup can render at 16px in body weight rather than the label scale's semibold. */
+export const TextBodyXlFontSize: string;
+/** Largest body step — completes the body scale to match the label/heading ranges; used by Label's xl size so LabelGroup can render at 16px in body weight rather than the label scale's semibold. */
+export const TextBodyXlFontWeight: number;
+/** Largest body step — completes the body scale to match the label/heading ranges; used by Label's xl size so LabelGroup can render at 16px in body weight rather than the label scale's semibold. */
+export const TextBodyXlLineHeight: number;
+/** Largest body step — completes the body scale to match the label/heading ranges; used by Label's xl size so LabelGroup can render at 16px in body weight rather than the label scale's semibold. */
+export const TextBodyXlLetterSpacing: string;
 export const TextBodyLgFontFamily: string;
 export const TextBodyLgFontSize: string;
 export const TextBodyLgFontWeight: number;
@@ -729,6 +800,16 @@ export const TextBodyXsFontWeight: number;
 export const TextBodyXsLineHeight: number;
 /** Dense secondary text */
 export const TextBodyXsLetterSpacing: string;
+/** Row's smallest description size — dense, often alphanumeric-code-heavy content (e.g. flight/reference codes) at 10px reusing the existing font.size.10 primitive (already used by overline), rather than inventing an 11px step purely to keep a clean '-2 from heading' arithmetic. Gets wide tracking (unlike every other body step, all 'normal') for the same reason text/label/xs does at this size — legibility for dense uppercase content, not just smallness. */
+export const TextBody2xsFontFamily: string;
+/** Row's smallest description size — dense, often alphanumeric-code-heavy content (e.g. flight/reference codes) at 10px reusing the existing font.size.10 primitive (already used by overline), rather than inventing an 11px step purely to keep a clean '-2 from heading' arithmetic. Gets wide tracking (unlike every other body step, all 'normal') for the same reason text/label/xs does at this size — legibility for dense uppercase content, not just smallness. */
+export const TextBody2xsFontSize: string;
+/** Row's smallest description size — dense, often alphanumeric-code-heavy content (e.g. flight/reference codes) at 10px reusing the existing font.size.10 primitive (already used by overline), rather than inventing an 11px step purely to keep a clean '-2 from heading' arithmetic. Gets wide tracking (unlike every other body step, all 'normal') for the same reason text/label/xs does at this size — legibility for dense uppercase content, not just smallness. */
+export const TextBody2xsFontWeight: number;
+/** Row's smallest description size — dense, often alphanumeric-code-heavy content (e.g. flight/reference codes) at 10px reusing the existing font.size.10 primitive (already used by overline), rather than inventing an 11px step purely to keep a clean '-2 from heading' arithmetic. Gets wide tracking (unlike every other body step, all 'normal') for the same reason text/label/xs does at this size — legibility for dense uppercase content, not just smallness. */
+export const TextBody2xsLineHeight: number;
+/** Row's smallest description size — dense, often alphanumeric-code-heavy content (e.g. flight/reference codes) at 10px reusing the existing font.size.10 primitive (already used by overline), rather than inventing an 11px step purely to keep a clean '-2 from heading' arithmetic. Gets wide tracking (unlike every other body step, all 'normal') for the same reason text/label/xs does at this size — legibility for dense uppercase content, not just smallness. */
+export const TextBody2xsLetterSpacing: string;
 /** xl / 56px primary button */
 export const TextLabelXlFontFamily: string;
 /** xl / 56px primary button */

@@ -10,7 +10,7 @@ type Base = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> & {
   /** `primary` · `secondary` (default) · `tertiary`. */
   variant?: ButtonVariant;
   /** `sm` · `md` (default) · `lg` · `xl`. Square, = the matching Button height.
-   * `2sm` is `secondary`/`tertiary` only, `2xl` is `primary` only (same as Button). */
+   * `xs` is `secondary`/`tertiary` only, `2xl` is `primary` only (same as Button). */
   size?: ButtonSize;
   /** The single icon. Replaced by the spinner while `loading`. */
   icon: ReactNode;

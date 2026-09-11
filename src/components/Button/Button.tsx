@@ -5,15 +5,15 @@ import { Spinner } from './Spinner';
 import styles from './Button.module.css';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
-export type ButtonSize = '2sm' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** `primary` (brand) · `secondary` (neutral glass, default) · `tertiary` (text). */
   variant?: ButtonVariant;
   /** `sm` · `md` (default) · `lg` · `xl`. Height is unified across variants now
-   * (1440 migration) except two exceptions: `2sm` is `secondary`/`tertiary`
-   * only, `2xl` is `primary` only. Not enforced at the type level — same
-   * approach as the old relative scale, just documented. */
+   * (1440 migration) except two exceptions: `xs` (renamed from `2sm`) is
+   * `secondary`/`tertiary` only, `2xl` is `primary` only. Not enforced at the
+   * type level — same approach as the old relative scale, just documented. */
   size?: ButtonSize;
   /** Icon before the label. Replaced by the spinner while `loading`. */
   leadingIcon?: ReactNode;

@@ -22,8 +22,8 @@
         "$description": "Disabled control fill"
       },
       "overlay": {
-        "$value": "#09090bb3",
-        "$description": "Modal / drawer scrim. RAW value (not a pure alpha-black step — intentionally zinc-950-tinted, kept as-is)"
+        "$value": "{color.alpha-black.40}",
+        "$description": "Modal / drawer scrim — the darkener behind a centered modal. Pure black at 40% (was a zinc-950 tint at ~70%; lightened + de-tinted so the interface stays readable behind the modal). `color.modal.scrim` aliases this."
       },
       "overlay-subtle": {
         "$value": "{color.alpha-black.3}",

@@ -266,7 +266,6 @@
   --color-rose-800: #9f1239;
   --color-rose-900: #881337;
   --color-rose-950: #4c0519;
-  --color-background-overlay: rgba(9, 9, 11, 0.7); /** Modal / drawer scrim. RAW value (not a pure alpha-black step — intentionally zinc-950-tinted, kept as-is) */
   --radius-none: 0;
   --radius-xs: 0.125rem; /** 2px */
   --radius-sm: 0.25rem; /** 4px */
@@ -278,6 +277,9 @@
   --radius-4xl: 1.5rem; /** 24px — AppShell/Page's own content-viewport corner */
   --radius-5xl: 2rem; /** 32px */
   --radius-full: 9999px; /** pills, avatars, dots */
+  --size-control-sm: 1.75rem; /** 28px, RAW — not aliased to space/*, which jumps 24→32 with nothing at 28. A control's height is a sizing concern, not a spacing one. Matches Button's own sm/xs height exactly, so an Input/Select and a Button of the same size step align in a toolbar. This is the size/control/* token flagged as a TODO in Button.md/HANDOFF. */
+  --size-control-md: 2rem; /** 32px — matches Button md height. Could alias 2rem; kept a sibling raw value to sm/lg instead for consistency within this group. */
+  --size-control-lg: 2.25rem; /** 36px — matches Button lg height. */
   --space-0: 0;
   --space-2: 0.125rem; /** 2px — hairline gap */
   --space-4: 0.25rem; /** 4px */
@@ -338,13 +340,15 @@
   --color-brand-950: var(--color-indigo-950);
   --color-button-primary-border-active: var(--color-white); /** Full 1.5px white border on focus / active — high contrast on the brand fill (parallels color.button.secondary.border.active). */
   --color-badge-warning-text: var(--color-amber-600); /** One step lighter than text.warning (amber.700) — deliberate primitive alias so the amber `warning` badge is clearly distinct from the orange `warning-strong` badge. Small contrast tradeoff (~3.2:1) accepted for level differentiation. */
-  --color-modal-scrim: var(--color-background-overlay);
   --color-scrollable-area-shadow: var(--color-alpha-black-15); /** Inner-shadow tint at the scroll edges. Was a raw #00000026 before the alpha-black primitive ramp existed — now a proper alias, same value (15%). */
+  --color-switch-thumb: var(--color-white); /** Always a plain white circle regardless of track state — the track color alone carries on/off/disabled. */
+  --color-checkbox-icon: var(--color-white); /** The checkmark (checked) / dash (indeterminate) glyph — always white against the brand fill. */
   --color-background-default: var(--color-zinc-50); /** Page / app canvas */
   --color-background-subtle: var(--color-zinc-100); /** Inset zones, striped rows, panels flush with the page */
   --color-background-muted: var(--color-zinc-300); /** A visibly deeper recessed fill than subtle — the AppShell content-slot backdrop the screen sits on */
   --color-background-emphasis: var(--color-zinc-700); /** High-contrast fills: tooltips, inverse callouts */
   --color-background-disabled: var(--color-zinc-100); /** Disabled control fill */
+  --color-background-overlay: var(--color-alpha-black-40); /** Modal / drawer scrim — the darkener behind a centered modal. Pure black at 40% (was a zinc-950 tint at ~70%; lightened + de-tinted so the interface stays readable behind the modal). `color.modal.scrim` aliases this. */
   --color-background-overlay-subtle: var(--color-alpha-black-3); /** Neutral hover/press wash — layers on top of whatever's underneath instead of replacing it (row hover, list-item hover, etc.), unlike background.subtle which is an opaque swap */
   --color-background-danger-default: var(--color-red-600); /** Destructive button */
   --color-background-danger-hover: var(--color-red-700);
@@ -403,6 +407,8 @@
   --color-category-violet-text: var(--color-violet-600); /** Kept non-adjacent to brand/indigo (its nearest neighbor, ΔE as low as 0.9 under some CVD types at .700 — would fail right next to it). */
   --color-category-emerald-text: var(--color-emerald-700); /** 700, not 600 — .600 doesn't clear 4.5:1 contrast. */
   --color-category-blue-text: var(--color-blue-700); /** Kept non-adjacent to brand/indigo (its nearest neighbor — the two are easily confused at matching shades). */
+  --radius-checkbox: var(--radius-sm); /** 4, flat across all sizes — a checkbox's corner rounding doesn't scale with its box size, same reasoning as radius.input staying flat across Input's sizes. */
+  --radius-switch: var(--radius-full); /** Pill track + circular thumb at every size — a switch is always fully rounded, no size-dependent step needed. */
   --radius-container: var(--radius-xl); /** 12px — outermost content card in a carded layout (1440 migration: was radius.2xl/16px) */
   --radius-page-container: var(--radius-4xl); /** 24px — AppShell/Page's own content viewport, distinct from a Card's container radius */
   --radius-panel: var(--radius-xl); /** 12px — nested card, section, menu, popover, sheet */
@@ -449,6 +455,11 @@
   --text-heading-xs-font-weight: var(--font-weight-semibold); /** Subsection / group label */
   --text-heading-xs-line-height: var(--font-line-height-snug); /** Subsection / group label */
   --text-heading-xs-letter-spacing: var(--font-letter-spacing-normal); /** Subsection / group label */
+  --text-body-xl-font-family: var(--font-family-sans); /** Largest body step — completes the body scale to match the label/heading ranges; used by Label's xl size so LabelGroup can render at 16px in body weight rather than the label scale's semibold. */
+  --text-body-xl-font-size: var(--font-size-16); /** Largest body step — completes the body scale to match the label/heading ranges; used by Label's xl size so LabelGroup can render at 16px in body weight rather than the label scale's semibold. */
+  --text-body-xl-font-weight: var(--font-weight-medium); /** Largest body step — completes the body scale to match the label/heading ranges; used by Label's xl size so LabelGroup can render at 16px in body weight rather than the label scale's semibold. */
+  --text-body-xl-line-height: var(--font-line-height-normal); /** Largest body step — completes the body scale to match the label/heading ranges; used by Label's xl size so LabelGroup can render at 16px in body weight rather than the label scale's semibold. */
+  --text-body-xl-letter-spacing: var(--font-letter-spacing-normal); /** Largest body step — completes the body scale to match the label/heading ranges; used by Label's xl size so LabelGroup can render at 16px in body weight rather than the label scale's semibold. */
   --text-body-lg-font-family: var(--font-family-sans);
   --text-body-lg-font-size: var(--font-size-15);
   --text-body-lg-font-weight: var(--font-weight-medium);
@@ -469,6 +480,11 @@
   --text-body-xs-font-weight: var(--font-weight-medium); /** Dense secondary text */
   --text-body-xs-line-height: var(--font-line-height-normal); /** Dense secondary text */
   --text-body-xs-letter-spacing: var(--font-letter-spacing-normal); /** Dense secondary text */
+  --text-body-2xs-font-family: var(--font-family-sans); /** Row's smallest description size — dense, often alphanumeric-code-heavy content (e.g. flight/reference codes) at 10px reusing the existing font.size.10 primitive (already used by overline), rather than inventing an 11px step purely to keep a clean '-2 from heading' arithmetic. Gets wide tracking (unlike every other body step, all 'normal') for the same reason text/label/xs does at this size — legibility for dense uppercase content, not just smallness. */
+  --text-body-2xs-font-size: var(--font-size-10); /** Row's smallest description size — dense, often alphanumeric-code-heavy content (e.g. flight/reference codes) at 10px reusing the existing font.size.10 primitive (already used by overline), rather than inventing an 11px step purely to keep a clean '-2 from heading' arithmetic. Gets wide tracking (unlike every other body step, all 'normal') for the same reason text/label/xs does at this size — legibility for dense uppercase content, not just smallness. */
+  --text-body-2xs-font-weight: var(--font-weight-medium); /** Row's smallest description size — dense, often alphanumeric-code-heavy content (e.g. flight/reference codes) at 10px reusing the existing font.size.10 primitive (already used by overline), rather than inventing an 11px step purely to keep a clean '-2 from heading' arithmetic. Gets wide tracking (unlike every other body step, all 'normal') for the same reason text/label/xs does at this size — legibility for dense uppercase content, not just smallness. */
+  --text-body-2xs-line-height: var(--font-line-height-normal); /** Row's smallest description size — dense, often alphanumeric-code-heavy content (e.g. flight/reference codes) at 10px reusing the existing font.size.10 primitive (already used by overline), rather than inventing an 11px step purely to keep a clean '-2 from heading' arithmetic. Gets wide tracking (unlike every other body step, all 'normal') for the same reason text/label/xs does at this size — legibility for dense uppercase content, not just smallness. */
+  --text-body-2xs-letter-spacing: var(--font-letter-spacing-wide); /** Row's smallest description size — dense, often alphanumeric-code-heavy content (e.g. flight/reference codes) at 10px reusing the existing font.size.10 primitive (already used by overline), rather than inventing an 11px step purely to keep a clean '-2 from heading' arithmetic. Gets wide tracking (unlike every other body step, all 'normal') for the same reason text/label/xs does at this size — legibility for dense uppercase content, not just smallness. */
   --text-label-xl-font-family: var(--font-family-sans); /** xl / 56px primary button */
   --text-label-xl-font-size: var(--font-size-16); /** xl / 56px primary button */
   --text-label-xl-font-weight: var(--font-weight-semibold); /** xl / 56px primary button */
@@ -525,14 +541,6 @@
   --color-card-background-default: var(--color-surface-card);
   --color-card-background-hover: var(--color-surface-subtle); /** Reserved — for the future interactive-card hover state (not used yet) */
   --color-card-border: var(--color-border-highlight); /** The asymmetric glass catch (top + left, 1.5px, white). Widths + the inner-shadow are hand-tuned in the CSS, not tokens. */
-  --color-input-background-default: var(--color-surface-default);
-  --color-input-background-disabled: var(--color-background-disabled);
-  --color-input-text: var(--color-text-default);
-  --color-input-placeholder: var(--color-text-muted);
-  --color-input-label: var(--color-text-subtle);
-  --color-input-border-default: var(--color-border-default);
-  --color-input-border-hover: var(--color-border-strong);
-  --color-input-border-danger: var(--color-border-danger);
   --color-badge-neutral-background: var(--color-background-subtle);
   --color-badge-neutral-text: var(--color-text-subtle);
   --color-badge-success-background: var(--color-background-success-subtle);
@@ -551,8 +559,43 @@
   --color-table-border: var(--color-border-subtle);
   --color-modal-background: var(--color-surface-raised);
   --color-modal-border: var(--color-border-default);
+  --color-modal-scrim: var(--color-background-overlay);
   --color-scrollable-area-background: var(--color-background-subtle); /** Recessed/inset scroll track, same intent as other inset zones */
   --color-scrollable-area-row-shadow-hover: var(--color-background-overlay-subtle); /** Inset shadow, not a fill — rows have no background by default. Shared with table.row.shadow.hover. */
+  --color-scrollable-area-row-border-divider: var(--color-border-default); /** Permanent 1px bottom-only divider between rows in a list — every state (default/hover/focus), unlike hover/focus which only apply on interaction. Owner changed this from border.subtle (zinc.100, "faint separators") to border.default (zinc.200, "inputs, cards, dividers") directly in Figma — a plain divider apparently read as too faint at subtle. CSS: box-shadow inset (layout-neutral, stacks with the focus ring as a second shadow layer). Figma: a real per-side stroke (strokeBottomWeight 1, others 0, INSIDE align, strokesIncludedInLayout false) — NOT an effect. An INNER_SHADOW effect on this frame (which has no fill) was confirmed to corrupt Figma's own text rendering for this file's variable-font weight; a stroke on the same no-fill frame does not. See docs/components/Row.md and HANDOFF.md §6. */
+  --color-switch-track-off: var(--color-surface-sunken); /** zinc.100, "wells, code blocks, inset track" — literally the inset-track description this token already carries, reused verbatim for the off-state track. */
+  --color-switch-track-disabled: var(--color-background-disabled);
+  --color-checkbox-background-off: var(--color-surface-default);
+  --color-checkbox-background-disabled: var(--color-background-disabled);
+  --color-checkbox-border-off: var(--color-border-default);
+  --color-checkbox-border-off-hover: var(--color-border-strong);
+  --color-checkbox-border-disabled: var(--color-border-subtle); /** Same value as background.disabled (zinc.100) — a disabled checkbox reads as one flat muted shape, no separate border needed to stand out. */
+  --color-radio-background: var(--color-surface-default); /** Radio keeps a plain white fill in every state, checked included — unlike Checkbox, which fills solid. The dot (see below) is what signals checked, not the fill. */
+  --color-radio-border-off: var(--color-border-default);
+  --color-radio-border-off-hover: var(--color-border-strong);
+  --color-radio-border-disabled: var(--color-border-subtle);
+  --color-radio-dot-disabled: var(--color-text-disabled);
+  --color-input-background-default: var(--color-surface-default);
+  --color-input-background-disabled: var(--color-background-disabled);
+  --color-input-border-default: var(--color-border-default);
+  --color-input-border-hover: var(--color-border-strong);
+  --color-input-border-error: var(--color-border-danger);
+  --color-input-border-disabled: var(--color-border-subtle);
+  --color-input-text-default: var(--color-text-default);
+  --color-input-text-placeholder: var(--color-text-muted);
+  --color-input-text-disabled: var(--color-text-disabled);
+  --color-input-icon: var(--color-text-subtle); /** Leading/trailing icon color — always subtle, doesn't change with border state (hover/focus/error don't recolor it). */
+  --color-input-affix: var(--color-text-subtle); /** Prepend/append text color (e.g. a fixed unit or protocol prefix inside the field) — a subtle, non-editable annotation next to the value, not the value's own text color. */
+  --color-label-default: var(--color-text-default);
+  --color-label-subtle: var(--color-text-subtle);
+  --color-label-muted: var(--color-text-muted);
+  --color-label-success: var(--color-text-success);
+  --color-label-warning: var(--color-text-warning);
+  --color-label-danger: var(--color-text-danger);
+  --color-form-field-label-default: var(--color-text-strong); /** The headline above the field, at rest — matches Row's own heading color (a field label reads as a subheading, not a page heading). */
+  --color-form-field-label-error: var(--color-text-danger);
+  --color-helper-text-icon-error: var(--color-icon-danger);
+  --color-helper-text-text-error: var(--color-text-danger);
   --color-background-brand-default: var(--color-brand-600); /** Primary button, active nav item, selected state */
   --color-background-brand-hover: var(--color-brand-700);
   --color-background-brand-active: var(--color-brand-800);
@@ -572,7 +615,7 @@
   --radius-modal: var(--radius-container);
   --radius-table: var(--radius-panel);
   --radius-popover: var(--radius-panel);
-  --radius-button-2sm: var(--radius-chip); /** 6 — 1440 migration: sizes unified across variant, one radius per size now (was per-variant-per-size) */
+  --radius-button-xs: var(--radius-chip); /** 6 — 1440 migration: sizes unified across variant, one radius per size now (was per-variant-per-size). Renamed from 2sm — xs reads as a logical bottom step of the sm/md/lg/xl/2xl scale, matching how 2xl reads as the logical top step. */
   --radius-button-sm: var(--radius-chip); /** 6 */
   --radius-button-md: var(--radius-control); /** 8 */
   --radius-button-lg: var(--radius-control); /** 8 */
@@ -587,10 +630,22 @@
   --color-button-tertiary-text-active: var(--color-text-brand); /** Hover→underline, active→this ('turns primary colour') + underline. */
   --color-button-tertiary-icon-active: var(--color-icon-brand);
   --color-card-border-active: var(--color-border-highlight-active); /** Focused/active glass border — full 1.5px primary, replaces the white top-left catch. Shared by Card, StatButton, and other glass buttons. */
-  --color-input-border-focus: var(--color-border-focus);
   --color-badge-brand-background: var(--color-background-brand-subtle);
   --color-badge-brand-text: var(--color-text-brand);
   --color-table-row-background-selected: var(--color-background-brand-subtle);
+  --color-scrollable-area-row-border-focus: var(--color-border-focus); /** 1px inset border for keyboard focus — inset (box-shadow, not outline) to stay consistent with the row's own no-fill, inset-shadow-hover treatment instead of an outer glow. */
+  --color-switch-track-on: var(--color-background-brand-default); /** brand.600, same token Button primary/selected-state uses. */
+  --color-switch-track-on-hover: var(--color-background-brand-hover);
+  --color-checkbox-background-on: var(--color-background-brand-default);
+  --color-checkbox-background-on-hover: var(--color-background-brand-hover);
+  --color-radio-border-on: var(--color-background-brand-default);
+  --color-radio-border-on-hover: var(--color-background-brand-hover);
+  --color-radio-dot-on: var(--color-background-brand-default);
+  --color-input-border-focus: var(--color-border-focus);
+  --color-label-brand: var(--color-text-brand);
+  --color-form-field-label-primary: var(--color-text-brand);
+  --color-helper-text-icon-primary: var(--color-icon-brand);
+  --color-helper-text-text-primary: var(--color-text-brand);
   --color-text-brand-solid: var(--color-background-brand-default); /** Text that must read as the same accent as a solid brand fill nearby (a bar, a dot) — aliases background.brand.default itself, not a hand-picked shade, so the two can never drift apart. NOT for text on a light/subtle background — text.brand (700) stays there; this is ~100 lighter and won't clear AA on brand-subtle. */
   --color-button-secondary-border-active: var(--color-card-border-active); /** Full 1.5px primary border on focus / active. */
 }

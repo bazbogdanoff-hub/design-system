@@ -39,6 +39,19 @@
   color: var(--color-badge-danger-text);
 }
 
+.badge[data-size='xs'] {
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--text-label-xs-font-size);
+  /* label/xs is the one step in this scale with wider tracking than the
+     others (they're all `normal`) — sm/md/lg get away with only overriding
+     font-size above the shared md-based letter-spacing; xs can't. */
+  letter-spacing: var(--text-label-xs-letter-spacing);
+  /* reuses sm's radius token, not a new radius/badge/xs — Figma bound xs to
+     the same radius/badge/sm variable (6px) rather than create a parallel
+     one, since the value is identical. */
+  border-radius: var(--radius-badge-sm);
+}
 .badge[data-size='sm'] {
   gap: var(--space-4);
   padding: var(--space-6);

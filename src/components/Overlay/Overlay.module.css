@@ -1,0 +1,29 @@
+/* Full-viewport modal scrim + centering layer. The modal panel is `children`.
+   Fill is color/modal/scrim (alpha-black/40 — a light, neutral darkener that
+   keeps the interface readable behind it). */
+.overlay {
+  position: fixed;
+  inset: 0;
+  /* No z-index token scale yet — raw value until Popover/Menu/Tooltip/Toast
+     land and a z/* layer family is worth adding. Modal sits above app chrome. */
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-24);
+  background-color: var(--color-modal-scrim);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* margin:auto (not align-items:center) so a modal taller than the viewport
+   still scrolls from its top edge instead of being clipped. */
+.overlay > * {
+  flex-shrink: 0;
+}
+.overlay[data-align='center'] > * {
+  margin-block: auto;
+}
+.overlay[data-align='top'] > * {
+  margin-block: 0;
+}

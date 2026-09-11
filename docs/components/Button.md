@@ -11,7 +11,7 @@ One component, three emphases. **L1 primitive.**
 | prop | values | default |
 |---|---|---|
 | `variant` | `primary` (brand glass) · `secondary` (neutral glass) · `tertiary` (text) | `secondary` |
-| `size` | `2sm` `sm` `md` `lg` `xl` `2xl` — see below, two are variant-restricted | `md` |
+| `size` | `xs` `sm` `md` `lg` `xl` `2xl` — see below, two are variant-restricted | `md` |
 | `leadingIcon` / `trailingIcon` | `ReactNode` — both allowed at once | — |
 | `loading` | `boolean` — spinner in the leading slot, interaction blocked, label stays | `false` |
 | `asChild` | `boolean` — render as `<a>` / router `<Link>` | `false` |
@@ -23,14 +23,14 @@ instead of `disabled`.
 ## Sizes (1440 migration: unified across variant, two exceptions)
 
 Height/padding/gap/label-style/radius are now the **same for every variant**
-at a given size — no longer a per-variant relative scale. `2sm` is
-`secondary`/`tertiary`-only (`primary` doesn't have it); `2xl` is
+at a given size — no longer a per-variant relative scale. `xs` (renamed from
+`2sm`) is `secondary`/`tertiary`-only (`primary` doesn't have it); `2xl` is
 `primary`-only. Not enforced at the type level (same approach the old
 per-variant scale used — a design constraint, not a compile-time one).
 
 | `size` | height | gap | label style | radius |
 |---|---|---|---|---|
-| `2sm` | 28 (**24 for `tertiary`**) | `space/4` | `text/label/xs` | `radius/button/2sm` (6) |
+| `xs` | 28 (**24 for `tertiary`**) | `space/4` | `text/label/xs` | `radius/button/xs` (6) |
 | `sm` | 28 | `space/4` | `text/label/sm` | `radius/button/sm` (6) |
 | `md` | 32 | `space/6` | `text/label/md` | `radius/button/md` (8) |
 | `lg` | 36 | `space/6` | `text/label/lg` | `radius/button/lg` (8) |
@@ -59,8 +59,8 @@ outline for tertiary. `:disabled` (and `loading`) → 0.7 opacity, no pointer.
 
 ## Figma
 
-Component set **`Button`** — `variant` (3) × `size` (6: `2sm`/`sm`/`md`/`lg`/`xl`/`2xl`,
-though `secondary`/`tertiary` skip `2xl` and `primary` skips `2sm`) × `state`
+Component set **`Button`** — `variant` (3) × `size` (6: `xs`/`sm`/`md`/`lg`/`xl`/`2xl`,
+though `secondary`/`tertiary` skip `2xl` and `primary` skips `xs`) × `state`
 (4: default/hover/active/disabled) = 60 variants, plus `leadingIcon` /
 `trailingIcon` (bool) + `leadingIconSwap` / `trailingIconSwap` + `loading`
 (bool). The `Loading` layer is child 0; when `loading` is on it shows and (per
@@ -78,7 +78,12 @@ per-size blocks + the `primary` flat-gap and `tertiary` `2sm`-height
 exceptions), and fixed two `tokens-to-figma.mjs` generator bugs found along
 the way — its component-radius regex didn't match digit-leading segments
 like `2sm`/`2xl`, and its primitive-radius enum was missing `4xl`/`5xl`
-(added earlier in the same migration, never previously exercised).
+(added earlier in the same migration, never previously exercised). `2sm` was
+later renamed to `xs` (owner) — a logical bottom step of the `sm`/`md`/`lg`/
+`xl`/`2xl` scale, same idea as `2xl` being the logical top step. Everything
+above and below reflects the current `xs` name; this paragraph keeps `2sm`
+because the regex bug it describes was specifically about digit-leading
+names, which `xs` no longer is.
 
 ## a11y
 

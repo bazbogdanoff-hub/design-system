@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-09-08T15:37:45.829Z",
+  "generatedAt": "2026-09-11T13:53:12.419Z",
   "primitives": {
     "colors": 271,
     "floats": 45
   },
   "semantic": {
-    "aliases": 83,
-    "raws": 1
+    "aliases": 84,
+    "raws": 0
   },
   "component": {
-    "aliases": 73,
+    "aliases": 115,
     "raws": 4
   },
-  "textStyles": 20,
+  "textStyles": 22,
   "runOrder": [
     "build-01-primitives.js",
     "build-02-semantic.js",
@@ -20,6 +20,7 @@
     "build-04-text-styles-1.js",
     "build-04-text-styles-2.js",
     "build-04-text-styles-3.js",
-    "build-04-text-styles-4.js"
+    "build-04-text-styles-4.js",
+    "build-04-text-styles-5.js"
   ]
 }

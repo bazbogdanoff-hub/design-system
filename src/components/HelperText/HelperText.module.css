@@ -1,0 +1,60 @@
+/* Icon + message row. Icon top-aligned (not centered) so a multi-line
+   message wraps naturally under it instead of the icon drifting to the
+   vertical center of the whole block. */
+.helper {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--space-6);
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  /* nudge down half a line so the glyph lines up with the first line of text,
+     not the whole (possibly multi-line) block */
+  margin-top: 0.1em;
+}
+.icon > svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+.message {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* icon size mirrors Input's own leading/trailing icon scale exactly, since
+   HelperText sits directly below an Input of the same size */
+.helper[data-size='sm'] .icon { font-size: 14px; }
+.helper[data-size='md'] .icon { font-size: 16px; }
+.helper[data-size='lg'] .icon { font-size: 18px; }
+
+.helper[data-size='sm'] .message {
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--text-body-sm-font-weight);
+  line-height: var(--text-body-sm-line-height);
+  letter-spacing: var(--text-body-sm-letter-spacing);
+}
+.helper[data-size='md'] .message {
+  font-family: var(--text-body-md-font-family);
+  font-size: var(--text-body-md-font-size);
+  font-weight: var(--text-body-md-font-weight);
+  line-height: var(--text-body-md-line-height);
+  letter-spacing: var(--text-body-md-letter-spacing);
+}
+.helper[data-size='lg'] .message {
+  font-family: var(--text-body-lg-font-family);
+  font-size: var(--text-body-lg-font-size);
+  font-weight: var(--text-body-lg-font-weight);
+  line-height: var(--text-body-lg-line-height);
+  letter-spacing: var(--text-body-lg-letter-spacing);
+}
+
+.helper[data-tone='primary'] .icon { color: var(--color-helper-text-icon-primary); }
+.helper[data-tone='primary'] .message { color: var(--color-helper-text-text-primary); }
+.helper[data-tone='error'] .icon { color: var(--color-helper-text-icon-error); }
+.helper[data-tone='error'] .message { color: var(--color-helper-text-text-error); }

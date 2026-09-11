@@ -1,0 +1,19 @@
+/* The funnel is the rest glyph; hover / press / open-menu swap it for the "+".
+   Pure CSS swap — no JS state. `display:none` keeps the hidden glyph out of
+   layout so the button never jumps. Specificity has to beat Button's own
+   `.surface [data-btn-icon] > svg { display:block }`. */
+.filterIcon [data-btn-icon] > .plus {
+  display: none;
+}
+
+.filterIcon:hover [data-btn-icon] > .funnel,
+.filterIcon:active [data-btn-icon] > .funnel,
+.filterIcon[aria-expanded='true'] [data-btn-icon] > .funnel {
+  display: none;
+}
+
+.filterIcon:hover [data-btn-icon] > .plus,
+.filterIcon:active [data-btn-icon] > .plus,
+.filterIcon[aria-expanded='true'] [data-btn-icon] > .plus {
+  display: block;
+}

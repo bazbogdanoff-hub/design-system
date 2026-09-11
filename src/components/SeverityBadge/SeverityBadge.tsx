@@ -23,12 +23,12 @@ const LABEL: Record<SeverityLevel, string> = {
   critical: 'Critical',
 };
 
-const ICON_SIZE: Record<SeverityBadgeSize, SeverityIconSize> = { sm: 16, md: 20, lg: 24 };
+const ICON_SIZE: Record<SeverityBadgeSize, SeverityIconSize> = { xs: 12, sm: 16, md: 20, lg: 24 };
 
 export interface SeverityBadgeProps extends HTMLAttributes<HTMLSpanElement> {
   /** Severity level — the component's whole content. Escalates low → attention → warning → critical. */
   level: SeverityLevel;
-  /** `sm` · `md` (default) · `lg`. */
+  /** `xs` · `sm` · `md` (default) · `lg`. */
   size?: SeverityBadgeSize;
   /** `pill` (coloured text chip, default) or `icon` (bare triangle, for tight spaces). */
   format?: SeverityBadgeFormat;

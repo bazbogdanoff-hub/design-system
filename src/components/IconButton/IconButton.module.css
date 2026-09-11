@@ -1,7 +1,7 @@
 /* Square icon-only button. The glass skin comes from Button's `.surface`
    (imported); this file is just the square layout + per-size dimensions.
    1440 migration: sizes are unified across variant now (same as Button) —
-   one exception, tertiary's `2sm` is uniquely 24px (every other combo's size
+   one exception, tertiary's `xs` is uniquely 24px (every other combo's size
    is purely size-driven, not variant-driven). font-size sets the 1em icon. */
 .iconButton {
   display: inline-flex;
@@ -12,13 +12,13 @@
   user-select: none;
 }
 
-.iconButton[data-size='2sm'] {
+.iconButton[data-size='xs'] {
   width: 28px;
   height: 28px;
   font-size: 12px;
-  border-radius: var(--radius-button-2sm);
+  border-radius: var(--radius-button-xs);
 }
-.iconButton[data-variant='tertiary'][data-size='2sm'] {
+.iconButton[data-variant='tertiary'][data-size='xs'] {
   width: 24px;
   height: 24px;
 }
