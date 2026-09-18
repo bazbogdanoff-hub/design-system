@@ -247,6 +247,31 @@ class merge (`cn()` in `src/lib/cn.ts`), Radix `Slot`/`Slottable` for
 | **EntityProblemPanel** | L2 | Figma only (`10264:21749`) — 2 variants: `state`(issues/empty). `EntitySummary` header + either the existing `ScrollableArea` of `Row`s or an `EmptyState`. Built at this grain (not a combinatorial `RigProblemDetail`) so any mix of which entities have issues is just picking each column instance's variant. No React port yet — pairs with `RigProblemDetail`. |
 | **Headercard** | L2 | Owner-built, Figma only (`10331:18312`) — single component, no variants. The page-header card most pages use: a real `Card`-replica root (same fill/border/radius/effect recipe as `Table`'s own root — `color/card/background/default`, `color/card/border`, `radius/table`, one `INNER_SHADOW`) holding a fixed left side (`Heading` text + a `LabelGroup` instance of stat `Label`s, e.g. "86 total \| 75 active \| 11 inactive") and a real right-side `Slot` for optional actions — reviewed 2026-09-13, structurally sound, matched the owner's spec exactly (fixed heading+`LabelGroup` on the left; on the right, whatever mix of a `Button`(secondary, `ArrowLeft` icon, "Back" — a return-to-previous-page breadcrumb, meant to appear only when this page was opened from another page rather than the sidebar menu), a `SegmentedControl` (view/entity switcher — the demo shows Trucks/**Trailers**/Drivers with Trailers selected, correctly matching the page's own "Trailers" heading), and a settings `IconButton`(`GearSix`) is relevant for that page). Found and fixed 2 real defects: the left side's heading-to-stats gap (`itemSpacing`) was an unbound raw `3` — not even a value on this system's space scale — snapped to `space/4` and bound properly; the right side `Slot`'s own `itemSpacing` was an unbound raw `10` (coincidentally equal to `space.10`'s value) — bound to the real `space/10` variable. Re-exported after both fixes — pixel-identical, confirming the binds were pure correctness fixes with zero visual change. **2026-09-13: added a `hasLabelGroup` boolean** (default `true`, matching prior always-visible behavior) gating the `LabelGroup` instance's visibility, so a consumer can show heading-only when there's nothing worth summarizing — verified via a hide/show toggle export, no layout artifacts. React/docs not started. |
 
+**2026-09-19: every hand-drawn icon in the system replaced with the real
+`@phosphor-icons/react` package.** Previously ~20 small icon files across
+`Avatar`, `Breadcrumb`, `Checkbox`, `EmptyState`, `FileDropper`,
+`FilterIcon`, `HelperText`, `MenuRow`, `NextTask`, `Pagination`, `Select`,
+`TableHeaderCell` were hand-drawn SVGs — a few explicitly flagged as "close
+stand-in, not pixel-identical" (`FileDropper`, `Checkbox`), the rest never
+individually verified either way. Installed `@phosphor-icons/react` and
+turned every icon file into a thin wrapper (same exported name, same
+`SVGProps<SVGSVGElement>` signature — zero consumer-facing changes) around
+the real icon. Every mapping (name + weight) was confirmed against the live
+Figma file via the bridge rather than assumed — one consistent finding:
+every single icon in the system uses `Format=Outline, Weight=Bold`, no
+per-icon variation. Two exceptions with no live Figma instance to check
+against: `Checkbox`'s `Check`/`Minus` (Figma's own master uses legacy
+hand-drawn `_FormControlCheck`/`_FormControlMinus` vectors, not real
+Phosphor) and `Select`'s `CaretDown` (Select has no Figma component at all,
+per its own doc) — both still mapped to the genuine Phosphor icon, since
+the goal was the real library, not matching a non-Phosphor source. `GearSix`
+(Sidebar's settings icon) already got this treatment in the prior Sidebar
+pass and needed no rework. Verified via a full production build (bundle
+grew ~4KB gzipped — tree-shaking confirmed working, not bundling the whole
+1200+ icon library) and a live render check of all 20 icons. `docs/
+components/FileDropper.md` and `Checkbox.md` updated to remove the
+now-resolved "not pixel-identical" caveats.
+
 **Composition rule (settled, don't re-litigate):** `AppShell` content slot →
 `<Page>` → `Grid`/`Stack` of cards. **Never cards directly in the slot** — the
 slot is dumb chrome, `Page` owns padding/scroll/sticky/header. **Screens are

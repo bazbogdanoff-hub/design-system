@@ -50,11 +50,14 @@ wins over `checked` in the glyph shown when both happen to be passed.
 Confirmed via the Figma reference's read-back: `checked=true` and
 `indeterminate=true` both bind the exact same `color/checkbox/background/on`
 variable, with no border in either case (`strokes: []`). Only the glyph
-differs — a checkmark vs. a dash, both small hand-drawn inline SVGs
-(`CheckIcon`/`MinusIcon`, plain Phosphor-style bold paths) rather than an
-import of Figma's own nested `_FormControlCheck`/`_FormControlMinus` shared
-icon instances — the same "close stand-in, not pixel-identical" precedent
-`FileDropper`'s hand-drawn icons already set for this system.
+differs — a checkmark vs. a dash, both thin wrappers around the real
+`@phosphor-icons/react` `Check`/`Minus` (Bold weight). One caveat unique to
+this component: Figma's own master doesn't use real Phosphor instances for
+these glyphs either — they're legacy hand-drawn vectors
+(`_FormControlCheck`/`_FormControlMinus`) inherited from the adopted kit —
+so there's no live Figma reference to verify pixel-parity against, unlike
+every other icon in the system. The genuine Phosphor icons were used anyway,
+since the goal is the real library, not matching a non-Phosphor Figma source.
 
 ## Disabled uses a muted gray glyph, never white
 

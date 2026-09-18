@@ -98,12 +98,10 @@ can't override.
 ## New icons, all fixed (not consumer-configurable)
 
 Same "one small glyph per fixed meaning" pattern as `HelperText`'s
-`InfoIcon`/`WarningIcon`: `UploadIcon` (idle), `DocumentIcon` (neutral file,
-evenodd-punched text lines — same technique as `CheckCircleIcon`),
-`CloseIcon` (cancel/remove — two rotated rounded bars, not a hand-drawn X
-path), `RetryIcon` (error retry — the one icon in this file on a 24×24 grid
-instead of the usual 256×256, a well-known minimal refresh-arrow shape reused
-as-is).
+`InfoIcon`/`WarningIcon`: `UploadIcon` (idle), `DocumentIcon` (neutral file),
+`CloseIcon` (cancel/remove), `RetryIcon` (error retry) — all four are now
+thin wrappers around the real `@phosphor-icons/react` package (`UploadSimple`/
+`FileText`/`X`/`ArrowClockwise`, Bold weight), not hand-drawn approximations.
 
 ## Figma
 
@@ -123,11 +121,10 @@ same technique `Input`'s `leading-icon`/`trailing-icon` already use. Layers:
 (`fileName` + `fileMeta`/`progress`/`HelperText`)/`action` (the 3 row
 states) — lowercase role names throughout, per convention.
 
-**Where Figma and React are only loosely matched:** the React icons
-(`UploadIcon`/`DocumentIcon`/`CloseIcon`/`RetryIcon`) are small hand-drawn
-SVGs built without the real Phosphor set to draw from — visually close but
-not pixel-identical to Figma's actual `UploadSimple`/`FileText`/`X`/
-`ArrowClockwise`. Not fixed in this pass since the React versions already
-read correctly at their size; worth a follow-up if the two ever need to be
-pixel-matched (e.g. tracing the real Phosphor paths into the React icon
-files).
+**2026-09-19: Figma/React parity closed.** The React icons
+(`UploadIcon`/`DocumentIcon`/`CloseIcon`/`RetryIcon`) were hand-drawn
+approximations, visually close but not pixel-identical to Figma's actual
+`UploadSimple`/`FileText`/`X`/`ArrowClockwise`. Replaced with thin wrappers
+around the real `@phosphor-icons/react` package (same names, Bold weight,
+confirmed via the Figma bridge) — now genuinely pixel-identical, not just
+close, across every icon-bearing component in the system (see `HANDOFF.md`).

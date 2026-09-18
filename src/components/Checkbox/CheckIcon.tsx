@@ -1,14 +1,11 @@
 import type { SVGProps } from 'react';
+import { Check } from '@phosphor-icons/react';
 
-/** `Checkbox`'s checked-state glyph — a plain checkmark, drawn by hand (the
- * Figma reference nests a shared `_FormControlCheck` icon instance instead;
- * a hand-drawn stand-in is the pattern this system already uses for
- * icons it can't literally import from Figma's own icon set, see
- * `FileDropper.md`). */
+/** `Checkbox`'s checked glyph — real Phosphor `Check`, Bold. No exact match
+ * exists in Figma to verify against: the live master's own glyph is a
+ * legacy hand-drawn vector (`_FormControlCheck`), not a real Phosphor
+ * instance — using the genuine icon here regardless, per the system-wide
+ * move off hand-drawn approximations. */
 export function CheckIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" {...props}>
-      <path d="M229.66 77.66l-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69 218.34 66.34a8 8 0 0 1 11.32 11.32Z" />
-    </svg>
-  );
+  return <Check weight="bold" aria-hidden="true" {...props} />;
 }
