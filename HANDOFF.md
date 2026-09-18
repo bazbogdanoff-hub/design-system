@@ -264,11 +264,20 @@ against: `Checkbox`'s `Check`/`Minus` (Figma's own master uses legacy
 hand-drawn `_FormControlCheck`/`_FormControlMinus` vectors, not real
 Phosphor) and `Select`'s `CaretDown` (Select has no Figma component at all,
 per its own doc) — both still mapped to the genuine Phosphor icon, since
-the goal was the real library, not matching a non-Phosphor source. `GearSix`
-(Sidebar's settings icon) already got this treatment in the prior Sidebar
-pass and needed no rework. Verified via a full production build (bundle
-grew ~4KB gzipped — tree-shaking confirmed working, not bundling the whole
-1200+ icon library) and a live render check of all 20 icons. `docs/
+the goal was the real library, not matching a non-Phosphor source. Verified
+via a full production build (bundle grew ~4KB gzipped — tree-shaking
+confirmed working, not bundling the whole 1200+ icon library) and a live
+render check of all 20 icons. **Caught in a follow-up correction: an
+earlier claim that "every icon in the system uses Bold" was wrong** —
+`GearSix` (Sidebar's settings icon, extracted in the earlier Sidebar pass
+via a hand-copied raw path, before this npm package existed) is `Weight=
+Fill`, confirmed via the same bridge query, the one real exception. Also
+migrated it to the real `@phosphor-icons/react` wrapper (`weight="fill"`)
+for full consistency — it was already visually correct (the raw path was
+copied from the Fill variant) but hadn't been moved onto the actual
+package like the other 20. A full re-check across all 90 relevant icon
+instances (every variant of every affected component, not just one
+sample each) confirms zero other exceptions. `docs/
 components/FileDropper.md` and `Checkbox.md` updated to remove the
 now-resolved "not pixel-identical" caveats.
 
