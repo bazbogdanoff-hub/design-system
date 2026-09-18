@@ -15,9 +15,9 @@
   transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
-.field[data-size='sm'] { height: var(--size-control-sm); }
-.field[data-size='md'] { height: var(--size-control-md); }
-.field[data-size='lg'] { height: var(--size-control-lg); }
+.field[data-size='sm'] { height: var(--size-input-sm); }
+.field[data-size='md'] { height: var(--size-input-md); }
+.field[data-size='lg'] { height: var(--size-input-lg); }
 
 .field:hover:not([data-disabled]):not(:focus-within) {
   border-color: var(--color-input-border-hover);

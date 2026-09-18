@@ -13,7 +13,11 @@
     inset 4px 4px 16px 0 #f0f0f0;
 }
 
-.card[data-padding='none'] { padding: 0; }
+/* only `none` clips — that's the one padding where a consumer's content is
+   expected to sit flush against Card's own rounded corners (e.g. Table's
+   header/rows/footer). The padded variants don't clip, so a popover or
+   focus ring on padded content isn't cut off unexpectedly. */
+.card[data-padding='none'] { padding: 0; overflow: hidden; }
 .card[data-padding='sm']   { padding: var(--space-12); }
 .card[data-padding='md']   { padding: var(--space-16); }
 .card[data-padding='lg']   { padding: var(--space-20); }

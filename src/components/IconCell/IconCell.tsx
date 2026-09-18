@@ -9,8 +9,10 @@ type Base = Omit<HTMLAttributes<HTMLSpanElement>, 'children'> & {
   /** `sm` (28px, default) · `md` (32px) · `lg` (36px) · `xl` (40px) · `2xl`
    * (44px). Same box/radius grading as `IconButton`'s primary variant. */
   size?: IconCellSize;
-  /** `neutral` (default) · `brand` · `success` · `warning` · `danger` — the
-   * same `color/badge/<tone>/{background,text}` pairing `Badge` uses. */
+  /** `neutral` (default) · `brand` · `success` · `warning` · `danger` — a
+   * flat tint off the semantic `background.<tone>-subtle` / `text.<tone>`
+   * pair (not `Badge`'s own tokens — `Badge` moved to a glass glow/shadow
+   * recipe on 2026-09-16 that IconCell deliberately doesn't follow). */
   tone?: IconCellTone;
 };
 

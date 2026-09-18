@@ -1,0 +1,92 @@
+.item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-10);
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--text-label-md-font-family);
+  font-size: var(--text-label-md-font-size);
+  font-weight: var(--text-label-md-font-weight);
+  line-height: var(--text-label-md-line-height);
+  color: var(--color-sidebar-text-default);
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+[data-mode='collapsed'] .item {
+  justify-content: center;
+  padding-inline: 0;
+}
+
+.item:hover:not(:disabled):not([data-active]) {
+  background: var(--color-sidebar-nav-item-hover-fill);
+}
+
+.leading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--color-sidebar-icon-default);
+}
+.icon > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Active — a neutral glass highlight, the same two-layer zinc + black-alpha
+   recipe the module switcher's own unselected segment uses (see
+   component.color.json's `sidebar.navItem.active` block); only the
+   icon/label recolor per module, the highlight itself never does. */
+.item[data-active] {
+  background:
+    linear-gradient(var(--color-sidebar-nav-item-active-overlay), var(--color-sidebar-nav-item-active-overlay)),
+    var(--color-sidebar-nav-item-active-fill);
+  border-color: var(--color-sidebar-nav-item-active-border);
+  box-shadow: inset -1px -1px 2px 0 var(--color-sidebar-nav-item-active-inner-shadow);
+}
+
+.item[data-active][data-tone='brand'] {
+  color: var(--color-sidebar-brand-accent);
+}
+.item[data-active][data-tone='brand'] .icon {
+  color: var(--color-sidebar-brand-accent);
+}
+
+.item[data-active][data-tone='success'] {
+  color: var(--color-sidebar-success-accent);
+}
+.item[data-active][data-tone='success'] .icon {
+  color: var(--color-sidebar-success-accent);
+}
+
+.item[data-active][data-tone='danger'] {
+  color: var(--color-sidebar-danger-accent);
+}
+.item[data-active][data-tone='danger'] .icon {
+  color: var(--color-sidebar-danger-accent);
+}

@@ -1,0 +1,40 @@
+.row {
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* header row — collapsed to one flat state, no hover/focus/status treatment */
+thead .row {
+  background: var(--color-table-header-background-default);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+/* body row */
+tbody .row {
+  background: var(--color-table-row-background-default);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+/* hover — a translucent wash layered over whatever background is already
+   there (inset box-shadow, not a background swap), same technique the
+   original Row/ScrollableArea hover already uses */
+tbody .row:hover {
+  box-shadow: inset 0 0 0 1000px var(--color-table-row-shadow-hover);
+}
+
+/* focus/active — background is identical to default on purpose (owner's
+   call, matching Input's own restraint: focus changes the border, never the
+   fill), so only the ring is drawn here */
+tbody .row:focus-within {
+  outline: 1px solid var(--color-table-row-border-active);
+  outline-offset: -1px;
+}
+
+tbody .row[data-status='danger'] {
+  background: var(--color-table-row-background-danger);
+}
+tbody .row[data-status='success'] {
+  background: var(--color-table-row-background-success);
+}
+tbody .row[data-selected] {
+  background: var(--color-table-row-background-selected);
+}

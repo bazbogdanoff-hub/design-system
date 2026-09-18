@@ -12,6 +12,14 @@
   background: var(--color-background-emphasis);
 }
 
+.shell[data-sidebar='expanded'] {
+  /* 180px, not the 240 this was originally set to — that number predated
+     the real `Sidebar` component; corrected to match its actual built
+     width now that it exists (64px collapsed / 180px expanded, confirmed
+     in Figma and in the React port). */
+  --app-sidebar-width: 180px;
+}
+
 /* the 64px rail — empty dark bar by default; consumer fills it */
 .sidebar {
   display: flex;

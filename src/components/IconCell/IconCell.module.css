@@ -67,11 +67,16 @@
   letter-spacing: var(--text-label-xl-letter-spacing);
 }
 
-.cell[data-tone='neutral'] { background: var(--color-badge-neutral-background); color: var(--color-badge-neutral-text); }
-.cell[data-tone='brand']   { background: var(--color-badge-brand-background); color: var(--color-badge-brand-text); }
-.cell[data-tone='success'] { background: var(--color-badge-success-background); color: var(--color-badge-success-text); }
-.cell[data-tone='warning'] { background: var(--color-badge-warning-background); color: var(--color-badge-warning-text); }
-.cell[data-tone='danger']  { background: var(--color-badge-danger-background); color: var(--color-badge-danger-text); }
+/* Was reusing Badge's own component tokens directly — no longer safe to do
+   since Badge's 2026-09-16 glass redesign replaced its flat `background` with
+   a `glow`/`shadow` pair meant for a radial-gradient recipe, not a flat fill.
+   IconCell stays flat, so it points at the semantic `-subtle` tint tokens
+   directly instead (still semantic-tier, per convention — not a primitive). */
+.cell[data-tone='neutral'] { background: var(--color-background-subtle); color: var(--color-text-subtle); }
+.cell[data-tone='brand']   { background: var(--color-background-brand-subtle); color: var(--color-text-brand); }
+.cell[data-tone='success'] { background: var(--color-background-success-subtle); color: var(--color-text-success); }
+.cell[data-tone='warning'] { background: var(--color-background-warning-subtle); color: var(--color-text-warning); }
+.cell[data-tone='danger']  { background: var(--color-background-danger-subtle); color: var(--color-text-danger); }
 
 .icon {
   display: inline-flex;

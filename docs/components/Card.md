@@ -18,6 +18,12 @@ composition, or a specific card type built on top (see [architecture.md](../arch
 `className`, `style`, `...divProps` pass through to the root. No `elevation`, no
 `interactive`/hover — a clickable-card state comes later, with alpha tokens.
 
+`padding="none"` also clips (`overflow: hidden`) — added for `Table`, whose
+header/rows/footer sit flush against Card's rounded corners and would
+otherwise poke past them at the top/bottom. Scoped to `none` only, not
+global: the padded variants don't clip, so a popover or focus ring on padded
+content isn't cut off unexpectedly.
+
 ## Appearance (fixed — no variants beyond padding)
 
 | aspect | token / value |

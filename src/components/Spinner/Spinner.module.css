@@ -1,0 +1,31 @@
+.spinner {
+  display: block;
+  flex: none;
+  color: var(--color-spinner-icon);
+  animation: spinner-spin 0.7s linear infinite;
+}
+
+@keyframes spinner-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 1.6s;
+  }
+}
+
+.spinner[data-size='sm'] {
+  width: 16px;
+  height: 16px;
+}
+.spinner[data-size='md'] {
+  width: 20px;
+  height: 20px;
+}
+.spinner[data-size='lg'] {
+  width: 24px;
+  height: 24px;
+}

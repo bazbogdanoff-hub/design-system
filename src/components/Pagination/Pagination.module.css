@@ -1,0 +1,21 @@
+.pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.label {
+  color: var(--color-text-subtle);
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--text-body-sm-font-weight);
+  line-height: var(--text-body-sm-line-height);
+  letter-spacing: var(--text-body-sm-letter-spacing);
+  white-space: nowrap;
+}
+
+.buttons {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+}

@@ -1,0 +1,49 @@
+.tooltip {
+  position: relative;
+  display: inline-flex;
+}
+
+.pill {
+  display: inline-block;
+  padding: var(--space-6) var(--space-8);
+  background: var(--color-tooltip-background);
+  color: var(--color-tooltip-text);
+  border-radius: var(--radius-tooltip);
+  font-family: var(--text-body-xs-font-family);
+  font-size: var(--text-body-xs-font-size);
+  font-weight: var(--text-body-xs-font-weight);
+  line-height: var(--text-body-xs-line-height);
+  white-space: nowrap;
+}
+
+/* a rotated square, half tucked behind the pill — the standard web
+   tooltip-arrow technique (Figma's own reference is a real 3-point polygon,
+   which CSS has no direct equivalent for without clip-path) */
+.arrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--color-tooltip-background);
+  transform: rotate(45deg);
+}
+
+.tooltip[data-position='top'] .arrow {
+  bottom: -4px;
+  left: 50%;
+  margin-left: -4px;
+}
+.tooltip[data-position='bottom'] .arrow {
+  top: -4px;
+  left: 50%;
+  margin-left: -4px;
+}
+.tooltip[data-position='left'] .arrow {
+  right: -4px;
+  top: 50%;
+  margin-top: -4px;
+}
+.tooltip[data-position='right'] .arrow {
+  left: -4px;
+  top: 50%;
+  margin-top: -4px;
+}

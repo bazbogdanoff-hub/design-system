@@ -1,0 +1,108 @@
+.avatar {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+}
+
+.base {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: 9999px;
+  background: var(--color-avatar-background);
+  color: var(--color-avatar-text);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  overflow: hidden;
+}
+
+.statusRing,
+.actionRing {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--avatar-badge-ring-size);
+  height: var(--avatar-badge-ring-size);
+  border-radius: 9999px;
+  background: var(--color-avatar-ring);
+}
+.statusRing {
+  right: 0;
+  bottom: 0;
+}
+.actionRing {
+  right: 0;
+  top: 0;
+}
+
+.statusDot {
+  width: var(--avatar-badge-size);
+  height: var(--avatar-badge-size);
+  border-radius: 9999px;
+}
+.statusDot[data-status='online'] {
+  background: var(--color-avatar-status-online);
+}
+.statusDot[data-status='offline'] {
+  background: var(--color-avatar-status-offline);
+}
+
+.actionBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--avatar-badge-size);
+  height: var(--avatar-badge-size);
+  border-radius: 9999px;
+}
+.actionBadge[data-action='add'] {
+  background: var(--color-avatar-action-add);
+}
+.actionBadge[data-action='delete'] {
+  background: var(--color-avatar-action-delete);
+}
+
+.actionIcon {
+  width: var(--avatar-badge-icon-size);
+  height: var(--avatar-badge-icon-size);
+  color: var(--color-avatar-action-icon);
+}
+
+.avatar[data-size='xs'] {
+  --avatar-size: 24px;
+  --avatar-badge-ring-size: 9px;
+  --avatar-badge-size: 7px;
+  --avatar-badge-icon-size: 4px;
+  font-size: 11px;
+}
+.avatar[data-size='sm'] {
+  --avatar-size: 28px;
+  --avatar-badge-ring-size: 10px;
+  --avatar-badge-size: 8px;
+  --avatar-badge-icon-size: 5px;
+  font-size: 12px;
+}
+.avatar[data-size='md'] {
+  --avatar-size: 32px;
+  --avatar-badge-ring-size: 11px;
+  --avatar-badge-size: 9px;
+  --avatar-badge-icon-size: 5px;
+  font-size: 14px;
+}
+.avatar[data-size='lg'] {
+  --avatar-size: 40px;
+  --avatar-badge-ring-size: 13px;
+  --avatar-badge-size: 11px;
+  --avatar-badge-icon-size: 6px;
+  font-size: 16px;
+}
+.avatar[data-size='xl'] {
+  --avatar-size: 44px;
+  --avatar-badge-ring-size: 14px;
+  --avatar-badge-size: 12px;
+  --avatar-badge-icon-size: 7px;
+  font-size: 18px;
+}

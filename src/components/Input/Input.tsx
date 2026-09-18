@@ -5,7 +5,7 @@ import styles from './Input.module.css';
 export type InputSize = 'sm' | 'md' | 'lg';
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
-  /** `sm` (28px) · `md` (32px, default) · `lg` (36px) — matches `Button`'s own heights. */
+  /** `sm` (36px) · `md` (40px, default) · `lg` (44px) — Input's own scale, no longer tied to `Button`'s heights (owner resized it a full step up in Figma). */
   size?: InputSize;
   /** Icon at the start of the field, inside the border. Decorative — not focusable. */
   leadingIcon?: ReactNode;
@@ -32,9 +32,8 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
  * never editable themselves. Icons are decorative (`aria-hidden`) and always
  * `color/input/icon` (also subtle) regardless of field state.
  *
- * Figma has 15 variants (`size` × `state`) with none of these slots — this
- * extends that anatomy in code first (icons/affixes are a real, recurring
- * need — a search field, a currency amount, a URL); see docs/components/Input.md.
+ * Figma is at full parity (30 variants — `size` × `state` × `filled` — plus
+ * these 4 accessories as boolean component properties); see docs/components/Input.md.
  */
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   {

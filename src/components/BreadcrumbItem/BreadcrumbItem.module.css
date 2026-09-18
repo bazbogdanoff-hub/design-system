@@ -1,0 +1,23 @@
+.item {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--text-body-sm-font-weight);
+  line-height: var(--text-body-sm-line-height);
+  color: var(--color-breadcrumb-text-default);
+}
+
+a.item:hover {
+  color: var(--color-breadcrumb-text-hover);
+}
+
+.item.current {
+  color: var(--color-breadcrumb-text-current);
+  cursor: default;
+}
+
+.item.primary {
+  color: var(--color-breadcrumb-text-primary);
+}

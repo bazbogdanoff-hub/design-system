@@ -1,0 +1,122 @@
+.wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 24px;
+}
+
+/* the visible track + fill — a plain decorative span pair, same shape as
+   ProgressBar's own track/fill (see Slider.tsx for why this beats a
+   vendor-prefixed pseudo-element background). Absolutely positioned +
+   vertically centered so it sits directly behind the (also absolutely
+   positioned, full-box) real input. */
+.track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  overflow: hidden;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-sunken);
+  pointer-events: none;
+}
+.wrapper[data-size='sm'] .track { height: var(--space-8); }
+.wrapper[data-size='md'] .track { height: var(--space-12); }
+.wrapper[data-size='lg'] .track { height: var(--space-16); }
+
+.fill {
+  display: block;
+  height: 100%;
+  background: var(--color-background-brand-default);
+}
+.wrapper[data-disabled] .fill {
+  background: var(--color-text-disabled);
+}
+
+/* the real input — invisible except for its thumb; it owns the full
+   wrapper box so click-anywhere-to-jump and dragging keep working exactly
+   like a native range input */
+.slider {
+  position: absolute;
+  inset: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.slider:disabled {
+  cursor: not-allowed;
+}
+/* the default browser focus outline draws around the input's whole
+   (invisible) box — suppressed in favor of the thumb's own focus-visible
+   ring below, the only focus indicator that should be visible */
+.slider:focus-visible {
+  outline: none;
+}
+
+/* IMPORTANT: never comma-combine a ::-webkit-* selector with a ::-moz-*
+   one — an unrecognized vendor pseudo-element invalidates the WHOLE
+   selector list for a plain style rule, so Chrome silently drops a rule
+   like `.x::-webkit-foo, .x::-moz-foo { ... }` in its entirety. Every pair
+   below is two separate rules. */
+.slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 24px;
+  background: transparent;
+}
+.slider::-moz-range-track {
+  width: 100%;
+  height: 24px;
+  background: transparent;
+}
+
+/* ---- thumb ---- */
+/* Centered within the native track's flat 24px box, which is always taller
+   than the thumb — so margin-top is a small positive offset here (not
+   negative), and it differs per size since the gap to fill varies. */
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 50%;
+  background: var(--color-surface-default);
+  border: 2px solid var(--color-border-brand);
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.slider::-moz-range-thumb {
+  border-radius: 50%;
+  background: var(--color-surface-default);
+  border: 2px solid var(--color-border-brand);
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.slider[data-size='sm']::-webkit-slider-thumb { width: 16px; height: 16px; margin-top: 4px; }
+.slider[data-size='sm']::-moz-range-thumb { width: 16px; height: 16px; }
+.slider[data-size='md']::-webkit-slider-thumb { width: 20px; height: 20px; margin-top: 2px; }
+.slider[data-size='md']::-moz-range-thumb { width: 20px; height: 20px; }
+.slider[data-size='lg']::-webkit-slider-thumb { width: 24px; height: 24px; margin-top: 0; }
+.slider[data-size='lg']::-moz-range-thumb { width: 24px; height: 24px; }
+
+.slider:hover:not(:disabled)::-webkit-slider-thumb { border-color: var(--color-background-brand-hover); }
+.slider:hover:not(:disabled)::-moz-range-thumb { border-color: var(--color-background-brand-hover); }
+
+.slider:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px var(--color-background-brand-subtle); }
+.slider:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 4px var(--color-background-brand-subtle); }
+
+.slider:disabled::-webkit-slider-thumb {
+  border-color: var(--color-border-subtle);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.slider:disabled::-moz-range-thumb {
+  border-color: var(--color-border-subtle);
+  box-shadow: none;
+  cursor: not-allowed;
+}

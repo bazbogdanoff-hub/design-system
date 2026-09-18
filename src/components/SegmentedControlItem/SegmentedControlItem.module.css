@@ -1,0 +1,140 @@
+.item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  border: none;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  color: var(--color-segmented-control-item-text-default);
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+.item:hover:not(:disabled):not([data-selected]) {
+  background: var(--color-segmented-control-item-background-hover);
+  color: var(--color-segmented-control-item-text-hover);
+}
+
+/* selected, no tone — see SegmentedControlItem.tsx: gets Button's own
+   .surface[data-variant='secondary'] glass skin instead of a color here */
+
+/* tone track, unselected (sidebar module switcher's other segments) — a
+   two-layer glass look (a flat zinc fill + a black-alpha wash on top),
+   tone-agnostic on purpose: unselected never carries a module's color, only
+   `selected` does. `position` rounds whichever outer corner touches the
+   switcher's own panel edge — `start`/`end` only, `middle` stays uniform. */
+.item[data-tone]:not([data-selected]) {
+  background:
+    linear-gradient(var(--color-segmented-control-item-xs-default-overlay), var(--color-segmented-control-item-xs-default-overlay)),
+    var(--color-segmented-control-item-xs-default-fill);
+  border: 1px solid var(--color-segmented-control-item-xs-default-border);
+  box-shadow: inset -1px -1px 2px 0 var(--color-segmented-control-item-xs-default-inner-shadow);
+}
+
+.item[data-tone]:hover:not(:disabled):not([data-selected]) {
+  background:
+    linear-gradient(var(--color-segmented-control-item-xs-hover-overlay), var(--color-segmented-control-item-xs-hover-overlay)),
+    var(--color-segmented-control-item-xs-hover-fill);
+  border-color: var(--color-segmented-control-item-xs-hover-border);
+  box-shadow: inset -1px -1px 2px 0 var(--color-segmented-control-item-xs-hover-inner-shadow);
+}
+
+.item[data-tone] {
+  /* the xs pill's own base corner — not on the primitive radius scale,
+     a deliberate per-component exception (same pattern documented on
+     component.color.json's `sidebar` block for this component's colors) */
+  border-radius: 3px;
+}
+.item[data-tone][data-position='start'] {
+  border-top-left-radius: var(--radius-panel);
+}
+.item[data-tone][data-position='end'] {
+  border-top-right-radius: var(--radius-panel);
+}
+
+/* tone track, selected — a solid tone-colored fill instead of the glass
+   surface (see SegmentedControlItem.tsx for why this fully swaps rather
+   than layers on top of it). Deliberately NOT the shared background.<tone>
+   token (600/700, calibrated for light surfaces) — those read muddy on this
+   dark track, so this uses the sidebar-scoped 500/400 pair instead: fill at
+   500 for the segment's own solid area, accent at 400 for its stroke/inner
+   shadow (see component.color.json's `sidebar` block for the full why). */
+.item[data-tone='brand'][data-selected] {
+  background: var(--color-sidebar-brand-fill);
+  border: 1px solid var(--color-sidebar-brand-accent);
+  box-shadow: inset 0 1px 2px 0 var(--color-sidebar-brand-accent);
+  color: var(--color-text-on-brand);
+}
+.item[data-tone='success'][data-selected] {
+  background: var(--color-sidebar-success-fill);
+  border: 1px solid var(--color-sidebar-success-accent);
+  box-shadow: inset 0 1px 2px 0 var(--color-sidebar-success-accent);
+  color: var(--color-text-on-success);
+}
+.item[data-tone='danger'][data-selected] {
+  background: var(--color-sidebar-danger-fill);
+  border: 1px solid var(--color-sidebar-danger-accent);
+  box-shadow: inset 0 1px 2px 0 var(--color-sidebar-danger-accent);
+  color: var(--color-text-on-danger);
+}
+
+.item:disabled {
+  color: var(--color-segmented-control-item-text-disabled);
+  cursor: not-allowed;
+}
+
+.item:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: -2px;
+}
+
+/* size cascades from the nearest SegmentedControl ancestor's data-size, same
+   ancestor-context pattern MenuRow/TableRow use */
+[data-size='sm'] .item {
+  height: 28px;
+  padding-inline: var(--space-6);
+  border-radius: var(--radius-segmented-control-sm);
+  font-family: var(--text-label-sm-font-family);
+  font-size: var(--text-label-sm-font-size);
+  font-weight: var(--text-label-sm-font-weight);
+  line-height: var(--text-label-sm-line-height);
+  letter-spacing: var(--text-label-sm-letter-spacing);
+}
+
+[data-size='md'] .item {
+  height: 32px;
+  padding-inline: var(--space-8);
+  border-radius: var(--radius-segmented-control-md);
+  font-family: var(--text-label-md-font-family);
+  font-size: var(--text-label-md-font-size);
+  font-weight: var(--text-label-md-font-weight);
+  line-height: var(--text-label-md-line-height);
+  letter-spacing: var(--text-label-md-letter-spacing);
+}
+
+[data-size='lg'] .item {
+  height: 36px;
+  padding-inline: var(--space-8);
+  border-radius: var(--radius-segmented-control-lg);
+  font-family: var(--text-label-lg-font-family);
+  font-size: var(--text-label-lg-font-size);
+  font-weight: var(--text-label-lg-font-weight);
+  line-height: var(--text-label-lg-line-height);
+  letter-spacing: var(--text-label-lg-letter-spacing);
+}
+
+/* xs — the sidebar module switcher only. Flex-fills the track evenly
+   (SegmentedControl sizes its xs track itself; items don't set a width). */
+[data-size='xs'] .item {
+  flex: 1 1 0;
+  height: 24px;
+  padding-inline: 0;
+}
+
+[data-size='xs'][data-collapsed='true'] .item {
+  height: 16px;
+}

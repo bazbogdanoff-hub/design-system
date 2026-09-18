@@ -12,7 +12,7 @@ type Base = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
   /** Defaults to 100, i.e. `value` is already a percentage. Pass the real
    * total instead (e.g. `totalSeconds`) rather than pre-dividing yourself. */
   max?: number;
-  /** `sm` (8px) · `md` (12px, default) · `lg` (16px). */
+  /** `sm` (6px) · `md` (10px, default) · `lg` (12px). */
   size?: ProgressBarSize;
   /** Semantic colour — not decorative choice. `brand` (default, neutral
    * progress) · `success` · `warning` · `danger`. */

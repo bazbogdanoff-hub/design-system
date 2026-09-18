@@ -1,18 +1,22 @@
 # AppShell
 
-The application chrome — a fixed **64px sidebar rail** + a padded main area
-whose rounded content surface **scrolls**. Fluid: fills the viewport, and only
-the content region scrolls (never the body).
+The application chrome — a sidebar rail (**64px collapsed** / **180px
+expanded**) + a padded main area whose rounded content surface **scrolls**.
+Fluid: fills the viewport, and only the content region scrolls (never the
+body). Deliberately generic: it just holds `sidebar` as a `ReactNode` slot —
+it doesn't know or care that the real content is a
+[`Sidebar`](./Sidebar.md) instance.
 
 ```tsx
-<AppShell sidebar={<CrmSidebar/>}>
+<AppShell sidebar={<Sidebar {...sidebarProps} />} sidebarMode="expanded">
   {/* the screen */}
 </AppShell>
 ```
 
 | prop | type | |
 |---|---|---|
-| `sidebar` | `ReactNode` | content for the 64px rail. Empty by default (just the dark bar). |
+| `sidebar` | `ReactNode` | content for the rail. Empty by default (just the dark bar). |
+| `sidebarMode` | `'collapsed'` (default) \| `'expanded'` | controls the rail's own width only — 64px / 180px, matching `Sidebar`'s real built width at each mode. The `sidebar` content itself is unaffected; pass the same value to both. |
 | `children` | `ReactNode` | the screen — fills the scrolling content surface. |
 
 `className`, `style`, `...divProps` pass through to the root.
@@ -20,12 +24,17 @@ the content region scrolls (never the body).
 ## Structure
 
 ```
-.shell            grid  [64px | 1fr]   100dvw × 100dvh   overflow: hidden
-├─ .sidebar       64px, full height, background/emphasis  ← sidebar slot
+.shell            grid  [64px|180px | 1fr]   100dvw × 100dvh   overflow: hidden
+├─ .sidebar       64px/180px, full height, background/emphasis  ← sidebar slot
 └─ .main          padding var(--space-12) (gutter)
    └─ .content    background/muted · radius/page · padding var(--space-20)
                   overflow-y: auto   ← THE scroll container; children live here
 ```
+
+`--app-sidebar-width` was 240px for `expanded` until 2026-09-18 — a guess
+made before the real `Sidebar` component existed. Corrected to 180px once
+`Sidebar` was fully built (Figma + React) and its actual expanded width was
+known; 240 left ~60px of dead space to the right of the real content.
 
 **Screens are not components.** A screen is a page/route that renders
 `<AppShell sidebar={…}>…</AppShell>`. In Figma they're frames nesting one shell
@@ -37,10 +46,10 @@ instance with the content slot filled — never a component.
 different scale of surface than a card, so it earned its own radius instead of
 sharing Card's.
 
-Dimensions (sidebar 64, gutter `space/12`, content padding `space/20`) are
-literal in `AppShell.module.css` for now — promote to
-`size/app/*` tokens if a collapsed/expanded sidebar or denser mode is added.
-The `Variant=Horizontal` on the Figma `Base` foreshadows a below-`lg` collapse.
+Dimensions (sidebar 64/180, gutter `space/12`, content padding `space/20`)
+are literal in `AppShell.module.css` for now — promote to `size/app/*`
+tokens if a denser mode is ever added on top of collapsed/expanded. The
+`Variant=Horizontal` on the Figma `Base` foreshadows a below-`lg` collapse.
 
 ---
 

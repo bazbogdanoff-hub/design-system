@@ -1,0 +1,26 @@
+.wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.trigger {
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+}
+.trigger[data-disabled] {
+  cursor: not-allowed;
+}
+
+/* Input's own .field only reacts to a focused CHILD (:focus-within) — here
+   the trigger button itself is the focusable element, so :focus is added
+   locally rather than relying on the imported class alone. */
+.trigger:focus {
+  outline: none;
+  border-color: var(--color-input-border-focus);
+}
+
+.trigger [data-placeholder] {
+  color: var(--color-input-text-placeholder);
+}

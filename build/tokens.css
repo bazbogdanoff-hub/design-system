@@ -266,6 +266,16 @@
   --color-rose-800: #9f1239;
   --color-rose-900: #881337;
   --color-rose-950: #4c0519;
+  --color-category-brand-background-muted: #625bd0; /** brand.600 desaturated -0.20 in HSL (H 243, L 59 held; S 75->55). Contrast vs. white icon: 5.35:1. */
+  --color-category-teal-background-muted: #1d847b; /** teal.600 desaturated -0.20 in HSL (H 175, L 32 held; S 84->64). Contrast vs. white icon: 4.53:1. */
+  --color-category-rose-background-muted: #a92747; /** rose.700 desaturated -0.20 in HSL (H 345, L 41 held; S 83->63). Contrast vs. white icon: 6.84:1. */
+  --color-category-lime-background-muted: #62911f; /** lime.600 desaturated -0.20 in HSL (H 85, L 35 held; S 85->65). Contrast vs. white icon: 3.74:1 — the weakest of the 10, still clears the 3:1 UI-graphics floor; same always-a-label mitigation as .text above. */
+  --color-category-fuchsia-background-muted: #91309b; /** fuchsia.700 desaturated -0.20 in HSL (H 295, L 40 held; S 72->52). Contrast vs. white icon: 6.76:1. */
+  --color-category-cyan-background-muted: #1b869f; /** cyan.600 desaturated -0.20 in HSL (H 192, L 36 held; S 91->71). Contrast vs. white icon: 4.25:1. */
+  --color-category-pink-background-muted: #a92d61; /** pink.700 desaturated -0.20 in HSL (H 335, L 42 held; S 78->58). Contrast vs. white icon: 6.50:1. */
+  --color-category-violet-background-muted: #8250d7; /** violet.600 desaturated -0.20 in HSL (H 262, L 58 held; S 83->63). Contrast vs. white icon: 5.17:1. */
+  --color-category-emerald-background-muted: #106c52; /** emerald.700 desaturated -0.20 in HSL (H 163, L 24 held; S 94->74). Contrast vs. white icon: 6.42:1. */
+  --color-category-blue-background-muted: #365ac0; /** blue.700 desaturated -0.20 in HSL (H 224, L 48 held; S 76->56). Contrast vs. white icon: 6.25:1. */
   --radius-none: 0;
   --radius-xs: 0.125rem; /** 2px */
   --radius-sm: 0.25rem; /** 4px */
@@ -277,9 +287,26 @@
   --radius-4xl: 1.5rem; /** 24px — AppShell/Page's own content-viewport corner */
   --radius-5xl: 2rem; /** 32px */
   --radius-full: 9999px; /** pills, avatars, dots */
-  --size-control-sm: 1.75rem; /** 28px, RAW — not aliased to space/*, which jumps 24→32 with nothing at 28. A control's height is a sizing concern, not a spacing one. Matches Button's own sm/xs height exactly, so an Input/Select and a Button of the same size step align in a toolbar. This is the size/control/* token flagged as a TODO in Button.md/HANDOFF. */
+  --size-control-sm: 1.75rem; /** 28px, RAW — not aliased to space/*, which jumps 24→32 with nothing at 28. A control's height is a sizing concern, not a spacing one. Matches Button's own sm/xs height exactly, so a Button and a same-size-step control align in a toolbar. This is the size/control/* token flagged as a TODO in Button.md/HANDOFF. Input no longer uses this scale — see size.input below. */
   --size-control-md: 2rem; /** 32px — matches Button md height. Could alias 2rem; kept a sibling raw value to sm/lg instead for consistency within this group. */
   --size-control-lg: 2.25rem; /** 36px — matches Button lg height. */
+  --size-input-sm: 2.25rem; /** 36px, RAW — owner resized Input up a full step in Figma, deliberately diverging from size.control (still shared by Button). Equals size.control.lg/Button's own lg height, but kept as Input's own scale rather than reused since the two are free to move independently now. */
+  --size-input-md: 2.5rem; /** 40px — equals Button's xl height, coincidentally; Input's own scale. */
+  --size-input-lg: 2.75rem; /** 44px — equals Button's 2xl height, coincidentally; Input's own scale. */
+  --size-textarea-sm: 4.5rem; /** 72px — exactly 2x size.input.sm (36px). A notes/multi-line field's default height, not a hard cap — the element still grows with content/manual resize. Deliberately derived from Input's own scale (double it) rather than an independent value, so the two stay proportional if Input's scale ever moves again. */
+  --size-textarea-md: 5rem; /** 80px — 2x size.input.md (40px). */
+  --size-textarea-lg: 5.5rem; /** 88px — 2x size.input.lg (44px). */
+  --size-progress-bar-sm: 0.375rem; /** 6px — was space.8 (8px), shrunk ~25% and snapped to the nearest real space.* step so ProgressBar fits dense contexts like a TableCell (which currently uses a bespoke stage-tracker instead, precisely because the old 8/12/16 scale read too tall there). No longer aliases space.8 directly — this is now ProgressBar's own scale, split off the same way size.input split off size.control, so the two can move independently. */
+  --size-progress-bar-md: 0.625rem; /** 10px — was space.12 (12px). A straight 20% cut lands on 9.6px, which isn't a real step on this system's space/radius scale (0,2,4,6,8,10,12,16,...); 10 is the nearest real step and reads better once rendered than rounding to 9. */
+  --size-progress-bar-lg: 1rem; /** 16px — bumped up from 12px (2026-09-16) so the largest variant reads as more clearly 'big' next to sm/md; paired with a wider 1.5px fill border (up from 1px) and a 2px track inset (up from 1px) at this size only. */
+  --size-spinner-sm: 1rem; /** 16px — matches this system's standard inline-icon scale (MenuRow/TableCellText icons at md size). */
+  --size-spinner-md: 1.25rem; /** 20px — was 24px; tightened to a 16/20/24 progression (a standard icon-scale triplet) instead of the original 16/24/32, which jumped straight past 20. */
+  --size-spinner-lg: 1.5rem; /** 24px — was 32px, for the same reason as md: keeps the scale on 16/20/24 rather than skipping a step. */
+  --size-avatar-xs: 1.5rem; /** 24px */
+  --size-avatar-sm: 1.75rem; /** 28px */
+  --size-avatar-md: 2rem; /** 32px */
+  --size-avatar-lg: 2.5rem; /** 40px */
+  --size-avatar-xl: 2.75rem; /** 44px — the owner's 5-size request (44/40/32/28/24) mapped onto this system's usual xs–xl naming rather than exposing raw numbers as variant names. */
   --space-0: 0;
   --space-2: 0.125rem; /** 2px — hairline gap */
   --space-4: 0.25rem; /** 4px */
@@ -339,10 +366,57 @@
   --color-brand-900: var(--color-indigo-900);
   --color-brand-950: var(--color-indigo-950);
   --color-button-primary-border-active: var(--color-white); /** Full 1.5px white border on focus / active — high contrast on the brand fill (parallels color.button.secondary.border.active). */
+  --color-badge-neutral-glow: var(--color-zinc-300);
+  --color-badge-neutral-shadow: var(--color-zinc-400); /** One step darker than glow — neutral has no hue to lean on, so the inner shadow needs the extra step to read as depth rather than just a flat gray smear. */
+  --color-badge-neutral-text: var(--color-zinc-600);
+  --color-badge-success-glow: var(--color-emerald-300);
+  --color-badge-success-shadow: var(--color-emerald-300); /** Same step as glow — unlike neutral/brand, success/warning/danger/warning-strong reuse one shade for both, since their own hue already carries enough depth without a darker second step. */
+  --color-badge-success-text: var(--color-emerald-600);
+  --color-badge-warning-glow: var(--color-amber-300);
+  --color-badge-warning-shadow: var(--color-amber-300);
   --color-badge-warning-text: var(--color-amber-600); /** One step lighter than text.warning (amber.700) — deliberate primitive alias so the amber `warning` badge is clearly distinct from the orange `warning-strong` badge. Small contrast tradeoff (~3.2:1) accepted for level differentiation. */
+  --color-badge-warning-strong-glow: var(--color-orange-300);
+  --color-badge-warning-strong-shadow: var(--color-orange-300);
+  --color-badge-warning-strong-text: var(--color-orange-600);
+  --color-badge-danger-glow: var(--color-rose-300);
+  --color-badge-danger-shadow: var(--color-rose-300);
+  --color-badge-danger-text: var(--color-rose-600);
+  --color-table-row-background-danger: var(--color-rose-50); /** Deliberate primitive alias, one step paler than color.background.danger-subtle (rose.100) — owner's explicit choice for a low-contrast row wash, not the louder banner-style danger-subtle tone. */
+  --color-table-row-background-success: var(--color-emerald-50); /** Deliberate primitive alias, one step paler than color.background.success-subtle (emerald.100) — same reasoning as row.background.danger. */
   --color-scrollable-area-shadow: var(--color-alpha-black-15); /** Inner-shadow tint at the scroll edges. Was a raw #00000026 before the alpha-black primitive ramp existed — now a proper alias, same value (15%). */
   --color-switch-thumb: var(--color-white); /** Always a plain white circle regardless of track state — the track color alone carries on/off/disabled. */
-  --color-checkbox-icon: var(--color-white); /** The checkmark (checked) / dash (indeterminate) glyph — always white against the brand fill. */
+  --color-checkbox-icon-default: var(--color-white); /** The checkmark (checked) / dash (indeterminate) glyph — white against the brand fill. Was a flat `checkbox.icon` leaf before React needed a disabled variant; the Figma master (4182:3616) still binds its glyph vectors to the old flat `color/checkbox/icon` name for every state, disabled included — a real Figma↔code drift, not fixed here (bridge is read-only for this task). Worth a follow-up: rename the Figma variable to `color/checkbox/icon/default` and add a sibling `color/checkbox/icon/disabled` bound onto the disabled+checked/indeterminate master variants. */
+  --color-segmented-control-item-xs-default-fill: var(--color-zinc-500);
+  --color-segmented-control-item-xs-default-border: var(--color-zinc-500);
+  --color-segmented-control-item-xs-default-inner-shadow: var(--color-zinc-500);
+  --color-segmented-control-item-xs-default-overlay: var(--color-alpha-black-15);
+  --color-segmented-control-item-xs-hover-fill: var(--color-zinc-400);
+  --color-segmented-control-item-xs-hover-border: var(--color-zinc-400);
+  --color-segmented-control-item-xs-hover-inner-shadow: var(--color-zinc-400);
+  --color-segmented-control-item-xs-hover-overlay: var(--color-alpha-black-25);
+  --color-progress-bar-fill-shadow: var(--color-alpha-black-20); /** Flat neutral shadow, not tone-colored — replaces the earlier per-tone hue.700 shadow. */
+  --color-progress-bar-success-fill: var(--color-emerald-500);
+  --color-progress-bar-success-stripe: var(--color-emerald-400);
+  --color-progress-bar-warning-fill: var(--color-amber-500); /** Owner's correction — the 500-600->400-500 ramp shift briefly landed this at amber.400, one step below the shared color.background.warning (amber.500); owner wanted warning's fill to stay at 500, unlike the other 3 tones which did shift down a step. */
+  --color-progress-bar-warning-stripe: var(--color-amber-400); /** One step below fill (500), same relative gap the other 3 tones have between their own fill and stripe — the earlier 'same as fill' note no longer applies now that fill moved back to 500. */
+  --color-progress-bar-danger-fill: var(--color-rose-500);
+  --color-progress-bar-danger-stripe: var(--color-rose-400);
+  --color-sidebar-icon-default: var(--color-zinc-200);
+  --color-sidebar-text-default: var(--color-zinc-200);
+  --color-sidebar-panel-background: var(--color-zinc-600);
+  --color-sidebar-panel-inner-shadow: var(--color-zinc-500);
+  --color-sidebar-success-fill: var(--color-emerald-500);
+  --color-sidebar-success-accent: var(--color-emerald-400);
+  --color-sidebar-danger-fill: var(--color-rose-500);
+  --color-sidebar-danger-accent: var(--color-rose-400);
+  --color-sidebar-nav-item-active-fill: var(--color-zinc-500);
+  --color-sidebar-nav-item-active-overlay: var(--color-alpha-black-10);
+  --color-sidebar-nav-item-active-border: var(--color-zinc-400);
+  --color-sidebar-nav-item-active-inner-shadow: var(--color-zinc-500);
+  --color-sidebar-nav-item-hover-fill: var(--color-zinc-500); /** Deliberately simpler than active — a flat wash with no border/inner-shadow/overlay, so hover reads as a lighter, transient touch compared to the fuller active recipe above. */
+  --color-sidebar-logo-mark: var(--color-white); /** Owner's explicit call: the logo stays pure white on the sidebar regardless of theme — not an alias into the zinc ramp like every other sidebar token above, since this one is never meant to soften or recede. Was bound to a raw color.zinc.100 in Figma before this fix (an off-white, not the intended pure white). */
+  --color-sidebar-logo-wordmark: var(--color-white); /** Same reasoning as mark, for the adjacent wordmark text — was bound to color.zinc.200 in Figma, inconsistent with the mark's own (also-wrong) near-white; both now resolve to the one correct value. */
+  --color-avatar-action-icon: var(--color-white); /** The add/delete glyph inside the action badge — white against either solid fill. */
   --color-background-default: var(--color-zinc-50); /** Page / app canvas */
   --color-background-subtle: var(--color-zinc-100); /** Inset zones, striped rows, panels flush with the page */
   --color-background-muted: var(--color-zinc-300); /** A visibly deeper recessed fill than subtle — the AppShell content-slot backdrop the screen sits on */
@@ -350,11 +424,11 @@
   --color-background-disabled: var(--color-zinc-100); /** Disabled control fill */
   --color-background-overlay: var(--color-alpha-black-40); /** Modal / drawer scrim — the darkener behind a centered modal. Pure black at 40% (was a zinc-950 tint at ~70%; lightened + de-tinted so the interface stays readable behind the modal). `color.modal.scrim` aliases this. */
   --color-background-overlay-subtle: var(--color-alpha-black-3); /** Neutral hover/press wash — layers on top of whatever's underneath instead of replacing it (row hover, list-item hover, etc.), unlike background.subtle which is an opaque swap */
-  --color-background-danger-default: var(--color-red-600); /** Destructive button */
-  --color-background-danger-hover: var(--color-red-700);
-  --color-background-danger-subtle: var(--color-red-100); /** Error banner / callout fill */
-  --color-background-success: var(--color-green-600); /** Solid success badge / button */
-  --color-background-success-subtle: var(--color-green-100); /** Success banner fill */
+  --color-background-danger-default: var(--color-rose-600); /** Destructive button */
+  --color-background-danger-hover: var(--color-rose-700);
+  --color-background-danger-subtle: var(--color-rose-100); /** Error banner / callout fill */
+  --color-background-success: var(--color-emerald-600); /** Solid success badge / button */
+  --color-background-success-subtle: var(--color-emerald-100); /** Success banner fill */
   --color-background-warning: var(--color-amber-500); /** Solid warning badge */
   --color-background-warning-subtle: var(--color-amber-100); /** Warning banner fill */
   --color-background-warning-strong: var(--color-orange-500); /** Orange alert accent — the warning pill/icon in the alert system, distinct from amber warning */
@@ -366,28 +440,31 @@
   --color-surface-subtle: var(--color-zinc-50); /** Nested surface, table header row */
   --color-surface-raised: var(--color-white); /** Surface carrying an elevation shadow: popover, dropdown */
   --color-surface-sunken: var(--color-zinc-100); /** Wells, code blocks, inset track */
+  --color-surface-inverse: var(--color-zinc-900); /** The one surface that stays dark regardless of theme — Tooltip's fill. */
   --color-text-default: var(--color-zinc-900); /** Main headings — h1/h2, page titles */
   --color-text-strong: var(--color-zinc-800); /** Subheadings — h3–h6, section/card titles */
   --color-text-subtle: var(--color-zinc-500); /** Body text — the default reading colour for paragraphs and UI copy */
   --color-text-muted: var(--color-zinc-400); /** Muted / de-emphasised text — hints, placeholders, timestamps, captions */
   --color-text-disabled: var(--color-zinc-300); /** Disabled control text */
-  --color-text-danger: var(--color-red-700); /** Validation errors, destructive labels */
-  --color-text-success: var(--color-green-700);
+  --color-text-danger: var(--color-rose-700); /** Validation errors, destructive labels */
+  --color-text-success: var(--color-emerald-700);
   --color-text-warning: var(--color-amber-700);
   --color-text-warning-strong: var(--color-orange-700); /** Orange warning-pill text */
   --color-text-info: var(--color-blue-700);
   --color-text-on-brand: var(--color-white); /** Text on color.background.brand* */
   --color-text-on-emphasis: var(--color-zinc-50); /** Text on color.background.emphasis */
   --color-text-on-danger: var(--color-white); /** Text on color.background.danger* */
+  --color-text-on-success: var(--color-white); /** Text on color.background.success — added alongside on-brand/on-danger for SegmentedControlItem's tone fills; same white-on-solid-mid-tone pattern. */
+  --color-text-on-inverse: var(--color-white); /** Text on color.surface.inverse (Tooltip). */
   --color-border-default: var(--color-zinc-200); /** Inputs, cards, dividers */
   --color-border-subtle: var(--color-zinc-100); /** Faint separators */
   --color-border-strong: var(--color-zinc-300); /** Emphasized / hover borders */
-  --color-border-danger: var(--color-red-600); /** Invalid input */
+  --color-border-danger: var(--color-rose-600); /** Invalid input */
   --color-border-highlight: var(--color-white); /** White edge highlight for glass / raised surfaces (asymmetric top-left catch) */
   --color-icon-default: var(--color-zinc-700); /** Standalone UI icons */
   --color-icon-subtle: var(--color-zinc-500); /** Decorative / secondary icons */
-  --color-icon-danger: var(--color-red-600);
-  --color-icon-success: var(--color-green-600);
+  --color-icon-danger: var(--color-rose-600);
+  --color-icon-success: var(--color-emerald-600);
   --color-icon-warning-strong: var(--color-orange-600); /** Orange warning-pill icon */
   --color-icon-on-brand: var(--color-white); /** Icon on a brand fill */
   --color-icon-on-emphasis: var(--color-zinc-50); /** Icon on color.background.emphasis */
@@ -399,16 +476,29 @@
   --color-chart-7: var(--color-sky-400); /** Migrated from sky.600 to match Figma's lighter chart ramp — passes paired with violet.500. */
   --color-chart-8: var(--color-lime-500); /** Not migrated to lime.400 — failed the lightness-band check at .400 (L 0.849, the worst offender). */
   --color-category-teal-text: var(--color-teal-600); /** Not .700 — fails the chroma floor at that depth (reads gray), same issue as cyan. Contrast vs. own-100 is 3.3:1 — accepted per the always-a-label mitigation on the group description. */
+  --color-category-teal-background: var(--color-teal-600);
   --color-category-rose-text: var(--color-rose-700); /** 700, not 600 — .600 doesn't clear 4.5:1 contrast. */
+  --color-category-rose-background: var(--color-rose-700);
   --color-category-lime-text: var(--color-lime-600); /** Not .700 — turns muddy-olive, indistinguishable from emerald under the stricter all-pairs test that was relaxed for this set; still the right shade under adjacent-only since lime and emerald are kept non-adjacent. Contrast vs. own-100 is 2.9:1 at .600 — accepted per the always-a-label mitigation. */
+  --color-category-lime-background: var(--color-lime-600);
   --color-category-fuchsia-text: var(--color-fuchsia-700); /** 700, not 600 — .600 doesn't clear 4.5:1 contrast. */
+  --color-category-fuchsia-background: var(--color-fuchsia-700);
   --color-category-cyan-text: var(--color-cyan-600); /** Not .700 — fails the chroma floor (reads gray) at that depth. Contrast vs. own-100 is 3.3:1 — accepted per the always-a-label mitigation. */
+  --color-category-cyan-background: var(--color-cyan-600);
   --color-category-pink-text: var(--color-pink-700); /** 700, not 600 — .600 doesn't clear 4.5:1 contrast. Kept non-adjacent to rose (its nearest Tailwind neighbor, ΔE 4.6 at dark shades — would fail right next to it). */
+  --color-category-pink-background: var(--color-pink-700);
   --color-category-violet-text: var(--color-violet-600); /** Kept non-adjacent to brand/indigo (its nearest neighbor, ΔE as low as 0.9 under some CVD types at .700 — would fail right next to it). */
+  --color-category-violet-background: var(--color-violet-600);
   --color-category-emerald-text: var(--color-emerald-700); /** 700, not 600 — .600 doesn't clear 4.5:1 contrast. */
+  --color-category-emerald-background: var(--color-emerald-700);
   --color-category-blue-text: var(--color-blue-700); /** Kept non-adjacent to brand/indigo (its nearest neighbor — the two are easily confused at matching shades). */
+  --color-category-blue-background: var(--color-blue-700);
   --radius-checkbox: var(--radius-sm); /** 4, flat across all sizes — a checkbox's corner rounding doesn't scale with its box size, same reasoning as radius.input staying flat across Input's sizes. */
   --radius-switch: var(--radius-full); /** Pill track + circular thumb at every size — a switch is always fully rounded, no size-dependent step needed. */
+  --radius-radio: var(--radius-full); /** Circular at every size, same reasoning as radius.switch — no size-dependent corner step. Was never scaffolded when Radio's other component colour tokens were added; added now while building Radio's React port (confirmed via the Figma master, 10222:14006 — cornerRadius 9999 on all 18 variants). */
+  --radius-avatar: var(--radius-full); /** Always a full circle, at every size — same reasoning as radius.switch/radio. */
+  --radius-sidebar-section-top: var(--radius-sm); /** 4 */
+  --radius-sidebar-section-deep: var(--radius-4xl); /** 24 */
   --radius-container: var(--radius-xl); /** 12px — outermost content card in a carded layout (1440 migration: was radius.2xl/16px) */
   --radius-page-container: var(--radius-4xl); /** 24px — AppShell/Page's own content viewport, distinct from a Card's container radius */
   --radius-panel: var(--radius-xl); /** 12px — nested card, section, menu, popover, sheet */
@@ -541,20 +631,13 @@
   --color-card-background-default: var(--color-surface-card);
   --color-card-background-hover: var(--color-surface-subtle); /** Reserved — for the future interactive-card hover state (not used yet) */
   --color-card-border: var(--color-border-highlight); /** The asymmetric glass catch (top + left, 1.5px, white). Widths + the inner-shadow are hand-tuned in the CSS, not tokens. */
-  --color-badge-neutral-background: var(--color-background-subtle);
-  --color-badge-neutral-text: var(--color-text-subtle);
-  --color-badge-success-background: var(--color-background-success-subtle);
-  --color-badge-success-text: var(--color-text-success);
-  --color-badge-warning-background: var(--color-background-warning-subtle);
-  --color-badge-warning-strong-background: var(--color-background-warning-strong-subtle);
-  --color-badge-warning-strong-text: var(--color-text-warning-strong);
-  --color-badge-danger-background: var(--color-background-danger-subtle);
-  --color-badge-danger-text: var(--color-text-danger);
+  --color-badge-brand-glow: var(--color-brand-300);
+  --color-badge-brand-shadow: var(--color-brand-400); /** One step darker than glow, same reasoning as neutral.shadow — brand kept the asymmetric pair rather than being flattened to match the other 4 tones. */
+  --color-badge-brand-text: var(--color-brand-600);
   --color-badge-info-background: var(--color-background-info-subtle);
   --color-badge-info-text: var(--color-text-info);
-  --color-table-header-background: var(--color-surface-subtle);
+  --color-table-header-background-default: var(--color-background-subtle); /** zinc.100. Owner decided the header row only ever needs one flat color — no separate active/focused state — so this took over the value that had briefly been header.background.active; the original default (color.surface.subtle, zinc.50) was removed since it's no longer used anywhere. */
   --color-table-header-text: var(--color-text-subtle);
-  --color-table-row-background-default: var(--color-surface-default);
   --color-table-row-shadow-hover: var(--color-background-overlay-subtle); /** Inset shadow, not a fill — the row has no background by default, hover darkens via an inner-shadow wash instead of swapping a fill. Shared with scrollableArea.row.shadow.hover. */
   --color-table-border: var(--color-border-subtle);
   --color-modal-background: var(--color-surface-raised);
@@ -570,6 +653,7 @@
   --color-checkbox-border-off: var(--color-border-default);
   --color-checkbox-border-off-hover: var(--color-border-strong);
   --color-checkbox-border-disabled: var(--color-border-subtle); /** Same value as background.disabled (zinc.100) — a disabled checkbox reads as one flat muted shape, no separate border needed to stand out. */
+  --color-checkbox-icon-disabled: var(--color-text-disabled); /** Same restraint as `radio.dot.disabled` — a disabled control's glyph reads as muted gray, not a bright white mark on a pale gray fill (which would be nearly invisible). Not yet reflected in the Figma master, see `default`'s note. */
   --color-radio-background: var(--color-surface-default); /** Radio keeps a plain white fill in every state, checked included — unlike Checkbox, which fills solid. The dot (see below) is what signals checked, not the fill. */
   --color-radio-border-off: var(--color-border-default);
   --color-radio-border-off-hover: var(--color-border-strong);
@@ -596,6 +680,32 @@
   --color-form-field-label-error: var(--color-text-danger);
   --color-helper-text-icon-error: var(--color-icon-danger);
   --color-helper-text-text-error: var(--color-text-danger);
+  --color-segmented-control-track-background: var(--color-background-subtle); /** zinc.100 — the recessed track the pill items sit in. */
+  --color-segmented-control-item-text-default: var(--color-text-subtle);
+  --color-segmented-control-item-text-hover: var(--color-text-default);
+  --color-segmented-control-item-text-disabled: var(--color-text-disabled);
+  --color-segmented-control-item-background-hover: var(--color-background-overlay-subtle); /** Same alpha-black wash MenuRow/Row/TableRow already use for hover — a flat background here (not an inset shadow), since an unselected item has no fill of its own to layer over. */
+  --color-progress-bar-track-border: var(--color-border-default); /** The gray track's own 0.5px frame — plain semantic, no tone variation (the track is always neutral). */
+  --color-progress-bar-fill-border: var(--color-border-highlight); /** White edge highlight, not tone-colored — the same glass-catch token Card/Modal use, reused here rather than inventing a white primitive alias. */
+  --color-progress-bar-brand-fill: var(--color-brand-500); /** One step lighter than the shared color.background.brand.default (600) — ProgressBar's own main color now diverges from that semantic token on purpose, so lightening it here never affects Button/Badge/etc. */
+  --color-progress-bar-brand-stripe: var(--color-brand-400); /** Kept at 400 (not shifted down with fill) — owner's explicit preference for a very subtle fill/stripe contrast, tighter than the original 2-step gap. */
+  --color-sidebar-brand-fill: var(--color-brand-500);
+  --color-sidebar-brand-accent: var(--color-brand-400);
+  --color-table-progress-stages-unfilled: var(--color-background-subtle); /** Pending (not-yet-reached) stage points + lines. Was 'shadcn colors/general/actual muted' — same zinc.100 value, now a real semantic alias. */
+  --color-tooltip-background: var(--color-surface-inverse); /** The one component that stays dark regardless of theme — a tooltip needs contrast against whatever's underneath, light or dark page alike. */
+  --color-tooltip-text: var(--color-text-on-inverse);
+  --color-divider-line: var(--color-border-subtle); /** The standalone Divider atom's own line color. Distinct from LabelGroup's internal divider, which deliberately stays on color.text.subtle as fixed chrome — not unified, since that one predates this token and isn't worth a breaking rebind for a coincidental match. */
+  --color-spinner-icon: var(--color-icon-default); /** A sensible static default — real usage typically recolors it via context (the same way Button's own built-in spinner adopts each variant's icon color), same restraint as an inline icon. */
+  --color-breadcrumb-text-default: var(--color-text-subtle); /** An earlier, clickable crumb. */
+  --color-breadcrumb-text-hover: var(--color-text-default);
+  --color-breadcrumb-text-current: var(--color-text-strong); /** The last crumb — the current page, not a link. */
+  --color-breadcrumb-icon: var(--color-icon-subtle); /** The separator glyph between crumbs. */
+  --color-avatar-background: var(--color-background-subtle); /** Neutral placeholder fill behind initials — not per-user hashed color, a static reference can't model that. */
+  --color-avatar-text: var(--color-text-strong); /** The initials. */
+  --color-avatar-ring: var(--color-surface-default); /** The ring around the status dot and the action badge — separates them visually from the avatar image underneath, same idea as a real UI's cutout. */
+  --color-avatar-status-online: var(--color-background-success);
+  --color-avatar-status-offline: var(--color-background-muted);
+  --color-avatar-action-delete: var(--color-background-danger-default);
   --color-background-brand-default: var(--color-brand-600); /** Primary button, active nav item, selected state */
   --color-background-brand-hover: var(--color-brand-700);
   --color-background-brand-active: var(--color-brand-800);
@@ -610,6 +720,7 @@
   --color-icon-brand: var(--color-brand-600);
   --color-chart-1: var(--color-brand-400); /** Categorical series 1 — placeholder palette, revisit with the real chart component. Migrated from brand.500 to match Figma's lighter chart ramp. */
   --color-category-brand-text: var(--color-brand-600); /** indigo.600 — reuses the existing brand primitive rather than a separate value */
+  --color-category-brand-background: var(--color-brand-600);
   --radius-card: var(--radius-container);
   --radius-page: var(--radius-page-container);
   --radius-modal: var(--radius-container);
@@ -625,19 +736,24 @@
   --radius-badge-sm: var(--radius-chip); /** 6 — small badge */
   --radius-badge-md: var(--radius-control); /** 8 — medium badge */
   --radius-badge-lg: var(--radius-control); /** 8 — large badge */
+  --radius-segmented-control-sm: var(--radius-chip); /** 6 — mirrors radius.button.sm; the track and its items share this radius (a small inset gap between them reads fine without stepping the track's radius up). */
+  --radius-segmented-control-md: var(--radius-control); /** 8 — mirrors radius.button.md/lg. */
+  --radius-segmented-control-lg: var(--radius-control); /** 8 — mirrors radius.button.md/lg. */
+  --radius-tooltip: var(--radius-chip); /** 6, flat — same small-chrome radius Badge/Button-sm use, at every size (a tooltip has no size-dependent step). */
   --color-button-secondary-background-default: var(--color-card-background-default); /** Same glass surface as Card / StatButton — #fcfcfc, unchanged by state (hover swaps the shadow, not the fill). */
   --color-button-secondary-border-default: var(--color-card-border); /** White glass catch (top + left) at rest / hover. */
   --color-button-tertiary-text-active: var(--color-text-brand); /** Hover→underline, active→this ('turns primary colour') + underline. */
   --color-button-tertiary-icon-active: var(--color-icon-brand);
   --color-card-border-active: var(--color-border-highlight-active); /** Focused/active glass border — full 1.5px primary, replaces the white top-left catch. Shared by Card, StatButton, and other glass buttons. */
-  --color-badge-brand-background: var(--color-background-brand-subtle);
-  --color-badge-brand-text: var(--color-text-brand);
+  --color-table-row-background-default: var(--color-card-background-default); /** Fixed from color.surface.default (#ffffff) — rows/cells sit directly on Table's own Card-replica surface (#fcfcfc via color.card.background.default), not as a separate white panel. TableCell itself is transparent; TableRow is what actually carries this fill. */
   --color-table-row-background-selected: var(--color-background-brand-subtle);
+  --color-table-row-border-active: var(--color-border-focus); /** 1px focus ring around the whole row — the only visible signal for the active/focused state now that its background mirrors default. Same token Input uses for its own focus border. */
   --color-scrollable-area-row-border-focus: var(--color-border-focus); /** 1px inset border for keyboard focus — inset (box-shadow, not outline) to stay consistent with the row's own no-fill, inset-shadow-hover treatment instead of an outer glow. */
   --color-switch-track-on: var(--color-background-brand-default); /** brand.600, same token Button primary/selected-state uses. */
   --color-switch-track-on-hover: var(--color-background-brand-hover);
   --color-checkbox-background-on: var(--color-background-brand-default);
   --color-checkbox-background-on-hover: var(--color-background-brand-hover);
+  --color-checkbox-border-focus: var(--color-border-focus); /** Added when Checkbox adopted a real focus variant (the previous 3-state default/hover/disabled set never modeled one) — same token Input/TableRow use for their own focus border. */
   --color-radio-border-on: var(--color-background-brand-default);
   --color-radio-border-on-hover: var(--color-background-brand-hover);
   --color-radio-dot-on: var(--color-background-brand-default);
@@ -646,6 +762,11 @@
   --color-form-field-label-primary: var(--color-text-brand);
   --color-helper-text-icon-primary: var(--color-icon-brand);
   --color-helper-text-text-primary: var(--color-text-brand);
+  --color-table-progress-stages-filled: var(--color-background-brand-default); /** Completed stage points + the connecting lines between them, and the current stage's own point fill. Adopted from the owner's pre-token 'Progress bar' component (4182:3097, renamed TableProgressStages) — was bound to the old shadcn-colors 'primary/primary'. */
+  --color-table-progress-stages-ring: var(--color-background-brand-subtle); /** The soft halo stroke around the current/active stage's point only — every other point/line is a flat fill with no stroke. Was 'primary/bg' (a raw light-indigo shadcn variable); this system's own equivalent 'soft brand tint' token is background.brand-subtle, the same one Badge's brand tone uses. */
+  --color-breadcrumb-text-primary: var(--color-text-brand); /** An optional brand-colored crumb — for calling out one segment of the trail (e.g. the entity type), independent of which crumb is current. */
+  --color-avatar-action-add: var(--color-background-brand-default);
   --color-text-brand-solid: var(--color-background-brand-default); /** Text that must read as the same accent as a solid brand fill nearby (a bar, a dot) — aliases background.brand.default itself, not a hand-picked shade, so the two can never drift apart. NOT for text on a light/subtle background — text.brand (700) stays there; this is ~100 lighter and won't clear AA on brand-subtle. */
   --color-button-secondary-border-active: var(--color-card-border-active); /** Full 1.5px primary border on focus / active. */
+  --color-table-row-background-active: var(--color-table-row-background-default); /** Focused row — mirrors row.background.default exactly (owner's call: the fill doesn't change on focus, only the border does — same restraint Input uses for its own focus state). Aliased to the token, not duplicated, so it can never drift from default. */
 }

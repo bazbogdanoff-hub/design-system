@@ -1,0 +1,50 @@
+.switch {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  box-sizing: border-box;
+  border: none;
+  padding: 2px;
+  border-radius: var(--radius-switch);
+  background-color: var(--color-switch-track-off);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.switch[data-checked] {
+  background-color: var(--color-switch-track-on);
+}
+.switch[data-checked]:hover:not(:disabled) {
+  background-color: var(--color-switch-track-on-hover);
+}
+.switch:disabled {
+  background-color: var(--color-switch-track-disabled);
+  cursor: not-allowed;
+}
+.switch:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.thumb {
+  display: block;
+  flex: none;
+  border-radius: 50%;
+  background-color: var(--color-switch-thumb);
+  transform: translateX(0);
+  transition: transform 0.15s ease;
+}
+.switch[data-checked] .thumb {
+  /* Travel distance always equals the thumb's own size at every size step
+     (track width = 2 * thumb + 2 * 2px padding) — see Switch.md. */
+  transform: translateX(var(--thumb-size));
+}
+
+.switch[data-size='sm'] { width: 32px; height: 18px; --thumb-size: 14px; }
+.switch[data-size='md'] { width: 40px; height: 22px; --thumb-size: 18px; }
+.switch[data-size='lg'] { width: 48px; height: 26px; --thumb-size: 22px; }
+
+.switch .thumb {
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+}

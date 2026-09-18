@@ -11,26 +11,27 @@
 .field[data-state='primary'] .label { color: var(--color-form-field-label-primary); }
 .field[data-state='error'] .label { color: var(--color-form-field-label-error); }
 
-/* headline mirrors text/label/* keyed to the field's own size, same pairing
-   Row uses for its heading */
+/* headline mirrors text/label/* one step DOWN from the field's own size —
+   same downshift LabelGroup/Row use for their description text
+   (sm->xs, md->sm, lg->md), not a naive same-size pairing. */
 .field[data-size='sm'] .label {
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  line-height: var(--text-label-xs-line-height);
+  letter-spacing: var(--text-label-xs-letter-spacing);
+}
+.field[data-size='md'] .label {
   font-family: var(--text-label-sm-font-family);
   font-size: var(--text-label-sm-font-size);
   font-weight: var(--text-label-sm-font-weight);
   line-height: var(--text-label-sm-line-height);
   letter-spacing: var(--text-label-sm-letter-spacing);
 }
-.field[data-size='md'] .label {
+.field[data-size='lg'] .label {
   font-family: var(--text-label-md-font-family);
   font-size: var(--text-label-md-font-size);
   font-weight: var(--text-label-md-font-weight);
   line-height: var(--text-label-md-line-height);
   letter-spacing: var(--text-label-md-letter-spacing);
-}
-.field[data-size='lg'] .label {
-  font-family: var(--text-label-lg-font-family);
-  font-size: var(--text-label-lg-font-size);
-  font-weight: var(--text-label-lg-font-weight);
-  line-height: var(--text-label-lg-line-height);
-  letter-spacing: var(--text-label-lg-letter-spacing);
 }

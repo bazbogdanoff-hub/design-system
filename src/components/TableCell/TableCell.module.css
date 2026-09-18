@@ -1,0 +1,9 @@
+.cell {
+  padding: var(--space-12) var(--space-16);
+  vertical-align: middle;
+  background: transparent;
+}
+
+.cell[data-align='start'] { text-align: left; }
+.cell[data-align='center'] { text-align: center; }
+.cell[data-align='end'] { text-align: right; }

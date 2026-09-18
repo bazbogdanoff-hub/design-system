@@ -1,0 +1,28 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-10);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--text-heading-md-font-family);
+  font-size: var(--text-heading-md-font-size);
+  font-weight: var(--text-heading-md-font-weight);
+  line-height: var(--text-heading-md-line-height);
+  letter-spacing: var(--text-heading-md-letter-spacing);
+  color: var(--color-text-default);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}

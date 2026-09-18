@@ -57,6 +57,13 @@
   gap: var(--space-12);
 }
 
+/* context="tasks" — a smaller standalone card for a dense grid (matches
+   Figma's context=tasks: tighter slot spacing, smaller IconCell handled via
+   the size prop above). */
+[data-context='tasks'] .card {
+  gap: var(--space-8);
+}
+
 /* ---------- context="queue" — 3 decorative ghosts + the real card ---------- */
 /* All layers share one grid cell (a ghost has no content of its own to size
    by, so it stretches to match the front card's real height via the shared

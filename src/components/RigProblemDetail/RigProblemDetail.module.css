@@ -1,0 +1,16 @@
+.heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.columns {
+  display: flex;
+  gap: var(--space-12);
+  min-height: 0;
+}
+
+.columns > * {
+  flex: 1 1 0;
+  min-width: 0;
+}

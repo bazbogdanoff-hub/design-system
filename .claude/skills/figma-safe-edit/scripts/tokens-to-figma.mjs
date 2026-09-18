@@ -61,7 +61,7 @@ const remToNum = (s) => {
 const HUES = 'slate gray zinc neutral stone red orange amber yellow lime green emerald teal cyan sky blue indigo violet purple fuchsia pink rose'.split(' ');
 const isColorPrimitive = (p) => new RegExp(`^color\\.(${HUES.join('|')}|brand|extra|white|black|alpha-black)(\\.|$)`).test(p);
 const isColorSemantic = (p) => /^color\.(background|surface|text|border|icon|chart|category)\./.test(p);
-const isColorComponent = (p) => /^color\.(button|card|input|badge|table|modal|scrollableArea|switch|checkbox|radio|label|formField|helperText)\./.test(p);
+const isColorComponent = (p) => /^color\.(button|card|input|badge|table|modal|scrollableArea|switch|checkbox|radio|label|formField|helperText|segmentedControl|tableProgressStages|tooltip|divider|spinner|breadcrumb|avatar)\./.test(p);
 
 // ---------- 01 · primitives (COLOR + FLOAT + STRING) --------------------
 // Font primitives that text styles can actually *bind* to. Only fontFamily,
@@ -104,7 +104,7 @@ for (const [p, raw] of Object.entries(rawByPath)) {
 // ---------- 03 · component (aliases) ------------------------------------
 const compAliases = [];
 for (const [p, raw] of Object.entries(rawByPath)) {
-  if (!isColorComponent(p) && !/^radius\.(card|page|modal|table|popover|button|input|badge|scrollableArea|checkbox|switch)(\.[a-zA-Z0-9]+){0,2}$/.test(p)) continue;
+  if (!isColorComponent(p) && !/^radius\.(card|page|modal|table|popover|button|input|badge|scrollableArea|checkbox|switch|radio|segmentedControl|tooltip|avatar)(\.[a-zA-Z0-9]+){0,2}$/.test(p)) continue;
   const m = typeof raw === 'string' && raw.match(/^\{(.+)\}$/);
   if (m) compAliases.push({ name: figName(p), target: figName(m[1]), type: p.startsWith('color') ? 'COLOR' : 'FLOAT' });
   else if (raw === 'transparent') compAliases.push({ name: figName(p), raw: '#00000000', type: 'COLOR' });

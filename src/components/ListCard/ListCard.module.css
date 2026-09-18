@@ -1,0 +1,19 @@
+.card {
+  height: 100%;
+  min-height: 0;
+}
+
+.stack {
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 0;
+}
+
+/* The body is the one region that should absorb any extra height a
+   consumer's layout gives ListCard (e.g. a fixed-height Grid cell) — header
+   and filters stay their natural size. min-height: 0 is the same flex-column
+   gotcha ScrollableArea's own docs call out. */
+.body {
+  flex: 1 1 auto;
+  min-height: 0;
+}

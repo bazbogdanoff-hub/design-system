@@ -1,0 +1,79 @@
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  box-sizing: border-box;
+}
+
+/* The real input covers the whole box, fully transparent — native
+   click/keyboard/label-association for free. `.box` (rendered after it in
+   the DOM, so it paints on top) is `pointer-events: none` so every click
+   still lands on the input underneath; only the input's own pseudo-classes
+   drive `.box`'s look via the sibling combinator. */
+.input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.input:disabled {
+  cursor: not-allowed;
+}
+
+.box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  pointer-events: none;
+  border-radius: var(--radius-checkbox);
+  background-color: var(--color-checkbox-background-off);
+  border: 1px solid var(--color-checkbox-border-off);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.input:hover:not(:disabled) + .box {
+  border-color: var(--color-checkbox-border-off-hover);
+}
+.input:focus-visible + .box {
+  border-color: var(--color-checkbox-border-focus);
+  box-shadow: 0 0 0 4px var(--color-background-brand-subtle);
+}
+.input:disabled + .box {
+  background-color: var(--color-checkbox-background-disabled);
+  border-color: var(--color-checkbox-border-disabled);
+}
+
+/* checked / indeterminate share the same filled, borderless box */
+.wrapper[data-checked] .box {
+  background-color: var(--color-checkbox-background-on);
+  border-color: transparent;
+}
+.wrapper[data-checked] .input:hover:not(:disabled) + .box {
+  background-color: var(--color-checkbox-background-on-hover);
+  border-color: transparent;
+}
+.wrapper[data-checked] .input:disabled + .box {
+  background-color: var(--color-checkbox-background-disabled);
+  border-color: transparent;
+}
+
+.icon {
+  display: block;
+  color: var(--color-checkbox-icon-default);
+}
+.wrapper[data-disabled] .icon {
+  /* Muted gray, never the white checked-glyph color — a white mark on the
+     pale gray disabled fill would be nearly invisible. See Checkbox.md. */
+  color: var(--color-checkbox-icon-disabled);
+}
+
+.wrapper[data-size='sm'] { width: 16px; height: 16px; }
+.wrapper[data-size='sm'] .icon { width: 10px; height: 10px; }
+.wrapper[data-size='md'] { width: 20px; height: 20px; }
+.wrapper[data-size='md'] .icon { width: 12px; height: 12px; }
+.wrapper[data-size='lg'] { width: 24px; height: 24px; }
+.wrapper[data-size='lg'] .icon { width: 16px; height: 16px; }

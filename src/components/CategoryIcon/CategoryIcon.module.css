@@ -1,0 +1,79 @@
+.tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.tile[data-disabled] {
+  opacity: 0.3;
+}
+
+.tile[data-size='sm'] {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-button-sm);
+  --icon-size: 14px;
+}
+.tile[data-size='md'] {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-button-md);
+  --icon-size: 16px;
+}
+.tile[data-size='lg'] {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-button-lg);
+  --icon-size: 18px;
+}
+.tile[data-size='xl'] {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-button-xl);
+  --icon-size: 20px;
+}
+.tile[data-size='2xl'] {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-button-2xl);
+  --icon-size: 20px;
+}
+
+/* emphasis=strong — saturated fill + white icon (modules) */
+.tile[data-emphasis='strong'][data-color='brand']   { background: var(--color-category-brand-background); }
+.tile[data-emphasis='strong'][data-color='teal']    { background: var(--color-category-teal-background); }
+.tile[data-emphasis='strong'][data-color='rose']    { background: var(--color-category-rose-background); }
+.tile[data-emphasis='strong'][data-color='lime']    { background: var(--color-category-lime-background); }
+.tile[data-emphasis='strong'][data-color='fuchsia'] { background: var(--color-category-fuchsia-background); }
+.tile[data-emphasis='strong'][data-color='cyan']    { background: var(--color-category-cyan-background); }
+.tile[data-emphasis='strong'][data-color='pink']    { background: var(--color-category-pink-background); }
+.tile[data-emphasis='strong'][data-color='violet']  { background: var(--color-category-violet-background); }
+.tile[data-emphasis='strong'][data-color='emerald'] { background: var(--color-category-emerald-background); }
+.tile[data-emphasis='strong'][data-color='blue']    { background: var(--color-category-blue-background); }
+.tile[data-emphasis='strong'] .icon { color: var(--color-text-on-brand); }
+
+/* emphasis=muted — the hue desaturated (not lightened), still a white icon (settings) */
+.tile[data-emphasis='muted'][data-color='brand']   { background: var(--color-category-brand-background-muted); }
+.tile[data-emphasis='muted'][data-color='teal']    { background: var(--color-category-teal-background-muted); }
+.tile[data-emphasis='muted'][data-color='rose']    { background: var(--color-category-rose-background-muted); }
+.tile[data-emphasis='muted'][data-color='lime']    { background: var(--color-category-lime-background-muted); }
+.tile[data-emphasis='muted'][data-color='fuchsia'] { background: var(--color-category-fuchsia-background-muted); }
+.tile[data-emphasis='muted'][data-color='cyan']    { background: var(--color-category-cyan-background-muted); }
+.tile[data-emphasis='muted'][data-color='pink']    { background: var(--color-category-pink-background-muted); }
+.tile[data-emphasis='muted'][data-color='violet']  { background: var(--color-category-violet-background-muted); }
+.tile[data-emphasis='muted'][data-color='emerald'] { background: var(--color-category-emerald-background-muted); }
+.tile[data-emphasis='muted'][data-color='blue']    { background: var(--color-category-blue-background-muted); }
+.tile[data-emphasis='muted'] .icon { color: var(--color-text-on-brand); }
+
+.icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+}
+.icon > svg {
+  display: block;
+  width: var(--icon-size);
+  height: var(--icon-size);
+}

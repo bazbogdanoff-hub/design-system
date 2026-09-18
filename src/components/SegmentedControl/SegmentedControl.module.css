@@ -1,0 +1,29 @@
+.track {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2);
+  background: var(--color-segmented-control-track-background);
+}
+
+.track[data-size='sm'] {
+  border-radius: var(--radius-segmented-control-sm);
+}
+
+.track[data-size='md'] {
+  border-radius: var(--radius-segmented-control-md);
+}
+
+.track[data-size='lg'] {
+  border-radius: var(--radius-segmented-control-lg);
+}
+
+/* xs — the sidebar module switcher. Flush against the panel it sits in:
+   no padding, no background of its own, no track-level radius (each item
+   rounds its own outer corner via `position` instead). */
+.track[data-size='xs'] {
+  padding: 0;
+  gap: 1px;
+  background: none;
+  border-radius: 0;
+}
+

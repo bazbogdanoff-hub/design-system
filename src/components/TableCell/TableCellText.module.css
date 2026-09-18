@@ -1,0 +1,69 @@
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  min-width: 0;
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  color: var(--color-icon-subtle);
+  font-size: 16px;
+}
+.icon > svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+.alert {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  color: var(--color-icon-warning-strong);
+  font-size: 16px;
+}
+.alert > svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  color: var(--color-text-strong);
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--text-body-sm-font-weight);
+  line-height: var(--text-body-sm-line-height);
+  letter-spacing: var(--text-body-sm-letter-spacing);
+}
+/* strong is the darkest step (text.default, zinc.900) — deliberately one
+   step past text.strong, not text.strong itself, so a row's primary
+   identifier (e.g. an ID column) reads clearly heavier than its own
+   default-emphasis siblings (e.g. a PROBLEM/STATION column) in the same row */
+.title[data-emphasis='strong'] {
+  color: var(--color-text-default);
+}
+
+.supporting {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-family: var(--text-body-xs-font-family);
+  font-size: var(--text-body-xs-font-size);
+  font-weight: var(--text-body-xs-font-weight);
+  line-height: var(--text-body-xs-line-height);
+  letter-spacing: var(--text-body-xs-letter-spacing);
+}
+.title[data-emphasis='strong'] ~ .supporting {
+  color: var(--color-text-subtle);
+}

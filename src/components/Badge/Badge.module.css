@@ -13,29 +13,43 @@
   line-height: var(--text-label-md-line-height);
   white-space: nowrap;
 
-  /* default tone = neutral */
-  background: var(--color-badge-neutral-background);
+  /* Glass recipe (2026-09-16): a soft radial highlight + a colored inset
+     shadow for depth — no flat fill. Position/shape decoded exactly from
+     Figma's own gradientTransform (verified identical across every tone/size/
+     variant, not eyeballed): center at (24.4%, 75.6%) — bottom-left, not
+     top-left and not centered — as an ellipse matching the badge's own
+     aspect ratio (radius ~51.1% of width/height). color-mix bakes in the
+     30% opacity Figma's fill layer carries, so only the background layer is
+     translucent, never the label text sitting on top of it.
+     default tone = neutral */
+  background: radial-gradient(ellipse 51.1% 51.1% at 24.4% 75.6%, color-mix(in srgb, var(--color-badge-neutral-glow) 30%, transparent) 9.6%, transparent 100%);
+  box-shadow: inset 0 0 5px 0 var(--color-badge-neutral-shadow);
   color: var(--color-badge-neutral-text);
 }
 
 .badge[data-tone='brand'] {
-  background: var(--color-badge-brand-background);
+  background: radial-gradient(ellipse 51.1% 51.1% at 24.4% 75.6%, color-mix(in srgb, var(--color-badge-brand-glow) 30%, transparent) 9.6%, transparent 100%);
+  box-shadow: inset 0 0 5px 0 var(--color-badge-brand-shadow);
   color: var(--color-badge-brand-text);
 }
 .badge[data-tone='success'] {
-  background: var(--color-badge-success-background);
+  background: radial-gradient(ellipse 51.1% 51.1% at 24.4% 75.6%, color-mix(in srgb, var(--color-badge-success-glow) 30%, transparent) 9.6%, transparent 100%);
+  box-shadow: inset 0 0 5px 0 var(--color-badge-success-shadow);
   color: var(--color-badge-success-text);
 }
 .badge[data-tone='warning'] {
-  background: var(--color-badge-warning-background);
+  background: radial-gradient(ellipse 51.1% 51.1% at 24.4% 75.6%, color-mix(in srgb, var(--color-badge-warning-glow) 30%, transparent) 9.6%, transparent 100%);
+  box-shadow: inset 0 0 5px 0 var(--color-badge-warning-shadow);
   color: var(--color-badge-warning-text);
 }
 .badge[data-tone='warning-strong'] {
-  background: var(--color-badge-warning-strong-background);
+  background: radial-gradient(ellipse 51.1% 51.1% at 24.4% 75.6%, color-mix(in srgb, var(--color-badge-warning-strong-glow) 30%, transparent) 9.6%, transparent 100%);
+  box-shadow: inset 0 0 5px 0 var(--color-badge-warning-strong-shadow);
   color: var(--color-badge-warning-strong-text);
 }
 .badge[data-tone='danger'] {
-  background: var(--color-badge-danger-background);
+  background: radial-gradient(ellipse 51.1% 51.1% at 24.4% 75.6%, color-mix(in srgb, var(--color-badge-danger-glow) 30%, transparent) 9.6%, transparent 100%);
+  box-shadow: inset 0 0 5px 0 var(--color-badge-danger-shadow);
   color: var(--color-badge-danger-text);
 }
 

@@ -26,14 +26,70 @@
     "switch": {
       "$value": "{radius.full}",
       "$description": "Pill track + circular thumb at every size — a switch is always fully rounded, no size-dependent step needed."
+    },
+    "radio": {
+      "$value": "{radius.full}",
+      "$description": "Circular at every size, same reasoning as radius.switch — no size-dependent corner step. Was never scaffolded when Radio's other component colour tokens were added; added now while building Radio's React port (confirmed via the Figma master, 10222:14006 — cornerRadius 9999 on all 18 variants)."
+    },
+    "segmentedControl": {
+      "sm": { "$value": "{radius.chip}", "$description": "6 — mirrors radius.button.sm; the track and its items share this radius (a small inset gap between them reads fine without stepping the track's radius up)." },
+      "md": { "$value": "{radius.control}", "$description": "8 — mirrors radius.button.md/lg." },
+      "lg": { "$value": "{radius.control}", "$description": "8 — mirrors radius.button.md/lg." }
+    },
+    "tooltip": {
+      "$value": "{radius.chip}",
+      "$description": "6, flat — same small-chrome radius Badge/Button-sm use, at every size (a tooltip has no size-dependent step)."
+    },
+    "avatar": {
+      "$value": "{radius.full}",
+      "$description": "Always a full circle, at every size — same reasoning as radius.switch/radio."
+    },
+    "sidebar": {
+      "section": {
+        "$description": "The sidebar's own content-section containers (nav-list / settings-profile block) — corners that touch the panel's own edge use radius.panel (12, same as everywhere else); the two corners below are the ones with no matching semantic step. `top` is the small detail-radius where a section abuts the module switcher above it, not a true card edge. `deep` is the settings section's single exaggerated bottom-right corner (24, matching radius.page-container's value but unrelated to its meaning — a deliberate one-off flourish, not a page viewport). Both are deliberate primitive-alias exceptions, scoped to this one component.",
+        "top": { "$value": "{radius.sm}", "$description": "4" },
+        "deep": { "$value": "{radius.4xl}", "$description": "24" }
+      }
     }
   },
   "size": {
     "control": {
       "$type": "dimension",
-      "sm": { "$value": "1.75rem", "$description": "28px, RAW — not aliased to space/*, which jumps 24→32 with nothing at 28. A control's height is a sizing concern, not a spacing one. Matches Button's own sm/xs height exactly, so an Input/Select and a Button of the same size step align in a toolbar. This is the size/control/* token flagged as a TODO in Button.md/HANDOFF." },
+      "sm": { "$value": "1.75rem", "$description": "28px, RAW — not aliased to space/*, which jumps 24→32 with nothing at 28. A control's height is a sizing concern, not a spacing one. Matches Button's own sm/xs height exactly, so a Button and a same-size-step control align in a toolbar. This is the size/control/* token flagged as a TODO in Button.md/HANDOFF. Input no longer uses this scale — see size.input below." },
       "md": { "$value": "2rem", "$description": "32px — matches Button md height. Could alias {space.32}; kept a sibling raw value to sm/lg instead for consistency within this group." },
       "lg": { "$value": "2.25rem", "$description": "36px — matches Button lg height." }
+    },
+    "input": {
+      "$type": "dimension",
+      "sm": { "$value": "2.25rem", "$description": "36px, RAW — owner resized Input up a full step in Figma, deliberately diverging from size.control (still shared by Button). Equals size.control.lg/Button's own lg height, but kept as Input's own scale rather than reused since the two are free to move independently now." },
+      "md": { "$value": "2.5rem", "$description": "40px — equals Button's xl height, coincidentally; Input's own scale." },
+      "lg": { "$value": "2.75rem", "$description": "44px — equals Button's 2xl height, coincidentally; Input's own scale." }
+    },
+    "textarea": {
+      "$type": "dimension",
+      "sm": { "$value": "4.5rem", "$description": "72px — exactly 2x size.input.sm (36px). A notes/multi-line field's default height, not a hard cap — the element still grows with content/manual resize. Deliberately derived from Input's own scale (double it) rather than an independent value, so the two stay proportional if Input's scale ever moves again." },
+      "md": { "$value": "5rem", "$description": "80px — 2x size.input.md (40px)." },
+      "lg": { "$value": "5.5rem", "$description": "88px — 2x size.input.lg (44px)." }
+    },
+    "progressBar": {
+      "$type": "dimension",
+      "sm": { "$value": "0.375rem", "$description": "6px — was space.8 (8px), shrunk ~25% and snapped to the nearest real space.* step so ProgressBar fits dense contexts like a TableCell (which currently uses a bespoke stage-tracker instead, precisely because the old 8/12/16 scale read too tall there). No longer aliases space.8 directly — this is now ProgressBar's own scale, split off the same way size.input split off size.control, so the two can move independently." },
+      "md": { "$value": "0.625rem", "$description": "10px — was space.12 (12px). A straight 20% cut lands on 9.6px, which isn't a real step on this system's space/radius scale (0,2,4,6,8,10,12,16,...); 10 is the nearest real step and reads better once rendered than rounding to 9." },
+      "lg": { "$value": "1rem", "$description": "16px — bumped up from 12px (2026-09-16) so the largest variant reads as more clearly 'big' next to sm/md; paired with a wider 1.5px fill border (up from 1px) and a 2px track inset (up from 1px) at this size only." }
+    },
+    "spinner": {
+      "$type": "dimension",
+      "sm": { "$value": "1rem", "$description": "16px — matches this system's standard inline-icon scale (MenuRow/TableCellText icons at md size)." },
+      "md": { "$value": "1.25rem", "$description": "20px — was 24px; tightened to a 16/20/24 progression (a standard icon-scale triplet) instead of the original 16/24/32, which jumped straight past 20." },
+      "lg": { "$value": "1.5rem", "$description": "24px — was 32px, for the same reason as md: keeps the scale on 16/20/24 rather than skipping a step." }
+    },
+    "avatar": {
+      "$type": "dimension",
+      "xs": { "$value": "1.5rem", "$description": "24px" },
+      "sm": { "$value": "1.75rem", "$description": "28px" },
+      "md": { "$value": "2rem", "$description": "32px" },
+      "lg": { "$value": "2.5rem", "$description": "40px" },
+      "xl": { "$value": "2.75rem", "$description": "44px — the owner's 5-size request (44/40/32/28/24) mapped onto this system's usual xs–xl naming rather than exposing raw numbers as variant names." }
     }
   }
 }

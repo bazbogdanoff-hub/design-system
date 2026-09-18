@@ -20,7 +20,7 @@ single form field. **L2** — composes a headline and `HelperText`.
 | prop | type | notes |
 |---|---|---|
 | `label` | `ReactNode` — required | the headline above the control |
-| `size` | `sm` · `md` (default) · `lg` | cascades to a bare `<Input>` child (no explicit `size` of its own) and to the headline/`HelperText` sizing |
+| `size` | `sm` · `md` (default) · `lg` | cascades to a bare `<Input>` child (no explicit `size` of its own) and to the headline/`HelperText` sizing — the headline itself renders one `text/label/*` step down (`sm`→`xs`, `md`→`sm`, `lg`→`md`) |
 | `state` | `default` (default) · `primary` · `error` | colors the headline; `primary`/`error` also show `helperText` below |
 | `helperText` | `ReactNode` | rendered as a `HelperText` — only when `state` isn't `default` |
 | `htmlFor` | `string` | associates the headline with the control via a real `<label htmlFor>` |
@@ -62,12 +62,18 @@ value ahead of that.
 between headline → control → helper, no special-cased margin for the helper
 row.
 
+## Headline is one label step down from `size`, not same-size
+
+`sm`→`text/label/xs`, `md`→`text/label/sm`, `lg`→`text/label/md` — same
+downshift-by-one convention `Row`'s `LabelGroup` description uses relative to
+its own `size`. Owner corrected this in Figma (was naively same-size before);
+React's `.field[data-size] .label` rules now mirror it exactly.
+
 ## Figma
 
 **`FormField`** (`10264:18328`) — 9 variants, `size` × `state`. Each has a
-`label` text node, a `content` frame wrapping a size-matched `Input` instance
-(owner still needs to convert that frame to a real Slot — `createSlot()`
-isn't scriptable), and, only on `primary`/`error` variants, a `HelperText`
-instance at the matching size/tone. `default` variants have no `HelperText`
-child at all, matching React exactly (it never renders regardless of the
-`helperText` prop).
+`label` text node, a `content` **Slot** (owner has since converted it from a
+plain frame) wrapping a size-matched `Input` instance, and, only on
+`primary`/`error` variants, a `HelperText` instance at the matching
+size/tone. `default` variants have no `HelperText` child at all, matching
+React exactly (it never renders regardless of the `helperText` prop).

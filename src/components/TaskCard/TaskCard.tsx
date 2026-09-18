@@ -9,8 +9,11 @@ import styles from './TaskCard.module.css';
 export interface TaskCardProps {
   /** `list` (default) — standalone, used on the tasks page, no stack.
    * `queue` — wrapped in the 3-ghost stacked-deck effect, used inside
-   * `NextTask` where this card is the front of a queue. */
-  context?: 'list' | 'queue';
+   * `NextTask` where this card is the front of a queue. `tasks` — a smaller
+   * standalone card (matches Figma's `context=tasks`, added for a dense
+   * grid of tasks): a smaller `IconCell` and tighter internal spacing, no
+   * stack. */
+  context?: 'list' | 'queue' | 'tasks';
   /** Queue position for the leading cell — formatted as `#${position}`.
    * Always `1` for `context="queue"` (`NextTask` only ever shows the front
    * task); a real, varying number for `context="list"`. */
@@ -42,7 +45,7 @@ export const TaskCard = forwardRef<HTMLDivElement, TaskCardProps>(function TaskC
     <div className={styles.shadow}>
       <Card padding="md" className={styles.card}>
         <div className={styles.header}>
-          <IconCell size="2xl">{`#${position}`}</IconCell>
+          <IconCell size={context === 'tasks' ? 'xl' : '2xl'}>{`#${position}`}</IconCell>
           <div className={styles.titleGroup}>
             <Tag size="xs" color={category.color}>
               {category.label}
@@ -59,19 +62,19 @@ export const TaskCard = forwardRef<HTMLDivElement, TaskCardProps>(function TaskC
     </div>
   );
 
-  if (context === 'list') {
+  if (context === 'queue') {
     return (
-      <div ref={ref} className={cn(styles.taskCard, className)}>
+      <div ref={ref} className={cn(styles.taskCard, styles.queue, className)} data-context={context}>
+        <div className={cn(styles.ghost, styles.ghost3)} aria-hidden="true" />
+        <div className={cn(styles.ghost, styles.ghost2)} aria-hidden="true" />
+        <div className={cn(styles.ghost, styles.ghost1)} aria-hidden="true" />
         {content}
       </div>
     );
   }
 
   return (
-    <div ref={ref} className={cn(styles.taskCard, styles.queue, className)}>
-      <div className={cn(styles.ghost, styles.ghost3)} aria-hidden="true" />
-      <div className={cn(styles.ghost, styles.ghost2)} aria-hidden="true" />
-      <div className={cn(styles.ghost, styles.ghost1)} aria-hidden="true" />
+    <div ref={ref} className={cn(styles.taskCard, className)} data-context={context}>
       {content}
     </div>
   );

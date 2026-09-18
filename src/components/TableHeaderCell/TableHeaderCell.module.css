@@ -1,0 +1,42 @@
+.cell {
+  padding: var(--space-12) var(--space-16);
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.label {
+  color: var(--color-text-subtle);
+  font-family: var(--text-label-sm-font-family);
+  font-size: var(--text-label-sm-font-size);
+  font-weight: var(--text-label-sm-font-weight);
+  line-height: var(--text-label-sm-line-height);
+  letter-spacing: var(--text-label-sm-letter-spacing);
+  text-transform: uppercase;
+}
+
+.sortButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.caret {
+  display: inline-flex;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--color-icon-subtle);
+}
+.caret > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

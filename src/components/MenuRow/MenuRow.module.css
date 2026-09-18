@@ -1,0 +1,89 @@
+.row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: var(--space-8);
+  border: none;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  color: var(--color-text-default);
+  border-radius: var(--radius-chip);
+}
+
+.row:hover:not(:disabled) {
+  background: var(--color-background-overlay-subtle);
+}
+.row:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: -2px;
+}
+.row:disabled {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  color: var(--color-icon-subtle);
+}
+.icon > svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+.label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.check {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  color: var(--color-icon-brand);
+}
+.check > svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+/* size cascades from the nearest Menu ancestor's data-size, same
+   ancestor-context pattern TableRow uses for header-vs-body */
+[data-size='sm'] .row {
+  padding: var(--space-6) var(--space-8);
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--text-body-sm-font-weight);
+  line-height: var(--text-body-sm-line-height);
+}
+[data-size='sm'] .icon,
+[data-size='sm'] .check { font-size: 14px; }
+
+[data-size='md'] .row {
+  padding: var(--space-8) var(--space-12);
+  font-family: var(--text-body-md-font-family);
+  font-size: var(--text-body-md-font-size);
+  font-weight: var(--text-body-md-font-weight);
+  line-height: var(--text-body-md-line-height);
+}
+[data-size='md'] .icon,
+[data-size='md'] .check { font-size: 16px; }
+
+[data-size='lg'] .row {
+  padding: var(--space-10) var(--space-12);
+  font-family: var(--text-body-lg-font-family);
+  font-size: var(--text-body-lg-font-size);
+  font-weight: var(--text-body-lg-font-weight);
+  line-height: var(--text-body-lg-line-height);
+}
+[data-size='lg'] .icon,
+[data-size='lg'] .check { font-size: 18px; }

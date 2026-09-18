@@ -1,0 +1,38 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-10);
+  padding: var(--space-16);
+  background: var(--color-card-background-default);
+  border-radius: var(--radius-table);
+
+  /* same glass stack as Card — hand-tuned, not tokens (see Card.module.css) */
+  box-shadow:
+    inset 1.5px 1.5px 0 0 var(--color-card-border),
+    inset 4px 4px 16px 0 #f0f0f0;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--text-heading-md-font-family);
+  font-size: var(--text-heading-md-font-size);
+  font-weight: var(--text-heading-md-font-weight);
+  line-height: var(--text-heading-md-line-height);
+  letter-spacing: var(--text-heading-md-letter-spacing);
+  color: var(--color-text-default);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  flex: none;
+}

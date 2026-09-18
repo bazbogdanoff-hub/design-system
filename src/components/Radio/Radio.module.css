@@ -1,0 +1,72 @@
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  box-sizing: border-box;
+}
+
+/* Same "real input under a pointer-events:none decorative span" split
+   Checkbox uses — see Checkbox.module.css for the full rationale. */
+.input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.input:disabled {
+  cursor: not-allowed;
+}
+
+.circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  pointer-events: none;
+  border-radius: var(--radius-radio);
+  background-color: var(--color-radio-background);
+  border: 1.5px solid var(--color-radio-border-off);
+  transition: border-color 0.15s ease;
+}
+
+.input:hover:not(:disabled) + .circle {
+  border-color: var(--color-radio-border-off-hover);
+}
+.input:focus-visible + .circle {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+.input:disabled + .circle {
+  border-color: var(--color-radio-border-disabled);
+}
+
+/* checked signals via border color + the inner dot only — background stays
+   the same plain white token in every state, never a solid fill. */
+.wrapper[data-checked] .circle {
+  border-color: var(--color-radio-border-on);
+}
+.wrapper[data-checked] .input:hover:not(:disabled) + .circle {
+  border-color: var(--color-radio-border-on-hover);
+}
+.wrapper[data-checked] .input:disabled + .circle {
+  border-color: var(--color-radio-border-disabled);
+}
+
+.dot {
+  display: block;
+  border-radius: 50%;
+  background-color: var(--color-radio-dot-on);
+}
+.wrapper[data-disabled] .dot {
+  background-color: var(--color-radio-dot-disabled);
+}
+
+.wrapper[data-size='sm'] { width: 16px; height: 16px; }
+.wrapper[data-size='sm'] .dot { width: 8px; height: 8px; }
+.wrapper[data-size='md'] { width: 20px; height: 20px; }
+.wrapper[data-size='md'] .dot { width: 10px; height: 10px; }
+.wrapper[data-size='lg'] { width: 24px; height: 24px; }
+.wrapper[data-size='lg'] .dot { width: 12px; height: 12px; }

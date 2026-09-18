@@ -17,7 +17,7 @@ export type FormFieldSize = InputSize;
 export interface FormFieldProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   /** The headline above the control. */
   label: ReactNode;
-  /** `sm` · `md` (default) · `lg` — cascades to a bare `<Input>` child and to the headline/`HelperText` sizing. */
+  /** `sm` · `md` (default) · `lg` — cascades to a bare `<Input>` child and to the headline/`HelperText` sizing. The headline itself renders one `text/label/*` step down from this (`sm`→`xs`, `md`→`sm`, `lg`→`md`), same downshift `LabelGroup`/`Row` use for their description text. */
   size?: FormFieldSize;
   /** `default` (headline at rest, no helper) · `primary` (headline + helper in brand color) · `error` (headline + helper in danger color). */
   state?: FormFieldState;

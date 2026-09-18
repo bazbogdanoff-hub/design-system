@@ -1,0 +1,23 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-10);
+}
+
+.mark {
+  display: block;
+  flex: none;
+  width: 21px;
+  height: 21px;
+  color: var(--color-sidebar-logo-mark);
+}
+
+.wordmark {
+  font-family: var(--text-heading-lg-font-family);
+  font-size: var(--text-heading-lg-font-size);
+  font-weight: var(--text-heading-lg-font-weight);
+  line-height: var(--text-heading-lg-line-height);
+  letter-spacing: var(--text-heading-lg-letter-spacing);
+  color: var(--color-sidebar-logo-wordmark);
+  white-space: nowrap;
+}

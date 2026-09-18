@@ -81,11 +81,12 @@ function formatDue(dueAt: Date, now: Date): string {
 // countdown-good -> success (an actively healthy countdown); scheduled's
 // calm state -> brand (a neutral "on the books" identity, not a countdown —
 // deliberately a different color from countdown-good even though both are
-// "fine," because they mean different things); asap -> brand too,
-// deliberately distinct from every danger state so "immediate" is never
-// confused with "about to expire." No dedicated 5th tone was added for
-// asap — reuses what already exists on ProgressBar. See
-// docs/components/Tracker.md.
+// "fine," because they mean different things); asap's calm state -> brand
+// too, distinct from every danger state so "immediate" isn't confused with
+// "about to expire" — unless `important` is set, which wins over everything
+// including asap (see TrackerProps.important) and turns it danger like any
+// other mode. No dedicated 5th tone was added for asap — reuses what
+// already exists on ProgressBar. See docs/components/Tracker.md.
 function progressTone(mode: TrackerUrgency['mode'], tone: Tone): ProgressBarTone {
   if (tone === 'danger') return 'danger';
   if (tone === 'warning') return 'warning';

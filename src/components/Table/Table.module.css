@@ -1,0 +1,57 @@
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  width: 100%;
+}
+
+.header,
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+  padding: var(--space-16);
+}
+
+.filters,
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+}
+
+/* the real scroll boundary — many columns won't fit a narrow viewport;
+   a code-first addition, the Figma reference has no viewport to overflow */
+.content {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.grid {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.selection {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  min-height: 32px;
+}
+
+.selectionCount {
+  color: var(--color-text-muted);
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--text-body-sm-font-weight);
+  line-height: var(--text-body-sm-line-height);
+  letter-spacing: var(--text-body-sm-letter-spacing);
+  white-space: nowrap;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
