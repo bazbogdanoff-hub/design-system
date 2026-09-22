@@ -19,6 +19,7 @@ to replace an earlier, incorrect light-surface color recipe.
 | `label` | `ReactNode` | | omit for the collapsed sidebar's icon-only row |
 | `active` | `boolean` | `false` | is this the current page within the active module |
 | `tone` | `'brand'` \| `'success'` \| `'danger'` | `'brand'` | matches whichever module this row belongs to; ignored unless `active` |
+| `settingsCorner` | `boolean` | `false` | **Settings row only** — bottom-right frame radius 16px (`radius.2xl`) instead of 8, nesting inside the section's 24px deep corner |
 
 Every other native `<button>` prop passes through (`onClick`, `disabled`, …).
 
@@ -34,25 +35,43 @@ anatomies, two slots" reasoning `CategoryIcon`/`IconCell` already document.
 Both slots render inside the same 40×40 centered box, but only `icon` gets
 the fixed 20×20 inner constraint; `avatar` renders at its own size.
 
+## Anatomy
+
+```
+button.item          ← hit target, padding space/4 vertical only (→ 48px tall)
+└─ span.frame        ← fill width × 40px; hover / active glass chrome lives here
+   ├─ span.leading   ← 40×40 icon/avatar cell
+   └─ span.label     ← expanded only
+```
+
+The active highlight must **not** paint on `.item` — that would include the
+4px gutters and read as a full 48px chrome. It fills `.frame` instead
+(height/width fill of the padded content box = 40px tall).
+
 ## Active — a neutral highlight, not a color wash
 
-The active row's highlight is the same glass recipe (zinc fill + a
-black-alpha overlay + zinc border + inset shadow) the module switcher's own
-unselected segment uses — tone-agnostic on purpose. Only the icon and label
-recolor to the active module's `tone` (via `color.sidebar.<tone>.accent`,
-the 400-step "reads clearly on a dark surface" pair, not the 600/700
-semantic tone tokens calibrated for light surfaces). An earlier version of
-this component used a light-surface `background.<tone>-subtle` wash instead
-— replaced to match the real Figma component once it was fully built out
-this session.
+The active row's highlight is the same glass fill/overlay recipe as the
+module switcher — tone-agnostic on purpose. Stroke is **top + left only**:
+
+```css
+box-shadow:
+  inset 1px 1px 0 0 var(--navItem-active-border),   /* top + left stroke */
+  inset -1px -1px 2px 0 var(--navItem-active-innerShadow); /* corner shade */
+```
+
+**Do not** use a full CSS `border` or a universal inset ring
+(`inset 0 0 0 1px`) on this component.
+
+Only the icon and label recolor to the active module's `tone` (via
+`color.sidebar.<tone>.accent`).
 
 ## Collapsed vs. expanded — omit `label`, not a prop
 
 No `collapsed` prop here — `Sidebar` decides whether to pass `label` at all
 based on its own `mode`, the same convention the old rail-based `Sidebar`
 already used for its own bottom-cluster rows. `[data-mode='collapsed']`
-(read off the `Sidebar` ancestor) centers the icon and drops the row's own
-inline padding when no label is present.
+(read off the `Sidebar` ancestor) centers the icon. Rows have no horizontal
+padding in either mode (only `space-4` vertical).
 
 ## Figma
 

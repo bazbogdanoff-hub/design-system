@@ -4,12 +4,18 @@
 
 /* header row — collapsed to one flat state, no hover/focus/status treatment */
 thead .row {
+  /* explicit 44px matches the TableRow variant=header master. It already
+     rendered ~44 by accident — the <th>'s inherited 16px font strut, not the
+     13px label, was setting the band — so pinning it stops the header
+     drifting if inherited type ever changes (parity audit THEAD-001). */
+  height: 44px;
   background: var(--color-table-header-background-default);
   border-bottom: 1px solid var(--color-border-default);
 }
 
-/* body row */
+/* body rows — measured fill height from Table, never above 68px */
 tbody .row {
+  height: var(--table-row-height, 68px);
   background: var(--color-table-row-background-default);
   border-bottom: 1px solid var(--color-border-subtle);
 }

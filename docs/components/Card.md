@@ -7,12 +7,12 @@ composition, or a specific card type built on top (see [architecture.md](../arch
 ## API
 
 ```tsx
-<Card padding="none|sm|md|lg" asChild>{children}</Card>
+<Card padding="none|sm|md|lg|xl" asChild>{children}</Card>
 ```
 
 | prop | values | default | Figma variant |
 |---|---|---|---|
-| `padding` | `none` `sm` `md` `lg` | `md` | `padding` |
+| `padding` | `none` `sm` `md` `lg` `xl` | `md` | `padding` |
 | `asChild` | `boolean` | `false` | — |
 
 `className`, `style`, `...divProps` pass through to the root. No `elevation`, no
@@ -32,11 +32,11 @@ content isn't cut off unexpectedly.
 | radius | `radius/card` → `radius/container` → 16 |
 | border | **top + left only, 1.5px**, `color/card/border` → `color/border/highlight` → `#ffffff`. Right / bottom: **0**. |
 | inner shadow | `inset 4px 4px 16px #f0f0f0` — "vignette xs", **not a token** (hand-tuned in `Card.module.css`) |
-| padding | `space/12` · `space/16` · `space/20` |
+| padding | `space/12` · `space/16` · `space/20` · `space/24` |
 
 ## Figma build
 
-- Component set **`Card`** — **one variant property**: `padding` (`none|sm|md|lg`) → **4 variants** in a row.
+- Component set **`Card`** — **one variant property**: `padding` (`none|sm|md|lg|xl`) → **5 variants** in a row.
 - Open auto-layout frame (VERTICAL, gap 0), no `SLOT` property — instances append
   content directly. Empty by default.
 - Base variant: width **320**, height **hug**.

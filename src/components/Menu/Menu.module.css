@@ -2,24 +2,27 @@
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 10;
+  /* Above table body / later siblings — otherwise the drop shadow paints
+     underneath the next opaque region and looks like it "isn't there". */
+  z-index: 40;
   margin-top: var(--space-4);
   min-width: 100%;
+  border-radius: var(--radius-popover);
+  /* Elevation shared by both variants (card keeps Card's inset glass on the
+     inner shell). Alpha-black ramp — not raw rgba. */
+  box-shadow:
+    0 4px 8px 0 var(--color-alpha-black-15),
+    0 12px 32px 0 var(--color-alpha-black-25);
 }
 
-/* the plain shell — a real elevation shadow, hand-tuned like Card's own
-   "vignette xs" (no elevation/popover-shadow token exists yet in this
-   system, same "not a token" precedent Card.module.css already documents) */
 .defaultShell {
   background: var(--color-surface-raised);
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-popover);
-  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.12);
   overflow: hidden;
 }
 
-/* the Card shell needs no styling of its own here — Card.module.css
-   already provides the exact fill/border/shadow/radius */
+/* Card already owns fill / inset glass / radius — only clip content here. */
 .cardShell {
   overflow: hidden;
 }

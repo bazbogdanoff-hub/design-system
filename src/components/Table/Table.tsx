@@ -1,7 +1,19 @@
-import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
+import {
+  Children,
+  forwardRef,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type HTMLAttributes,
+  type ReactNode,
+} from 'react';
 import { cn } from '../../lib/cn';
 import { Card } from '../Card';
 import styles from './Table.module.css';
+
+/** Hard cap for body row / cell height — fill can be smaller, never larger. */
+const TABLE_ROW_MAX_HEIGHT_PX = 68;
 
 export interface TableProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   /** Left-aligned in the header row. Omit along with `actions` to hide the header entirely. */
@@ -36,6 +48,11 @@ export interface TableProps extends Omit<HTMLAttributes<HTMLDivElement>, 'childr
  * deliberately diverge in how they reach the identical visual result. `Card`
  * itself gained `overflow: hidden` under `padding="none"` for this — the
  * header/rows/footer all sit flush against its rounded corners.
+ *
+ * Body row height is measured (content area minus thead, divided by row
+ * count) and published as `--table-row-height`. CSS tables otherwise refuse
+ * to size rows below their cell content, which is why percentage fill alone
+ * still scrolled.
  */
 export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
   { filters, actions, header, children, selectedCount, selectionActions, pagination, className, ...rest },
@@ -43,6 +60,28 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
 ) {
   const hasHeader = filters != null || actions != null;
   const hasFooter = Boolean(selectedCount) || pagination != null;
+  const bodyRowCount = Math.max(1, Children.toArray(children).length);
+
+  const contentRef = useRef<HTMLDivElement>(null);
+  const theadRef = useRef<HTMLTableSectionElement>(null);
+  const [rowHeightPx, setRowHeightPx] = useState<number | null>(null);
+
+  useLayoutEffect(() => {
+    const content = contentRef.current;
+    const thead = theadRef.current;
+    if (!content || !thead) return;
+
+    const update = () => {
+      const available = content.clientHeight - thead.offsetHeight;
+      const next = Math.min(available / bodyRowCount, TABLE_ROW_MAX_HEIGHT_PX);
+      setRowHeightPx(Number.isFinite(next) && next > 0 ? next : null);
+    };
+
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(content);
+    return () => ro.disconnect();
+  }, [bodyRowCount, hasHeader, hasFooter]);
 
   return (
     <Card ref={ref} padding="none" className={cn(styles.table, className)} {...rest}>
@@ -52,9 +91,18 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
           <div className={styles.actions}>{actions}</div>
         </div>
       )}
-      <div className={styles.content}>
-        <table className={styles.grid}>
-          <thead>{header}</thead>
+      <div className={styles.content} ref={contentRef}>
+        <table
+          className={styles.grid}
+          data-row-fill=""
+          style={
+            {
+              '--table-body-rows': bodyRowCount,
+              '--table-row-height': `${rowHeightPx ?? TABLE_ROW_MAX_HEIGHT_PX}px`,
+            } as CSSProperties
+          }
+        >
+          <thead ref={theadRef}>{header}</thead>
           <tbody>{children}</tbody>
         </table>
       </div>

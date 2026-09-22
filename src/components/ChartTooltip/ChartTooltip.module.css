@@ -10,11 +10,12 @@
 }
 
 .title {
-  font-family: var(--text-label-sm-font-family);
-  font-size: var(--text-label-sm-font-size);
-  font-weight: var(--text-label-sm-font-weight);
-  line-height: var(--text-label-sm-line-height);
-  color: var(--color-text-strong);
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  line-height: var(--text-label-xs-line-height);
+  letter-spacing: var(--text-label-xs-letter-spacing);
+  color: var(--color-text-muted);
   margin-bottom: var(--space-6);
 }
 
@@ -41,17 +42,19 @@
 }
 
 .value {
-  font-family: var(--text-body-sm-font-family);
-  font-size: var(--text-body-sm-font-size);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--text-body-sm-line-height);
-  color: var(--color-text-strong);
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  line-height: var(--text-label-xs-line-height);
+  letter-spacing: var(--text-label-xs-letter-spacing);
+  color: var(--color-text-muted);
 }
 
 .label {
-  font-family: var(--text-body-sm-font-family);
-  font-size: var(--text-body-sm-font-size);
-  font-weight: var(--text-body-sm-font-weight);
-  line-height: var(--text-body-sm-line-height);
-  color: var(--color-text-subtle);
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  line-height: var(--text-label-xs-line-height);
+  letter-spacing: var(--text-label-xs-letter-spacing);
+  color: var(--color-text-muted);
 }

@@ -7,8 +7,8 @@
 .mark {
   display: block;
   flex: none;
-  width: 21px;
-  height: 21px;
+  width: 28px;
+  height: 28px;
   color: var(--color-sidebar-logo-mark);
 }
 

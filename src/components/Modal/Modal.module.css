@@ -2,8 +2,7 @@
   display: flex;
   flex-direction: column;
   background: var(--color-card-background-default);
-  border-radius: var(--radius-card);
-  gap: var(--space-20);
+  border-radius: var(--radius-modal);
 
   /* same glass stack as Card — hand-tuned, not tokens (see Card.module.css) */
   box-shadow:
@@ -38,7 +37,12 @@
   flex: none;
 }
 
-.modal[data-padding='lg'] { padding: var(--space-24); }
-.modal[data-padding='md'] { padding: var(--space-20); }
-.modal[data-padding='sm'] { padding: var(--space-16); }
-.modal[data-padding='xs'] { padding: var(--space-12); }
+/* gap scales 1:1 with padding, matching the master — it used to be pinned at
+   space/20, so only padding="md" happened to be right (parity audit
+   MODAL-001). NOTE: Modal's step names are offset from Card's — Modal sm=16
+   is Card md=16, Modal md=20 is Card lg=20. Both masters genuinely disagree
+   (CARD-003); don't "align" one side without the other. */
+.modal[data-padding='lg'] { padding: var(--space-24); gap: var(--space-24); }
+.modal[data-padding='md'] { padding: var(--space-20); gap: var(--space-20); }
+.modal[data-padding='sm'] { padding: var(--space-16); gap: var(--space-16); }
+.modal[data-padding='xs'] { padding: var(--space-12); gap: var(--space-12); }

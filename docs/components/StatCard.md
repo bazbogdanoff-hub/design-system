@@ -12,7 +12,7 @@ migration) — never detached.
 <StatCard
   label="Blocked"
   value={2}
-  badge={<Badge tone="danger" size="md" icon={<TrendUp/>}>200%</Badge>}
+  badge={<Badge tone="danger" size="md" icon="hasIcon" leadingIcon={<TrendUp/>}>200%</Badge>}
 >
   <StatButton label="Oldest wait" value="4h" showArrow onClick={…} />
   <StatButton label="By entity"  value="2 trk" showArrow onClick={…} />

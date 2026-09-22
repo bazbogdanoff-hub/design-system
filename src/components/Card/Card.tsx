@@ -3,10 +3,10 @@ import { Slot } from '@radix-ui/react-slot';
 import { cn } from '../../lib/cn';
 import styles from './Card.module.css';
 
-export type CardPadding = 'none' | 'sm' | 'md' | 'lg';
+export type CardPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  /** Inner padding on all sides. `none` (0) · `sm` (12) · `md` (16, default) · `lg` (20). */
+  /** Inner padding on all sides. `none` (0) · `sm` (12) · `md` (16, default) · `lg` (20) · `xl` (24). */
   padding?: CardPadding;
   /** Render as the child element (e.g. `<article>`, `<li>`, an `<a>`). */
   asChild?: boolean;

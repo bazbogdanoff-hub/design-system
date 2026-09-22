@@ -1,9 +1,7 @@
 # ChartCard
 
-The card shell every chart sits in — title + filters/action on one row, the
-chart body below. The legend gets its own right-aligned row unless the card
-is wide enough to hold everything together (see [Legend
-breakpoint](#legend-breakpoint)). **L2 pattern** — composes
+The card shell every chart sits in — title + legend + filters/action on
+**one header row**, chart body below. **L2 pattern** — composes
 [`Card`](./Card.md) (`padding="md"`, never detached).
 
 ```tsx
@@ -23,7 +21,7 @@ breakpoint](#legend-breakpoint)). **L2 pattern** — composes
 | prop | type | notes |
 |---|---|---|
 | `title` | `ReactNode` | card heading, `text/heading/md` |
-| `legend` | `ChartLegendItem[]` — optional | renders a `ChartLegend`; omit for a single-series chart |
+| `legend` | `ChartLegendItem[]` — optional | renders a `ChartLegend` on the same header row; omit for a single-series chart |
 | `filters` | `ReactNode` — optional | `Filter` instance(s), grouped with `action` at the header's right edge |
 | `action` | `ReactNode` — optional | a single trailing icon action next to the filters — e.g. an expand/"view full chart" `IconButton` |
 | `children` | `ReactNode` | the chart itself — `BarChart`, or any future chart type |
@@ -43,38 +41,28 @@ not a mistake.
 ## Anatomy
 
 ```
-Card (padding md, height: 100%, flex column)
-└─ div.header  (row, wrap, gap space/16, container-type: inline-size)
-│  ├─ h3.title       (order 1) — {title}
-│  ├─ div.legendRow  (order 3 narrow / 2 wide) — <ChartLegend/>
-│  └─ div.trailing   (order 2 narrow / 3 wide, margin-left: auto)
-│     ├─ div.filters (row, gap space/12) — {filters}
+Card (padding md, height: 100%, flex column, box-sizing border-box)
+└─ div.header  (row, space-between, gap space/16 — never wraps)
+│  ├─ h3.title        — {title}
+│  ├─ div.legendRow   — <ChartLegend/> (flex:1, centered in the free space)
+│  └─ div.trailing
+│     ├─ div.filters  — {filters}
 │     └─ {action}
 └─ div.body (flex: 1, min-height: 0) — {children}
 ```
 
-## Legend breakpoint
-
-Below the fold, `.legendRow` carries `flex: 1 0 100%` — claiming the full
-row width forces it onto its own fresh line no matter how much room
-`title`/`trailing` leave behind, and its own `justify-content: flex-end`
-right-aligns the legend on that line. `.header`'s `container-type:
-inline-size` (set on `.card`) lets a `@container (min-width: 480px)` query
-drop that `flex-basis` and reorder `.legendRow` back in between `title` and
-`trailing`, so the legend rejoins the header row once the **card itself**
-(not the viewport) is wide enough to hold title + legend + filters/action
-together comfortably. A card in a narrow dashboard column stays stacked
-even on a wide screen; the same card full-width on a report page joins the
-row — it's a property of the card's own size, not a page-level breakpoint.
+Header uses `justify-content: space-between` so the gaps between title,
+legend, and filters are automatic (no fixed middle padding). Legend stays
+on that same row at every card width — no container-query wrap.
 
 ## Sizing
 
 The card root takes `height: 100%` and `.body` takes `flex: 1; min-height: 0`
 so the chart body stretches to fill whatever height the card is given by its
-own container — the header/legend/filters row keeps its natural height, the
-chart gets the rest. This only produces a real (non-zero) height if
-something above `ChartCard` actually constrains it (a fixed-height wrapper,
-a grid cell, `style={{ height }}`) — an unconstrained `ChartCard` collapses
-to its header's height. See [`BarChart`'s responsive sizing
+own container — the header row keeps its natural height, the chart gets the
+rest. This only produces a real (non-zero) height if something above
+`ChartCard` actually constrains it (a fixed-height wrapper, a grid cell,
+`style={{ height }}`) — an unconstrained `ChartCard` collapses to its
+header's height. See [`BarChart`'s responsive sizing
 notes](./BarChart.md#responsive-sizing) for how the chart itself measures
 and fills that space.

@@ -3,7 +3,9 @@ import { cn } from '../../lib/cn';
 import { CaretUpDownIcon } from './CaretUpDownIcon';
 import styles from './TableHeaderCell.module.css';
 
-export interface TableHeaderCellProps extends Omit<ThHTMLAttributes<HTMLTableCellElement>, 'children'> {
+export type TableHeaderCellWidth = 'checkbox' | 'radio' | 'icon' | 'wide';
+
+export interface TableHeaderCellProps extends Omit<ThHTMLAttributes<HTMLTableCellElement>, 'children' | 'width'> {
   /** Whatever the column header needs — usually text, but also a select-all `Checkbox`, or nothing (a trailing overflow column). */
   children?: ReactNode;
   /** Shows the sort caret and makes the header a real clickable control. */
@@ -12,6 +14,13 @@ export interface TableHeaderCellProps extends Omit<ThHTMLAttributes<HTMLTableCel
   sortDirection?: 'ascending' | 'descending' | 'none';
   /** Fires on click when `sortable`. */
   onSort?: () => void;
+  /**
+   * Column width role — must match the body cells in this column.
+   * - `checkbox` / `radio` / `icon` — fixed 48px
+   * - `wide` — text column with a higher min-width (e.g. Model)
+   * - omit — hug label on one line
+   */
+  width?: TableHeaderCellWidth;
 }
 
 /**
@@ -22,16 +31,27 @@ export interface TableHeaderCellProps extends Omit<ThHTMLAttributes<HTMLTableCel
  * target, not just the tiny icon.
  */
 export const TableHeaderCell = forwardRef<HTMLTableCellElement, TableHeaderCellProps>(function TableHeaderCell(
-  { children, sortable, sortDirection = 'none', onSort, className, ...rest },
+  { children, sortable, sortDirection = 'none', onSort, width, className, ...rest },
   ref,
 ) {
+  const isControlWidth = width === 'checkbox' || width === 'radio' || width === 'icon';
+
   return (
-    <th ref={ref} scope="col" className={cn(styles.cell, className)} aria-sort={sortable ? sortDirection : undefined} {...rest}>
+    <th
+      ref={ref}
+      scope="col"
+      className={cn(styles.cell, className)}
+      data-width={width}
+      aria-sort={sortable ? sortDirection : undefined}
+      {...rest}
+    >
       {sortable ? (
         <button type="button" className={styles.sortButton} onClick={onSort}>
           <span className={styles.label}>{children}</span>
           <CaretUpDownIcon className={styles.caret} />
         </button>
+      ) : isControlWidth ? (
+        children
       ) : (
         children != null && <span className={styles.label}>{children}</span>
       )}

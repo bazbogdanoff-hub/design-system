@@ -1,11 +1,15 @@
 import { Children, forwardRef, type MouseEventHandler, type ReactNode } from 'react';
 import { Stack, type StackProps } from '../Stack';
-import { FilterIcon } from '../FilterIcon';
+import { FilterIcon, type FilterIconSize } from '../FilterIcon';
 
 export interface FilterBarProps
   extends Omit<StackProps, 'direction' | 'gap' | 'align' | 'wrap' | 'children'> {
   /** `Filter` instances — any number, including none. */
   children?: ReactNode;
+  /** Size of the leading `FilterIcon` — match the `Filter`s beside it
+   * (`sm` 28px · `md` 32px). Defaults to `md` so it lines up with `Filter`'s
+   * own default. */
+  size?: FilterIconSize;
   /** Accessible name for the add-filter trigger. */
   addFilterLabel?: string;
   /** Click handler for the add-filter trigger (funnel → "+" on hover; future:
@@ -27,7 +31,7 @@ export interface FilterBarProps
  * `FilterBar` renders nothing.
  */
 export const FilterBar = forwardRef<HTMLElement, FilterBarProps>(function FilterBar(
-  { children, addFilterLabel = 'Add filter', onAddFilter, addFilterMenuOpen, ...rest },
+  { children, size = 'md', addFilterLabel = 'Add filter', onAddFilter, addFilterMenuOpen, ...rest },
   ref,
 ) {
   const hasTrigger = onAddFilter != null;
@@ -38,6 +42,7 @@ export const FilterBar = forwardRef<HTMLElement, FilterBarProps>(function Filter
     <Stack ref={ref} direction="row" gap="md" align="center" wrap {...rest}>
       {hasTrigger && (
         <FilterIcon
+          size={size}
           aria-label={addFilterLabel}
           aria-expanded={addFilterMenuOpen}
           onClick={onAddFilter}

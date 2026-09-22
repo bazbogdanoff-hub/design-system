@@ -26,15 +26,19 @@ it doesn't know or care that the real content is a
 ```
 .shell            grid  [64px|180px | 1fr]   100dvw × 100dvh   overflow: hidden
 ├─ .sidebar       64px/180px, full height, background/emphasis  ← sidebar slot
-└─ .main          padding var(--space-12) (gutter)
-   └─ .content    background/muted · radius/page · padding var(--space-20)
-                  overflow-y: auto   ← THE scroll container; children live here
+└─ .main          padding var(--space-12) (gutter); padding-left var(--space-8)
+   └─ .content    background/muted · radius/page · NO padding · overflow hidden
+                  ← dumb chrome only; Page owns padding + scroll
 ```
 
 `--app-sidebar-width` was 240px for `expanded` until 2026-09-18 — a guess
 made before the real `Sidebar` component existed. Corrected to 180px once
 `Sidebar` was fully built (Figma + React) and its actual expanded width was
 known; 240 left ~60px of dead space to the right of the real content.
+
+The sidebar rail uses `align-items: stretch` so a `Sidebar` with
+`width: 100%` + its own `10px` left / `6px` right padding fills the rail
+and insets its panels correctly.
 
 **Screens are not components.** A screen is a page/route that renders
 `<AppShell sidebar={…}>…</AppShell>`. In Figma they're frames nesting one shell
@@ -46,9 +50,10 @@ instance with the content slot filled — never a component.
 different scale of surface than a card, so it earned its own radius instead of
 sharing Card's.
 
-Dimensions (sidebar 64/180, gutter `space/12`, content padding `space/20`)
-are literal in `AppShell.module.css` for now — promote to `size/app/*`
-tokens if a denser mode is ever added on top of collapsed/expanded. The
+Dimensions (sidebar 64/180, gutter `space/12`) are literal in
+`AppShell.module.css` for now — promote to `size/app/*` tokens if a denser
+mode is ever added on top of collapsed/expanded. Content inset lives on
+[`Page`](./Page.md) (`space/16`), not on `.content`. The
 `Variant=Horizontal` on the Figma `Base` foreshadows a below-`lg` collapse.
 
 ---

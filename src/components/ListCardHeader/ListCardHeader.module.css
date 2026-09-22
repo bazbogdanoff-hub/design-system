@@ -1,7 +1,7 @@
 .header {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: var(--space-8);
 }
 
 .heading {
@@ -13,6 +13,13 @@
   color: var(--color-text-subtle);
 }
 
+.header[data-size='xs'] .heading {
+  font-family: var(--text-heading-xs-font-family);
+  font-size: var(--text-heading-xs-font-size);
+  font-weight: var(--text-heading-xs-font-weight);
+  line-height: var(--text-heading-xs-line-height);
+  letter-spacing: var(--text-heading-xs-letter-spacing);
+}
 .header[data-size='sm'] .heading {
   font-family: var(--text-heading-sm-font-family);
   font-size: var(--text-heading-sm-font-size);
@@ -35,6 +42,13 @@
   letter-spacing: var(--text-heading-lg-letter-spacing);
 }
 
+.header[data-size='xs'] .description {
+  font-family: var(--text-body-xs-font-family);
+  font-size: var(--text-body-xs-font-size);
+  font-weight: var(--text-body-xs-font-weight);
+  line-height: var(--text-body-xs-line-height);
+  letter-spacing: var(--text-body-xs-letter-spacing);
+}
 .header[data-size='sm'] .description {
   font-family: var(--text-body-sm-font-family);
   font-size: var(--text-body-sm-font-size);

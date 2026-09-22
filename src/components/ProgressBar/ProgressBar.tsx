@@ -12,7 +12,8 @@ type Base = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
   /** Defaults to 100, i.e. `value` is already a percentage. Pass the real
    * total instead (e.g. `totalSeconds`) rather than pre-dividing yourself. */
   max?: number;
-  /** `sm` (6px) · `md` (10px, default) · `lg` (12px). */
+  /** `sm` (track 6 / fill 8) · `md` (10 / 12, default) · `lg` (18 / 22).
+   * Fill is always taller than the track and vertically centered on it. */
   size?: ProgressBarSize;
   /** Semantic colour — not decorative choice. `brand` (default, neutral
    * progress) · `success` · `warning` · `danger`. */

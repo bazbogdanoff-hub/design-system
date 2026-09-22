@@ -1,51 +1,65 @@
 # Grid
 
-A 12-column CSS grid with a token gutter — for dashboard / content layout inside
-a [`Page`](./Page.md). **L1 layout primitive.**
+A 16-column CSS grid with a token gutter — for dashboard / content layout inside
+a [`Page`](./Page.md). Defaults match Page's layout guide (16 cols / gutter 16 /
+offset 16 / stretch). **L1 layout primitive.**
 
 ```tsx
-<Grid gap="lg">
+<Grid>
+  <Grid.Item span={4}><StatCard … /></Grid.Item>
   <Grid.Item span={4}><StatCard … /></Grid.Item>
   <Grid.Item span={4}><StatCard … /></Grid.Item>
   <Grid.Item span={4}><StatCard … /></Grid.Item>
 </Grid>
 
-<Grid gap="lg">
+<Grid>
+  <Grid.Item span={8}><Card>{/* chart */}</Card></Grid.Item>
+  <Grid.Item span={8}><Card>{/* list */}</Card></Grid.Item>
+</Grid>
+
+<Grid>
   <Grid.Item span={8}><Card>{/* chart */}</Card></Grid.Item>
   <Grid.Item span={4}><Card>{/* list */}</Card></Grid.Item>
+  <Grid.Item span={4}><Card>{/* activity */}</Card></Grid.Item>
 </Grid>
 ```
 
 | | prop | |
 |---|---|---|
-| `Grid` | `columns` | column count (default 12) |
-| | `gap` | gutter — `space/*` (none·4·8·12·16·20), default `md` |
+| `Grid` | `columns` | column count (default **16**) |
+| | `gap` | gutter — `space/*` (none·4·8·12·16·20), default **`lg`** (16) |
 | `Grid.Item` | `span` | columns to span, 1–`columns`. Default = full width |
 | | `spanSm` | span below `lg` (sidebar-collapse / narrow) — optional |
 | | `start` | 1-based start column |
 
-Uneven splits are just different spans — `8`+`4`, `3`+`3`+`6`, `5`+`4`+`3`.
+Uneven splits are just different spans — `4·4·4·4`, `8·8`, `8·4·4`, `4·12`.
 Every item has `min-width: 0` so its content can shrink (text truncation, tables).
+Columns stretch equally (`minmax(0, 1fr)`), so `span={4}` stays ~25% of the
+content track as the page width changes.
+
+Inside a `Page`, Grid also falls back to `--page-cols` / the guide if
+`--grid-cols` isn't set.
 
 ## `Grid` vs `Stack columns`
 
 - **`Stack direction="row" columns`** — quick, equal-width row. No column math.
 - **`Grid`** — when widths are uneven, must line up across rows, or you want a
-  consistent 12-col rhythm across the whole page.
+  consistent 16-col rhythm across the whole page.
 
-## Column widths (1440 design width, `space/16` gutter)
+## Column widths (1440 design width, `space/16` gutter + offset)
 
-| | sidebar 64 (`Page.Body` inner 1316) | sidebar 240 (inner 1140) |
+Approx track widths with collapsed sidebar (64) vs expanded (180):
+
+| | sidebar 64 (`Page` inner ~1316) | sidebar 180 (inner ~1200) |
 |---|---|---|
-| **1 col** | 95 | 80 |
-| span 3 | 317 | 273 |
-| span 4 | 428 | 369 |
-| span 5 | 539 | 466 |
-| span 6 | 650 | 562 |
-| span 8 | 872 | 755 |
+| **1 col** | ~67 | ~60 |
+| span 4 | ~286 | ~255 |
+| span 8 | ~588 | ~526 |
+| span 12 | ~890 | ~797 |
+| span 16 | full | full |
 
 ## Figma
 
-`Content grid — layout guide` — `sidebar=collapsed | expanded`, showing the 12
-columns and example span layouts (4·4·4, 8·4, 3·3·6, 5·4·3) with pixel widths.
-A guide — screen frames lay their content on this grid.
+Page carries a native `layoutGrids` overlay (16 columns, gutter/offset 16,
+stretch) — not a separate guide frame. Screen content lays out on that grid;
+React `Grid` is the code counterpart.

@@ -8,7 +8,7 @@ warning / critical) use `SeverityBadge`, which composes this. See
 ## API
 
 ```tsx
-<Badge tone="neutral|brand|success|warning|danger" size="xs|sm|md|lg" icon={<Icon/>} asChild>
+<Badge tone="neutral|brand|success|warning|danger" size="xs|sm|md|lg" icon="default|hasIcon" leadingIcon={<Icon/>} asChild>
   In transit
 </Badge>
 ```
@@ -17,7 +17,8 @@ warning / critical) use `SeverityBadge`, which composes this. See
 |---|---|---|---|
 | `tone` | `neutral` `brand` `success` `warning` `warning-strong` `danger` | `neutral` | variant `tone` |
 | `size` | `xs` `sm` `md` `lg` | `md` | variant `size` |
-| `icon` | `ReactNode` — leading icon | — | component property `Icon` (bool + instance-swap) |
+| `icon` | `default` · `hasIcon` | `default` | variant `icon` |
+| `leadingIcon` | `ReactNode` — glyph when `icon="hasIcon"` | — | icon instance on `hasIcon` |
 | `asChild` | `boolean` | `false` | — |
 
 `className`, `style`, `...spanProps` pass through to the root. No border, no
@@ -32,14 +33,15 @@ axes.
 ## Appearance
 
 Per **`size`** (padding + gap bind `space/*`; radius `radius/badge/<size>` — 6 for
-`xs`/`sm`, 8 for `md`/`lg`):
+`xs`/`sm`, 8 for `md`/`lg`). With `icon="hasIcon"`, left corners use `radius/5xl`
+(32); right corners stay the size radius:
 
-| `size` | label style | padding | gap | radius | icon | height |
-|---|---|---|---|---|---|---|
-| `xs` | `text/label/xs` — 12 / bold / **wide tracking** | `space/4` vertical, `space/6` horizontal | `space/4` (4) | `radius/badge/sm` (reused — no separate `xs` radius token) — 6 | 12 (1em) | ~22 |
-| `sm` | `text/label/sm` — 13 / bold | `space/6` (6, all sides) | `space/4` (4) | `radius/badge/sm` — 6 | 13 (1em) | ~27 |
-| `md` | `text/label/md` — 14 / bold | `space/8` (8, all sides) | `space/6` (6) | `radius/badge/md` — 8 | 14 (1em) | ~32 |
-| `lg` | `text/label/lg` — 16 / bold | `space/10` (10, all sides) | `space/6` (6) | `radius/badge/lg` — 8 | 16 (1em) | ~38 |
+| `size` | label style | padding | gap | radius (`default`) | radius (`hasIcon`) | icon | height |
+|---|---|---|---|---|---|---|---|
+| `xs` | `text/label/xs` — 12 / bold / **wide tracking** | `space/4` vertical, `space/6` horizontal | `space/4` (4) | `radius/badge/sm` — 6 | 32 / 6 / 6 / 32 | 12 (1em) | ~22 |
+| `sm` | `text/label/sm` — 13 / bold | `space/6` (6, all sides) | `space/4` (4) | `radius/badge/sm` — 6 | 32 / 6 / 6 / 32 | 13 (1em) | ~27 |
+| `md` | `text/label/md` — 14 / bold | `space/8` (8, all sides) | `space/6` (6) | `radius/badge/md` — 8 | 32 / 8 / 8 / 32 | 14 (1em) | ~32 |
+| `lg` | `text/label/lg` — 16 / bold | `space/10` (10, all sides) | `space/6` (6) | `radius/badge/lg` — 8 | 32 / 8 / 8 / 32 | 16 (1em) | ~38 |
 
 `xs` is the odd size out in two ways, both because it composes `text/label/xs`
 specifically: its padding is **asymmetric** (4 vertical / 6 horizontal, not one
@@ -76,11 +78,11 @@ line-height; no trim, no hardcoded value).
 ## Figma build
 
 - Component set **`Badge`** — variant props `tone` (6, including `warning-strong`)
-  × `size` (4: `xs`/`sm`/`md`/`lg`) = 24 variants.
-- `icon` is a **component property**, not a variant axis: a `BOOLEAN` (default
-  `false`) toggling a leading instance-swap slot.
+  × `size` (4: `xs`/`sm`/`md`/`lg`) × `icon` (`default` / `hasIcon`) = 48 variants.
+- `icon="hasIcon"` shows the leading icon instance; left corners `radius/5xl` (32),
+  right corners stay `radius/badge/<size>`.
 - Auto-layout HORIZONTAL, hug × hug, centre align. Fill → `color/badge/<tone>/background`,
-  radius → `radius/badge/<size>`, label style `text/label/<size>` + colour
+  radius → size (or asymmetric for `hasIcon`), label style `text/label/<size>` + colour
   `color/badge/<tone>/text`, icon vector fill → `color/badge/<tone>/text`.
 - No stroke, no effects.
 - **Naming collision in the file**: at least one other, unrelated component is

@@ -2,12 +2,11 @@ import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 import styles from './ListCardHeader.module.css';
 
-export type ListCardHeaderSize = 'sm' | 'md' | 'lg';
+export type ListCardHeaderSize = 'xs' | 'sm' | 'md' | 'lg';
 
 export interface ListCardHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
-  /** `sm` (18/13) · `md` (20/14, default) · `lg` (24/16) — `text.heading.*` /
-   * `text.body.*` at the same size step (not stepped down the way
-   * `FormField`'s own headline is relative to its control). Usually left
+  /** `xs` (16/12) · `sm` (18/13) · `md` (20/14, default) · `lg` (24/16) —
+   * `text.heading.*` / `text.body.*` at the same size step. Usually left
    * unset and cascaded from a `ListCard` ancestor — see `ListCard`'s own
    * `size` prop. */
   size?: ListCardHeaderSize;

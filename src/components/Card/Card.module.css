@@ -1,6 +1,7 @@
 .card {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   background: var(--color-card-background-default);
   border-radius: var(--radius-card);
 
@@ -21,3 +22,4 @@
 .card[data-padding='sm']   { padding: var(--space-12); }
 .card[data-padding='md']   { padding: var(--space-16); }
 .card[data-padding='lg']   { padding: var(--space-20); }
+.card[data-padding='xl']   { padding: var(--space-24); }

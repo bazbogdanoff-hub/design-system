@@ -23,7 +23,7 @@
   cursor: pointer;
 }
 
-.row[data-interactive]:hover {
+.row:hover {
   /* the token is a translucent wash (alpha-black), so a plain fill layers
      on top of whatever's beneath instead of replacing it — no need for the
      inset-shadow flood trick this token's name still references. */
@@ -81,35 +81,9 @@
   letter-spacing: var(--text-label-lg-letter-spacing);
 }
 
-.description {
-  color: var(--color-text-subtle);
-}
-
-.row[data-size='sm'] .description {
-  /* deliberately 2 steps down from the sm heading (label/sm, 13px), not 1 --
-     dense/uppercase-heavy content (flight codes, reference numbers) reads
-     better smaller here; body/xs was the floor until body/2xs was added
-     specifically for this. Same reasoning as md/lg below. */
-  font-family: var(--text-body-2xs-font-family);
-  font-size: var(--text-body-2xs-font-size);
-  font-weight: var(--text-body-2xs-font-weight);
-  line-height: var(--text-body-2xs-line-height);
-  letter-spacing: var(--text-body-2xs-letter-spacing);
-}
-.row[data-size='md'] .description {
-  font-family: var(--text-body-xs-font-family);
-  font-size: var(--text-body-xs-font-size);
-  font-weight: var(--text-body-xs-font-weight);
-  line-height: var(--text-body-xs-line-height);
-  letter-spacing: var(--text-body-xs-letter-spacing);
-}
-.row[data-size='lg'] .description {
-  font-family: var(--text-body-sm-font-family);
-  font-size: var(--text-body-sm-font-size);
-  font-weight: var(--text-body-sm-font-weight);
-  line-height: var(--text-body-sm-line-height);
-  letter-spacing: var(--text-body-sm-letter-spacing);
-}
+/* Description typography + color live on the nested LabelGroup / Label —
+   Row only size-maps the group (sm→2xs, md→xs, lg→sm) and defaults Labels
+   to subtle. */
 
 .trailing {
   flex: none;

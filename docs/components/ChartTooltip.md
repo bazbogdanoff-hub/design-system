@@ -22,11 +22,10 @@ the chart owns positioning and hover/focus state.
 
 **Every series at once** — one tooltip lists every series at the hovered
 category, so the pointer never has to land precisely on a segment/line.
-**Value leads** (`Strong`, high-contrast), **label follows** (secondary) —
-the legend's hierarchy inverted, since here the reader already has the
-category and wants the numbers. Rows key their series with a short **line**,
-not a filled box (a box at tooltip density is data-weight ink doing a
-label's job — the legend still uses a rect).
+Title, value, and series label all use **`text/label/xs`** +
+**`color/text/muted`**. Rows key their series with a short **line**, not a
+filled box (a box at tooltip density is data-weight ink doing a label's
+job — the legend still uses a rect).
 
 `role="tooltip"`, `pointer-events: none` (never blocks the hover target
 under it). No token exists yet for a floating-surface elevation shadow —

@@ -46,6 +46,7 @@
   font-weight: var(--text-body-sm-font-weight);
   line-height: var(--text-body-sm-line-height);
   letter-spacing: var(--text-body-sm-letter-spacing);
+  white-space: nowrap;
 }
 /* strong is the darkest step (text.default, zinc.900) — deliberately one
    step past text.strong, not text.strong itself, so a row's primary
@@ -53,6 +54,14 @@
    default-emphasis siblings (e.g. a PROBLEM/STATION column) in the same row */
 .title[data-emphasis='strong'] {
   color: var(--color-text-default);
+  /* the master's textStrong variant is text/label/sm (13/600/1.15), not
+     body/sm recoloured — it changes weight and line-height too
+     (parity audit TCELL-001) */
+  font-family: var(--text-label-sm-font-family);
+  font-size: var(--text-label-sm-font-size);
+  font-weight: var(--text-label-sm-font-weight);
+  line-height: var(--text-label-sm-line-height);
+  letter-spacing: var(--text-label-sm-letter-spacing);
 }
 
 .supporting {
@@ -63,6 +72,7 @@
   font-weight: var(--text-body-xs-font-weight);
   line-height: var(--text-body-xs-line-height);
   letter-spacing: var(--text-body-xs-letter-spacing);
+  white-space: nowrap;
 }
 .title[data-emphasis='strong'] ~ .supporting {
   color: var(--color-text-subtle);

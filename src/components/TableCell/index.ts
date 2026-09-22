@@ -1,5 +1,5 @@
 export { TableCell } from './TableCell';
-export type { TableCellProps } from './TableCell';
+export type { TableCellProps, TableCellWidth } from './TableCell';
 
 export { TableCellText } from './TableCellText';
 export type { TableCellTextProps } from './TableCellText';

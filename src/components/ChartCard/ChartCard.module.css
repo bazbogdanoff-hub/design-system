@@ -1,50 +1,47 @@
 .card {
-  /* lets .legendRow query the CARD's own width, not the viewport's — a
-     dashboard grid cell and a full-width page section should each get the
-     layout that suits their own size, independent of screen size. */
-  container-type: inline-size;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: var(--space-16);
   height: 100%;
+  min-height: 0;
 }
 
+/* One row: title | legend | filters+action — free space distributes between them. */
 .header {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  justify-content: space-between;
   gap: var(--space-16);
+  flex: none;
+  min-width: 0;
 }
 
 .title {
-  order: 1;
   margin: 0;
+  flex: none;
   font-family: var(--text-heading-md-font-family);
   font-size: var(--text-heading-md-font-size);
   font-weight: var(--text-heading-md-font-weight);
   line-height: var(--text-heading-md-line-height);
   letter-spacing: var(--text-heading-md-letter-spacing);
   color: var(--color-text-default);
+  white-space: nowrap;
 }
 
-/* Narrow (< 480px card): its own row, right-aligned, below title/trailing —
-   `flex-basis: 100%` claims the whole line so it always wraps onto a fresh
-   one regardless of how much room title+trailing leave behind. */
 .legendRow {
-  order: 3;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  flex: 1 0 100%;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
-/* filters + action, grouped and pushed to the header's right edge */
 .trailing {
-  order: 2;
   display: flex;
   align-items: center;
   gap: var(--space-8);
-  margin-left: auto;
+  flex: none;
 }
 
 .filters {
@@ -53,21 +50,15 @@
   gap: var(--space-12);
 }
 
-/* Wide enough to hold title, legend, and filters/action on one line — the
-   legend rejoins the header row instead of wrapping below it. */
-@container (min-width: 480px) {
-  .legendRow {
-    order: 2;
-    flex: 0 0 auto;
-  }
-
-  .trailing {
-    order: 3;
-  }
-}
-
 .body {
   flex: 1;
   min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.body > * {
+  flex: 1 1 0;
   min-height: 0;
 }

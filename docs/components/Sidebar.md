@@ -20,8 +20,10 @@ const modules = [
   userName="Bogdan"
   userInitials="B"
   name="Acme"
-  profileMenu={<MenuRow>Admin</MenuRow>}
-  onSettingsClick={() => {}}
+  onProfileClick={() => navigate('/profile')}
+  profileActive={pathname.startsWith('/profile')}
+  onSettingsClick={() => navigate('/settings')}
+  settingsActive={pathname.startsWith('/settings')}
 >
   {navItems /* SidebarNavItem[] for the active module */}
 </Sidebar>
@@ -35,9 +37,13 @@ const modules = [
 | `onModuleChange` | `(id: string) => void` — required | | |
 | `children` | `ReactNode` — required | | the active module's own nav items — `SidebarNavItem`s |
 | `userName` | `ReactNode` — required | | |
-| `userInitials` | `ReactNode` — required | | |
-| `profileMenu` | `ReactNode` — required | | `MenuRow`s for the profile dropdown |
+| `userInitials` | `ReactNode` — required | | used when `userAvatar` is omitted |
+| `userAvatar` | `ReactNode` | | photo (or other node) for the Profile row — replaces the initials `Avatar` |
+| `profileMenu` | `ReactNode` | | legacy — `MenuRow`s when Profile opens a dropdown (omit when using `onProfileClick`) |
+| `onProfileClick` | `() => void` | | navigate to a profile page — when set, Profile no longer toggles the menu |
+| `profileActive` | `boolean` | `false` | brand-active highlight on the Profile row |
 | `onSettingsClick` | `() => void` | | |
+| `settingsActive` | `boolean` | `false` | brand-active highlight on the Settings row |
 | `name` | `ReactNode` — required | | the wordmark text next to the brand mark |
 
 `SidebarModule` is `{ id: string; tone: 'brand' \| 'success' \| 'danger'; label: string }`
@@ -55,8 +61,9 @@ Sidebar
 ├─ divider
 ├─ SegmentedControl (size="xs", collapsed-aware) — the module switcher
 ├─ SidebarSection (content="module") — the active module's nav list
+│    (margin-top: -space/6 so the switcher overlaps it by 6px; switcher z-index above)
 └─ SidebarSection (content="settings")
-   ├─ SidebarNavItem (avatar, opens profileMenu)
+   ├─ SidebarNavItem (avatar — `onProfileClick` or opens profileMenu)
    └─ SidebarNavItem (icon={GearSixIcon}, onSettingsClick)
 ```
 
@@ -64,7 +71,10 @@ Not a single flat list — the switcher and the nav section share a `flex: 1`
 group so the nav list is what scrolls when it overflows; the settings
 section stays fixed at the bottom regardless. `AppShell` owns the rail's
 own width/background (`180px` expanded, `64px` collapsed — see
-[AppShell.md](./AppShell.md)); `Sidebar` only owns what's inside it.
+[AppShell.md](./AppShell.md)); `Sidebar` only owns what's inside it,
+including the rail inset (`space/10` left · `space/6` right) so
+`SidebarSection` panels fill the remaining width instead of sitting flush
+against the viewport edge.
 
 ## Why `modules` dropped `icon`/`color: TagColor`
 

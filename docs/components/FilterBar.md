@@ -16,6 +16,7 @@ single `Stack` (`direction="row" gap="md" align="center" wrap`).
 | prop | values | default |
 |---|---|---|
 | `children` | `Filter` instances — any number, **including none** | — |
+| `size` | `sm` (28px) · `md` (32px) — applied to the leading `FilterIcon`; match your `Filter`s | `md` |
 | `onAddFilter` | click handler for the add-filter trigger. **Its presence renders the trigger** | — |
 | `addFilterLabel` | accessible name for the trigger | `"Add filter"` |
 | `addFilterMenuOpen` | reflects a future menu's open state onto the trigger (keeps it showing "+") | — |

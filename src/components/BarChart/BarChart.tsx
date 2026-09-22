@@ -36,10 +36,8 @@ const GAP = 2; // surface-color gap between stacked segments (marks-and-anatomy.
 const CORNER = 4; // rounded data-end radius
 const MAX_BAR_THICKNESS = 24;
 const MIN_HEIGHT = 140; // pre-measurement / degenerate-container fallback
-// top is generous on purpose — reserves headroom so a tall bar's hover
-// tooltip has room to render above it without overlapping whatever sits
-// above the chart (e.g. ChartCard's header).
-const PADDING = { top: 56, right: 16, bottom: 28, left: 32 };
+// Top inset leaves a little room for hover tooltips above tall bars.
+const PADDING = { top: 20, right: 16, bottom: 24, left: 24 };
 
 /** A `<rect>`-equivalent path with only the top two corners rounded — the
  * stack's outer end is rounded, its baseline end stays square. */
@@ -153,7 +151,7 @@ export function BarChart({
               {segments}
               <text
                 x={x + barWidth / 2}
-                y={height - PADDING.bottom + 18}
+                y={height - 8}
                 className={styles.axisLabel}
                 textAnchor="middle"
               >

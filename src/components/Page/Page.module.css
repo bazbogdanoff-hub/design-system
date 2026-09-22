@@ -1,10 +1,15 @@
 /* Page owns scroll + padding + sticky regions inside the AppShell content slot.
-   Content padding is `space/20`; regions can `bleed` it away horizontally.
-   Padding values are literal-ish (via space tokens) — the AppShell exposes
-   nothing, so they live here. */
+   Content padding is `space/16` (layout-guide offset); regions can `bleed` it
+   away horizontally. AppShell's .content must NOT also pad — that doubles the
+   inset. CSS vars below mirror Figma's Page layoutGrids (16 / gutter 16 /
+   offset 16 / stretch) for Grid to inherit. */
 .page {
-  --_page-pad: var(--space-20);
+  --page-cols: 16;
+  --page-gutter: var(--space-16);
+  --_page-pad: var(--space-16);
 
+  flex: 1;
+  width: 100%;
   height: 100%;
   min-height: 0;
   box-sizing: border-box;
