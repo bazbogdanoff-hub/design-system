@@ -13,7 +13,14 @@
   font-size: var(--text-body-xs-font-size);
   font-weight: var(--text-body-xs-font-weight);
   line-height: var(--text-body-xs-line-height);
-  white-space: nowrap;
+  /* Size to the text, then wrap. `max-content` keeps a short label on one
+     line even inside a narrow positioned anchor (whose width would otherwise
+     squeeze it); past the max width a long note breaks onto more lines at
+     word boundaries instead of running off in one line. */
+  width: max-content;
+  max-width: 18.75rem; /* 300px */
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 /* a rotated square, half tucked behind the pill — the standard web

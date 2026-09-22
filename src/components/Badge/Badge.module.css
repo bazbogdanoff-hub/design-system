@@ -13,42 +13,36 @@
   line-height: var(--text-label-md-line-height);
   white-space: nowrap;
 
-  /* Glass recipe (2026-09-16): a soft radial highlight + a colored inset
-     shadow for depth — no flat fill. Position/shape decoded exactly from
-     Figma's own gradientTransform (verified identical across every tone/size/
-     variant, not eyeballed): center at (24.4%, 75.6%) — bottom-left, not
-     top-left and not centered — as an ellipse matching the badge's own
-     aspect ratio (radius ~51.1% of width/height). color-mix bakes in the
-     30% opacity Figma's fill layer carries, so only the background layer is
-     translucent, never the label text sitting on top of it.
-     default tone = neutral */
-  background: radial-gradient(ellipse 51.1% 51.1% at 24.4% 75.6%, color-mix(in srgb, var(--color-badge-neutral-glow) 30%, transparent) 9.6%, transparent 100%);
+  /* Glass recipe: soft radial highlight + colored inset shadow — no flat fill.
+     Ellipse centered in the pill (was Figma bottom-left at 24.4%/75.6%).
+     color-mix bakes in the 30% opacity so only the background is translucent. */
+  background: radial-gradient(ellipse 51.1% 51.1% at 50% 50%, color-mix(in srgb, var(--color-badge-neutral-glow) 30%, transparent) 9.6%, transparent 100%);
   box-shadow: inset 0 0 5px 0 var(--color-badge-neutral-shadow);
   color: var(--color-badge-neutral-text);
 }
 
 .badge[data-tone='brand'] {
-  background: radial-gradient(ellipse 51.1% 51.1% at 24.4% 75.6%, color-mix(in srgb, var(--color-badge-brand-glow) 30%, transparent) 9.6%, transparent 100%);
+  background: radial-gradient(ellipse 51.1% 51.1% at 50% 50%, color-mix(in srgb, var(--color-badge-brand-glow) 30%, transparent) 9.6%, transparent 100%);
   box-shadow: inset 0 0 5px 0 var(--color-badge-brand-shadow);
   color: var(--color-badge-brand-text);
 }
 .badge[data-tone='success'] {
-  background: radial-gradient(ellipse 51.1% 51.1% at 24.4% 75.6%, color-mix(in srgb, var(--color-badge-success-glow) 30%, transparent) 9.6%, transparent 100%);
+  background: radial-gradient(ellipse 51.1% 51.1% at 50% 50%, color-mix(in srgb, var(--color-badge-success-glow) 30%, transparent) 9.6%, transparent 100%);
   box-shadow: inset 0 0 5px 0 var(--color-badge-success-shadow);
   color: var(--color-badge-success-text);
 }
 .badge[data-tone='warning'] {
-  background: radial-gradient(ellipse 51.1% 51.1% at 24.4% 75.6%, color-mix(in srgb, var(--color-badge-warning-glow) 30%, transparent) 9.6%, transparent 100%);
+  background: radial-gradient(ellipse 51.1% 51.1% at 50% 50%, color-mix(in srgb, var(--color-badge-warning-glow) 30%, transparent) 9.6%, transparent 100%);
   box-shadow: inset 0 0 5px 0 var(--color-badge-warning-shadow);
   color: var(--color-badge-warning-text);
 }
 .badge[data-tone='warning-strong'] {
-  background: radial-gradient(ellipse 51.1% 51.1% at 24.4% 75.6%, color-mix(in srgb, var(--color-badge-warning-strong-glow) 30%, transparent) 9.6%, transparent 100%);
+  background: radial-gradient(ellipse 51.1% 51.1% at 50% 50%, color-mix(in srgb, var(--color-badge-warning-strong-glow) 30%, transparent) 9.6%, transparent 100%);
   box-shadow: inset 0 0 5px 0 var(--color-badge-warning-strong-shadow);
   color: var(--color-badge-warning-strong-text);
 }
 .badge[data-tone='danger'] {
-  background: radial-gradient(ellipse 51.1% 51.1% at 24.4% 75.6%, color-mix(in srgb, var(--color-badge-danger-glow) 30%, transparent) 9.6%, transparent 100%);
+  background: radial-gradient(ellipse 51.1% 51.1% at 50% 50%, color-mix(in srgb, var(--color-badge-danger-glow) 30%, transparent) 9.6%, transparent 100%);
   box-shadow: inset 0 0 5px 0 var(--color-badge-danger-shadow);
   color: var(--color-badge-danger-text);
 }
@@ -83,6 +77,16 @@
   padding: var(--space-10);
   font-size: var(--text-label-lg-font-size);
   border-radius: var(--radius-badge-lg);
+}
+
+/* hasIcon — left corners 32px (radius-5xl); right corners stepped up from the
+   size radius so they still read round next to the capsule left (6 looked
+   optically flat on ~22px xs chips). */
+.badge[data-icon='hasIcon'][data-size='xs'],
+.badge[data-icon='hasIcon'][data-size='sm'],
+.badge[data-icon='hasIcon'][data-size='md'],
+.badge[data-icon='hasIcon'][data-size='lg'] {
+  border-radius: var(--radius-5xl) var(--radius-xl) var(--radius-xl) var(--radius-5xl);
 }
 
 /* leading icon — 1em box, inherits the tone colour via currentColor */

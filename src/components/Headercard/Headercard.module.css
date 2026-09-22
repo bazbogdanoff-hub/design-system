@@ -20,6 +20,23 @@
   min-width: 0;
 }
 
+/* `controls` in place of a label group — see Headercard.tsx. Controls are
+   ~32px tall: they need more room under the heading than a text stat line,
+   and the actions line up with the heading rather than the card's middle. */
+.card[data-has-controls] {
+  align-items: flex-start;
+}
+.card[data-has-controls] .left {
+  gap: var(--space-10);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
 .heading {
   margin: 0;
   font-family: var(--text-heading-md-font-family);

@@ -1,5 +1,9 @@
 .taskCard {
   width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* the drop shadow lives on this wrapper, never on the Card instance itself —
@@ -7,11 +11,17 @@
    of context. Hand-tuned to match Figma's DROP_SHADOW effect exactly — no
    elevation token scale exists yet (same situation as ChartTooltip's shadow). */
 .shadow {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
   border-radius: var(--radius-panel);
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.25);
 }
 
 .card {
+  flex: 1 1 auto;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-20);
@@ -32,12 +42,16 @@
 
 .heading {
   margin: 0;
-  font-family: var(--text-heading-sm-font-family);
-  font-size: var(--text-heading-sm-font-size);
-  font-weight: var(--text-heading-sm-font-weight);
-  line-height: var(--text-heading-sm-line-height);
-  letter-spacing: var(--text-heading-sm-letter-spacing);
+  font-family: var(--text-heading-xs-font-family);
+  font-size: var(--text-heading-xs-font-size);
+  font-weight: var(--text-heading-xs-font-weight);
+  line-height: var(--text-heading-xs-line-height);
+  letter-spacing: var(--text-heading-xs-letter-spacing);
   color: var(--color-text-default);
+  /* One line — titles should be written short; ellipsis if they overrun. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .description {
@@ -48,6 +62,11 @@
   line-height: var(--text-body-sm-line-height);
   letter-spacing: var(--text-body-sm-letter-spacing);
   color: var(--color-text-subtle);
+  /* Max two rows — brief what/with; full copy on task detail. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .footer {
@@ -55,13 +74,16 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-12);
+  margin-top: auto;
 }
 
-/* context="tasks" — a smaller standalone card for a dense grid (matches
-   Figma's context=tasks: tighter slot spacing, smaller IconCell handled via
-   the size prop above). */
+/* context="tasks" — dense grid card: tighter slot spacing, no drop shadow
+   (grid density; Card's own glass vignette stays). */
 [data-context='tasks'] .card {
   gap: var(--space-8);
+}
+[data-context='tasks'] .shadow {
+  box-shadow: none;
 }
 
 /* ---------- context="queue" — 3 decorative ghosts + the real card ---------- */
@@ -73,23 +95,42 @@
    original hand-built version this replaces exactly. */
 .queue {
   display: grid;
+  /* Row consumes the full grid area so the front card stretches to fill. */
+  grid-template-rows: minmax(0, 1fr);
   padding-top: 30px;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
 }
 .queue > * {
   grid-area: 1 / 1;
+  min-height: 0;
 }
 
 .ghost {
-  align-self: stretch;
+  /* Same height as the front card (grid cell sized by `.shadow`). Do NOT
+     `align-self: stretch` with a negative top margin — stretch sizes as
+     area−margins, so a −10/−20/−30 top margin grows the ghost by that much,
+     keeps bottoms flush with the front, and stacks 4× the drop shadow. Same
+     height + elevate → bottoms sit above the front edge and their shadow is
+     hidden behind it. */
+  justify-self: center;
+  align-self: start;
+  height: 100%;
+  box-sizing: border-box;
   border-radius: var(--radius-panel);
   background: var(--color-surface-default);
   border: 1px solid var(--color-border-subtle);
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.25);
 }
-.ghost1 { margin: -10px 10px 0; z-index: 3; }
-.ghost2 { margin: -20px 20px 0; z-index: 2; }
-.ghost3 { margin: -30px 30px 0; z-index: 1; }
+/* Each layer back is exactly 20px narrower than the one in front of it
+   (10px higher via negative top margin). Width via calc — not side margins —
+   so the cascade stays visible as the queue stretches. */
+.ghost1 { width: calc(100% - 20px); margin-top: -10px; z-index: 3; }
+.ghost2 { width: calc(100% - 40px); margin-top: -20px; z-index: 2; }
+.ghost3 { width: calc(100% - 60px); margin-top: -30px; z-index: 1; }
 
 .queue .shadow {
   z-index: 4;
+  min-height: 180px;
 }

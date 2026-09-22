@@ -3,8 +3,11 @@ import './styles.css';
 export { Card } from './components/Card';
 export type { CardProps, CardPadding } from './components/Card';
 
+export { SelectableCard } from './components/SelectableCard';
+export type { SelectableCardProps } from './components/SelectableCard';
+
 export { Badge } from './components/Badge';
-export type { BadgeProps, BadgeTone, BadgeSize } from './components/Badge';
+export type { BadgeProps, BadgeTone, BadgeSize, BadgeIcon } from './components/Badge';
 
 export { Tag } from './components/Tag';
 export type { TagProps, TagSize, TagColor } from './components/Tag';
@@ -78,7 +81,7 @@ export { Select } from './components/Select';
 export type { SelectProps, SelectOption } from './components/Select';
 
 export { SegmentedControl } from './components/SegmentedControl';
-export type { SegmentedControlProps, SegmentedControlSize } from './components/SegmentedControl';
+export type { SegmentedControlProps, SegmentedControlSize, SegmentedControlMode } from './components/SegmentedControl';
 
 export { SegmentedControlItem } from './components/SegmentedControlItem';
 export type {
@@ -130,10 +133,10 @@ export { TableRow } from './components/TableRow';
 export type { TableRowProps } from './components/TableRow';
 
 export { TableHeaderCell } from './components/TableHeaderCell';
-export type { TableHeaderCellProps } from './components/TableHeaderCell';
+export type { TableHeaderCellProps, TableHeaderCellWidth } from './components/TableHeaderCell';
 
 export { TableCell, TableCellText, TableProgressStages } from './components/TableCell';
-export type { TableCellProps, TableCellTextProps, TableProgressStagesProps } from './components/TableCell';
+export type { TableCellProps, TableCellWidth, TableCellTextProps, TableProgressStagesProps } from './components/TableCell';
 
 export { Pagination } from './components/Pagination';
 export type { PaginationProps } from './components/Pagination';
@@ -169,6 +172,8 @@ export type { SpinnerProps, SpinnerSize } from './components/Spinner';
 
 export { Tooltip } from './components/Tooltip';
 export type { TooltipProps, TooltipPosition } from './components/Tooltip';
+export { TooltipTrigger } from './components/Tooltip';
+export type { TooltipTriggerProps } from './components/Tooltip';
 
 export { Divider } from './components/Divider';
 export type { DividerProps, DividerOrientation } from './components/Divider';

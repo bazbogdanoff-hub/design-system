@@ -2,6 +2,7 @@ import { forwardRef, type ReactNode } from 'react';
 import { Card } from '../Card';
 import { IconCell } from '../IconCell';
 import { Tag, type TagColor } from '../Tag';
+import { TooltipTrigger } from '../Tooltip';
 import { SeverityBadge, type SeverityLevel } from '../SeverityBadge';
 import { cn } from '../../lib/cn';
 import styles from './TaskCard.module.css';
@@ -18,8 +19,11 @@ export interface TaskCardProps {
    * Always `1` for `context="queue"` (`NextTask` only ever shows the front
    * task); a real, varying number for `context="list"`. */
   position: number;
-  /** The category tag sitting above the title. */
-  category: { label: ReactNode; color: TagColor };
+  /** The category tag sitting above the title. `module` (sidebar module
+   * name) drives Tag color and, when set, a tooltip: `From "…"`. The tag
+   * then takes keyboard focus, because the module is otherwise shown only
+   * by colour — the tooltip is how anyone who can't see the colour gets it. */
+  category: { label: ReactNode; color: TagColor; module?: string };
   title: ReactNode;
   description: ReactNode;
   severity: SeverityLevel;
@@ -41,15 +45,27 @@ export const TaskCard = forwardRef<HTMLDivElement, TaskCardProps>(function TaskC
   { context = 'list', position, category, title, description, severity, action, className },
   ref,
 ) {
+  const tag = (
+    <Tag size="xs" color={category.color}>
+      {category.label}
+    </Tag>
+  );
+
   const content = (
     <div className={styles.shadow}>
       <Card padding="md" className={styles.card}>
         <div className={styles.header}>
           <IconCell size={context === 'tasks' ? 'xl' : '2xl'}>{`#${position}`}</IconCell>
           <div className={styles.titleGroup}>
-            <Tag size="xs" color={category.color}>
-              {category.label}
-            </Tag>
+            {category.module ? (
+              <TooltipTrigger content={`From ${category.module}`} position="top">
+                <Tag size="xs" color={category.color} tabIndex={0}>
+                  {category.label}
+                </Tag>
+              </TooltipTrigger>
+            ) : (
+              tag
+            )}
             <h3 className={styles.heading}>{title}</h3>
           </div>
         </div>
