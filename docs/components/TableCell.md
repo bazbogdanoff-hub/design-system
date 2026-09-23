@@ -25,6 +25,34 @@ Figma's `TableCell`.
 | prop | type | default |
 |---|---|---|
 | `align` | `'start' \| 'center' \| 'end'` | `start` |
+| `width` | `'checkbox' \| 'radio' \| 'icon' \| 'action' \| 'value' \| 'timestamp' \| 'wide'` | — |
+
+### Width roles
+
+| role | width | for |
+|---|---|---|
+| `checkbox` `radio` `icon` | fixed 48px | a control rail |
+| `action` | fixed 8rem | cells holding a `Button` |
+| `value` | 7rem minimum | a figure wider than its own header — money, distance, duration |
+| `timestamp` | fixed 9rem | a date **and** time on one line |
+| `wide` | 12rem minimum | a primary text column (Model, Location) |
+| omitted | hugs one line | a value no wider than its header |
+
+**Fixed vs minimum matters.** `checkbox`/`radio`/`icon`, `action` and
+`timestamp` are fixed — their content has a known width, so they take no
+share of the leftover space. `value` and `wide` are minimums on an `auto`
+column, so they grow into whatever is left. Give the slack to the column that
+can use it: a row where the date column absorbed it and the location column
+clipped was the bug that produced this rule.
+
+**Omitting the role is only safe when the header is at least as wide as
+everything under it.** `Table` locks the row height by taking each cell's
+content out of flow (`data-row-fill` → the inner fill is absolutely
+positioned), which means a cell contributes no intrinsic width: the column is
+sized by its **header**, and a longer value is clipped rather than widening
+the column. `action` and `value` exist for exactly that, and the same role
+must be set on the column's `TableHeaderCell` — a column is only as wide as
+the widest of the two requests.
 
 Every other native `<td>` prop passes through. **No fill of its own —
 transparent, on purpose.** `TableRow` owns all visible row color

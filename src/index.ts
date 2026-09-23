@@ -62,6 +62,9 @@ export type { FilterBarProps } from './components/FilterBar';
 export { ScrollableArea } from './components/ScrollableArea';
 export type { ScrollableAreaProps } from './components/ScrollableArea';
 
+export { RouteTrack } from './components/RouteTrack';
+export type { RouteTrackProps, RouteTrackStop } from './components/RouteTrack';
+
 export { Overlay } from './components/Overlay';
 export type { OverlayProps } from './components/Overlay';
 

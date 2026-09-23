@@ -2,7 +2,7 @@ import { forwardRef, type TdHTMLAttributes } from 'react';
 import { cn } from '../../lib/cn';
 import styles from './TableCell.module.css';
 
-export type TableCellWidth = 'checkbox' | 'radio' | 'icon' | 'wide';
+export type TableCellWidth = 'checkbox' | 'radio' | 'icon' | 'action' | 'value' | 'timestamp' | 'wide';
 
 export interface TableCellProps extends Omit<TdHTMLAttributes<HTMLTableCellElement>, 'align' | 'width'> {
   /** `start` (default) · `center` · `end`. */
@@ -10,8 +10,20 @@ export interface TableCellProps extends Omit<TdHTMLAttributes<HTMLTableCellEleme
   /**
    * Column width role.
    * - `checkbox` / `radio` / `icon` — fixed 48px control column
-   * - `wide` — text column with a higher min-width (e.g. Model)
+   * - `action` — fixed 8rem, for a column whose cells hold a `Button`
+   * - `value` — 7rem minimum, for a figure wider than its own header
+   *   (money, distances, durations)
+   * - `timestamp` — fixed 9rem, for a date **and** time on one line, which
+   *   no short header reserves room for. Fixed rather than a minimum: its
+   *   width doesn't vary, so it shouldn't take slack from a text column
+   * - `wide` — text column with a 12rem minimum (e.g. Model)
    * - omit — hug content on one line (never wraps mid-value)
+   *
+   * Omitting it is right only when the header is at least as wide as
+   * everything under it. A locked row fill takes cell content out of flow,
+   * so a column with no role is sized by its header, and a longer value is
+   * clipped rather than widening the column — that is what `action` and
+   * `value` exist to prevent.
    */
   width?: TableCellWidth;
 }

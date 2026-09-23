@@ -3,7 +3,7 @@ import { cn } from '../../lib/cn';
 import { CaretUpDownIcon } from './CaretUpDownIcon';
 import styles from './TableHeaderCell.module.css';
 
-export type TableHeaderCellWidth = 'checkbox' | 'radio' | 'icon' | 'wide';
+export type TableHeaderCellWidth = 'checkbox' | 'radio' | 'icon' | 'action' | 'value' | 'timestamp' | 'wide';
 
 export interface TableHeaderCellProps extends Omit<ThHTMLAttributes<HTMLTableCellElement>, 'children' | 'width'> {
   /** Whatever the column header needs — usually text, but also a select-all `Checkbox`, or nothing (a trailing overflow column). */
@@ -17,6 +17,9 @@ export interface TableHeaderCellProps extends Omit<ThHTMLAttributes<HTMLTableCel
   /**
    * Column width role — must match the body cells in this column.
    * - `checkbox` / `radio` / `icon` — fixed 48px
+   * - `action` — fixed 8rem, for a column whose cells hold a `Button`
+   * - `value` — 7rem minimum, for a figure wider than its own header
+   * - `timestamp` — 9rem minimum, for a date and time on one line
    * - `wide` — text column with a higher min-width (e.g. Model)
    * - omit — hug label on one line
    */

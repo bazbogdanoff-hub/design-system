@@ -15,6 +15,21 @@
   min-width: 12rem;
 }
 
+/* Must match TableCell's roles of the same name — a column is only as wide
+   as the widest of its header and body requests. */
+.cell[data-width='action'] {
+  width: 8rem;
+  min-width: 8rem;
+}
+.cell[data-width='value'] {
+  width: auto;
+  min-width: 7rem;
+}
+.cell[data-width='timestamp'] {
+  width: 9rem;
+  min-width: 9rem;
+}
+
 .cell[data-width='checkbox'],
 .cell[data-width='radio'],
 .cell[data-width='icon'] {

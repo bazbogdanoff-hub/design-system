@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { useId, useLayoutEffect, useRef, useState } from 'react';
 import { ChartTooltip } from '../ChartTooltip';
 import { niceScale } from '../../lib/niceScale';
 import { useContainerSize } from '../../lib/useContainerSize';
@@ -37,7 +37,12 @@ const CORNER = 4; // rounded data-end radius
 const MAX_BAR_THICKNESS = 24;
 const MIN_HEIGHT = 140; // pre-measurement / degenerate-container fallback
 // Top inset leaves a little room for hover tooltips above tall bars.
+// `left` is only the floor — the real left inset is measured from the widest
+// axis label (see `padLeft`). A fixed 24 was enough for single-digit counts
+// and cut four-figure money labels off the left edge of the viewBox.
 const PADDING = { top: 20, right: 16, bottom: 24, left: 24 };
+/** Distance from a label's right edge to the axis. */
+const AXIS_LABEL_GAP = 8;
 
 /** A `<rect>`-equivalent path with only the top two corners rounded — the
  * stack's outer end is rounded, its baseline end stays square. */
@@ -70,6 +75,8 @@ export function BarChart({
   'aria-label': ariaLabel,
 }: BarChartProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const axisRef = useRef<SVGGElement>(null);
+  const [measuredLabel, setMeasuredLabel] = useState(0);
   const titleId = useId();
   const [wrapperRef, measuredSize] = useContainerSize<HTMLDivElement>();
 
@@ -85,11 +92,36 @@ export function BarChart({
   const ticks: number[] = [];
   for (let v = 0; v <= axisMax; v += axisStep) ticks.push(v);
 
-  const plotWidth = intrinsicWidth - PADDING.left - PADDING.right;
+  /* Reserve exactly what the longest tick label needs. Labels are drawn
+     end-anchored at `padLeft - AXIS_LABEL_GAP`, so too small an inset pushes
+     them off the left edge of the viewBox and they're clipped, not wrapped.
+
+     The width is *measured*, not estimated from character count: digit
+     advances differ by font and by glyph, and a per-character guess was out
+     by enough to shave the first digit off a four-figure label. The first
+     paint uses the floor, the layout effect below corrects it before the
+     browser shows anything. */
+  const padLeft = Math.max(PADDING.left, measuredLabel + AXIS_LABEL_GAP * 2);
+
+  const plotWidth = intrinsicWidth - padLeft - PADDING.right;
   const bandWidth = plotWidth / Math.max(1, data.length);
   const barWidth = Math.min(MAX_BAR_THICKNESS, bandWidth * 0.5);
 
   const yFor = (value: number) => PADDING.top + plotHeight * (1 - value / axisMax);
+
+  /* Measure the rendered labels themselves. Re-runs whenever the tick values
+     change; a font swapping in fires the ResizeObserver on the wrapper, which
+     re-renders and re-measures. */
+  const tickKey = ticks.join(',');
+  useLayoutEffect(() => {
+    const g = axisRef.current;
+    if (!g) return;
+    let widest = 0;
+    for (const node of g.querySelectorAll('text')) {
+      widest = Math.max(widest, (node as SVGTextElement).getComputedTextLength());
+    }
+    setMeasuredLabel((prev) => (Math.abs(prev - widest) > 0.5 ? widest : prev));
+  }, [tickKey, intrinsicWidth]);
 
   const active = activeIndex != null ? data[activeIndex] : null;
   const activeTotal = activeIndex != null ? (totals[activeIndex] ?? 0) : 0;
@@ -108,27 +140,35 @@ export function BarChart({
         {!ariaLabel && <title id={titleId}>Bar chart</title>}
 
         {/* gridlines + y-axis labels */}
+        <g ref={axisRef}>
         {ticks.map((tick) => {
           const y = yFor(tick);
           return (
             <g key={tick}>
               <line
-                x1={PADDING.left}
+                x1={padLeft}
                 x2={intrinsicWidth - PADDING.right}
                 y1={y}
                 y2={y}
                 className={styles.gridline}
               />
-              <text x={PADDING.left - 8} y={y} className={styles.axisLabel} textAnchor="end" dominantBaseline="middle">
+              <text
+                x={padLeft - AXIS_LABEL_GAP}
+                y={y}
+                className={styles.axisLabel}
+                textAnchor="end"
+                dominantBaseline="middle"
+              >
                 {tick}
               </text>
             </g>
           );
         })}
+        </g>
 
         {/* bars */}
         {data.map((datum, i) => {
-          const x = PADDING.left + bandWidth * i + (bandWidth - barWidth) / 2;
+          const x = padLeft + bandWidth * i + (bandWidth - barWidth) / 2;
           let cumulative = 0;
           const segments = series.map((s, si) => {
             const value = datum.values[s.key] ?? 0;
@@ -159,7 +199,7 @@ export function BarChart({
               </text>
               {/* hit target — the whole column, taller/wider than the bar itself */}
               <rect
-                x={PADDING.left + bandWidth * i}
+                x={padLeft + bandWidth * i}
                 y={PADDING.top}
                 width={bandWidth}
                 height={plotHeight}
@@ -193,7 +233,7 @@ export function BarChart({
               color: s.color,
             }))}
           style={{
-            left: `${((PADDING.left + bandWidth * (activeIndex + 0.5)) / intrinsicWidth) * 100}%`,
+            left: `${((padLeft + bandWidth * (activeIndex + 0.5)) / intrinsicWidth) * 100}%`,
             // clamped so a near-max bar's tooltip can't render above the
             // chart's own top edge — PADDING.top already reserves the
             // typical headroom, this is the safety net for tall tooltips
