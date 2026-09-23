@@ -37,7 +37,7 @@ size axis for a mark that doesn't actually resize.
 ## Figma
 
 `Logo` (`10623:21244`) — 2 variants (`collapsed` only): `true` is the bare
-21×21 mark; `false` nests that same mark next to a "Name"-style wordmark
+28×28 mark; `false` nests that same mark next to a "Name"-style wordmark
 text (Plus Jakarta Sans SemiBold 24, `text.heading.lg` in code). Built by
 converting the owner's hand-placed mark into `collapsed=true`, then cloning
 the sidebar's own live mark+wordmark frame (which already nested a real

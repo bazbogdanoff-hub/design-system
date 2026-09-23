@@ -29,12 +29,12 @@ corner radius (and top padding) differ per `content`:
 
 - **`module`** — small top corners (`radius.sidebar.section.top`, 4px; it
   sits right under the module switcher, not against the sidebar's own outer
-  edge there) and a full `radius.panel` (12px) on the bottom. Gets a
-  `space-12` top inset for breathing room under the switcher.
+  edge there) and a full `radius.panel` (12px) on the bottom. Vertical
+  padding `space/16` top · `space/4` bottom.
 - **`settings`** — `radius.panel` on three corners, and one deliberately
   deeper bottom-right corner (`radius.sidebar.section.deep`, 24px) — a
-  one-off flourish, not a page-viewport radius reused by coincidence. No top
-  inset; it isn't preceded by anything that needs the gap.
+  one-off flourish, not a page-viewport radius reused by coincidence.
+  Vertical padding `space/4` top and bottom.
 
 `radius.sidebar.section.top`/`.deep` are deliberate primitive-alias
 exceptions (same pattern as the rest of `component.color.json`'s `sidebar`

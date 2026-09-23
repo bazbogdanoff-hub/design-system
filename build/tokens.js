@@ -601,9 +601,12 @@ export const SizeInputLg = "2.75rem"; // 44px — equals Button's 2xl height, co
 export const SizeTextareaSm = "4.5rem"; // 72px — exactly 2x size.input.sm (36px). A notes/multi-line field's default height, not a hard cap — the element still grows with content/manual resize. Deliberately derived from Input's own scale (double it) rather than an independent value, so the two stay proportional if Input's scale ever moves again.
 export const SizeTextareaMd = "5rem"; // 80px — 2x size.input.md (40px).
 export const SizeTextareaLg = "5.5rem"; // 88px — 2x size.input.lg (44px).
-export const SizeProgressBarSm = "0.375rem"; // 6px — was space.8 (8px), shrunk ~25% and snapped to the nearest real space.* step so ProgressBar fits dense contexts like a TableCell (which currently uses a bespoke stage-tracker instead, precisely because the old 8/12/16 scale read too tall there). No longer aliases space.8 directly — this is now ProgressBar's own scale, split off the same way size.input split off size.control, so the two can move independently.
-export const SizeProgressBarMd = "0.625rem"; // 10px — was space.12 (12px). A straight 20% cut lands on 9.6px, which isn't a real step on this system's space/radius scale (0,2,4,6,8,10,12,16,...); 10 is the nearest real step and reads better once rendered than rounding to 9.
-export const SizeProgressBarLg = "1rem"; // 16px — bumped up from 12px (2026-09-16) so the largest variant reads as more clearly 'big' next to sm/md; paired with a wider 1.5px fill border (up from 1px) and a 2px track inset (up from 1px) at this size only.
+export const SizeProgressBarSm = "0.375rem"; // 6px track height. Fill is taller (size.progressBar.fill.sm = 8px) and vertically centered so the striped pill reads larger than the well.
+export const SizeProgressBarMd = "0.625rem"; // 10px track height. Fill = 12px (size.progressBar.fill.md).
+export const SizeProgressBarLg = "1.125rem"; // 18px track height. Fill = 22px (size.progressBar.fill.lg).
+export const SizeProgressBarFillSm = "0.5rem"; // 8px — fill pill, always taller than the sm track (6px).
+export const SizeProgressBarFillMd = "0.75rem"; // 12px — fill pill, always taller than the md track (10px).
+export const SizeProgressBarFillLg = "1.375rem"; // 22px — fill pill, always taller than the lg track (18px).
 export const SizeSpinnerSm = "1rem"; // 16px — matches this system's standard inline-icon scale (MenuRow/TableCellText icons at md size).
 export const SizeSpinnerMd = "1.25rem"; // 20px — was 24px; tightened to a 16/20/24 progression (a standard icon-scale triplet) instead of the original 16/24/32, which jumped straight past 20.
 export const SizeSpinnerLg = "1.5rem"; // 24px — was 32px, for the same reason as md: keeps the scale on 16/20/24 rather than skipping a step.

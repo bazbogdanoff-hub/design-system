@@ -8,8 +8,8 @@ import {
   type ReactNode,
 } from 'react';
 import { IconCell, type IconCellTone } from '../IconCell';
+import { Label, type LabelSize } from '../Label';
 import { LabelGroup, type LabelGroupProps } from '../LabelGroup';
-import { type LabelSize } from '../Label';
 import { cn } from '../../lib/cn';
 import styles from './Row.module.css';
 
@@ -38,8 +38,9 @@ type Base = Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> & {
    * `size`. Omit entirely for a row with no leading element. */
   leading?: RowLeading;
   heading: ReactNode;
-  /** Usually a `<LabelGroup>` (Figma's Row nests one, size-matched — Row fills
-   * in the `size` for you). Plain text / any node also works. */
+  /** Always rendered as a size-matched `LabelGroup` with Labels defaulting to
+   * `color="subtle"`. Pass a bare `<LabelGroup>` (Row fills `size` + `color`)
+   * or a string/node (Row wraps it in one `Label`). */
   description: ReactNode;
   /** Trailing, left side — a `Badge` or `SeverityBadge`, usually. Freeform
    * within itself; always renders left-of-`action`. */
@@ -52,30 +53,40 @@ type Base = Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> & {
 
 export type RowProps = Base;
 
+function resolveDescription(description: ReactNode, size: RowSize): ReactNode {
+  const groupSize = DESCRIPTION_LABEL_GROUP_SIZE[size];
+
+  if (isValidElement(description) && description.type === LabelGroup) {
+    const props = description.props as LabelGroupProps;
+    return cloneElement(description as ReactElement<LabelGroupProps>, {
+      size: props.size ?? groupSize,
+      color: props.color ?? 'subtle',
+    });
+  }
+
+  return (
+    <LabelGroup size={groupSize} color="subtle">
+      <Label>{description}</Label>
+    </LabelGroup>
+  );
+}
+
 /**
  * A single list row for `ScrollableArea` (`Next task` reference lists,
  * fleet-problem lists, etc.) — one fixed anatomy, not a generic `Slot` like
  * `Card`: `[leading?] [heading+description, fills] [status?] [action?]`.
  *
  * No fill by default (matches `color/scrollableArea/row/*` — rows in a
- * recessed scroll track stay transparent). Hover is an inset shadow, not a
- * background swap, for the same reason. Only interactive (hover/focus
- * treatment, keyboard reachable) when `onClick` is passed — a purely
- * informational row renders as plain content with no button semantics.
- * See docs/components/Row.md.
+ * recessed scroll track stay transparent). Hover is always a wash so the
+ * active row is visible while scanning; keyboard/`role="button"` only when
+ * `onClick` is passed. See docs/components/Row.md.
  */
 export const Row = forwardRef<HTMLDivElement, RowProps>(function Row(
   { size = 'md', leading, heading, description, status, action, onClick, className, ...rest },
   ref,
 ) {
   const interactive = onClick != null;
-
-  const resolvedDescription =
-    isValidElement(description) && description.type === LabelGroup
-      ? cloneElement(description as ReactElement<LabelGroupProps>, {
-          size: (description.props as LabelGroupProps).size ?? DESCRIPTION_LABEL_GROUP_SIZE[size],
-        })
-      : description;
+  const resolvedDescription = resolveDescription(description, size);
 
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (!interactive) return;

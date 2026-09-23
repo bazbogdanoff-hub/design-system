@@ -1,4 +1,5 @@
 .root {
+  position: relative;
   display: flex;
   box-sizing: border-box;
   width: 100%;
@@ -39,6 +40,7 @@
 .root[data-disabled] .badge {
   background-color: var(--color-background-muted);
   color: var(--color-surface-default);
+  box-shadow: none;
 }
 .root[data-disabled] .heading,
 .root[data-disabled] .fileName {
@@ -87,8 +89,15 @@
   height: 40px;
   margin-bottom: var(--space-8);
   border-radius: var(--radius-full);
-  background-color: var(--color-background-brand-default);
-  color: var(--color-icon-on-brand);
+  /* the primary Button's surface treatment: brand-400 fill, glass-catch stroke,
+     coloured vignette, drop shadow — same tokens as Button, but the glass catch
+     is 1px here rather than Button's 1.5px: this is a 40px circle, not a button */
+  background: var(--color-button-primary-background-default);
+  color: var(--color-button-primary-icon);
+  box-shadow:
+    inset 1px 1px 0 0 var(--color-button-primary-border-default),
+    inset 2px 2px 12px 0 var(--color-button-primary-shadow-default),
+    0 1px 8px 0 rgba(0, 0, 0, 0.2);
   font-size: 20px;
 }
 .badge > svg {

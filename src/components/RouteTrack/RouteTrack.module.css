@@ -1,0 +1,194 @@
+/* Figma: RouteCard 10746:21164 — Point / Circle part / Line part / Truck
+   pointer. Sizes below are that component's, which is why a few are raw px:
+   the pin is a 36px circle holding a 16px icon, the segment a 14px bar, and
+   those are drawing dimensions, not spacing. Everything between siblings is
+   still `space.*`. */
+
+.root {
+  /* Nothing is clipped here. The row itself always fits — the segments absorb
+     the width (see `.segment`) — so the only things reaching past the edges
+     are the first and last stop's labels, which overhang their 36px columns
+     by design. Clipping them cut the place names in half and, because the
+     overhang counts as scrollable overflow, put a scrollbar under a row that
+     fits perfectly well.
+
+     The top padding reserves room for the marker rather than protecting it —
+     the truck needs 25px above the band and its shadow another 7. The owner
+     set it to 48, so there is deliberate air above the truck as well. */
+  overflow: visible;
+  padding-top: 48px;
+}
+
+.lane {
+  display: flex;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+/* ---- the joining segment ---------------------------------------------- */
+
+/* The bars take all the slack and give it back: stops are fixed at 36, so the
+   segments are what makes the row fit its container instead of scrolling.
+   `flex: 1 1 0` with no minimum — they share the remaining width evenly and
+   will shrink as far as needed. */
+.segment {
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  align-self: flex-start;
+  /* matches the pin, so the bar centres on the pin's midline */
+  height: 36px;
+  min-width: 0;
+  padding-inline: var(--space-4);
+}
+
+/* The stroke in Figma is top+left only (`strokeTopWeight`/`strokeLeftWeight`
+   set, right and bottom 0, aligned INSIDE) — it's the primary Button's glass
+   catch, not a border. An all-round `1px solid` was wrong: it drew edges the
+   design doesn't have and cost a pixel of the fill. 1px on the bars, 1.5px on
+   the pins, as Figma has them. */
+.line {
+  position: relative;
+  width: 100%;
+  height: 14px;
+  border-radius: var(--radius-full);
+  background: var(--color-button-secondary-background-default);
+  /* No inner shadow on the unreached state — Figma has the secondary `#f0f0f0`
+     vignette here, but at a 3% step over the `#fcfcfc` fill it only muddied
+     the bar. Glass catch and drop shadow only. */
+  box-shadow:
+    inset 1px 1px 0 0 var(--color-button-secondary-border-default),
+    0 1px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* The travelled part. Figma draws this as a second `Line part` laid over the
+   first — `type=partial` is a 220-wide track with a 112-wide primary bar on
+   top, i.e. the fill's width *is* the progress between the two points it
+   joins. Here that width is the segment's own fill fraction. */
+.lineFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  min-width: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-button-primary-background-default);
+  box-shadow:
+    inset 1px 1px 0 0 var(--color-button-primary-border-default),
+    inset 1px 1px 8px 0 var(--color-button-primary-shadow-default),
+    0 1px 4px 0 rgba(0, 0, 0, 0.1);
+}
+/* ---- the vehicle ------------------------------------------------------- */
+
+/* The wrapper is the marker's own 37x32 box, so centring and the overlap are
+   measured against the truck and not against its shadows. Figma stacks a
+   34-tall marker row over the band with a -8 gap, and seats the truck 1px
+   down inside that row, which leaves 7px of overlap onto the band. */
+.marker {
+  --_route-marker-catch: var(--color-button-primary-border-default);
+  position: absolute;
+  bottom: 100%;
+  margin-bottom: -7px;
+  transform: translateX(-50%);
+  width: 37px;
+  height: 32px;
+  color: var(--color-button-primary-background-default);
+  pointer-events: none;
+}
+/* Parked over a pin, the -7px overlap buried the pointer inside the circle:
+   a bar's top edge sits 11px down inside the 36px row, but a pin's is at the
+   very top, so the same offset that has the truck riding the bar has it
+   sitting on top of the pin. Lift it clear instead — the tip hovers 4px above
+   the pin. This is the number to change if it wants more or less air. */
+.stop > .marker {
+  margin-bottom: var(--space-4);
+}
+
+/* Figma exports at 52x43 with the shadow bleed baked in; the logical 37x32
+   box starts at (8, 7) inside that. Shifting by exactly that puts the truck
+   at 1:1 — rendering the 52x43 viewBox at 37x32 scaled it to 71%, which is
+   why it came out small. */
+.marker > svg {
+  position: absolute;
+  top: -7px;
+  left: -8px;
+  display: block;
+}
+
+/* ---- a stop ------------------------------------------------------------ */
+
+/* Exactly the pin's width, never wider: the column has to stay 36 so the 4px
+   the segments carry is the only gap in the row and every stop is spaced
+   identically. Labels are allowed to be wider than this and overhang, which
+   is what Figma does too — its 40-wide label frame sits in a 36-wide Point. */
+.stop {
+  position: relative;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  width: 36px;
+}
+
+.pin {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  font-size: 16px;
+  /* unreached: the secondary Button surface, without its inner shadow — same
+     call as `.line` above. */
+  background: var(--color-button-secondary-background-default);
+  color: var(--color-button-secondary-icon);
+  box-shadow:
+    inset 1.5px 1.5px 0 0 var(--color-button-secondary-border-default),
+    0 1px 4px 0 rgba(0, 0, 0, 0.1);
+}
+/* reached: the primary Button surface */
+.pin[data-reached] {
+  background: var(--color-button-primary-background-default);
+  color: var(--color-button-primary-icon);
+  box-shadow:
+    inset 1.5px 1.5px 0 0 var(--color-button-primary-border-default),
+    inset 1px 1px 8px 0 var(--color-button-primary-shadow-default),
+    0 1px 4px 0 rgba(0, 0, 0, 0.1);
+}
+.pin > svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+/* Overhangs the 36px column rather than widening it. Capped so a long place
+   name can't reach across its neighbours — Figma's labels are placeholders
+   two characters wider than the pin, real ones are not. */
+.labels {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  max-width: 120px;
+  text-align: center;
+}
+
+.place {
+  color: var(--color-text-strong);
+  font-family: var(--text-body-xs-font-family);
+  font-size: var(--text-body-xs-font-size);
+  font-weight: var(--text-body-xs-font-weight);
+  line-height: var(--text-body-xs-line-height);
+  letter-spacing: var(--text-body-xs-letter-spacing);
+}
+
+.process {
+  color: var(--color-text-subtle);
+  font-family: var(--text-body-2xs-font-family);
+  font-size: var(--text-body-2xs-font-size);
+  font-weight: var(--text-body-2xs-font-weight);
+  line-height: var(--text-body-2xs-line-height);
+  letter-spacing: var(--text-body-2xs-letter-spacing);
+}

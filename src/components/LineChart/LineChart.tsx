@@ -39,10 +39,10 @@ export interface LineChartProps {
 
 const MARKER_RADIUS = 4; // hovered/focused point dot, >=8px diameter per the skill's marker floor
 const MIN_HEIGHT = 140; // pre-measurement / degenerate-container fallback
-// top is generous on purpose — reserves headroom so a hovered point near the
-// plot's top edge still has room for its tooltip without overlapping
-// whatever sits above the chart (e.g. ChartCard's header).
-const PADDING = { top: 48, right: 16, bottom: 28, left: 48 };
+// Top inset leaves a little room for hover tooltips near the top edge.
+// Left 48 matches the Fuel chart’s y-label gutter; plot still uses equal
+// invisible columns for day labels + hover (line vertices stay edge→edge).
+const PADDING = { top: 20, right: 16, bottom: 24, left: 48 };
 
 /** Catmull-Rom → cubic Bézier smoothing (tension 1/6) — the standard way to
  * draw a smooth curve through a set of points without overshooting them. */
@@ -62,6 +62,47 @@ function smoothPath(points: { x: number; y: number }[]): string {
     d += ` C${cp1x},${cp1y} ${cp2x},${cp2y} ${p2.x},${p2.y}`;
   }
   return d;
+}
+
+/** Y on the same smooth curve as `smoothPath`, at a given plot X — so hover
+ * markers can sit on the line at column centers (which aren't vertices). */
+function yOnSmoothPath(points: { x: number; y: number }[], targetX: number): number {
+  if (points.length === 0) return 0;
+  if (points.length === 1) return points[0]!.y;
+  if (targetX <= points[0]!.x) return points[0]!.y;
+  if (targetX >= points[points.length - 1]!.x) return points[points.length - 1]!.y;
+
+  for (let i = 0; i < points.length - 1; i++) {
+    const p0 = points[i - 1] ?? points[i]!;
+    const p1 = points[i]!;
+    const p2 = points[i + 1]!;
+    const p3 = points[i + 2] ?? p2;
+    if (targetX < p1.x || targetX > p2.x) continue;
+
+    const x0 = p1.x;
+    const y0 = p1.y;
+    const x1 = p1.x + (p2.x - p0.x) / 6;
+    const y1 = p1.y + (p2.y - p0.y) / 6;
+    const x2 = p2.x - (p3.x - p1.x) / 6;
+    const y2 = p2.y - (p3.y - p1.y) / 6;
+    const x3 = p2.x;
+    const y3 = p2.y;
+
+    // Monotonic-x segments: binary-search t where Bx(t) = targetX.
+    let lo = 0;
+    let hi = 1;
+    for (let iter = 0; iter < 24; iter++) {
+      const t = (lo + hi) / 2;
+      const u = 1 - t;
+      const x = u * u * u * x0 + 3 * u * u * t * x1 + 3 * u * t * t * x2 + t * t * t * x3;
+      if (x < targetX) lo = t;
+      else hi = t;
+    }
+    const t = (lo + hi) / 2;
+    const u = 1 - t;
+    return u * u * u * y0 + 3 * u * u * t * y1 + 3 * u * t * t * y2 + t * t * t * y3;
+  }
+  return points[points.length - 1]!.y;
 }
 
 /**
@@ -96,10 +137,20 @@ export function LineChart({
   const ticks: number[] = [];
   for (let v = axisMin; v <= axisMax; v += axisStep) ticks.push(v);
 
-  const xFor = (i: number) => PADDING.left + (data.length === 1 ? plotWidth / 2 : (plotWidth * i) / (data.length - 1));
+  // Line vertices: edge → edge (unchanged visual). Labels + hover use equal
+  // columns like BarChart — centered in each band.
+  const bandWidth = plotWidth / Math.max(1, data.length);
+  const xFor = (i: number) =>
+    PADDING.left + (data.length === 1 ? plotWidth / 2 : (plotWidth * i) / (data.length - 1));
+  const columnCenterX = (i: number) => PADDING.left + bandWidth * (i + 0.5);
   const yFor = (value: number) => PADDING.top + plotHeight * (1 - (value - axisMin) / (axisMax - axisMin || 1));
 
+  const seriesPoints = series.map((s) =>
+    data.map((d, i) => ({ x: xFor(i), y: yFor(d.values[s.key] ?? 0) })),
+  );
+
   const active = activeIndex != null ? data[activeIndex] : null;
+  const activeColumnX = activeIndex != null ? columnCenterX(activeIndex) : 0;
 
   return (
     <div className={styles.wrapper} ref={wrapperRef}>
@@ -134,8 +185,8 @@ export function LineChart({
         })}
 
         {/* lines + area fills, one per series (drawn before markers/crosshair so hover sits on top) */}
-        {series.map((s) => {
-          const points = data.map((d, i) => ({ x: xFor(i), y: yFor(d.values[s.key] ?? 0) }));
+        {series.map((s, si) => {
+          const points = seriesPoints[si]!;
           const linePath = smoothPath(points);
           const areaPath = area
             ? `${linePath} L${points[points.length - 1]!.x},${PADDING.top + plotHeight} L${points[0]!.x},${PADDING.top + plotHeight} Z`
@@ -148,21 +199,21 @@ export function LineChart({
           );
         })}
 
-        {/* hover crosshair + per-series markers */}
+        {/* hover crosshair + markers at column center, Y sampled on the smooth line */}
         {active && activeIndex != null && (
           <g>
             <line
-              x1={xFor(activeIndex)}
-              x2={xFor(activeIndex)}
+              x1={activeColumnX}
+              x2={activeColumnX}
               y1={PADDING.top}
               y2={PADDING.top + plotHeight}
               className={styles.crosshair}
             />
-            {series.map((s) => (
+            {series.map((s, si) => (
               <circle
                 key={s.key}
-                cx={xFor(activeIndex)}
-                cy={yFor(active.values[s.key] ?? 0)}
+                cx={activeColumnX}
+                cy={yOnSmoothPath(seriesPoints[si]!, activeColumnX)}
                 r={MARKER_RADIUS}
                 fill={s.color}
                 className={styles.marker}
@@ -171,14 +222,13 @@ export function LineChart({
           </g>
         )}
 
-        {/* x-axis category labels + hit targets — the whole column, wider than a single point */}
+        {/* x-axis category labels + hit targets — equal columns like BarChart */}
         {data.map((datum, i) => {
-          const bandWidth = plotWidth / data.length;
           return (
             <g key={datum.category}>
               <text
-                x={xFor(i)}
-                y={height - PADDING.bottom + 18}
+                x={columnCenterX(i)}
+                y={height - 8}
                 className={styles.axisLabel}
                 textAnchor="middle"
               >
@@ -216,8 +266,8 @@ export function LineChart({
             color: s.color,
           }))}
           style={{
-            left: `${(xFor(activeIndex) / intrinsicWidth) * 100}%`,
-            top: `${(Math.max(Math.min(...series.map((s) => yFor(active.values[s.key] ?? 0))), 48) / height) * 100}%`,
+            left: `${(activeColumnX / intrinsicWidth) * 100}%`,
+            top: `${(Math.max(Math.min(...seriesPoints.map((pts) => yOnSmoothPath(pts, activeColumnX))), 48) / height) * 100}%`,
             transform: 'translate(-50%, calc(-100% - 12px))',
           }}
         />

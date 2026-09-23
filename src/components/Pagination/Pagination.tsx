@@ -23,10 +23,13 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(function P
   { page, totalPages, onPageChange, className, ...rest },
   ref,
 ) {
+  const safeTotal = Math.max(1, totalPages);
+  const safePage = Math.min(Math.max(1, page), safeTotal);
+
   return (
     <div ref={ref} className={cn(styles.pagination, className)} {...rest}>
       <span className={styles.label}>
-        Page {page} of {totalPages}
+        Page {safePage} of {safeTotal}
       </span>
       <span className={styles.buttons}>
         <IconButton
@@ -34,16 +37,16 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(function P
           size="md"
           icon={<CaretLeftIcon />}
           aria-label="Previous page"
-          disabled={page <= 1}
-          onClick={() => onPageChange(page - 1)}
+          disabled={safePage <= 1}
+          onClick={() => onPageChange(safePage - 1)}
         />
         <IconButton
           variant="secondary"
           size="md"
           icon={<CaretRightIcon />}
           aria-label="Next page"
-          disabled={page >= totalPages}
-          onClick={() => onPageChange(page + 1)}
+          disabled={safePage >= safeTotal}
+          onClick={() => onPageChange(safePage + 1)}
         />
       </span>
     </div>

@@ -35,7 +35,7 @@ export const NextTask = forwardRef<HTMLDivElement, NextTaskProps>(function NextT
       </div>
       <div className={styles.body}>
         {tracker}
-        {taskCard}
+        <div className={styles.taskFrame}>{taskCard}</div>
       </div>
     </Card>
   );

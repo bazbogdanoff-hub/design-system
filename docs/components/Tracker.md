@@ -28,7 +28,7 @@ div.tracker (flex column, gap space/16)
 ├─ div.text (flex column, gap space/8)
 │  ├─ p.label  — text/heading/xs, color/text/subtle
 │  └─ p.value  — text/display/md, color/text/<tone>-solid
-└─ ProgressBar (size md, tone matches .value's tone)
+└─ ProgressBar (size lg, max-width 260px, tone matches .value's tone)
 ```
 
 Same shape in every state — nothing is added, removed, or repositioned.
@@ -82,11 +82,13 @@ dedicated neutral or "asap" hue. Rather than add a 5th tone unprompted:
 
 ## Value formatting
 
+Words stay on the small label; the hero line is **count / clock only**.
+
 | mode | far | near (< 1h) | overdue |
 |---|---|---|---|
-| `countdown` | `4h 20m left` | `13m 12s left` (ticks) | `Overdue by 3m` |
-| `scheduled` | `Tomorrow 1:29 PM` / `Wed 1:29 PM` | `Due in 22m` | `Overdue by 12m` |
-| `asap` | `ASAP` (constant) | — | — |
+| `countdown` | label `Time left` · value `4h 20m` | label `Time left` · value `13m 12s` (ticks) | label `Overdue` · value `3m` |
+| `scheduled` | label `Tomorrow` / `Wed` / `Today` · value `1:29 PM` | label `Due in` · value `22m` | label `Overdue` · value `12m` |
+| `asap` | label `Priority` · value `ASAP` | — | — |
 
 ## Figma note
 

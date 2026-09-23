@@ -1,6 +1,6 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(var(--grid-cols, 12), minmax(0, 1fr));
+  grid-template-columns: repeat(var(--grid-cols, var(--page-cols, 16)), minmax(0, 1fr));
   box-sizing: border-box;
   min-width: 0;
 }
@@ -14,12 +14,12 @@
 
 .item {
   min-width: 0;
-  grid-column: var(--start, auto) / span var(--span, var(--grid-cols, 12));
+  grid-column: var(--start, auto) / span var(--span, var(--grid-cols, var(--page-cols, 16)));
 }
 
 /* below lg (sidebar collapse / narrow desktop) use span-sm if given */
 @media (max-width: 1023px) {
   .item {
-    grid-column: span var(--span-sm, var(--span, var(--grid-cols, 12)));
+    grid-column: span var(--span-sm, var(--span, var(--grid-cols, var(--page-cols, 16))));
   }
 }

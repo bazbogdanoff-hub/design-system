@@ -1,21 +1,29 @@
 .sidebar {
   display: flex;
   flex-direction: column;
+  /* Fill the AppShell rail, then inset panels 10 left / 6 right (Figma). */
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+  padding-left: var(--space-10);
+  padding-right: var(--space-6);
   gap: var(--space-16);
 }
 
 .header {
   display: flex;
   align-items: center;
-  padding-inline: var(--space-8);
+  width: 100%;
+}
+
+/* Match the collapsed nav-icon column (same content-box center as SidebarNavItem). */
+.sidebar[data-mode='collapsed'] > .header {
+  justify-content: center;
 }
 
 .divider {
-  width: calc(100% - var(--space-16));
+  width: 100%;
   height: 1px;
-  margin-inline: auto;
   background: var(--color-border-highlight);
   opacity: 0.12;
   flex: none;
@@ -24,24 +32,37 @@
 .switcherGroup {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  /* No gap — module section pulls up under the switcher (see .nav). */
+  gap: 0;
   flex: 1 1 auto;
   min-height: 0;
+  width: 100%;
 }
 
 .switcher {
-  margin-inline: var(--space-8);
+  /* Rail inset lives on .sidebar — don't double-indent the switcher.
+     Sit above the module section where they overlap. */
+  margin-inline: 0;
+  width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .nav {
   flex: 1 1 auto;
   min-height: 0;
+  width: 100%;
   overflow-y: auto;
   gap: var(--space-4);
+  /* Stack under the switcher with a 6px overlap. */
+  margin-top: calc(-1 * var(--space-6));
+  position: relative;
+  z-index: 0;
 }
 
 .bottomSection {
   flex: none;
+  width: 100%;
   gap: var(--space-4);
 }
 

@@ -5,9 +5,9 @@ import styles from './Grid.module.css';
 type Gap = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface GridProps extends HTMLAttributes<HTMLDivElement> {
-  /** Column count. Default 12. */
+  /** Column count. Default 16 (Page layout guide). */
   columns?: number;
-  /** Gutter — `space/*` (none·4·8·12·16·20). Default `md` (12). */
+  /** Gutter — `space/*` (none·4·8·12·16·20). Default `lg` (16). */
   gap?: Gap;
 }
 
@@ -21,7 +21,7 @@ export interface GridItemProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const GridRoot = forwardRef<HTMLDivElement, GridProps>(function Grid(
-  { columns = 12, gap = 'md', className, style, ...rest },
+  { columns = 16, gap = 'lg', className, style, ...rest },
   ref,
 ) {
   return (
@@ -48,6 +48,7 @@ const GridItem = forwardRef<HTMLDivElement, GridItemProps>(function GridItem(
           '--span': span,
           '--span-sm': spanSm ?? span,
           '--start': start,
+          ...style,
         } as CSSProperties
       }
       {...rest}
@@ -56,8 +57,9 @@ const GridItem = forwardRef<HTMLDivElement, GridItemProps>(function GridItem(
 });
 
 /**
- * A 12-column (configurable) CSS grid with a token gutter. `Grid.Item span={n}`
- * sizes a child; uneven splits are just different spans (`8` + `4`, `3` + `3` +
- * `6`). For dashboard / content layout inside a `Page`.
+ * A 16-column (configurable) CSS grid with a token gutter. `Grid.Item span={n}`
+ * sizes a child; uneven splits are just different spans (`8` + `4`, `4` + `4` +
+ * `4` + `4`). Defaults match Page's layout guide (16 cols / gutter 16). For
+ * dashboard / content layout inside a `Page`.
  */
 export const Grid = Object.assign(GridRoot, { Item: GridItem });

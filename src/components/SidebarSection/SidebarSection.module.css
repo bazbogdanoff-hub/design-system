@@ -2,18 +2,21 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  box-sizing: border-box;
+  flex: none;
   padding-inline: var(--space-8);
   background: var(--color-sidebar-panel-background);
   box-shadow: inset 0 0 4px var(--color-sidebar-panel-inner-shadow);
 }
 
 .section[data-content='module'] {
-  padding-block: var(--space-12) 0;
+  padding-block: var(--space-16) var(--space-4);
   border-radius: var(--radius-sidebar-section-top) var(--radius-sidebar-section-top) var(--radius-panel)
     var(--radius-panel);
 }
 
 .section[data-content='settings'] {
   /* top-left top-right bottom-right bottom-left — deep corner is bottom-right */
+  padding-block: var(--space-4);
   border-radius: var(--radius-panel) var(--radius-panel) var(--radius-sidebar-section-deep) var(--radius-panel);
 }

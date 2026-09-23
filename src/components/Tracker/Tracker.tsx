@@ -18,6 +18,9 @@ export interface TrackerProps {
 
 type Tone = 'good' | 'warning' | 'danger';
 
+/** Small eyebrow (words) + hero line (count / clock only). */
+type Display = { label: string; value: string };
+
 /** Whichever trips first: proportion of the window gone, or an absolute
  * floor — a task can have plenty of window left by ratio and still be
  * genuinely urgent in absolute terms (or vice versa on a short window). */
@@ -39,43 +42,59 @@ function scheduledTone(secondsUntilDue: number): Tone {
   return 'good';
 }
 
-function formatOverdue(overSeconds: number): string {
-  const over = Math.abs(overSeconds);
-  if (over >= 3600) return `Overdue by ${Math.floor(over / 3600)}h ${Math.floor((over % 3600) / 60)}m`;
-  if (over >= 60) return `Overdue by ${Math.floor(over / 60)}m`;
-  return 'Overdue';
+/** Absolute duration as count-only text (no words). */
+function formatDuration(absSeconds: number): string {
+  const s = Math.max(0, Math.floor(absSeconds));
+  if (s >= 3600) {
+    return `${Math.floor(s / 3600)}h ${Math.floor((s % 3600) / 60)}m`;
+  }
+  if (s >= 60) return `${Math.floor(s / 60)}m`;
+  return `${s}s`;
 }
 
-/** Seconds -> the coarsest honest label. Seconds only matter under an hour. */
-function formatCountdown(seconds: number): string {
-  if (seconds <= 0) return formatOverdue(seconds);
-  if (seconds >= 3600) {
-    const h = Math.floor(seconds / 3600);
-    const m = Math.floor((seconds % 3600) / 60);
-    return `${h}h ${m}m left`;
+/** Countdown under an hour keeps ticking seconds on the hero line. */
+function formatCountdownValue(seconds: number): string {
+  const s = Math.max(0, Math.floor(seconds));
+  if (s >= 3600) {
+    return `${Math.floor(s / 3600)}h ${Math.floor((s % 3600) / 60)}m`;
   }
-  if (seconds >= 60) {
-    const m = Math.floor(seconds / 60);
-    const s = Math.floor(seconds % 60);
-    return `${m}m ${String(s).padStart(2, '0')}s left`;
+  if (s >= 60) {
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `${m}m ${String(sec).padStart(2, '0')}s`;
   }
-  return `${Math.floor(seconds)}s left`;
+  return `${s}s`;
+}
+
+function formatCountdown(seconds: number): Display {
+  if (seconds <= 0) {
+    return { label: 'Overdue', value: formatDuration(Math.abs(seconds)) };
+  }
+  return { label: 'Time left', value: formatCountdownValue(seconds) };
 }
 
 /** Tightens to relative countdown-style text under the same 1-hour mark
  * where scheduledTone can first escalate — an exact clock time stops being
- * useful once the deadline is imminent. */
-function formatDue(dueAt: Date, now: Date): string {
+ * useful once the deadline is imminent. Words stay on the label; the hero
+ * line is count / clock only. */
+function formatDue(dueAt: Date, now: Date): Display {
   const diffSeconds = (dueAt.getTime() - now.getTime()) / 1000;
-  if (diffSeconds <= 0) return formatOverdue(diffSeconds);
-  if (diffSeconds < 3600) return `Due in ${Math.max(1, Math.round(diffSeconds / 60))}m`;
+  if (diffSeconds <= 0) {
+    return { label: 'Overdue', value: formatDuration(Math.abs(diffSeconds)) };
+  }
+  if (diffSeconds < 3600) {
+    return { label: 'Due in', value: `${Math.max(1, Math.round(diffSeconds / 60))}m` };
+  }
 
   const time = dueAt.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
-  if (dueAt.toDateString() === now.toDateString()) return `Today ${time}`;
+  if (dueAt.toDateString() === now.toDateString()) return { label: 'Today', value: time };
   const tomorrow = new Date(now);
   tomorrow.setDate(now.getDate() + 1);
-  if (dueAt.toDateString() === tomorrow.toDateString()) return `Tomorrow ${time}`;
-  return `${dueAt.toLocaleDateString(undefined, { weekday: 'short' })} ${time}`;
+  if (dueAt.toDateString() === tomorrow.toDateString()) return { label: 'Tomorrow', value: time };
+  return {
+    label: dueAt.toLocaleDateString(undefined, { weekday: 'short' }),
+    value: time,
+  };
 }
 
 // countdown-good -> success (an actively healthy countdown); scheduled's
@@ -92,12 +111,6 @@ function progressTone(mode: TrackerUrgency['mode'], tone: Tone): ProgressBarTone
   if (tone === 'warning') return 'warning';
   return mode === 'countdown' ? 'success' : 'brand';
 }
-
-const LABEL: Record<TrackerUrgency['mode'], string> = {
-  countdown: 'Time left',
-  scheduled: 'Due',
-  asap: 'Priority',
-};
 
 /** Re-renders on an interval so time-derived text/tone stay live without the
  * consumer re-rendering the tree — `null` disables ticking entirely (asap
@@ -136,7 +149,7 @@ export function Tracker({ urgency, important = false, className }: TrackerProps)
   let fillPercent: number;
 
   if (urgency.mode === 'asap') {
-    label = LABEL.asap;
+    label = 'Priority';
     value = 'ASAP';
     pbTone = important ? 'danger' : 'brand';
     fillPercent = 100;
@@ -144,8 +157,7 @@ export function Tracker({ urgency, important = false, className }: TrackerProps)
     const elapsed = (Date.now() - baseRef.current.capturedAt) / 1000;
     const liveRemaining = baseRef.current.remaining - elapsed;
     const tone = important ? 'danger' : countdownTone(liveRemaining, urgency.totalSeconds);
-    label = LABEL.countdown;
-    value = formatCountdown(liveRemaining);
+    ({ label, value } = formatCountdown(liveRemaining));
     pbTone = progressTone('countdown', tone);
     fillPercent = Math.max(0, Math.min(100, (liveRemaining / urgency.totalSeconds) * 100));
   } else {
@@ -153,8 +165,7 @@ export function Tracker({ urgency, important = false, className }: TrackerProps)
     const now = new Date();
     const secondsUntilDue = (dueAt.getTime() - now.getTime()) / 1000;
     const tone = important ? 'danger' : scheduledTone(secondsUntilDue);
-    label = LABEL.scheduled;
-    value = formatDue(dueAt, now);
+    ({ label, value } = formatDue(dueAt, now));
     pbTone = progressTone('scheduled', tone);
     fillPercent = 100;
   }
@@ -167,7 +178,13 @@ export function Tracker({ urgency, important = false, className }: TrackerProps)
           {value}
         </p>
       </div>
-      <ProgressBar value={fillPercent} size="md" tone={pbTone} aria-label={`${label}: ${value}`} />
+      <ProgressBar
+        className={styles.bar}
+        value={fillPercent}
+        size="lg"
+        tone={pbTone}
+        aria-label={`${label}: ${value}`}
+      />
     </div>
   );
 }

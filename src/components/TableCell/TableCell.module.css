@@ -1,9 +1,94 @@
 .cell {
-  padding: var(--space-12) var(--space-16);
+  padding: 0;
   vertical-align: middle;
   background: transparent;
+  box-sizing: border-box;
+  position: relative;
+  height: var(--table-row-height, 68px);
+  max-height: 68px;
+  overflow: hidden;
 }
 
-.cell[data-align='start'] { text-align: left; }
-.cell[data-align='center'] { text-align: center; }
-.cell[data-align='end'] { text-align: right; }
+/* Text / badge columns — hug intrinsic one-line width; never wrap mid-value. */
+.cell:not([data-width]),
+.cell[data-width='wide'] {
+  width: auto;
+  white-space: nowrap;
+}
+
+/* Primary text columns (Model, etc.) — floor so short values still breathe. */
+.cell[data-width='wide'] {
+  min-width: 12rem;
+}
+
+/* Between the 48px control rail and `wide`. Both exist because a locked row
+   fill is absolutely positioned, so cell content contributes no intrinsic
+   width: a column with no role is sized by its *header*, and anything wider
+   under it is clipped. `action` holds a small `Button`; `value` holds a
+   figure — money, a distance, a duration — that outruns a short header. */
+.cell[data-width='action'] {
+  width: 8rem;
+  min-width: 8rem;
+  white-space: nowrap;
+}
+.cell[data-width='value'] {
+  width: auto;
+  min-width: 7rem;
+  white-space: nowrap;
+}
+/* A date and time on one line — "Sep 17, 7:46 PM" outruns any header a date
+   column would carry, and 7rem still cuts the time off.
+
+   Fixed, not a minimum: a timestamp's width doesn't vary, so this column has
+   no business absorbing leftover space. As a minimum it took the largest
+   share of the slack and starved the text column beside it. */
+.cell[data-width='timestamp'] {
+  width: 9rem;
+  min-width: 9rem;
+  white-space: nowrap;
+}
+
+/* Control columns — fixed 48px rail for checkbox / radio / icon-only. */
+.cell[data-width='checkbox'],
+.cell[data-width='radio'],
+.cell[data-width='icon'] {
+  width: 48px;
+  min-width: 48px;
+  max-width: 48px;
+}
+
+.fill {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: var(--space-12) var(--space-16);
+  min-width: 0;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.cell[data-width='checkbox'] .fill,
+.cell[data-width='radio'] .fill,
+.cell[data-width='icon'] .fill {
+  justify-content: center;
+  padding: 0;
+}
+
+/* Locked fill — content out of flow so it can't expand the row. */
+:global([data-row-fill]) .fill {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+
+.cell[data-align='start'] .fill { justify-content: flex-start; text-align: left; }
+.cell[data-align='center'] .fill { justify-content: center; text-align: center; }
+.cell[data-align='end'] .fill { justify-content: flex-end; text-align: right; }
+
+.cell[data-width='checkbox'] .fill,
+.cell[data-width='radio'] .fill,
+.cell[data-width='icon'] .fill {
+  justify-content: center;
+}

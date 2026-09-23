@@ -55,7 +55,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   ) : leadingIcon != null ? (
     <span data-btn-icon>{leadingIcon}</span>
   ) : null;
-  const trail = !loading && trailingIcon != null ? <span data-btn-icon>{trailingIcon}</span> : null;
+  const trail =
+    !loading && trailingIcon != null ? (
+      <span data-btn-icon data-btn-trail>
+        {trailingIcon}
+      </span>
+    ) : null;
 
   return (
     <Comp

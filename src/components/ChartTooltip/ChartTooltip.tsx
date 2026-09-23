@@ -20,10 +20,9 @@ export interface ChartTooltipProps {
 
 /**
  * Hover/focus readout for a chart — lists every series at the hovered
- * category so the reader never has to land precisely on a segment. Values
- * lead (Strong), series names follow (secondary) — the legend's hierarchy
- * inverted, because here the reader already has the category and wants the
- * numbers. Series are keyed with a short line, not a filled box.
+ * category so the reader never has to land precisely on a segment. Title,
+ * values, and series names share `text/label/xs` + `color/text/muted`.
+ * Series are keyed with a short line, not a filled box.
  */
 export function ChartTooltip({ title, rows, style }: ChartTooltipProps) {
   return (

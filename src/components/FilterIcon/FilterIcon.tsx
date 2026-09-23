@@ -13,7 +13,8 @@ export type FilterIconSize = 'sm' | 'md';
 type DistributiveOmit<T, K extends keyof any> = T extends unknown ? Omit<T, K> : never;
 
 export type FilterIconProps = DistributiveOmit<IconButtonProps, 'variant' | 'size' | 'icon'> & {
-  /** `sm` (28px, default — matches the `Filter`s it sits beside) · `md` (32px). */
+  /** `sm` (28px) · `md` (32px, default — match `Filter`'s default when
+   * sitting in a `FilterBar`). */
   size?: FilterIconSize;
 };
 
@@ -29,7 +30,7 @@ export type FilterIconProps = DistributiveOmit<IconButtonProps, 'variant' | 'siz
  * host, each with a show/hide checkbox.
  */
 export const FilterIcon = forwardRef<HTMLButtonElement, FilterIconProps>(function FilterIcon(
-  { size = 'sm', className, ...rest },
+  { size = 'md', className, ...rest },
   ref,
 ) {
   return (

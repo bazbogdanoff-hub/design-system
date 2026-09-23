@@ -25,6 +25,9 @@ export interface SidebarNavItemProps extends Omit<ButtonHTMLAttributes<HTMLButto
    * is false; an inactive row is always the same quiet neutral regardless
    * of tone, only the active one carries the module's color. */
   tone?: SidebarNavItemTone;
+  /** Settings-row-only: deepen the frame's bottom-right radius to 16px so it
+   * nests inside SidebarSection's 24px deep corner. Do not use elsewhere. */
+  settingsCorner?: boolean;
 }
 
 /**
@@ -33,11 +36,10 @@ export interface SidebarNavItemProps extends Omit<ButtonHTMLAttributes<HTMLButto
  * active row. A deliberate sibling to `SettingsNavItem`, not a variant of
  * it: that component's whole anatomy is a colored `CategoryIcon` tile, and
  * this one has no tile at all — same split reasoning `CategoryIcon`/
- * `IconCell` already document (two icon vocabularies that don't belong in
- * one prop).
+ * `IconCell` already document.
  */
 export const SidebarNavItem = forwardRef<HTMLButtonElement, SidebarNavItemProps>(function SidebarNavItem(
-  { icon, avatar, label, active, tone = 'brand', className, type = 'button', ...rest },
+  { icon, avatar, label, active, tone = 'brand', settingsCorner, className, type = 'button', ...rest },
   ref,
 ) {
   return (
@@ -47,13 +49,18 @@ export const SidebarNavItem = forwardRef<HTMLButtonElement, SidebarNavItemProps>
       className={cn(styles.item, className)}
       data-active={active || undefined}
       data-tone={active ? tone : undefined}
+      data-settings-corner={settingsCorner || undefined}
       aria-current={active || undefined}
       {...rest}
     >
-      <span className={styles.leading} aria-hidden="true">
-        {avatar ?? (icon != null && <span className={styles.icon}>{icon}</span>)}
+      {/* Highlight/hover live on `.frame` (40px fill), not the padded outer
+          hit target — so 4px vertical padding sits outside the active chrome. */}
+      <span className={styles.frame}>
+        <span className={styles.leading} aria-hidden="true">
+          {avatar ?? (icon != null && <span className={styles.icon}>{icon}</span>)}
+        </span>
+        {label != null && <span className={styles.label}>{label}</span>}
       </span>
-      {label != null && <span className={styles.label}>{label}</span>}
     </button>
   );
 });

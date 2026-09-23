@@ -1,8 +1,17 @@
 .table {
   display: flex;
   flex-direction: column;
-  gap: var(--space-16);
+  gap: 0;
   width: 100%;
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 0;
+}
+
+/* Beat Card[data-padding=none] { overflow: hidden } (same specificity,
+   later in the bundle) so Filter/Select menu shadows aren't clipped. */
+.table[data-padding='none'] {
+  overflow: visible;
 }
 
 .header,
@@ -12,6 +21,19 @@
   justify-content: space-between;
   gap: var(--space-16);
   padding: var(--space-16);
+  flex: none;
+}
+
+/* Let Filter/Select menus (and their drop shadows) paint above the table
+   body — without this, later opaque rows cover the menu elevation. */
+.header {
+  position: relative;
+  z-index: 2;
+}
+
+.footer {
+  position: relative;
+  z-index: 1;
 }
 
 .filters,
@@ -21,15 +43,22 @@
   gap: var(--space-16);
 }
 
-/* the real scroll boundary — many columns won't fit a narrow viewport;
-   a code-first addition, the Figma reference has no viewport to overflow */
+/* the real scroll boundary — horizontal only; vertical size is locked via
+   measured `--table-row-height` so body rows fill without scrolling */
 .content {
   width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .grid {
   width: 100%;
+  /* Hug body rows — do NOT stretch to 100%. A tall table distributes
+     leftover height into rows (max-height on <tr> is ignored), which made
+     page-2's 2 rows blow up to fill the content area. */
+  height: auto;
   border-collapse: collapse;
 }
 

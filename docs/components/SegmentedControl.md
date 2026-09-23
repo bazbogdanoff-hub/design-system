@@ -83,3 +83,37 @@ used. The 2 `xs` variants: a transparent, unpadded, unrounded track
 `SegmentedControlItem` instances at `position`(start/middle/end), built by
 cloning the sidebar's own live module switcher rather than constructed from
 scratch.
+
+## `mode="tabs"`
+
+Same look, tab semantics — for switching which content panel is showing
+(e.g. an entity page's Overview / Fuel & costs / Service / History), where
+`choice` is for picking a value.
+
+```tsx
+<SegmentedControl mode="tabs" aria-label="Truck sections">
+  {groups.map((g) => (
+    <SegmentedControlItem
+      key={g.id}
+      id={`tab-${g.id}`}
+      aria-controls={`panel-${g.id}`}
+      selected={active === g.id}
+      onClick={() => setActive(g.id)}
+    >
+      {g.label}
+    </SegmentedControlItem>
+  ))}
+</SegmentedControl>
+
+<div role="tabpanel" id={`panel-${active}`} aria-labelledby={`tab-${active}`}>…</div>
+```
+
+| | `choice` (default) | `tabs` |
+|---|---|---|
+| track role | `radiogroup` | `tablist` |
+| item role | `radio`, `aria-checked` | `tab`, `aria-selected` |
+| Tab key | stops on every item | **one** stop — the selected tab (roving `tabindex`) |
+| arrows / Home / End | — | move between tabs **and** show that tab (automatic activation — implemented by clicking the focused item, so `onClick` stays the one source of truth) |
+| consumer wires | nothing | `id` + `aria-controls` per item; the panel's `role="tabpanel"` + `aria-labelledby` |
+
+**Figma:** no change — the two modes look identical.

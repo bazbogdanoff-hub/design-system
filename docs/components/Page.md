@@ -12,11 +12,26 @@ Every screen is:
 </AppShell>
 ```
 
+## Layout guide (offset / gutter / columns)
+
+Page exposes the Figma layout-grid contract as CSS variables on `.page`:
+
+| | token / var | |
+|---|---|---|
+| **columns** | `--page-cols: 16` | equal stretch tracks |
+| **gutter** | `--page-gutter: space/16` | between columns (Grid default `gap="lg"`) |
+| **offset** | `--_page-pad: space/16` | page padding from the content-card edge |
+
+[`Grid`](./Grid.md) defaults to 16 columns / `gap="lg"` and inherits `--page-cols`
+when nested under Page. A card with `span={4}` is always ~¼ of the content
+track and scales as the page width changes.
+
 ## Two layouts
 
 ### `scroll` (default) — simple screens
 
-The whole page scrolls; it's padded (`space/20`). Header is a flow block, not sticky.
+The whole page scrolls; it's padded (`space/16` offset). Header is a flow
+block, not sticky.
 
 ```tsx
 <Page>
@@ -66,7 +81,7 @@ The content card has `overflow: hidden` and rounded corners. A region with
 `bleed` drops its horizontal padding so its content aligns with the card's inner
 edge — the clip makes the corner look intentional. Use it for anything that
 wants the full width: `DataTable`, route maps, kanban boards, edge-to-edge
-toolbars. Everything else keeps the `space/20` gutter.
+toolbars. Everything else keeps the `space/16` offset.
 
 ## Rules
 
@@ -89,23 +104,24 @@ regions and the header.
   <Page layout="fixed">
     <Page.Header title="Dashboard" />
     <Page.Body>
-      <Grid gap="lg">
+      <Grid>
+        <Grid.Item span={4}><StatCard … /></Grid.Item>
         <Grid.Item span={4}><StatCard … /></Grid.Item>
         <Grid.Item span={4}><StatCard … /></Grid.Item>
         <Grid.Item span={4}><StatCard … /></Grid.Item>
         <Grid.Item span={8}><Card>{/* chart */}</Card></Grid.Item>
-        <Grid.Item span={4}><Card>{/* activity */}</Card></Grid.Item>
+        <Grid.Item span={8}><Card>{/* activity */}</Card></Grid.Item>
       </Grid>
     </Page.Body>
   </Page>
 </AppShell>
 ```
 
-Content inside `Page.Body` lays out on [`Grid`](./Grid.md)'s 12 columns — see
-that doc for column widths and the Figma grid guide.
+Content inside `Page.Body` lays out on [`Grid`](./Grid.md)'s **16** columns —
+see that doc for spans and approximate pixel widths.
 
 ## Figma
 
-No layout-guide components in the file — the [`Grid`](./Grid.md) doc's
-`Content grid — layout guide` is the only one. `Page` itself is a code-only
-contract; screen frames compose `AppShell` + their content directly.
+`Page` carries a native Figma `layoutGrids` overlay (16 columns, gutter/offset
+16, stretch) — not a standalone guide frame. Screen frames compose `AppShell` +
+content on that grid; React `Page` + `Grid` are the code counterpart.

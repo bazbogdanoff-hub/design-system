@@ -8,6 +8,7 @@ import { Avatar } from '../Avatar';
 import { Logo } from '../Logo';
 import { Menu } from '../Menu';
 import { GearSixIcon } from './GearSixIcon';
+import { SidebarSimpleIcon } from './SidebarSimpleIcon';
 import styles from './Sidebar.module.css';
 
 export type SidebarMode = 'collapsed' | 'expanded';
@@ -36,13 +37,22 @@ export interface SidebarProps extends Omit<HTMLAttributes<HTMLElement>, 'childre
   children: ReactNode;
   userName: ReactNode;
   userInitials: ReactNode;
-  /** `MenuRow`s for the profile dropdown. Include an Admin row here only
-   * when the current user actually has rights — Admin isn't a module, it's
-   * a separate top-bar shell the consumer opens from this menu. */
-  profileMenu: ReactNode;
+  /** Optional photo for the Profile row — when set, replaces the initials `Avatar`. */
+  userAvatar?: ReactNode;
+  /** `MenuRow`s for the profile dropdown when Profile opens a menu
+   * (legacy). Omit / unused when `onProfileClick` navigates to a profile page. */
+  profileMenu?: ReactNode;
   onSettingsClick?: () => void;
+  /** Highlight the Settings row (e.g. when `/settings` is the current route). */
+  settingsActive?: boolean;
+  /** Navigate to the profile screen — when set, Profile no longer toggles the menu. */
+  onProfileClick?: () => void;
+  /** Highlight the Profile row (e.g. when `/profile` is the current route). */
+  profileActive?: boolean;
   /** The wordmark text next to the brand mark — ignored when collapsed. */
   name: ReactNode;
+  /** Temporary: toggles collapsed ↔ expanded (icon under logo + divider). */
+  onModeToggle?: () => void;
 }
 
 /**
@@ -61,9 +71,14 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
     children,
     userName,
     userInitials,
+    userAvatar,
     profileMenu,
     onSettingsClick,
+    settingsActive = false,
+    onProfileClick,
+    profileActive = false,
     name,
+    onModeToggle,
     className,
     ...rest
   },
@@ -72,6 +87,14 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
   const [profileOpen, setProfileOpen] = useState(false);
   const collapsed = mode === 'collapsed';
 
+  function handleProfileClick() {
+    if (onProfileClick) {
+      onProfileClick();
+      return;
+    }
+    setProfileOpen((isOpen) => !isOpen);
+  }
+
   return (
     <nav ref={ref} className={cn(styles.sidebar, className)} data-mode={mode} {...rest}>
       <div className={styles.header}>
@@ -79,6 +102,16 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
       </div>
 
       <div className={styles.divider} />
+
+      {onModeToggle != null && (
+        <SidebarNavItem
+          icon={<SidebarSimpleIcon />}
+          label={!collapsed ? 'Collapse' : undefined}
+          tone="brand"
+          aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          onClick={onModeToggle}
+        />
+      )}
 
       <div className={styles.switcherGroup}>
         <SegmentedControl size="xs" collapsed={collapsed} className={styles.switcher} aria-label="Modules">
@@ -106,18 +139,29 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
       <SidebarSection content="settings" className={styles.bottomSection}>
         <span className={styles.profileWrapper}>
           <SidebarNavItem
-            avatar={<Avatar size="sm">{userInitials}</Avatar>}
+            avatar={userAvatar ?? <Avatar size="sm">{userInitials}</Avatar>}
             label={!collapsed ? userName : undefined}
-            aria-haspopup="menu"
-            aria-expanded={profileOpen}
-            onClick={() => setProfileOpen((isOpen) => !isOpen)}
+            active={profileActive || profileOpen}
+            tone="brand"
+            aria-haspopup={onProfileClick ? undefined : 'menu'}
+            aria-expanded={onProfileClick ? undefined : profileOpen}
+            onClick={handleProfileClick}
           />
-          <Menu open={profileOpen} onClose={() => setProfileOpen(false)} className={styles.profileMenu}>
-            {profileMenu}
-          </Menu>
+          {!onProfileClick && profileMenu != null && (
+            <Menu open={profileOpen} onClose={() => setProfileOpen(false)} className={styles.profileMenu}>
+              {profileMenu}
+            </Menu>
+          )}
         </span>
 
-        <SidebarNavItem icon={<GearSixIcon />} label={!collapsed ? 'Settings' : undefined} onClick={onSettingsClick} />
+        <SidebarNavItem
+          icon={<GearSixIcon />}
+          label={!collapsed ? 'Settings' : undefined}
+          active={settingsActive}
+          tone="brand"
+          settingsCorner
+          onClick={onSettingsClick}
+        />
       </SidebarSection>
     </nav>
   );

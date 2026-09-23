@@ -73,9 +73,15 @@
     },
     "progressBar": {
       "$type": "dimension",
-      "sm": { "$value": "0.375rem", "$description": "6px — was space.8 (8px), shrunk ~25% and snapped to the nearest real space.* step so ProgressBar fits dense contexts like a TableCell (which currently uses a bespoke stage-tracker instead, precisely because the old 8/12/16 scale read too tall there). No longer aliases space.8 directly — this is now ProgressBar's own scale, split off the same way size.input split off size.control, so the two can move independently." },
-      "md": { "$value": "0.625rem", "$description": "10px — was space.12 (12px). A straight 20% cut lands on 9.6px, which isn't a real step on this system's space/radius scale (0,2,4,6,8,10,12,16,...); 10 is the nearest real step and reads better once rendered than rounding to 9." },
-      "lg": { "$value": "1rem", "$description": "16px — bumped up from 12px (2026-09-16) so the largest variant reads as more clearly 'big' next to sm/md; paired with a wider 1.5px fill border (up from 1px) and a 2px track inset (up from 1px) at this size only." }
+      "sm": { "$value": "0.375rem", "$description": "6px track height. Fill is taller (size.progressBar.fill.sm = 8px) and vertically centered so the striped pill reads larger than the well." },
+      "md": { "$value": "0.625rem", "$description": "10px track height. Fill = 12px (size.progressBar.fill.md)." },
+      "lg": { "$value": "1.125rem", "$description": "18px track height. Fill = 22px (size.progressBar.fill.lg)." },
+      "fill": {
+        "$type": "dimension",
+        "sm": { "$value": "0.5rem", "$description": "8px — fill pill, always taller than the sm track (6px)." },
+        "md": { "$value": "0.75rem", "$description": "12px — fill pill, always taller than the md track (10px)." },
+        "lg": { "$value": "1.375rem", "$description": "22px — fill pill, always taller than the lg track (18px)." }
+      }
     },
     "spinner": {
       "$type": "dimension",

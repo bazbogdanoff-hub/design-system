@@ -32,9 +32,13 @@ The task that produced this ("context menu for input… and also for filters
 that are actual filter component… but holds same rows") asked for two
 visually distinct containers sharing one row anatomy, not two components.
 `variant="card"` wraps the row list in a real `<Card padding="none">` (Card's
-own border/shadow/radius, matching how a `Filter`'s menu should look like a
-card); `variant="default"` is a lighter plain shell (border + drop shadow, no
-Card) for `Select`/`Input`. Both feed the identical `MenuRow` children —
+own inset glass + radius, matching how a `Filter`'s menu should look like a
+card); `variant="default"` is a lighter plain shell (fill + border, no Card)
+for `Select`/`Input`. Both share the same elevation on the Menu wrapper —
+`0 4px 8px` / `0 12px 32px` tinted with `--color-alpha-black-15` and
+`--color-alpha-black-25` — so the drop shadow is identical across variants.
+The Table header also stacks above the body (`z-index`) so filter menus
+aren't painted under the rows. Both feed the identical `MenuRow` children —
 switching shells never means switching row markup.
 
 ## Positioning — anchored, not floating-UI

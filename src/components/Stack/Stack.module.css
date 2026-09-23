@@ -31,8 +31,11 @@
 .stack[data-justify='end'] { justify-content: flex-end; }
 .stack[data-justify='between'] { justify-content: space-between; }
 
-/* stretch columns: equal width, equal height */
-.columns {
+/* stretch columns: equal width, equal height.
+   Compound selector on purpose — `.columns` alone (0,1,0) loses to
+   `.stack[data-direction='column']` (0,2,0), so a bare <Stack columns>
+   silently stayed a column (parity audit STACK-001). */
+.stack.columns {
   flex-direction: row;
   align-items: stretch;
 }

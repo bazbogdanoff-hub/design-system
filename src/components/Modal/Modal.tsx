@@ -35,7 +35,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(function Modal(
       <div className={styles.header}>
         <h2 className={styles.heading}>{heading}</h2>
         {onClose != null && (
-          <IconButton variant="secondary" size="lg" icon={<CloseIcon />} aria-label="Close" onClick={onClose} />
+          <IconButton variant="secondary" size="md" icon={<CloseIcon />} aria-label="Close" onClick={onClose} />
         )}
       </div>
       <div className={styles.content}>{children}</div>

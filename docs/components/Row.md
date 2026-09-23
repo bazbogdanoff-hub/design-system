@@ -27,7 +27,7 @@ reference lists, etc.) — **L1 primitive**, one fixed anatomy, not a generic
 | `size` | `sm` \| `md` (default) \| `lg` | controls padding (8/10/12px) and the heading/description text-size pairing |
 | `leading` | `{ icon: ReactNode } \| { children: ReactNode }`, plus optional `tone` — optional | always renders as an `IconCell`, sized to match `size`. Omit for no leading element |
 | `heading` | `ReactNode` | required |
-| `description` | `ReactNode` | required. Usually a `<LabelGroup>` — Figma's Row nests one, size-matched; pass a bare `<LabelGroup>` (no `size`) and Row fills in the mapping (`sm`→`2xs`, `md`→`xs`, `lg`→`sm`). Plain text / any node still works |
+| `description` | `ReactNode` | required. Always rendered as a size-matched `LabelGroup` with Labels defaulting to `color="subtle"`. Pass a bare `<LabelGroup>` (Row fills `size` + `color`) or a string/node (Row wraps it in one `Label`). Explicit `color` on a `Label` or on the group still wins. |
 | `status` | `ReactNode` — optional | trailing, left side — usually `Badge` or `SeverityBadge` |
 | `action` | `ReactNode` — optional | trailing, right side — usually `Button` and/or `IconButton` |
 | `onClick` | `() => void` — optional | presence alone makes the row interactive (hover/focus, keyboard-reachable) |
@@ -39,9 +39,7 @@ div.row [data-size] [data-interactive]
 ├─ IconCell (size matches `size`)         — optional, `leading`
 ├─ div.text (flex:1, min-width:0)
 │  ├─ p.heading        · text/label/{size} · color/text/strong
-│  └─ div.description  · a size-matched LabelGroup (Figma), or any node.
-│                         Plain text → text/body/{…}, color/text/subtle,
-│                         2 steps below heading (see Sizing below)
+│  └─ div.description  · always a size-matched LabelGroup (Labels → subtle)
 └─ div.trailing                            — only if status or action given
    ├─ div.status  — {status}
    └─ div.action  — {action}

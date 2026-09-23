@@ -1,7 +1,13 @@
 .card {
   display: flex;
   flex-direction: column;
-  gap: var(--space-32);
+  gap: var(--space-20);
+  /* Fill the grid cell — both % and flex so either parent sizing works. */
+  height: 100%;
+  flex: 1 1 auto;
+  align-self: stretch;
+  min-height: 0;
+  box-sizing: border-box;
 }
 
 .header {
@@ -9,6 +15,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-10);
+  flex: none;
 }
 
 .title {
@@ -24,5 +31,33 @@
 .body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-32);
+  /* Tracker sits flush on the task frame — no gap between them. */
+  gap: 0;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.body > :first-child {
+  flex: none;
+}
+
+/* Queue TaskCard frame: 32 top / 40 left·right·bottom. Body gap stays 0 so
+   Tracker meets the frame edge with no extra section gap. Fills leftover
+   NextTask height. */
+.taskFrame {
+  padding: var(--space-32) var(--space-40) var(--space-40);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.taskFrame > * {
+  flex: 1 1 auto;
+  min-height: 0;
+  align-self: stretch;
+  width: 100%;
 }

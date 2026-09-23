@@ -1,5 +1,9 @@
 .box {
   box-sizing: border-box;
+  /* matches Stack — lets a Box used as a flex child shrink below its content
+     so text can truncate instead of overflowing the row. Documented in
+     docs/components/layout.md; was missing here only (parity audit STACK-002). */
+  min-width: 0;
 }
 
 .border {

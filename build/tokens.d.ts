@@ -795,12 +795,18 @@ export const SizeTextareaSm: string;
 export const SizeTextareaMd: string;
 /** 88px — 2x size.input.lg (44px). */
 export const SizeTextareaLg: string;
-/** 6px — was space.8 (8px), shrunk ~25% and snapped to the nearest real space.* step so ProgressBar fits dense contexts like a TableCell (which currently uses a bespoke stage-tracker instead, precisely because the old 8/12/16 scale read too tall there). No longer aliases space.8 directly — this is now ProgressBar's own scale, split off the same way size.input split off size.control, so the two can move independently. */
+/** 6px track height. Fill is taller (size.progressBar.fill.sm = 8px) and vertically centered so the striped pill reads larger than the well. */
 export const SizeProgressBarSm: string;
-/** 10px — was space.12 (12px). A straight 20% cut lands on 9.6px, which isn't a real step on this system's space/radius scale (0,2,4,6,8,10,12,16,...); 10 is the nearest real step and reads better once rendered than rounding to 9. */
+/** 10px track height. Fill = 12px (size.progressBar.fill.md). */
 export const SizeProgressBarMd: string;
-/** 16px — bumped up from 12px (2026-09-16) so the largest variant reads as more clearly 'big' next to sm/md; paired with a wider 1.5px fill border (up from 1px) and a 2px track inset (up from 1px) at this size only. */
+/** 18px track height. Fill = 22px (size.progressBar.fill.lg). */
 export const SizeProgressBarLg: string;
+/** 8px — fill pill, always taller than the sm track (6px). */
+export const SizeProgressBarFillSm: string;
+/** 12px — fill pill, always taller than the md track (10px). */
+export const SizeProgressBarFillMd: string;
+/** 22px — fill pill, always taller than the lg track (18px). */
+export const SizeProgressBarFillLg: string;
 /** 16px — matches this system's standard inline-icon scale (MenuRow/TableCellText icons at md size). */
 export const SizeSpinnerSm: string;
 /** 20px — was 24px; tightened to a 16/20/24 progression (a standard icon-scale triplet) instead of the original 16/24/32, which jumped straight past 20. */

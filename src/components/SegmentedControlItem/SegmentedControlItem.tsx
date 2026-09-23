@@ -2,6 +2,7 @@ import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 import buttonStyles from '../Button/Button.module.css';
 import styles from './SegmentedControlItem.module.css';
+import { useSegmentedControlMode } from '../SegmentedControl/context';
 
 export type SegmentedControlItemTone = 'brand' | 'success' | 'danger';
 export type SegmentedControlItemPosition = 'start' | 'middle' | 'end';
@@ -48,12 +49,19 @@ export interface SegmentedControlItemProps extends Omit<ButtonHTMLAttributes<HTM
  */
 export const SegmentedControlItem = forwardRef<HTMLButtonElement, SegmentedControlItemProps>(
   function SegmentedControlItem({ children, selected, tone, position = 'middle', className, type = 'button', ...rest }, ref) {
+    // `tabs` mode (set on the parent SegmentedControl): a real tab with a
+    // roving tabindex — only the selected tab is in the Tab order; the
+    // parent's arrow-key handler moves between the rest.
+    const mode = useSegmentedControlMode();
+    const semantics =
+      mode === 'tabs'
+        ? { role: 'tab' as const, 'aria-selected': selected || false, tabIndex: selected ? 0 : -1 }
+        : { role: 'radio' as const, 'aria-checked': selected || false };
     return (
       <button
         ref={ref}
         type={type}
-        role="radio"
-        aria-checked={selected || false}
+        {...semantics}
         data-selected={selected || undefined}
         data-variant={selected && !tone ? 'secondary' : undefined}
         data-tone={tone}

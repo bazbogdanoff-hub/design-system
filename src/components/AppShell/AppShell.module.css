@@ -20,16 +20,20 @@
   --app-sidebar-width: 180px;
 }
 
-/* the 64px rail — empty dark bar by default; consumer fills it */
+/* the 64px/180px rail — empty dark bar by default; consumer fills it.
+   stretch (not center) so the Sidebar can width:100% and respect its own
+   10/6 horizontal inset — center was shrinking panels and flushing them
+   to the left edge of the viewport. */
 .sidebar {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   width: var(--app-sidebar-width);
   height: 100%;
   padding-block: var(--space-12);
   background: var(--color-background-emphasis);
   overflow-y: auto;
+  box-sizing: border-box;
 }
 
 /* right column — carries the gutter around the content card */
@@ -41,14 +45,16 @@
   display: flex;
 }
 
-/* the rounded surface the screen lives on — this is the scroll container */
+/* Rounded surface the screen lives on. Dumb chrome only (bg / radius /
+   clip) — Page owns padding + scroll. Do NOT pad here or Page's own
+   padding stacks on top and the content inset doubles. */
 .content {
   flex: 1;
   min-width: 0;
   min-height: 0;
-  padding: var(--space-20);
+  display: flex;
+  flex-direction: column;
   border-radius: var(--radius-page);
   background: var(--color-background-muted);
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  overflow: hidden;
 }

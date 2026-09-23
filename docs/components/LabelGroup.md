@@ -15,6 +15,7 @@ pipe-separated pattern (`TK-4021 | TL-88 | Dumont`). **L1.** Intended for
 | prop | values | default |
 |---|---|---|
 | `size` | any `LabelSize` (`2xs`–`xl`) — cascades to every child `Label` and sizes the dividers | `md` |
+| `color` | any `LabelColor` — default for Labels without an explicit `color`. When set, skips Headercard total/active/inactive inference | — (`Row` always passes `subtle`) |
 | `children` | `Label` elements | — |
 
 Renders a `<div>` (`inline-flex`, `gap: space/6`). Other `HTMLDivElement`
@@ -34,7 +35,9 @@ colored.
 `LabelGroup` clones each child `Label` to inject its own `size` unless that
 child sets one explicitly (`child.props.size ?? size`). In practice a group
 is one coherent size; per-child overrides exist only as an escape hatch.
-`color` is always per-child.
+`color` is per-child when set on a `Label`. When unset, `LabelGroup`'s own
+`color` prop (if any) cascades; otherwise Headercard total/active/inactive
+inference may apply.
 
 ## Used by Row
 

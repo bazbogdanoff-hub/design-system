@@ -3,28 +3,25 @@
   width: 100%;
   box-sizing: border-box;
   border-radius: var(--radius-full);
-  background: var(--color-surface-sunken); /* "Wells, code blocks, inset track" — literally this */
+  background: var(--color-surface-sunken); /* "Wells, code blocks, inset track" */
   border: 0.5px solid var(--color-progress-bar-track-border);
-  padding: 1px;
+  /* No padding — the fill is intentionally taller than the track and
+     centered on it (overflows top/bottom), matching Figma: track 6/10/18,
+     fill 8/12/22. */
   display: flex;
   align-items: center;
+  overflow: visible;
 }
 
 .track[data-size='sm'] { height: var(--size-progress-bar-sm); }
 .track[data-size='md'] { height: var(--size-progress-bar-md); }
-.track[data-size='lg'] { height: var(--size-progress-bar-lg); padding: 2px; }
+.track[data-size='lg'] { height: var(--size-progress-bar-lg); }
 
-/* Striped-fill redesign (2026-09-16): the fill is now its own bordered,
-   shadowed pill — always fully rounded on both ends (not `inherit`, which
-   would only look pill-shaped once the bar hits 100%) — with a 45° repeating
-   diagonal of the tone's main color + a lighter tint. box-sizing keeps the
-   1px border from pushing the bar taller than the track's padded interior.
-   The gradient's own stops stay percentage-based (0/50/50/100) so density is
-   controlled purely by `background-size` below — a fixed px tile (the first
-   version's 12px repeat) was larger than the `sm` track's own 6px height,
-   which flattened the diagonal into what looked like solid dashes. */
+/* Striped fill — own bordered/shadowed pill, always fully rounded on both
+   ends. Height from size.progressBar.fill.* (always > track). Stripes are
+   continuous 45° bands via px stops on repeating-linear-gradient — NOT
+   percentage + square background-size (that tiles into diamonds/triangles). */
 .fill {
-  height: 100%;
   box-sizing: border-box;
   border-radius: var(--radius-full);
   border-width: 1px;
@@ -32,21 +29,58 @@
   border-color: var(--color-progress-bar-fill-border);
   box-shadow: 0 1px 2px 0 var(--color-progress-bar-fill-shadow);
   transition: width 0.3s ease, background-color 0.3s ease;
+  flex: none;
+  /* Default stripe pitch — overridden per size below. */
+  --_stripe: 6px;
 }
 
-.track[data-size='sm'] .fill { background-size: 6px 6px; }
-.track[data-size='md'] .fill { background-size: 10px 10px; }
-.track[data-size='lg'] .fill { background-size: 16px 16px; border-width: 1.5px; }
+.track[data-size='sm'] .fill {
+  height: var(--size-progress-bar-fill-sm);
+  --_stripe: 5px;
+}
+.track[data-size='md'] .fill {
+  height: var(--size-progress-bar-fill-md);
+  --_stripe: 6px;
+}
+.track[data-size='lg'] .fill {
+  height: var(--size-progress-bar-fill-lg);
+  --_stripe: 8px;
+  border-width: 1.5px;
+}
 
 .fill[data-tone='brand'] {
-  background-image: repeating-linear-gradient(45deg, var(--color-progress-bar-brand-fill) 0%, var(--color-progress-bar-brand-fill) 50%, var(--color-progress-bar-brand-stripe) 50%, var(--color-progress-bar-brand-stripe) 100%);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-progress-bar-brand-fill) 0,
+    var(--color-progress-bar-brand-fill) var(--_stripe),
+    var(--color-progress-bar-brand-stripe) var(--_stripe),
+    var(--color-progress-bar-brand-stripe) calc(var(--_stripe) * 2)
+  );
 }
 .fill[data-tone='success'] {
-  background-image: repeating-linear-gradient(45deg, var(--color-progress-bar-success-fill) 0%, var(--color-progress-bar-success-fill) 50%, var(--color-progress-bar-success-stripe) 50%, var(--color-progress-bar-success-stripe) 100%);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-progress-bar-success-fill) 0,
+    var(--color-progress-bar-success-fill) var(--_stripe),
+    var(--color-progress-bar-success-stripe) var(--_stripe),
+    var(--color-progress-bar-success-stripe) calc(var(--_stripe) * 2)
+  );
 }
 .fill[data-tone='warning'] {
-  background-image: repeating-linear-gradient(45deg, var(--color-progress-bar-warning-fill) 0%, var(--color-progress-bar-warning-fill) 50%, var(--color-progress-bar-warning-stripe) 50%, var(--color-progress-bar-warning-stripe) 100%);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-progress-bar-warning-fill) 0,
+    var(--color-progress-bar-warning-fill) var(--_stripe),
+    var(--color-progress-bar-warning-stripe) var(--_stripe),
+    var(--color-progress-bar-warning-stripe) calc(var(--_stripe) * 2)
+  );
 }
 .fill[data-tone='danger'] {
-  background-image: repeating-linear-gradient(45deg, var(--color-progress-bar-danger-fill) 0%, var(--color-progress-bar-danger-fill) 50%, var(--color-progress-bar-danger-stripe) 50%, var(--color-progress-bar-danger-stripe) 100%);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-progress-bar-danger-fill) 0,
+    var(--color-progress-bar-danger-fill) var(--_stripe),
+    var(--color-progress-bar-danger-stripe) var(--_stripe),
+    var(--color-progress-bar-danger-stripe) calc(var(--_stripe) * 2)
+  );
 }

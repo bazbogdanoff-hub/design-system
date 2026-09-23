@@ -8,8 +8,7 @@ export interface ChartCardProps extends Omit<HTMLAttributes<HTMLDivElement>, 'ti
   title: ReactNode;
   /** 2+ series → always show a legend (the dependable identity channel). A
    * single-series chart needs none — the title already says what's plotted.
-   * Its own row below the title/filters row by default; joins that row once
-   * the card itself (a CSS container, not the viewport) is >=480px wide. */
+   * Always sits on the same header row as the title and filters. */
   legend?: ChartLegendItem[];
   /** `Filter` instances, grouped with `action` at the header's right edge.
    * Per-chart filters (date range, dimension) — a deliberate deviation from
@@ -24,11 +23,9 @@ export interface ChartCardProps extends Omit<HTMLAttributes<HTMLDivElement>, 'ti
 }
 
 /**
- * The card shell every chart sits in: title + filters/action on one row,
- * chart body below. The legend gets its own row (right-aligned) unless the
- * card is wide enough to hold everything together — see `.legendRow`'s
- * container-query breakpoint in ChartCard.module.css. Composes `Card`
- * (never detached) — L2.
+ * The card shell every chart sits in: title + legend + filters/action on
+ * one row (`space-between` auto-distributes the gaps), chart body below.
+ * Composes `Card` (never detached) — L2.
  */
 export const ChartCard = forwardRef<HTMLDivElement, ChartCardProps>(function ChartCard(
   { title, legend, filters, action, children, className, ...rest },

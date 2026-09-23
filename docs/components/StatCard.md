@@ -12,7 +12,7 @@ migration) — never detached.
 <StatCard
   label="Blocked"
   value={2}
-  badge={<Badge tone="danger" size="md" icon={<TrendUp/>}>200%</Badge>}
+  badge={<Badge tone="danger" size="md" icon="hasIcon" leadingIcon={<TrendUp/>}>200%</Badge>}
 >
   <StatButton label="Oldest wait" value="4h" showArrow onClick={…} />
   <StatButton label="By entity"  value="2 trk" showArrow onClick={…} />
@@ -35,7 +35,7 @@ Card (padding md)
 └─ div.header   (row, space-between)
 │  ├─ div.content   (column)
 │  │  ├─ span.label  — "Blocked"  · text/heading/xs · color/text/subtle
-│  │  └─ span.value  — "2"        · text/heading/xl · color/text/default
+│  │  └─ span.value  — "2"        · text/heading/md · color/text/default
 │  └─ {badge}        — optional, flex:none
 └─ div.stats    (row, gap space/16) — <StatButton>s, each flex:1
 ```
@@ -43,6 +43,11 @@ Card (padding md)
 1440 migration: label moved `heading/sm` → `heading/xs`, and value moved out of
 the `display` group entirely — `display/md` → `heading/xl` (28px) — one more
 step than the automatic type-scale cascade alone would give it.
+
+**2026-09-23, owner's call:** the value came back down to `heading/md` (20px).
+28px read as a page headline inside a rail card; at 20px the figure still
+outweighs its `heading/xs` label, by one step instead of three. Figma's
+`StatCard` still has the 28px value — it needs the same change.
 
 `color/text/default` for the headline value (the "main" number — one step darker
 than a `StatButton` value, which is `color/text/strong`).

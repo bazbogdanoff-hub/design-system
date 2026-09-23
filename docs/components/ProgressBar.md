@@ -10,7 +10,7 @@ A horizontal progress track + fill. **L1 primitive.**
 |---|---|---|
 | `value` | `number` — clamped into `[0, max]` | — |
 | `max` | `number` — pass the real total (e.g. `totalSeconds`) rather than pre-dividing | `100` |
-| `size` | `sm` (6px) · `md` (10px) · `lg` (12px) | `md` |
+| `size` | `sm` (track 6 / fill 8) · `md` (10 / 12) · `lg` (18 / 22) — fill is always taller and centered on the track | `md` |
 | `tone` | `brand` · `success` · `warning` · `danger` | `brand` |
 | `aria-label` / `aria-labelledby` | one is **required** — same mandatory-accessible-name pattern as `IconButton` | — |
 
@@ -34,14 +34,14 @@ anything here — built by hand against the same ARIA pattern instead.
   `color.background.danger.default`. A progress fill needs to read clearly
   against a light track the way a button does, not sit at badge-chip
   contrast.
-- Heights: `size.progressBar.sm` / `.md` / `.lg` (6/10/12px, component-tier
-  tokens in `tokens/component.layout.json`) — CSS vars
-  `--size-progress-bar-{sm,md,lg}`.
-- Radius: `radius.full` on both track and fill (`border-radius: inherit`
-  on the fill) — a pill, per the existing "pills, avatars, dots" token
-  comment. Radius is bound directly to the `radius/full` variable in both
-  React and Figma, so it self-adjusts to any track height with no separate
-  component-radius token needed.
+- Heights: `size.progressBar.{sm,md,lg}` = track **6 / 10 / 18px**;
+  `size.progressBar.fill.{sm,md,lg}` = fill **8 / 12 / 22px**. The fill is
+  always taller than the track and vertically centered (overflows the well),
+  not inset inside it. CSS vars `--size-progress-bar-{sm,md,lg}` and
+  `--size-progress-bar-fill-{sm,md,lg}`.
+- Radius: `radius.full` on both track and fill — a pill, per the existing
+  "pills, avatars, dots" token comment. Bound directly to `radius/full` so
+  it self-adjusts to any height with no separate component-radius token.
 
 ## 2026-09-13 resize — fitting dense contexts (e.g. a table cell)
 

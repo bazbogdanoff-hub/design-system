@@ -1,0 +1,39 @@
+/* Card already gives the surface; this adds the choice states and the one
+   internal row. Spacing between the top row and the consumer's children is
+   this card's own gap — children never carry margins. */
+.card {
+  gap: var(--space-12);
+  cursor: pointer;
+}
+
+.card[data-disabled] {
+  cursor: default;
+}
+
+/* Selected: a 1px brand ring replaces Card's top+left white catch; the
+   vignette shadow is kept, so the card still reads as the same surface.
+
+   Keyboard focus mirrors it — house rule for now: focus reuses the active
+   look (as Button does) until focus states are designed. Focus sits on the
+   radio, but the card is what's being chosen, so the card shows it.
+   `:focus-visible` only, so a mouse click doesn't. */
+.card[data-selected],
+.card:has(input[type='radio']:focus-visible) {
+  outline: none;
+  box-shadow:
+    inset 0 0 0 1px var(--color-border-brand),
+    inset 4px 4px 16px 0 #f0f0f0;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.trailing {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
