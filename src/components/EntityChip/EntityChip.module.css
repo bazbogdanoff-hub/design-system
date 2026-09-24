@@ -1,0 +1,131 @@
+/* Figma `EntityChip` 10772:10486. Badge's glass recipe at xs — same glow,
+   same inset shadow, same neutral text token, same 4/6 padding — but a chip
+   that holds an icon at rest and widens to show its label. 26px closed
+   (6 + 14 + 6), 43px open (6 + 14 + 4 + 13 + 6). */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+
+  /* label/xs — 12px semibold, the same step Badge xs uses. Tight line-height
+     keeps the box at 24px whether or not the label is showing. */
+  font-family: var(--text-label-xs-font-family);
+  font-weight: var(--text-label-xs-font-weight);
+  font-size: var(--text-label-xs-font-size);
+  letter-spacing: var(--text-label-xs-letter-spacing);
+  line-height: var(--text-label-xs-line-height);
+  white-space: nowrap;
+
+  /* The gap opens with the label. It has to be a real `gap` that animates,
+     not padding on the label: padding sits outside the content box, so the
+     element doing the clipping cannot clip its own padding — that left 4px
+     behind at rest, making the chip 30px wide and shoving the icon off
+     centre. */
+  gap: 0;
+  transition: gap 140ms ease;
+  padding: var(--space-4) var(--space-6);
+  /* Figma pins the frame at 24 (AUTO width, FIXED height) rather than letting
+     it hug. Padding alone gives 4 + icon 14 + 4 = 22, which leaves the icon
+     tighter vertically (4) than horizontally (6) and reads as cramped. The
+     fixed height restores 5/5 against the 6/6 sides, and `align-items:
+     center` does the centring. */
+  min-height: 1.5rem;
+  /* `radius-chip` (6), not the `radius/md` Figma bound — identical value, and
+     this is the token that means "chip". Uniform on all four corners: Badge
+     capsules its left side whenever it has an icon, which is the rule this
+     component exists to break. */
+  border-radius: var(--radius-chip);
+
+  border: 0;
+  background: radial-gradient(
+    ellipse 51.1% 51.1% at 50% 50%,
+    color-mix(in srgb, var(--color-badge-neutral-glow) 30%, transparent) 9.6%,
+    transparent 100%
+  );
+  box-shadow: inset 0 0 5px 0 var(--color-badge-neutral-shadow);
+  color: var(--color-badge-neutral-text);
+}
+
+/* Interactive chips are real buttons. Only the cursor and the UA appearance
+   need touching — `.chip` already declares font and colour, and author styles
+   beat the UA sheet. Never `font: inherit` here: it is a shorthand, so it
+   would hand back font-size and line-height to whatever encloses the chip,
+   and this one sits inside an `<h1>`. */
+.chip[data-interactive='true'] {
+  cursor: pointer;
+  appearance: none;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  /* 14px against 12px type — the icon is the resting state's whole content,
+     so it runs a step larger than Badge's 1em glyph. */
+  width: 0.875rem;
+  height: 0.875rem;
+}
+.icon > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* The reveal. The label is always in the DOM — it is the chip's accessible
+   name — and is clipped to zero width at rest by a 0fr grid column, then
+   animated open. Visibility is presentational; nothing is hidden from a
+   screen reader, and `display: none` would have hidden it from one. */
+.label {
+  display: grid;
+  grid-template-columns: 0fr;
+  transition: grid-template-columns 140ms ease;
+}
+
+/* `:focus`, not `:focus-visible` — the label is content, and it belongs on
+   screen whenever the chip is focused, including after a click. The ring
+   further down stays on `:focus-visible`, so a mouse click reveals the label
+   without also drawing an outline. */
+.chip:hover .label,
+.chip:focus .label,
+.chip[data-open='true'] .label {
+  grid-template-columns: 1fr;
+}
+
+.chip:hover,
+.chip:focus,
+.chip[data-open='true'] {
+  gap: var(--space-4);
+}
+
+/* `overflow: hidden` is load-bearing twice over: it clips the text, and it
+   zeroes this item's automatic minimum size so the `0fr` track can actually
+   reach zero instead of flooring at the text's min-content width. */
+.label > span {
+  overflow: hidden;
+  min-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .label,
+  .chip {
+    transition: none;
+  }
+}
+
+/* Coarse pointers have no hover, so the label would never appear. Show it
+   always rather than making the identity unreachable on a phone. */
+@media (hover: none) {
+  .label {
+    grid-template-columns: 1fr;
+  }
+  .chip {
+    gap: var(--space-4);
+  }
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}

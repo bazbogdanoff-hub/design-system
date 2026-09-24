@@ -8,6 +8,8 @@ export type { SelectableCardProps } from './components/SelectableCard';
 
 export { Badge } from './components/Badge';
 export type { BadgeProps, BadgeTone, BadgeSize, BadgeIcon } from './components/Badge';
+export { EntityChip } from './components/EntityChip';
+export type { EntityChipProps } from './components/EntityChip';
 
 export { Tag } from './components/Tag';
 export type { TagProps, TagSize, TagColor } from './components/Tag';
