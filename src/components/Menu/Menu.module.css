@@ -2,11 +2,19 @@
   position: absolute;
   top: 100%;
   left: 0;
+  /* `align="end"` pins the far edge instead, so the panel grows leftward and
+     a trigger at the right of a card does not push it past the edge. No
+     collision detection here — see Menu.tsx. */
   /* Above table body / later siblings — otherwise the drop shadow paints
      underneath the next opaque region and looks like it "isn't there". */
   z-index: 40;
   margin-top: var(--space-4);
   min-width: 100%;
+}
+
+.menu[data-align='end'] {
+  left: auto;
+  right: 0;
   border-radius: var(--radius-popover);
   /* Elevation shared by both variants (card keeps Card's inset glass on the
      inner shell). Alpha-black ramp — not raw rgba. */

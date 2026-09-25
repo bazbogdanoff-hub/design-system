@@ -11,6 +11,7 @@ import { Card } from '../Card';
 import styles from './Menu.module.css';
 
 export type MenuVariant = 'default' | 'card';
+export type MenuAlign = 'start' | 'end';
 export type MenuSize = 'sm' | 'md' | 'lg';
 
 export interface MenuProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
@@ -18,6 +19,11 @@ export interface MenuProps extends Omit<HTMLAttributes<HTMLDivElement>, 'childre
   variant?: MenuVariant;
   /** Cascades to every `MenuRow` inside — match whatever size triggered this menu (the `Input`/`Select`/`Filter`). */
   size?: MenuSize;
+  /** Which edge the panel is pinned to. `start` (default) grows rightward from
+   * the trigger's left edge — right for a wide trigger like a `Select`. `end`
+   * grows leftward from its right edge, which is what a trigger sitting at the
+   * right of a header needs: a `start` menu there runs off the card. */
+  align?: MenuAlign;
   open: boolean;
   onClose: () => void;
   /** `MenuRow`s. */
@@ -40,14 +46,16 @@ function mergeRefs<T>(...refs: Array<React.Ref<T> | undefined>) {
  * `position: relative` box (`Select` does this internally). No collision
  * detection or auto-flip — a full popover-positioning system is its own
  * project; this covers the common "opens below, room underneath" case, the
- * only one this design system's screens need so far.
+ * only one this design system's screens need so far. `align` is the manual
+ * stand-in for the horizontal half of that: the consumer says which way there
+ * is room, because the component cannot measure.
  *
  * Closes on an outside click or Escape. Not a portal+backdrop like
  * `Overlay` — that's the right mechanism for a modal, not a dropdown, which
  * should stay inline and close without dimming the page behind it.
  */
 export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
-  { variant = 'default', size = 'md', open, onClose, children, className, ...rest },
+  { variant = 'default', align = 'start', size = 'md', open, onClose, children, className, ...rest },
   ref,
 ) {
   const localRef = useRef<HTMLDivElement>(null);
@@ -77,7 +85,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
   );
 
   return (
-    <div ref={mergeRefs(localRef, ref)} className={cn(styles.menu, className)} data-variant={variant} {...rest}>
+    <div ref={mergeRefs(localRef, ref)} className={cn(styles.menu, className)} data-variant={variant} data-align={align} {...rest}>
       {variant === 'card' ? (
         <Card padding="none" className={styles.cardShell}>
           {list}

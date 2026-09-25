@@ -18,6 +18,7 @@ const [open, setOpen] = useState(false);
 | prop | type | default | notes |
 |---|---|---|---|
 | `variant` | `default` \| `card` | `default` | `default` — a plain bordered/shadowed dropdown shell, for `Select`/`Input`-triggered menus. `card` — reuses the real `Card` component for its shell, for `Filter`-triggered menus |
+| `align` | `start` | `end` | `start` | which edge the panel is pinned to. `start` grows rightward from the trigger's left edge; `end` grows leftward from its right edge |
 | `size` | `sm` \| `md` \| `lg` | `md` | cascades to every `MenuRow` inside — match whatever size triggered this menu |
 | `open` | `boolean` — required | | |
 | `onClose` | `() => void` — required | | called on outside-click or Escape |
@@ -25,6 +26,20 @@ const [open, setOpen] = useState(false);
 
 Renders `null` when `open` is `false` — no need to conditionally mount it at
 the call site.
+
+
+## Picking `align`
+
+There is no collision detection — the component cannot measure the space it
+has, so the consumer says which way there is room.
+
+`start` suits a wide trigger the menu matches, like a `Select` or a
+`Filter`: the panel is at least as wide as the trigger (`min-width: 100%`)
+and lines up under it.
+
+`end` suits a narrow trigger near the right edge, like a settings
+`IconButton` in a card header. There the panel is much wider than its
+trigger, so a `start` menu extends past the card and gets clipped.
 
 ## Two shells, one row system
 
