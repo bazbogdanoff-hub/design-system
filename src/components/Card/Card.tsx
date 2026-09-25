@@ -8,6 +8,14 @@ export type CardPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   /** Inner padding on all sides. `none` (0) · `sm` (12) · `md` (16, default) · `lg` (20) · `xl` (24). */
   padding?: CardPadding;
+  /** Lifts the card off whatever is behind it, for a card that FLOATS —
+   *  over a map, over a canvas — rather than sitting in a page.
+   *
+   *  This exists because the glass look is itself a `box-shadow`, so a
+   *  consumer adding a drop shadow in its own stylesheet replaces the glass
+   *  instead of adding to it, and the card quietly loses its surface. The
+   *  only safe place to combine them is here. */
+  elevated?: boolean;
   /** Render as the child element (e.g. `<article>`, `<li>`, an `<a>`). */
   asChild?: boolean;
 }
@@ -21,11 +29,12 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
  * or a specific card type built on top. See docs/architecture.md.
  */
 export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
-  { padding = 'md', asChild = false, className, ...rest },
+  { padding = 'md', elevated = false, asChild = false, className, ...rest },
   ref,
 ) {
   const Comp = asChild ? Slot : 'div';
   return (
-    <Comp ref={ref} className={cn(styles.card, className)} data-padding={padding} {...rest} />
+    <Comp ref={ref} className={cn(styles.card, className)} data-padding={padding}
+      data-elevated={elevated || undefined} {...rest} />
   );
 });

@@ -14,6 +14,18 @@
     inset 4px 4px 16px 0 #f0f0f0;
 }
 
+/* Floating over something instead of sitting in a page. The glass insets are
+   repeated on purpose: box-shadow is one property, so a consumer who adds a
+   drop shadow from outside replaces the glass rather than joining it, which
+   is exactly the bug this prop exists to make impossible. */
+.card[data-elevated] {
+  box-shadow:
+    inset 1.5px 1.5px 0 0 var(--color-card-border),
+    inset 4px 4px 16px 0 #f0f0f0,
+    0 4px 8px 0 var(--color-alpha-black-15),
+    0 12px 32px 0 var(--color-alpha-black-25);
+}
+
 /* only `none` clips — that's the one padding where a consumer's content is
    expected to sit flush against Card's own rounded corners (e.g. Table's
    header/rows/footer). The padded variants don't clip, so a popover or

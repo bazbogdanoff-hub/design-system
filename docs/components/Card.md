@@ -52,3 +52,13 @@ content isn't cut off unexpectedly.
 
 Plain `<div>` (or via `asChild`, whatever element the consumer picks). Purely
 presentational — no roles, no focus handling.
+
+## `elevated`
+
+Lifts the card off what is behind it — for a card that **floats**, over a map
+or a canvas, rather than sitting in a page.
+
+It is a prop rather than something a consumer adds in its own stylesheet,
+because **the glass look is itself a `box-shadow`**. Adding a drop shadow from
+outside replaces the glass instead of joining it, and the card silently loses
+the surface that makes it a card. Combining them is only safe here.
