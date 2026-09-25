@@ -1,7 +1,9 @@
 import {
   forwardRef,
   useEffect,
+  useLayoutEffect,
   useRef,
+  useState,
   type HTMLAttributes,
   type MutableRefObject,
   type ReactNode,
@@ -59,6 +61,69 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
   ref,
 ) {
   const localRef = useRef<HTMLDivElement>(null);
+  /* The anchor is whatever box the consumer made `position: relative` around
+     its trigger — the same box this used to be absolutely positioned inside.
+     Reading it from the DOM keeps the API unchanged: no anchorRef to thread
+     through every Select, Filter and IconButton that opens a menu. */
+  const [placement, setPlacement] = useState<{
+    top: number;
+    left: number;
+    width: number;
+    above: boolean;
+  } | null>(null);
+
+  /* Positioning, in viewport coordinates.
+
+     `position: fixed` rather than `absolute` because absolute is clipped by
+     any ancestor that scrolls, and menus open inside scrolling panels all the
+     time — a Select in a side panel, a Filter above a table. Fixed escapes
+     overflow entirely.
+
+     The trade is that fixed does not move with its anchor, so this recomputes
+     on scroll and resize while open. It listens in the CAPTURE phase so it
+     also hears a scroll inside the panel the trigger sits in, which does not
+     bubble to window. */
+  useLayoutEffect(() => {
+    if (!open) return;
+
+    const anchor = localRef.current?.parentElement;
+    if (!anchor) return;
+
+    const place = () => {
+      const panel = localRef.current;
+      if (!panel) return;
+      const rect = anchor.getBoundingClientRect();
+      const height = panel.offsetHeight;
+      const width = Math.max(panel.offsetWidth, rect.width);
+      const gap = 4;
+
+      /* Flip up only when there is genuinely more room above. Flipping
+         whenever it would not fit below means a menu near the bottom of a
+         short window flips into an even smaller space. */
+      const below = window.innerHeight - rect.bottom - gap;
+      const above = rect.top - gap;
+      const flip = height > below && above > below;
+
+      let left = align === 'end' ? rect.right - width : rect.left;
+      // Never off the side, whichever edge it was pinned to.
+      left = Math.min(Math.max(left, gap), window.innerWidth - width - gap);
+
+      setPlacement({
+        top: flip ? Math.max(rect.top - gap - height, gap) : rect.bottom + gap,
+        left,
+        width: rect.width,
+        above: flip,
+      });
+    };
+
+    place();
+    window.addEventListener('scroll', place, true);
+    window.addEventListener('resize', place);
+    return () => {
+      window.removeEventListener('scroll', place, true);
+      window.removeEventListener('resize', place);
+    };
+  }, [open, align, children]);
 
   useEffect(() => {
     if (!open) return;
@@ -85,7 +150,27 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
   );
 
   return (
-    <div ref={mergeRefs(localRef, ref)} className={cn(styles.menu, className)} data-variant={variant} data-align={align} {...rest}>
+    <div
+      ref={mergeRefs(localRef, ref)}
+      className={cn(styles.menu, className)}
+      data-variant={variant}
+      data-align={align}
+      data-above={placement?.above || undefined}
+      style={
+        placement
+          ? {
+              top: placement.top,
+              left: placement.left,
+              // Matches the trigger, as the old `min-width: 100%` did when
+              // the menu was a child of it.
+              minWidth: placement.width,
+            }
+          : // Before the first measure, keep it out of the way rather than
+            // flashing at the top-left of the viewport.
+            { visibility: 'hidden' }
+      }
+      {...rest}
+    >
       {variant === 'card' ? (
         <Card padding="none" className={styles.cardShell}>
           {list}

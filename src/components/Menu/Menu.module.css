@@ -1,20 +1,17 @@
 .menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  /* `align="end"` pins the far edge instead, so the panel grows leftward and
-     a trigger at the right of a card does not push it past the edge. No
-     collision detection here — see Menu.tsx. */
+  /* Fixed, not absolute: an absolutely positioned menu is clipped by any
+     scrolling ancestor, and these open inside side panels and above tables
+     all the time. Coordinates are computed in Menu.tsx, in viewport space,
+     with the gap and the flip already applied.
+
+     Caveat worth knowing: a transformed ancestor creates a containing block
+     for fixed descendants, so a menu inside a transformed element positions
+     against that element rather than the viewport. */
+  position: fixed;
+
   /* Above table body / later siblings — otherwise the drop shadow paints
      underneath the next opaque region and looks like it "isn't there". */
   z-index: 40;
-  margin-top: var(--space-4);
-  min-width: 100%;
-}
-
-.menu[data-align='end'] {
-  left: auto;
-  right: 0;
   border-radius: var(--radius-popover);
   /* Elevation shared by both variants (card keeps Card's inset glass on the
      inner shell). Alpha-black ramp — not raw rgba. */
@@ -22,6 +19,9 @@
     0 4px 8px 0 var(--color-alpha-black-15),
     0 12px 32px 0 var(--color-alpha-black-25);
 }
+
+/* `align` and the flip are resolved in JS, because the edges have to be
+   clamped to the viewport either way. The attributes stay as styling hooks. */
 
 .defaultShell {
   background: var(--color-surface-raised);
