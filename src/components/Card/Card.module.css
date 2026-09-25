@@ -31,6 +31,7 @@
    header/rows/footer). The padded variants don't clip, so a popover or
    focus ring on padded content isn't cut off unexpectedly. */
 .card[data-padding='none'] { padding: 0; overflow: hidden; }
+.card[data-padding='xs']   { padding: var(--space-8); }
 .card[data-padding='sm']   { padding: var(--space-12); }
 .card[data-padding='md']   { padding: var(--space-16); }
 .card[data-padding='lg']   { padding: var(--space-20); }

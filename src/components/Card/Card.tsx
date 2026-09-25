@@ -3,10 +3,13 @@ import { Slot } from '@radix-ui/react-slot';
 import { cn } from '../../lib/cn';
 import styles from './Card.module.css';
 
-export type CardPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';
+export type CardPadding = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  /** Inner padding on all sides. `none` (0) · `sm` (12) · `md` (16, default) · `lg` (20) · `xl` (24). */
+  /** Inner padding on all sides. `none` (0) · `xs` (8) · `sm` (12) · `md` (16, default) · `lg` (20) · `xl` (24).
+   * `xs` is for a card that is a container for controls rather than for
+   * content — a toolbar, a control bar — where 12 already reads as a margin
+   * around buttons that carry their own padding. */
   padding?: CardPadding;
   /** Lifts the card off whatever is behind it, for a card that FLOATS —
    *  over a map, over a canvas — rather than sitting in a page.
