@@ -1,13 +1,20 @@
 # Headercard
 
-The page-header card: heading on the left with, under it, **either** a stat
-`LabelGroup` **or** a row of `controls`, and a free `actions` slot on the
-right.
+The page-header card: heading on the left, optionally with an `aside` beside it
+and, under it, **either** a stat `LabelGroup` **or** a row of `controls`. A free
+`actions` slot sits on the right.
 
 ## API
 
 ```tsx
 // list pages — stat line under the heading
+// detail pages — related entities beside the heading
+<Headercard
+  heading="RIG-01"
+  aside={<><EntityChip icon={<Truck weight="fill" />} label="TK-001" onClick={…} />…</>}
+  actions={<><Badge …>Active</Badge><IconButton … /></>}
+/>
+
 <Headercard
   heading="Trucks"
   labelGroup={<LabelGroup size="sm"><Label>86 total</Label>…</LabelGroup>}
@@ -25,9 +32,27 @@ right.
 | prop | type | notes |
 |---|---|---|
 | `heading` | `ReactNode` | rendered as the `<h1>` |
+| `aside` | `ReactNode` | beside the heading and **outside** the `<h1>`; `space/8` from it, `space/4` between its own children |
 | `labelGroup` | `ReactNode` | stat line, `space/2` under the heading |
 | `controls` | `ReactNode` | badges/buttons, `space/10` under the heading, `space/8` apart |
 | `actions` | `ReactNode` | right side, `space/10` apart |
+
+## Why `aside` is not just part of `heading`
+
+Anything passed as `heading` becomes part of the page's accessible name,
+because it renders inside the `<h1>`. A rig titled "RIG-01" carrying three
+member chips would announce as **"RIG-01 TK-001 TR-004 Wójcik"** — the page
+would have no stable name, and every chip label would be read before a screen
+reader user reached anything else.
+
+`aside` renders as a **sibling** of the `<h1>` on the same line, so the
+heading keeps its name and the chips keep their own. Use it for things that
+sit *next to* the title rather than being part of it: related entities as
+`EntityChip`s, a status `Badge`, a count.
+
+Its `space/4` inner gap is the chip-group spacing from the Figma header frame;
+a single child never notices it. Chips hold their width (`flex: none`) and a
+long heading is what gives way.
 
 `labelGroup` and `controls` are **mutually exclusive** — the prop types
 reject both at once.

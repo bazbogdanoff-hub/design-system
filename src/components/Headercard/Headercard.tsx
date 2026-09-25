@@ -4,6 +4,15 @@ import styles from './Headercard.module.css';
 
 type Base = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
   heading: ReactNode;
+  /** Beside the heading, and deliberately **outside** the `<h1>` — related
+   * entities as `EntityChip`s, a status `Badge`, a count. Anything put in
+   * `heading` itself becomes part of the page's accessible name, so a rig
+   * titled "RIG-01" with three member chips would announce as
+   * "RIG-01 TK-001 TR-004 Wójcik". This slot exists so that does not happen.
+   *
+   * Laid out as a row with `space/4` between children and `space/8` from the
+   * heading — the chip-group spacing from Figma. */
+  aside?: ReactNode;
   /** Right-side slot — whatever mix of a "Back" `Button`, a
    * `SegmentedControl`, a settings `IconButton`, etc. is relevant for the
    * page. Freeform; Headercard doesn't construct this itself. */
@@ -38,18 +47,26 @@ export type HeadercardProps = Base &
 /**
  * The page-header card most pages use — a `Card`-replica surface (same
  * fill/radius as `Table`'s own root) holding a fixed left side (heading +
- * an optional stat `LabelGroup` **or** a row of `controls`) and a free
+ * an optional `aside` beside it, and an optional stat `LabelGroup` **or** a
+ * row of `controls`) and a free
  * right-side slot for page actions.
  */
 export const Headercard = forwardRef<HTMLDivElement, HeadercardProps>(function Headercard(
-  { heading, labelGroup, controls, actions, className, ...rest },
+  { heading, aside, labelGroup, controls, actions, className, ...rest },
   ref,
 ) {
   const hasControls = controls != null;
   return (
     <div ref={ref} className={cn(styles.card, className)} data-has-controls={hasControls || undefined} {...rest}>
       <div className={styles.left}>
-        <h1 className={styles.heading}>{heading}</h1>
+        {aside != null ? (
+          <div className={styles.headingRow}>
+            <h1 className={styles.heading}>{heading}</h1>
+            <div className={styles.aside}>{aside}</div>
+          </div>
+        ) : (
+          <h1 className={styles.heading}>{heading}</h1>
+        )}
         {hasControls ? <div className={styles.controls}>{controls}</div> : labelGroup}
       </div>
       {actions != null && <div className={styles.actions}>{actions}</div>}

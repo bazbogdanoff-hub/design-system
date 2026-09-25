@@ -37,6 +37,26 @@
   gap: var(--space-8);
 }
 
+/* The heading and its aside share a line. Separate element rather than making
+   `.left` a row, because the label group / controls still belong underneath
+   both. */
+.headingRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  min-width: 0;
+}
+
+/* `space/4` between children is the chip-group spacing from the Figma header
+   frame. A single child is unaffected by it. `flex: none` so chips keep their
+   width and a long heading is what gives way. */
+.aside {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex: none;
+}
+
 .heading {
   margin: 0;
   font-family: var(--text-heading-md-font-family);
@@ -45,6 +65,7 @@
   line-height: var(--text-heading-md-line-height);
   letter-spacing: var(--text-heading-md-letter-spacing);
   color: var(--color-text-default);
+  min-width: 0;
 }
 
 .actions {
