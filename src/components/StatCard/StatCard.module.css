@@ -13,12 +13,9 @@
   gap: var(--space-8);
 }
 
-/* The label and the figure sat flush, on line-height alone. With the figure
-   down to 20px they needed real air between them — owner's call, 2026-09-23. */
 .content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
 }
 
 .label {
@@ -30,14 +27,20 @@
   color: var(--color-text-subtle);
 }
 
-/* heading.md (20), not heading.xl (28) — owner's call, 2026-09-23. The figure
-   still outweighs its heading.xs label, by one step rather than three. */
+/* heading.xl (28), three steps above the heading.xs label.
+
+   This was tried at heading.md (20) on 2026-09-23 and reverted on 2026-09-26.
+   Twenty is a fine figure for a card seen on its own, which is how it was
+   judged — but StatCard is the one component that nests another component's
+   values *beneath* its own headline, and StatButton's sit at heading.sm (18).
+   A two-pixel gap is not a level anyone perceives, so the headline stopped
+   reading as one. Judge this size on a dashboard, not in isolation. */
 .value {
-  font-family: var(--text-heading-md-font-family);
-  font-size: var(--text-heading-md-font-size);
-  font-weight: var(--text-heading-md-font-weight);
-  line-height: var(--text-heading-md-line-height);
-  letter-spacing: var(--text-heading-md-letter-spacing);
+  font-family: var(--text-heading-xl-font-family);
+  font-size: var(--text-heading-xl-font-size);
+  font-weight: var(--text-heading-xl-font-weight);
+  line-height: var(--text-heading-xl-line-height);
+  letter-spacing: var(--text-heading-xl-letter-spacing);
   color: var(--color-text-default);
 }
 
