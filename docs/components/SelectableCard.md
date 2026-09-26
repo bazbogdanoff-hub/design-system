@@ -17,7 +17,7 @@ Built for the Aegis task console's option cards; domain-agnostic (L2).
   checked={selectedId === option.id}
   disabled={option.superseded}
   onSelect={() => setSelectedId(option.id)}
-  trailing={<Badge …/>}       // top row, right of the radio
+  trailing={<Badge …/>}       // top row, left of the radio
   padding="md"
 >
   {/* anything — including its own Buttons */}
@@ -80,9 +80,14 @@ small": `Card` never grows a `selected` variant.
   The selected look is an **instance override** on that Card, so a
   later change to Card's fill, radius or vignette still reaches this.
 - Inside the Card: VERTICAL auto-layout, gap **12** (`space/12`):
-  1. **Top row** — HORIZONTAL, space-between, gap **8**: a `Radio` instance
-     (`size=md`; `checked` in `selected`, disabled in `disabled`) +
-     a `trailing` **SLOT** (showcase: two `Badge xs` with icons).
+  1. **Top row** — HORIZONTAL, space-between, gap **8**: a `trailing` **SLOT**
+     (showcase: two `Badge xs` with icons) + a `Radio` instance
+     (`size=md`; `checked` in `selected`, disabled in `disabled`).
+
+     Slot first, radio right — owner's call, 2026-09-26. In code the radio is
+     still written first and moved with `order`, so the DOM reads the option's
+     name before its price; Figma has no such constraint, so build it in the
+     order it is seen.
   2. **Body** — a **SLOT**, empty by default.
 - Per state:
   | `state` | Card stroke (instance override) | extra |

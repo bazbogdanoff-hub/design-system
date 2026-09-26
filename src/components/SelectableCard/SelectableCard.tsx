@@ -17,7 +17,8 @@ export interface SelectableCardProps {
   /** Fires when this card becomes the selected one — from its radio, or
    * from a click anywhere on the card that isn't on another control. */
   onSelect: () => void;
-  /** Top row, right of the radio — e.g. cost/time `Badge`s. */
+  /** Top row, **left** of the radio — e.g. cost/time `Badge`s. Rendered after
+   * the radio in the DOM and moved by `order`; see the CSS for why. */
   trailing?: ReactNode;
   children?: ReactNode;
   /** `Card` padding. `md` (default). */

@@ -32,7 +32,17 @@
   gap: var(--space-8);
 }
 
+/* Trailing sits LEFT of the radio, with the radio pushed to the card's right
+   edge by the row's space-between — owner's call, 2026-09-26.
+
+   Done with `order` rather than by reordering the JSX, so the DOM keeps the
+   radio first. The radio carries the card's accessible name, and a screen
+   reader reading "Reroute via Medyka, radio button" before "EUR 340, 6h" is
+   the right sequence; badge-first would announce the price of a thing before
+   naming it. Nothing here changes focus order, since the radio is the row's
+   only focusable element. */
 .trailing {
+  order: -1;
   display: flex;
   align-items: center;
   gap: var(--space-8);
