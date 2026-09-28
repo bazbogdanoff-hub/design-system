@@ -31,20 +31,20 @@
   transition: width 0.3s ease, background-color 0.3s ease;
   flex: none;
   /* Default stripe pitch — overridden per size below. */
-  --_stripe: 6px;
+  --_stripe: 0.375rem;
 }
 
 .track[data-size='sm'] .fill {
   height: var(--size-progress-bar-fill-sm);
-  --_stripe: 5px;
+  --_stripe: 0.3125rem;
 }
 .track[data-size='md'] .fill {
   height: var(--size-progress-bar-fill-md);
-  --_stripe: 6px;
+  --_stripe: 0.375rem;
 }
 .track[data-size='lg'] .fill {
   height: var(--size-progress-bar-fill-lg);
-  --_stripe: 8px;
+  --_stripe: 0.5rem;
   border-width: 1.5px;
 }
 

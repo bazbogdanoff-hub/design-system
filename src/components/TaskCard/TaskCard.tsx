@@ -52,7 +52,9 @@ export const TaskCard = forwardRef<HTMLDivElement, TaskCardProps>(function TaskC
   );
 
   const content = (
-    <div className={styles.shadow}>
+    /* The shadow wrapper is the surface Page sees: the Card inside it is
+       nested, so the wrapper's outer corners are styled onto both. */
+    <div className={styles.shadow} data-surface="">
       <Card padding="md" className={styles.card}>
         <div className={styles.header}>
           <IconCell size={context === 'tasks' ? 'xl' : '2xl'}>{`#${position}`}</IconCell>

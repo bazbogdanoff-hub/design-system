@@ -10,7 +10,7 @@
   flex: none;
   align-items: center;
   color: var(--color-icon-subtle);
-  font-size: 16px;
+  font-size: 1rem;
 }
 .icon > svg {
   display: block;
@@ -23,7 +23,7 @@
   flex: none;
   align-items: center;
   color: var(--color-icon-warning-strong);
-  font-size: 16px;
+  font-size: 1rem;
 }
 .alert > svg {
   display: block;

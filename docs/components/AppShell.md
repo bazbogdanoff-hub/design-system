@@ -101,8 +101,8 @@ Not DTCG tokens — constants in `src/lib/breakpoints.ts` (Tailwind's values):
 |---|---|---|
 | `sm` | 640 | |
 | `md` | 768 | |
-| `lg` | 1024 | **desktop floor** — below this the shell collapses the sidebar |
-| `xl` | 1280 | narrow-desktop check |
+| `lg` | 1024 | **desktop floor** |
+| `xl` | 1280 | `tablet` / `desktop` boundary |
 | `2xl` | 1536 | |
 
 ```ts
@@ -111,4 +111,48 @@ import { up, down } from '@bazbogdanoff/design-system';
 `@media ${down('lg')} { … }`    // (max-width: 1023px)
 ```
 
-Design screens at **1440**; spot-check **1280**.
+The shell does **not** collapse the sidebar by itself — `sidebarMode` is the
+consumer's. (An earlier note here said it did below `lg`; nothing ever
+implemented that.)
+
+### Tiers
+
+The breakpoints are vocabulary; the three tiers are what **placement**
+switches on (spans, counts, the sidebar). They never set a size.
+`useTier()` returns the live one; `tierQueries` holds the media strings.
+
+| tier | viewport | typical |
+|---|---|---|
+| `wide` | ≥1600 **and** ≥820 tall | 1920 monitor at 100% |
+| `desktop` | 1280–1599 (or ≥1600 but short) | 1366, 1440, 1536 — the Figma reference |
+| `tablet` | <1280 | iPad, small laptops |
+
+- 1536 is `desktop`, not `wide`: it is a 1920 laptop at Windows' 125%.
+- The height floor keeps a 1600×900 monitor (≈770 tall once the browser is
+  drawn) out of `wide`.
+
+### Scale — fluid, in rem
+
+**Everything is sized in rem**, and `scale.css` grows the root smoothly with
+the viewport width:
+
+| width | ≤1440 | 1600 | 1680 | 1920+ |
+|---|---|---|---|---|
+| root | 16px | 17.3px | 18px | **20px** (1.25×, the cap) |
+
+Type, spacing, radii and controls scale together, proportions intact.
+Borders, outlines, shadows and anything ≤2px stay `px`, so hairlines stay
+hairlines. The growth is added on top of `100%`, so a reader's own browser
+font size still counts.
+
+At a 16px root the rem conversion is pixel-identical to the old px values —
+verified by screenshot diff across 11 screens at 1440 and 1100 on 2026-09-27.
+
+The few places that compute geometry in JS (`BarChart`, `LineChart`,
+`Table` row fill, `Menu` placement) author their numbers at 16px and
+multiply by `useRemScale()` / `remPx()`, which update on resize. **New
+components: rem in CSS, never px, except hairlines and shadows.**
+
+Because the UI grows with the screen, a wider screen is barely roomier in rem:
+1440 is 90rem across, 1600 is 92rem, 1920 is 96rem. Placement at `wide` has
+to be judged at 1600 as well as 1920.

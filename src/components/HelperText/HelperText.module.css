@@ -28,9 +28,9 @@
 
 /* icon size mirrors Input's own leading/trailing icon scale exactly, since
    HelperText sits directly below an Input of the same size */
-.helper[data-size='sm'] .icon { font-size: 14px; }
-.helper[data-size='md'] .icon { font-size: 16px; }
-.helper[data-size='lg'] .icon { font-size: 18px; }
+.helper[data-size='sm'] .icon { font-size: 0.875rem; }
+.helper[data-size='md'] .icon { font-size: 1rem; }
+.helper[data-size='lg'] .icon { font-size: 1.125rem; }
 
 .helper[data-size='sm'] .message {
   font-family: var(--text-body-sm-font-family);

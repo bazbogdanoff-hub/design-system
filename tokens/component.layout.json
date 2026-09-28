@@ -1,6 +1,7 @@
 {
   "radius": {
-    "card": { "$value": "{radius.container}" },
+    "card": { "$value": "{radius.2xl}", "$description": "16px — owner, 2026-09-28: cards moved off radius.container (12) while modals stay on it" },
+    "card-outer": { "$value": "{radius.4xl}", "$description": "24px — a top-level card's corner that sits in a corner of the page (owner, 2026-09-28). Applied by Page at runtime; see src/lib/surfaceCorners.ts" },
     "page": { "$value": "{radius.page-container}" },
     "modal": { "$value": "{radius.container}" },
     "table": { "$value": "{radius.panel}" },
@@ -15,9 +16,9 @@
     },
     "input": { "$value": "{radius.control}" },
     "badge": {
-      "sm": { "$value": "{radius.chip}", "$description": "6 — small badge" },
-      "md": { "$value": "{radius.control}", "$description": "8 — medium badge" },
-      "lg": { "$value": "{radius.control}", "$description": "8 — large badge" }
+      "sm": { "$value": "{radius.full}", "$description": "pill (owner, 2026-09-28: was radius.chip 6) — badges are pills so status never reads as a button; xs reuses it" },
+      "md": { "$value": "{radius.full}", "$description": "pill (owner, 2026-09-28: was radius.control 8)" },
+      "lg": { "$value": "{radius.full}", "$description": "pill (owner, 2026-09-28: was radius.control 8)" }
     },
     "checkbox": {
       "$value": "{radius.sm}",

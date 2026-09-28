@@ -22,6 +22,11 @@
 }
 .page[data-layout='scroll'][data-padded] {
   padding: var(--_page-pad);
+  /* The page's own scrollbar sits inside this padding. Give its width back
+     so the visible right inset matches the left whether the bar is showing
+     or not (--_page-scrollbar is measured by useScrollbarGutter; 0 when there
+     is no bar, and never below 0 padding). */
+  padding-right: max(0px, calc(var(--_page-pad) - var(--_page-scrollbar, 0px)));
 }
 /* in scroll layout the regions are just flow blocks, no sticky */
 .page[data-layout='scroll'] .header {

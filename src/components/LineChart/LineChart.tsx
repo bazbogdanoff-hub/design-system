@@ -2,6 +2,7 @@ import { useId, useState } from 'react';
 import { ChartTooltip } from '../ChartTooltip';
 import { niceScaleRange } from '../../lib/niceScale';
 import { useContainerSize } from '../../lib/useContainerSize';
+import { useRemScale } from '../../lib/rem';
 import styles from './LineChart.module.css';
 
 export interface LineChartSeries {
@@ -37,12 +38,12 @@ export interface LineChartProps {
   'aria-label'?: string;
 }
 
-const MARKER_RADIUS = 4; // hovered/focused point dot, >=8px diameter per the skill's marker floor
-const MIN_HEIGHT = 140; // pre-measurement / degenerate-container fallback
+const MARKER_RADIUS_PX = 4; // hovered/focused point dot, >=8px diameter per the skill's marker floor
+const MIN_HEIGHT_PX = 140; // pre-measurement / degenerate-container fallback
 // Top inset leaves a little room for hover tooltips near the top edge.
 // Left 48 matches the Fuel chart’s y-label gutter; plot still uses equal
 // invisible columns for day labels + hover (line vertices stay edge→edge).
-const PADDING = { top: 20, right: 16, bottom: 24, left: 48 };
+const PADDING_PX = { top: 20, right: 16, bottom: 24, left: 48 };
 
 /** Catmull-Rom → cubic Bézier smoothing (tension 1/6) — the standard way to
  * draw a smooth curve through a set of points without overshooting them. */
@@ -120,6 +121,17 @@ export function LineChart({
   valueFormatter = (v) => String(v),
   'aria-label': ariaLabel,
 }: LineChartProps) {
+  // Every geometry constant above is authored at the 16px root and scales
+  // with it, like the rem-based CSS around the chart.
+  const s = useRemScale();
+  const MARKER_RADIUS = MARKER_RADIUS_PX * s;
+  const MIN_HEIGHT = MIN_HEIGHT_PX * s;
+  const PADDING = {
+    top: PADDING_PX.top * s,
+    right: PADDING_PX.right * s,
+    bottom: PADDING_PX.bottom * s,
+    left: PADDING_PX.left * s,
+  };
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const titleId = useId();
   const [wrapperRef, measuredSize] = useContainerSize<HTMLDivElement>();
@@ -177,7 +189,7 @@ export function LineChart({
                 y2={y}
                 className={styles.gridline}
               />
-              <text x={PADDING.left - 8} y={y} className={styles.axisLabel} textAnchor="end" dominantBaseline="middle">
+              <text x={PADDING.left - 8 * s} y={y} className={styles.axisLabel} textAnchor="end" dominantBaseline="middle">
                 {valueFormatter(tick)}
               </text>
             </g>
@@ -228,7 +240,7 @@ export function LineChart({
             <g key={datum.category}>
               <text
                 x={columnCenterX(i)}
-                y={height - 8}
+                y={height - 8 * s}
                 className={styles.axisLabel}
                 textAnchor="middle"
               >
@@ -268,7 +280,7 @@ export function LineChart({
           style={{
             left: `${(activeColumnX / intrinsicWidth) * 100}%`,
             top: `${(Math.max(Math.min(...seriesPoints.map((pts) => yOnSmoothPath(pts, activeColumnX))), 48) / height) * 100}%`,
-            transform: 'translate(-50%, calc(-100% - 12px))',
+            transform: 'translate(-50%, calc(-100% - 0.75rem))',
           }}
         />
       )}

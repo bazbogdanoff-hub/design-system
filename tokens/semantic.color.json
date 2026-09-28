@@ -98,7 +98,15 @@
       },
       "card": {
         "$value": "{color.extra.card}",
-        "$description": "Card fill — warm near-white #fcfcfc (product override, not on the Tailwind scale)"
+        "$description": "Card fill — cool near-white #f6f7f8 (product override, not on the Tailwind scale; was #fcfcfc until 2026-09-28)"
+      },
+      "card-item": {
+        "$value": "{color.extra.card-item}",
+        "$description": "A card-like element sitting on a card — StatButton, secondary Button and its derivatives. One step lighter than surface.card, so it reads above it. (Distinct from surface.raised, the white popover surface.)"
+      },
+      "recessed": {
+        "$value": "{color.extra.recessed}",
+        "$description": "A zone sunk into a card — table header band, scroll tray. One step below surface.card; moves with it."
       },
       "subtle": {
         "$value": "{color.zinc.50}",
@@ -119,12 +127,12 @@
     },
     "text": {
       "default": {
-        "$value": "{color.zinc.900}",
-        "$description": "Main headings — h1/h2, page titles"
+        "$value": "{color.zinc.950}",
+        "$description": "Main headings — h1/h2, page titles. zinc.950 since 2026-09-28 (was 900), the far end of the ladder so headings and subheadings read as two blacks."
       },
       "strong": {
-        "$value": "{color.zinc.800}",
-        "$description": "Subheadings — h3–h6, section/card titles"
+        "$value": "{color.zinc.700}",
+        "$description": "Subheadings — h3–h6, section/card titles. zinc.700 since 2026-09-28 (was 800, too close to the heading black to register as a separate level; 600 was tried first and read too light); two steps above body text (subtle, zinc.500)."
       },
       "subtle": {
         "$value": "{color.zinc.500}",

@@ -43,8 +43,8 @@
       "secondary": {
         "background": {
           "default": {
-            "$value": "{color.card.background.default}",
-            "$description": "Same glass surface as Card / StatButton — #fcfcfc, unchanged by state (hover swaps the shadow, not the fill)."
+            "$value": "{color.card-item.background}",
+            "$description": "The card-item glass surface, same as StatButton — one step lighter than the card it sits on (2026-09-28). Unchanged by state (hover swaps the shadow, not the fill)."
           }
         },
         "text": {
@@ -116,6 +116,10 @@
         "$value": "{color.border.highlight}",
         "$description": "The asymmetric glass catch (top + left, 1.5px, white). Widths + the inner-shadow are hand-tuned in the CSS, not tokens."
       },
+      "vignette": {
+        "$value": "{color.extra.vignette}",
+        "$description": "Colour of the glass inner shadow on every card-filled surface (Card, Headercard, Modal, StatButton, secondary Button, SelectableCard). Offsets and blur stay hand-tuned in each CSS; only the colour is a token, so it can follow the card fill."
+      },
       "border-active": {
         "$value": "{color.border.highlight-active}",
         "$description": "Focused/active glass border — full 1.5px primary, replaces the white top-left catch. Shared by Card, StatButton, and other glass buttons."
@@ -170,8 +174,8 @@
       "header": {
         "background": {
           "default": {
-            "$value": "{color.background.subtle}",
-            "$description": "zinc.100. Owner decided the header row only ever needs one flat color — no separate active/focused state — so this took over the value that had briefly been header.background.active; the original default (color.surface.subtle, zinc.50) was removed since it's no longer used anywhere."
+            "$value": "{color.surface.recessed}",
+            "$description": "surface.recessed since 2026-09-28 (was zinc.100, which the darker card fill caught up with). Owner decided the header row only ever needs one flat color — no separate active/focused state — so this took over the value that had briefly been header.background.active; the original default (color.surface.subtle, zinc.50) was removed since it's no longer used anywhere."
           }
         },
         "text": {
@@ -228,10 +232,20 @@
         "$value": "{color.background.overlay}"
       }
     },
+    "card-item": {
+      "background": {
+        "$value": "{color.surface.card-item}",
+        "$description": "Fill of the glass elements that sit on a card: StatButton, secondary Button (so IconButton, Filter, FilterIcon, Pagination and the selected SegmentedControl item too)."
+      },
+      "vignette": {
+        "$value": "{color.extra.card-item-vignette}",
+        "$description": "Their inner-shadow colour — the original #f0f0f0, tuned for the #fcfcfc card-item fill."
+      }
+    },
     "scrollableArea": {
       "background": {
-        "$value": "{color.background.subtle}",
-        "$description": "Recessed/inset scroll track, same intent as other inset zones"
+        "$value": "{color.surface.recessed}",
+        "$description": "Recessed/inset scroll track, same intent as other inset zones. Was color.background.subtle (zinc.100) until 2026-09-28, when the card fill darkened and zinc.100 stopped reading as recessed against it."
       },
       "shadow": {
         "$value": "{color.alpha-black.15}",
@@ -365,7 +379,7 @@
     },
     "segmentedControl": {
       "track": {
-        "background": { "$value": "{color.background.subtle}", "$description": "zinc.100 — the recessed track the pill items sit in." }
+        "background": { "$value": "{color.surface.recessed}", "$description": "The recessed track the pill items sit in — surface.recessed since 2026-09-28 (was zinc.100). The sidebar's xs switcher draws no track, so this only reaches switchers on cards." }
       },
       "item": {
         "text": {
@@ -461,7 +475,7 @@
     },
     "tableProgressStages": {
       "filled": { "$value": "{color.background.brand.default}", "$description": "Completed stage points + the connecting lines between them, and the current stage's own point fill. Adopted from the owner's pre-token 'Progress bar' component (4182:3097, renamed TableProgressStages) — was bound to the old shadcn-colors 'primary/primary'." },
-      "unfilled": { "$value": "{color.background.subtle}", "$description": "Pending (not-yet-reached) stage points + lines. Was 'shadcn colors/general/actual muted' — same zinc.100 value, now a real semantic alias." },
+      "unfilled": { "$value": "{color.surface.recessed}", "$description": "Pending (not-yet-reached) stage points + lines. surface.recessed since 2026-09-28 (was zinc.100 via background.subtle, which the darker card fill caught up with)." },
       "ring": { "$value": "{color.background.brand-subtle}", "$description": "The soft halo stroke around the current/active stage's point only — every other point/line is a flat fill with no stroke. Was 'primary/bg' (a raw light-indigo shadcn variable); this system's own equivalent 'soft brand tint' token is background.brand-subtle, the same one Badge's brand tone uses." }
     },
     "tooltip": {
@@ -487,7 +501,7 @@
       "icon": { "$value": "{color.icon.subtle}", "$description": "The separator glyph between crumbs." }
     },
     "avatar": {
-      "background": { "$value": "{color.background.subtle}", "$description": "Neutral placeholder fill behind initials — not per-user hashed color, a static reference can't model that." },
+      "background": { "$value": "{color.surface.recessed}", "$description": "Neutral placeholder fill behind initials — not per-user hashed color, a static reference can't model that. surface.recessed since 2026-09-28 (was zinc.100)." },
       "text": { "$value": "{color.text.strong}", "$description": "The initials." },
       "ring": { "$value": "{color.surface.default}", "$description": "The ring around the status dot and the action badge — separates them visually from the avatar image underneath, same idea as a real UI's cutout." },
       "status": {

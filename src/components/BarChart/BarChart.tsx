@@ -2,6 +2,7 @@ import { useId, useLayoutEffect, useRef, useState } from 'react';
 import { ChartTooltip } from '../ChartTooltip';
 import { niceScale } from '../../lib/niceScale';
 import { useContainerSize } from '../../lib/useContainerSize';
+import { useRemScale } from '../../lib/rem';
 import styles from './BarChart.module.css';
 
 export interface BarChartSeries {
@@ -32,17 +33,17 @@ export interface BarChartProps {
   'aria-label'?: string;
 }
 
-const GAP = 2; // surface-color gap between stacked segments (marks-and-anatomy.md)
-const CORNER = 4; // rounded data-end radius
-const MAX_BAR_THICKNESS = 24;
-const MIN_HEIGHT = 140; // pre-measurement / degenerate-container fallback
+const GAP_PX = 2; // surface-color gap between stacked segments (marks-and-anatomy.md)
+const CORNER_PX = 4; // rounded data-end radius
+const MAX_BAR_THICKNESS_PX = 24;
+const MIN_HEIGHT_PX = 140; // pre-measurement / degenerate-container fallback
 // Top inset leaves a little room for hover tooltips above tall bars.
 // `left` is only the floor — the real left inset is measured from the widest
 // axis label (see `padLeft`). A fixed 24 was enough for single-digit counts
 // and cut four-figure money labels off the left edge of the viewBox.
-const PADDING = { top: 20, right: 16, bottom: 24, left: 24 };
+const PADDING_PX = { top: 20, right: 16, bottom: 24, left: 24 };
 /** Distance from a label's right edge to the axis. */
-const AXIS_LABEL_GAP = 8;
+const AXIS_LABEL_GAP_PX = 8;
 
 /** A `<rect>`-equivalent path with only the top two corners rounded — the
  * stack's outer end is rounded, its baseline end stays square. */
@@ -74,6 +75,20 @@ export function BarChart({
   valueFormatter = (v) => String(v),
   'aria-label': ariaLabel,
 }: BarChartProps) {
+  // Every geometry constant above is authored at the 16px root and scales
+  // with it, like the rem-based CSS around the chart.
+  const s = useRemScale();
+  const GAP = GAP_PX * s;
+  const CORNER = CORNER_PX * s;
+  const MAX_BAR_THICKNESS = MAX_BAR_THICKNESS_PX * s;
+  const MIN_HEIGHT = MIN_HEIGHT_PX * s;
+  const AXIS_LABEL_GAP = AXIS_LABEL_GAP_PX * s;
+  const PADDING = {
+    top: PADDING_PX.top * s,
+    right: PADDING_PX.right * s,
+    bottom: PADDING_PX.bottom * s,
+    left: PADDING_PX.left * s,
+  };
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const axisRef = useRef<SVGGElement>(null);
   const [measuredLabel, setMeasuredLabel] = useState(0);
@@ -191,7 +206,7 @@ export function BarChart({
               {segments}
               <text
                 x={x + barWidth / 2}
-                y={height - 8}
+                y={height - 8 * s}
                 className={styles.axisLabel}
                 textAnchor="middle"
               >
@@ -238,7 +253,7 @@ export function BarChart({
             // chart's own top edge — PADDING.top already reserves the
             // typical headroom, this is the safety net for tall tooltips
             top: `${(Math.max(yFor(activeTotal), 48) / height) * 100}%`,
-            transform: 'translate(-50%, calc(-100% - 8px))',
+            transform: 'translate(-50%, calc(-100% - 0.5rem))',
           }}
         />
       )}

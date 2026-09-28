@@ -32,26 +32,27 @@ axes.
 
 ## Appearance
 
-Per **`size`** (padding + gap bind `space/*`; radius `radius/badge/<size>` — 6 for
-`xs`/`sm`, 8 for `md`/`lg`). With `icon="hasIcon"`, left corners use `radius/5xl`
-(32); right corners stay the size radius:
+**Every badge is a pill** (owner, 2026-09-28): `radius/badge/<size>` →
+`radius/full` at every size, so status never reads as a button. `md` and `lg`
+get extra horizontal padding (+4 and +6 — the space scale has no 14) since a
+pill needs about half its height at the sides; `xs` and `sm` keep their
+original padding (the extra read too wide at those sizes). Heights are
+unchanged. `icon="hasIcon"` no longer changes the shape (it used to give
+the left side a 32 radius); the prop remains until the Figma master drops it.
 
-| `size` | label style | padding | gap | radius (`default`) | radius (`hasIcon`) | icon | height |
-|---|---|---|---|---|---|---|---|
-| `xs` | `text/label/xs` — 12 / bold / **wide tracking** | `space/4` vertical, `space/6` horizontal | `space/4` (4) | `radius/badge/sm` — 6 | 32 / 6 / 6 / 32 | 12 (1em) | ~22 |
-| `sm` | `text/label/sm` — 13 / bold | `space/6` (6, all sides) | `space/4` (4) | `radius/badge/sm` — 6 | 32 / 6 / 6 / 32 | 13 (1em) | ~27 |
-| `md` | `text/label/md` — 14 / bold | `space/8` (8, all sides) | `space/6` (6) | `radius/badge/md` — 8 | 32 / 8 / 8 / 32 | 14 (1em) | ~32 |
-| `lg` | `text/label/lg` — 16 / bold | `space/10` (10, all sides) | `space/6` (6) | `radius/badge/lg` — 8 | 32 / 8 / 8 / 32 | 16 (1em) | ~38 |
+| `size` | label style | padding (vertical / horizontal) | gap | radius | icon | height |
+|---|---|---|---|---|---|---|
+| `xs` | `text/label/xs` — 12 / bold / **wide tracking** | `space/4` / `space/6` | `space/4` (4) | pill | 12 (1em) | ~22 |
+| `sm` | `text/label/sm` — 13 / bold | `space/6` / `space/6` | `space/4` (4) | pill | 13 (1em) | ~27 |
+| `md` | `text/label/md` — 14 / bold | `space/8` / `space/12` | `space/6` (6) | pill | 14 (1em) | ~32 |
+| `lg` | `text/label/lg` — 16 / bold | `space/10` / `space/16` | `space/6` (6) | pill | 16 (1em) | ~37 |
 
-`xs` is the odd size out in two ways, both because it composes `text/label/xs`
-specifically: its padding is **asymmetric** (4 vertical / 6 horizontal, not one
-uniform value like every other size), and it's the only size where the CSS
+`xs` is the odd size out because it composes `text/label/xs` specifically: it's the only size where the CSS
 overrides `letter-spacing` in addition to `font-size` — `label/xs` is uniquely
 `wide`-tracked in this system's type scale; `sm`/`md`/`lg` are all `normal`, so
 they get away with a font-size-only override against the shared base rule.
-`xs` also doesn't get its own radius token — Figma bound it to the existing
-`radius/badge/sm` variable (identical 6px value) rather than create a parallel
-`radius/badge/xs`, and the code mirrors that rather than inventing one.
+`xs` also doesn't get its own radius token — it reuses `radius/badge/sm`
+(now a pill like the rest), as Figma bound it.
 
 Per **`tone`** (each pair is a component token → semantic `-subtle` / status text):
 
@@ -79,8 +80,9 @@ line-height; no trim, no hardcoded value).
 
 - Component set **`Badge`** — variant props `tone` (6, including `warning-strong`)
   × `size` (4: `xs`/`sm`/`md`/`lg`) × `icon` (`default` / `hasIcon`) = 48 variants.
-- `icon="hasIcon"` shows the leading icon instance; left corners `radius/5xl` (32),
-  right corners stay `radius/badge/<size>`.
+- `icon="hasIcon"` shows the leading icon instance. Since 2026-09-28 every badge
+  is a pill, so this variant no longer changes the corners — the Figma master
+  should drop the separate left radius (and can merge the two variants).
 - Auto-layout HORIZONTAL, hug × hug, centre align. Fill → `color/badge/<tone>/background`,
   radius → size (or asymmetric for `hasIcon`), label style `text/label/<size>` + colour
   `color/badge/<tone>/text`, icon vector fill → `color/badge/<tone>/text`.

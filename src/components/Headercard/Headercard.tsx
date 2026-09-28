@@ -57,7 +57,7 @@ export const Headercard = forwardRef<HTMLDivElement, HeadercardProps>(function H
 ) {
   const hasControls = controls != null;
   return (
-    <div ref={ref} className={cn(styles.card, className)} data-has-controls={hasControls || undefined} {...rest}>
+    <div ref={ref} className={cn(styles.card, className)} data-has-controls={hasControls || undefined} data-surface="" {...rest}>
       <div className={styles.left}>
         {aside != null ? (
           <div className={styles.headingRow}>

@@ -17,9 +17,18 @@
   grid-column: var(--start, auto) / span var(--span, var(--grid-cols, var(--page-cols, 16)));
 }
 
-/* below lg (sidebar collapse / narrow desktop) use span-sm if given */
-@media (max-width: 1023px) {
+/* Tier overrides. Literal copies of `tierQueries` in lib/breakpoints.ts —
+   CSS cannot read the constant, so change one, change both. `--start` is
+   dropped: a start column authored for 16 desktop columns is wrong at a
+   different span. */
+@media (max-width: 1279px) {
   .item {
     grid-column: span var(--span-sm, var(--span, var(--grid-cols, var(--page-cols, 16))));
+  }
+}
+
+@media (min-width: 1600px) and (min-height: 820px) {
+  .item {
+    grid-column: var(--start, auto) / span var(--span-wide, var(--span, var(--grid-cols, var(--page-cols, 16))));
   }
 }

@@ -16,8 +16,8 @@
 
 .swatch {
   flex: none;
-  width: 10px;
-  height: 10px;
+  width: 0.625rem;
+  height: 0.625rem;
   border-radius: 2px; /* hand-tuned, not a token — a rect mirroring the bar/area mark, too small for any semantic radius step */
 }
 

@@ -16,7 +16,7 @@
      the truck needs 25px above the band and its shadow another 7. The owner
      set it to 48, so there is deliberate air above the truck as well. */
   overflow: visible;
-  padding-top: 48px;
+  padding-top: 3rem;
 }
 
 .lane {
@@ -38,7 +38,7 @@
   align-items: center;
   align-self: flex-start;
   /* matches the pin, so the bar centres on the pin's midline */
-  height: 36px;
+  height: 2.25rem;
   min-width: 0;
   padding-inline: var(--space-4);
 }
@@ -51,7 +51,7 @@
 .line {
   position: relative;
   width: 100%;
-  height: 14px;
+  height: 0.875rem;
   border-radius: var(--radius-full);
   background: var(--color-button-secondary-background-default);
   /* No inner shadow on the unreached state — Figma has the secondary `#f0f0f0`
@@ -87,10 +87,10 @@
   --_route-marker-catch: var(--color-button-primary-border-default);
   position: absolute;
   bottom: 100%;
-  margin-bottom: -7px;
+  margin-bottom: -0.4375rem;
   transform: translateX(-50%);
-  width: 37px;
-  height: 32px;
+  width: 2.3125rem;
+  height: 2rem;
   color: var(--color-button-primary-background-default);
   pointer-events: none;
 }
@@ -109,8 +109,8 @@
    why it came out small. */
 .marker > svg {
   position: absolute;
-  top: -7px;
-  left: -8px;
+  top: -0.4375rem;
+  left: -0.5rem;
   display: block;
 }
 
@@ -127,7 +127,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-6);
-  width: 36px;
+  width: 2.25rem;
 }
 
 .pin {
@@ -135,10 +135,10 @@
   flex: none;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: var(--radius-full);
-  font-size: 16px;
+  font-size: 1rem;
   /* unreached: the secondary Button surface, without its inner shadow — same
      call as `.line` above. */
   background: var(--color-button-secondary-background-default);
@@ -171,7 +171,7 @@
   flex-direction: column;
   align-items: center;
   width: max-content;
-  max-width: 120px;
+  max-width: 7.5rem;
   text-align: center;
 }
 

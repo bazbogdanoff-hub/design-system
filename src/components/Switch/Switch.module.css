@@ -40,9 +40,9 @@
   transform: translateX(var(--thumb-size));
 }
 
-.switch[data-size='sm'] { width: 32px; height: 18px; --thumb-size: 14px; }
-.switch[data-size='md'] { width: 40px; height: 22px; --thumb-size: 18px; }
-.switch[data-size='lg'] { width: 48px; height: 26px; --thumb-size: 22px; }
+.switch[data-size='sm'] { width: 2rem; height: 1.125rem; --thumb-size: 0.875rem; }
+.switch[data-size='md'] { width: 2.5rem; height: 1.375rem; --thumb-size: 1.125rem; }
+.switch[data-size='lg'] { width: 3rem; height: 1.625rem; --thumb-size: 1.375rem; }
 
 .switch .thumb {
   width: var(--thumb-size);

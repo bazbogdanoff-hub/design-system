@@ -47,7 +47,7 @@
   /* the xs pill's own base corner — not on the primitive radius scale,
      a deliberate per-component exception (same pattern documented on
      component.color.json's `sidebar` block for this component's colors) */
-  border-radius: 3px;
+  border-radius: 0.1875rem;
 }
 .item[data-tone][data-position='start'] {
   border-top-left-radius: var(--radius-panel);
@@ -95,7 +95,7 @@
 /* size cascades from the nearest SegmentedControl ancestor's data-size, same
    ancestor-context pattern MenuRow/TableRow use */
 [data-size='sm'] .item {
-  height: 28px;
+  height: 1.75rem;
   padding-inline: var(--space-6);
   border-radius: var(--radius-segmented-control-sm);
   font-family: var(--text-label-sm-font-family);
@@ -106,7 +106,7 @@
 }
 
 [data-size='md'] .item {
-  height: 32px;
+  height: 2rem;
   padding-inline: var(--space-8);
   border-radius: var(--radius-segmented-control-md);
   font-family: var(--text-label-md-font-family);
@@ -117,7 +117,7 @@
 }
 
 [data-size='lg'] .item {
-  height: 36px;
+  height: 2.25rem;
   padding-inline: var(--space-8);
   border-radius: var(--radius-segmented-control-lg);
   font-family: var(--text-label-lg-font-family);
@@ -131,10 +131,10 @@
    (SegmentedControl sizes its xs track itself; items don't set a width). */
 [data-size='xs'] .item {
   flex: 1 1 0;
-  height: 24px;
+  height: 1.5rem;
   padding-inline: 0;
 }
 
 [data-size='xs'][data-collapsed='true'] .item {
-  height: 16px;
+  height: 1rem;
 }

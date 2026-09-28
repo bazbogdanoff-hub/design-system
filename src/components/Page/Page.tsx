@@ -1,5 +1,7 @@
-import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
+import { forwardRef, useCallback, useRef, type HTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { useSurfaceCorners } from '../../lib/surfaceCorners';
+import { useScrollbarGutter } from '../../lib/scrollbarGutter';
 import styles from './Page.module.css';
 
 export type PageLayout = 'scroll' | 'fixed';
@@ -33,9 +35,25 @@ const PageRoot = forwardRef<HTMLDivElement, PageProps>(function Page(
   { layout = 'scroll', padded = true, className, children, ...rest },
   ref,
 ) {
+  // The page decides which of its cards' corners are outer (24) — see
+  // lib/surfaceCorners.ts. It needs its own handle on the element as well as
+  // passing the caller's ref through.
+  const localRef = useRef<HTMLDivElement | null>(null);
+  useSurfaceCorners(localRef);
+  // Its own scrollbar comes out of the right padding, not on top of it.
+  useScrollbarGutter(localRef);
+  const setRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      localRef.current = node;
+      if (typeof ref === 'function') ref(node);
+      else if (ref) ref.current = node;
+    },
+    [ref],
+  );
+
   return (
     <div
-      ref={ref}
+      ref={setRef}
       className={cn(styles.page, className)}
       data-layout={layout}
       data-padded={layout === 'scroll' && padded ? '' : undefined}

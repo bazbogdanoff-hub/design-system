@@ -4,8 +4,8 @@
   background: transparent;
   box-sizing: border-box;
   position: relative;
-  height: var(--table-row-height, 68px);
-  max-height: 68px;
+  height: var(--table-row-height, 4.25rem);
+  max-height: 4.25rem;
   overflow: hidden;
 }
 
@@ -52,9 +52,9 @@
 .cell[data-width='checkbox'],
 .cell[data-width='radio'],
 .cell[data-width='icon'] {
-  width: 48px;
-  min-width: 48px;
-  max-width: 48px;
+  width: 3rem;
+  min-width: 3rem;
+  max-width: 3rem;
 }
 
 .fill {

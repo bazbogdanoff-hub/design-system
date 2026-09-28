@@ -22,7 +22,7 @@
   outline: none;
   box-shadow:
     inset 0 0 0 1px var(--color-border-brand),
-    inset 4px 4px 16px 0 #f0f0f0;
+    inset 4px 4px 16px 0 var(--color-card-vignette);
 }
 
 .top {

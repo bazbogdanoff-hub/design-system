@@ -1,0 +1,132 @@
+[
+ {
+  "name": "text/overline",
+  "from": "ExtraBold",
+  "to": "font/weight/bold"
+ },
+ {
+  "name": "text/caption",
+  "from": "Medium",
+  "to": "font/weight/regular"
+ },
+ {
+  "name": "text/display/xl",
+  "from": "Bold",
+  "to": "font/weight/medium"
+ },
+ {
+  "name": "text/display/lg",
+  "from": "Bold",
+  "to": "font/weight/medium"
+ },
+ {
+  "name": "text/display/md",
+  "from": "Bold",
+  "to": "font/weight/medium"
+ },
+ {
+  "name": "text/heading/xl",
+  "from": "Bold",
+  "to": "font/weight/medium"
+ },
+ {
+  "name": "text/heading/lg",
+  "from": "SemiBold",
+  "to": "font/weight/medium"
+ },
+ {
+  "name": "text/heading/md",
+  "from": "SemiBold",
+  "to": "font/weight/medium"
+ },
+ {
+  "name": "text/heading/sm",
+  "from": "SemiBold",
+  "to": "font/weight/medium"
+ },
+ {
+  "name": "text/heading/xs",
+  "from": "SemiBold",
+  "to": "font/weight/medium"
+ },
+ {
+  "name": "text/body/lg",
+  "from": "Medium",
+  "to": "font/weight/regular"
+ },
+ {
+  "name": "text/body/md",
+  "from": "Medium",
+  "to": "font/weight/regular"
+ },
+ {
+  "name": "text/body/sm",
+  "from": "Medium",
+  "to": "font/weight/regular"
+ },
+ {
+  "name": "text/body/xs",
+  "from": "Medium",
+  "to": "font/weight/regular"
+ },
+ {
+  "name": "text/body/2xs",
+  "from": "Medium",
+  "to": "font/weight/regular"
+ },
+ {
+  "name": "text/body/xl",
+  "from": "Medium",
+  "to": "font/weight/regular"
+ },
+ {
+  "name": "text/label/xl",
+  "from": "SemiBold",
+  "to": "font/weight/medium"
+ },
+ {
+  "name": "text/label/lg",
+  "from": "SemiBold",
+  "to": "font/weight/medium"
+ },
+ {
+  "name": "text/label/md",
+  "from": "SemiBold",
+  "to": "font/weight/medium"
+ },
+ {
+  "name": "text/label/sm",
+  "from": "SemiBold",
+  "to": "font/weight/medium"
+ },
+ {
+  "name": "text/label/xs",
+  "from": "SemiBold",
+  "to": "font/weight/medium"
+ },
+ {
+  "name": "text/badge-label/xs",
+  "from": "SemiBold",
+  "to": "font/weight/medium"
+ },
+ {
+  "name": "text/badge-label/sm",
+  "from": "SemiBold",
+  "to": "font/weight/medium"
+ },
+ {
+  "name": "text/badge-label/md",
+  "from": "SemiBold",
+  "to": "font/weight/medium"
+ },
+ {
+  "name": "text/badge-label/lg",
+  "from": "SemiBold",
+  "to": "font/weight/medium"
+ },
+ {
+  "name": "text/badge-label/xl",
+  "from": "SemiBold",
+  "to": "font/weight/medium"
+ }
+]

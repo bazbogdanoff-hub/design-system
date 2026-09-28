@@ -87,9 +87,9 @@
   width: 1em;
   height: 1em;
 }
-.field[data-size='sm'] .icon { font-size: 14px; }
-.field[data-size='md'] .icon { font-size: 16px; }
-.field[data-size='lg'] .icon { font-size: 18px; }
+.field[data-size='sm'] .icon { font-size: 0.875rem; }
+.field[data-size='md'] .icon { font-size: 1rem; }
+.field[data-size='lg'] .icon { font-size: 1.125rem; }
 
 /* prepend / append text — a fixed, non-editable, subtly-coloured annotation
    (a unit, a protocol prefix) sharing the field's own type scale, never the

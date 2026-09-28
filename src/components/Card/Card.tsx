@@ -25,7 +25,7 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
 
 /**
  * A surface that groups related content — a padded box, nothing more.
- * Always the glass look: #fcfcfc fill, 16px radius, an asymmetric white catch on
+ * Always the glass look: #f6f7f8 fill, 16px radius, an asymmetric white catch on
  * the top + left edges, and a soft inner "vignette xs" shadow.
  *
  * Sections, dividers, footers, clickable behaviour: the consumer's composition,
@@ -38,6 +38,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
   const Comp = asChild ? Slot : 'div';
   return (
     <Comp ref={ref} className={cn(styles.card, className)} data-padding={padding}
-      data-elevated={elevated || undefined} {...rest} />
+      data-elevated={elevated || undefined} data-surface="" {...rest} />
   );
 });

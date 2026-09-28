@@ -2,7 +2,7 @@
    Dimensions (sidebar width, gutter, content padding, radius) are set here —
    promote to size/app/* tokens later if they need to vary. */
 .shell {
-  --app-sidebar-width: 64px;
+  --app-sidebar-width: 4rem;
 
   display: grid;
   grid-template-columns: var(--app-sidebar-width) 1fr;
@@ -17,7 +17,7 @@
      the real `Sidebar` component; corrected to match its actual built
      width now that it exists (64px collapsed / 180px expanded, confirmed
      in Figma and in the React port). */
-  --app-sidebar-width: 180px;
+  --app-sidebar-width: 11.25rem;
 }
 
 /* the 64px/180px rail — empty dark bar by default; consumer fills it.

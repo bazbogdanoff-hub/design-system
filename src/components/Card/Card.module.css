@@ -8,11 +8,18 @@
   /* Glass — matches the Figma "Card" effect stack; hand-tuned, NOT tokens.
      Both insets so they're layout-neutral (Figma strokesIncludedInLayout: false):
      1) 1.5px white catch, top + left only  -> color/card/border
-     2) "vignette xs" inner shadow          -> offset 4/4, blur 16, #f0f0f0 */
+     2) "vignette xs" inner shadow          -> offset 4/4, blur 16, color/card/vignette */
   box-shadow:
     inset 1.5px 1.5px 0 0 var(--color-card-border),
-    inset 4px 4px 16px 0 #f0f0f0;
+    inset 4px 4px 16px 0 var(--color-card-vignette);
 }
+
+/* Outer corners — set by Page (lib/surfaceCorners.ts) on a top-level card
+   whose corner sits in a corner of the page. The rest keep radius.card. */
+.card[data-corner-outer~='tl'] { border-top-left-radius: var(--radius-card-outer); }
+.card[data-corner-outer~='tr'] { border-top-right-radius: var(--radius-card-outer); }
+.card[data-corner-outer~='bl'] { border-bottom-left-radius: var(--radius-card-outer); }
+.card[data-corner-outer~='br'] { border-bottom-right-radius: var(--radius-card-outer); }
 
 /* Floating over something instead of sitting in a page. The glass insets are
    repeated on purpose: box-shadow is one property, so a consumer who adds a
@@ -21,7 +28,7 @@
 .card[data-elevated] {
   box-shadow:
     inset 1.5px 1.5px 0 0 var(--color-card-border),
-    inset 4px 4px 16px 0 #f0f0f0,
+    inset 4px 4px 16px 0 var(--color-card-vignette),
     0 4px 8px 0 var(--color-alpha-black-15),
     0 12px 32px 0 var(--color-alpha-black-25);
 }

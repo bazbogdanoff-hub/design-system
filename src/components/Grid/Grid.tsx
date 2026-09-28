@@ -14,8 +14,10 @@ export interface GridProps extends HTMLAttributes<HTMLDivElement> {
 export interface GridItemProps extends HTMLAttributes<HTMLDivElement> {
   /** Columns to span, 1–`columns`. Default = full width. */
   span?: number;
-  /** Columns to span below `lg` (sidebar-collapse / narrow). Optional. */
+  /** Columns to span at the `tablet` tier (below 1280). Defaults to `span`. */
   spanSm?: number;
+  /** Columns to span at the `wide` tier (≥1600 × ≥820). Defaults to `span`. */
+  spanWide?: number;
   /** 1-based start column. */
   start?: number;
 }
@@ -36,7 +38,7 @@ const GridRoot = forwardRef<HTMLDivElement, GridProps>(function Grid(
 });
 
 const GridItem = forwardRef<HTMLDivElement, GridItemProps>(function GridItem(
-  { span, spanSm, start, className, style, ...rest },
+  { span, spanSm, spanWide, start, className, style, ...rest },
   ref,
 ) {
   return (
@@ -47,6 +49,7 @@ const GridItem = forwardRef<HTMLDivElement, GridItemProps>(function GridItem(
         {
           '--span': span,
           '--span-sm': spanSm ?? span,
+          '--span-wide': spanWide ?? span,
           '--start': start,
           ...style,
         } as CSSProperties

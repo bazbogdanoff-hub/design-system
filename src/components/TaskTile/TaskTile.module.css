@@ -1,0 +1,87 @@
+/* White — the second surface layer on a card (owner, 2026-09-28). Flat: no
+   edge and no shadow (owner, same day) — the white fill alone separates it
+   from the card. */
+.tile {
+  box-sizing: border-box;
+  min-width: 0;
+  background: var(--color-surface-default);
+  border-radius: var(--radius-panel);
+}
+
+/* ---- card ------------------------------------------------------------------ */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  height: 100%;
+  padding: var(--space-16);
+}
+
+/* badge left, action right, both hanging from the top */
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-8);
+  flex: none;
+}
+
+/* takes whatever height the tile has left */
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--text-heading-xs-font-family);
+  font-size: var(--text-heading-xs-font-size);
+  font-weight: var(--text-heading-xs-font-weight);
+  line-height: var(--text-heading-xs-line-height);
+  letter-spacing: var(--text-heading-xs-letter-spacing);
+  color: var(--color-text-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.description {
+  margin: 0;
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--text-body-sm-font-weight);
+  line-height: var(--text-body-sm-line-height);
+  letter-spacing: var(--text-body-sm-letter-spacing);
+  color: var(--color-text-subtle);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+/* ---- row ------------------------------------------------------------------- */
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  padding: var(--space-10);
+}
+
+.rowTitle {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--text-body-md-font-family);
+  font-size: var(--text-body-md-font-size);
+  font-weight: var(--text-body-md-font-weight);
+  line-height: var(--text-body-md-line-height);
+  color: var(--color-text-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

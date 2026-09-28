@@ -8,7 +8,7 @@
   padding: var(--space-8) var(--space-12);
   border: 0;
   border-radius: var(--radius-control);
-  background: var(--color-card-background-default);
+  background: var(--color-card-item-background);
   cursor: pointer;
   text-align: left;
   color: inherit;
@@ -17,11 +17,11 @@
 
   /* glass — "Viginette/2xs" from Figma, hand-tuned (NOT tokens):
      1) 1.5px white catch, top + left  → color/card/border
-     2) inner vignette  → inset 2px 2px 12px #f0f0f0
+     2) inner vignette  → inset 2px 2px 12px var(--color-card-item-vignette)
      3) drop shadow     → 0 1px 8px rgba(0,0,0,.20) */
   box-shadow:
     inset 1.5px 1.5px 0 0 var(--color-card-border),
-    inset 2px 2px 12px 0 #f0f0f0,
+    inset 2px 2px 12px 0 var(--color-card-item-vignette),
     0 1px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -36,7 +36,7 @@
 .stat:hover:not(:disabled) {
   box-shadow:
     inset 1.5px 1.5px 0 0 var(--color-card-border),
-    inset 2px 2px 12px 0 #f0f0f0,
+    inset 2px 2px 12px 0 var(--color-card-item-vignette),
     0 2px 12px 0 rgba(0, 0, 0, 0.25);
 }
 
@@ -47,7 +47,7 @@
   outline: none;
   box-shadow:
     inset 0 0 0 1.5px var(--color-card-border-active),
-    inset 2px 2px 12px 0 #f0f0f0,
+    inset 2px 2px 12px 0 var(--color-card-item-vignette),
     0 1px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -102,7 +102,7 @@
 
 .arrow {
   flex: none;
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   color: var(--color-text-subtle);
 }

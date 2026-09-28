@@ -17,7 +17,11 @@
   --color-alpha-black-70: rgba(0, 0, 0, 0.7);
   --color-alpha-black-80: rgba(0, 0, 0, 0.8);
   --color-alpha-black-90: rgba(0, 0, 0, 0.9);
-  --color-extra-card: #fcfcfc; /** warm near-white card fill — product override */
+  --color-extra-card: #f6f7f8; /** cool near-white card fill — product override (owner, 2026-09-28: was #fcfcfc; darker so #ffffff items read on it, L* 97.2 vs 99.0) */
+  --color-extra-recessed: #eeeff1; /** recessed zone inside a card — table header band, scroll tray. ≈ 2.8 L* below the card fill, the step zinc.100 had against the old #fcfcfc card */
+  --color-extra-card-item: #fcfcfc; /** fill of a card-like element sitting on a card — one step lighter than the card (the pre-2026-09-28 card fill) */
+  --color-extra-card-item-vignette: #f0f0f0; /** glass inner-shadow colour for card items — the original vignette, tuned for the #fcfcfc fill */
+  --color-extra-vignette: #eaebed; /** glass inner-shadow colour on card-filled surfaces. Was a raw #f0f0f0 in each component's CSS; darkened with the card so the edges keep their depth */
   --color-button-primary-border-default: #aab1f9; /** Glass catch on the coloured primary surface — hand-tuned, not on the palette. */
   --color-button-primary-border-hover: #7a85f8;
   --color-button-primary-shadow-default: #6570e1; /** Inner-shadow colour for the 'Viginette primary 2xs' effect style (hand-tuned). */
@@ -369,6 +373,7 @@
   --color-brand-900: var(--color-indigo-900);
   --color-brand-950: var(--color-indigo-950);
   --color-button-primary-border-active: var(--color-white); /** Full 1.5px white border on focus / active — high contrast on the brand fill (parallels color.button.secondary.border.active). */
+  --color-card-vignette: var(--color-extra-vignette); /** Colour of the glass inner shadow on every card-filled surface (Card, Headercard, Modal, StatButton, secondary Button, SelectableCard). Offsets and blur stay hand-tuned in each CSS; only the colour is a token, so it can follow the card fill. */
   --color-badge-neutral-glow: var(--color-zinc-300);
   --color-badge-neutral-shadow: var(--color-zinc-400); /** One step darker than glow — neutral has no hue to lean on, so the inner shadow needs the extra step to read as depth rather than just a flat gray smear. */
   --color-badge-neutral-text: var(--color-zinc-600);
@@ -386,6 +391,7 @@
   --color-badge-danger-text: var(--color-rose-600);
   --color-table-row-background-danger: var(--color-rose-50); /** Deliberate primitive alias, one step paler than color.background.danger-subtle (rose.100) — owner's explicit choice for a low-contrast row wash, not the louder banner-style danger-subtle tone. */
   --color-table-row-background-success: var(--color-emerald-50); /** Deliberate primitive alias, one step paler than color.background.success-subtle (emerald.100) — same reasoning as row.background.danger. */
+  --color-card-item-vignette: var(--color-extra-card-item-vignette); /** Their inner-shadow colour — the original #f0f0f0, tuned for the #fcfcfc card-item fill. */
   --color-scrollable-area-shadow: var(--color-alpha-black-15); /** Inner-shadow tint at the scroll edges. Was a raw #00000026 before the alpha-black primitive ramp existed — now a proper alias, same value (15%). */
   --color-switch-thumb: var(--color-white); /** Always a plain white circle regardless of track state — the track color alone carries on/off/disabled. */
   --color-checkbox-icon-default: var(--color-white); /** The checkmark (checked) / dash (indeterminate) glyph — white against the brand fill. Was a flat `checkbox.icon` leaf before React needed a disabled variant; the Figma master (4182:3616) still binds its glyph vectors to the old flat `color/checkbox/icon` name for every state, disabled included — a real Figma↔code drift, not fixed here (bridge is read-only for this task). Worth a follow-up: rename the Figma variable to `color/checkbox/icon/default` and add a sibling `color/checkbox/icon/disabled` bound onto the disabled+checked/indeterminate master variants. */
@@ -439,13 +445,15 @@
   --color-background-info: var(--color-blue-600); /** Solid info badge */
   --color-background-info-subtle: var(--color-blue-50); /** Info banner fill */
   --color-surface-default: var(--color-white); /** Panel, modal, menu, sheet */
-  --color-surface-card: var(--color-extra-card); /** Card fill — warm near-white #fcfcfc (product override, not on the Tailwind scale) */
+  --color-surface-card: var(--color-extra-card); /** Card fill — cool near-white #f6f7f8 (product override, not on the Tailwind scale; was #fcfcfc until 2026-09-28) */
+  --color-surface-card-item: var(--color-extra-card-item); /** A card-like element sitting on a card — StatButton, secondary Button and its derivatives. One step lighter than surface.card, so it reads above it. (Distinct from surface.raised, the white popover surface.) */
+  --color-surface-recessed: var(--color-extra-recessed); /** A zone sunk into a card — table header band, scroll tray. One step below surface.card; moves with it. */
   --color-surface-subtle: var(--color-zinc-50); /** Nested surface, table header row */
   --color-surface-raised: var(--color-white); /** Surface carrying an elevation shadow: popover, dropdown */
   --color-surface-sunken: var(--color-zinc-100); /** Wells, code blocks, inset track */
   --color-surface-inverse: var(--color-zinc-900); /** The one surface that stays dark regardless of theme — Tooltip's fill. */
-  --color-text-default: var(--color-zinc-900); /** Main headings — h1/h2, page titles */
-  --color-text-strong: var(--color-zinc-800); /** Subheadings — h3–h6, section/card titles */
+  --color-text-default: var(--color-zinc-950); /** Main headings — h1/h2, page titles. zinc.950 since 2026-09-28 (was 900), the far end of the ladder so headings and subheadings read as two blacks. */
+  --color-text-strong: var(--color-zinc-700); /** Subheadings — h3–h6, section/card titles. zinc.700 since 2026-09-28 (was 800, too close to the heading black to register as a separate level; 600 was tried first and read too light); two steps above body text (subtle, zinc.500). */
   --color-text-subtle: var(--color-zinc-500); /** Body text — the default reading colour for paragraphs and UI copy */
   --color-text-muted: var(--color-zinc-400); /** Muted / de-emphasised text — hints, placeholders, timestamps, captions */
   --color-text-disabled: var(--color-zinc-300); /** Disabled control text */
@@ -496,6 +504,11 @@
   --color-category-emerald-background: var(--color-emerald-700);
   --color-category-blue-text: var(--color-blue-700); /** Kept non-adjacent to brand/indigo (its nearest neighbor — the two are easily confused at matching shades). */
   --color-category-blue-background: var(--color-blue-700);
+  --radius-card: var(--radius-2xl); /** 16px — owner, 2026-09-28: cards moved off radius.container (12) while modals stay on it */
+  --radius-card-outer: var(--radius-4xl); /** 24px — a top-level card's corner that sits in a corner of the page (owner, 2026-09-28). Applied by Page at runtime; see src/lib/surfaceCorners.ts */
+  --radius-badge-sm: var(--radius-full); /** pill (owner, 2026-09-28: was radius.chip 6) — badges are pills so status never reads as a button; xs reuses it */
+  --radius-badge-md: var(--radius-full); /** pill (owner, 2026-09-28: was radius.control 8) */
+  --radius-badge-lg: var(--radius-full); /** pill (owner, 2026-09-28: was radius.control 8) */
   --radius-checkbox: var(--radius-sm); /** 4, flat across all sizes — a checkbox's corner rounding doesn't scale with its box size, same reasoning as radius.input staying flat across Input's sizes. */
   --radius-switch: var(--radius-full); /** Pill track + circular thumb at every size — a switch is always fully rounded, no size-dependent step needed. */
   --radius-radio: var(--radius-full); /** Circular at every size, same reasoning as radius.switch — no size-dependent corner step. Was never scaffolded when Radio's other component colour tokens were added; added now while building Radio's React port (confirmed via the Figma master, 10222:14006 — cornerRadius 9999 on all 18 variants). */
@@ -503,7 +516,7 @@
   --radius-sidebar-section-top: var(--radius-sm); /** 4 */
   --radius-sidebar-section-deep: var(--radius-4xl); /** 24 */
   --radius-container: var(--radius-xl); /** 12px — outermost content card in a carded layout (1440 migration: was radius.2xl/16px) */
-  --radius-page-container: var(--radius-4xl); /** 24px — AppShell/Page's own content viewport, distinct from a Card's container radius */
+  --radius-page-container: var(--radius-5xl); /** 32px — AppShell/Page's own content viewport, distinct from a Card's container radius (owner, 2026-09-28: was radius.4xl/24px) */
   --radius-panel: var(--radius-xl); /** 12px — nested card, section, menu, popover, sheet */
   --radius-control: var(--radius-lg); /** 8px — button, input, select, textarea */
   --radius-chip: var(--radius-md); /** 6px — badge, tag, checkbox, small toggle */
@@ -639,14 +652,15 @@
   --color-badge-brand-text: var(--color-brand-600);
   --color-badge-info-background: var(--color-background-info-subtle);
   --color-badge-info-text: var(--color-text-info);
-  --color-table-header-background-default: var(--color-background-subtle); /** zinc.100. Owner decided the header row only ever needs one flat color — no separate active/focused state — so this took over the value that had briefly been header.background.active; the original default (color.surface.subtle, zinc.50) was removed since it's no longer used anywhere. */
+  --color-table-header-background-default: var(--color-surface-recessed); /** surface.recessed since 2026-09-28 (was zinc.100, which the darker card fill caught up with). Owner decided the header row only ever needs one flat color — no separate active/focused state — so this took over the value that had briefly been header.background.active; the original default (color.surface.subtle, zinc.50) was removed since it's no longer used anywhere. */
   --color-table-header-text: var(--color-text-subtle);
   --color-table-row-shadow-hover: var(--color-background-overlay-subtle); /** Inset shadow, not a fill — the row has no background by default, hover darkens via an inner-shadow wash instead of swapping a fill. Shared with scrollableArea.row.shadow.hover. */
   --color-table-border: var(--color-border-subtle);
   --color-modal-background: var(--color-surface-raised);
   --color-modal-border: var(--color-border-default);
   --color-modal-scrim: var(--color-background-overlay);
-  --color-scrollable-area-background: var(--color-background-subtle); /** Recessed/inset scroll track, same intent as other inset zones */
+  --color-card-item-background: var(--color-surface-card-item); /** Fill of the glass elements that sit on a card: StatButton, secondary Button (so IconButton, Filter, FilterIcon, Pagination and the selected SegmentedControl item too). */
+  --color-scrollable-area-background: var(--color-surface-recessed); /** Recessed/inset scroll track, same intent as other inset zones. Was color.background.subtle (zinc.100) until 2026-09-28, when the card fill darkened and zinc.100 stopped reading as recessed against it. */
   --color-scrollable-area-row-shadow-hover: var(--color-background-overlay-subtle); /** Inset shadow, not a fill — rows have no background by default. Shared with table.row.shadow.hover. */
   --color-scrollable-area-row-border-divider: var(--color-border-default); /** Permanent 1px bottom-only divider between rows in a list — every state (default/hover/focus), unlike hover/focus which only apply on interaction. Owner changed this from border.subtle (zinc.100, "faint separators") to border.default (zinc.200, "inputs, cards, dividers") directly in Figma — a plain divider apparently read as too faint at subtle. CSS: box-shadow inset (layout-neutral, stacks with the focus ring as a second shadow layer). Figma: a real per-side stroke (strokeBottomWeight 1, others 0, INSIDE align, strokesIncludedInLayout false) — NOT an effect. An INNER_SHADOW effect on this frame (which has no fill) was confirmed to corrupt Figma's own text rendering for this file's variable-font weight; a stroke on the same no-fill frame does not. See docs/components/Row.md and HANDOFF.md §6. */
   --color-switch-track-off: var(--color-surface-sunken); /** zinc.100, "wells, code blocks, inset track" — literally the inset-track description this token already carries, reused verbatim for the off-state track. */
@@ -683,7 +697,7 @@
   --color-form-field-label-error: var(--color-text-danger);
   --color-helper-text-icon-error: var(--color-icon-danger);
   --color-helper-text-text-error: var(--color-text-danger);
-  --color-segmented-control-track-background: var(--color-background-subtle); /** zinc.100 — the recessed track the pill items sit in. */
+  --color-segmented-control-track-background: var(--color-surface-recessed); /** The recessed track the pill items sit in — surface.recessed since 2026-09-28 (was zinc.100). The sidebar's xs switcher draws no track, so this only reaches switchers on cards. */
   --color-segmented-control-item-text-default: var(--color-text-subtle);
   --color-segmented-control-item-text-hover: var(--color-text-default);
   --color-segmented-control-item-text-disabled: var(--color-text-disabled);
@@ -694,7 +708,7 @@
   --color-progress-bar-brand-stripe: var(--color-brand-400); /** Kept at 400 (not shifted down with fill) — owner's explicit preference for a very subtle fill/stripe contrast, tighter than the original 2-step gap. */
   --color-sidebar-brand-fill: var(--color-brand-500);
   --color-sidebar-brand-accent: var(--color-brand-400);
-  --color-table-progress-stages-unfilled: var(--color-background-subtle); /** Pending (not-yet-reached) stage points + lines. Was 'shadcn colors/general/actual muted' — same zinc.100 value, now a real semantic alias. */
+  --color-table-progress-stages-unfilled: var(--color-surface-recessed); /** Pending (not-yet-reached) stage points + lines. surface.recessed since 2026-09-28 (was zinc.100 via background.subtle, which the darker card fill caught up with). */
   --color-tooltip-background: var(--color-surface-inverse); /** The one component that stays dark regardless of theme — a tooltip needs contrast against whatever's underneath, light or dark page alike. */
   --color-tooltip-text: var(--color-text-on-inverse);
   --color-divider-line: var(--color-border-subtle); /** The standalone Divider atom's own line color. Distinct from LabelGroup's internal divider, which deliberately stays on color.text.subtle as fixed chrome — not unified, since that one predates this token and isn't worth a breaking rebind for a coincidental match. */
@@ -703,7 +717,7 @@
   --color-breadcrumb-text-hover: var(--color-text-default);
   --color-breadcrumb-text-current: var(--color-text-strong); /** The last crumb — the current page, not a link. */
   --color-breadcrumb-icon: var(--color-icon-subtle); /** The separator glyph between crumbs. */
-  --color-avatar-background: var(--color-background-subtle); /** Neutral placeholder fill behind initials — not per-user hashed color, a static reference can't model that. */
+  --color-avatar-background: var(--color-surface-recessed); /** Neutral placeholder fill behind initials — not per-user hashed color, a static reference can't model that. surface.recessed since 2026-09-28 (was zinc.100). */
   --color-avatar-text: var(--color-text-strong); /** The initials. */
   --color-avatar-ring: var(--color-surface-default); /** The ring around the status dot and the action badge — separates them visually from the avatar image underneath, same idea as a real UI's cutout. */
   --color-avatar-status-online: var(--color-background-success);
@@ -724,7 +738,6 @@
   --color-chart-1: var(--color-brand-400); /** Categorical series 1 — placeholder palette, revisit with the real chart component. Migrated from brand.500 to match Figma's lighter chart ramp. */
   --color-category-brand-text: var(--color-brand-600); /** indigo.600 — reuses the existing brand primitive rather than a separate value */
   --color-category-brand-background: var(--color-brand-600);
-  --radius-card: var(--radius-container);
   --radius-page: var(--radius-page-container);
   --radius-modal: var(--radius-container);
   --radius-table: var(--radius-panel);
@@ -736,14 +749,11 @@
   --radius-button-xl: var(--radius-control); /** 8 */
   --radius-button-2xl: var(--radius-panel); /** 12 — primary only */
   --radius-input: var(--radius-control);
-  --radius-badge-sm: var(--radius-chip); /** 6 — small badge */
-  --radius-badge-md: var(--radius-control); /** 8 — medium badge */
-  --radius-badge-lg: var(--radius-control); /** 8 — large badge */
   --radius-segmented-control-sm: var(--radius-chip); /** 6 — mirrors radius.button.sm; the track and its items share this radius (a small inset gap between them reads fine without stepping the track's radius up). */
   --radius-segmented-control-md: var(--radius-control); /** 8 — mirrors radius.button.md/lg. */
   --radius-segmented-control-lg: var(--radius-control); /** 8 — mirrors radius.button.md/lg. */
   --radius-tooltip: var(--radius-chip); /** 6, flat — same small-chrome radius Badge/Button-sm use, at every size (a tooltip has no size-dependent step). */
-  --color-button-secondary-background-default: var(--color-card-background-default); /** Same glass surface as Card / StatButton — #fcfcfc, unchanged by state (hover swaps the shadow, not the fill). */
+  --color-button-secondary-background-default: var(--color-card-item-background); /** The card-item glass surface, same as StatButton — one step lighter than the card it sits on (2026-09-28). Unchanged by state (hover swaps the shadow, not the fill). */
   --color-button-secondary-border-default: var(--color-card-border); /** White glass catch (top + left) at rest / hover. */
   --color-button-tertiary-text-active: var(--color-text-brand); /** Hover→underline, active→this ('turns primary colour') + underline. */
   --color-button-tertiary-icon-active: var(--color-icon-brand);

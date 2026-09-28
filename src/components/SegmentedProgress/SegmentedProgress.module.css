@@ -1,0 +1,28 @@
+/* One row of equal segments; each fills an equal share of the width. */
+.row {
+  display: flex;
+  gap: var(--space-2);
+  width: 100%;
+  min-width: 0;
+}
+
+/* Empty — flat, sunk into the card it sits on. */
+.segment {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 1rem; /* 16px, scales with the root like everything else */
+  border-radius: var(--radius-md); /* 6px */
+  background: var(--color-surface-recessed);
+}
+
+/* Filled — the primary Button's glass: fill, top-left catch, inner shadow and
+   drop shadow, all from Button's own tokens so the two stay in step. The
+   catch is 1px here, not Button's 1.5px — on a 16px segment 1.5 reads heavy
+   (owner, 2026-09-28). */
+.segment[data-filled] {
+  background: var(--color-button-primary-background-default);
+  box-shadow:
+    inset 1px 1px 0 0 var(--color-button-primary-border-default),
+    inset 2px 2px 12px 0 var(--color-button-primary-shadow-default),
+    0 1px 8px 0 rgba(0, 0, 0, 0.2);
+}

@@ -59,7 +59,35 @@ for (const step of STEPS) {
   brand.brand[step] = { $value: `{color.${BRAND_HUE}.${step}}` };
 }
 // Product-override primitives — bespoke hexes not on the Tailwind scale.
-brand.extra.card = { $value: '#fcfcfc', $description: 'warm near-white card fill — product override' };
+brand.extra.card = {
+  $value: '#f6f7f8',
+  $description:
+    'cool near-white card fill — product override (owner, 2026-09-28: was #fcfcfc; darker so #ffffff items read on it, L* 97.2 vs 99.0)',
+};
+// The card moved down a step, so the surfaces keyed to it move with it and
+// keep the steps they had against #fcfcfc (owner, 2026-09-28).
+brand.extra.recessed = {
+  $value: '#eeeff1',
+  $description:
+    'recessed zone inside a card — table header band, scroll tray. ≈ 2.8 L* below the card fill, the step zinc.100 had against the old #fcfcfc card',
+};
+// Card-looking things that sit ON a card (StatButton, secondary Button and
+// everything built on it) keep the old lighter fill, so they read as raised
+// above the card, with the vignette that was tuned for that fill.
+// (Not "raised": surface.raised already exists — white, for popovers.)
+brand.extra['card-item'] = {
+  $value: '#fcfcfc',
+  $description: 'fill of a card-like element sitting on a card — one step lighter than the card (the pre-2026-09-28 card fill)',
+};
+brand.extra['card-item-vignette'] = {
+  $value: '#f0f0f0',
+  $description: 'glass inner-shadow colour for card items — the original vignette, tuned for the #fcfcfc fill',
+};
+brand.extra.vignette = {
+  $value: '#eaebed',
+  $description:
+    "glass inner-shadow colour on card-filled surfaces. Was a raw #f0f0f0 in each component's CSS; darkened with the card so the edges keep their depth",
+};
 
 console.log('Generating token files:');
 write('tokens/primitives.color.json', { color });

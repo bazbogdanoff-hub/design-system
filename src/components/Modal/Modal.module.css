@@ -7,7 +7,7 @@
   /* same glass stack as Card — hand-tuned, not tokens (see Card.module.css) */
   box-shadow:
     inset 1.5px 1.5px 0 0 var(--color-card-border),
-    inset 4px 4px 16px 0 #f0f0f0;
+    inset 4px 4px 16px 0 var(--color-card-vignette);
 }
 
 .header {

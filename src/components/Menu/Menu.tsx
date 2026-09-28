@@ -11,6 +11,7 @@ import {
 import { cn } from '../../lib/cn';
 import { Card } from '../Card';
 import styles from './Menu.module.css';
+import { remPx } from '../../lib/rem';
 
 export type MenuVariant = 'default' | 'card';
 export type MenuAlign = 'start' | 'end';
@@ -95,7 +96,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
       const rect = anchor.getBoundingClientRect();
       const height = panel.offsetHeight;
       const width = Math.max(panel.offsetWidth, rect.width);
-      const gap = 4;
+      const gap = 0.25 * remPx();
 
       /* Flip up only when there is genuinely more room above. Flipping
          whenever it would not fit below means a menu near the bottom of a

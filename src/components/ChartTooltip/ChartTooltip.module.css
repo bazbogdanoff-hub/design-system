@@ -2,7 +2,7 @@
   position: absolute;
   z-index: 10;
   pointer-events: none;
-  min-width: 120px;
+  min-width: 7.5rem;
   padding: var(--space-8) var(--space-12);
   border-radius: var(--radius-panel);
   background: var(--color-surface-raised);
@@ -36,7 +36,7 @@
 
 .key {
   flex: none;
-  width: 8px;
+  width: 0.5rem;
   height: 2px;
   align-self: center;
 }

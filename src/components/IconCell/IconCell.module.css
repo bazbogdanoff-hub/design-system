@@ -12,10 +12,10 @@
 }
 
 .cell[data-size='sm'] {
-  width: 28px;
-  height: 28px;
+  width: 1.75rem;
+  height: 1.75rem;
   border-radius: var(--radius-button-sm);
-  --icon-size: 14px;
+  --icon-size: 0.875rem;
   font-family: var(--text-label-xs-font-family);
   font-size: var(--text-label-xs-font-size);
   font-weight: var(--text-label-xs-font-weight);
@@ -23,10 +23,10 @@
   letter-spacing: var(--text-label-xs-letter-spacing);
 }
 .cell[data-size='md'] {
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
   border-radius: var(--radius-button-md);
-  --icon-size: 16px;
+  --icon-size: 1rem;
   font-family: var(--text-label-sm-font-family);
   font-size: var(--text-label-sm-font-size);
   font-weight: var(--text-label-sm-font-weight);
@@ -34,10 +34,10 @@
   letter-spacing: var(--text-label-sm-letter-spacing);
 }
 .cell[data-size='lg'] {
-  width: 36px;
-  height: 36px;
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: var(--radius-button-lg);
-  --icon-size: 18px;
+  --icon-size: 1.125rem;
   font-family: var(--text-label-md-font-family);
   font-size: var(--text-label-md-font-size);
   font-weight: var(--text-label-md-font-weight);
@@ -45,10 +45,10 @@
   letter-spacing: var(--text-label-md-letter-spacing);
 }
 .cell[data-size='xl'] {
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: var(--radius-button-xl);
-  --icon-size: 20px;
+  --icon-size: 1.25rem;
   font-family: var(--text-label-lg-font-family);
   font-size: var(--text-label-lg-font-size);
   font-weight: var(--text-label-lg-font-weight);
@@ -56,10 +56,10 @@
   letter-spacing: var(--text-label-lg-letter-spacing);
 }
 .cell[data-size='2xl'] {
-  width: 44px;
-  height: 44px;
+  width: 2.75rem;
+  height: 2.75rem;
   border-radius: var(--radius-button-2xl);
-  --icon-size: 20px;
+  --icon-size: 1.25rem;
   font-family: var(--text-label-xl-font-family);
   font-size: var(--text-label-xl-font-size);
   font-weight: var(--text-label-xl-font-weight);
@@ -72,7 +72,9 @@
    a `glow`/`shadow` pair meant for a radial-gradient recipe, not a flat fill.
    IconCell stays flat, so it points at the semantic `-subtle` tint tokens
    directly instead (still semantic-tier, per convention — not a primitive). */
-.cell[data-tone='neutral'] { background: var(--color-background-subtle); color: var(--color-text-subtle); }
+/* neutral sits on cards, so it takes the recessed step below the card fill
+   (2026-09-28) — zinc.100 stopped reading against the darker #f6f7f8 card. */
+.cell[data-tone='neutral'] { background: var(--color-surface-recessed); color: var(--color-text-subtle); }
 .cell[data-tone='brand']   { background: var(--color-background-brand-subtle); color: var(--color-text-brand); }
 .cell[data-tone='success'] { background: var(--color-background-success-subtle); color: var(--color-text-success); }
 .cell[data-tone='warning'] { background: var(--color-background-warning-subtle); color: var(--color-text-warning); }

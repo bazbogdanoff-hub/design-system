@@ -1,4 +1,5 @@
 import './styles.css';
+import './scale.css';
 
 export { Card } from './components/Card';
 export type { CardProps, CardPadding } from './components/Card';
@@ -23,6 +24,9 @@ export type { LabelGroupProps } from './components/LabelGroup';
 export { ProgressBar } from './components/ProgressBar';
 export type { ProgressBarProps, ProgressBarSize, ProgressBarTone } from './components/ProgressBar';
 
+export { SegmentedProgress } from './components/SegmentedProgress';
+export type { SegmentedProgressProps } from './components/SegmentedProgress';
+
 export { Tracker } from './components/Tracker';
 export type { TrackerProps, TrackerUrgency } from './components/Tracker';
 
@@ -36,6 +40,9 @@ export type {
 
 export { TaskCard } from './components/TaskCard';
 export type { TaskCardProps } from './components/TaskCard';
+
+export { TaskTile } from './components/TaskTile';
+export type { TaskTileProps, TaskTileLayout } from './components/TaskTile';
 
 export { StatButton } from './components/StatButton';
 export type { StatButtonProps, StatButtonTone, StatButtonSize } from './components/StatButton';
@@ -225,5 +232,7 @@ export type { SidebarSectionProps, SidebarSectionContent } from './components/Si
 export { Logo } from './components/Logo';
 export type { LogoProps } from './components/Logo';
 
-export { breakpoints, up, down } from './lib/breakpoints';
-export type { Breakpoint } from './lib/breakpoints';
+export { breakpoints, up, down, tierQueries, useTier } from './lib/breakpoints';
+export type { Breakpoint, Tier } from './lib/breakpoints';
+
+export { remPx, useRemScale } from './lib/rem';

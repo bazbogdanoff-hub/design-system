@@ -66,7 +66,7 @@
   line-height: var(--text-body-sm-line-height);
 }
 [data-size='sm'] .icon,
-[data-size='sm'] .check { font-size: 14px; }
+[data-size='sm'] .check { font-size: 0.875rem; }
 
 [data-size='md'] .row {
   padding: var(--space-8) var(--space-12);
@@ -76,7 +76,7 @@
   line-height: var(--text-body-md-line-height);
 }
 [data-size='md'] .icon,
-[data-size='md'] .check { font-size: 16px; }
+[data-size='md'] .check { font-size: 1rem; }
 
 [data-size='lg'] .row {
   padding: var(--space-10) var(--space-12);
@@ -86,4 +86,4 @@
   line-height: var(--text-body-lg-line-height);
 }
 [data-size='lg'] .icon,
-[data-size='lg'] .check { font-size: 18px; }
+[data-size='lg'] .check { font-size: 1.125rem; }

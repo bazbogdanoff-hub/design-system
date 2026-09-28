@@ -44,5 +44,5 @@
 /* Fixed 260px track — fills up to that cap, centered under the value. */
 .bar {
   width: 100%;
-  max-width: 260px;
+  max-width: 16.25rem;
 }

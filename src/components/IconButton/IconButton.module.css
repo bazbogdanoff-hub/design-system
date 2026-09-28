@@ -11,44 +11,43 @@
   padding: 0;
   user-select: none;
 }
-
 .iconButton[data-size='xs'] {
-  width: 28px;
-  height: 28px;
-  font-size: 12px;
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: 0.75rem;
   border-radius: var(--radius-button-xs);
 }
 .iconButton[data-variant='tertiary'][data-size='xs'] {
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 .iconButton[data-size='sm'] {
-  width: 28px;
-  height: 28px;
-  font-size: 14px;
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: 0.875rem;
   border-radius: var(--radius-button-sm);
 }
 .iconButton[data-size='md'] {
-  width: 32px;
-  height: 32px;
-  font-size: 16px;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1rem;
   border-radius: var(--radius-button-md);
 }
 .iconButton[data-size='lg'] {
-  width: 36px;
-  height: 36px;
-  font-size: 18px;
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 1.125rem;
   border-radius: var(--radius-button-lg);
 }
 .iconButton[data-size='xl'] {
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
   border-radius: var(--radius-button-xl);
 }
 .iconButton[data-size='2xl'] {
-  width: 44px;
-  height: 44px;
-  font-size: 20px;
+  width: 2.75rem;
+  height: 2.75rem;
+  font-size: 1.25rem;
   border-radius: var(--radius-button-2xl);
 }

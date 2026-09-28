@@ -13,7 +13,7 @@
 .icon {
   display: inline-flex;
   color: var(--color-icon-success);
-  font-size: 28px;
+  font-size: 1.75rem;
 }
 .icon > svg {
   display: block;

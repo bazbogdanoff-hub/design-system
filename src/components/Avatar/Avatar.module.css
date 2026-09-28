@@ -72,37 +72,37 @@
 }
 
 .avatar[data-size='xs'] {
-  --avatar-size: 24px;
-  --avatar-badge-ring-size: 9px;
-  --avatar-badge-size: 7px;
-  --avatar-badge-icon-size: 4px;
-  font-size: 11px;
+  --avatar-size: 1.5rem;
+  --avatar-badge-ring-size: 0.5625rem;
+  --avatar-badge-size: 0.4375rem;
+  --avatar-badge-icon-size: 0.25rem;
+  font-size: 0.6875rem;
 }
 .avatar[data-size='sm'] {
-  --avatar-size: 28px;
-  --avatar-badge-ring-size: 10px;
-  --avatar-badge-size: 8px;
-  --avatar-badge-icon-size: 5px;
-  font-size: 12px;
+  --avatar-size: 1.75rem;
+  --avatar-badge-ring-size: 0.625rem;
+  --avatar-badge-size: 0.5rem;
+  --avatar-badge-icon-size: 0.3125rem;
+  font-size: 0.75rem;
 }
 .avatar[data-size='md'] {
-  --avatar-size: 32px;
-  --avatar-badge-ring-size: 11px;
-  --avatar-badge-size: 9px;
-  --avatar-badge-icon-size: 5px;
-  font-size: 14px;
+  --avatar-size: 2rem;
+  --avatar-badge-ring-size: 0.6875rem;
+  --avatar-badge-size: 0.5625rem;
+  --avatar-badge-icon-size: 0.3125rem;
+  font-size: 0.875rem;
 }
 .avatar[data-size='lg'] {
-  --avatar-size: 40px;
-  --avatar-badge-ring-size: 13px;
-  --avatar-badge-size: 11px;
-  --avatar-badge-icon-size: 6px;
-  font-size: 16px;
+  --avatar-size: 2.5rem;
+  --avatar-badge-ring-size: 0.8125rem;
+  --avatar-badge-size: 0.6875rem;
+  --avatar-badge-icon-size: 0.375rem;
+  font-size: 1rem;
 }
 .avatar[data-size='xl'] {
-  --avatar-size: 44px;
-  --avatar-badge-ring-size: 14px;
-  --avatar-badge-size: 12px;
-  --avatar-badge-icon-size: 7px;
-  font-size: 18px;
+  --avatar-size: 2.75rem;
+  --avatar-badge-ring-size: 0.875rem;
+  --avatar-badge-size: 0.75rem;
+  --avatar-badge-icon-size: 0.4375rem;
+  font-size: 1.125rem;
 }

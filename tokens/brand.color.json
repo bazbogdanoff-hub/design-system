@@ -37,8 +37,24 @@
     },
     "extra": {
       "card": {
+        "$value": "#f6f7f8",
+        "$description": "cool near-white card fill — product override (owner, 2026-09-28: was #fcfcfc; darker so #ffffff items read on it, L* 97.2 vs 99.0)"
+      },
+      "recessed": {
+        "$value": "#eeeff1",
+        "$description": "recessed zone inside a card — table header band, scroll tray. ≈ 2.8 L* below the card fill, the step zinc.100 had against the old #fcfcfc card"
+      },
+      "card-item": {
         "$value": "#fcfcfc",
-        "$description": "warm near-white card fill — product override"
+        "$description": "fill of a card-like element sitting on a card — one step lighter than the card (the pre-2026-09-28 card fill)"
+      },
+      "card-item-vignette": {
+        "$value": "#f0f0f0",
+        "$description": "glass inner-shadow colour for card items — the original vignette, tuned for the #fcfcfc fill"
+      },
+      "vignette": {
+        "$value": "#eaebed",
+        "$description": "glass inner-shadow colour on card-filled surfaces. Was a raw #f0f0f0 in each component's CSS; darkened with the card so the edges keep their depth"
       }
     }
   }

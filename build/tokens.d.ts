@@ -30,8 +30,16 @@ export const ColorBrand700: string;
 export const ColorBrand800: string;
 export const ColorBrand900: string;
 export const ColorBrand950: string;
-/** warm near-white card fill — product override */
+/** cool near-white card fill — product override (owner, 2026-09-28: was #fcfcfc; darker so #ffffff items read on it, L* 97.2 vs 99.0) */
 export const ColorExtraCard: string;
+/** recessed zone inside a card — table header band, scroll tray. ≈ 2.8 L* below the card fill, the step zinc.100 had against the old #fcfcfc card */
+export const ColorExtraRecessed: string;
+/** fill of a card-like element sitting on a card — one step lighter than the card (the pre-2026-09-28 card fill) */
+export const ColorExtraCardItem: string;
+/** glass inner-shadow colour for card items — the original vignette, tuned for the #fcfcfc fill */
+export const ColorExtraCardItemVignette: string;
+/** glass inner-shadow colour on card-filled surfaces. Was a raw #f0f0f0 in each component's CSS; darkened with the card so the edges keep their depth */
+export const ColorExtraVignette: string;
 /** Primary button fill — a lightened brand. Button-only gimmick: color.text.brand / color.icon.brand stay at 600 everywhere else. */
 export const ColorButtonPrimaryBackgroundDefault: string;
 export const ColorButtonPrimaryBackgroundHover: string;
@@ -45,7 +53,7 @@ export const ColorButtonPrimaryBorderActive: string;
 /** Inner-shadow colour for the 'Viginette primary 2xs' effect style (hand-tuned). */
 export const ColorButtonPrimaryShadowDefault: string;
 export const ColorButtonPrimaryShadowHover: string;
-/** Same glass surface as Card / StatButton — #fcfcfc, unchanged by state (hover swaps the shadow, not the fill). */
+/** The card-item glass surface, same as StatButton — one step lighter than the card it sits on (2026-09-28). Unchanged by state (hover swaps the shadow, not the fill). */
 export const ColorButtonSecondaryBackgroundDefault: string;
 export const ColorButtonSecondaryText: string;
 export const ColorButtonSecondaryIcon: string;
@@ -69,6 +77,8 @@ export const ColorCardBackgroundDefault: string;
 export const ColorCardBackgroundHover: string;
 /** The asymmetric glass catch (top + left, 1.5px, white). Widths + the inner-shadow are hand-tuned in the CSS, not tokens. */
 export const ColorCardBorder: string;
+/** Colour of the glass inner shadow on every card-filled surface (Card, Headercard, Modal, StatButton, secondary Button, SelectableCard). Offsets and blur stay hand-tuned in each CSS; only the colour is a token, so it can follow the card fill. */
+export const ColorCardVignette: string;
 /** Focused/active glass border — full 1.5px primary, replaces the white top-left catch. Shared by Card, StatButton, and other glass buttons. */
 export const ColorCardBorderActive: string;
 export const ColorBadgeNeutralGlow: string;
@@ -95,7 +105,7 @@ export const ColorBadgeDangerShadow: string;
 export const ColorBadgeDangerText: string;
 export const ColorBadgeInfoBackground: string;
 export const ColorBadgeInfoText: string;
-/** zinc.100. Owner decided the header row only ever needs one flat color — no separate active/focused state — so this took over the value that had briefly been header.background.active; the original default (color.surface.subtle, zinc.50) was removed since it's no longer used anywhere. */
+/** surface.recessed since 2026-09-28 (was zinc.100, which the darker card fill caught up with). Owner decided the header row only ever needs one flat color — no separate active/focused state — so this took over the value that had briefly been header.background.active; the original default (color.surface.subtle, zinc.50) was removed since it's no longer used anywhere. */
 export const ColorTableHeaderBackgroundDefault: string;
 export const ColorTableHeaderText: string;
 /** Fixed from color.surface.default (#ffffff) — rows/cells sit directly on Table's own Card-replica surface (#fcfcfc via color.card.background.default), not as a separate white panel. TableCell itself is transparent; TableRow is what actually carries this fill. */
@@ -115,7 +125,11 @@ export const ColorTableBorder: string;
 export const ColorModalBackground: string;
 export const ColorModalBorder: string;
 export const ColorModalScrim: string;
-/** Recessed/inset scroll track, same intent as other inset zones */
+/** Fill of the glass elements that sit on a card: StatButton, secondary Button (so IconButton, Filter, FilterIcon, Pagination and the selected SegmentedControl item too). */
+export const ColorCardItemBackground: string;
+/** Their inner-shadow colour — the original #f0f0f0, tuned for the #fcfcfc card-item fill. */
+export const ColorCardItemVignette: string;
+/** Recessed/inset scroll track, same intent as other inset zones. Was color.background.subtle (zinc.100) until 2026-09-28, when the card fill darkened and zinc.100 stopped reading as recessed against it. */
 export const ColorScrollableAreaBackground: string;
 /** Inner-shadow tint at the scroll edges. Was a raw #00000026 before the alpha-black primitive ramp existed — now a proper alias, same value (15%). */
 export const ColorScrollableAreaShadow: string;
@@ -185,7 +199,7 @@ export const ColorHelperTextIconPrimary: string;
 export const ColorHelperTextIconError: string;
 export const ColorHelperTextTextPrimary: string;
 export const ColorHelperTextTextError: string;
-/** zinc.100 — the recessed track the pill items sit in. */
+/** The recessed track the pill items sit in — surface.recessed since 2026-09-28 (was zinc.100). The sidebar's xs switcher draws no track, so this only reaches switchers on cards. */
 export const ColorSegmentedControlTrackBackground: string;
 export const ColorSegmentedControlItemTextDefault: string;
 export const ColorSegmentedControlItemTextHover: string;
@@ -240,7 +254,7 @@ export const ColorSidebarLogoMark: string;
 export const ColorSidebarLogoWordmark: string;
 /** Completed stage points + the connecting lines between them, and the current stage's own point fill. Adopted from the owner's pre-token 'Progress bar' component (4182:3097, renamed TableProgressStages) — was bound to the old shadcn-colors 'primary/primary'. */
 export const ColorTableProgressStagesFilled: string;
-/** Pending (not-yet-reached) stage points + lines. Was 'shadcn colors/general/actual muted' — same zinc.100 value, now a real semantic alias. */
+/** Pending (not-yet-reached) stage points + lines. surface.recessed since 2026-09-28 (was zinc.100 via background.subtle, which the darker card fill caught up with). */
 export const ColorTableProgressStagesUnfilled: string;
 /** The soft halo stroke around the current/active stage's point only — every other point/line is a flat fill with no stroke. Was 'primary/bg' (a raw light-indigo shadcn variable); this system's own equivalent 'soft brand tint' token is background.brand-subtle, the same one Badge's brand tone uses. */
 export const ColorTableProgressStagesRing: string;
@@ -260,7 +274,7 @@ export const ColorBreadcrumbTextCurrent: string;
 export const ColorBreadcrumbTextPrimary: string;
 /** The separator glyph between crumbs. */
 export const ColorBreadcrumbIcon: string;
-/** Neutral placeholder fill behind initials — not per-user hashed color, a static reference can't model that. */
+/** Neutral placeholder fill behind initials — not per-user hashed color, a static reference can't model that. surface.recessed since 2026-09-28 (was zinc.100). */
 export const ColorAvatarBackground: string;
 /** The initials. */
 export const ColorAvatarText: string;
@@ -559,8 +573,12 @@ export const ColorBackgroundInfo: string;
 export const ColorBackgroundInfoSubtle: string;
 /** Panel, modal, menu, sheet */
 export const ColorSurfaceDefault: string;
-/** Card fill — warm near-white #fcfcfc (product override, not on the Tailwind scale) */
+/** Card fill — cool near-white #f6f7f8 (product override, not on the Tailwind scale; was #fcfcfc until 2026-09-28) */
 export const ColorSurfaceCard: string;
+/** A card-like element sitting on a card — StatButton, secondary Button and its derivatives. One step lighter than surface.card, so it reads above it. (Distinct from surface.raised, the white popover surface.) */
+export const ColorSurfaceCardItem: string;
+/** A zone sunk into a card — table header band, scroll tray. One step below surface.card; moves with it. */
+export const ColorSurfaceRecessed: string;
 /** Nested surface, table header row */
 export const ColorSurfaceSubtle: string;
 /** Surface carrying an elevation shadow: popover, dropdown */
@@ -569,9 +587,9 @@ export const ColorSurfaceRaised: string;
 export const ColorSurfaceSunken: string;
 /** The one surface that stays dark regardless of theme — Tooltip's fill. */
 export const ColorSurfaceInverse: string;
-/** Main headings — h1/h2, page titles */
+/** Main headings — h1/h2, page titles. zinc.950 since 2026-09-28 (was 900), the far end of the ladder so headings and subheadings read as two blacks. */
 export const ColorTextDefault: string;
-/** Subheadings — h3–h6, section/card titles */
+/** Subheadings — h3–h6, section/card titles. zinc.700 since 2026-09-28 (was 800, too close to the heading black to register as a separate level; 600 was tried first and read too light); two steps above body text (subtle, zinc.500). */
 export const ColorTextStrong: string;
 /** Body text — the default reading colour for paragraphs and UI copy */
 export const ColorTextSubtle: string;
@@ -700,7 +718,10 @@ export const ColorCategoryBlueText: string;
 export const ColorCategoryBlueBackground: string;
 /** blue.700 desaturated -0.20 in HSL (H 224, L 48 held; S 76->56). Contrast vs. white icon: 6.25:1. */
 export const ColorCategoryBlueBackgroundMuted: string;
+/** 16px — owner, 2026-09-28: cards moved off radius.container (12) while modals stay on it */
 export const RadiusCard: string;
+/** 24px — a top-level card's corner that sits in a corner of the page (owner, 2026-09-28). Applied by Page at runtime; see src/lib/surfaceCorners.ts */
+export const RadiusCardOuter: string;
 export const RadiusPage: string;
 export const RadiusModal: string;
 export const RadiusTable: string;
@@ -718,11 +739,11 @@ export const RadiusButtonXl: string;
 /** 12 — primary only */
 export const RadiusButton2xl: string;
 export const RadiusInput: string;
-/** 6 — small badge */
+/** pill (owner, 2026-09-28: was radius.chip 6) — badges are pills so status never reads as a button; xs reuses it */
 export const RadiusBadgeSm: string;
-/** 8 — medium badge */
+/** pill (owner, 2026-09-28: was radius.control 8) */
 export const RadiusBadgeMd: string;
-/** 8 — large badge */
+/** pill (owner, 2026-09-28: was radius.control 8) */
 export const RadiusBadgeLg: string;
 /** 4, flat across all sizes — a checkbox's corner rounding doesn't scale with its box size, same reasoning as radius.input staying flat across Input's sizes. */
 export const RadiusCheckbox: string;
@@ -767,7 +788,7 @@ export const Radius5xl: string;
 export const RadiusFull: string;
 /** 12px — outermost content card in a carded layout (1440 migration: was radius.2xl/16px) */
 export const RadiusContainer: string;
-/** 24px — AppShell/Page's own content viewport, distinct from a Card's container radius */
+/** 32px — AppShell/Page's own content viewport, distinct from a Card's container radius (owner, 2026-09-28: was radius.4xl/24px) */
 export const RadiusPageContainer: string;
 /** 12px — nested card, section, menu, popover, sheet */
 export const RadiusPanel: string;

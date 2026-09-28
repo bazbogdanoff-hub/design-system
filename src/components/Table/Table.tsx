@@ -10,9 +10,11 @@ import {
 } from 'react';
 import { cn } from '../../lib/cn';
 import { Card } from '../Card';
+import { useRemScale } from '../../lib/rem';
 import styles from './Table.module.css';
 
-/** Hard cap for body row / cell height — fill can be smaller, never larger. */
+/** Hard cap for body row / cell height — fill can be smaller, never larger.
+ * Authored at the 16px root (4.25rem) and scaled with it. */
 const TABLE_ROW_MAX_HEIGHT_PX = 68;
 
 export interface TableProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
@@ -65,6 +67,7 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
   const contentRef = useRef<HTMLDivElement>(null);
   const theadRef = useRef<HTMLTableSectionElement>(null);
   const [rowHeightPx, setRowHeightPx] = useState<number | null>(null);
+  const rowMaxPx = TABLE_ROW_MAX_HEIGHT_PX * useRemScale();
 
   useLayoutEffect(() => {
     const content = contentRef.current;
@@ -73,7 +76,7 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
 
     const update = () => {
       const available = content.clientHeight - thead.offsetHeight;
-      const next = Math.min(available / bodyRowCount, TABLE_ROW_MAX_HEIGHT_PX);
+      const next = Math.min(available / bodyRowCount, rowMaxPx);
       setRowHeightPx(Number.isFinite(next) && next > 0 ? next : null);
     };
 
@@ -81,7 +84,7 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
     const ro = new ResizeObserver(update);
     ro.observe(content);
     return () => ro.disconnect();
-  }, [bodyRowCount, hasHeader, hasFooter]);
+  }, [bodyRowCount, hasHeader, hasFooter, rowMaxPx]);
 
   return (
     <Card ref={ref} padding="none" className={cn(styles.table, className)} {...rest}>
@@ -98,7 +101,7 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
           style={
             {
               '--table-body-rows': bodyRowCount,
-              '--table-row-height': `${rowHeightPx ?? TABLE_ROW_MAX_HEIGHT_PX}px`,
+              '--table-row-height': `${rowHeightPx ?? rowMaxPx}px`,
             } as CSSProperties
           }
         >

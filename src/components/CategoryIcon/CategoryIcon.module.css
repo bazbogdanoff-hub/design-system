@@ -10,34 +10,34 @@
 }
 
 .tile[data-size='sm'] {
-  width: 28px;
-  height: 28px;
+  width: 1.75rem;
+  height: 1.75rem;
   border-radius: var(--radius-button-sm);
-  --icon-size: 14px;
+  --icon-size: 0.875rem;
 }
 .tile[data-size='md'] {
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
   border-radius: var(--radius-button-md);
-  --icon-size: 16px;
+  --icon-size: 1rem;
 }
 .tile[data-size='lg'] {
-  width: 36px;
-  height: 36px;
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: var(--radius-button-lg);
-  --icon-size: 18px;
+  --icon-size: 1.125rem;
 }
 .tile[data-size='xl'] {
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: var(--radius-button-xl);
-  --icon-size: 20px;
+  --icon-size: 1.25rem;
 }
 .tile[data-size='2xl'] {
-  width: 44px;
-  height: 44px;
+  width: 2.75rem;
+  height: 2.75rem;
   border-radius: var(--radius-button-2xl);
-  --icon-size: 20px;
+  --icon-size: 1.25rem;
 }
 
 /* emphasis=strong — saturated fill + white icon (modules) */

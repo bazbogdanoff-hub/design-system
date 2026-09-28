@@ -5,13 +5,19 @@
   gap: var(--space-10);
   padding: var(--space-16);
   background: var(--color-card-background-default);
-  border-radius: var(--radius-table);
+  border-radius: var(--radius-card);
 
   /* same glass stack as Card — hand-tuned, not tokens (see Card.module.css) */
   box-shadow:
     inset 1.5px 1.5px 0 0 var(--color-card-border),
-    inset 4px 4px 16px 0 #f0f0f0;
+    inset 4px 4px 16px 0 var(--color-card-vignette);
 }
+
+/* Outer corners — set by Page (lib/surfaceCorners.ts), same as Card. */
+.card[data-corner-outer~='tl'] { border-top-left-radius: var(--radius-card-outer); }
+.card[data-corner-outer~='tr'] { border-top-right-radius: var(--radius-card-outer); }
+.card[data-corner-outer~='bl'] { border-bottom-left-radius: var(--radius-card-outer); }
+.card[data-corner-outer~='br'] { border-bottom-right-radius: var(--radius-card-outer); }
 
 .left {
   display: flex;

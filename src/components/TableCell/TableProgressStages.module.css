@@ -11,8 +11,8 @@
 
 .dot {
   flex: none;
-  width: 8px;
-  height: 8px;
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: var(--radius-full);
   background: var(--color-table-progress-stages-unfilled);
 }
@@ -20,14 +20,14 @@
   background: var(--color-table-progress-stages-filled);
 }
 .dot[data-current] {
-  width: 12px;
-  height: 12px;
+  width: 0.75rem;
+  height: 0.75rem;
   box-shadow: 0 0 0 3px var(--color-table-progress-stages-ring);
 }
 
 .line {
   flex: none;
-  width: 24px;
+  width: 1.5rem;
   height: 2px;
   background: var(--color-table-progress-stages-unfilled);
 }
