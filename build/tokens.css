@@ -18,11 +18,12 @@
   --color-alpha-black-80: rgba(0, 0, 0, 0.8);
   --color-alpha-black-90: rgba(0, 0, 0, 0.9);
   --color-extra-card: #f6f6f8; /** cool near-white card fill — product override (owner, 2026-09-29: #f6f7f8 → #f6f6f8, tuned by eye to the most contrast for white items before it reads grey; was #fcfcfc before 2026-09-28) */
-  --color-extra-recessed: #eeeff1; /** recessed zone inside a card — table header band, scroll tray. ≈ 2.8 L* below the card fill, the step zinc.100 had against the old #fcfcfc card */
+  --color-extra-recessed: #ebecef; /** recessed zone inside a card — table header band, scroll tray, progress pill, segmented-control track. Darkened #eeeff1 → #ebecef (owner, 2026-09-30): the empty segments and the track read too faint on the card */
   --color-extra-card-item: #fcfcfc; /** fill of a card-like element sitting on a card — one step lighter than the card (the pre-2026-09-28 card fill) */
   --color-extra-card-item-vignette: #f0f0f0; /** glass inner-shadow colour for card items — the original vignette, tuned for the #fcfcfc fill */
   --color-extra-tile-shadow: rgba(228, 228, 232, 0.3); /** TaskTile drop shadow colour — #e4e4e8 at 30% */
   --color-extra-chart-attention: #f0b90b; /** severity chart — attention, one step lighter (owner, 2026-09-29 trial) beside rose.600 / orange.500 / emerald.500: passes the CVD and normal-vision checks, sits just above the chart lightness band (L 0.81) so relies on the legend and tooltips. The fully validated darker set was #e0a800 with rose.700 / orange.600 / emerald.600 */
+  --color-extra-chart-window: #e7e8eb; /** TimelineChart delivery-window band and its tooltip swatch — a step below surface.recessed (owner, 2026-09-30: between #e3e4e8, too heavy, and the recessed grey, too faint), visible on white as well as on the #f6f6f8 card */
   --color-extra-tile-lift-shadow: rgba(24, 24, 27, 0.12); /** TaskTile hover lift — zinc 900 at 12%, dark enough to read as height on the #f6f6f8 card (owner, 2026-09-29) */
   --color-extra-tile-inner-shadow: rgba(240, 240, 240, 0.6); /** TaskTile inner shadow colour — #f0f0f0 at 60% */
   --color-extra-vignette: #eaebed; /** glass inner-shadow colour on card-filled surfaces. Was a raw #f0f0f0 in each component's CSS; darkened with the card so the edges keep their depth */
@@ -498,6 +499,7 @@
   --color-chart-severity-warning: var(--color-orange-500);
   --color-chart-severity-attention: var(--color-extra-chart-attention);
   --color-chart-severity-low: var(--color-emerald-500);
+  --color-chart-window: var(--color-extra-chart-window); /** The slot a timed item has to land in — TimelineChart's delivery-window band and its tooltip swatch (owner, 2026-09-30). */
   --color-category-teal-text: var(--color-teal-600); /** Not .700 — fails the chroma floor at that depth (reads gray), same issue as cyan. Contrast vs. own-100 is 3.3:1 — accepted per the always-a-label mitigation on the group description. */
   --color-category-teal-background: var(--color-teal-600);
   --color-category-rose-text: var(--color-rose-700); /** 700, not 600 — .600 doesn't clear 4.5:1 contrast. */
@@ -721,7 +723,7 @@
   --color-progress-bar-brand-stripe: var(--color-brand-400); /** Kept at 400 (not shifted down with fill) — owner's explicit preference for a very subtle fill/stripe contrast, tighter than the original 2-step gap. */
   --color-sidebar-brand-fill: var(--color-brand-500);
   --color-sidebar-brand-accent: var(--color-brand-400);
-  --color-table-progress-stages-unfilled: var(--color-surface-recessed); /** Pending (not-yet-reached) stage points + lines. surface.recessed since 2026-09-28 (was zinc.100 via background.subtle, which the darker card fill caught up with). */
+  --color-table-progress-stages-unfilled: var(--color-surface-recessed); /** Stages not reached yet — flat, sunk into the card like an empty progress segment. surface.recessed since 2026-09-28. */
   --color-tooltip-background: var(--color-surface-inverse); /** The one component that stays dark regardless of theme — a tooltip needs contrast against whatever's underneath, light or dark page alike. */
   --color-tooltip-text: var(--color-text-on-inverse);
   --color-divider-line: var(--color-border-subtle); /** The standalone Divider atom's own line color. Distinct from LabelGroup's internal divider, which deliberately stays on color.text.subtle as fixed chrome — not unified, since that one predates this token and isn't worth a breaking rebind for a coincidental match. */
@@ -791,8 +793,7 @@
   --color-form-field-label-primary: var(--color-text-brand);
   --color-helper-text-icon-primary: var(--color-icon-brand);
   --color-helper-text-text-primary: var(--color-text-brand);
-  --color-table-progress-stages-filled: var(--color-background-brand-default); /** Completed stage points + the connecting lines between them, and the current stage's own point fill. Adopted from the owner's pre-token 'Progress bar' component (4182:3097, renamed TableProgressStages) — was bound to the old shadcn-colors 'primary/primary'. */
-  --color-table-progress-stages-ring: var(--color-background-brand-subtle); /** The soft halo stroke around the current/active stage's point only — every other point/line is a flat fill with no stroke. Was 'primary/bg' (a raw light-indigo shadcn variable); this system's own equivalent 'soft brand tint' token is background.brand-subtle, the same one Badge's brand tone uses. */
+  --color-table-progress-stages-filled: var(--color-button-primary-background-default); /** Reached stages (done + current) — the glass fill of the progress pill (owner, 2026-09-30: stages restyled as glass blocks like the charts; was background.brand.default, brand 600, the old dot-and-line tracker's colour). */
   --color-breadcrumb-text-primary: var(--color-text-brand); /** An optional brand-colored crumb — for calling out one segment of the trail (e.g. the entity type), independent of which crumb is current. */
   --color-avatar-action-add: var(--color-background-brand-default);
   --color-text-brand-solid: var(--color-background-brand-default); /** Text that must read as the same accent as a solid brand fill nearby (a bar, a dot) — aliases background.brand.default itself, not a hand-picked shade, so the two can never drift apart. NOT for text on a light/subtle background — text.brand (700) stays there; this is ~100 lighter and won't clear AA on brand-subtle. */

@@ -1,4 +1,4 @@
-import { Fragment, forwardRef, type HTMLAttributes, type ReactNode } from 'react';
+import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 import styles from './TableProgressStages.module.css';
 
@@ -17,11 +17,12 @@ export type TableProgressStagesProps =
   | (Base & { 'aria-labelledby': string; 'aria-label'?: never });
 
 /**
- * A compact multi-stage tracker — evenly-spaced dots joined by a line, the
- * current stage enlarged. Not `ProgressBar` (that's a continuous 0–100%
- * fill) and not `Tracker` (a big time-left countdown card) — checked both
- * before building this; neither matches "discrete named stages, one of
- * which is current" so this stayed its own thing, same call made in Figma.
+ * A compact multi-stage tracker — one small block per stage, in the charts'
+ * glass (owner, 2026-09-30; was dots joined by a line): stages reached are
+ * glass blocks, the current one a step taller, the rest flat and recessed.
+ * Not `ProgressBar` (a continuous 0–100% fill) and not `Tracker` (a big
+ * time-left countdown card) — "discrete named stages, one of which is
+ * current" stays its own thing, same call made in Figma.
  */
 export const TableProgressStages = forwardRef<HTMLDivElement, TableProgressStagesProps>(function TableProgressStages(
   { stageCount, currentStage, caption, className, ...rest },
@@ -41,10 +42,12 @@ export const TableProgressStages = forwardRef<HTMLDivElement, TableProgressStage
     >
       <div className={styles.stages}>
         {stages.map((_, i) => (
-          <Fragment key={i}>
-            <span className={styles.dot} data-done={i <= currentStage || undefined} data-current={i === currentStage || undefined} />
-            {i < stageCount - 1 && <span className={styles.line} data-done={i < currentStage || undefined} />}
-          </Fragment>
+          <span
+            key={i}
+            className={styles.stage}
+            data-done={i <= currentStage || undefined}
+            data-current={i === currentStage || undefined}
+          />
         ))}
       </div>
       {caption != null && <p className={styles.caption}>{caption}</p>}

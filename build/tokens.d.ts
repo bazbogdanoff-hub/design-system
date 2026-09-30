@@ -32,7 +32,7 @@ export const ColorBrand900: string;
 export const ColorBrand950: string;
 /** cool near-white card fill — product override (owner, 2026-09-29: #f6f7f8 → #f6f6f8, tuned by eye to the most contrast for white items before it reads grey; was #fcfcfc before 2026-09-28) */
 export const ColorExtraCard: string;
-/** recessed zone inside a card — table header band, scroll tray. ≈ 2.8 L* below the card fill, the step zinc.100 had against the old #fcfcfc card */
+/** recessed zone inside a card — table header band, scroll tray, progress pill, segmented-control track. Darkened #eeeff1 → #ebecef (owner, 2026-09-30): the empty segments and the track read too faint on the card */
 export const ColorExtraRecessed: string;
 /** fill of a card-like element sitting on a card — one step lighter than the card (the pre-2026-09-28 card fill) */
 export const ColorExtraCardItem: string;
@@ -42,6 +42,8 @@ export const ColorExtraCardItemVignette: string;
 export const ColorExtraTileShadow: string;
 /** severity chart — attention, one step lighter (owner, 2026-09-29 trial) beside rose.600 / orange.500 / emerald.500: passes the CVD and normal-vision checks, sits just above the chart lightness band (L 0.81) so relies on the legend and tooltips. The fully validated darker set was #e0a800 with rose.700 / orange.600 / emerald.600 */
 export const ColorExtraChartAttention: string;
+/** TimelineChart delivery-window band and its tooltip swatch — a step below surface.recessed (owner, 2026-09-30: between #e3e4e8, too heavy, and the recessed grey, too faint), visible on white as well as on the #f6f6f8 card */
+export const ColorExtraChartWindow: string;
 /** TaskTile hover lift — zinc 900 at 12%, dark enough to read as height on the #f6f6f8 card (owner, 2026-09-29) */
 export const ColorExtraTileLiftShadow: string;
 /** TaskTile inner shadow colour — #f0f0f0 at 60% */
@@ -270,12 +272,10 @@ export const ColorSidebarNavItemHoverFill: string;
 export const ColorSidebarLogoMark: string;
 /** Same reasoning as mark, for the adjacent wordmark text — was bound to color.zinc.200 in Figma, inconsistent with the mark's own (also-wrong) near-white; both now resolve to the one correct value. */
 export const ColorSidebarLogoWordmark: string;
-/** Completed stage points + the connecting lines between them, and the current stage's own point fill. Adopted from the owner's pre-token 'Progress bar' component (4182:3097, renamed TableProgressStages) — was bound to the old shadcn-colors 'primary/primary'. */
+/** Reached stages (done + current) — the glass fill of the progress pill (owner, 2026-09-30: stages restyled as glass blocks like the charts; was background.brand.default, brand 600, the old dot-and-line tracker's colour). */
 export const ColorTableProgressStagesFilled: string;
-/** Pending (not-yet-reached) stage points + lines. surface.recessed since 2026-09-28 (was zinc.100 via background.subtle, which the darker card fill caught up with). */
+/** Stages not reached yet — flat, sunk into the card like an empty progress segment. surface.recessed since 2026-09-28. */
 export const ColorTableProgressStagesUnfilled: string;
-/** The soft halo stroke around the current/active stage's point only — every other point/line is a flat fill with no stroke. Was 'primary/bg' (a raw light-indigo shadcn variable); this system's own equivalent 'soft brand tint' token is background.brand-subtle, the same one Badge's brand tone uses. */
-export const ColorTableProgressStagesRing: string;
 /** The one component that stays dark regardless of theme — a tooltip needs contrast against whatever's underneath, light or dark page alike. */
 export const ColorTooltipBackground: string;
 export const ColorTooltipText: string;
@@ -690,6 +690,8 @@ export const ColorChartSeverityCritical: string;
 export const ColorChartSeverityWarning: string;
 export const ColorChartSeverityAttention: string;
 export const ColorChartSeverityLow: string;
+/** The slot a timed item has to land in — TimelineChart's delivery-window band and its tooltip swatch (owner, 2026-09-30). */
+export const ColorChartWindow: string;
 /** indigo.600 — reuses the existing brand primitive rather than a separate value */
 export const ColorCategoryBrandText: string;
 export const ColorCategoryBrandBackground: string;

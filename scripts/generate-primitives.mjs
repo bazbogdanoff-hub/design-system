@@ -67,9 +67,9 @@ brand.extra.card = {
 // The card moved down a step, so the surfaces keyed to it move with it and
 // keep the steps they had against #fcfcfc (owner, 2026-09-28).
 brand.extra.recessed = {
-  $value: '#eeeff1',
+  $value: '#ebecef',
   $description:
-    'recessed zone inside a card — table header band, scroll tray. ≈ 2.8 L* below the card fill, the step zinc.100 had against the old #fcfcfc card',
+    'recessed zone inside a card — table header band, scroll tray, progress pill, segmented-control track. Darkened #eeeff1 → #ebecef (owner, 2026-09-30): the empty segments and the track read too faint on the card',
 };
 // Card-looking things that sit ON a card (StatButton, secondary Button and
 // everything built on it) keep the old lighter fill, so they read as raised
@@ -96,6 +96,13 @@ brand.extra['tile-shadow'] = {
 brand.extra['chart-attention'] = {
   $value: '#f0b90b',
   $description: 'severity chart — attention, one step lighter (owner, 2026-09-29 trial) beside rose.600 / orange.500 / emerald.500: passes the CVD and normal-vision checks, sits just above the chart lightness band (L 0.81) so relies on the legend and tooltips. The fully validated darker set was #e0a800 with rose.700 / orange.600 / emerald.600',
+};
+// The timeline's delivery-window band (owner, 2026-09-30). surface.recessed
+// vanished as the tooltip's swatch on white; one cool step darker reads on
+// both the card and the tooltip. Off the zinc scale on purpose.
+brand.extra['chart-window'] = {
+  $value: '#e7e8eb',
+  $description: 'TimelineChart delivery-window band and its tooltip swatch — a step below surface.recessed (owner, 2026-09-30: between #e3e4e8, too heavy, and the recessed grey, too faint), visible on white as well as on the #f6f6f8 card',
 };
 brand.extra['tile-lift-shadow'] = {
   $value: '#18181b1f',

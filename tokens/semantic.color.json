@@ -277,6 +277,7 @@
         "attention": { "$value": "{color.extra.chart-attention}" },
         "low": { "$value": "{color.emerald.500}" }
       },
+      "window": { "$value": "{color.extra.chart-window}", "$description": "The slot a timed item has to land in — TimelineChart's delivery-window band and its tooltip swatch (owner, 2026-09-30)." },
       "1": { "$value": "{color.brand.400}", "$description": "Categorical series 1 — placeholder palette, revisit with the real chart component. Migrated from brand.500 to match Figma's lighter chart ramp." },
       "2": { "$value": "{color.cyan.500}", "$description": "Not migrated to cyan.400 — failed the dataviz skill's lightness-band check at .400 (L 0.797, above the 0.77 ceiling)." },
       "3": { "$value": "{color.amber.500}", "$description": "Not migrated to amber.400 — failed the lightness-band check at .400 (L 0.837)." },

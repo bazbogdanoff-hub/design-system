@@ -496,9 +496,8 @@
       }
     },
     "tableProgressStages": {
-      "filled": { "$value": "{color.background.brand.default}", "$description": "Completed stage points + the connecting lines between them, and the current stage's own point fill. Adopted from the owner's pre-token 'Progress bar' component (4182:3097, renamed TableProgressStages) — was bound to the old shadcn-colors 'primary/primary'." },
-      "unfilled": { "$value": "{color.surface.recessed}", "$description": "Pending (not-yet-reached) stage points + lines. surface.recessed since 2026-09-28 (was zinc.100 via background.subtle, which the darker card fill caught up with)." },
-      "ring": { "$value": "{color.background.brand-subtle}", "$description": "The soft halo stroke around the current/active stage's point only — every other point/line is a flat fill with no stroke. Was 'primary/bg' (a raw light-indigo shadcn variable); this system's own equivalent 'soft brand tint' token is background.brand-subtle, the same one Badge's brand tone uses." }
+      "filled": { "$value": "{color.button.primary.background.default}", "$description": "Reached stages (done + current) — the glass fill of the progress pill (owner, 2026-09-30: stages restyled as glass blocks like the charts; was background.brand.default, brand 600, the old dot-and-line tracker's colour)." },
+      "unfilled": { "$value": "{color.surface.recessed}", "$description": "Stages not reached yet — flat, sunk into the card like an empty progress segment. surface.recessed since 2026-09-28." }
     },
     "tooltip": {
       "background": { "$value": "{color.surface.inverse}", "$description": "The one component that stays dark regardless of theme — a tooltip needs contrast against whatever's underneath, light or dark page alike." },

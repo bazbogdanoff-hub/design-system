@@ -4,35 +4,40 @@
   gap: var(--space-8);
 }
 
+/* One block per stage, 2px apart like the chart blocks. Aligned to the
+   centre, so the taller current block reads as the one that's live. */
 .stages {
   display: flex;
   align-items: center;
+  gap: var(--space-2);
 }
 
-.dot {
-  flex: none;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: var(--radius-full);
-  background: var(--color-table-progress-stages-unfilled);
-}
-.dot[data-done] {
-  background: var(--color-table-progress-stages-filled);
-}
-.dot[data-current] {
-  width: 0.75rem;
-  height: 0.75rem;
-  box-shadow: 0 0 0 3px var(--color-table-progress-stages-ring);
-}
-
-.line {
+/* Not reached yet — flat, sunk into the card like an empty progress
+   segment. */
+.stage {
   flex: none;
   width: 1.5rem;
-  height: 2px;
+  height: 0.5rem;
+  border-radius: 3px; /* hand-tuned, not a token — the bar corner scaled to an 8px block, as on legend swatches */
   background: var(--color-table-progress-stages-unfilled);
 }
-.line[data-done] {
-  background: var(--color-table-progress-stages-filled);
+
+/* Reached — the glass pattern (src/glass.css), scaled to this size like
+   the legend swatches: a 1px catch top-left, a short inner shadow, and the
+   primary Button's plain drop shadow shrunk to fit. */
+.stage[data-done] {
+  --glass-fill: var(--color-table-progress-stages-filled);
+  background: var(--glass-fill);
+  box-shadow:
+    inset 1px 1px 0 0 color-mix(in srgb, var(--glass-fill), white var(--glass-catch-mix)),
+    inset 1px 1px 3px 0 color-mix(in oklch, var(--glass-fill), black var(--glass-inner-mix)),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* The current stage — the same block, a step taller. */
+.stage[data-current] {
+  height: 0.75rem;
+  border-radius: 4px; /* the bar corner, as on BarChart's blocks */
 }
 
 .caption {

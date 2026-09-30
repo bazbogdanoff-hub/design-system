@@ -41,8 +41,8 @@
         "$description": "cool near-white card fill — product override (owner, 2026-09-29: #f6f7f8 → #f6f6f8, tuned by eye to the most contrast for white items before it reads grey; was #fcfcfc before 2026-09-28)"
       },
       "recessed": {
-        "$value": "#eeeff1",
-        "$description": "recessed zone inside a card — table header band, scroll tray. ≈ 2.8 L* below the card fill, the step zinc.100 had against the old #fcfcfc card"
+        "$value": "#ebecef",
+        "$description": "recessed zone inside a card — table header band, scroll tray, progress pill, segmented-control track. Darkened #eeeff1 → #ebecef (owner, 2026-09-30): the empty segments and the track read too faint on the card"
       },
       "card-item": {
         "$value": "#fcfcfc",
@@ -59,6 +59,10 @@
       "chart-attention": {
         "$value": "#f0b90b",
         "$description": "severity chart — attention, one step lighter (owner, 2026-09-29 trial) beside rose.600 / orange.500 / emerald.500: passes the CVD and normal-vision checks, sits just above the chart lightness band (L 0.81) so relies on the legend and tooltips. The fully validated darker set was #e0a800 with rose.700 / orange.600 / emerald.600"
+      },
+      "chart-window": {
+        "$value": "#e7e8eb",
+        "$description": "TimelineChart delivery-window band and its tooltip swatch — a step below surface.recessed (owner, 2026-09-30: between #e3e4e8, too heavy, and the recessed grey, too faint), visible on white as well as on the #f6f6f8 card"
       },
       "tile-lift-shadow": {
         "$value": "#18181b1f",
