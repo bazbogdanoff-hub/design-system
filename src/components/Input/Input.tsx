@@ -15,6 +15,13 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   prependText?: ReactNode;
   /** Fixed, non-editable text after the value (e.g. `kg`, `.com`) — subtle color, shares the field's border. */
   appendText?: ReactNode;
+  /** An interactive element at the very end, inside the border — e.g. a
+   * send `IconButton` (owner, 2026-09-30: the chat composer). Unlike
+   * `trailingIcon` it is focusable and clickable. The field's end padding
+   * drops to 4px so it sits snug, and its corners run parallel to the
+   * field's. Use an `IconButton` a step shorter than the field (`md` in an
+   * `md` field). */
+  trailingAction?: ReactNode;
   /** Error state — reddens the border and sets `aria-invalid`. */
   error?: boolean;
   /** Class on the outer field box (the bordered element). `className` targets the `<input>` itself. */
@@ -42,6 +49,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     trailingIcon,
     prependText,
     appendText,
+    trailingAction,
     error,
     disabled,
     className,
@@ -57,6 +65,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       data-size={size}
       data-error={error || undefined}
       data-disabled={disabled || undefined}
+      data-has-action={trailingAction != null || undefined}
     >
       {prependText != null && (
         <span className={styles.affix} data-side="prepend">
@@ -85,6 +94,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           {appendText}
         </span>
       )}
+      {trailingAction != null && <span className={styles.action}>{trailingAction}</span>}
     </span>
   );
 });

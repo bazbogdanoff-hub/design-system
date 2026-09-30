@@ -15,6 +15,7 @@ variants: `size` × `state`), extended in code with icon and affix slots.
 | `size` | `sm` (36px) · `md` (40px) · `lg` (44px) | `md` | Input's own scale (`size.input.*`) — owner resized it a full step up in Figma, no longer shared with `Button`'s `size.control.*` |
 | `leadingIcon` | `ReactNode` | — | decorative, `aria-hidden` |
 | `trailingIcon` | `ReactNode` | — | decorative, `aria-hidden` |
+| `trailingAction` | `ReactNode` | — | an **interactive** element at the very end, inside the border — e.g. a send `IconButton` (`md` in an `md` field). The end padding drops to 4px so it sits snug; its corners run parallel to the field's (radius less the 4px inset). Added 2026-09-30 for the chat composer |
 | `prependText` | `ReactNode` | — | fixed, non-editable text before the value (e.g. `https://`) |
 | `appendText` | `ReactNode` | — | fixed, non-editable text after the value (e.g. `kg`) |
 | `error` | `boolean` | — | reddens the border, sets `aria-invalid` |

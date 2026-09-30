@@ -114,3 +114,20 @@
   font-size: var(--text-body-lg-font-size);
   font-weight: var(--text-body-lg-font-weight);
 }
+
+/* trailingAction — an interactive element (a send IconButton) at the end,
+   inside the border (owner, 2026-09-30). The field's end padding drops to
+   4px so it sits snug; its corners run parallel to the field's — the
+   field's radius less that 4px inset. [data-has-action] lifts this over the
+   action's own radius rule. */
+.field[data-has-action] {
+  padding-inline-end: var(--space-4);
+}
+.action {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+}
+.field[data-has-action] .action > * {
+  border-radius: max(var(--radius-xs), calc(var(--radius-input) - var(--space-4)));
+}
