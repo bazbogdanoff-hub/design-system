@@ -110,6 +110,10 @@ needed `hasAction` set to `false` by hand after the fact.
 No fill by default — matches `color/scrollableArea/row/*`: rows in a
 recessed scroll track stay transparent, same reasoning as `table.row`.
 
+**Square corners** (owner, 2026-09-30; was `radius.sm`). Rows sit edge to
+edge in a list, split by their divider; a rounded hover wash read as a pill
+floating inside the list.
+
 | state | treatment | token |
 |---|---|---|
 | hover | flat fill | `color/scrollableArea/row/shadow/hover` → `background/overlay-subtle` |

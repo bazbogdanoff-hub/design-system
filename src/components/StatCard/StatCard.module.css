@@ -44,6 +44,27 @@
   color: var(--color-text-default);
 }
 
+/* sm — each type one step down and 12 to the buttons (owner, 2026-09-30).
+   The figure stays at heading.lg (24): 6 above StatButton's heading.sm (18)
+   values, clear of the 20-vs-18 collapse noted above. */
+.card[data-size='sm'] {
+  gap: var(--space-12);
+}
+.card[data-size='sm'] .label {
+  font-family: var(--text-label-lg-font-family);
+  font-size: var(--text-label-lg-font-size);
+  font-weight: var(--text-label-lg-font-weight);
+  line-height: var(--text-label-lg-line-height);
+  letter-spacing: var(--text-label-lg-letter-spacing);
+}
+.card[data-size='sm'] .value {
+  font-family: var(--text-heading-lg-font-family);
+  font-size: var(--text-heading-lg-font-size);
+  font-weight: var(--text-heading-lg-font-weight);
+  line-height: var(--text-heading-lg-line-height);
+  letter-spacing: var(--text-heading-lg-letter-spacing);
+}
+
 .badge {
   flex: none;
 }

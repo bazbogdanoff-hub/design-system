@@ -44,6 +44,7 @@ const modules = [
 | `profileActive` | `boolean` | `false` | brand-active highlight on the Profile row |
 | `onSettingsClick` | `() => void` | | |
 | `settingsActive` | `boolean` | `false` | brand-active highlight on the Settings row |
+| `bottomItems` | `ReactNode` | | extra `SidebarNavItem`s at the top of the bottom section, above Profile and Settings — app-wide places that belong to no module (owner, 2026-09-30: Messages and the Aegis assistant). Settings stays last: its row carries the section's deep corner |
 | `name` | `ReactNode` — required | | the wordmark text next to the brand mark |
 
 `SidebarModule` is `{ id: string; tone: 'brand' \| 'success' \| 'danger'; label: string }`
@@ -52,6 +53,17 @@ assistive tech (the switcher segments are bare color pills with no visible
 text, matching Figma). A module's position in the switcher is purely
 `modules`' own array order — position and tone are independent, so
 reordering the array never implies recoloring anything.
+
+## The module list scrolls without a scrollbar
+
+When the rail is short (1280 × 580), the module list scrolls with no
+scrollbar (owner, 2026-09-30). Each edge instead fades — 2.5rem in the
+panel's own colour, eased, stopping at 75% so the row it covers still shows
+through — and only while there is more beyond it (`data-more-above` /
+`data-more-below`, set from the scroll position). The fade is a sticky
+overlay, not a mask: the list scrolls inside the panel itself, and a mask
+would fade the panel's fill and corners too. A newly picked module opens at
+the top of its list.
 
 ## Structure
 

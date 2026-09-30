@@ -24,6 +24,7 @@ migration) — never detached.
 | `label` | `ReactNode` | headline metric name |
 | `value` | `ReactNode` | headline figure |
 | `badge` | `ReactNode` — optional | trend / status, top-right; usually a `<Badge>` |
+| `size` | `'sm' | 'md'` — default `md` | `sm`: each type one step down (`label.lg` over `heading.lg`) and 12 to the buttons, for a row of cards that must leave room below it — the dashboard's readiness strip (owner, 2026-09-30). The figure stays at 24, six above `StatButton's` 18, clear of the 20-vs-18 collapse |
 | `children` | `ReactNode` — optional | the `StatButton` row; buttons share the width evenly |
 
 `className`, `style`, `...divProps` pass through to the `Card` root.

@@ -58,6 +58,70 @@
   margin-top: calc(-1 * var(--space-6));
   position: relative;
   z-index: 0;
+  /* Scrolls without a scrollbar (owner, 2026-09-30): the edge fades below
+     say there is more, only where there is. */
+  scrollbar-width: none;
+  --_fade: 2.5rem;
+}
+.nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* The edge fades — pinned to the list's top and bottom, in the panel's own
+   colour, on an eased curve (smoothstep), never quite solid — the row it
+   covers still shows through at the edge, which is the hint. An overlay, not a mask: the list
+   scrolls inside the panel itself, and a mask would fade the panel's fill
+   and corners too. Each shows only while there is more beyond its edge
+   (data-more-above / -below, set from the scroll position by Sidebar).
+   Negative margins keep them out of the rows' layout; the section's gap is
+   taken back too. */
+.nav::before,
+.nav::after {
+  content: '';
+  position: sticky;
+  z-index: 3;
+  flex: none;
+  height: var(--_fade);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+.nav::before {
+  /* Sticky offsets count from inside the padding: reach back over it. */
+  top: calc(-1 * var(--space-16));
+  margin-top: calc(-1 * var(--space-16));
+  margin-bottom: calc(-1 * var(--_fade) - var(--space-4) + var(--space-16));
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-sidebar-panel-background) 75%, transparent),
+    color-mix(in srgb, var(--color-sidebar-panel-background) 63%, transparent) 25%,
+    color-mix(in srgb, var(--color-sidebar-panel-background) 38%, transparent) 50%,
+    color-mix(in srgb, var(--color-sidebar-panel-background) 12%, transparent) 75%,
+    transparent
+  );
+}
+.nav::after {
+  bottom: calc(-1 * var(--space-4));
+  margin-top: calc(-1 * var(--_fade) - var(--space-4) + var(--space-4));
+  margin-bottom: calc(-1 * var(--space-4));
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--color-sidebar-panel-background) 75%, transparent),
+    color-mix(in srgb, var(--color-sidebar-panel-background) 63%, transparent) 25%,
+    color-mix(in srgb, var(--color-sidebar-panel-background) 38%, transparent) 50%,
+    color-mix(in srgb, var(--color-sidebar-panel-background) 12%, transparent) 75%,
+    transparent
+  );
+}
+.nav[data-more-above]::before,
+.nav[data-more-below]::after {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav::before,
+  .nav::after {
+    transition: none;
+  }
 }
 
 .bottomSection {

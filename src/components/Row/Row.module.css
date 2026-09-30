@@ -4,7 +4,9 @@
      sticks to the row's top edge instead of centering against the text
      block, matching the Figma master (counterAxisAlignItems: MIN). */
   align-items: flex-start;
-  border-radius: var(--radius-sm);
+  /* Square (owner, 2026-09-30): rows sit edge to edge in a list, split by
+     their divider; a rounded hover wash read as a pill inside the list. */
+  border-radius: 0;
   background-color: transparent;
   transition: background-color 0.15s ease, box-shadow 0.15s ease;
   /* permanent 1px bottom divider between rows in a list — every state, not

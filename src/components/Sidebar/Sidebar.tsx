@@ -1,4 +1,4 @@
-import { forwardRef, useState, type HTMLAttributes, type ReactNode } from 'react';
+import { forwardRef, useEffect, useRef, useState, type HTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 import { SegmentedControl } from '../SegmentedControl';
 import { SegmentedControlItem, type SegmentedControlItemPosition } from '../SegmentedControlItem';
@@ -49,6 +49,11 @@ export interface SidebarProps extends Omit<HTMLAttributes<HTMLElement>, 'childre
   onProfileClick?: () => void;
   /** Highlight the Profile row (e.g. when `/profile` is the current route). */
   profileActive?: boolean;
+  /** Extra `SidebarNavItem`s at the top of the bottom section, above Profile
+   * and Settings — app-wide places that belong to no module (owner,
+   * 2026-09-30: Messages and the Aegis assistant). Settings stays last: its
+   * row carries the section's deep corner. */
+  bottomItems?: ReactNode;
   /** The wordmark text next to the brand mark — ignored when collapsed. */
   name: ReactNode;
   /** Temporary: toggles collapsed ↔ expanded (icon under logo + divider). */
@@ -59,7 +64,7 @@ export interface SidebarProps extends Omit<HTMLAttributes<HTMLElement>, 'childre
  * The app's left rail — the brand mark up top, a module switcher (picking
  * one swaps `children` to that module's own nav), the active module's nav
  * list in its own rounded section, and a fixed bottom section for
- * Profile → Settings. `AppShell` still owns the rail's width/background,
+ * [bottomItems →] Profile → Settings. `AppShell` still owns the rail's width/background,
  * this only owns what's inside it.
  */
 export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
@@ -77,6 +82,7 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
     settingsActive = false,
     onProfileClick,
     profileActive = false,
+    bottomItems,
     name,
     onModeToggle,
     className,
@@ -86,6 +92,37 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
 ) {
   const [profileOpen, setProfileOpen] = useState(false);
   const collapsed = mode === 'collapsed';
+
+  // The module list scrolls without a scrollbar; its edges fade while there
+  // is more beyond them. Marked on scroll, on resize, and when the module
+  // (and so the rows) changes.
+  const navRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = navRef.current;
+    if (!el) return;
+    const mark = () => {
+      const above = el.scrollTop > 1;
+      const below = el.scrollTop + el.clientHeight < el.scrollHeight - 1;
+      if (above) el.dataset.moreAbove = '';
+      else delete el.dataset.moreAbove;
+      if (below) el.dataset.moreBelow = '';
+      else delete el.dataset.moreBelow;
+    };
+    mark();
+    el.addEventListener('scroll', mark, { passive: true });
+    const ro = new ResizeObserver(mark);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener('scroll', mark);
+      ro.disconnect();
+    };
+  }, [activeModule, children]);
+
+  // A newly picked module opens at the top of its list, not at the scroll
+  // position the previous module was left at.
+  useEffect(() => {
+    if (navRef.current) navRef.current.scrollTop = 0;
+  }, [activeModule]);
 
   function handleProfileClick() {
     if (onProfileClick) {
@@ -131,12 +168,13 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
           })}
         </SegmentedControl>
 
-        <SidebarSection content="module" className={styles.nav}>
+        <SidebarSection ref={navRef} content="module" className={styles.nav}>
           {children}
         </SidebarSection>
       </div>
 
       <SidebarSection content="settings" className={styles.bottomSection}>
+        {bottomItems}
         <span className={styles.profileWrapper}>
           <SidebarNavItem
             avatar={userAvatar ?? <Avatar size="sm">{userInitials}</Avatar>}
