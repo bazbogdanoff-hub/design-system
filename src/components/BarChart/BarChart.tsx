@@ -35,6 +35,9 @@ export interface BarChartProps {
 }
 
 const GAP_PX = 2; // surface-color gap between stacked segments (marks-and-anatomy.md)
+/** Room around a block for its glass filter — the drop shadow's blur (σ 4)
+ * fades out well inside 16px. */
+const FILTER_ROOM = 16;
 const CORNER_PX = 4; // rounded data-end radius
 const MAX_BAR_THICKNESS_PX = 24;
 const MIN_HEIGHT_PX = 140; // pre-measurement / degenerate-container fallback
@@ -186,19 +189,6 @@ export function BarChart({
         })}
         </g>
 
-        {/* Glass per series (lib/glassFilter.tsx) — region = the whole chart,
-            so the shadow is never clipped. */}
-        <defs>
-          {series.map((s, si) => (
-            <GlassFilter
-              key={s.key}
-              id={glassFilterId(glassBase, si)}
-              color={s.color}
-              region={{ x: 0, y: 0, width: intrinsicWidth, height }}
-            />
-          ))}
-        </defs>
-
         {/* bars */}
         {data.map((datum, i) => {
           const x = padLeft + bandWidth * i + (bandWidth - barWidth) / 2;
@@ -219,14 +209,30 @@ export function BarChart({
             const segHeight = hasBelow ? Math.max(0, rawHeight - GAP) : rawHeight;
             hasBelow = true;
             const path = roundedRectPath(x, yTop, barWidth, segHeight, CORNER);
+            // Glass (lib/glassFilter.tsx), one filter per block, sized to the
+            // block plus room for its shadow. A filter covering the whole
+            // chart made the browser blur a chart-sized image per block, every
+            // frame of the grow-in (owner, 2026-09-30 perf pass).
+            const filterId = glassFilterId(glassBase, i * series.length + si);
             return (
-              <path
-                key={s.key}
-                d={path}
-                fill={s.color}
-                filter={`url(#${glassFilterId(glassBase, si)})`}
-                className={activeIndex === i ? styles.segmentActive : styles.segment}
-              />
+              <g key={s.key}>
+                <GlassFilter
+                  id={filterId}
+                  color={s.color}
+                  region={{
+                    x: x - FILTER_ROOM,
+                    y: yTop - FILTER_ROOM,
+                    width: barWidth + FILTER_ROOM * 2,
+                    height: segHeight + FILTER_ROOM * 2,
+                  }}
+                />
+                <path
+                  d={path}
+                  fill={s.color}
+                  filter={`url(#${filterId})`}
+                  className={activeIndex === i ? styles.segmentActive : styles.segment}
+                />
+              </g>
             );
           });
 
@@ -295,29 +301,33 @@ export function BarChart({
       )}
 
       {/* screen-reader-only data table — every value stays reachable without hovering */}
-      <table className={styles.srOnlyTable}>
-        <caption>{ariaLabel ?? 'Chart data'}</caption>
-        <thead>
-          <tr>
-            <th scope="col">Category</th>
-            {series.map((s) => (
-              <th key={s.key} scope="col">
-                {s.label}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((datum) => (
-            <tr key={datum.category}>
-              <th scope="row">{datum.category}</th>
+      {/* Hidden in a div, not on the table: a table won't shrink below its
+          rows, so a 1px table still stretched the page's scroll height. */}
+      <div className={styles.srOnlyTable}>
+        <table>
+          <caption>{ariaLabel ?? 'Chart data'}</caption>
+          <thead>
+            <tr>
+              <th scope="col">Category</th>
               {series.map((s) => (
-                <td key={s.key}>{valueFormatter(datum.values[s.key] ?? 0)}</td>
+                <th key={s.key} scope="col">
+                  {s.label}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data.map((datum) => (
+              <tr key={datum.category}>
+                <th scope="row">{datum.category}</th>
+                {series.map((s) => (
+                  <td key={s.key}>{valueFormatter(datum.values[s.key] ?? 0)}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

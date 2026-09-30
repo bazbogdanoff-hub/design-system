@@ -153,17 +153,21 @@ export function DonutChart({
         </span>
       </div>
 
-      <table className={styles.srOnlyTable}>
-        <caption>{ariaLabel}</caption>
-        <tbody>
-          {data.map((d) => (
-            <tr key={d.key}>
-              <th scope="row">{d.label}</th>
-              <td>{valueFormatter(d.value)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {/* Hidden in a div, not on the table: a table won't shrink below its
+          rows, so a 1px table still stretched the page's scroll height. */}
+      <div className={styles.srOnlyTable}>
+        <table>
+          <caption>{ariaLabel}</caption>
+          <tbody>
+            {data.map((d) => (
+              <tr key={d.key}>
+                <th scope="row">{d.label}</th>
+                <td>{valueFormatter(d.value)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

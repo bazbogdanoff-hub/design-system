@@ -21,10 +21,17 @@ The card shell every chart sits in — title + legend + filters/action on
 | prop | type | notes |
 |---|---|---|
 | `title` | `ReactNode` | card heading, `text/heading/md` |
+| `titleAccessory` | `ReactNode` — optional | a small companion right after the title, centred on it, 12px away — e.g. `CalendarHeatmapLead`, a count the whole chart qualifies. Outside the `<h3>`, so it keeps its own type and can be a button (owner, 2026-09-30) |
 | `legend` | `ChartLegendItem[]` — optional | renders a `ChartLegend` on the same header row; omit for a single-series chart |
 | `filters` | `ReactNode` — optional | `Filter` instance(s), grouped with `action` at the header's right edge |
 | `action` | `ReactNode` — optional | a single trailing icon action next to the filters — e.g. an expand/"view full chart" `IconButton` |
+| `headerGap` | `'sm' | 'md'` — default `md` | space between the header row and the chart: 16px, or 8px for a chart whose own top row (an axis) already sets it off from the title — the dashboard timeline (owner, 2026-09-30) |
+| `bodyAlign` | `'stretch' | 'end'` — default `stretch` | `end`: the chart keeps its own height (give it one) and sits at the card's foot; the space above grows instead — a card matched to a taller neighbour keeps its chart still rather than stretching it (owner, 2026-09-30) |
 | `children` | `ReactNode` | the chart itself — `BarChart`, or any future chart type |
+
+The body grows from its content (`flex: 1 1 auto`), not from zero: a card
+given a height is filled as before, and a card left to size itself (`height:
+auto`) fits its content instead of measuring as header-only.
 
 `className`, `style`, `...divProps` pass through to the `Card` root.
 

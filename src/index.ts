@@ -158,6 +158,12 @@ export type { PaginationProps } from './components/Pagination';
 
 export { ChartLegend } from './components/ChartLegend';
 export type { ChartLegendProps, ChartLegendItem } from './components/ChartLegend';
+export { GaugeChart } from './components/GaugeChart';
+export type { GaugeChartProps, GaugeChartDatum } from './components/GaugeChart';
+export { CalendarHeatmap, CalendarHeatmapLead } from './components/CalendarHeatmap';
+export type { CalendarHeatmapProps, CalendarHeatmapDay, CalendarHeatmapLeadProps } from './components/CalendarHeatmap';
+export { TimelineChart } from './components/TimelineChart';
+export type { TimelineChartProps, TimelineItem, TimelineTone } from './components/TimelineChart';
 export { DonutChart } from './components/DonutChart';
 export type { DonutChartProps, DonutChartDatum } from './components/DonutChart';
 export { ChartLegendGroup } from './components/ChartLegendGroup';

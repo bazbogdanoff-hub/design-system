@@ -1,0 +1,293 @@
+/* Strip layout: one grid holds the weekday labels, the month row on top and
+   a column per week — each week a subgrid of the seven day rows, so rows
+   line up with their labels while the squares size the rows (owner,
+   2026-09-30: square days, the frame grows to fit). The footer (the scale,
+   in its legend tile) runs underneath. */
+.chart {
+  --_head-h: 1.5rem;
+  --_gap: var(--space-4);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: var(--space-12);
+  min-width: 0;
+}
+
+.weekday,
+.month,
+.footer {
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  line-height: 1rem;
+  color: var(--color-text-subtle);
+  white-space: nowrap;
+}
+.weekday {
+  grid-column: 1;
+  align-self: center;
+  padding-right: var(--space-4);
+}
+
+.weeks {
+  display: grid;
+  grid-template-columns: auto repeat(var(--_weeks), minmax(0, 1fr));
+  grid-template-rows: var(--_head-h) repeat(7, auto);
+  gap: var(--_gap);
+  min-width: 0;
+}
+.week {
+  grid-row: 2 / span 7;
+  display: grid;
+  grid-template-rows: subgrid;
+  min-width: 0;
+}
+.week .cell,
+.week .blank {
+  aspect-ratio: 1;
+}
+
+/* A month: its name over a line that runs the length of its weeks — the gap
+   between two lines is where one month ends and the next begins. */
+.months {
+  display: contents;
+}
+.month {
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  overflow: hidden;
+}
+.month::after {
+  content: '';
+  height: 2px;
+  border-radius: 1px;
+  background: var(--color-border-strong);
+}
+
+/* ---- calendar layout: weekdays across, weeks down ------------------- */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--space-6);
+  min-width: 0;
+}
+.calendarWeekday {
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  line-height: 1rem;
+  color: var(--color-text-subtle);
+  text-align: center;
+}
+/* Squares big enough to carry their day number. */
+.calendar .cell,
+.calendar .blank {
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+}
+.dayNumber {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-6);
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  line-height: 1rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--color-text-subtle);
+  pointer-events: none;
+}
+/* On any fill the number is white, as on a button — one treatment for every
+   shade (owner, 2026-09-30). On the palest it's low contrast, eased by the shadow
+   below; the date is also in the cell's label and its tooltip. */
+.cell:not([data-level='0']) .dayNumber {
+  color: var(--color-text-on-brand);
+  /* A soft shadow in a darker step of the cell's own colour lifts the white
+     off the pale fills without greying them. */
+  text-shadow: 0 1px 2px oklch(from var(--glass-fill) calc(l - 0.3) c h / 0.55);
+}
+
+/* ---- a day ------------------------------------------------------------- */
+.cell,
+.blank {
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  font: inherit;
+  color: inherit;
+}
+/* Empty — flat and sunk into the card, like an empty progress segment. */
+.cell {
+  background: var(--color-surface-recessed);
+  animation: heatmap-cell-in 500ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(150ms + var(--w, 0) * 35ms);
+}
+/* Days of the first week before the start — no cell at all. */
+.blank {
+  background: transparent;
+}
+
+/* Filled — the glass pattern (src/glass.css) at the pill's weight, the fill
+   stepping from a tint of the series colour up to the full colour. */
+.cell[data-level='1'],
+.cell[data-level='2'],
+.cell[data-level='3'],
+.swatch {
+  background: var(--glass-fill);
+  box-shadow:
+    inset 1px 1px 0 0 color-mix(in srgb, var(--glass-fill), white var(--glass-catch-mix)),
+    inset 2px 2px 8px 0 var(--_inner, color-mix(in oklch, var(--glass-fill), black var(--_inner-mix, var(--glass-inner-mix)))),
+    0 1px 4px 0 rgba(0, 0, 0, var(--_drop-a, 0.2));
+}
+/* The shadows scale with the fill (owner, 2026-09-30): at full strength
+   the drop shadow outweighs a pale tint — the muddy look — so it steps
+   down with the fill; the inner shadow keeps its depth. The fullest step
+   keeps the chart recipe unchanged.
+   Same specificity as the rule above, so these steps win by coming after. */
+.cell[data-level='3'],
+.swatch[data-level='3'] {
+  --glass-fill: var(--color-chart-1);
+}
+/* Three steps, not four (owner, 2026-09-30): 1, 2, 3 or more. The middle
+   step sits a touch lighter than halfway so the three read evenly apart. */
+.cell[data-level='1'],
+.swatch[data-level='1'] {
+  --glass-fill: color-mix(in oklch, var(--color-chart-1) 58%, var(--color-chart-window));
+  /* A darker step of its own colour, not a mix with black — a clean tint
+     stays clean (owner, 2026-09-30). */
+  --_inner: oklch(from var(--glass-fill) calc(l - 0.1) c h);
+  --_drop-a: 0.1;
+}
+.cell[data-level='2'],
+.swatch[data-level='2'] {
+  --glass-fill: color-mix(in oklch, var(--color-chart-1) 75%, var(--color-chart-window));
+  --_drop-a: 0.15;
+}
+
+button.cell {
+  cursor: pointer;
+}
+button.cell:hover,
+button.cell:focus-visible {
+  filter: brightness(1.08);
+}
+.cell:focus-visible,
+.lead:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 1px;
+}
+/* Today — dressed as a Tile (owner, 2026-09-30), the task card's white
+   glass: the one white square on the card, lifted where every other empty
+   day is sunk. A today that has a count keeps its fill and takes only the
+   tile's drop shadow. */
+.cell[data-today][data-level='0'] {
+  background: var(--color-tile-background);
+  box-shadow:
+    inset 2px 2px 0 0 var(--color-tile-border),
+    inset -1px -1px 0 0 var(--color-tile-border),
+    inset 1px 1px 8px 0 var(--color-tile-inner-shadow),
+    0.5px 0.5px 2px 2px var(--color-tile-shadow);
+}
+.cell[data-today]:not([data-level='0']) {
+  box-shadow:
+    inset 1px 1px 0 0 color-mix(in srgb, var(--glass-fill), white var(--glass-catch-mix)),
+    inset 2px 2px 8px 0 var(--_inner, color-mix(in oklch, var(--glass-fill), black var(--_inner-mix, var(--glass-inner-mix)))),
+    0.5px 0.5px 2px 2px var(--color-tile-shadow),
+    0 1px 4px 0 rgba(0, 0, 0, var(--_drop-a, 0.2));
+}
+.cell[data-today][data-level='0'] .dayNumber {
+  color: var(--color-text-strong);
+}
+.cell:hover,
+.cell:focus-visible {
+  z-index: 1;
+}
+
+/* ---- footer: the scale, in a full-width legend tile, set to the right -- */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-8);
+  padding: var(--space-8) var(--space-12);
+}
+
+/* ---- CalendarHeatmapLead ----------------------------------------------- */
+.leadGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  line-height: 1rem;
+  color: var(--color-text-subtle);
+  white-space: nowrap;
+}
+/* A small square in the danger glass, holding its count — sized to the
+   footer text, not to a day (owner, 2026-09-30). */
+.lead {
+  --glass-fill: var(--color-chart-severity-critical);
+  box-sizing: border-box;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--glass-fill);
+  box-shadow:
+    inset 1px 1px 0 0 color-mix(in srgb, var(--glass-fill), white var(--glass-catch-mix)),
+    inset 2px 2px 8px 0 color-mix(in oklch, var(--glass-fill), black var(--glass-inner-mix)),
+    0 1px 4px 0 rgba(0, 0, 0, 0.2);
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-on-brand);
+}
+button.lead {
+  cursor: pointer;
+}
+button.lead:hover {
+  filter: brightness(1.08);
+}
+/* Nothing lapsed — recessed and quiet, like an empty day. */
+.lead[data-empty] {
+  background: var(--color-surface-recessed);
+  box-shadow: none;
+  color: var(--color-text-subtle);
+}
+
+.swatches {
+  display: flex;
+  gap: var(--space-4);
+}
+.swatch {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 0.1875rem;
+}
+
+@keyframes heatmap-cell-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell {
+    animation: none;
+  }
+}

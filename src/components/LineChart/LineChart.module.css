@@ -25,10 +25,32 @@
   fill: var(--color-text-subtle);
 }
 
+/* The goal line (`reference`) — dashed and neutral, a level to read the
+   line against rather than a series of its own. */
+.reference {
+  stroke: var(--color-border-strong);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+  pointer-events: none;
+}
+.referenceLabel {
+  font-family: var(--text-caption-font-family);
+  font-size: var(--text-caption-font-size);
+  font-weight: var(--text-caption-font-weight);
+  fill: var(--color-text-subtle);
+  pointer-events: none;
+}
+
 .line {
   stroke-width: 2; /* per the skill's line-mark spec */
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+/* Glass line (owner, 2026-09-30): catch and vignette are 2px strokes set
+   0.25px above and below; the 1.5px line over them leaves 0.5px of each —
+   2.5px from top to bottom. */
+.line[data-layer='body'] {
+  stroke-width: 1.5;
 }
 
 .area {
@@ -85,6 +107,10 @@
 .hitTarget {
   cursor: pointer;
   outline: none;
+}
+/* Hovering a column that opens something washes it, so it reads as a target. */
+.hitTarget[data-selectable]:hover {
+  fill: var(--color-background-overlay-subtle);
 }
 .hitTarget:focus-visible {
   outline: 2px solid var(--color-border-focus);
