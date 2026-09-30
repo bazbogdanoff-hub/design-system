@@ -1,7 +1,8 @@
-import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
+import { forwardRef, type HTMLAttributes, type KeyboardEvent, type MouseEvent, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 import { IconCell } from '../IconCell';
 import { SeverityBadge, type SeverityLevel } from '../SeverityBadge';
+import { Tile } from '../Tile';
 import styles from './TaskTile.module.css';
 
 export type TaskTileLayout = 'card' | 'row';
@@ -20,11 +21,15 @@ export interface TaskTileProps extends Omit<HTMLAttributes<HTMLElement>, 'title'
   /** Top-right in `card`, end of the line in `row` — usually an arrow
    * `IconButton` (`md`, secondary) that opens the task. */
   action?: ReactNode;
+  /** Opens the task — the whole tile becomes the control: click, or Enter /
+   * Space when focused. An `action` inside keeps its own click (it doesn't
+   * also trigger this). */
+  onOpen?: () => void;
 }
 
 /**
- * A task on the Tasks board — a white tile sitting on the board's card
- * (the second surface layer, owner 2026-09-28). Built in code first; the
+ * A task on the Tasks board — a `Tile` (the second-layer card, owner
+ * 2026-09-29), interactive: it lifts on hover. Built in code first; the
  * Figma master follows from docs/components/TaskTile.md.
  *
  * `card`: a top frame (small `SeverityBadge` left, action right, aligned to
@@ -35,12 +40,34 @@ export interface TaskTileProps extends Omit<HTMLAttributes<HTMLElement>, 'title'
  * rank tile, still used by `NextTask` on the dashboard.
  */
 export const TaskTile = forwardRef<HTMLElement, TaskTileProps>(function TaskTile(
-  { layout = 'card', severity, title, description, position, action, className, ...rest },
+  { layout = 'card', severity, title, description, position, action, onOpen, className, ...rest },
   ref,
 ) {
+  // The whole tile opens the task (owner, 2026-09-29). A click that started
+  // on a button or link inside (the row's action) is that control's own.
+  const openProps = onOpen
+    ? {
+        role: 'link' as const,
+        tabIndex: 0,
+        'data-openable': '',
+        onClick: (e: MouseEvent<HTMLElement>) => {
+          const inner = (e.target as HTMLElement).closest('button, a');
+          if (inner && e.currentTarget.contains(inner)) return;
+          onOpen();
+        },
+        onKeyDown: (e: KeyboardEvent<HTMLElement>) => {
+          if (e.target !== e.currentTarget) return;
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onOpen();
+          }
+        },
+      }
+    : {};
+
   if (layout === 'row') {
     return (
-      <article ref={ref} className={cn(styles.tile, styles.row, className)} data-layout="row" {...rest}>
+      <Tile as="article" interactive ref={ref} className={cn(styles.tile, styles.row, className)} data-layout="row" {...openProps} {...rest}>
         {position != null && (
           <IconCell size="md" aria-label={`Rank ${position}`}>
             {position}
@@ -49,12 +76,12 @@ export const TaskTile = forwardRef<HTMLElement, TaskTileProps>(function TaskTile
         <h3 className={styles.rowTitle}>{title}</h3>
         <SeverityBadge level={severity} size="sm" />
         {action}
-      </article>
+      </Tile>
     );
   }
 
   return (
-    <article ref={ref} className={cn(styles.tile, styles.card, className)} data-layout="card" {...rest}>
+    <Tile as="article" interactive ref={ref} className={cn(styles.tile, styles.card, className)} data-layout="card" {...openProps} {...rest}>
       <div className={styles.top}>
         <SeverityBadge level={severity} size="sm" />
         {action}
@@ -63,6 +90,6 @@ export const TaskTile = forwardRef<HTMLElement, TaskTileProps>(function TaskTile
         <h3 className={styles.title}>{title}</h3>
         {description != null && <p className={styles.description}>{description}</p>}
       </div>
-    </article>
+    </Tile>
   );
 });

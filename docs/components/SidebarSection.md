@@ -50,3 +50,15 @@ variant's baked content is exactly what ships. The two `collapsed=true`
 variants exist specifically because the collapsed sidebar's icon-only rows
 are different content, not just a narrower render of the expanded ones —
 each `content`×`collapsed` pair needed its own real instance underneath.
+
+## Motion — the travelling highlight (2026-09-28)
+
+The current row's glass is **one element per section that travels between
+rows** (`lib/slidingHighlight.ts`), the same stretch-and-settle as
+`SegmentedControl`'s. `SidebarNavItem` marks its frame `data-highlight` when
+`active` and, inside a section, leaves its own glass off; its icon and label
+colour ease over to match. The highlight copies the frame's radius, so the
+Settings row's deep corner morphs in. A section with no current row (the
+page lives in the other section) fades its highlight out.
+
+**Figma:** no change — at rest it looks identical.

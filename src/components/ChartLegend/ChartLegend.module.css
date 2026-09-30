@@ -2,7 +2,9 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--space-16);
+  /* 12 between items (owner, 2026-09-29: was 16 — four severity items in a
+     narrow card missed one row by a pixel); 8 between rows if it wraps. */
+  gap: var(--space-8) var(--space-12);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -11,14 +13,26 @@
 .item {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-6);
+  /* 4, not 6: the swatch grew to 12 (owner, 2026-09-29) and four severity
+     items must still fit one row in a narrow card. */
+  gap: var(--space-4);
 }
 
+/* A small copy of the glass bar it names (owner, 2026-09-29): 12px, so
+   there's room for the recipe — the 1px top-left catch, the inner shadow and
+   the primary Button's plain drop shadow, the same as BarChart's blocks —
+   scaled down (inner blur 4 not 12, drop blur 3 not 8) so it doesn't smear
+   at this size. Colour arrives as --glass-fill, set inline per item. */
 .swatch {
   flex: none;
-  width: 0.625rem;
-  height: 0.625rem;
-  border-radius: 2px; /* hand-tuned, not a token — a rect mirroring the bar/area mark, too small for any semantic radius step */
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 3px; /* hand-tuned, not a token — a scaled-down bar corner, too small for any semantic radius step */
+  background-color: var(--glass-fill);
+  box-shadow:
+    inset 1px 1px 0 0 color-mix(in srgb, var(--glass-fill), white var(--glass-catch-mix)),
+    inset 1px 1px 4px 0 color-mix(in oklch, var(--glass-fill), black var(--glass-inner-mix)),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
 .label {

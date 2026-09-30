@@ -117,3 +117,26 @@ Same look, tab semantics — for switching which content panel is showing
 | consumer wires | nothing | `id` + `aria-controls` per item; the panel's `role="tabpanel"` + `aria-labelledby` |
 
 **Figma:** no change — the two modes look identical.
+
+## Motion — the travelling highlight (2026-09-28)
+
+The picked item's fill is **one element that travels between items**, not
+a fill each item switches on and off (`lib/slidingHighlight.ts`). On a
+change its four edges move to the new item with CSS transitions; the edge in
+the direction of travel leaves ~70ms before the trailing one, so the fill
+stretches as it goes and settles to size with a small overshoot.
+
+- Neutral items: the fill is the secondary `Button` glass, under the labels.
+  The picked item keeps the glass's text colour.
+- Toned items (the sidebar module switcher): the fill is the tone's solid
+  pill, over the bare segments; it blends tone to tone and morphs its corner
+  radius (`position`) as it travels. It carries the picked segment's focus
+  ring, since it covers it.
+- First placement, resizes and a sidebar toggle don't travel — only a change
+  of item does. Reduced motion: it jumps.
+- Items must be **direct children** of the control (the highlight looks for
+  `:scope > [data-selected]`).
+
+An item rendered outside a `SegmentedControl` keeps its own fill.
+
+**Figma:** no change — at rest it looks identical.

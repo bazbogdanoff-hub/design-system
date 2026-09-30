@@ -12,7 +12,9 @@
 }
 
 .gridline {
-  stroke: var(--color-border-subtle);
+  /* border.default, not .subtle: subtle (zinc 100) vanished on the #f6f6f8
+     card (owner, 2026-09-29). Still recessive; the marks carry the chart. */
+  stroke: var(--color-border-default);
   stroke-width: 1;
 }
 
@@ -21,6 +23,27 @@
   font-size: var(--text-caption-font-size);
   font-weight: var(--text-caption-font-weight);
   fill: var(--color-text-subtle);
+}
+
+/* Entrance — each column grows from the baseline, left to right. The
+   transform origin (the baseline) is set inline; view-box so it is in SVG
+   units. Plays once, on mount. */
+.bar {
+  transform-box: view-box;
+  animation: bar-grow 720ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(220ms + var(--i, 0) * 55ms);
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar {
+    animation: none;
+  }
 }
 
 .segment,

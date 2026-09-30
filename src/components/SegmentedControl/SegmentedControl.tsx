@@ -1,6 +1,19 @@
-import { forwardRef, type HTMLAttributes, type KeyboardEvent, type ReactNode } from 'react';
+import {
+  forwardRef,
+  useCallback,
+  useRef,
+  type HTMLAttributes,
+  type KeyboardEvent,
+  type ReactNode,
+} from 'react';
 import { cn } from '../../lib/cn';
-import { SegmentedControlModeContext, type SegmentedControlMode } from './context';
+import { useSlidingHighlight } from '../../lib/slidingHighlight';
+import buttonStyles from '../Button/Button.module.css';
+import {
+  SegmentedControlModeContext,
+  SegmentedControlSlidingContext,
+  type SegmentedControlMode,
+} from './context';
 import styles from './SegmentedControl.module.css';
 
 export type SegmentedControlSize = 'sm' | 'md' | 'lg' | 'xs';
@@ -48,6 +61,20 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
   { size = 'md', collapsed, mode = 'choice', children, className, onKeyDown, ...rest },
   ref,
 ) {
+  // The picked item's fill is one element that travels between items
+  // (lib/slidingHighlight.ts) rather than each item switching its own.
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const highlightRef = useRef<HTMLSpanElement>(null);
+  useSlidingHighlight(trackRef, highlightRef, ':scope > [data-selected]');
+  const setRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      trackRef.current = node;
+      if (typeof ref === 'function') ref(node);
+      else if (ref) ref.current = node;
+    },
+    [ref],
+  );
+
   // Tabs use automatic activation: moving focus with the arrows also shows
   // that tab's panel — done by clicking the newly focused tab, so the
   // consumer's own onClick stays the single source of truth.
@@ -70,17 +97,30 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
 
   return (
     <SegmentedControlModeContext.Provider value={mode}>
-      <div
-        ref={ref}
-        role={mode === 'tabs' ? 'tablist' : 'radiogroup'}
-        className={cn(styles.track, className)}
-        data-size={size}
-        data-collapsed={size === 'xs' ? collapsed || false : undefined}
-        onKeyDown={handleKeyDown}
-        {...rest}
-      >
-        {children}
-      </div>
+      <SegmentedControlSlidingContext.Provider value>
+        <div
+          ref={setRef}
+          role={mode === 'tabs' ? 'tablist' : 'radiogroup'}
+          className={cn(styles.track, className)}
+          data-size={size}
+          data-collapsed={size === 'xs' ? collapsed || false : undefined}
+          data-sliding=""
+          onKeyDown={handleKeyDown}
+          {...rest}
+        >
+          {/* The travelling highlight. Neutral items: the secondary Button's
+              glass, under the labels. Toned items (the sidebar switcher): the
+              tone's solid fill, over the bare segments, blending tone to tone
+              as it travels. */}
+          <span
+            ref={highlightRef}
+            aria-hidden="true"
+            className={cn(styles.highlight, buttonStyles.surface)}
+            data-variant="secondary"
+          />
+          {children}
+        </div>
+      </SegmentedControlSlidingContext.Provider>
     </SegmentedControlModeContext.Provider>
   );
 });

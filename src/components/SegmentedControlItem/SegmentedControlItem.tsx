@@ -2,7 +2,7 @@ import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 import buttonStyles from '../Button/Button.module.css';
 import styles from './SegmentedControlItem.module.css';
-import { useSegmentedControlMode } from '../SegmentedControl/context';
+import { useSegmentedControlMode, useSegmentedControlSliding } from '../SegmentedControl/context';
 
 export type SegmentedControlItemTone = 'brand' | 'success' | 'danger';
 export type SegmentedControlItemPosition = 'start' | 'middle' | 'end';
@@ -53,6 +53,10 @@ export const SegmentedControlItem = forwardRef<HTMLButtonElement, SegmentedContr
     // roving tabindex — only the selected tab is in the Tab order; the
     // parent's arrow-key handler moves between the rest.
     const mode = useSegmentedControlMode();
+    // Inside a SegmentedControl the picked fill is the control's travelling
+    // highlight, so the item leaves its own glass off.
+    const sliding = useSegmentedControlSliding();
+    const ownSurface = selected && !tone && !sliding;
     const semantics =
       mode === 'tabs'
         ? { role: 'tab' as const, 'aria-selected': selected || false, tabIndex: selected ? 0 : -1 }
@@ -63,10 +67,10 @@ export const SegmentedControlItem = forwardRef<HTMLButtonElement, SegmentedContr
         type={type}
         {...semantics}
         data-selected={selected || undefined}
-        data-variant={selected && !tone ? 'secondary' : undefined}
+        data-variant={ownSurface ? 'secondary' : undefined}
         data-tone={tone}
         data-position={tone ? position : undefined}
-        className={cn(styles.item, selected && !tone && buttonStyles.surface, className)}
+        className={cn(styles.item, ownSurface && buttonStyles.surface, className)}
         {...rest}
       >
         {children}

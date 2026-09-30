@@ -10,7 +10,11 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '../../lib/cn';
+import { usePresence } from '../../lib/presence';
 import styles from './Overlay.module.css';
+
+/** Matches the longest exit animation in Overlay.module.css. */
+const EXIT_MS = 200;
 
 export interface OverlayProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   /** Mounts the scrim + portal while `true`. */
@@ -27,6 +31,10 @@ export interface OverlayProps extends Omit<HTMLAttributes<HTMLDivElement>, 'chil
   closeOnEscape?: boolean;
   /** Lock body scroll while open. Default `true`. */
   lockScroll?: boolean;
+  /** Called once the exit animation has finished and the overlay is gone.
+   * A modal that lives on its own route closes by setting `open` false and
+   * navigating here — navigating straight away would unmount it mid-exit. */
+  onExited?: () => void;
 }
 
 /**
@@ -35,10 +43,12 @@ export interface OverlayProps extends Omit<HTMLAttributes<HTMLDivElement>, 'chil
  * modal panel; `Overlay` only darkens, centers, and dismisses.
  *
  * Handled now: backdrop-click + Escape to close, body scroll-lock, focus moves
- * in on open and is restored on close. **Not yet:** focus *trapping* (tab can
- * leave the panel) and enter/exit animation — those arrive with the `Dialog`
- * panel component. Until then, put `role="dialog"`/`aria-modal`/a label on your
- * panel yourself. See `docs/components/Overlay.md`.
+ * in on open and is restored on close, enter/exit animation (the scrim fades,
+ * the panel rises in and sinks out — it stays mounted through the exit; see
+ * `onExited`). **Not yet:** focus *trapping* (tab can leave the panel) — that
+ * arrives with the `Dialog` panel component. Until then, put
+ * `role="dialog"`/`aria-modal`/a label on your panel yourself. See
+ * `docs/components/Overlay.md`.
  */
 export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function Overlay(
   {
@@ -49,6 +59,7 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function Overlay
     closeOnBackdropClick = true,
     closeOnEscape = true,
     lockScroll = true,
+    onExited,
     className,
     onMouseDown,
     onClick,
@@ -57,6 +68,7 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function Overlay
   ref,
 ) {
   const [mounted, setMounted] = useState(false);
+  const { present, closing } = usePresence(open, EXIT_MS, onExited);
   const restoreFocusTo = useRef<HTMLElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   // a backdrop "click" must start AND end on the backdrop — otherwise a drag
@@ -127,7 +139,7 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function Overlay
     [closeOnBackdropClick, onClose, onClick],
   );
 
-  if (!open || !mounted) return null;
+  if (!present || !mounted) return null;
 
   return createPortal(
     <div
@@ -138,6 +150,7 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function Overlay
       }}
       className={cn(styles.overlay, className)}
       data-align={align}
+      data-state={closing ? 'closing' : 'open'}
       tabIndex={-1}
       onMouseDown={handleMouseDown}
       onClick={handleClick}

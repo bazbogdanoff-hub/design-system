@@ -27,3 +27,55 @@
 .overlay[data-align='top'] > * {
   margin-block: 0;
 }
+
+/* ---- enter / exit (motion playground, 2026-09-28) ----------------------------
+   The scrim fades in its own colour, and the panel rises out of a slight
+   shrink with a little spring; on close it sinks back out while the scrim
+   lifts. Enter uses `backwards` fill, so nothing lingers once it has played
+   (a leftover transform on the panel would trap the fixed-position menus
+   inside it). Overlay.tsx keeps the layer mounted through the exit. */
+.overlay {
+  animation: overlay-scrim-in 220ms ease-out backwards;
+}
+.overlay > * {
+  animation: overlay-panel-in 380ms cubic-bezier(0.34, 1.22, 0.64, 1) backwards;
+}
+.overlay[data-state='closing'] {
+  pointer-events: none;
+  animation: overlay-scrim-out 200ms ease-in forwards;
+}
+.overlay[data-state='closing'] > * {
+  animation: overlay-panel-out 180ms cubic-bezier(0.55, 0, 1, 0.45) forwards;
+}
+
+@keyframes overlay-scrim-in {
+  from {
+    background-color: transparent;
+  }
+}
+@keyframes overlay-scrim-out {
+  to {
+    background-color: transparent;
+  }
+}
+@keyframes overlay-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.96);
+  }
+}
+@keyframes overlay-panel-out {
+  to {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .overlay > *,
+  .overlay[data-state='closing'],
+  .overlay[data-state='closing'] > * {
+    animation: none;
+  }
+}

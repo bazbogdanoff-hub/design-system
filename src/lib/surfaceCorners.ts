@@ -61,8 +61,36 @@ function contentBox(page: HTMLElement): Box {
   };
 }
 
-function outerCorners(el: HTMLElement, others: DOMRect[], page: Box): Corner[] {
+/**
+ * The element's box where layout put it: its bounding rect with any
+ * translate / scale on it, or on its ancestors up to `stop`, taken back out.
+ * Entrance animations move cards with transforms, and the corners must
+ * follow where a card lands, not where it is mid-flight — otherwise a card
+ * sliding in reads as "not touching the page" and snaps from 16 to 24 when
+ * it arrives. Scale is assumed about the centre (the default origin) and
+ * only the element's own counts; nothing rotates cards.
+ */
+function layoutRect(el: HTMLElement, stop: HTMLElement): Box {
   const r = el.getBoundingClientRect();
+  let cx = (r.left + r.right) / 2;
+  let cy = (r.top + r.bottom) / 2;
+  let w = r.width;
+  let h = r.height;
+  for (let n: HTMLElement | null = el; n && n !== stop; n = n.parentElement) {
+    const t = getComputedStyle(n).transform;
+    if (!t || t === 'none') continue;
+    const m = new DOMMatrixReadOnly(t);
+    cx -= m.e;
+    cy -= m.f;
+    if (n === el) {
+      w /= m.a || 1;
+      h /= m.d || 1;
+    }
+  }
+  return { left: cx - w / 2, right: cx + w / 2, top: cy - h / 2, bottom: cy + h / 2 };
+}
+
+function outerCorners(r: Box, others: Box[], page: Box): Corner[] {
   const near = (a: number, b: number) => Math.abs(a - b) <= TOUCH_TOLERANCE_PX;
   const onEdge = {
     left: near(r.left, page.left),
@@ -110,14 +138,16 @@ export function useSurfaceCorners(ref: RefObject<HTMLElement | null>): void {
         return !(outer && page.contains(outer));
       });
       const box = contentBox(page);
-      const rects = surfaces.map((el) => el.getBoundingClientRect());
+      const rects = surfaces.map((el) => layoutRect(el, page));
+      const visible = (b: Box | undefined) => !!b && b.right > b.left && b.bottom > b.top;
       surfaces.forEach((el, i) => {
         if (!observed.has(el)) {
           observed.add(el);
           resize.observe(el);
         }
-        const others = rects.filter((o, j) => j !== i && o.width > 0 && o.height > 0);
-        const next = (rects[i]?.width ?? 0) > 0 ? outerCorners(el, others, box).join(' ') : '';
+        const others = rects.filter((o, j) => j !== i && visible(o));
+        const rect = rects[i];
+        const next = rect && visible(rect) ? outerCorners(rect, others, box).join(' ') : '';
         if ((el.getAttribute('data-corner-outer') ?? '') !== next) {
           if (next) el.setAttribute('data-corner-outer', next);
           else el.removeAttribute('data-corner-outer');

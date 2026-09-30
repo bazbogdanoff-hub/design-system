@@ -77,3 +77,42 @@
 .wrapper[data-size='md'] .icon { width: 0.75rem; height: 0.75rem; }
 .wrapper[data-size='lg'] { width: 1.5rem; height: 1.5rem; }
 .wrapper[data-size='lg'] .icon { width: 1rem; height: 1rem; }
+
+/* Motion (playground, 2026-09-28): the box gives under the press and
+   springs back; the mark draws itself left to right with a small pop as it
+   appears (it mounts when checked, so the animation plays on every check). */
+.box {
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    scale 0.3s cubic-bezier(0.34, 1.5, 0.64, 1);
+}
+.input:active:not(:disabled) + .box {
+  scale: 0.88;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    scale 0.08s ease-out;
+}
+.icon {
+  animation: checkbox-mark-in 0.32s cubic-bezier(0.34, 1.4, 0.64, 1) backwards;
+}
+
+@keyframes checkbox-mark-in {
+  from {
+    clip-path: inset(0 100% 0 0);
+    scale: 0.6;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input:active:not(:disabled) + .box {
+    scale: 1;
+  }
+  .icon {
+    animation: none;
+  }
+}

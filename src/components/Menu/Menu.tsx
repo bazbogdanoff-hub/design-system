@@ -12,6 +12,10 @@ import { cn } from '../../lib/cn';
 import { Card } from '../Card';
 import styles from './Menu.module.css';
 import { remPx } from '../../lib/rem';
+import { usePresence } from '../../lib/presence';
+
+/** Matches the exit animation in Menu.module.css. */
+const EXIT_MS = 130;
 
 export type MenuVariant = 'default' | 'card';
 export type MenuAlign = 'start' | 'end';
@@ -62,6 +66,8 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
   ref,
 ) {
   const localRef = useRef<HTMLDivElement>(null);
+  // Stays mounted through its exit animation (it scales back into its trigger).
+  const { present, closing } = usePresence(open, EXIT_MS);
   /* The anchor is whatever box the consumer made `position: relative` around
      its trigger — the same box this used to be absolutely positioned inside.
      Reading it from the DOM keeps the API unchanged: no anchorRef to thread
@@ -142,7 +148,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
     };
   }, [open, onClose]);
 
-  if (!open) return null;
+  if (!present) return null;
 
   const list = (
     <div role="menu" className={styles.list} data-size={size}>
@@ -157,6 +163,8 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
       data-variant={variant}
       data-align={align}
       data-above={placement?.above || undefined}
+      data-placed={placement ? '' : undefined}
+      data-state={closing ? 'closing' : 'open'}
       style={
         placement
           ? {

@@ -270,6 +270,13 @@
       }
     },
     "chart": {
+      "severity": {
+        "$description": "The four severity steps as chart series (owner, 2026-09-29) — validated as one categorical palette on the card (#f6f6f8), all six checks pass. Status colours: always with a legend, never reused for other series.",
+        "critical": { "$value": "{color.rose.600}" },
+        "warning": { "$value": "{color.orange.500}" },
+        "attention": { "$value": "{color.extra.chart-attention}" },
+        "low": { "$value": "{color.emerald.500}" }
+      },
       "1": { "$value": "{color.brand.400}", "$description": "Categorical series 1 — placeholder palette, revisit with the real chart component. Migrated from brand.500 to match Figma's lighter chart ramp." },
       "2": { "$value": "{color.cyan.500}", "$description": "Not migrated to cyan.400 — failed the dataviz skill's lightness-band check at .400 (L 0.797, above the 0.77 ceiling)." },
       "3": { "$value": "{color.amber.500}", "$description": "Not migrated to amber.400 — failed the lightness-band check at .400 (L 0.837)." },

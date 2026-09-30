@@ -13,10 +13,23 @@
   line-height: var(--text-label-md-line-height);
   white-space: nowrap;
 
-  /* Glass recipe: soft radial highlight + colored inset shadow — no flat fill.
-     Ellipse centered in the pill (was Figma bottom-left at 24.4%/75.6%).
-     color-mix bakes in the 30% opacity so only the background is translucent. */
-  background: radial-gradient(ellipse 51.1% 51.1% at 50% 50%, color-mix(in srgb, var(--color-badge-neutral-glow) 30%, transparent) 9.6%, transparent 100%);
+  /* Glass recipe: soft centre highlight + colored inset shadow — no flat fill.
+     color-mix bakes in the 30% opacity so only the glow is translucent.
+
+     The highlight (owner, 2026-09-29) keeps the default badge's glow —
+     solid through the middle 9.8%, fading to nothing at the rim, the profile
+     of the old 51.1% ellipse — and stretches with the label instead of
+     thinning out: it is one vertical glow across the full width (::before),
+     faded toward each end over the length the default badge ("Badge" at
+     that size, --_badge-base-half) fades over. A wider badge grows the solid
+     middle and keeps the default's ends; at the default width or narrower
+     the two fades meet and it shrinks with the badge. Drawn as one layer
+     plus a mask, so there are no tile seams. */
+  position: relative;
+  isolation: isolate;
+  --_badge-base-half: 2.155rem; /* md: half of the 68.9px default */
+  --_badge-fade: calc(min(var(--_badge-base-half), 50%) * 0.902);
+  --_badge-glow: color-mix(in srgb, var(--color-badge-neutral-glow) 30%, transparent);
   --_badge-shadow: var(--color-badge-neutral-shadow);
   color: var(--color-badge-neutral-text);
 
@@ -29,32 +42,33 @@
 }
 
 .badge[data-tone='brand'] {
-  background: radial-gradient(ellipse 51.1% 51.1% at 50% 50%, color-mix(in srgb, var(--color-badge-brand-glow) 30%, transparent) 9.6%, transparent 100%);
+  --_badge-glow: color-mix(in srgb, var(--color-badge-brand-glow) 30%, transparent);
   --_badge-shadow: var(--color-badge-brand-shadow);
   color: var(--color-badge-brand-text);
 }
 .badge[data-tone='success'] {
-  background: radial-gradient(ellipse 51.1% 51.1% at 50% 50%, color-mix(in srgb, var(--color-badge-success-glow) 30%, transparent) 9.6%, transparent 100%);
+  --_badge-glow: color-mix(in srgb, var(--color-badge-success-glow) 30%, transparent);
   --_badge-shadow: var(--color-badge-success-shadow);
   color: var(--color-badge-success-text);
 }
 .badge[data-tone='warning'] {
-  background: radial-gradient(ellipse 51.1% 51.1% at 50% 50%, color-mix(in srgb, var(--color-badge-warning-glow) 30%, transparent) 9.6%, transparent 100%);
+  --_badge-glow: color-mix(in srgb, var(--color-badge-warning-glow) 30%, transparent);
   --_badge-shadow: var(--color-badge-warning-shadow);
   color: var(--color-badge-warning-text);
 }
 .badge[data-tone='warning-strong'] {
-  background: radial-gradient(ellipse 51.1% 51.1% at 50% 50%, color-mix(in srgb, var(--color-badge-warning-strong-glow) 30%, transparent) 9.6%, transparent 100%);
+  --_badge-glow: color-mix(in srgb, var(--color-badge-warning-strong-glow) 30%, transparent);
   --_badge-shadow: var(--color-badge-warning-strong-shadow);
   color: var(--color-badge-warning-strong-text);
 }
 .badge[data-tone='danger'] {
-  background: radial-gradient(ellipse 51.1% 51.1% at 50% 50%, color-mix(in srgb, var(--color-badge-danger-glow) 30%, transparent) 9.6%, transparent 100%);
+  --_badge-glow: color-mix(in srgb, var(--color-badge-danger-glow) 30%, transparent);
   --_badge-shadow: var(--color-badge-danger-shadow);
   color: var(--color-badge-danger-text);
 }
 
 .badge[data-size='xs'] {
+  --_badge-base-half: 1.6rem; /* half of the 51.1px default */
   --_badge-glow-blur: 0.21875rem;
   gap: var(--space-4);
   /* xs and sm keep their original side padding (owner, 2026-09-28 — the +4
@@ -72,6 +86,7 @@
   border-radius: var(--radius-badge-sm);
 }
 .badge[data-size='sm'] {
+  --_badge-base-half: 1.68rem; /* half of the 53.7px default */
   --_badge-glow-blur: 0.25rem;
   gap: var(--space-4);
   padding: var(--space-6);
@@ -86,6 +101,7 @@
   border-radius: var(--radius-badge-md);
 }
 .badge[data-size='lg'] {
+  --_badge-base-half: 2.5rem; /* half of the 80.1px default */
   --_badge-glow-blur: 0.375rem;
   gap: var(--space-6);
   /* 16, not 10 + 4: the space scale has no 14 and screen-composition §9
@@ -93,6 +109,23 @@
   padding: var(--space-10) var(--space-16);
   font-size: var(--text-label-lg-font-size);
   border-radius: var(--radius-badge-lg);
+}
+
+.badge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(transparent, var(--_badge-glow) 45.1%, var(--_badge-glow) 54.9%, transparent);
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 var(--_badge-fade),
+    #000 calc(100% - var(--_badge-fade)),
+    transparent
+  );
 }
 
 /* hasIcon used to give icon badges a rounder left side (32px) than the rest.
@@ -110,4 +143,35 @@
   display: block;
   width: 100%;
   height: 100%;
+}
+
+/* Edge corners (owner, 2026-09-29): a badge side that sits on its card's
+   padding edge (lib/edgeCorners.ts sets data-edge) gets both of its corners
+   on that side — top and bottom — back at the badge's original radius (6 for
+   xs/sm, 8 for md/lg). The other side stays a full pill; a badge touching
+   neither side is a full pill all round. */
+.badge {
+  --_badge-edge-radius: var(--radius-badge-edge-md);
+}
+.badge[data-size='xs'],
+.badge[data-size='sm'] {
+  --_badge-edge-radius: var(--radius-badge-edge-sm);
+}
+.badge[data-size='lg'] {
+  --_badge-edge-radius: var(--radius-badge-edge-lg);
+}
+/* Full = half the badge's height, rounded up, measured by lib/edgeCorners.ts
+   (--_badge-full). A real radius, so the edge corners next to it keep their
+   6 / 8 instead of being scaled down with a 9999px neighbour. The pill token
+   is the fallback until the first measure. */
+.badge[data-size] {
+  border-radius: var(--_badge-full, var(--radius-full));
+}
+.badge[data-edge~='start'] {
+  border-top-left-radius: var(--_badge-edge-radius);
+  border-bottom-left-radius: var(--_badge-edge-radius);
+}
+.badge[data-edge~='end'] {
+  border-top-right-radius: var(--_badge-edge-radius);
+  border-bottom-right-radius: var(--_badge-edge-radius);
 }

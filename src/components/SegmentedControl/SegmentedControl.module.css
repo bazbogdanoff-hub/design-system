@@ -1,8 +1,57 @@
 .track {
+  position: relative; /* the travelling highlight's containing block */
   display: inline-flex;
   align-items: center;
   padding: var(--space-2);
   background: var(--color-segmented-control-track-background);
+}
+
+/* ---- the travelling highlight (lib/slidingHighlight.ts) ----------------------
+   One element for the picked item's fill, moved between items by the hook —
+   its edges, radius and opacity are set inline. Neutral: the secondary
+   Button's glass (Button.module.css, applied in the TSX), under the labels.
+   Toned (the sidebar switcher): the tone's solid fill over the bare
+   segments, blending from tone to tone as it goes. */
+.highlight {
+  position: absolute;
+  z-index: 0;
+  box-sizing: border-box;
+  pointer-events: none;
+  opacity: 0;
+}
+.track > :not(.highlight) {
+  position: relative;
+  z-index: 1;
+}
+.track .highlight[data-tone] {
+  z-index: 2;
+}
+.track .highlight[data-tone='brand'] {
+  background: var(--color-sidebar-brand-fill);
+  border: 1px solid var(--color-sidebar-brand-accent);
+  box-shadow: inset 0 1px 2px 0 var(--color-sidebar-brand-accent);
+}
+.track .highlight[data-tone='success'] {
+  background: var(--color-sidebar-success-fill);
+  border: 1px solid var(--color-sidebar-success-accent);
+  box-shadow: inset 0 1px 2px 0 var(--color-sidebar-success-accent);
+}
+.track .highlight[data-tone='danger'] {
+  background: var(--color-sidebar-danger-fill);
+  border: 1px solid var(--color-sidebar-danger-accent);
+  box-shadow: inset 0 1px 2px 0 var(--color-sidebar-danger-accent);
+}
+/* The toned fill sits over its segment, so it carries that segment's focus
+   ring for it. */
+.track:has(> [data-selected]:focus-visible) .highlight[data-tone] {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .highlight {
+    transition: none !important;
+  }
 }
 
 .track[data-size='sm'] {

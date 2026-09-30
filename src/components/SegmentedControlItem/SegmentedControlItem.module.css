@@ -92,6 +92,22 @@
   outline-offset: -2px;
 }
 
+/* Inside a SegmentedControl, the picked fill is the control's one
+   travelling highlight (SegmentedControl.module.css, lib/slidingHighlight.ts).
+   The picked item keeps the text colour the glass would have given it, and a
+   toned one wears the same bare segment as its neighbours — the tone's fill
+   arrives on top of it. Placed after the selected rules so it wins. */
+[data-sliding] > .item[data-selected]:not([data-tone]) {
+  color: var(--color-button-secondary-text);
+}
+[data-sliding] > .item[data-tone][data-selected] {
+  background:
+    linear-gradient(var(--color-segmented-control-item-xs-default-overlay), var(--color-segmented-control-item-xs-default-overlay)),
+    var(--color-segmented-control-item-xs-default-fill);
+  border: 1px solid var(--color-segmented-control-item-xs-default-border);
+  box-shadow: inset -1px -1px 2px 0 var(--color-segmented-control-item-xs-default-inner-shadow);
+}
+
 /* size cascades from the nearest SegmentedControl ancestor's data-size, same
    ancestor-context pattern MenuRow/TableRow use */
 [data-size='sm'] .item {
@@ -137,4 +153,19 @@
 
 [data-size='xs'][data-collapsed='true'] .item {
   height: 1rem;
+}
+
+/* Motion (playground, 2026-09-28): the sidebar switcher's segments ease
+   between their expanded (24) and collapsed (16) heights with the rail. */
+[data-size='xs'] .item {
+  transition:
+    background-color 120ms ease,
+    color 120ms ease,
+    height 340ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-size='xs'] .item {
+    transition: none;
+  }
 }

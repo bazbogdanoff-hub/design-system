@@ -1,4 +1,4 @@
-import { forwardRef, type HTMLAttributes } from 'react';
+import { forwardRef, type CSSProperties, type HTMLAttributes } from 'react';
 import { cn } from '../../lib/cn';
 import styles from './SegmentedProgress.module.css';
 
@@ -41,7 +41,13 @@ export const SegmentedProgress = forwardRef<HTMLDivElement, SegmentedProgressPro
         {...rest}
       >
         {Array.from({ length: count }, (_, i) => (
-          <span key={i} className={styles.segment} data-filled={i < filled || undefined} aria-hidden="true" />
+          <span
+            key={i}
+            className={styles.segment}
+            data-filled={i < filled || undefined}
+            style={{ '--i': i } as CSSProperties}
+            aria-hidden="true"
+          />
         ))}
       </div>
     );

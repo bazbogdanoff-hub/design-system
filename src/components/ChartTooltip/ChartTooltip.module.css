@@ -5,8 +5,16 @@
   min-width: 7.5rem;
   padding: var(--space-8) var(--space-12);
   border-radius: var(--radius-panel);
-  background: var(--color-surface-raised);
-  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.16); /* hand-tuned elevation, not a token — no elevation scale exists yet */
+  /* Dressed as a Tile (owner, 2026-09-29) — the second-layer card's fill,
+     white catch (2px top + left, 1px bottom + right) and inner shadow — but
+     it keeps its own floating drop shadow, since it hovers over the chart
+     rather than sitting on the card. */
+  background: var(--color-tile-background);
+  box-shadow:
+    inset 2px 2px 0 0 var(--color-tile-border),
+    inset -1px -1px 0 0 var(--color-tile-border),
+    inset 1px 1px 8px 0 var(--color-tile-inner-shadow),
+    0 4px 16px 0 rgba(0, 0, 0, 0.16); /* hand-tuned elevation, not a token — no elevation scale exists yet */
 }
 
 .title {
@@ -15,7 +23,9 @@
   font-weight: var(--text-label-xs-font-weight);
   line-height: var(--text-label-xs-line-height);
   letter-spacing: var(--text-label-xs-letter-spacing);
-  color: var(--color-text-muted);
+  /* The tooltip's heading — darker than the rows under it (owner,
+     2026-09-29): a heading inside a card takes text.strong. */
+  color: var(--color-text-strong);
   margin-bottom: var(--space-6);
 }
 
@@ -57,4 +67,31 @@
   line-height: var(--text-label-xs-line-height);
   letter-spacing: var(--text-label-xs-letter-spacing);
   color: var(--color-text-muted);
+}
+
+/* Motion (playground, 2026-09-28): it pops up out of the bar or point it
+   describes, then glides from column to column as the pointer moves instead
+   of jumping — the charts keep one tooltip mounted while hovering and only
+   change its left/top. `scale` is the individual property, so it doesn't
+   fight the chart's own `transform` that centres it. */
+.tooltip {
+  transform-origin: bottom center;
+  transition:
+    left 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    top 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  animation: chart-tooltip-in 220ms cubic-bezier(0.34, 1.4, 0.64, 1) backwards;
+}
+
+@keyframes chart-tooltip-in {
+  from {
+    opacity: 0;
+    scale: 0.92;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tooltip {
+    transition: none;
+    animation: none;
+  }
 }

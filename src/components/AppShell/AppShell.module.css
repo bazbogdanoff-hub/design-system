@@ -58,3 +58,24 @@
   background: var(--color-background-muted);
   overflow: hidden;
 }
+
+/* Motion (playground, 2026-09-28): expanding / collapsing the sidebar
+   animates the rail's width instead of snapping. Registering the width
+   variable as a <length> is what makes it transitionable; the grid column
+   and the rail both read it, so they move together, and the content card
+   eases over with them. */
+@property --app-sidebar-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px; /* must be font-independent to be valid, so not rem — never used: .shell always sets the width */
+}
+
+.shell {
+  transition: --app-sidebar-width 340ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shell {
+    transition: none;
+  }
+}

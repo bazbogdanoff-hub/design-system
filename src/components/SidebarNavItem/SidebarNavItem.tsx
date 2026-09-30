@@ -55,7 +55,9 @@ export const SidebarNavItem = forwardRef<HTMLButtonElement, SidebarNavItemProps>
     >
       {/* Highlight/hover live on `.frame` (40px fill), not the padded outer
           hit target — so 4px vertical padding sits outside the active chrome. */}
-      <span className={styles.frame}>
+      {/* `data-highlight` marks the frame for the section's travelling
+          highlight (SidebarSection) to land on. */}
+      <span className={styles.frame} data-highlight={active || undefined}>
         <span className={styles.leading} aria-hidden="true">
           {avatar ?? (icon != null && <span className={styles.icon}>{icon}</span>)}
         </span>

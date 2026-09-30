@@ -15,7 +15,26 @@
   transition:
     box-shadow 120ms ease,
     background-color 120ms ease,
-    color 120ms ease;
+    color 120ms ease,
+    transform 260ms cubic-bezier(0.34, 1.5, 0.64, 1);
+}
+
+/* Press — the button gives a little under the finger and springs back on
+   release (motion playground, 2026-09-28). Quick in, springy out: the
+   transition above is the release; this one is the press. */
+.surface:active:not(:disabled):not([aria-disabled='true']) {
+  transform: scale(0.96);
+  transition:
+    box-shadow 120ms ease,
+    background-color 120ms ease,
+    color 120ms ease,
+    transform 90ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .surface:active:not(:disabled):not([aria-disabled='true']) {
+    transform: none;
+  }
 }
 
 .surface:disabled,
@@ -36,7 +55,7 @@
   display: block;
   width: 1em;
   height: 1em;
-  transition: transform 120ms ease;
+  transition: transform 260ms cubic-bezier(0.34, 1.5, 0.64, 1);
 }
 
 /* ---- primary --------------------------------------------------------------- */

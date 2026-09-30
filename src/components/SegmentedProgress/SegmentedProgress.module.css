@@ -15,14 +15,64 @@
   background: var(--color-surface-recessed);
 }
 
-/* Filled — the primary Button's glass: fill, top-left catch, inner shadow and
-   drop shadow, all from Button's own tokens so the two stay in step. The
-   catch is 1px here, not Button's 1.5px — on a 16px segment 1.5 reads heavy
-   (owner, 2026-09-28). */
+/* Filled — the glass pattern (src/glass.css) in the primary Button's fill.
+   This segment is where the pattern was drawn from (owner, 2026-09-28/29):
+   a 1px top-left catch (1.5 reads heavy on a 16px segment), the inner
+   shadow, and its own colour thrown down and to the right instead of a grey
+   drop shadow. Filled segments sit above their neighbours (z-index) so that
+   tinted light isn't painted over by the next segment. The recipe is
+   written out rather than taken from `.ds-glass`, because the entrance
+   animation below needs the same shadow list to fade from. */
 .segment[data-filled] {
-  background: var(--color-button-primary-background-default);
+  --glass-fill: var(--color-button-primary-background-default);
+  position: relative;
+  z-index: 1;
+  background-color: var(--glass-fill);
   box-shadow:
-    inset 1px 1px 0 0 var(--color-button-primary-border-default),
-    inset 2px 2px 12px 0 var(--color-button-primary-shadow-default),
-    0 1px 8px 0 rgba(0, 0, 0, 0.2);
+    inset 1px 1px 0 0 color-mix(in srgb, var(--glass-fill), white var(--glass-catch-mix)),
+    inset 2px 2px 12px 0 color-mix(in oklch, var(--glass-fill), black var(--glass-inner-mix)),
+    2px 3px 5px -1px color-mix(in srgb, var(--glass-fill) var(--glass-light-near), transparent),
+    3px 6px 12px -2px color-mix(in srgb, var(--glass-fill) var(--glass-light-far), transparent);
+}
+
+/* Entrance — the segments rise into the row left to right, then the filled
+   ones light up in turn, like a charge running along the bar. `--i` is the
+   segment's index, set inline. A segment that fills later (a task gets
+   done) lights up the same way. */
+.segment {
+  animation: segment-in 420ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 12ms);
+}
+.segment[data-filled] {
+  animation:
+    segment-in 420ms cubic-bezier(0.22, 1, 0.36, 1) backwards,
+    segment-fill 520ms cubic-bezier(0.34, 1.4, 0.64, 1) backwards;
+  animation-delay:
+    calc(var(--i, 0) * 12ms),
+    calc(260ms + var(--i, 0) * 40ms);
+}
+
+@keyframes segment-in {
+  from {
+    opacity: 0;
+    transform: scaleY(0.4);
+  }
+}
+@keyframes segment-fill {
+  from {
+    background-color: var(--color-surface-recessed);
+    box-shadow:
+      inset 0 0 0 0 transparent,
+      inset 0 0 0 0 transparent,
+      0 0 0 0 transparent,
+      0 0 0 0 transparent;
+    transform: scaleY(0.7);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .segment,
+  .segment[data-filled] {
+    animation: none;
+  }
 }

@@ -18,7 +18,12 @@
     "badge": {
       "sm": { "$value": "{radius.full}", "$description": "pill (owner, 2026-09-28: was radius.chip 6) — badges are pills so status never reads as a button; xs reuses it" },
       "md": { "$value": "{radius.full}", "$description": "pill (owner, 2026-09-28: was radius.control 8)" },
-      "lg": { "$value": "{radius.full}", "$description": "pill (owner, 2026-09-28: was radius.control 8)" }
+      "lg": { "$value": "{radius.full}", "$description": "pill (owner, 2026-09-28: was radius.control 8)" },
+      "edge": {
+        "sm": { "$value": "{radius.chip}", "$description": "6 — the original sm radius, for both corners on a side touching the card padding (owner, 2026-09-29, lib/edgeCorners.ts); xs reuses it" },
+        "md": { "$value": "{radius.control}", "$description": "8 — the original md radius, same rule" },
+        "lg": { "$value": "{radius.control}", "$description": "8 — the original lg radius, same rule" }
+      }
     },
     "checkbox": {
       "$value": "{radius.sm}",

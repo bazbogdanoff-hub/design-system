@@ -21,3 +21,22 @@
   color: var(--color-sidebar-logo-wordmark);
   white-space: nowrap;
 }
+
+/* Motion (playground, 2026-09-28): the wordmark mounts when the sidebar
+   expands, and fades in behind the widening rail like the nav labels. */
+.wordmark {
+  animation: logo-wordmark-in 280ms cubic-bezier(0.22, 1, 0.36, 1) 120ms backwards;
+}
+
+@keyframes logo-wordmark-in {
+  from {
+    opacity: 0;
+    translate: -0.375rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wordmark {
+    animation: none;
+  }
+}

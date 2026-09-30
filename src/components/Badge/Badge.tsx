@@ -1,6 +1,7 @@
-import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
+import { forwardRef, useCallback, useRef, type HTMLAttributes, type ReactNode } from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cn } from '../../lib/cn';
+import { useEdgeCorners } from '../../lib/edgeCorners';
 import styles from './Badge.module.css';
 
 export type BadgeTone =
@@ -50,9 +51,21 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
   ref,
 ) {
   const Comp = asChild ? Slot : 'span';
+  // Corners on a side that sits on its card's padding edge go back to the
+  // badge's original radius (lib/edgeCorners.ts).
+  const localRef = useRef<HTMLSpanElement | null>(null);
+  useEdgeCorners(localRef);
+  const setRef = useCallback(
+    (node: HTMLSpanElement | null) => {
+      localRef.current = node;
+      if (typeof ref === 'function') ref(node);
+      else if (ref) ref.current = node;
+    },
+    [ref],
+  );
   return (
     <Comp
-      ref={ref}
+      ref={setRef}
       className={cn(styles.badge, className)}
       data-tone={tone}
       data-size={size}

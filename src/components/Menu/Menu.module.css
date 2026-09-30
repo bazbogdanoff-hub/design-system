@@ -42,3 +42,48 @@
   max-height: 20rem;
   overflow-y: auto;
 }
+
+/* ---- enter / exit (motion playground, 2026-09-28) ----------------------------
+   The menu grows out of the corner nearest its trigger — top-left or
+   top-right by `align`, the bottom corners when it flipped above — and
+   shrinks back into it on close. The enter starts once the menu is placed
+   (`data-placed`), so it never plays at the pre-measure hidden spot. */
+.menu {
+  transform-origin: top left;
+}
+.menu[data-align='end'] {
+  transform-origin: top right;
+}
+.menu[data-above] {
+  transform-origin: bottom left;
+}
+.menu[data-above][data-align='end'] {
+  transform-origin: bottom right;
+}
+.menu[data-placed] {
+  animation: menu-in 240ms cubic-bezier(0.34, 1.3, 0.64, 1) backwards;
+}
+.menu[data-state='closing'] {
+  pointer-events: none;
+  animation: menu-out 130ms cubic-bezier(0.55, 0, 1, 0.45) forwards;
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}
+@keyframes menu-out {
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu[data-placed],
+  .menu[data-state='closing'] {
+    animation: none;
+  }
+}

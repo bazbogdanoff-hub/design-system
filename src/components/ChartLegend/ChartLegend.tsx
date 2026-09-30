@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from 'react';
+import type { CSSProperties, HTMLAttributes } from 'react';
 import { cn } from '../../lib/cn';
 import styles from './ChartLegend.module.css';
 
@@ -25,7 +25,11 @@ export function ChartLegend({ items, className, ...rest }: ChartLegendProps) {
     <ul className={cn(styles.legend, className)} {...rest}>
       {items.map((item) => (
         <li key={item.key} className={styles.item}>
-          <span className={styles.swatch} style={{ backgroundColor: item.color }} aria-hidden="true" />
+          <span
+            className={styles.swatch}
+            style={{ '--glass-fill': item.color } as CSSProperties}
+            aria-hidden="true"
+          />
           <span className={styles.label}>{item.label}</span>
         </li>
       ))}

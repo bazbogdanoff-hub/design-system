@@ -60,9 +60,9 @@ for (const step of STEPS) {
 }
 // Product-override primitives — bespoke hexes not on the Tailwind scale.
 brand.extra.card = {
-  $value: '#f6f7f8',
+  $value: '#f6f6f8',
   $description:
-    'cool near-white card fill — product override (owner, 2026-09-28: was #fcfcfc; darker so #ffffff items read on it, L* 97.2 vs 99.0)',
+    'cool near-white card fill — product override (owner, 2026-09-29: #f6f7f8 → #f6f6f8, tuned by eye to the most contrast for white items before it reads grey; was #fcfcfc before 2026-09-28)',
 };
 // The card moved down a step, so the surfaces keyed to it move with it and
 // keep the steps they had against #fcfcfc (owner, 2026-09-28).
@@ -82,6 +82,28 @@ brand.extra['card-item'] = {
 brand.extra['card-item-vignette'] = {
   $value: '#f0f0f0',
   $description: 'glass inner-shadow colour for card items — the original vignette, tuned for the #fcfcfc fill',
+};
+// The white task tile's own glass (owner, 2026-09-29) — flat white alone did
+// not hold on the card. Alpha is part of the colour: 30% and 60%.
+brand.extra['tile-shadow'] = {
+  $value: '#e4e4e84d',
+  $description: 'TaskTile drop shadow colour — #e4e4e8 at 30%',
+};
+// The severity chart's 'attention' step (owner, 2026-09-29). Off the Tailwind
+// scale on purpose: amber/yellow .500 sit too light for the chart band on
+// the card and .600 fall into orange for deutan readers; this is the one
+// step the dataviz validator passes beside orange.600 and emerald.600.
+brand.extra['chart-attention'] = {
+  $value: '#f0b90b',
+  $description: 'severity chart — attention, one step lighter (owner, 2026-09-29 trial) beside rose.600 / orange.500 / emerald.500: passes the CVD and normal-vision checks, sits just above the chart lightness band (L 0.81) so relies on the legend and tooltips. The fully validated darker set was #e0a800 with rose.700 / orange.600 / emerald.600',
+};
+brand.extra['tile-lift-shadow'] = {
+  $value: '#18181b1f',
+  $description: 'TaskTile hover lift — zinc 900 at 12%, dark enough to read as height on the #f6f6f8 card (owner, 2026-09-29)',
+};
+brand.extra['tile-inner-shadow'] = {
+  $value: '#f0f0f099',
+  $description: 'TaskTile inner shadow colour — #f0f0f0 at 60%',
 };
 brand.extra.vignette = {
   $value: '#eaebed',

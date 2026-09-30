@@ -1,8 +1,9 @@
-import { useId, useLayoutEffect, useRef, useState } from 'react';
+import { useId, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import { ChartTooltip } from '../ChartTooltip';
 import { niceScale } from '../../lib/niceScale';
 import { useContainerSize } from '../../lib/useContainerSize';
 import { useRemScale } from '../../lib/rem';
+import { GlassFilter, glassFilterId } from '../../lib/glassFilter';
 import styles from './BarChart.module.css';
 
 export interface BarChartSeries {
@@ -45,18 +46,21 @@ const PADDING_PX = { top: 20, right: 16, bottom: 24, left: 24 };
 /** Distance from a label's right edge to the axis. */
 const AXIS_LABEL_GAP_PX = 8;
 
-/** A `<rect>`-equivalent path with only the top two corners rounded — the
- * stack's outer end is rounded, its baseline end stays square. */
-function roundedTopPath(x: number, y: number, width: number, height: number, radius: number): string {
-  const r = Math.min(radius, height, width / 2);
+/** A rectangle with all four corners rounded — every stacked block is its
+ * own rounded block (owner, 2026-09-29). The radius shrinks to fit a short
+ * or narrow block. */
+function roundedRectPath(x: number, y: number, width: number, height: number, radius: number): string {
+  const r = Math.min(radius, height / 2, width / 2);
   if (r <= 0) return `M${x},${y} h${width} v${height} h${-width} Z`;
   return [
     `M${x},${y + r}`,
     `a${r},${r} 0 0 1 ${r},${-r}`,
     `h${width - 2 * r}`,
     `a${r},${r} 0 0 1 ${r},${r}`,
-    `v${height - r}`,
-    `h${-width}`,
+    `v${height - 2 * r}`,
+    `a${r},${r} 0 0 1 ${-r},${r}`,
+    `h${-(width - 2 * r)}`,
+    `a${r},${r} 0 0 1 ${-r},${-r}`,
     'Z',
   ].join(' ');
 }
@@ -93,6 +97,7 @@ export function BarChart({
   const axisRef = useRef<SVGGElement>(null);
   const [measuredLabel, setMeasuredLabel] = useState(0);
   const titleId = useId();
+  const glassBase = useId();
   const [wrapperRef, measuredSize] = useContainerSize<HTMLDivElement>();
 
   // The SVG's coordinate space matches the container's real pixel size 1:1
@@ -181,29 +186,60 @@ export function BarChart({
         })}
         </g>
 
+        {/* Glass per series (lib/glassFilter.tsx) — region = the whole chart,
+            so the shadow is never clipped. */}
+        <defs>
+          {series.map((s, si) => (
+            <GlassFilter
+              key={s.key}
+              id={glassFilterId(glassBase, si)}
+              color={s.color}
+              region={{ x: 0, y: 0, width: intrinsicWidth, height }}
+            />
+          ))}
+        </defs>
+
         {/* bars */}
         {data.map((datum, i) => {
           const x = padLeft + bandWidth * i + (bandWidth - barWidth) / 2;
           let cumulative = 0;
+          // Every coloured block is its own rounded block (owner, 2026-09-29):
+          // all four corners at CORNER (less if the block is shorter), and a
+          // GAP between it and the block below; the lowest sits on the
+          // baseline.
+          let hasBelow = false;
           const segments = series.map((s, si) => {
             const value = datum.values[s.key] ?? 0;
             const segTop = cumulative + value;
-            const isTopmost = si === series.length - 1;
             cumulative = segTop;
             const yTop = yFor(segTop);
             const yBottom = yFor(cumulative - value);
             const rawHeight = yBottom - yTop;
-            const segHeight = isTopmost ? rawHeight : Math.max(0, rawHeight - GAP);
             if (rawHeight <= 0) return null;
-            const path = isTopmost
-              ? roundedTopPath(x, yTop, barWidth, segHeight, CORNER)
-              : `M${x},${yTop} h${barWidth} v${segHeight} h${-barWidth} Z`;
-            return <path key={s.key} d={path} fill={s.color} className={activeIndex === i ? styles.segmentActive : styles.segment} />;
+            const segHeight = hasBelow ? Math.max(0, rawHeight - GAP) : rawHeight;
+            hasBelow = true;
+            const path = roundedRectPath(x, yTop, barWidth, segHeight, CORNER);
+            return (
+              <path
+                key={s.key}
+                d={path}
+                fill={s.color}
+                filter={`url(#${glassFilterId(glassBase, si)})`}
+                className={activeIndex === i ? styles.segmentActive : styles.segment}
+              />
+            );
           });
 
           return (
             <g key={datum.category}>
-              {segments}
+              {/* Grows up from the baseline on mount, one column after the
+                  other (CSS; off under reduced motion). */}
+              <g
+                className={styles.bar}
+                style={{ transformOrigin: `0 ${yFor(0)}px`, '--i': i } as CSSProperties}
+              >
+                {segments}
+              </g>
               <text
                 x={x + barWidth / 2}
                 y={height - 8 * s}

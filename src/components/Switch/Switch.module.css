@@ -48,3 +48,31 @@
   width: var(--thumb-size);
   height: var(--thumb-size);
 }
+
+/* Motion (playground, 2026-09-28): the thumb travels on a spring, and while
+   pressed it stretches toward the side it will go — the switch visibly
+   "gathers" before it flips. A checked thumb stretches leftward, so its
+   right edge stays put. */
+.thumb {
+  transition:
+    transform 0.34s cubic-bezier(0.34, 1.4, 0.64, 1),
+    width 0.2s ease;
+}
+.switch:active:not(:disabled) .thumb {
+  width: calc(var(--thumb-size) + 0.25rem);
+}
+.switch[data-checked]:active:not(:disabled) .thumb {
+  transform: translateX(calc(var(--thumb-size) - 0.25rem));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thumb {
+    transition: none;
+  }
+  .switch:active:not(:disabled) .thumb {
+    width: var(--thumb-size);
+  }
+  .switch[data-checked]:active:not(:disabled) .thumb {
+    transform: translateX(var(--thumb-size));
+  }
+}

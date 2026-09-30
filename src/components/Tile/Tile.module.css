@@ -1,0 +1,60 @@
+/* The second-layer card (owner, 2026-09-29) — white on a card, with its own
+   glass: a white catch 2px top + left, 1px bottom + right; a soft inner
+   shadow (1/1, blur 8); a faint drop shadow (0.5/0.5, blur 2, spread 2).
+   Colours are tokens (color.tile.*); the geometry is hand-tuned here, like
+   every glass recipe. The catch is drawn as inset shadows, not a border — an
+   inside stroke, as in Figma, so padding and content don't move by a pixel. */
+.tile {
+  box-sizing: border-box;
+  min-width: 0;
+  background: var(--color-tile-background);
+  border-radius: var(--radius-panel);
+  box-shadow:
+    inset 2px 2px 0 0 var(--color-tile-border),
+    inset -1px -1px 0 0 var(--color-tile-border),
+    inset 1px 1px 8px 0 var(--color-tile-inner-shadow),
+    0.5px 0.5px 2px 2px var(--color-tile-shadow);
+}
+
+.tile[data-radius='md'] {
+  border-radius: var(--radius-control);
+}
+
+.tile[data-padding='xs'] {
+  padding: var(--space-8);
+}
+.tile[data-padding='sm'] {
+  padding: var(--space-12);
+}
+.tile[data-padding='md'] {
+  padding: var(--space-16);
+}
+
+/* interactive — the tile lifts toward the pointer ("reaches for your
+   mouse"): it rises 2px and grows 1% on a small spring, and its shadow falls
+   further in the darker lift colour (the resting 30% grey is invisible on the
+   card) — a close shadow for the edge, a wide one for the height — while the
+   inner shadow eases off as more light reaches the face. */
+.tile[data-interactive] {
+  transition:
+    box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 320ms cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+.tile[data-interactive]:hover {
+  transform: translateY(-0.125rem) scale(1.01);
+  box-shadow:
+    inset 2px 2px 0 0 var(--color-tile-border),
+    inset -1px -1px 0 0 var(--color-tile-border),
+    inset 1px 1px 6px 0 var(--color-tile-inner-shadow),
+    0 2px 6px -1px var(--color-tile-lift-shadow),
+    0 12px 24px -6px var(--color-tile-lift-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile[data-interactive] {
+    transition: none;
+  }
+  .tile[data-interactive]:hover {
+    transform: none;
+  }
+}

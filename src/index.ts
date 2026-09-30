@@ -1,5 +1,6 @@
 import './styles.css';
 import './scale.css';
+import './glass.css';
 
 export { Card } from './components/Card';
 export type { CardProps, CardPadding } from './components/Card';
@@ -41,6 +42,8 @@ export type {
 export { TaskCard } from './components/TaskCard';
 export type { TaskCardProps } from './components/TaskCard';
 
+export { Tile } from './components/Tile';
+export type { TileProps, TilePadding, TileRadius } from './components/Tile';
 export { TaskTile } from './components/TaskTile';
 export type { TaskTileProps, TaskTileLayout } from './components/TaskTile';
 
@@ -155,6 +158,10 @@ export type { PaginationProps } from './components/Pagination';
 
 export { ChartLegend } from './components/ChartLegend';
 export type { ChartLegendProps, ChartLegendItem } from './components/ChartLegend';
+export { DonutChart } from './components/DonutChart';
+export type { DonutChartProps, DonutChartDatum } from './components/DonutChart';
+export { ChartLegendGroup } from './components/ChartLegendGroup';
+export type { ChartLegendGroupProps } from './components/ChartLegendGroup';
 
 export { ChartTooltip } from './components/ChartTooltip';
 export type { ChartTooltipProps, ChartTooltipRow } from './components/ChartTooltip';

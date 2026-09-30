@@ -205,8 +205,11 @@ export function LineChart({
             : null;
           return (
             <g key={s.key}>
+              {/* Entrance: the line draws itself left to right and the area
+                  wipes in under it (CSS; pathLength=1 lets the dash animation
+                  ignore the real length). */}
               {areaPath && <path d={areaPath} fill={s.color} className={styles.area} />}
-              <path d={linePath} fill="none" stroke={s.color} className={styles.line} />
+              <path d={linePath} fill="none" stroke={s.color} className={styles.line} pathLength={1} />
             </g>
           );
         })}

@@ -242,6 +242,28 @@
         "$description": "Their inner-shadow colour — the original #f0f0f0, tuned for the #fcfcfc card-item fill."
       }
     },
+    "tile": {
+      "background": {
+        "$value": "{color.surface.default}",
+        "$description": "White — the second-layer card (Tile): anything card-like sitting on a card (owner, 2026-09-29)."
+      },
+      "border": {
+        "$value": "{color.white}",
+        "$description": "The glass catch (owner, 2026-09-29): 2px top + left, 1px bottom + right — widths in TaskTile.module.css."
+      },
+      "shadow": {
+        "$value": "{color.extra.tile-shadow}",
+        "$description": "Drop shadow x 0.5, y 0.5, blur 2, spread 2 — geometry in the CSS."
+      },
+      "lift-shadow": {
+        "$value": "{color.extra.tile-lift-shadow}",
+        "$description": "Hover lift: a close 0 2 6 -1 and a wide 0 12 24 -6 — geometry in the CSS."
+      },
+      "inner-shadow": {
+        "$value": "{color.extra.tile-inner-shadow}",
+        "$description": "Inner shadow x 1, y 1, blur 8 — geometry in the CSS."
+      }
+    },
     "scrollableArea": {
       "background": {
         "$value": "{color.surface.recessed}",

@@ -1,0 +1,32 @@
+/* Glass — the tinted-glass style of the progress pill, made into a pattern
+   (owner, 2026-09-29). The app's light rains from the top left; a glass
+   element is solid colour that catches it on its top-left edge, deepens
+   inside, and throws its own colour down and to the right.
+
+   Everything derives from one colour, --glass-fill:
+     catch   inset 1/1, no blur   fill mixed toward white by --glass-catch-mix
+     inner   inset 2/2, blur 12   fill mixed toward black (oklch, keeps the
+                                  hue) by --glass-inner-mix
+     light   2/3 blur 5 −1        fill at --glass-light-near
+             3/6 blur 12 −2       fill at --glass-light-far
+
+   The four amounts were read off the owner's hand-tuned brand pill (its
+   catch #aab1f9 is exactly brand.400 mixed 32% toward white) and confirmed
+   on every chart and severity colour. Use the class, or the variables with
+   another element's own shape (BarChart draws the same recipe as an SVG
+   filter, since SVG ignores box-shadow). */
+:root {
+  --glass-catch-mix: 32%;
+  --glass-inner-mix: 16%;
+  --glass-light-near: 55%;
+  --glass-light-far: 30%;
+}
+
+.ds-glass {
+  background-color: var(--glass-fill);
+  box-shadow:
+    inset 1px 1px 0 0 color-mix(in srgb, var(--glass-fill), white var(--glass-catch-mix)),
+    inset 2px 2px 12px 0 color-mix(in oklch, var(--glass-fill), black var(--glass-inner-mix)),
+    2px 3px 5px -1px color-mix(in srgb, var(--glass-fill) var(--glass-light-near), transparent),
+    3px 6px 12px -2px color-mix(in srgb, var(--glass-fill) var(--glass-light-far), transparent);
+}

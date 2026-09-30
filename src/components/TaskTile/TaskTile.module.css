@@ -1,11 +1,34 @@
-/* White — the second surface layer on a card (owner, 2026-09-28). Flat: no
-   edge and no shadow (owner, same day) — the white fill alone separates it
-   from the card. */
+/* The surface — white fill, glass catch, shadows, hover lift — is Tile's
+   (components/Tile). This file is only the task's own layout. */
 .tile {
-  box-sizing: border-box;
   min-width: 0;
-  background: var(--color-surface-default);
-  border-radius: var(--radius-panel);
+}
+
+/* onOpen — the whole tile is the link to its task. */
+.tile[data-openable] {
+  cursor: pointer;
+}
+.tile[data-openable]:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* Hover anywhere on the tile and the action's icon leans the way it goes —
+   right by default (an arrow: "open"), up for an action marked
+   `data-nudge="up"` (an upload). The tile has no elevation to say it's
+   live, so the motion says it (motion playground, 2026-09-28). The spring
+   comes from Button's own icon transition. */
+.tile:hover [data-btn-icon] > svg {
+  transform: translateX(0.1875rem);
+}
+.tile:hover [data-nudge='up'] [data-btn-icon] > svg {
+  transform: translateY(-0.1875rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile:hover [data-btn-icon] > svg {
+    transform: none;
+  }
 }
 
 /* ---- card ------------------------------------------------------------------ */

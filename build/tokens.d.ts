@@ -30,7 +30,7 @@ export const ColorBrand700: string;
 export const ColorBrand800: string;
 export const ColorBrand900: string;
 export const ColorBrand950: string;
-/** cool near-white card fill — product override (owner, 2026-09-28: was #fcfcfc; darker so #ffffff items read on it, L* 97.2 vs 99.0) */
+/** cool near-white card fill — product override (owner, 2026-09-29: #f6f7f8 → #f6f6f8, tuned by eye to the most contrast for white items before it reads grey; was #fcfcfc before 2026-09-28) */
 export const ColorExtraCard: string;
 /** recessed zone inside a card — table header band, scroll tray. ≈ 2.8 L* below the card fill, the step zinc.100 had against the old #fcfcfc card */
 export const ColorExtraRecessed: string;
@@ -38,6 +38,14 @@ export const ColorExtraRecessed: string;
 export const ColorExtraCardItem: string;
 /** glass inner-shadow colour for card items — the original vignette, tuned for the #fcfcfc fill */
 export const ColorExtraCardItemVignette: string;
+/** TaskTile drop shadow colour — #e4e4e8 at 30% */
+export const ColorExtraTileShadow: string;
+/** severity chart — attention, one step lighter (owner, 2026-09-29 trial) beside rose.600 / orange.500 / emerald.500: passes the CVD and normal-vision checks, sits just above the chart lightness band (L 0.81) so relies on the legend and tooltips. The fully validated darker set was #e0a800 with rose.700 / orange.600 / emerald.600 */
+export const ColorExtraChartAttention: string;
+/** TaskTile hover lift — zinc 900 at 12%, dark enough to read as height on the #f6f6f8 card (owner, 2026-09-29) */
+export const ColorExtraTileLiftShadow: string;
+/** TaskTile inner shadow colour — #f0f0f0 at 60% */
+export const ColorExtraTileInnerShadow: string;
 /** glass inner-shadow colour on card-filled surfaces. Was a raw #f0f0f0 in each component's CSS; darkened with the card so the edges keep their depth */
 export const ColorExtraVignette: string;
 /** Primary button fill — a lightened brand. Button-only gimmick: color.text.brand / color.icon.brand stay at 600 everywhere else. */
@@ -129,6 +137,16 @@ export const ColorModalScrim: string;
 export const ColorCardItemBackground: string;
 /** Their inner-shadow colour — the original #f0f0f0, tuned for the #fcfcfc card-item fill. */
 export const ColorCardItemVignette: string;
+/** White — the second-layer card (Tile): anything card-like sitting on a card (owner, 2026-09-29). */
+export const ColorTileBackground: string;
+/** The glass catch (owner, 2026-09-29): 2px top + left, 1px bottom + right — widths in TaskTile.module.css. */
+export const ColorTileBorder: string;
+/** Drop shadow x 0.5, y 0.5, blur 2, spread 2 — geometry in the CSS. */
+export const ColorTileShadow: string;
+/** Hover lift: a close 0 2 6 -1 and a wide 0 12 24 -6 — geometry in the CSS. */
+export const ColorTileLiftShadow: string;
+/** Inner shadow x 1, y 1, blur 8 — geometry in the CSS. */
+export const ColorTileInnerShadow: string;
 /** Recessed/inset scroll track, same intent as other inset zones. Was color.background.subtle (zinc.100) until 2026-09-28, when the card fill darkened and zinc.100 stopped reading as recessed against it. */
 export const ColorScrollableAreaBackground: string;
 /** Inner-shadow tint at the scroll edges. Was a raw #00000026 before the alpha-black primitive ramp existed — now a proper alias, same value (15%). */
@@ -668,6 +686,10 @@ export const ColorChart6: string;
 export const ColorChart7: string;
 /** Not migrated to lime.400 — failed the lightness-band check at .400 (L 0.849, the worst offender). */
 export const ColorChart8: string;
+export const ColorChartSeverityCritical: string;
+export const ColorChartSeverityWarning: string;
+export const ColorChartSeverityAttention: string;
+export const ColorChartSeverityLow: string;
 /** indigo.600 — reuses the existing brand primitive rather than a separate value */
 export const ColorCategoryBrandText: string;
 export const ColorCategoryBrandBackground: string;
@@ -745,6 +767,12 @@ export const RadiusBadgeSm: string;
 export const RadiusBadgeMd: string;
 /** pill (owner, 2026-09-28: was radius.control 8) */
 export const RadiusBadgeLg: string;
+/** 6 — the original sm radius, for both corners on a side touching the card padding (owner, 2026-09-29, lib/edgeCorners.ts); xs reuses it */
+export const RadiusBadgeEdgeSm: string;
+/** 8 — the original md radius, same rule */
+export const RadiusBadgeEdgeMd: string;
+/** 8 — the original lg radius, same rule */
+export const RadiusBadgeEdgeLg: string;
 /** 4, flat across all sizes — a checkbox's corner rounding doesn't scale with its box size, same reasoning as radius.input staying flat across Input's sizes. */
 export const RadiusCheckbox: string;
 /** Pill track + circular thumb at every size — a switch is always fully rounded, no size-dependent step needed. */

@@ -17,10 +17,14 @@
   --color-alpha-black-70: rgba(0, 0, 0, 0.7);
   --color-alpha-black-80: rgba(0, 0, 0, 0.8);
   --color-alpha-black-90: rgba(0, 0, 0, 0.9);
-  --color-extra-card: #f6f7f8; /** cool near-white card fill — product override (owner, 2026-09-28: was #fcfcfc; darker so #ffffff items read on it, L* 97.2 vs 99.0) */
+  --color-extra-card: #f6f6f8; /** cool near-white card fill — product override (owner, 2026-09-29: #f6f7f8 → #f6f6f8, tuned by eye to the most contrast for white items before it reads grey; was #fcfcfc before 2026-09-28) */
   --color-extra-recessed: #eeeff1; /** recessed zone inside a card — table header band, scroll tray. ≈ 2.8 L* below the card fill, the step zinc.100 had against the old #fcfcfc card */
   --color-extra-card-item: #fcfcfc; /** fill of a card-like element sitting on a card — one step lighter than the card (the pre-2026-09-28 card fill) */
   --color-extra-card-item-vignette: #f0f0f0; /** glass inner-shadow colour for card items — the original vignette, tuned for the #fcfcfc fill */
+  --color-extra-tile-shadow: rgba(228, 228, 232, 0.3); /** TaskTile drop shadow colour — #e4e4e8 at 30% */
+  --color-extra-chart-attention: #f0b90b; /** severity chart — attention, one step lighter (owner, 2026-09-29 trial) beside rose.600 / orange.500 / emerald.500: passes the CVD and normal-vision checks, sits just above the chart lightness band (L 0.81) so relies on the legend and tooltips. The fully validated darker set was #e0a800 with rose.700 / orange.600 / emerald.600 */
+  --color-extra-tile-lift-shadow: rgba(24, 24, 27, 0.12); /** TaskTile hover lift — zinc 900 at 12%, dark enough to read as height on the #f6f6f8 card (owner, 2026-09-29) */
+  --color-extra-tile-inner-shadow: rgba(240, 240, 240, 0.6); /** TaskTile inner shadow colour — #f0f0f0 at 60% */
   --color-extra-vignette: #eaebed; /** glass inner-shadow colour on card-filled surfaces. Was a raw #f0f0f0 in each component's CSS; darkened with the card so the edges keep their depth */
   --color-button-primary-border-default: #aab1f9; /** Glass catch on the coloured primary surface — hand-tuned, not on the palette. */
   --color-button-primary-border-hover: #7a85f8;
@@ -392,6 +396,10 @@
   --color-table-row-background-danger: var(--color-rose-50); /** Deliberate primitive alias, one step paler than color.background.danger-subtle (rose.100) — owner's explicit choice for a low-contrast row wash, not the louder banner-style danger-subtle tone. */
   --color-table-row-background-success: var(--color-emerald-50); /** Deliberate primitive alias, one step paler than color.background.success-subtle (emerald.100) — same reasoning as row.background.danger. */
   --color-card-item-vignette: var(--color-extra-card-item-vignette); /** Their inner-shadow colour — the original #f0f0f0, tuned for the #fcfcfc card-item fill. */
+  --color-tile-border: var(--color-white); /** The glass catch (owner, 2026-09-29): 2px top + left, 1px bottom + right — widths in TaskTile.module.css. */
+  --color-tile-shadow: var(--color-extra-tile-shadow); /** Drop shadow x 0.5, y 0.5, blur 2, spread 2 — geometry in the CSS. */
+  --color-tile-lift-shadow: var(--color-extra-tile-lift-shadow); /** Hover lift: a close 0 2 6 -1 and a wide 0 12 24 -6 — geometry in the CSS. */
+  --color-tile-inner-shadow: var(--color-extra-tile-inner-shadow); /** Inner shadow x 1, y 1, blur 8 — geometry in the CSS. */
   --color-scrollable-area-shadow: var(--color-alpha-black-15); /** Inner-shadow tint at the scroll edges. Was a raw #00000026 before the alpha-black primitive ramp existed — now a proper alias, same value (15%). */
   --color-switch-thumb: var(--color-white); /** Always a plain white circle regardless of track state — the track color alone carries on/off/disabled. */
   --color-checkbox-icon-default: var(--color-white); /** The checkmark (checked) / dash (indeterminate) glyph — white against the brand fill. Was a flat `checkbox.icon` leaf before React needed a disabled variant; the Figma master (4182:3616) still binds its glyph vectors to the old flat `color/checkbox/icon` name for every state, disabled included — a real Figma↔code drift, not fixed here (bridge is read-only for this task). Worth a follow-up: rename the Figma variable to `color/checkbox/icon/default` and add a sibling `color/checkbox/icon/disabled` bound onto the disabled+checked/indeterminate master variants. */
@@ -486,6 +494,10 @@
   --color-chart-6: var(--color-violet-500); /** Not migrated to violet.400 — passed alone, but paired with sky.400 fell to CVD ΔE 5.2. .500 restores separation. */
   --color-chart-7: var(--color-sky-400); /** Migrated from sky.600 to match Figma's lighter chart ramp — passes paired with violet.500. */
   --color-chart-8: var(--color-lime-500); /** Not migrated to lime.400 — failed the lightness-band check at .400 (L 0.849, the worst offender). */
+  --color-chart-severity-critical: var(--color-rose-600);
+  --color-chart-severity-warning: var(--color-orange-500);
+  --color-chart-severity-attention: var(--color-extra-chart-attention);
+  --color-chart-severity-low: var(--color-emerald-500);
   --color-category-teal-text: var(--color-teal-600); /** Not .700 — fails the chroma floor at that depth (reads gray), same issue as cyan. Contrast vs. own-100 is 3.3:1 — accepted per the always-a-label mitigation on the group description. */
   --color-category-teal-background: var(--color-teal-600);
   --color-category-rose-text: var(--color-rose-700); /** 700, not 600 — .600 doesn't clear 4.5:1 contrast. */
@@ -660,6 +672,7 @@
   --color-modal-border: var(--color-border-default);
   --color-modal-scrim: var(--color-background-overlay);
   --color-card-item-background: var(--color-surface-card-item); /** Fill of the glass elements that sit on a card: StatButton, secondary Button (so IconButton, Filter, FilterIcon, Pagination and the selected SegmentedControl item too). */
+  --color-tile-background: var(--color-surface-default); /** White — the second-layer card (Tile): anything card-like sitting on a card (owner, 2026-09-29). */
   --color-scrollable-area-background: var(--color-surface-recessed); /** Recessed/inset scroll track, same intent as other inset zones. Was color.background.subtle (zinc.100) until 2026-09-28, when the card fill darkened and zinc.100 stopped reading as recessed against it. */
   --color-scrollable-area-row-shadow-hover: var(--color-background-overlay-subtle); /** Inset shadow, not a fill — rows have no background by default. Shared with table.row.shadow.hover. */
   --color-scrollable-area-row-border-divider: var(--color-border-default); /** Permanent 1px bottom-only divider between rows in a list — every state (default/hover/focus), unlike hover/focus which only apply on interaction. Owner changed this from border.subtle (zinc.100, "faint separators") to border.default (zinc.200, "inputs, cards, dividers") directly in Figma — a plain divider apparently read as too faint at subtle. CSS: box-shadow inset (layout-neutral, stacks with the focus ring as a second shadow layer). Figma: a real per-side stroke (strokeBottomWeight 1, others 0, INSIDE align, strokesIncludedInLayout false) — NOT an effect. An INNER_SHADOW effect on this frame (which has no fill) was confirmed to corrupt Figma's own text rendering for this file's variable-font weight; a stroke on the same no-fill frame does not. See docs/components/Row.md and HANDOFF.md §6. */
@@ -749,6 +762,9 @@
   --radius-button-xl: var(--radius-control); /** 8 */
   --radius-button-2xl: var(--radius-panel); /** 12 — primary only */
   --radius-input: var(--radius-control);
+  --radius-badge-edge-sm: var(--radius-chip); /** 6 — the original sm radius, for both corners on a side touching the card padding (owner, 2026-09-29, lib/edgeCorners.ts); xs reuses it */
+  --radius-badge-edge-md: var(--radius-control); /** 8 — the original md radius, same rule */
+  --radius-badge-edge-lg: var(--radius-control); /** 8 — the original lg radius, same rule */
   --radius-segmented-control-sm: var(--radius-chip); /** 6 — mirrors radius.button.sm; the track and its items share this radius (a small inset gap between them reads fine without stepping the track's radius up). */
   --radius-segmented-control-md: var(--radius-control); /** 8 — mirrors radius.button.md/lg. */
   --radius-segmented-control-lg: var(--radius-control); /** 8 — mirrors radius.button.md/lg. */
