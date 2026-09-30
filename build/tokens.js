@@ -658,7 +658,7 @@ export const Space64 = "4rem"; // 64px
 export const Space80 = "5rem"; // 80px
 export const Space96 = "6rem"; // 96px
 export const FontFamilySans =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
 export const FontFamilyMono =
   "ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace";
 export const FontSize10 = "0.625rem"; // 10px
@@ -690,127 +690,127 @@ export const FontLetterSpacingNormal = "0em";
 export const FontLetterSpacingWide = "0.01em";
 export const FontLetterSpacingWider = "0.03em"; // overlines / all-caps
 export const TextDisplayXlFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Hero / auth / empty-state headline
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Hero / auth / empty-state headline
 export const TextDisplayXlFontSize = "3rem"; // Hero / auth / empty-state headline
 export const TextDisplayXlFontWeight = 700; // Hero / auth / empty-state headline
 export const TextDisplayXlLineHeight = 1; // Hero / auth / empty-state headline
 export const TextDisplayXlLetterSpacing = "-0.02em"; // Hero / auth / empty-state headline
 export const TextDisplayLgFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
 export const TextDisplayLgFontSize = "2.25rem";
 export const TextDisplayLgFontWeight = 700;
 export const TextDisplayLgLineHeight = 1;
 export const TextDisplayLgLetterSpacing = "-0.02em";
 export const TextDisplayMdFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
 export const TextDisplayMdFontSize = "2rem";
 export const TextDisplayMdFontWeight = 700;
 export const TextDisplayMdLineHeight = 1.15;
 export const TextDisplayMdLetterSpacing = "-0.01em";
 export const TextHeadingXlFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Page title
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Page title
 export const TextHeadingXlFontSize = "1.75rem"; // Page title
 export const TextHeadingXlFontWeight = 700; // Page title
 export const TextHeadingXlLineHeight = 1.15; // Page title
 export const TextHeadingXlLetterSpacing = "-0.01em"; // Page title
 export const TextHeadingLgFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
 export const TextHeadingLgFontSize = "1.5rem";
 export const TextHeadingLgFontWeight = 600;
 export const TextHeadingLgLineHeight = 1.3;
 export const TextHeadingLgLetterSpacing = "-0.01em";
 export const TextHeadingMdFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Section / card title
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Section / card title
 export const TextHeadingMdFontSize = "1.25rem"; // Section / card title
 export const TextHeadingMdFontWeight = 600; // Section / card title
 export const TextHeadingMdLineHeight = 1.3; // Section / card title
 export const TextHeadingMdLetterSpacing = "-0.01em"; // Section / card title
 export const TextHeadingSmFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
 export const TextHeadingSmFontSize = "1.125rem";
 export const TextHeadingSmFontWeight = 600;
 export const TextHeadingSmLineHeight = 1.3;
 export const TextHeadingSmLetterSpacing = "0em";
 export const TextHeadingXsFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Subsection / group label
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Subsection / group label
 export const TextHeadingXsFontSize = "1rem"; // Subsection / group label
 export const TextHeadingXsFontWeight = 600; // Subsection / group label
 export const TextHeadingXsLineHeight = 1.3; // Subsection / group label
 export const TextHeadingXsLetterSpacing = "0em"; // Subsection / group label
 export const TextBodyXlFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Largest body step — completes the body scale to match the label/heading ranges; used by Label's xl size so LabelGroup can render at 16px in body weight rather than the label scale's semibold.
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Largest body step — completes the body scale to match the label/heading ranges; used by Label's xl size so LabelGroup can render at 16px in body weight rather than the label scale's semibold.
 export const TextBodyXlFontSize = "1rem"; // Largest body step — completes the body scale to match the label/heading ranges; used by Label's xl size so LabelGroup can render at 16px in body weight rather than the label scale's semibold.
 export const TextBodyXlFontWeight = 500; // Largest body step — completes the body scale to match the label/heading ranges; used by Label's xl size so LabelGroup can render at 16px in body weight rather than the label scale's semibold.
 export const TextBodyXlLineHeight = 1.5; // Largest body step — completes the body scale to match the label/heading ranges; used by Label's xl size so LabelGroup can render at 16px in body weight rather than the label scale's semibold.
 export const TextBodyXlLetterSpacing = "0em"; // Largest body step — completes the body scale to match the label/heading ranges; used by Label's xl size so LabelGroup can render at 16px in body weight rather than the label scale's semibold.
 export const TextBodyLgFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
 export const TextBodyLgFontSize = "0.9375rem";
 export const TextBodyLgFontWeight = 500;
 export const TextBodyLgLineHeight = 1.5;
 export const TextBodyLgLetterSpacing = "0em";
 export const TextBodyMdFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Default body / table cell
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Default body / table cell
 export const TextBodyMdFontSize = "0.875rem"; // Default body / table cell
 export const TextBodyMdFontWeight = 500; // Default body / table cell
 export const TextBodyMdLineHeight = 1.5; // Default body / table cell
 export const TextBodyMdLetterSpacing = "0em"; // Default body / table cell
 export const TextBodySmFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
 export const TextBodySmFontSize = "0.8125rem";
 export const TextBodySmFontWeight = 500;
 export const TextBodySmLineHeight = 1.5;
 export const TextBodySmLetterSpacing = "0em";
 export const TextBodyXsFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Dense secondary text
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Dense secondary text
 export const TextBodyXsFontSize = "0.75rem"; // Dense secondary text
 export const TextBodyXsFontWeight = 500; // Dense secondary text
 export const TextBodyXsLineHeight = 1.5; // Dense secondary text
 export const TextBodyXsLetterSpacing = "0em"; // Dense secondary text
 export const TextBody2xsFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Row's smallest description size — dense, often alphanumeric-code-heavy content (e.g. flight/reference codes) at 10px reusing the existing font.size.10 primitive (already used by overline), rather than inventing an 11px step purely to keep a clean '-2 from heading' arithmetic. Gets wide tracking (unlike every other body step, all 'normal') for the same reason text/label/xs does at this size — legibility for dense uppercase content, not just smallness.
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Row's smallest description size — dense, often alphanumeric-code-heavy content (e.g. flight/reference codes) at 10px reusing the existing font.size.10 primitive (already used by overline), rather than inventing an 11px step purely to keep a clean '-2 from heading' arithmetic. Gets wide tracking (unlike every other body step, all 'normal') for the same reason text/label/xs does at this size — legibility for dense uppercase content, not just smallness.
 export const TextBody2xsFontSize = "0.625rem"; // Row's smallest description size — dense, often alphanumeric-code-heavy content (e.g. flight/reference codes) at 10px reusing the existing font.size.10 primitive (already used by overline), rather than inventing an 11px step purely to keep a clean '-2 from heading' arithmetic. Gets wide tracking (unlike every other body step, all 'normal') for the same reason text/label/xs does at this size — legibility for dense uppercase content, not just smallness.
 export const TextBody2xsFontWeight = 500; // Row's smallest description size — dense, often alphanumeric-code-heavy content (e.g. flight/reference codes) at 10px reusing the existing font.size.10 primitive (already used by overline), rather than inventing an 11px step purely to keep a clean '-2 from heading' arithmetic. Gets wide tracking (unlike every other body step, all 'normal') for the same reason text/label/xs does at this size — legibility for dense uppercase content, not just smallness.
 export const TextBody2xsLineHeight = 1.5; // Row's smallest description size — dense, often alphanumeric-code-heavy content (e.g. flight/reference codes) at 10px reusing the existing font.size.10 primitive (already used by overline), rather than inventing an 11px step purely to keep a clean '-2 from heading' arithmetic. Gets wide tracking (unlike every other body step, all 'normal') for the same reason text/label/xs does at this size — legibility for dense uppercase content, not just smallness.
 export const TextBody2xsLetterSpacing = "0.01em"; // Row's smallest description size — dense, often alphanumeric-code-heavy content (e.g. flight/reference codes) at 10px reusing the existing font.size.10 primitive (already used by overline), rather than inventing an 11px step purely to keep a clean '-2 from heading' arithmetic. Gets wide tracking (unlike every other body step, all 'normal') for the same reason text/label/xs does at this size — legibility for dense uppercase content, not just smallness.
 export const TextLabelXlFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // xl / 56px primary button
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // xl / 56px primary button
 export const TextLabelXlFontSize = "1rem"; // xl / 56px primary button
 export const TextLabelXlFontWeight = 600; // xl / 56px primary button
 export const TextLabelXlLineHeight = 1.15; // xl / 56px primary button
 export const TextLabelXlLetterSpacing = "0em"; // xl / 56px primary button
 export const TextLabelLgFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
 export const TextLabelLgFontSize = "0.9375rem";
 export const TextLabelLgFontWeight = 600;
 export const TextLabelLgLineHeight = 1.15;
 export const TextLabelLgLetterSpacing = "0em";
 export const TextLabelMdFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Button / input / tab label
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Button / input / tab label
 export const TextLabelMdFontSize = "0.875rem"; // Button / input / tab label
 export const TextLabelMdFontWeight = 600; // Button / input / tab label
 export const TextLabelMdLineHeight = 1.15; // Button / input / tab label
 export const TextLabelMdLetterSpacing = "0em"; // Button / input / tab label
 export const TextLabelSmFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Table header / chip
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Table header / chip
 export const TextLabelSmFontSize = "0.8125rem"; // Table header / chip
 export const TextLabelSmFontWeight = 600; // Table header / chip
 export const TextLabelSmLineHeight = 1.15; // Table header / chip
 export const TextLabelSmLetterSpacing = "0em"; // Table header / chip
 export const TextLabelXsFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
 export const TextLabelXsFontSize = "0.75rem";
 export const TextLabelXsFontWeight = 600;
 export const TextLabelXsLineHeight = 1.15;
 export const TextLabelXsLetterSpacing = "0.01em";
 export const TextOverlineFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // All-caps section kicker — apply text-transform: uppercase in the component
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // All-caps section kicker — apply text-transform: uppercase in the component
 export const TextOverlineFontSize = "0.625rem"; // All-caps section kicker — apply text-transform: uppercase in the component
 export const TextOverlineFontWeight = 800; // All-caps section kicker — apply text-transform: uppercase in the component
 export const TextOverlineLineHeight = 1.3; // All-caps section kicker — apply text-transform: uppercase in the component
 export const TextOverlineLetterSpacing = "0.03em"; // All-caps section kicker — apply text-transform: uppercase in the component
 export const TextCaptionFontFamily =
-  "Plus Jakarta Sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Helper text, timestamps, footnotes
+  "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"; // Helper text, timestamps, footnotes
 export const TextCaptionFontSize = "0.75rem"; // Helper text, timestamps, footnotes
 export const TextCaptionFontWeight = 500; // Helper text, timestamps, footnotes
 export const TextCaptionLineHeight = 1.5; // Helper text, timestamps, footnotes
