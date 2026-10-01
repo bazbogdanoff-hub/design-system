@@ -140,6 +140,10 @@ export type { SliderProps, SliderSize } from './components/Slider';
 
 export { Row } from './components/Row';
 export type { RowProps, RowSize, RowLeading } from './components/Row';
+export { ConversationRow } from './components/ConversationRow';
+export type { ConversationRowProps } from './components/ConversationRow';
+export { ChannelLogo } from './components/ChannelLogo';
+export type { ChannelLogoProps, ChannelLogoChannel, ChannelLogoSize } from './components/ChannelLogo';
 
 export { Table } from './components/Table';
 export type { TableProps } from './components/Table';

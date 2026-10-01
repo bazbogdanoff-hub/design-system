@@ -1,0 +1,119 @@
+/* ConversationRow (2026-10-01, code-first). Rows sit straight on a card
+   with no dividers (owner): the padding and the list's gap separate them,
+   as in messenger apps. Hover is Row's wash; the open conversation lifts
+   to the card-item surface with rounded corners. */
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  padding: var(--space-12);
+  border-radius: var(--radius-xl);
+  background-color: transparent;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.row[data-interactive] {
+  cursor: pointer;
+}
+
+.row:hover:not([data-selected]) {
+  background-color: var(--color-scrollable-area-row-shadow-hover);
+}
+
+/* Selected wears Tile's recipe exactly (owner, 2026-10-01) — the white
+   second-layer card: its fill, its 2/1 white catch, soft inner shadow and
+   faint drop — so the open conversation lifts off the card the way every
+   Tile does. Values mirror Tile.module.css; change them together. */
+.row[data-selected] {
+  background-color: var(--color-tile-background);
+  box-shadow:
+    inset 2px 2px 0 0 var(--color-tile-border),
+    inset -1px -1px 0 0 var(--color-tile-border),
+    inset 1px 1px 8px 0 var(--color-tile-inner-shadow),
+    0.5px 0.5px 2px 2px var(--color-tile-shadow);
+}
+
+.row[data-interactive]:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--color-scrollable-area-row-border-focus);
+}
+
+.avatar {
+  display: inline-flex;
+  flex: none;
+}
+
+.text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.name,
+.preview {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.name {
+  font-family: var(--text-label-lg-font-family);
+  font-size: var(--text-label-lg-font-size);
+  font-weight: var(--text-label-lg-font-weight);
+  line-height: var(--text-label-lg-line-height);
+  letter-spacing: var(--text-label-lg-letter-spacing);
+  color: var(--color-text-strong);
+}
+
+.preview {
+  font-family: var(--text-body-md-font-family);
+  font-size: var(--text-body-md-font-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--text-body-md-line-height);
+  color: var(--color-text-subtle);
+}
+
+/* Time at the top of the row, the unread pill under it, both on the row's
+   right edge (owner, 2026-10-01). */
+.meta {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-4);
+  align-self: stretch;
+  justify-content: flex-start;
+}
+
+.time {
+  font-family: var(--text-caption-font-family);
+  font-size: var(--text-caption-font-size);
+  line-height: var(--text-caption-line-height);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-subtle);
+  white-space: nowrap;
+}
+
+/* The dashboard chat card's unread pill (owner, 2026-10-01): brand.500
+   with a 1px brand.400 catch along the top-left — the house light — and
+   tabular figures so a count doesn't jitter as it changes. */
+.unread {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: var(--space-20);
+  height: var(--space-20);
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-full);
+  background: var(--color-brand-500);
+  box-shadow: inset 1px 1px 0 0 var(--color-brand-400);
+  color: var(--color-text-on-brand);
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}

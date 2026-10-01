@@ -1,0 +1,40 @@
+/* ChannelLogo (2026-10-01, code-first). Bare: the mark fills the box in
+   currentColor. Tile: the app's colour on a rounded square, the white mark
+   at 60% of it — an app icon, not a badge. */
+.logo {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Object sizes in rem, as IconButton sets its own: md matches IconButton
+   sm (28), lg matches IconButton lg (36) so a tile sits level beside one. */
+.logo[data-size='xs'] { width: 0.75rem; height: 0.75rem; }
+.logo[data-size='sm'] { width: 1.25rem; height: 1.25rem; }
+.logo[data-size='md'] { width: 1.75rem; height: 1.75rem; }
+.logo[data-size='lg'] { width: 2.25rem; height: 2.25rem; }
+
+.mark {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.logo[data-tile] {
+  border-radius: var(--radius-control);
+  color: var(--color-channel-logo-glyph);
+}
+.logo[data-tile] .mark {
+  width: 60%;
+  height: 60%;
+}
+.logo[data-size='sm'][data-tile] {
+  border-radius: var(--radius-sm);
+}
+
+.logo[data-tile][data-channel='telegram'] { background: var(--color-channel-logo-telegram); }
+.logo[data-tile][data-channel='whatsapp'] { background: var(--color-channel-logo-whatsapp); }
+.logo[data-tile][data-channel='viber'] { background: var(--color-channel-logo-viber); }
