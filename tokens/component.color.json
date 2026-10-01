@@ -237,6 +237,10 @@
       },
       "scrim": {
         "$value": "{color.background.overlay}"
+      },
+      "scrim-strong": {
+        "$value": "{color.alpha-black.80}",
+        "$description": "Overlay scrim=\"strong\" — the dark room around a full-screen picture (owner, 2026-10-01)."
       }
     },
     "card-item": {

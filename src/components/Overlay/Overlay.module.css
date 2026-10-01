@@ -16,6 +16,11 @@
   overscroll-behavior: contain;
 }
 
+/* The strong scrim (2026-10-01) — a full-screen picture wants the room dark. */
+.overlay[data-scrim='strong'] {
+  background-color: var(--color-modal-scrim-strong);
+}
+
 /* margin:auto (not align-items:center) so a modal taller than the viewport
    still scrolls from its top edge instead of being clipped. */
 .overlay > * {

@@ -103,6 +103,7 @@ export const ColorTableBorder = "#f4f4f5";
 export const ColorModalBackground = "#ffffff";
 export const ColorModalBorder = "#e4e4e7";
 export const ColorModalScrim = "#00000066";
+export const ColorModalScrimStrong = "#000000cc"; // Overlay scrim="strong" — the dark room around a full-screen picture (owner, 2026-10-01).
 export const ColorCardItemBackground = "#fcfcfc"; // Fill of the glass elements that sit on a card: StatButton, secondary Button (so IconButton, Filter, FilterIcon, Pagination and the selected SegmentedControl item too).
 export const ColorCardItemVignette = "#f0f0f0"; // Their inner-shadow colour — the original #f0f0f0, tuned for the #fcfcfc card-item fill.
 export const ColorTileBackground = "#ffffff"; // White — the second-layer card (Tile): anything card-like sitting on a card (owner, 2026-09-29).

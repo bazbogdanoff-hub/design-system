@@ -400,6 +400,7 @@
   --color-badge-danger-text: var(--color-rose-600);
   --color-table-row-background-danger: var(--color-rose-50); /** Deliberate primitive alias, one step paler than color.background.danger-subtle (rose.100) — owner's explicit choice for a low-contrast row wash, not the louder banner-style danger-subtle tone. */
   --color-table-row-background-success: var(--color-emerald-50); /** Deliberate primitive alias, one step paler than color.background.success-subtle (emerald.100) — same reasoning as row.background.danger. */
+  --color-modal-scrim-strong: var(--color-alpha-black-80); /** Overlay scrim="strong" — the dark room around a full-screen picture (owner, 2026-10-01). */
   --color-card-item-vignette: var(--color-extra-card-item-vignette); /** Their inner-shadow colour — the original #f0f0f0, tuned for the #fcfcfc card-item fill. */
   --color-tile-border: var(--color-white); /** The glass catch (owner, 2026-09-29): 2px top + left, 1px bottom + right — widths in TaskTile.module.css. */
   --color-tile-shadow: var(--color-extra-tile-shadow); /** Drop shadow x 0.5, y 0.5, blur 2, spread 2 — geometry in the CSS. */

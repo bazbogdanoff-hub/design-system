@@ -140,6 +140,8 @@ export const ColorTableBorder: string;
 export const ColorModalBackground: string;
 export const ColorModalBorder: string;
 export const ColorModalScrim: string;
+/** Overlay scrim="strong" — the dark room around a full-screen picture (owner, 2026-10-01). */
+export const ColorModalScrimStrong: string;
 /** Fill of the glass elements that sit on a card: StatButton, secondary Button (so IconButton, Filter, FilterIcon, Pagination and the selected SegmentedControl item too). */
 export const ColorCardItemBackground: string;
 /** Their inner-shadow colour — the original #f0f0f0, tuned for the #fcfcfc card-item fill. */

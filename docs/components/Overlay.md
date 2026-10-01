@@ -25,6 +25,8 @@ const [open, setOpen] = useState(false);
 | `closeOnEscape` | `boolean` | `true` | |
 | `lockScroll` | `boolean` | `true` | locks body scroll while open |
 
+| `scrim` | `'default'` \| `'strong'` | `'default'` | `strong` is `color/modal/scrim-strong` (alpha-black/80) — for a full-screen picture, where the room should go dark (owner, 2026-10-01) |
+
 Other `div` props pass through to the scrim element.
 
 ## Scrim token

@@ -29,6 +29,10 @@ export interface OverlayProps extends Omit<HTMLAttributes<HTMLDivElement>, 'chil
   closeOnBackdropClick?: boolean;
   /** Close on the Escape key. Default `true`. */
   closeOnEscape?: boolean;
+  /** `default` — the light 40% darkener that keeps the interface readable
+   * behind a dialog. `strong` — 80%, for content that wants the room dark
+   * around it: a full-screen picture (owner, 2026-10-01). */
+  scrim?: 'default' | 'strong';
   /** Lock body scroll while open. Default `true`. */
   lockScroll?: boolean;
   /** Called once the exit animation has finished and the overlay is gone.
@@ -59,6 +63,7 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function Overlay
     closeOnBackdropClick = true,
     closeOnEscape = true,
     lockScroll = true,
+    scrim = 'default',
     onExited,
     className,
     onMouseDown,
@@ -150,6 +155,7 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function Overlay
       }}
       className={cn(styles.overlay, className)}
       data-align={align}
+      data-scrim={scrim}
       data-state={closing ? 'closing' : 'open'}
       tabIndex={-1}
       onMouseDown={handleMouseDown}
