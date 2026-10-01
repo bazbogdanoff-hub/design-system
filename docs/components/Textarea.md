@@ -12,6 +12,22 @@ A multi-line text field. **L1** — Figma + React, both built this session.
 |---|---|---|---|
 | `size` | `sm` (72px) · `md` (80px) · `lg` (88px) | `md` | exactly 2x `Input`'s own height at each step — a starting height, not a cap (still grows with `rows` or manual resize) |
 | `error` | `boolean` | — | reddens the border, sets `aria-invalid` |
+| `autoGrow` | `boolean` | — | a message field (2026-10-01): one line tall at `Input`'s own height for `size`, grows with the text up to `maxRows`, then scrolls; no manual resize |
+| `maxRows` | `number` | `8` | with `autoGrow` |
+| `trailingAction` | `ReactNode` | — | a send button inside the border, kept on the **last line** as the field grows; an `IconButton` a step shorter than the field, as `Input`'s |
+| `wrapperClassName` | `string` | — | class on the outer field box, which exists only with `autoGrow` / `trailingAction` |
+
+### Message-field mode (2026-10-01, owner-approved, built code-first)
+
+With `autoGrow` or `trailingAction`, `Textarea` takes `Input`'s wrapper pattern:
+the border moves to a box around a bare textarea. One line equals `Input`'s
+height (block padding is `(line box − 1lh) / 2`), and the action sits in a
+slot one line tall at the box's bottom, so it stays on the last line.
+Growth is measured (`scrollHeight`, capped at `maxRows`) — CSS
+`field-sizing: content` isn't in Firefox or Safari yet. Without either
+prop, `Textarea` renders exactly as before. **Figma:** a `messageField`
+variant — auto-layout horizontal, bottom-aligned, the action frame one
+line tall.
 
 Every other native `<textarea>` prop passes through (native `size`, the
 character-width attribute, is not what our `size` means here — same carve-out

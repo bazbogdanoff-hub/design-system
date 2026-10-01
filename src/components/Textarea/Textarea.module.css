@@ -58,3 +58,74 @@
   cursor: not-allowed;
   resize: none;
 }
+
+/* ---- message-field mode (autoGrow / trailingAction, 2026-10-01) ----------
+   Input's wrapper pattern: the border is the field's, the textarea inside is
+   bare. One line is Input's own height at each size; the textarea's block
+   padding centres one line in it (1lh = its own line height), so a single
+   line reads exactly like an Input. The action lives in a slot one line
+   tall at the bottom, so the send button stays on the last line however
+   tall the text grows. */
+.field {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  box-sizing: border-box;
+  gap: var(--space-8);
+  padding-inline: var(--space-12);
+  border-radius: var(--radius-input);
+  background-color: var(--color-input-background-default);
+  border: 1px solid var(--color-input-border-default);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.field[data-size='sm'] { --_line-box: calc(var(--size-input-sm) - 2px); }
+.field[data-size='md'] { --_line-box: calc(var(--size-input-md) - 2px); }
+.field[data-size='lg'] { --_line-box: calc(var(--size-input-lg) - 2px); }
+
+.field:hover:not([data-disabled]):not(:focus-within) {
+  border-color: var(--color-input-border-hover);
+}
+.field:focus-within {
+  border-color: var(--color-input-border-focus);
+}
+.field[data-error] {
+  border-color: var(--color-input-border-error);
+}
+.field[data-disabled] {
+  background-color: var(--color-input-background-disabled);
+  border-color: var(--color-input-border-disabled);
+  cursor: not-allowed;
+}
+/* Same end inset as Input's action: the button sits 4 from the border. */
+.field[data-has-action] {
+  padding-inline-end: var(--space-4);
+}
+
+.textarea[data-in-field] {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  padding: calc((var(--_line-box) - 1lh) / 2) 0;
+  outline: none;
+}
+.textarea[data-in-field]:focus,
+.textarea[data-in-field]:hover:not(:disabled):not(:focus) {
+  border-color: transparent;
+}
+.textarea[data-autogrow] {
+  resize: none;
+  overflow-y: hidden;
+}
+
+.action {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  height: var(--_line-box);
+}
+.field[data-has-action] .action > * {
+  border-radius: max(var(--radius-xs), calc(var(--radius-input) - var(--space-4)));
+}
