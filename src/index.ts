@@ -144,6 +144,10 @@ export { ConversationRow } from './components/ConversationRow';
 export type { ConversationRowProps } from './components/ConversationRow';
 export { ChannelLogo } from './components/ChannelLogo';
 export type { ChannelLogoProps, ChannelLogoChannel, ChannelLogoSize } from './components/ChannelLogo';
+export * from './components/ChatBubble';
+export * from './components/DayDivider';
+export * from './components/MediaViewer';
+export * from './components/ChatComposer';
 
 export { Table } from './components/Table';
 export type { TableProps } from './components/Table';

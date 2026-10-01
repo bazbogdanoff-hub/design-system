@@ -1,0 +1,164 @@
+/* ChatComposer (2026-10-01, code-first from the Messages page). */
+.composer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+/* Attach · field; both on the last line as the field grows. */
+.row {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-8);
+}
+.attach {
+  display: flex;
+  flex: none;
+  align-items: center;
+  height: var(--size-input-md);
+}
+.field {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* ---- editing ------------------------------------------------------------ */
+.editBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding-inline-start: var(--space-8);
+  color: var(--color-text-brand);
+}
+.editText {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+.editLabel {
+  font-family: var(--text-label-sm-font-family);
+  font-size: var(--text-label-sm-font-size);
+  font-weight: var(--text-label-sm-font-weight);
+  line-height: var(--text-label-sm-line-height);
+}
+.editOriginal {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  line-height: var(--text-body-sm-line-height);
+  color: var(--color-text-subtle);
+}
+
+/* ---- files waiting ------------------------------------------------------- */
+.tray {
+  display: flex;
+  gap: var(--space-8);
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  list-style: none;
+}
+.thumb,
+.chip {
+  position: relative;
+  flex: none;
+  box-sizing: border-box;
+  height: 4.5rem;
+  border-radius: var(--radius-lg);
+}
+.thumb {
+  width: 4.5rem;
+  overflow: hidden;
+  background: var(--color-surface-recessed);
+}
+.thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  max-width: 16rem;
+  padding: var(--space-8) 2.5rem var(--space-8) var(--space-8);
+  background: var(--color-surface-card-item);
+  color: var(--color-text-default);
+}
+/* A hairline round each, over the picture so a light photo keeps an edge. */
+.thumb::after,
+.chip::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 0.5px var(--color-alpha-black-20);
+  pointer-events: none;
+}
+.chipText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+.chipName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--text-label-md-font-family);
+  font-size: var(--text-label-md-font-size);
+  font-weight: var(--text-label-md-font-weight);
+  line-height: var(--text-label-md-line-height);
+}
+.chipSize {
+  font-family: var(--text-caption-font-family);
+  font-size: var(--text-caption-font-size);
+  line-height: var(--text-caption-line-height);
+  color: var(--color-text-subtle);
+}
+/* Remove: icon only, on a pale disc so it reads on any photo; `.tray li`
+   lifts it over IconButton's own tertiary background. */
+.tray li .remove {
+  position: absolute;
+  z-index: 1;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-white) 85%, transparent);
+}
+.thumb .remove {
+  top: var(--space-2);
+  right: var(--space-2);
+}
+.chip .remove {
+  top: 50%;
+  right: var(--space-8);
+  translate: 0 -50%;
+}
+
+/* ---- dark: inside the app-frame card --------------------------------------
+   The field wears the sidebar's active-tab recipe — the brightest place on
+   the card is where you type (owner, 2026-09-30). */
+.composer[data-on='dark'] .field {
+  border: 0;
+  border-radius: var(--radius-2xl);
+  background:
+    linear-gradient(var(--color-sidebar-nav-item-active-overlay), var(--color-sidebar-nav-item-active-overlay)),
+    var(--color-sidebar-nav-item-active-fill);
+  box-shadow:
+    inset 1px 1px 0 0 var(--color-sidebar-nav-item-active-border),
+    inset -1px -1px 2px 0 var(--color-sidebar-nav-item-active-inner-shadow);
+}
+.composer[data-on='dark'] .field textarea {
+  color: var(--color-white);
+}
+.composer[data-on='dark'] .field textarea::placeholder {
+  color: color-mix(in srgb, var(--color-white) 60%, transparent);
+}
+.composer[data-on='dark'] .editBar {
+  color: var(--color-sidebar-brand-accent);
+}
+.composer[data-on='dark'] .editOriginal {
+  color: color-mix(in srgb, var(--color-white) 60%, transparent);
+}

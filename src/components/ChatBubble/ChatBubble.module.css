@@ -1,0 +1,216 @@
+/* ChatBubble (2026-10-01, code-first from the Aegis Messages page).
+   The surface is data-on, not data-surface: Page treats every [data-surface]
+   as a card when it computes outer corners.
+   The fill is a plain colour; the edge light is an SVG filter on the painted
+   shape (filters.ts), so the tail — painted in the same fill — is lit with
+   the body as one piece. Each variant sets four things: --_fill, the text
+   colour, the meta colour, the filter. */
+.bubble {
+  position: relative;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--space-4);
+  box-sizing: border-box;
+  max-width: 85%;
+  padding: var(--space-10) var(--space-12);
+  border-radius: var(--radius-panel);
+  background: var(--_fill);
+  color: var(--_text);
+}
+
+/* Text sizes. */
+.bubble[data-size='lg'] {
+  font-family: var(--text-body-lg-font-family);
+  font-size: var(--text-body-lg-font-size);
+  line-height: var(--text-body-lg-line-height);
+}
+.bubble[data-size='sm'] {
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  line-height: var(--text-body-sm-line-height);
+}
+
+/* ---- sides and surfaces ------------------------------------------------- */
+.bubble[data-side='in'] {
+  align-self: flex-start;
+}
+.bubble[data-side='out'] {
+  align-self: flex-end;
+}
+
+/* Light, in: the white Tile. */
+.bubble[data-on='light'][data-side='in'] {
+  --_fill: var(--color-tile-background);
+  --_text: var(--color-text-default);
+  --_meta: var(--color-text-subtle);
+  filter: url(#ds-bubble-light-in);
+}
+/* Light, out: brand glass (glass.css on the primary fill). */
+.bubble[data-on='light'][data-side='out'] {
+  --_fill: var(--color-button-primary-background-default);
+  --_text: var(--color-text-on-brand);
+  --_meta: color-mix(in srgb, var(--color-text-on-brand) 75%, transparent);
+  filter: url(#ds-bubble-light-out);
+}
+/* Dark, in: the sidebar's panel — inside the dark app-frame card. */
+.bubble[data-on='dark'][data-side='in'] {
+  --_fill: var(--color-sidebar-panel-background);
+  --_text: var(--color-white);
+  --_meta: color-mix(in srgb, var(--color-white) 60%, transparent);
+  filter: url(#ds-bubble-dark-in);
+}
+/* Dark, out: the sidebar's brand pair. */
+.bubble[data-on='dark'][data-side='out'] {
+  --_fill: var(--color-sidebar-brand-fill);
+  --_text: var(--color-white);
+  --_meta: color-mix(in srgb, var(--color-white) 72%, transparent);
+  filter: url(#ds-bubble-dark-out);
+}
+
+/* ---- the tail -----------------------------------------------------------
+   The run's first bubble: square top corner toward its sender, and a wedge
+   in the same fill growing out of it, 8 out and 2 into the body (a sub-pixel
+   gap in the alpha would make the filter draw a catch line through the
+   joint), 12 tall, tip softened. The clip starts 1px above the box so the
+   top edge is the box's own, pixel-snapped like the body's. */
+.bubble[data-tail][data-side='in'] {
+  border-top-left-radius: 0;
+}
+.bubble[data-tail][data-side='out'] {
+  border-top-right-radius: 0;
+}
+.bubble[data-tail]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: calc(var(--space-8) + 2px);
+  height: var(--space-12);
+  background: var(--_fill);
+  pointer-events: none;
+}
+.bubble[data-tail][data-side='in']::before {
+  left: calc(-1 * var(--space-8));
+  border-top-left-radius: var(--radius-xs);
+  clip-path: polygon(0 -1px, 100% -1px, 100% 100%, calc(100% - 2px) 100%);
+}
+.bubble[data-tail][data-side='out']::before {
+  right: calc(-1 * var(--space-8));
+  border-top-right-radius: var(--radius-xs);
+  clip-path: polygon(0 -1px, 100% -1px, 2px 100%, 0 100%);
+}
+
+/* ---- content ------------------------------------------------------------ */
+.label {
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  line-height: var(--text-label-xs-line-height);
+  color: var(--_meta);
+}
+.text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+/* Under the text: channel mark, "edited", time — smaller than the text. */
+.meta {
+  display: inline-flex;
+  align-self: flex-end;
+  align-items: center;
+  gap: var(--space-4);
+  font-family: var(--text-body-2xs-font-family);
+  font-size: var(--text-body-2xs-font-size);
+  line-height: var(--text-body-2xs-line-height);
+  font-variant-numeric: tabular-nums;
+  color: var(--_meta);
+}
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.bubble[data-dimmed] {
+  opacity: 0.6;
+}
+
+/* With a file, the file sets the width and the caption wraps to it: the
+   text asks for no width of its own, then fills what the file made. */
+.bubble[data-attached] .text {
+  width: 0;
+  min-width: 100%;
+}
+
+/* A picture fills the bubble bar a thin frame; caption and time inset. */
+.bubble[data-media] {
+  padding: var(--space-4);
+}
+.bubble[data-media] .text,
+.bubble[data-media] .meta {
+  padding-inline: var(--space-8);
+}
+.bubble[data-media] .meta {
+  padding-bottom: var(--space-4);
+}
+
+.photo {
+  display: block;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface-recessed);
+  cursor: zoom-in;
+}
+.photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.photo:focus-visible,
+.file:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.file {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  min-width: 14rem;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.file:hover .fileName {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.fileText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+.fileName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--text-label-md-font-family);
+  font-size: var(--text-label-md-font-size);
+  font-weight: var(--text-label-md-font-weight);
+  line-height: var(--text-label-md-line-height);
+}
+.fileDetail {
+  font-family: var(--text-caption-font-family);
+  font-size: var(--text-caption-font-size);
+  line-height: var(--text-caption-line-height);
+  opacity: 0.7;
+}

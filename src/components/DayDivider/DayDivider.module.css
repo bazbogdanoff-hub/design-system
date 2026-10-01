@@ -1,0 +1,21 @@
+.row {
+  display: flex;
+  flex: none;
+  justify-content: center;
+  padding-block: var(--space-8);
+}
+.pill {
+  padding: var(--space-4) var(--space-10);
+  border-radius: var(--radius-full);
+  background: var(--color-alpha-black-10);
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  line-height: var(--text-label-xs-line-height);
+  color: var(--color-text-subtle);
+}
+/* On the dark card: the same darkening, light text. */
+.row[data-on='dark'] .pill {
+  background: var(--color-alpha-black-25);
+  color: color-mix(in srgb, var(--color-white) 70%, transparent);
+}
