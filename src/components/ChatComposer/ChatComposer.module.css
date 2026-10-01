@@ -142,7 +142,9 @@
    the card is where you type (owner, 2026-09-30). */
 .composer[data-on='dark'] .field {
   border: 0;
-  border-radius: var(--radius-2xl);
+  /* Through Textarea's variable, so the send button's corners run parallel
+     (16 less its 4 inset) instead of keeping the light field's 4. */
+  --field-radius: var(--radius-2xl);
   background:
     linear-gradient(var(--color-sidebar-nav-item-active-overlay), var(--color-sidebar-nav-item-active-overlay)),
     var(--color-sidebar-nav-item-active-fill);

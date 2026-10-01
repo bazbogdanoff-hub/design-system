@@ -73,7 +73,9 @@
   box-sizing: border-box;
   gap: var(--space-8);
   padding-inline: var(--space-12);
-  border-radius: var(--radius-input);
+  /* --field-radius: a parent that rounds the field differently (ChatComposer
+     dark) sets this, so the trailing action's corners follow (2026-10-01). */
+  border-radius: var(--field-radius, var(--radius-input));
   background-color: var(--color-input-background-default);
   border: 1px solid var(--color-input-border-default);
   transition: border-color 0.15s ease, background-color 0.15s ease;
@@ -127,5 +129,5 @@
   height: var(--_line-box);
 }
 .field[data-has-action] .action > * {
-  border-radius: max(var(--radius-xs), calc(var(--radius-input) - var(--space-4)));
+  border-radius: max(var(--radius-xs), calc(var(--field-radius, var(--radius-input)) - var(--space-4)));
 }
