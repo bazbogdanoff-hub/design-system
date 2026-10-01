@@ -91,6 +91,26 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
     el.style.overflowY = wanted > max ? 'auto' : 'hidden';
   }, [autoGrow, maxRows]);
   useLayoutEffect(fit, [fit, rest.value]);
+  // …and whenever the field's width or the root font changes (the UI
+  // scales with the viewport): a measured px height from the old size keeps
+  // the old box while the padding and line grow, and the text drops out of
+  // it (seen at 1920 after resizing from 1440).
+  useLayoutEffect(() => {
+    const el = localRef.current;
+    if (!el || !autoGrow) return;
+    let width = el.clientWidth;
+    const observer = new ResizeObserver(() => {
+      if (el.clientWidth === width) return; // our own height change
+      width = el.clientWidth;
+      fit();
+    });
+    observer.observe(el);
+    window.addEventListener('resize', fit);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', fit);
+    };
+  }, [autoGrow, fit]);
 
   const handleInput = (e: InputEvent<HTMLTextAreaElement>) => {
     fit();
