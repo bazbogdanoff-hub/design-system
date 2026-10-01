@@ -20,6 +20,13 @@ to replace an earlier, incorrect light-surface color recipe.
 | `active` | `boolean` | `false` | is this the current page within the active module |
 | `tone` | `'brand'` \| `'success'` \| `'danger'` | `'brand'` | matches whichever module this row belongs to; ignored unless `active` |
 | `settingsCorner` | `boolean` | `false` | **Settings row only** — bottom-right frame radius 16px (`radius.2xl`) instead of 8, nesting inside the section's 24px deep corner |
+| `count` | `number` | | something waiting behind the row (unread messages). Expanded: a solid pill (20 tall, min 20 wide, 6 side padding, `radius.full`, fill `sidebar.brand-accent`, `label.xs` in `text.on-brand`) at the frame's trailing end, `space-8` from its edge, `99+` past 99. Not `Badge` — its tinted recipe is for light cards and reads dark-on-dark on the sidebar. Collapsed: an 8px dot in `sidebar.brand-accent`, `space-8` in from the leading cell's top-right; the figure stays in the accessible name. Omit or 0 for none |
+
+**`count` — Figma build notes** (2026-10-01, owner-approved, built
+code-first; no master yet): expanded — the pill above as the last child of
+`.frame`, the label keeping fill-width so the pill sits right, 8 right
+padding; collapsed — an 8×8 ellipse placed 8 in from the
+40×40 leading cell's top-right, fill `color/sidebar/brand-accent`.
 
 Every other native `<button>` prop passes through (`onClick`, `disabled`, …).
 

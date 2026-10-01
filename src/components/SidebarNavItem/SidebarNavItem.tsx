@@ -28,6 +28,14 @@ export interface SidebarNavItemProps extends Omit<ButtonHTMLAttributes<HTMLButto
   /** Settings-row-only: deepen the frame's bottom-right radius to 16px so it
    * nests inside SidebarSection's 24px deep corner. Do not use elsewhere. */
   settingsCorner?: boolean;
+  /** Something waiting behind this row — unread messages, say. A solid
+   * pill in the sidebar's brand accent at the row's trailing end when
+   * expanded (99+ past 99); a dot in the same accent on the icon when
+   * collapsed, where there is no room for a figure. Not `Badge`: its tinted
+   * recipe is made for light cards and goes dark-on-dark here.
+   * Omit or pass 0 for none. The figure is part of the row's accessible
+   * name either way. */
+  count?: number;
 }
 
 /**
@@ -39,9 +47,10 @@ export interface SidebarNavItemProps extends Omit<ButtonHTMLAttributes<HTMLButto
  * `IconCell` already document.
  */
 export const SidebarNavItem = forwardRef<HTMLButtonElement, SidebarNavItemProps>(function SidebarNavItem(
-  { icon, avatar, label, active, tone = 'brand', settingsCorner, className, type = 'button', ...rest },
+  { icon, avatar, label, active, tone = 'brand', settingsCorner, count, className, type = 'button', ...rest },
   ref,
 ) {
+  const shown = count != null && count > 0 ? (count > 99 ? '99+' : String(count)) : null;
   return (
     <button
       ref={ref}
@@ -60,8 +69,10 @@ export const SidebarNavItem = forwardRef<HTMLButtonElement, SidebarNavItemProps>
       <span className={styles.frame} data-highlight={active || undefined}>
         <span className={styles.leading} aria-hidden="true">
           {avatar ?? (icon != null && <span className={styles.icon}>{icon}</span>)}
+          {shown != null && label == null && <span className={styles.dot} />}
         </span>
         {label != null && <span className={styles.label}>{label}</span>}
+        {shown != null && <span className={label != null ? styles.count : styles.srOnly}>{shown}</span>}
       </span>
     </button>
   );

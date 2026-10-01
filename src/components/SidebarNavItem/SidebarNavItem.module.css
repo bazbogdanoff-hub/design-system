@@ -52,6 +52,7 @@
 }
 
 .leading {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -82,6 +83,50 @@
   /* Inherit is text/label/md at 1.15 — with overflow:hidden that clips
      descenders (g, y, p) and active text-shadow. Slightly taller here. */
   line-height: 1.35;
+}
+
+/* Count (2026-10-01) — expanded: a solid pill at the trailing end, pushed
+   right by the label's flex 1, a step of air from the frame's edge.
+   Collapsed: a dot on the icon's top-right, the figure kept for screen
+   readers only. Both in the sidebar's brand accent — Badge's tinted recipe
+   is made for light cards and reads dark-on-dark on this surface. */
+.count {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: var(--space-20);
+  height: var(--space-20);
+  margin-inline-end: var(--space-8);
+  padding-inline: var(--space-6);
+  border-radius: var(--radius-full);
+  background: var(--color-sidebar-brand-accent);
+  color: var(--color-text-on-brand);
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  line-height: 1;
+  text-shadow: none;
+}
+
+.dot {
+  position: absolute;
+  top: var(--space-8);
+  right: var(--space-8);
+  width: var(--space-8);
+  height: var(--space-8);
+  border-radius: 50%;
+  background: var(--color-sidebar-brand-accent);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 /* Active — top+left stroke only + directional corner shade.
