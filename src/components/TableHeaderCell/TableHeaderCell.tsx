@@ -24,6 +24,11 @@ export interface TableHeaderCellProps extends Omit<ThHTMLAttributes<HTMLTableCel
    * - omit — hug label on one line
    */
   width?: TableHeaderCellWidth;
+  /** Keeps this column in view while the rest scroll sideways (2026-10-01)
+   * — `start` for a table's identity (checkbox, ID / name), `end` for its
+   * row actions. Set the same on the header cell and every body cell of the
+   * column; `Table` works out the offsets. */
+  pin?: 'start' | 'end';
 }
 
 /**
@@ -34,7 +39,7 @@ export interface TableHeaderCellProps extends Omit<ThHTMLAttributes<HTMLTableCel
  * target, not just the tiny icon.
  */
 export const TableHeaderCell = forwardRef<HTMLTableCellElement, TableHeaderCellProps>(function TableHeaderCell(
-  { children, sortable, sortDirection = 'none', onSort, width, className, ...rest },
+  { children, sortable, sortDirection = 'none', onSort, width, pin, className, ...rest },
   ref,
 ) {
   const isControlWidth = width === 'checkbox' || width === 'radio' || width === 'icon';
@@ -45,6 +50,7 @@ export const TableHeaderCell = forwardRef<HTMLTableCellElement, TableHeaderCellP
       scope="col"
       className={cn(styles.cell, className)}
       data-width={width}
+      data-pin={pin}
       aria-sort={sortable ? sortDirection : undefined}
       {...rest}
     >

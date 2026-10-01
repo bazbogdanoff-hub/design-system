@@ -77,3 +77,26 @@
   width: 100%;
   height: 100%;
 }
+
+/* ---- pinned columns (2026-10-01) ---------------------------------------
+   Stuck to the scroll box's start or end while the rest scroll sideways
+   (Table sets --pin-offset). Opaque in the row's own fill (inherit), so the
+   scrolled columns pass beneath; the innermost pinned column casts a soft
+   edge while there is content under it. */
+.cell[data-pin] {
+  position: sticky;
+  z-index: 1;
+  background-color: inherit;
+}
+.cell[data-pin='start'] {
+  left: var(--pin-offset, 0px);
+}
+.cell[data-pin='end'] {
+  right: var(--pin-offset, 0px);
+}
+:global([data-scrolled-start]) .cell[data-pin-edge='start'] {
+  box-shadow: 6px 0 8px -6px var(--color-alpha-black-20);
+}
+:global([data-more-end]) .cell[data-pin-edge='end'] {
+  box-shadow: -6px 0 8px -6px var(--color-alpha-black-20);
+}

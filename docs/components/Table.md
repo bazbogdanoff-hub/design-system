@@ -72,6 +72,31 @@ the browser's own table layout algorithm gives every cell in a column the
 same width automatically. One more reason this component wraps a real
 `<table>` rather than a flex/grid re-implementation.
 
+## Columns as wide as their content; pinned columns (2026-10-01)
+
+The locked row fill takes cell content out of flow, so before this a
+column was sized by its **header** and anything wider was cut mid-value
+(SH-0001 read "SH-00", at 1440 as well as smaller). `Table` now measures
+each column's widest content — the extent of what's in the cell (a DOM
+range over the fill, plus its padding), **not** the cell, so columns shrink
+back as well as grow — and sets it as the header cell's `min-width`, never
+below the role's own minimum (`wide` 12rem, `value` 7rem). Fixed roles
+(`checkbox`, `radio`, `icon`, `action`, `timestamp`) are left alone. When
+the columns no longer fit the card, `.content` scrolls sideways; the page
+never does.
+
+`pin="start" | "end"` on `TableCell` and `TableHeaderCell` keeps a column
+in view while the rest scroll: sticky, opaque in its row's own fill
+(`background-color: inherit`, the row's hover wash re-applied), offsets
+worked out by `Table` so several pinned columns stack. The innermost pinned
+column on each side casts a soft edge while there is content scrolled under
+it (`data-scrolled-start` / `data-more-end` on the scroll box). In Aegis,
+`PagedTable` pins the row's identity — checkbox and `primary` column — at
+the start and the trailing actions column at the end.
+
+Measured on the Aegis list pages: no value cut at 1280 or 1440; at 1100
+(tablet) Drivers and Problems scroll sideways with ID and actions pinned.
+
 ## Figma
 
 `Table` (`10302:18481`) — single component, no variants. 3 stacked regions

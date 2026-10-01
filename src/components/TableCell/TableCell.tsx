@@ -26,6 +26,11 @@ export interface TableCellProps extends Omit<TdHTMLAttributes<HTMLTableCellEleme
    * `value` exist to prevent.
    */
   width?: TableCellWidth;
+  /** Keeps this column in view while the rest scroll sideways (2026-10-01)
+   * — `start` for a table's identity (checkbox, ID / name), `end` for its
+   * row actions. Set the same on the header cell and every body cell of the
+   * column; `Table` works out the offsets. */
+  pin?: 'start' | 'end';
 }
 
 /**
@@ -45,7 +50,7 @@ export interface TableCellProps extends Omit<TdHTMLAttributes<HTMLTableCellEleme
  * otherwise treat content height as a hard minimum).
  */
 export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(function TableCell(
-  { align = 'start', width, className, children, ...rest },
+  { align = 'start', width, pin, className, children, ...rest },
   ref,
 ) {
   return (
@@ -54,6 +59,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(functi
       className={cn(styles.cell, className)}
       data-align={align}
       data-width={width}
+      data-pin={pin}
       {...rest}
     >
       <div className={styles.fill}>{children}</div>
