@@ -40,6 +40,18 @@ tall. Nothing else in the app looks like this, and a general "dark card"
 would invite it where it doesn't belong — **a second use is a design
 question first**, not a reuse.
 
+## The page holds still under it (owner, 2026-10-01)
+
+While the pointer is over the card, a wheel or touch scroll moves only
+something inside it that can take it — the conversation, the chip row, a
+list — or nothing; it never falls through to the page. A native
+non-passive listener walks up from the pointer as the browser would and
+cancels the gesture when nothing between it and the frame can scroll that
+way (pinch-zoom is left alone), and every scroll area inside has
+`overscroll-behavior: contain`, so reaching its end doesn't hand off
+either. Verified: header and a thread at its end move nothing; the page
+still scrolls outside the card.
+
 Everything inside is a normal component in its `surface="dark"` variant:
 `SegmentedControl` (+ `SegmentedControlItem count`), `ConversationRow`,
 `Button` (secondary), `ChatBubble`, `DayDivider`, `ChatComposer`.

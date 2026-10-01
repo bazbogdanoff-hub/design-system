@@ -114,3 +114,11 @@
   flex-direction: column;
   gap: var(--space-8);
 }
+
+/* Every scroll area in the card — the conversation, the chip row, the
+   growing field — stops at its end instead of handing the rest of the
+   gesture to the page. The wheel/touch guard in the TSX covers the parts
+   with nothing to scroll. */
+.frame * {
+  overscroll-behavior: contain;
+}

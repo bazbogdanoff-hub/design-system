@@ -1,7 +1,28 @@
-import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
+import { forwardRef, useCallback, useEffect, useRef, type HTMLAttributes, type ReactNode } from 'react';
 import { ArrowUpRight, CaretLeft } from '@phosphor-icons/react';
 import { cn } from '../../lib/cn';
 import styles from './ChatFrame.module.css';
+
+/** Can `el` itself scroll further along the gesture? */
+function canScroll(el: HTMLElement, dx: number, dy: number): boolean {
+  const cs = getComputedStyle(el);
+  if (dy !== 0 && /(auto|scroll)/.test(cs.overflowY) && el.scrollHeight > el.clientHeight) {
+    if (dy < 0 ? el.scrollTop > 0 : el.scrollTop + el.clientHeight < el.scrollHeight - 1) return true;
+  }
+  if (dx !== 0 && /(auto|scroll)/.test(cs.overflowX) && el.scrollWidth > el.clientWidth) {
+    if (dx < 0 ? el.scrollLeft > 0 : el.scrollLeft + el.clientWidth < el.scrollWidth - 1) return true;
+  }
+  return false;
+}
+
+/** Is there anything between `target` and `frame` that can take this
+ * scroll? Walks up from the pointer, as the browser would. */
+function scrollsInside(target: EventTarget | null, frame: HTMLElement, dx: number, dy: number): boolean {
+  for (let n = target instanceof HTMLElement ? target : null; n && n !== frame; n = n.parentElement) {
+    if (canScroll(n, dx, dy)) return true;
+  }
+  return false;
+}
 
 export interface ChatFramePeer {
   /** An `Avatar`. */
@@ -45,8 +66,54 @@ export const ChatFrame = forwardRef<HTMLElement, ChatFrameProps>(function ChatFr
   { icon, switcher, onExpand, expandLabel, peer, children, footer, className, ...rest },
   ref,
 ) {
+  // While the pointer is over the card, the page holds still (owner,
+  // 2026-10-01): a scroll moves something inside the card that can take it
+  // — the conversation, the chip row, the list — or nothing. Otherwise the
+  // header, the composer, or a thread at its end handed the gesture to the
+  // page. A native listener: React's onWheel is passive and can't cancel.
+  const local = useRef<HTMLElement | null>(null);
+  const setRef = useCallback(
+    (node: HTMLElement | null) => {
+      local.current = node;
+      if (typeof ref === 'function') ref(node);
+      else if (ref) ref.current = node;
+    },
+    [ref],
+  );
+  useEffect(() => {
+    const frame = local.current;
+    if (!frame) return;
+    const onWheel = (e: WheelEvent) => {
+      if (e.ctrlKey) return; // pinch-zoom
+      if (!scrollsInside(e.target, frame, e.deltaX, e.deltaY)) e.preventDefault();
+    };
+    let lastY = 0;
+    let lastX = 0;
+    const onTouchStart = (e: TouchEvent) => {
+      lastY = e.touches[0]?.clientY ?? 0;
+      lastX = e.touches[0]?.clientX ?? 0;
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      const t = e.touches[0];
+      if (!t) return;
+      const dy = lastY - t.clientY;
+      const dx = lastX - t.clientX;
+      lastY = t.clientY;
+      lastX = t.clientX;
+      if (!scrollsInside(e.target, frame, dx, dy)) e.preventDefault();
+    };
+    frame.addEventListener('wheel', onWheel, { passive: false });
+    frame.addEventListener('touchstart', onTouchStart, { passive: true });
+    frame.addEventListener('touchmove', onTouchMove, { passive: false });
+    return () => {
+      frame.removeEventListener('wheel', onWheel);
+      frame.removeEventListener('touchstart', onTouchStart);
+      frame.removeEventListener('touchmove', onTouchMove);
+    };
+  }, []);
+
   return (
-    <section ref={ref} className={cn(styles.frame, className)} {...rest}>
+    <section ref={setRef} className={cn(styles.frame, className)} {...rest}>
       <header className={styles.header}>
         <span className={styles.tile} aria-hidden="true">
           {icon}
