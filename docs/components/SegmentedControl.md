@@ -140,3 +140,7 @@ stretches as it goes and settles to size with a small overshoot.
 An item rendered outside a `SegmentedControl` keeps its own fill.
 
 **Figma:** no change — at rest it looks identical.
+
+## `surface="dark"` (2026-10-01)
+
+Inside `ChatFrame` (the dashboard chat card): a recessed track (20% black, a soft inner shade), the travelling highlight on the sidebar panel colour instead of the secondary Button's glass, labels white at 70% and white when picked. The picked label's rule is written at `.track[data-on='dark'][data-sliding] > [data-selected]:not([data-tone])` — it has to outweigh `SegmentedControlItem`'s own sliding-track label rule (0,4,0), which sets the light track's dark text.

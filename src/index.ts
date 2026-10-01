@@ -148,6 +148,7 @@ export * from './components/ChatBubble';
 export * from './components/DayDivider';
 export * from './components/MediaViewer';
 export * from './components/ChatComposer';
+export * from './components/ChatFrame';
 
 export { Table } from './components/Table';
 export type { TableProps } from './components/Table';

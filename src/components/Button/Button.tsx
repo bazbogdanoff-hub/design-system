@@ -23,6 +23,10 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
   /** Render as the child element (e.g. an `<a>` or a router `<Link>`). */
   asChild?: boolean;
+  /** `light` (default) on a card; `dark` inside the dark app-frame chat card
+   * (2026-10-01) — `secondary` takes the sidebar panel's colour and soft
+   * inner shade, with white text. Other variants are unchanged. */
+  surface?: 'light' | 'dark';
 }
 
 /**
@@ -39,6 +43,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     trailingIcon,
     loading = false,
     asChild = false,
+    surface = 'light',
     className,
     children,
     type = 'button',
@@ -68,6 +73,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       className={cn(styles.surface, styles.button, className)}
       data-variant={variant}
       data-size={size}
+      data-on={surface === 'dark' ? 'dark' : undefined}
       data-loading={loading || undefined}
       aria-busy={loading || undefined}
       {...(asChild

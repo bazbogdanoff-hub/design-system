@@ -18,6 +18,9 @@ export interface ConversationRowProps extends Omit<HTMLAttributes<HTMLDivElement
   unread?: number;
   /** The open conversation. */
   selected?: boolean;
+  /** `light` (default) on a card; `dark` in the dark app-frame chat card
+   * (2026-10-01) — white text, the sidebar's hover wash. */
+  surface?: 'light' | 'dark';
   onClick?: () => void;
 }
 
@@ -30,7 +33,7 @@ export interface ConversationRowProps extends Omit<HTMLAttributes<HTMLDivElement
  * `IconCell` / `CategoryIcon`. See docs/components/ConversationRow.md.
  */
 export const ConversationRow = forwardRef<HTMLDivElement, ConversationRowProps>(function ConversationRow(
-  { avatar, name, preview, time, unread, selected, onClick, className, ...rest },
+  { avatar, name, preview, time, unread, selected, surface = 'light', onClick, className, ...rest },
   ref,
 ) {
   const interactive = onClick != null;
@@ -49,6 +52,7 @@ export const ConversationRow = forwardRef<HTMLDivElement, ConversationRowProps>(
       ref={ref}
       className={cn(styles.row, className)}
       data-selected={selected || undefined}
+      data-on={surface}
       data-interactive={interactive || undefined}
       role={interactive ? 'button' : undefined}
       tabIndex={interactive ? 0 : undefined}

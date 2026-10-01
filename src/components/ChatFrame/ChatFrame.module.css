@@ -1,0 +1,116 @@
+/* ChatFrame — the dashboard chat card only (2026-10-01; recipe from the
+   owner's 2026-09-30 prototype). */
+.frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  /* Fills the rail under Fleet health; the body gives way first. Stops at
+     32rem: on tall screens a taller chat is mostly empty thread. */
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 32rem;
+  padding: var(--space-16);
+  /* 16 on top like any card; the page's 24 at the foot, so the composer
+     rounds off inside it. */
+  border-radius: var(--radius-card) var(--radius-card) var(--radius-card-outer) var(--radius-card-outer);
+  overflow: hidden;
+  color: var(--color-white);
+  /* The AppShell's own fill — the frame reaching into the page — with the
+     main cards' border recipe in the frame's tones. */
+  background: var(--color-background-emphasis);
+  box-shadow:
+    inset 1.5px 1.5px 0 0 var(--color-zinc-500),
+    inset 4px 4px 16px 0 color-mix(in oklch, var(--color-zinc-900) 60%, transparent),
+    0 1px 8px 0 var(--color-alpha-black-20);
+}
+
+/* icon | switch | (space) | expand — a pair of tiles framing the header. */
+.header {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  align-items: center;
+  gap: var(--space-8);
+}
+.tile {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--color-sidebar-panel-background);
+  box-shadow: inset 0 0 4px var(--color-sidebar-panel-inner-shadow);
+  color: var(--color-white);
+  font-size: 1rem;
+}
+.expand {
+  grid-column: 4;
+  cursor: pointer;
+}
+.expand:hover {
+  background: var(--color-sidebar-nav-item-hover-fill);
+}
+.expand:focus-visible,
+.back:focus-visible {
+  outline: 2px solid var(--color-sidebar-brand-accent);
+  outline-offset: 1px;
+}
+
+/* Who an open conversation is with. */
+.peer {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-10);
+}
+.back {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: transparent;
+  color: var(--color-white);
+  font-size: 1rem;
+  cursor: pointer;
+}
+.back:hover {
+  background: var(--color-sidebar-nav-item-hover-fill);
+}
+.peerText {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+.peerName {
+  font-family: var(--text-label-sm-font-family);
+  font-size: var(--text-label-sm-font-size);
+  font-weight: var(--text-label-sm-font-weight);
+  line-height: var(--text-label-sm-line-height);
+}
+.peerDetail {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--text-body-xs-font-family);
+  font-size: var(--text-body-xs-font-size);
+  line-height: var(--text-body-xs-line-height);
+  color: color-mix(in srgb, var(--color-white) 60%, transparent);
+}
+
+.body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+.footer {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--space-8);
+}

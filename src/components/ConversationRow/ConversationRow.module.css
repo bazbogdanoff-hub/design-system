@@ -117,3 +117,19 @@
   font-variant-numeric: tabular-nums;
   line-height: 1;
 }
+
+/* ---- dark (2026-10-01): inside the dark app-frame chat card -------------- */
+.row[data-on='dark'] .name {
+  color: var(--color-white);
+}
+.row[data-on='dark'] .preview,
+.row[data-on='dark'] .time {
+  color: color-mix(in srgb, var(--color-white) 60%, transparent);
+}
+.row[data-on='dark']:hover:not([data-selected]) {
+  background-color: var(--color-sidebar-nav-item-hover-fill);
+}
+.row[data-on='dark'][data-selected] {
+  background-color: var(--color-sidebar-panel-background);
+  box-shadow: inset 0 0 4px var(--color-sidebar-panel-inner-shadow);
+}

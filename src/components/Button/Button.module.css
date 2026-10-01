@@ -224,3 +224,22 @@
     animation-duration: 1.6s;
   }
 }
+
+/* ---- secondary on dark (2026-10-01): the dark app-frame chat card --------
+   The sidebar panel's colour and soft inner shade (as SidebarSection), white
+   text; hover takes the sidebar's hover wash. */
+.surface[data-variant='secondary'][data-on='dark'] {
+  --_btn-icon: var(--color-white);
+  color: var(--color-white);
+  background: var(--color-sidebar-panel-background);
+  box-shadow: inset 0 0 4px var(--color-sidebar-panel-inner-shadow);
+}
+.surface[data-variant='secondary'][data-on='dark']:hover:not(:disabled):not([aria-disabled='true']) {
+  background: var(--color-sidebar-nav-item-hover-fill);
+  box-shadow: inset 0 0 4px var(--color-sidebar-panel-inner-shadow);
+}
+.surface[data-variant='secondary'][data-on='dark']:focus-visible {
+  outline: 2px solid var(--color-sidebar-brand-accent);
+  outline-offset: 1px;
+  box-shadow: inset 0 0 4px var(--color-sidebar-panel-inner-shadow);
+}

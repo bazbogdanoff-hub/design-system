@@ -18,6 +18,7 @@ this session.
 |---|---|---|
 | `children` | `ReactNode` | the option's label — omit for the sidebar switcher's bare color pills |
 | `selected` | `boolean` | shows the elevated card-colored pill + brand-colored text |
+| `count` | `number` | (2026-10-01) a small brand pill after the label — unread messages; `99+` past 99, omit or 0 for none |
 | `tone` | `'brand'` \| `'success'` \| `'danger'` | when set, `selected` renders a solid `tone`-colored fill instead of the neutral glass surface — the sidebar module switcher only |
 | `position` | `'start'` \| `'middle'` (default) \| `'end'` | only meaningful alongside `tone` — rounds whichever outer corner touches the panel this item sits flush against |
 

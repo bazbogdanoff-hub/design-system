@@ -15,6 +15,7 @@ One component, three emphases. **L1 primitive.**
 | `leadingIcon` / `trailingIcon` | `ReactNode` — both allowed at once | — |
 | `loading` | `boolean` — spinner in the leading slot, interaction blocked, label stays | `false` |
 | `asChild` | `boolean` — render as `<a>` / router `<Link>` | `false` |
+| `surface` | `'light'` | `'dark'` | `'light'` | (2026-10-01) `dark` restyles `secondary` for `ChatFrame`: the sidebar panel colour and its 4px inner shade, white text, the sidebar hover wash |
 
 Standard button props (`disabled`, `onClick`, `type`, `aria-*`) pass through. Root
 is `<button type="button">`; `asChild` swaps the element and sets `aria-disabled`

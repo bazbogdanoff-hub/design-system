@@ -23,6 +23,9 @@ export interface SegmentedControlItemProps extends Omit<ButtonHTMLAttributes<HTM
    * the plain uniform corner; `start`/`end` round the one outer corner that
    * touches the panel's own edge. Ignored when `tone` is omitted. */
   position?: SegmentedControlItemPosition;
+  /** Something waiting behind this option — unread messages (2026-10-01):
+   * a small brand pill after the label, `99+` past 99. Omit or 0 for none. */
+  count?: number;
 }
 
 /**
@@ -48,7 +51,10 @@ export interface SegmentedControlItemProps extends Omit<ButtonHTMLAttributes<HTM
  * it fully swaps rather than layers on top of the glass treatment.
  */
 export const SegmentedControlItem = forwardRef<HTMLButtonElement, SegmentedControlItemProps>(
-  function SegmentedControlItem({ children, selected, tone, position = 'middle', className, type = 'button', ...rest }, ref) {
+  function SegmentedControlItem(
+    { children, selected, tone, position = 'middle', count, className, type = 'button', ...rest },
+    ref,
+  ) {
     // `tabs` mode (set on the parent SegmentedControl): a real tab with a
     // roving tabindex — only the selected tab is in the Tab order; the
     // parent's arrow-key handler moves between the rest.
@@ -74,6 +80,11 @@ export const SegmentedControlItem = forwardRef<HTMLButtonElement, SegmentedContr
         {...rest}
       >
         {children}
+        {count != null && count > 0 && (
+          <span className={styles.count} aria-label={`${count} new`}>
+            {count > 99 ? '99+' : count}
+          </span>
+        )}
       </button>
     );
   },

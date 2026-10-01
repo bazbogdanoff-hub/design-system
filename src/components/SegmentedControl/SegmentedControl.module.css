@@ -76,3 +76,29 @@
   border-radius: 0;
 }
 
+
+/* ---- dark (2026-10-01): inside the dark app-frame chat card --------------
+   A recessed track; the picked item on the sidebar's panel colour and its
+   soft inner shade (as SidebarSection), not the secondary Button's glass;
+   white labels, quieter when not picked. */
+.track[data-on='dark'] {
+  background: var(--color-alpha-black-20);
+  box-shadow: inset 1px 1px 3px 0 var(--color-alpha-black-25);
+}
+.track[data-on='dark'] .highlight:not([data-tone]) {
+  background: var(--color-sidebar-panel-background);
+  box-shadow: inset 0 0 4px var(--color-sidebar-panel-inner-shadow);
+}
+.track[data-on='dark'] > :not(.highlight) {
+  color: color-mix(in srgb, var(--color-white) 70%, transparent);
+}
+.track[data-on='dark'] > :not(.highlight):hover:not(:disabled):not([data-selected]) {
+  background: var(--color-sidebar-nav-item-hover-fill);
+  color: var(--color-white);
+}
+/* Over SegmentedControlItem's own `[data-sliding] > .item[data-selected]
+   :not([data-tone])` (0,4,0), which sets the light track's dark label —
+   at 0,3,0 this lost, and the picked label went dark. */
+.track[data-on='dark'][data-sliding] > [data-selected]:not([data-tone]) {
+  color: var(--color-white);
+}

@@ -38,6 +38,10 @@ export interface SegmentedControlProps extends Omit<HTMLAttributes<HTMLDivElemen
    * its panel `role="tabpanel"` + `aria-labelledby` — see
    * docs/components/SegmentedControl.md. */
   mode?: SegmentedControlMode;
+  /** `light` (default) on a card; `dark` inside the dark app-frame chat card
+   * (2026-10-01) — a recessed dark track, the picked item on the sidebar's
+   * panel colour, white labels. */
+  surface?: 'light' | 'dark';
   /** `SegmentedControlItem`s. */
   children: ReactNode;
 }
@@ -58,7 +62,7 @@ const NEXT_KEYS: Record<string, (i: number, n: number) => number> = {
  * Not `Switch` (a single boolean toggle).
  */
 export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps>(function SegmentedControl(
-  { size = 'md', collapsed, mode = 'choice', children, className, onKeyDown, ...rest },
+  { size = 'md', collapsed, mode = 'choice', surface = 'light', children, className, onKeyDown, ...rest },
   ref,
 ) {
   // The picked item's fill is one element that travels between items
@@ -103,6 +107,7 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
           role={mode === 'tabs' ? 'tablist' : 'radiogroup'}
           className={cn(styles.track, className)}
           data-size={size}
+          data-on={surface}
           data-collapsed={size === 'xs' ? collapsed || false : undefined}
           data-sliding=""
           onKeyDown={handleKeyDown}

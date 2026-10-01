@@ -24,6 +24,7 @@ below.
 | `time` | `ReactNode` | | pre-formatted ("09:58", "Wed") |
 | `unread` | `number` | | solid brand pill under the time; `99+` past 99; omit / 0 for none |
 | `selected` | `boolean` | `false` | the open conversation; sets `aria-current` |
+| `surface` | `'light'` | `'dark'` | `'light'` | `dark` (2026-10-01): inside `ChatFrame` — white name, 60% preview and time, the sidebar's hover wash; selected on the sidebar panel colour |
 | `onClick` | `() => void` | | makes the row a keyboard-operable `role="button"` |
 
 ## Why not a `Row` variant
