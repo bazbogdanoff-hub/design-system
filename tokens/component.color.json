@@ -1,5 +1,12 @@
 {
   "color": {
+    "channelLogo": {
+      "$description": "Third-party brand colours for ChannelLogo (2026-10-01) — the messaging apps' own, from Simple Icons (CC0). Not ours to retune: a channel logo is recognised by its colour.",
+      "telegram": { "$value": "#26a5e4" },
+      "whatsapp": { "$value": "#25d366" },
+      "viber": { "$value": "#7360f2" },
+      "glyph": { "$value": "{color.white}", "$description": "The mark on the tile." }
+    },
     "button": {
       "primary": {
         "background": {
@@ -351,7 +358,8 @@
         "disabled": { "$value": "{color.background.disabled}" }
       },
       "border": {
-        "default": { "$value": "{color.border.default}" },
+        "$description": "Owner, 2026-10-01: with the colour grading border.default (zinc.200) read too heavy, and border.subtle (zinc.100) disappeared; the zinc scale has nothing between. Rest reuses the recessed grey #ebecef (extra.recessed) as the middle — owner chose reuse over a new zinc.150. Note the coupling: retuning the recessed surface moves the input stroke too. Hover stays border.strong (zinc.300).",
+        "default": { "$value": "{color.extra.recessed}" },
         "hover": { "$value": "{color.border.strong}" },
         "focus": { "$value": "{color.border.focus}" },
         "error": { "$value": "{color.border.danger}" },

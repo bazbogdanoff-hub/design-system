@@ -50,6 +50,11 @@ export const ColorExtraTileLiftShadow: string;
 export const ColorExtraTileInnerShadow: string;
 /** glass inner-shadow colour on card-filled surfaces. Was a raw #f0f0f0 in each component's CSS; darkened with the card so the edges keep their depth */
 export const ColorExtraVignette: string;
+export const ColorChannelLogoTelegram: string;
+export const ColorChannelLogoWhatsapp: string;
+export const ColorChannelLogoViber: string;
+/** The mark on the tile. */
+export const ColorChannelLogoGlyph: string;
 /** Primary button fill — a lightened brand. Button-only gimmick: color.text.brand / color.icon.brand stay at 600 everywhere else. */
 export const ColorButtonPrimaryBackgroundDefault: string;
 export const ColorButtonPrimaryBackgroundHover: string;

@@ -102,3 +102,15 @@ shadowed by the real one three groups later (JSON parses last-key-wins, so
 Style Dictionary and the Figma generator only ever saw the second). Deleted
 the dead one while adding `icon`/`affix` to the real one — same class of
 hygiene issue `design-system-conventions` exists to catch.
+
+## Border lightened (owner, 2026-10-01)
+
+With the colour grading the field stroke read too heavy at `border.default`
+(zinc.200, #e4e4e7), and `border.subtle` (zinc.100, #f4f4f5) made it vanish.
+The zinc scale has nothing between, so `input.border.default` now reuses the
+recessed grey **`extra.recessed` (#ebecef)** — the owner chose reuse over a
+new zinc.150. The coupling is deliberate but real: retuning the recessed
+surface moves every input stroke too. Hover stays `border.strong`
+(zinc.300); focus, error and disabled are unchanged. Changed in
+`tokens/component.color.json`; **Figma's `color/input/border/default`
+variable needs the same alias.**

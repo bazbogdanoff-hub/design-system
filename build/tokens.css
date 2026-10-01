@@ -27,6 +27,9 @@
   --color-extra-tile-lift-shadow: rgba(24, 24, 27, 0.12); /** TaskTile hover lift — zinc 900 at 12%, dark enough to read as height on the #f6f6f8 card (owner, 2026-09-29) */
   --color-extra-tile-inner-shadow: rgba(240, 240, 240, 0.6); /** TaskTile inner shadow colour — #f0f0f0 at 60% */
   --color-extra-vignette: #eaebed; /** glass inner-shadow colour on card-filled surfaces. Was a raw #f0f0f0 in each component's CSS; darkened with the card so the edges keep their depth */
+  --color-channel-logo-telegram: #26a5e4;
+  --color-channel-logo-whatsapp: #25d366;
+  --color-channel-logo-viber: #7360f2;
   --color-button-primary-border-default: #aab1f9; /** Glass catch on the coloured primary surface — hand-tuned, not on the palette. */
   --color-button-primary-border-hover: #7a85f8;
   --color-button-primary-shadow-default: #6570e1; /** Inner-shadow colour for the 'Viginette primary 2xs' effect style (hand-tuned). */
@@ -377,6 +380,7 @@
   --color-brand-800: var(--color-indigo-800);
   --color-brand-900: var(--color-indigo-900);
   --color-brand-950: var(--color-indigo-950);
+  --color-channel-logo-glyph: var(--color-white); /** The mark on the tile. */
   --color-button-primary-border-active: var(--color-white); /** Full 1.5px white border on focus / active — high contrast on the brand fill (parallels color.button.secondary.border.active). */
   --color-card-vignette: var(--color-extra-vignette); /** Colour of the glass inner shadow on every card-filled surface (Card, Headercard, Modal, StatButton, secondary Button, SelectableCard). Offsets and blur stay hand-tuned in each CSS; only the colour is a token, so it can follow the card fill. */
   --color-badge-neutral-glow: var(--color-zinc-300);
@@ -404,6 +408,7 @@
   --color-scrollable-area-shadow: var(--color-alpha-black-15); /** Inner-shadow tint at the scroll edges. Was a raw #00000026 before the alpha-black primitive ramp existed — now a proper alias, same value (15%). */
   --color-switch-thumb: var(--color-white); /** Always a plain white circle regardless of track state — the track color alone carries on/off/disabled. */
   --color-checkbox-icon-default: var(--color-white); /** The checkmark (checked) / dash (indeterminate) glyph — white against the brand fill. Was a flat `checkbox.icon` leaf before React needed a disabled variant; the Figma master (4182:3616) still binds its glyph vectors to the old flat `color/checkbox/icon` name for every state, disabled included — a real Figma↔code drift, not fixed here (bridge is read-only for this task). Worth a follow-up: rename the Figma variable to `color/checkbox/icon/default` and add a sibling `color/checkbox/icon/disabled` bound onto the disabled+checked/indeterminate master variants. */
+  --color-input-border-default: var(--color-extra-recessed);
   --color-segmented-control-item-xs-default-fill: var(--color-zinc-500);
   --color-segmented-control-item-xs-default-border: var(--color-zinc-500);
   --color-segmented-control-item-xs-default-inner-shadow: var(--color-zinc-500);
@@ -693,7 +698,6 @@
   --color-radio-dot-disabled: var(--color-text-disabled);
   --color-input-background-default: var(--color-surface-default);
   --color-input-background-disabled: var(--color-background-disabled);
-  --color-input-border-default: var(--color-border-default);
   --color-input-border-hover: var(--color-border-strong);
   --color-input-border-error: var(--color-border-danger);
   --color-input-border-disabled: var(--color-border-subtle);
