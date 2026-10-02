@@ -29,8 +29,11 @@ tbody .row:hover {
 
 /* focus/active — background is identical to default on purpose (owner's
    call, matching Input's own restraint: focus changes the border, never the
-   fill), so only the ring is drawn here */
-tbody .row:focus-within {
+   fill), so only the ring is drawn here. Keyboard focus only (owner,
+   2026-10-02): `:focus-within` also lit a row whose button had merely been
+   clicked — or got focus back when a dialog it opened closed. */
+tbody .row:focus-visible,
+tbody .row:has(:focus-visible) {
   outline: 1px solid var(--color-table-row-border-active);
   outline-offset: -1px;
 }

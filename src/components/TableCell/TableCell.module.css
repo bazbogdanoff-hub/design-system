@@ -131,3 +131,21 @@
     inset 0 0 0 1000px var(--color-table-row-shadow-hover),
     -6px 0 8px -6px var(--color-alpha-black-20);
 }
+
+/* The row's focus ring is an outline on the <tr>, which an opaque pinned
+   cell paints over — the cell draws its own stretch of it (top, bottom, and
+   its outer side). After the hover rules: focus wins when both apply. */
+:global(tbody tr:focus-visible) > .cell[data-pin='start'],
+:global(tbody tr:has(:focus-visible)) > .cell[data-pin='start'] {
+  box-shadow:
+    inset 1px 0 0 0 var(--color-table-row-border-active),
+    inset 0 1px 0 0 var(--color-table-row-border-active),
+    inset 0 -1px 0 0 var(--color-table-row-border-active);
+}
+:global(tbody tr:focus-visible) > .cell[data-pin='end'],
+:global(tbody tr:has(:focus-visible)) > .cell[data-pin='end'] {
+  box-shadow:
+    inset -1px 0 0 0 var(--color-table-row-border-active),
+    inset 0 1px 0 0 var(--color-table-row-border-active),
+    inset 0 -1px 0 0 var(--color-table-row-border-active);
+}
