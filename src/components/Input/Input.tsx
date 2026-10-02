@@ -82,6 +82,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         className={cn(styles.input, className)}
         disabled={disabled}
         aria-invalid={ariaInvalid ?? error ?? undefined}
+        data-empty={rest.value === '' || undefined}
         {...rest}
       />
       {trailingIcon != null && (

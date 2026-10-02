@@ -48,6 +48,12 @@
 .input::placeholder {
   color: var(--color-input-text-placeholder);
 }
+/* An empty date/time field draws its mm/dd/yyyy segments as text, not as a
+   placeholder — give them the placeholder colour until a value is set
+   (controlled fields only: `data-empty` comes from `value === ''`). */
+.input[data-empty]::-webkit-datetime-edit {
+  color: var(--color-input-text-placeholder);
+}
 .input:disabled {
   color: var(--color-input-text-disabled);
   cursor: not-allowed;
