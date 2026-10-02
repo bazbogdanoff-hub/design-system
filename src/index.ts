@@ -169,6 +169,11 @@ export { ChartLegend } from './components/ChartLegend';
 export type { ChartLegendProps, ChartLegendItem } from './components/ChartLegend';
 export { GaugeChart } from './components/GaugeChart';
 export type { GaugeChartProps, GaugeChartDatum } from './components/GaugeChart';
+export { Calendar } from './components/Calendar';
+export type { CalendarProps } from './components/Calendar';
+export { DateInput } from './components/DateInput';
+export type { DateInputProps } from './components/DateInput';
+
 export { CalendarHeatmap, CalendarHeatmapLead } from './components/CalendarHeatmap';
 export type { CalendarHeatmapProps, CalendarHeatmapDay, CalendarHeatmapLeadProps } from './components/CalendarHeatmap';
 export { TimelineChart } from './components/TimelineChart';

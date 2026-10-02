@@ -1,0 +1,162 @@
+/* Calendar — month grid with a sliding week pill and day disc.
+   Geometry is one cell size and two gaps; the pill and the disc are placed
+   from the highlighted day's row / column (--_row, --_col, set inline), so
+   moving the highlight is a transform and springs. */
+.calendar {
+  --_cell: 2rem;
+  --_col-gap: var(--space-4);
+  --_row-gap: var(--space-4);
+  --_inset: var(--space-4);
+  --_spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  width: max-content;
+}
+
+/* ---- header ---------------------------------------------------------------- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+}
+.title {
+  margin: 0;
+  color: var(--color-text-default);
+  font-family: var(--text-heading-xs-font-family);
+  font-size: var(--text-heading-xs-font-size);
+  font-weight: var(--text-heading-xs-font-weight);
+  line-height: var(--text-heading-xs-line-height);
+  letter-spacing: var(--text-heading-xs-letter-spacing);
+}
+.nav {
+  display: flex;
+  gap: var(--space-8);
+}
+
+/* ---- weekday letters — today's carries a brand dot underneath ------------- */
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, var(--_cell));
+  column-gap: var(--_col-gap);
+}
+.weekday {
+  position: relative;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-family: var(--text-caption-font-family);
+  font-size: var(--text-caption-font-size);
+  font-weight: var(--text-caption-font-weight);
+  line-height: var(--text-caption-line-height);
+  letter-spacing: var(--text-caption-letter-spacing);
+}
+.weekday[data-today]::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: calc(100% + var(--space-2));
+  width: var(--space-4);
+  height: var(--space-4);
+  border-radius: var(--radius-full);
+  background: var(--color-brand-400);
+  transform: translateX(-50%);
+}
+
+/* ---- days ------------------------------------------------------------------ */
+.grid {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--_row-gap);
+}
+.row {
+  display: grid;
+  grid-template-columns: repeat(7, var(--_cell));
+  column-gap: var(--_col-gap);
+}
+
+.day {
+  position: relative;
+  z-index: 1;
+  width: var(--_cell);
+  height: var(--_cell);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-text-default);
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--text-body-sm-font-weight);
+  line-height: var(--text-body-sm-line-height);
+  letter-spacing: var(--text-body-sm-letter-spacing);
+  font-variant-numeric: tabular-nums;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 160ms ease;
+}
+.day[data-outside] { color: var(--color-text-muted); }
+.day[data-today] { color: var(--color-text-brand); }
+.day[data-week] { color: var(--color-text-on-brand); }
+.day[data-week][data-outside] { color: color-mix(in srgb, var(--color-text-on-brand) 60%, transparent); }
+.day[data-active] { color: var(--color-text-default); }
+/* the new day's number turns once its disc has arrived, not before — the old
+   day's turns back at once (the delay lives only on [data-active]) */
+.day[data-active] { transition-delay: 240ms; }
+
+.day:hover:not([data-week]) { background: var(--color-card-background-hover); }
+.day:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: -2px;
+}
+
+/* ---- the week pill — the primary button's skin ---------------------------- */
+.pill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--_cell);
+  border-radius: var(--radius-pill);
+  background: var(--color-button-primary-background-default);
+  box-shadow:
+    inset 1.5px 1.5px 0 0 var(--color-button-primary-border-default),
+    inset 2px 2px 12px 0 var(--color-button-primary-shadow-default),
+    0 1px 8px 0 rgba(0, 0, 0, 0.2);
+  transform: translateY(calc(var(--_row) * (var(--_cell) + var(--_row-gap))));
+  transition: transform 460ms var(--_spring);
+}
+
+/* ---- the day disc — card glass sitting in the pill ------------------------ */
+.disc {
+  position: absolute;
+  top: var(--_inset);
+  left: var(--_inset);
+  width: calc(var(--_cell) - 2 * var(--_inset));
+  height: calc(var(--_cell) - 2 * var(--_inset));
+  border-radius: var(--radius-full);
+  background: var(--color-card-background-default);
+  box-shadow:
+    inset 1.5px 1.5px 0 0 var(--color-card-border),
+    inset 2px 2px 8px 0 var(--color-card-vignette),
+    1px 2px 4px 0 rgba(0, 0, 0, 0.18);
+  transform: translate(
+    calc(var(--_col) * (var(--_cell) + var(--_col-gap))),
+    calc(var(--_row) * (var(--_cell) + var(--_row-gap)))
+  );
+  /* hands over a beat after the pill — it rides in, then finds its day */
+  transition: transform 520ms var(--_spring) 50ms;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .pill,
+  .disc {
+    transition: none;
+  }
+  .day[data-active] {
+    transition-delay: 0ms;
+  }
+}

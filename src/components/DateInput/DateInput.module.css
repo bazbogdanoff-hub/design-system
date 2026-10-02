@@ -1,0 +1,14 @@
+.wrapper {
+  display: block;
+  width: 100%;
+}
+
+/* The browser's own picker icon goes — the calendar IconButton replaces it. */
+.input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+/* Menu's shell, with the Card's own corners. */
+.panel {
+  border-radius: var(--radius-card);
+}
