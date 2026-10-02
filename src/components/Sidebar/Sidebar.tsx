@@ -119,10 +119,33 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
   }, [activeModule, children]);
 
   // A newly picked module opens at the top of its list, not at the scroll
-  // position the previous module was left at.
+  // position the previous module was left at — then the effect below brings
+  // its current row into view, so it forgets the row it last placed.
+  const activeRowRef = useRef<Element | null>(null);
   useEffect(() => {
     if (navRef.current) navRef.current.scrollTop = 0;
+    activeRowRef.current = null;
   }, [activeModule]);
+
+  // The current page's row is never left under an edge fade (owner,
+  // 2026-10-02: on a short window the last row loaded half-covered). Only
+  // when the active row changes — a load, a navigation, a module switch —
+  // so it never fights a list the user has scrolled themselves. A row's own
+  // height of room clears the fade (2.5rem) with air to spare.
+  useEffect(() => {
+    const el = navRef.current;
+    const row = el?.querySelector('[data-active]') ?? null;
+    if (!el || !row || row === activeRowRef.current) {
+      activeRowRef.current = row;
+      return;
+    }
+    activeRowRef.current = row;
+    const box = el.getBoundingClientRect();
+    const r = row.getBoundingClientRect();
+    const room = r.height;
+    if (r.bottom > box.bottom - room) el.scrollTop += r.bottom - (box.bottom - room);
+    else if (r.top < box.top + room) el.scrollTop -= box.top + room - r.top;
+  });
 
   function handleProfileClick() {
     if (onProfileClick) {

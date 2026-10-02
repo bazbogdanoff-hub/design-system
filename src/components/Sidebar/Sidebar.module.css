@@ -56,6 +56,11 @@
   gap: var(--space-4);
   /* Stack under the switcher with a 6px overlap. */
   margin-top: calc(-1 * var(--space-6));
+  /* The list's end gets the room its top has (owner, 2026-10-02): scrolled
+     to the end, a last row 4px off the panel's edge sat in the panel's
+     corner and inner shadow. Only shows once the list scrolls — otherwise
+     the panel's own empty space is below it. */
+  padding-bottom: var(--space-16);
   position: relative;
   z-index: 0;
   /* Scrolls without a scrollbar (owner, 2026-09-30): the edge fades below
@@ -101,9 +106,10 @@
   );
 }
 .nav::after {
-  bottom: calc(-1 * var(--space-4));
-  margin-top: calc(-1 * var(--_fade) - var(--space-4) + var(--space-4));
-  margin-bottom: calc(-1 * var(--space-4));
+  /* Sticky offsets count from inside the padding: reach back over it. */
+  bottom: calc(-1 * var(--space-16));
+  margin-top: calc(-1 * var(--_fade) - var(--space-4) + var(--space-16));
+  margin-bottom: calc(-1 * var(--space-16));
   background: linear-gradient(
     to top,
     color-mix(in srgb, var(--color-sidebar-panel-background) 75%, transparent),

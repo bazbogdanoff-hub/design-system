@@ -57,16 +57,31 @@ export function useSlidingHighlight(
     const measure = (target: HTMLElement): Edges => {
       const c = container.getBoundingClientRect();
       const r = target.getBoundingClientRect();
-      const scale = c.width > 0 ? container.offsetWidth / c.width : 1;
-      const left = (r.left - c.left) * scale - container.clientLeft + container.scrollLeft;
-      const top = (r.top - c.top) * scale - container.clientTop + container.scrollTop;
+      // The layout size, unrounded — offsetWidth / clientWidth are whole
+      // pixels, and at a fractional rem that alone read as a 0.8% "scale",
+      // which put a row 290px down the sidebar 2.5px off (owner, 2026-10-02).
+      const cs = getComputedStyle(container);
+      const px = (v: string) => parseFloat(v) || 0;
+      const borderX = px(cs.borderLeftWidth) + px(cs.borderRightWidth);
+      const borderY = px(cs.borderTopWidth) + px(cs.borderBottomWidth);
+      const layoutWidth =
+        cs.boxSizing === 'border-box'
+          ? px(cs.width)
+          : px(cs.width) + px(cs.paddingLeft) + px(cs.paddingRight) + borderX;
+      const scale = c.width > 0 && layoutWidth > 0 ? layoutWidth / c.width : 1;
+      // The padding box the insets count from (a scrollbar, where there is
+      // one, is outside it — clientWidth is right for that axis but rounded).
+      const innerWidth = container.offsetWidth === container.clientWidth + borderX ? c.width * scale - borderX : container.clientWidth;
+      const innerHeight = container.offsetHeight === container.clientHeight + borderY ? c.height * scale - borderY : container.clientHeight;
+      const left = (r.left - c.left) * scale - px(cs.borderLeftWidth) + container.scrollLeft;
+      const top = (r.top - c.top) * scale - px(cs.borderTopWidth) + container.scrollTop;
       const width = r.width * scale;
       const height = r.height * scale;
       return {
         left,
         top,
-        right: container.clientWidth - left - width,
-        bottom: container.clientHeight - top - height,
+        right: innerWidth - left - width,
+        bottom: innerHeight - top - height,
       };
     };
 
