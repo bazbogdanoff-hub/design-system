@@ -17,6 +17,8 @@ export interface DateInputProps
   onChange: (value: string) => void;
   /** Today for the calendar, `yyyy-mm-dd`. Defaults to the device's date. */
   today?: string;
+  /** The calendar's first column — `0` Sunday (default) · `1` Monday. */
+  weekStartsOn?: 0 | 1;
 }
 
 /** Matches Menu's exit animation (Menu.module.css). */
@@ -38,7 +40,7 @@ const BUTTON_SIZE = { sm: 'sm', md: 'md', lg: 'lg' } as const;
  * edge, under the button that opened it.
  */
 export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(function DateInput(
-  { value, onChange, today, size = 'md', disabled, className, wrapperClassName, ...rest },
+  { value, onChange, today, weekStartsOn, size = 'md', disabled, className, wrapperClassName, ...rest },
   ref,
 ) {
   const [open, setOpen] = useState(false);
@@ -144,6 +146,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(function D
             <Calendar
               value={value}
               today={today}
+              weekStartsOn={weekStartsOn}
               onChange={(next, how) => {
                 onChange(next);
                 if (how === 'pick') closeTimer.current = window.setTimeout(() => setOpen(false), CLOSE_AFTER_PICK_MS);
