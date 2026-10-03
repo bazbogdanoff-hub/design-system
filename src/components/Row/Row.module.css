@@ -55,6 +55,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  /* overflow:hidden clips at the line box, and the label line-heights (1.15)
+     end above a g's or y's tail (owner, 2026-10-03). Room for the tails,
+     given back below — the row's height doesn't move. */
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
 }
 
 .heading {

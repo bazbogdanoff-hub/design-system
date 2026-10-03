@@ -26,6 +26,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  /* room for descenders under the clip, given back — as Row's heading */
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
 }
 
 .badge {

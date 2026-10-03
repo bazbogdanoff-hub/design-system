@@ -56,6 +56,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  /* room for descenders under the clip, given back — as Row's heading
+     (owner, 2026-10-03: "Wójcik" lost its j's tail) */
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
 }
 
 .name {
