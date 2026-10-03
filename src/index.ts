@@ -235,7 +235,7 @@ export { SettingsNavItem } from './components/SettingsNavItem';
 export type { SettingsNavItemProps } from './components/SettingsNavItem';
 
 export { Modal } from './components/Modal';
-export type { ModalProps, ModalPadding } from './components/Modal';
+export type { ModalProps, ModalPadding, ModalWidth } from './components/Modal';
 
 export { Headercard } from './components/Headercard';
 export type { HeadercardProps } from './components/Headercard';

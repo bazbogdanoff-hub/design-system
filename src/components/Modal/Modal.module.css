@@ -10,6 +10,14 @@
     inset 4px 4px 16px 0 var(--color-card-vignette);
 }
 
+.modal[data-width] {
+  box-sizing: border-box;
+  width: min(var(--_modal-width), calc(100vw - var(--space-32)));
+}
+.modal[data-width='sm'] { --_modal-width: 24rem; }
+.modal[data-width='md'] { --_modal-width: 30rem; }
+.modal[data-width='lg'] { --_modal-width: 36rem; }
+
 .header {
   display: flex;
   align-items: flex-start;

@@ -5,6 +5,7 @@ import { cn } from '../../lib/cn';
 import styles from './Modal.module.css';
 
 export type ModalPadding = 'lg' | 'md' | 'sm' | 'xs';
+export type ModalWidth = 'sm' | 'md' | 'lg';
 
 export interface ModalProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   /** `lg` (24px, default) · `md` (20px) · `sm` (16px) · `xs` (12px) — its own
@@ -18,6 +19,10 @@ export interface ModalProps extends Omit<HTMLAttributes<HTMLDivElement>, 'childr
   children: ReactNode;
   /** Omit entirely to hide the footer row. */
   footer?: ReactNode;
+  /** `sm` 24rem · `md` 30rem · `lg` 36rem — never wider than the screen
+   * less a margin. Omit to size to the content (owner, 2026-10-03: a
+   * one-field dialog sized to its content was unusably narrow). */
+  width?: ModalWidth;
 }
 
 /**
@@ -27,11 +32,11 @@ export interface ModalProps extends Omit<HTMLAttributes<HTMLDivElement>, 'childr
  * (`<Overlay open={...} onClose={...}><Modal ...>...</Modal></Overlay>`).
  */
 export const Modal = forwardRef<HTMLDivElement, ModalProps>(function Modal(
-  { padding = 'lg', heading, onClose, children, footer, className, ...rest },
+  { padding = 'lg', heading, onClose, children, footer, width, className, ...rest },
   ref,
 ) {
   return (
-    <div ref={ref} className={cn(styles.modal, className)} data-padding={padding} {...rest}>
+    <div ref={ref} className={cn(styles.modal, className)} data-padding={padding} data-width={width} {...rest}>
       <div className={styles.header}>
         <h2 className={styles.heading}>{heading}</h2>
         {onClose != null && (
