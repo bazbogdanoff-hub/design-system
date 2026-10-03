@@ -40,30 +40,47 @@
   --icon-size: 1.25rem;
 }
 
+/* Glass (owner, 2026-10-03: "restyled to our chart element like style") —
+   the tile wears the chart marks' recipe (src/glass.css): solid in its
+   category colour, a catch along the top-left edge, a deeper inner shade,
+   and its own colour thrown down and right. Each colour below only sets
+   --glass-fill; the recipe is here once. */
+.tile {
+  background-color: var(--glass-fill);
+  box-shadow:
+    inset 1px 1px 0 0 color-mix(in srgb, var(--glass-fill), white var(--glass-catch-mix)),
+    inset 2px 2px 12px 0 color-mix(in oklch, var(--glass-fill), black var(--glass-inner-mix)),
+    2px 3px 5px -1px color-mix(in srgb, var(--glass-fill) var(--glass-light-near), transparent),
+    3px 6px 12px -2px color-mix(in srgb, var(--glass-fill) var(--glass-light-far), transparent);
+}
+.tile[data-disabled] {
+  box-shadow: none;
+}
+
 /* emphasis=strong — saturated fill + white icon (modules) */
-.tile[data-emphasis='strong'][data-color='brand']   { background: var(--color-category-brand-background); }
-.tile[data-emphasis='strong'][data-color='teal']    { background: var(--color-category-teal-background); }
-.tile[data-emphasis='strong'][data-color='rose']    { background: var(--color-category-rose-background); }
-.tile[data-emphasis='strong'][data-color='lime']    { background: var(--color-category-lime-background); }
-.tile[data-emphasis='strong'][data-color='fuchsia'] { background: var(--color-category-fuchsia-background); }
-.tile[data-emphasis='strong'][data-color='cyan']    { background: var(--color-category-cyan-background); }
-.tile[data-emphasis='strong'][data-color='pink']    { background: var(--color-category-pink-background); }
-.tile[data-emphasis='strong'][data-color='violet']  { background: var(--color-category-violet-background); }
-.tile[data-emphasis='strong'][data-color='emerald'] { background: var(--color-category-emerald-background); }
-.tile[data-emphasis='strong'][data-color='blue']    { background: var(--color-category-blue-background); }
+.tile[data-emphasis='strong'][data-color='brand']   { --glass-fill: var(--color-category-brand-background); }
+.tile[data-emphasis='strong'][data-color='teal']    { --glass-fill: var(--color-category-teal-background); }
+.tile[data-emphasis='strong'][data-color='rose']    { --glass-fill: var(--color-category-rose-background); }
+.tile[data-emphasis='strong'][data-color='lime']    { --glass-fill: var(--color-category-lime-background); }
+.tile[data-emphasis='strong'][data-color='fuchsia'] { --glass-fill: var(--color-category-fuchsia-background); }
+.tile[data-emphasis='strong'][data-color='cyan']    { --glass-fill: var(--color-category-cyan-background); }
+.tile[data-emphasis='strong'][data-color='pink']    { --glass-fill: var(--color-category-pink-background); }
+.tile[data-emphasis='strong'][data-color='violet']  { --glass-fill: var(--color-category-violet-background); }
+.tile[data-emphasis='strong'][data-color='emerald'] { --glass-fill: var(--color-category-emerald-background); }
+.tile[data-emphasis='strong'][data-color='blue']    { --glass-fill: var(--color-category-blue-background); }
 .tile[data-emphasis='strong'] .icon { color: var(--color-text-on-brand); }
 
 /* emphasis=muted — the hue desaturated (not lightened), still a white icon (settings) */
-.tile[data-emphasis='muted'][data-color='brand']   { background: var(--color-category-brand-background-muted); }
-.tile[data-emphasis='muted'][data-color='teal']    { background: var(--color-category-teal-background-muted); }
-.tile[data-emphasis='muted'][data-color='rose']    { background: var(--color-category-rose-background-muted); }
-.tile[data-emphasis='muted'][data-color='lime']    { background: var(--color-category-lime-background-muted); }
-.tile[data-emphasis='muted'][data-color='fuchsia'] { background: var(--color-category-fuchsia-background-muted); }
-.tile[data-emphasis='muted'][data-color='cyan']    { background: var(--color-category-cyan-background-muted); }
-.tile[data-emphasis='muted'][data-color='pink']    { background: var(--color-category-pink-background-muted); }
-.tile[data-emphasis='muted'][data-color='violet']  { background: var(--color-category-violet-background-muted); }
-.tile[data-emphasis='muted'][data-color='emerald'] { background: var(--color-category-emerald-background-muted); }
-.tile[data-emphasis='muted'][data-color='blue']    { background: var(--color-category-blue-background-muted); }
+.tile[data-emphasis='muted'][data-color='brand']   { --glass-fill: var(--color-category-brand-background-muted); }
+.tile[data-emphasis='muted'][data-color='teal']    { --glass-fill: var(--color-category-teal-background-muted); }
+.tile[data-emphasis='muted'][data-color='rose']    { --glass-fill: var(--color-category-rose-background-muted); }
+.tile[data-emphasis='muted'][data-color='lime']    { --glass-fill: var(--color-category-lime-background-muted); }
+.tile[data-emphasis='muted'][data-color='fuchsia'] { --glass-fill: var(--color-category-fuchsia-background-muted); }
+.tile[data-emphasis='muted'][data-color='cyan']    { --glass-fill: var(--color-category-cyan-background-muted); }
+.tile[data-emphasis='muted'][data-color='pink']    { --glass-fill: var(--color-category-pink-background-muted); }
+.tile[data-emphasis='muted'][data-color='violet']  { --glass-fill: var(--color-category-violet-background-muted); }
+.tile[data-emphasis='muted'][data-color='emerald'] { --glass-fill: var(--color-category-emerald-background-muted); }
+.tile[data-emphasis='muted'][data-color='blue']    { --glass-fill: var(--color-category-blue-background-muted); }
 .tile[data-emphasis='muted'] .icon { color: var(--color-text-on-brand); }
 
 .icon {
