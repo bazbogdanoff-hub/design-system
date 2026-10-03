@@ -134,6 +134,8 @@ export type { EmptyStateProps } from './components/EmptyState';
 
 export { FileDropper } from './components/FileDropper';
 export type { FileDropperProps, FileDropperStatus, FileDropperFile } from './components/FileDropper';
+export { FolderDropper } from './components/FolderDropper';
+export type { FolderDropperProps, FolderDropperFile, FolderDropperStatus } from './components/FolderDropper';
 
 export { Slider } from './components/Slider';
 export type { SliderProps, SliderSize } from './components/Slider';
