@@ -7,7 +7,9 @@ owner on 2026-10-04 so it can be asked for in one word: "make it Prism".
 ## The recipe
 
 One colour, `--glass-fill`, set to `color/button/primary/background/default`
-(brand.400). Hover moves it to `…/background/hover` (brand.500). Everything
+(brand.400). **A checked Checkbox or a selected Radio has no hover** (owner,
+2026-10-04): it stays exactly Prism. The primary Button and an on Switch
+deepen to `…/background/hover` (brand.500) under the pointer. Everything
 else derives from it, exactly as `src/glass.css` defines for the chart marks:
 
 | layer | value |

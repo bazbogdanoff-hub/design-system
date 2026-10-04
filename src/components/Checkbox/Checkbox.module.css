@@ -129,7 +129,7 @@
     inset 1px 1px 3px 0 var(--color-alpha-black-20),
     inset 0 0 0 1px var(--color-alpha-black-10);
 }
-.input:hover:not(:disabled) + .box {
+.wrapper:not([data-checked]) .input:hover:not(:disabled) + .box {
   box-shadow:
     inset 1px 1px 3px 0 var(--color-alpha-black-20),
     inset 0 0 0 1px var(--color-alpha-black-20);
@@ -143,8 +143,9 @@
     2px 3px 5px -1px color-mix(in srgb, var(--glass-fill) var(--glass-light-near), transparent),
     3px 6px 12px -2px color-mix(in srgb, var(--glass-fill) var(--glass-light-far), transparent);
 }
+/* Checked has no hover (owner, 2026-10-04): it stays exactly Prism, and the
+   older on-hover colour above doesn't come back. */
 .wrapper[data-checked] .input:hover:not(:disabled) + .box {
-  --glass-fill: var(--color-button-primary-background-hover);
   background-color: var(--glass-fill);
 }
 .input:focus-visible + .box {
