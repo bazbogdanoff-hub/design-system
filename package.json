@@ -1,7 +1,7 @@
 {
   "name": "@bazbogdanoff/design-system",
   "version": "0.1.0",
-  "description": "Logistics CRM design system — tokens + React component library",
+  "description": "Logistics CRM design system - tokens + React component library",
   "type": "module",
   "sideEffects": [
     "**/*.css"
@@ -27,7 +27,8 @@
     "preview": "npm run tokens && node scripts/generate-preview.mjs",
     "build": "npm run tokens && vite build && node scripts/finalize-dist.mjs",
     "typecheck": "tsc --noEmit",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "check:dashes": "node scripts/check-dashes.mjs"
   },
   "keywords": [],
   "author": "",
