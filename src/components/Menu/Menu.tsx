@@ -134,8 +134,14 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
 
   useEffect(() => {
     if (!open) return;
+    /* The anchor box holds the menu and its trigger, and every trigger
+       toggles. Closing on the trigger's mousedown let the click that follows
+       reopen the menu — tapping an open Filter flickered and stayed open. A
+       press inside the anchor is the trigger's (or a row's) to handle. */
     function handlePointerDown(event: MouseEvent) {
-      if (localRef.current && !localRef.current.contains(event.target as Node)) onClose();
+      const anchor = localRef.current?.parentElement;
+      if (anchor?.contains(event.target as Node)) return;
+      onClose();
     }
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') onClose();
