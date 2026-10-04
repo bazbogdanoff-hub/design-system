@@ -8,7 +8,7 @@ warning / critical) use `SeverityBadge`, which composes this. See
 ## API
 
 ```tsx
-<Badge tone="neutral|brand|success|warning|danger" size="xs|sm|md|lg" icon="default|hasIcon" leadingIcon={<Icon/>} asChild>
+<Badge tone="neutral|brand|success|warning|danger" size="xs|sm|md|lg" hasIcon leadingIcon={<Icon/>} asChild>
   In transit
 </Badge>
 ```
@@ -17,8 +17,8 @@ warning / critical) use `SeverityBadge`, which composes this. See
 |---|---|---|---|
 | `tone` | `neutral` `brand` `success` `warning` `warning-strong` `danger` | `neutral` | variant `tone` |
 | `size` | `xs` `sm` `md` `lg` | `md` | variant `size` |
-| `icon` | `default` · `hasIcon` | `default` | variant `icon` |
-| `leadingIcon` | `ReactNode` - glyph when `icon="hasIcon"` | - | icon instance on `hasIcon` |
+| `hasIcon` | `boolean` | `false` | boolean property `hasIcon` (owner, 2026-10-04: was `icon="hasIcon"` in React and `variant=withicon` in Figma) |
+| `leadingIcon` | `ReactNode` - glyph when `hasIcon` | - | icon instance, shown when `hasIcon` |
 | `asChild` | `boolean` | `false` | - |
 
 `className`, `style`, `...spanProps` pass through to the root. No border, no
@@ -37,8 +37,8 @@ axes.
 get extra horizontal padding (+4 and +6 - the space scale has no 14) since a
 pill needs about half its height at the sides; `xs` and `sm` keep their
 original padding (the extra read too wide at those sizes). Heights are
-unchanged. `icon="hasIcon"` no longer changes the shape (it used to give
-the left side a 32 radius); the prop remains until the Figma master drops it.
+unchanged. `hasIcon` no longer changes the shape (it used to give the left
+side a 32 radius); it only shows the leading icon.
 
 | `size` | label style | padding (vertical / horizontal) | gap | radius | icon | height |
 |---|---|---|---|---|---|---|
@@ -79,8 +79,9 @@ line-height; no trim, no hardcoded value).
 ## Figma build
 
 - Component set **`Badge`** - variant props `tone` (6, including `warning-strong`)
-  × `size` (4: `xs`/`sm`/`md`/`lg`) × `icon` (`default` / `hasIcon`) = 48 variants.
-- `icon="hasIcon"` shows the leading icon instance. Since 2026-09-28 every badge
+  × `size` (4: `xs`/`sm`/`md`/`lg`) × `hasIcon` (boolean) = 48 variants. **Figma to do:** replace the
+  `variant=withicon` axis with a boolean `hasIcon` property.
+- `hasIcon` shows the leading icon instance. Since 2026-09-28 every badge
   is a pill, so this variant no longer changes the corners - the Figma master
   should drop the separate left radius (and can merge the two variants).
 - Auto-layout HORIZONTAL, hug × hug, centre align. Fill → `color/badge/<tone>/background`,

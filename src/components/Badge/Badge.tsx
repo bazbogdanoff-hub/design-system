@@ -12,18 +12,16 @@ export type BadgeTone =
   | 'warning-strong'
   | 'danger';
 export type BadgeSize = 'xs' | 'sm' | 'md' | 'lg';
-/** Icon shape variant - `default` (uniform radius) · `hasIcon` (32px left corners). */
-export type BadgeIcon = 'default' | 'hasIcon';
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   /** Semantic colour. `neutral` (default) · `brand` · `success` · `warning` · `warning-strong` (orange) · `danger`. */
   tone?: BadgeTone;
   /** `xs` (12) · `sm` (13) · `md` (14, default) · `lg` (16). */
   size?: BadgeSize;
-  /** Icon variant. `default` - text only, uniform radius. `hasIcon` - leading
-   * icon slot + 32px left corners (right corners stay the size radius). */
-  icon?: BadgeIcon;
-  /** Leading glyph when `icon="hasIcon"`. Inherits tone colour via `currentColor`. */
+  /** Shows `leadingIcon` (owner, 2026-10-04: a boolean, as in Figma; it was
+   * `icon="hasIcon"`). The shape is the same either way. */
+  hasIcon?: boolean;
+  /** Leading glyph when `hasIcon`. Inherits tone colour via `currentColor`. */
   leadingIcon?: ReactNode;
   /** Render as the child element (e.g. an `<a>`, a `<button>`). */
   asChild?: boolean;
@@ -41,7 +39,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
   {
     tone = 'neutral',
     size = 'md',
-    icon = 'default',
+    hasIcon = false,
     leadingIcon,
     asChild = false,
     className,
@@ -69,7 +67,6 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
       className={cn(styles.badge, className)}
       data-tone={tone}
       data-size={size}
-      data-icon={icon}
       {...rest}
     >
       {/* asChild forwards to a single consumer element - the consumer composes
@@ -78,7 +75,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
         children
       ) : (
         <>
-          {icon === 'hasIcon' && leadingIcon != null && (
+          {hasIcon && leadingIcon != null && (
             <span className={styles.icon} aria-hidden="true">
               {leadingIcon}
             </span>
