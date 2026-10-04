@@ -116,3 +116,43 @@
     animation: none;
   }
 }
+
+/* ---- Prism (owner, 2026-10-04) -------------------------------------------
+   The house style for "on": the primary button's brand fill in the chart
+   marks' glass recipe (src/glass.css). Off sinks into the card. See
+   docs/patterns/Prism.md. */
+.box {
+  border: none;
+  /* A white well: it reads on a card and on the grey header band alike. */
+  background-color: var(--color-checkbox-background-off);
+  box-shadow:
+    inset 1px 1px 3px 0 var(--color-alpha-black-20),
+    inset 0 0 0 1px var(--color-alpha-black-10);
+}
+.input:hover:not(:disabled) + .box {
+  box-shadow:
+    inset 1px 1px 3px 0 var(--color-alpha-black-20),
+    inset 0 0 0 1px var(--color-alpha-black-20);
+}
+.wrapper[data-checked] .box {
+  --glass-fill: var(--color-button-primary-background-default);
+  background-color: var(--glass-fill);
+  box-shadow:
+    inset 1px 1px 0 0 color-mix(in srgb, var(--glass-fill), white var(--glass-catch-mix)),
+    inset 2px 2px 12px 0 color-mix(in oklch, var(--glass-fill), black var(--glass-inner-mix)),
+    2px 3px 5px -1px color-mix(in srgb, var(--glass-fill) var(--glass-light-near), transparent),
+    3px 6px 12px -2px color-mix(in srgb, var(--glass-fill) var(--glass-light-far), transparent);
+}
+.wrapper[data-checked] .input:hover:not(:disabled) + .box {
+  --glass-fill: var(--color-button-primary-background-hover);
+  background-color: var(--glass-fill);
+}
+.input:focus-visible + .box {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+.input:disabled + .box,
+.wrapper[data-checked] .input:disabled + .box {
+  background-color: var(--color-checkbox-background-disabled);
+  box-shadow: none;
+}

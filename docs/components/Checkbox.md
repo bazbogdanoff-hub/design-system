@@ -45,6 +45,12 @@ Consumers never touch a ref for it themselves. Figma has no
 facts at once); this component doesn't render one either - `indeterminate`
 wins over `checked` in the glyph shown when both happen to be passed.
 
+## Prism (owner, 2026-10-04)
+
+Checked and indeterminate wear Prism brand glass with the white glyph; unchecked is a white well (an inner shade and a hairline, no border). See [Prism](../patterns/Prism.md). The
+token notes below describe the flat look this replaced; the Figma master
+still has it until the owner restyles it.
+
 ## Checked and indeterminate share one filled, borderless box
 
 Confirmed via the Figma reference's read-back: `checked=true` and

@@ -4,6 +4,14 @@ The consuming app is `../aegis`; its `CLAUDE.md` and `.cursor/rules/` hold
 the house rules for how components are composed and changed. Read them
 before touching anything here.
 
+## Named styles
+
+Say the name; the definition is the doc.
+
+| name | what | doc |
+|---|---|---|
+| **Prism** | brand glass on whatever is *on*: primary button fill in the chart marks' glass recipe; off states sink into a well | `docs/patterns/Prism.md` |
+
 ## Writing
 
 **Never write the long dash (U+2014, the em dash).** Not in component text,

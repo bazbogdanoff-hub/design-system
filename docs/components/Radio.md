@@ -28,7 +28,15 @@ grouping - only one of a set can be checked - is the browser's own
 same-`name` behavior, not a `RadioGroup` component. This system has no
 `CheckboxGroup` either; a group is just several `Radio`s sharing one `name`.
 
-## Never solid-fills, in any state - the real, deliberate restraint
+## Selected is Prism (owner, 2026-10-04)
+
+**Overturned.** Selected is now the whole disc in Prism brand glass with a
+white dot, the same as a checked `Checkbox`; unselected is a white well. See
+[Prism](../patterns/Prism.md). The section below records the earlier
+Figma-confirmed restraint, kept for history; the Figma master still shows it
+until the owner restyles it.
+
+### Was: never solid-fills, in any state
 
 Unlike `Checkbox`, which fills solid brand color when checked, `Radio` keeps
 one flat white background (`color.radio.background`) at rest, hover,

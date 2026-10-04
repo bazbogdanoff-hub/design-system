@@ -36,6 +36,12 @@ its own state (seeded once, then owned internally). There's no native
 fires with the next boolean directly, the same name Radix's own `Switch`
 uses for the same reason.
 
+## Prism (owner, 2026-10-04)
+
+On, the track wears Prism brand glass; off, it is the recessed grey. The thumb is white in both, raised with a small shadow. See [Prism](../patterns/Prism.md). The
+token notes below describe the flat look this replaced; the Figma master
+still has it until the owner restyles it.
+
 ## Track color alone carries state - the thumb never changes
 
 The thumb is a plain white circle in every state (`color.switch.thumb`,
