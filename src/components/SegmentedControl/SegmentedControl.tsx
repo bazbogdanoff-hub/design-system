@@ -20,26 +20,26 @@ export type SegmentedControlSize = 'sm' | 'md' | 'lg' | 'xs';
 export type { SegmentedControlMode } from './context';
 
 export interface SegmentedControlProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
-  /** `sm` · `md` (default) · `lg` — the same height scale as `Button`
+  /** `sm` · `md` (default) · `lg` - the same height scale as `Button`
    * (`size.control.*`), since this sits alongside buttons/filters in a
    * toolbar. `xs` is a distinct track recipe (transparent, no padding, no
-   * track radius — each item carries its own edge rounding via `position`)
+   * track radius - each item carries its own edge rounding via `position`)
    * for the sidebar module switcher only. Cascades to every
    * `SegmentedControlItem` inside. */
   size?: SegmentedControlSize;
-  /** `xs`-only: the sidebar's own collapsed/expanded state — shrinks every
+  /** `xs`-only: the sidebar's own collapsed/expanded state - shrinks every
    * item's height from 24 to 16. No effect at any other size. */
   collapsed?: boolean;
-  /** `choice` (default) — pick one value: List/Grid/Map, a status filter.
-   * `tabs` — switch which content panel is showing. Same look; the
+  /** `choice` (default) - pick one value: List/Grid/Map, a status filter.
+   * `tabs` - switch which content panel is showing. Same look; the
    * difference is for keyboard and screen-reader users, who get the tabs
    * pattern: one Tab stop for the whole control, arrow keys between tabs,
    * and "tab 2 of 4". Each item then needs an `id` and `aria-controls`, and
-   * its panel `role="tabpanel"` + `aria-labelledby` — see
+   * its panel `role="tabpanel"` + `aria-labelledby` - see
    * docs/components/SegmentedControl.md. */
   mode?: SegmentedControlMode;
   /** `light` (default) on a card; `dark` inside the dark app-frame chat card
-   * (2026-10-01) — a recessed dark track, the picked item on the sidebar's
+   * (2026-10-01) - a recessed dark track, the picked item on the sidebar's
    * panel colour, white labels. */
   surface?: 'light' | 'dark';
   /** `SegmentedControlItem`s. */
@@ -80,7 +80,7 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
   );
 
   // Tabs use automatic activation: moving focus with the arrows also shows
-  // that tab's panel — done by clicking the newly focused tab, so the
+  // that tab's panel - done by clicking the newly focused tab, so the
   // consumer's own onClick stays the single source of truth.
   function handleKeyDown(e: KeyboardEvent<HTMLDivElement>) {
     onKeyDown?.(e);

@@ -5,7 +5,7 @@ export interface ChartTooltipRow {
   key: string;
   /** Series name. */
   label: string;
-  /** Pre-formatted value — the caller decides rounding/units. */
+  /** Pre-formatted value - the caller decides rounding/units. */
   value: string;
   color: string;
 }
@@ -14,12 +14,12 @@ export interface ChartTooltipProps {
   /** The hovered category, e.g. a day name. */
   title: string;
   rows: ChartTooltipRow[];
-  /** Positioning — the chart places this (e.g. `transform: translate(x, y)`). */
+  /** Positioning - the chart places this (e.g. `transform: translate(x, y)`). */
   style?: CSSProperties;
 }
 
 /**
- * Hover/focus readout for a chart — lists every series at the hovered
+ * Hover/focus readout for a chart - lists every series at the hovered
  * category so the reader never has to land precisely on a segment. Title,
  * values, and series names share `text/label/xs` + `color/text/muted`.
  * Series are keyed with a short line, not a filled box.

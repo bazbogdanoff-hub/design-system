@@ -1,5 +1,5 @@
 {
-  "note": "old text-style name -> new text/* style name. All weight variants (Medium/SemiBold/Bold/ExtraBold/Regular) collapse to one target — the weight inconsistency gets fixed when components are built. Node rebind: for each TEXT node, if its textStyle name matches a prefix key, set textStyleId to the new style.",
+  "note": "old text-style name -> new text/* style name. All weight variants (Medium/SemiBold/Bold/ExtraBold/Regular) collapse to one target - the weight inconsistency gets fixed when components are built. Node rebind: for each TEXT node, if its textStyle name matches a prefix key, set textStyleId to the new style.",
   "byPrefix": {
     "Title/Title-1/": "text/display/xl",
     "Title/Title-2/": "text/display/xl",

@@ -138,7 +138,7 @@
 }
 
 /* ---- dark: inside the app-frame card --------------------------------------
-   The field wears the sidebar's active-tab recipe — the brightest place on
+   The field wears the sidebar's active-tab recipe - the brightest place on
    the card is where you type (owner, 2026-09-30). */
 .composer[data-on='dark'] .field {
   border: 0;

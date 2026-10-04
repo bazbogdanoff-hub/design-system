@@ -17,22 +17,22 @@ const collByName = new Map(collections.map((c) => [c.name, c]));
 Batches are a loop over an inlined `const OPS = [ ... ]` array (put the approved
 findings' data there). Keep `OPS.length <= 20` per call.
 
-**Gotcha — compound sublayer IDs and `getNodeByIdAsync`:** a node nested inside
+**Gotcha - compound sublayer IDs and `getNodeByIdAsync`:** a node nested inside
 a component instance has an ID like `I<instance>;<override>;<node>`. Calling
 `figma.getNodeByIdAsync()` directly on one of these has been observed to hang/
 timeout the bridge connection repeatedly, even when a trivial no-op script and
-`figma.loadAllPagesAsync()` alone both succeed in between attempts — not a
+`figma.loadAllPagesAsync()` alone both succeed in between attempts - not a
 general outage, and not a stale ID (re-deriving the same ID from scratch
 returns an identical string). If a target ID is a compound instance-sublayer
 ID, prefer fetching the top-level instance/component by its **plain** ID
 first, then reaching the nested node via `.findOne((n) => n.name === '...' )`
 tree traversal instead of resolving the compound ID directly. Plain top-level
-IDs (components, component sets, page-level frames) are unaffected — this only
+IDs (components, component sets, page-level frames) are unaffected - this only
 applies to the `I...;...;...` nested form.
 
 ---
 
-## `rename` — variable
+## `rename` - variable
 
 ```js
 const results = [];
@@ -47,7 +47,7 @@ for (const op of OPS) {                       // op: {findingId, targetId, propo
 return results;
 ```
 
-## `rename` — component / component-set / node
+## `rename` - component / component-set / node
 
 ```js
 const results = [];
@@ -65,11 +65,11 @@ Variant **property** renames (`variant-naming`, e.g. `Type` → `variant`) go
 through the component-set:
 `componentSet.editComponentProperty(oldName, { name: newName })`. Variant **value**
 renames: rename each child component's name string (`Type=Primary` →
-`variant=primary`) — do the property rename first, then the values.
+`variant=primary`) - do the property rename first, then the values.
 
 ## `variable-raw-value` → make a mode value an alias
 
-`op: {findingId, targetId, mode, aliasTargetName}` — `aliasTargetName` is the
+`op: {findingId, targetId, mode, aliasTargetName}` - `aliasTargetName` is the
 primitive the audit matched by hex (`color/brand/600`).
 
 ```js
@@ -88,9 +88,9 @@ for (const op of OPS) {
 return results;
 ```
 
-## `component-binding` / `rebind` — repoint a node paint off a primitive
+## `component-binding` / `rebind` - repoint a node paint off a primitive
 
-`op: {findingId, targetId, channel, index, newVarName}` — from usage rows.
+`op: {findingId, targetId, channel, index, newVarName}` - from usage rows.
 
 ```js
 const results = [];
@@ -98,7 +98,7 @@ for (const op of OPS) {
   const n = await figma.getNodeByIdAsync(op.targetId);
   const target = varByName.get(op.newVarName);
   if (!n || !target) { results.push({ ...op, ok: false, note: 'node or target var missing' }); continue; }
-  const paints = JSON.parse(JSON.stringify(n[op.channel]));       // frozen — copy first
+  const paints = JSON.parse(JSON.stringify(n[op.channel]));       // frozen - copy first
   const before = paints[op.index]?.boundVariables?.color?.id ?? 'raw';
   if (before === target.id) { results.push({ ...op, skipped: true, ok: true, after: op.newVarName }); continue; }
   paints[op.index] = figma.variables.setBoundVariableForPaint(paints[op.index], 'color', target);
@@ -108,10 +108,10 @@ for (const op of OPS) {
 return results;
 ```
 
-`h.bF(n, idx, target.id)` / `h.bS(...)` do the copy-and-bind for you — use them
+`h.bF(n, idx, target.id)` / `h.bS(...)` do the copy-and-bind for you - use them
 if you prefer: `await h.bF(await figma.getNodeByIdAsync(op.targetId), op.index, target.id)`.
 
-## `create-and-bind` — bind a loose raw fill to a (possibly new) variable
+## `create-and-bind` - bind a loose raw fill to a (possibly new) variable
 
 ```js
 const results = [];
@@ -131,10 +131,10 @@ return results;
 
 ## `convert-style-to-variable`
 
-Mostly `manual-review` — it needs the semantic intent picked by a human. When the
+Mostly `manual-review` - it needs the semantic intent picked by a human. When the
 audit did match a semantic token by hex: create that variable (if missing), then
 for every node using the style, unlink the style and bind the variable. Scanning
-for style consumers is expensive — do this per style, gated, on its own.
+for style consumers is expensive - do this per style, gated, on its own.
 
 ## `merge` A → B
 
@@ -146,7 +146,7 @@ const to = varByName.get(op.toName);
 for (const v of allVars) for (const [mid, val] of Object.entries(v.valuesByMode))
   if (val && val.type === 'VARIABLE_ALIAS' && val.id === from.id)
     v.setValueForMode(mid, figma.variables.createVariableAlias(to));
-// 2. repoint node paints — scan pages (expensive; gate this)
+// 2. repoint node paints - scan pages (expensive; gate this)
 await figma.loadAllPagesAsync();
 let repointed = 0;
 for (const page of figma.root.children)
@@ -197,6 +197,6 @@ if (name === 'Primitives') for (const id of coll.variableIds) {
 return { collection: coll.name, modes: coll.modes.map((m) => m.name) };
 ```
 
-Moving a variable between collections is **not** supported by the API — you
+Moving a variable between collections is **not** supported by the API - you
 recreate it in the target collection and repoint, then delete the original
 (that's a `merge`).

@@ -7,8 +7,8 @@ and, under it, **either** a stat `LabelGroup` **or** a row of `controls`. A free
 ## API
 
 ```tsx
-// list pages — stat line under the heading
-// detail pages — related entities beside the heading
+// list pages - stat line under the heading
+// detail pages - related entities beside the heading
 <Headercard
   heading="RIG-01"
   aside={<><EntityChip icon={<Truck weight="fill" />} label="TK-001" onClick={…} />…</>}
@@ -21,9 +21,9 @@ and, under it, **either** a stat `LabelGroup` **or** a row of `controls`. A free
   actions={<SegmentedControl …/>}
 />
 
-// detail pages — controls under the heading
+// detail pages - controls under the heading
 <Headercard
-  heading="Reefer failure — SH-1041"
+  heading="Reefer failure - SH-1041"
   controls={<><Badge …>critical, 9</Badge><IconButton … /></>}
   actions={<Button variant="secondary" …>All tasks</Button>}
 />
@@ -41,7 +41,7 @@ and, under it, **either** a stat `LabelGroup` **or** a row of `controls`. A free
 
 Anything passed as `heading` becomes part of the page's accessible name,
 because it renders inside the `<h1>`. A rig titled "RIG-01" carrying three
-member chips would announce as **"RIG-01 TK-001 TR-004 Wójcik"** — the page
+member chips would announce as **"RIG-01 TK-001 TR-004 Wójcik"** - the page
 would have no stable name, and every chip label would be read before a screen
 reader user reached anything else.
 
@@ -54,13 +54,13 @@ Its `space/4` inner gap is the chip-group spacing from the Figma header frame;
 a single child never notices it. Chips hold their width (`flex: none`) and a
 long heading is what gives way.
 
-`labelGroup` and `controls` are **mutually exclusive** — the prop types
+`labelGroup` and `controls` are **mutually exclusive** - the prop types
 reject both at once.
 
 With `controls`, the card's cross-axis alignment switches from **centre** to
 **top**, so `actions` sit level with the heading instead of floating in the
 middle of a taller left column. With `labelGroup` (or neither), it stays
-centred — the Figma reference.
+centred - the Figma reference.
 
 ## Figma build (delta)
 

@@ -5,15 +5,15 @@ import styles from './EntityChip.module.css';
 
 export interface EntityChipProps
   extends Omit<ButtonHTMLAttributes<HTMLElement>, 'children'> {
-  /** The glyph that stands for the thing — a truck, a trailer, a person. */
+  /** The glyph that stands for the thing - a truck, a trailer, a person. */
   icon: ReactNode;
   /**
    * Which one it is: a fleet code, a surname. Hidden at rest and revealed on
-   * hover or focus, but always present for assistive technology — this is the
+   * hover or focus, but always present for assistive technology - this is the
    * chip's accessible name, not decoration.
    */
   label: string;
-  /** Keeps the label open regardless of hover — for a chip that is the subject
+  /** Keeps the label open regardless of hover - for a chip that is the subject
    * of the view rather than one of a row. */
   open?: boolean;
   /** Render as the child element, e.g. an `<a>` for a real link. */
@@ -22,14 +22,14 @@ export interface EntityChipProps
 
 /**
  * One related entity, compressed to a chip: its icon at rest, its identity on
- * hover. Built for a heading row — a rig's truck, trailer and driver beside
- * its name — where three full labels would out-weigh the heading they belong
+ * hover. Built for a heading row - a rig's truck, trailer and driver beside
+ * its name - where three full labels would out-weigh the heading they belong
  * to but three anonymous icons would say nothing.
  *
  * **Not a `Badge`, though it wears Badge's glass.** Two of Badge's rules are
  * deliberately broken here: Badge is presentational with no interaction
  * states, and Badge capsules its left corners (32px) whenever it carries an
- * icon. This is interactive by definition — the label only exists on hover —
+ * icon. This is interactive by definition - the label only exists on hover -
  * and keeps a uniform 6px radius, because an icon-only chip with one round
  * end reads as a fragment of a pill rather than a square.
  *

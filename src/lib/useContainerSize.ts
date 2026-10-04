@@ -5,14 +5,14 @@ import { useLayoutEffect, useRef, useState } from 'react';
 const RESIZE_THROTTLE_MS = 100;
 
 /** Measures an element's real rendered size via ResizeObserver. Used so a
- * chart's SVG coordinate space matches actual pixels 1:1 — the alternative
+ * chart's SVG coordinate space matches actual pixels 1:1 - the alternative
  * (a fixed viewBox stretched via `width:100%`) scales text along with the
  * plot area, which makes labels illegible on a narrow card. Shared by
  * `BarChart`, `LineChart` and `DonutChart`.
  *
  * The first measure is immediate. After that, a container that keeps
  * resizing re-renders the chart at most every 100ms, plus once when it
- * stops — every frame of the sidebar's width animation used to redraw every
+ * stops - every frame of the sidebar's width animation used to redraw every
  * chart (owner, 2026-09-30 perf pass). Changes under half a pixel are
  * ignored. */
 export function useContainerSize<T extends HTMLElement>() {

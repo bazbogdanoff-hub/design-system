@@ -1,7 +1,7 @@
 # Table
 
 Card surface + header (filters/actions) + a real `<table>` + footer
-(selection/pagination). **L2** — ported from Figma's `Table`.
+(selection/pagination). **L2** - ported from Figma's `Table`.
 
 ```tsx
 <Table
@@ -29,9 +29,9 @@ Card surface + header (filters/actions) + a real `<table>` + footer
 | prop | type | notes |
 |---|---|---|
 | `filters` | `ReactNode` | header, left-aligned |
-| `actions` | `ReactNode` | header, right-aligned — 0 to N buttons, just compose them |
-| `header` | `ReactNode` — required | a `<TableRow>` of `<TableHeaderCell>`s |
-| `children` | `ReactNode` — required | body `<TableRow>`s of `<TableCell>`s |
+| `actions` | `ReactNode` | header, right-aligned - 0 to N buttons, just compose them |
+| `header` | `ReactNode` - required | a `<TableRow>` of `<TableHeaderCell>`s |
+| `children` | `ReactNode` - required | body `<TableRow>`s of `<TableCell>`s |
 | `selectedCount` | `number` | shows the footer's selection panel once truthy |
 | `selectionActions` | `ReactNode` | shown next to the selection count |
 | `pagination` | `ReactNode` | the footer's right side |
@@ -43,17 +43,17 @@ footer only if `selectedCount` is truthy or `pagination` is passed.
 
 Figma's `Table` has 5 exposed booleans (`hasFilters`/`hasHeader`/
 `hasSelection`/`hasPagination`/`hasFooter`) because Figma has no way to
-*compute* "is this content present" — it has to be told. In React,
+*compute* "is this content present" - it has to be told. In React,
 `filters != null`, `Boolean(selectedCount)`, etc. compute the same thing
 from whatever was actually passed, so none of those need to be separate
 props a consumer sets by hand.
 
-## Wraps the real `Card` — the one place code and Figma deliberately diverge
+## Wraps the real `Card` - the one place code and Figma deliberately diverge
 
 `Table`'s root is `<Card padding="none">`, not a hand-replicated
 fill/radius/shadow. In Figma, nesting a real `Card` **instance** inside
 `Table` would put the `content` Slot 2 instance-levels deep (`Table`
-instance → nested `Card` instance → stack → Slot) — exactly the
+instance → nested `Card` instance → stack → Slot) - exactly the
 `insertChild` restriction logged in `HANDOFF.md` §6, meaning every future
 row-insert into a real table would need `detachInstance()`. That restriction
 is Figma-plugin-API-specific and doesn't exist in React, so here it's just
@@ -67,7 +67,7 @@ A real question that came up while speccing this in Figma: if cells hug
 their own content, how do columns line up across different rows? In Figma
 there's no good answer short of manually keeping every cell's width in sync
 per column (which is exactly what the *original* hand-built table did,
-fragile by construction). A real HTML `<table>` doesn't have this problem —
+fragile by construction). A real HTML `<table>` doesn't have this problem -
 the browser's own table layout algorithm gives every cell in a column the
 same width automatically. One more reason this component wraps a real
 `<table>` rather than a flex/grid re-implementation.
@@ -77,9 +77,9 @@ same width automatically. One more reason this component wraps a real
 The locked row fill takes cell content out of flow, so before this a
 column was sized by its **header** and anything wider was cut mid-value
 (SH-0001 read "SH-00", at 1440 as well as smaller). `Table` now measures
-each column's widest content — the extent of what's in the cell (a DOM
+each column's widest content - the extent of what's in the cell (a DOM
 range over the fill, plus its padding), **not** the cell, so columns shrink
-back as well as grow — and sets it as the header cell's `min-width`, never
+back as well as grow - and sets it as the header cell's `min-width`, never
 below the role's own minimum (`wide` 12rem, `value` 7rem). Fixed roles
 (`checkbox`, `radio`, `icon`, `action`, `timestamp`) are left alone. When
 the columns no longer fit the card, `.content` scrolls sideways; the page
@@ -91,7 +91,7 @@ in view while the rest scroll: sticky, opaque in its row's own fill
 worked out by `Table` so several pinned columns stack. The innermost pinned
 column on each side casts a soft edge while there is content scrolled under
 it (`data-scrolled-start` / `data-more-end` on the scroll box). In Aegis,
-`PagedTable` pins the row's identity — checkbox and `primary` column — at
+`PagedTable` pins the row's identity - checkbox and `primary` column - at
 the start and the trailing actions column at the end.
 
 Measured on the Aegis list pages: no value cut at 1280 or 1440; at 1100
@@ -99,9 +99,9 @@ Measured on the Aegis list pages: no value cut at 1280 or 1440; at 1100
 
 ## Figma
 
-`Table` (`10302:18481`) — single component, no variants. 3 stacked regions
+`Table` (`10302:18481`) - single component, no variants. 3 stacked regions
 (`space/16` between them): `header` (`space/16` padding, space-between),
-`content` (the real Slot, zero padding — holds the header `TableRow` + body
+`content` (the real Slot, zero padding - holds the header `TableRow` + body
 `TableRow`s together), `footer` (`space/16` padding, space-between). Root
 replicates Card's exact bound tokens (fill, per-side stroke weights, its
 "vignette xs" inner-shadow effect, corner radius) rather than nesting a live

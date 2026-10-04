@@ -1,6 +1,6 @@
 /* ChannelLogo (2026-10-01, code-first). Bare: the mark fills the box in
    currentColor. Tile: the app's colour on a rounded square, the white mark
-   at 60% of it — an app icon, not a badge. */
+   at 60% of it - an app icon, not a badge. */
 .logo {
   display: inline-flex;
   flex: none;

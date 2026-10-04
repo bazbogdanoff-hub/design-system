@@ -6,40 +6,40 @@ import styles from './ChartCard.module.css';
 
 export interface ChartCardProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   title: ReactNode;
-  /** A small companion right after the title, centred on it, 12px away —
+  /** A small companion right after the title, centred on it, 12px away -
    * e.g. a count the whole chart qualifies (owner, 2026-09-30: the expiry
    * heatmap's lapsed counter). Outside the heading element, so it keeps
    * its own type and can be a button. */
   titleAccessory?: ReactNode;
   /** 2+ series → always show a legend (the dependable identity channel). A
-   * single-series chart needs none — the title already says what's plotted.
+   * single-series chart needs none - the title already says what's plotted.
    * Always sits on the same header row as the title and filters. */
   legend?: ChartLegendItem[];
   /** `Filter` instances, grouped with `action` at the header's right edge.
-   * Per-chart filters (date range, dimension) — a deliberate deviation from
+   * Per-chart filters (date range, dimension) - a deliberate deviation from
    * "filters live in one shared row above all charts": these mockups scope
    * each chart independently. */
   filters?: ReactNode;
-  /** A single trailing icon action next to the filters — e.g. an
+  /** A single trailing icon action next to the filters - e.g. an
    * expand/"view full chart" `IconButton`. */
   action?: ReactNode;
   /** Space between the header row and the chart: `md` (16px, default) or
-   * `sm` (8px) — for a chart whose own top row (an axis) already sets it
+   * `sm` (8px) - for a chart whose own top row (an axis) already sets it
    * off from the title (owner, 2026-09-30: the dashboard timeline). */
   headerGap?: 'sm' | 'md';
-  /** `stretch` (default) — the chart fills the card below the header.
-   * `end` — the chart keeps its own height and sits at the card's foot; the
+  /** `stretch` (default) - the chart fills the card below the header.
+   * `end` - the chart keeps its own height and sits at the card's foot; the
    * space above it grows instead (owner, 2026-09-30: a card matched to a
    * taller neighbour keeps its chart still rather than stretching it). */
   bodyAlign?: 'stretch' | 'end';
-  /** The chart itself — `BarChart`, or any future chart type. */
+  /** The chart itself - `BarChart`, or any future chart type. */
   children: ReactNode;
 }
 
 /**
  * The card shell every chart sits in: title + legend + filters/action on
  * one row (`space-between` auto-distributes the gaps), chart body below.
- * Composes `Card` (never detached) — L2.
+ * Composes `Card` (never detached) - L2.
  */
 export const ChartCard = forwardRef<HTMLDivElement, ChartCardProps>(function ChartCard(
   { title, titleAccessory, legend, filters, action, headerGap = 'md', bodyAlign = 'stretch', children, className, ...rest },

@@ -8,8 +8,8 @@ export type ModalPadding = 'lg' | 'md' | 'sm' | 'xs';
 export type ModalWidth = 'sm' | 'md' | 'lg';
 
 export interface ModalProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
-  /** `lg` (24px, default) · `md` (20px) · `sm` (16px) · `xs` (12px) — its own
-   * scale, one notch bigger than `Card`'s at each name (no relation —
+  /** `lg` (24px, default) · `md` (20px) · `sm` (16px) · `xs` (12px) - its own
+   * scale, one notch bigger than `Card`'s at each name (no relation -
    * `Modal` doesn't nest a `Card`, it replicates the same surface fill/radius
    * directly, since the padding numbers don't line up). */
   padding?: ModalPadding;
@@ -19,16 +19,16 @@ export interface ModalProps extends Omit<HTMLAttributes<HTMLDivElement>, 'childr
   children: ReactNode;
   /** Omit entirely to hide the footer row. */
   footer?: ReactNode;
-  /** `sm` 24rem · `md` 30rem · `lg` 36rem — never wider than the screen
+  /** `sm` 24rem · `md` 30rem · `lg` 36rem - never wider than the screen
    * less a margin. Omit to size to the content (owner, 2026-10-03: a
    * one-field dialog sized to its content was unusably narrow). */
   width?: ModalWidth;
 }
 
 /**
- * The modal panel itself — heading + close button, content, an optional
+ * The modal panel itself - heading + close button, content, an optional
  * footer. Plain and presentational only: no portal, no scrim, no focus trap,
- * no open/close animation — pair this with `Overlay` for all of that
+ * no open/close animation - pair this with `Overlay` for all of that
  * (`<Overlay open={...} onClose={...}><Modal ...>...</Modal></Overlay>`).
  */
 export const Modal = forwardRef<HTMLDivElement, ModalProps>(function Modal(

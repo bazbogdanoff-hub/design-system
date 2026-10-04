@@ -13,7 +13,7 @@
   cursor: not-allowed;
 }
 
-/* Input's own .field only reacts to a focused CHILD (:focus-within) — here
+/* Input's own .field only reacts to a focused CHILD (:focus-within) - here
    the trigger button itself is the focusable element, so :focus is added
    locally rather than relying on the imported class alone. */
 .trigger:focus {

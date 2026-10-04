@@ -1,7 +1,7 @@
 # ConversationRow
 
-One conversation in a chat list — the Aegis Messages page's left card.
-**Built code-first** (owner, 2026-10-01); no Figma master yet — build notes
+One conversation in a chat list - the Aegis Messages page's left card.
+**Built code-first** (owner, 2026-10-01); no Figma master yet - build notes
 below.
 
 ```tsx
@@ -18,13 +18,13 @@ below.
 
 | prop | type | default | notes |
 |---|---|---|---|
-| `avatar` | `ReactNode` | | an `<Avatar>` instance; renders at its own size — `xl` (44) is the intended one (owner, 2026-10-01) |
+| `avatar` | `ReactNode` | | an `<Avatar>` instance; renders at its own size - `xl` (44) is the intended one (owner, 2026-10-01) |
 | `name` | `ReactNode` | | one line, truncated |
 | `preview` | `ReactNode` | | the last message, one line, truncated |
 | `time` | `ReactNode` | | pre-formatted ("09:58", "Wed") |
 | `unread` | `number` | | solid brand pill under the time; `99+` past 99; omit / 0 for none |
 | `selected` | `boolean` | `false` | the open conversation; sets `aria-current` |
-| `surface` | `'light'` | `'dark'` | `'light'` | `dark` (2026-10-01): inside `ChatFrame` — white name, 60% preview and time, the sidebar's hover wash; selected on the sidebar panel colour |
+| `surface` | `'light'` | `'dark'` | `'light'` | `dark` (2026-10-01): inside `ChatFrame` - white name, 60% preview and time, the sidebar's hover wash; selected on the sidebar panel colour |
 | `onClick` | `() => void` | | makes the row a keyboard-operable `role="button"` |
 
 ## Why not a `Row` variant
@@ -54,16 +54,16 @@ div.row                    padding 12, gap 10, radius xl (12), align center
 
 ## States
 
-- **default** — transparent, **no divider** (owner, 2026-10-01): padding 12
+- **default** - transparent, **no divider** (owner, 2026-10-01): padding 12
   and the list's gap (4) separate rows, as in messenger apps.
-- **hover** — Row's wash (`scrollableArea.row.shadow.hover`).
-- **selected** — **Tile's recipe exactly** (owner, 2026-10-01): `tile.background`
+- **hover** - Row's wash (`scrollableArea.row.shadow.hover`).
+- **selected** - **Tile's recipe exactly** (owner, 2026-10-01): `tile.background`
   fill, 2px top-left / 1px bottom-right white catch, inner shadow 1 1 8
   (`tile.inner-shadow`), drop 0.5 0.5 2 spread 2 (`tile.shadow`). Mirrors
   `Tile.module.css`; change them together. The drop
   needs ~4 of room around the row: a scrolling list must pad itself, or its
   `overflow` clips the shadow (see Aegis `InboxTemplate`).
-- **focus-visible** — 1px inset ring (`scrollableArea.row.border.focus`).
+- **focus-visible** - 1px inset ring (`scrollableArea.row.border.focus`).
 
 ## Figma build notes
 

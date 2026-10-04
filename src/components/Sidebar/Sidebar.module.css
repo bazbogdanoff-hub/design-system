@@ -32,7 +32,7 @@
 .switcherGroup {
   display: flex;
   flex-direction: column;
-  /* No gap — module section pulls up under the switcher (see .nav). */
+  /* No gap - module section pulls up under the switcher (see .nav). */
   gap: 0;
   flex: 1 1 auto;
   min-height: 0;
@@ -40,7 +40,7 @@
 }
 
 .switcher {
-  /* Rail inset lives on .sidebar — don't double-indent the switcher.
+  /* Rail inset lives on .sidebar - don't double-indent the switcher.
      Sit above the module section where they overlap. */
   margin-inline: 0;
   width: 100%;
@@ -58,7 +58,7 @@
   margin-top: calc(-1 * var(--space-6));
   /* The list's end gets the room its top has (owner, 2026-10-02): scrolled
      to the end, a last row 4px off the panel's edge sat in the panel's
-     corner and inner shadow. Only shows once the list scrolls — otherwise
+     corner and inner shadow. Only shows once the list scrolls - otherwise
      the panel's own empty space is below it. */
   padding-bottom: var(--space-16);
   position: relative;
@@ -72,8 +72,8 @@
   display: none;
 }
 
-/* The edge fades — pinned to the list's top and bottom, in the panel's own
-   colour, on an eased curve (smoothstep), never quite solid — the row it
+/* The edge fades - pinned to the list's top and bottom, in the panel's own
+   colour, on an eased curve (smoothstep), never quite solid - the row it
    covers still shows through at the edge, which is the hint. An overlay, not a mask: the list
    scrolls inside the panel itself, and a mask would fade the panel's fill
    and corners too. Each shows only while there is more beyond its edge

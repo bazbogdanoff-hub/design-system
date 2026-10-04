@@ -2,7 +2,7 @@
 
 A route as one wide band: pinned stops joined by segments, the travelled part
 filled, and a vehicle marker riding the head of the fill. Built from Figma's
-`RouteCard` (`10746:21164`) — specifically its `Point` / `Circle part` /
+`RouteCard` (`10746:21164`) - specifically its `Point` / `Circle part` /
 `Line part` / `Truck pointer` internals, which have no separate code
 equivalents and are not exported.
 
@@ -18,16 +18,16 @@ equivalents and are not exported.
 
 | prop | type | default | notes |
 |---|---|---|---|
-| `stops` | `RouteTrackStop[]` | — | two or more; one stop isn't a route |
-| `progress` | `number` | — | `0`–`1` across the whole route, clamped |
+| `stops` | `RouteTrackStop[]` | - | two or more; one stop isn't a route |
+| `progress` | `number` | - | `0`–`1` across the whole route, clamped |
 | `hideVehicle` | `boolean` | `false` | for a route not yet started, or finished |
-| `aria-label` / `aria-labelledby` | `string` | — | **one is required** |
+| `aria-label` / `aria-labelledby` | `string` | - | **one is required** |
 
 ```ts
 interface RouteTrackStop {
   id?: string;        // React key; falls back to the index
-  place: ReactNode;   // where — the bold line
-  process?: ReactNode; // what happens there — the quiet line
+  place: ReactNode;   // where - the bold line
+  process?: ReactNode; // what happens there - the quiet line
   icon?: ReactNode;   // overrides the default MapPin
 }
 ```
@@ -42,14 +42,14 @@ route, and the component derives which segment the vehicle is in and how far
 across it. A stop counts as *reached* once the vehicle is at or past it, which
 is why the origin is filled the moment a trip starts.
 
-The band **scrolls horizontally rather than compressing** — stops keep their
+The band **scrolls horizontally rather than compressing** - stops keep their
 label widths and a long route runs off the edge. Deliberately not
 `ScrollableArea`, which is `overflow-y` only and owns a recessed background
 this band doesn't want.
 
 ## Appearance
 
-Every surface is the `Button` treatment, which is what Figma authored — not a
+Every surface is the `Button` treatment, which is what Figma authored - not a
 liberty taken in code:
 
 | part | tokens |
@@ -65,9 +65,9 @@ overlaps the band by 8px. Gaps between siblings are `space.*`.
 
 ## Not these
 
-- **`TableProgressStages`** — the same idea shrunk into a table cell: bare
+- **`TableProgressStages`** - the same idea shrunk into a table cell: bare
   dots, no labels, whole segments only, no marker. It stays as it is.
-- **`ProgressBar`** — a continuous 0–100% readout with no named places.
+- **`ProgressBar`** - a continuous 0–100% readout with no named places.
 
 ## Known gaps
 
@@ -77,5 +77,5 @@ overlaps the band by 8px. Gaps between siblings are `space.*`.
 - **`Circle part`'s variant value is `Active`, capitalised.** The convention
   is lowercase-kebab. Renaming it is a Figma-side fix.
 - **`RouteCard` has no component properties in Figma**, so the frame is a
-  single frozen example — it can't show a second progress value or an empty
+  single frozen example - it can't show a second progress value or an empty
   route.

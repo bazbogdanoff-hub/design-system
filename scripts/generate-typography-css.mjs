@@ -1,5 +1,5 @@
 /**
- * build/typography.css — one utility class per semantic text.* token, built from
+ * build/typography.css - one utility class per semantic text.* token, built from
  * the var(--font-*) custom properties Style Dictionary emits. This is the common
  * way to consume type; the individual --text-*-font-size props (from the token
  * build) are there when a component needs finer control.
@@ -45,4 +45,4 @@ const rules = [];
 
 const css = `/**\n * Do not edit directly, this file was auto-generated.\n */\n\n${rules.join('\n\n')}\n`;
 writeFileSync(`${ROOT}/build/typography.css`, css);
-console.log(`build/typography.css — ${rules.length} text classes`);
+console.log(`build/typography.css - ${rules.length} text classes`);

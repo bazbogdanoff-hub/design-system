@@ -10,7 +10,7 @@ export interface LogoProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'childr
 }
 
 /**
- * The brand mark — a 4-quadrant pinwheel, always pure white regardless of
+ * The brand mark - a 4-quadrant pinwheel, always pure white regardless of
  * theme (see `color.sidebar.logo.*`, a deliberate exception to the semantic
  * ramp). `collapsed` mirrors the Figma component 1:1: the mark never
  * changes, only whether the wordmark renders next to it.

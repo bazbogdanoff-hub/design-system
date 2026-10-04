@@ -1,6 +1,6 @@
 # StatButton
 
-A stat that acts as a button — a metric (`label` + `value`) on a glass surface
+A stat that acts as a button - a metric (`label` + `value`) on a glass surface
 that navigates to the sorted table for that metric. **L2 pattern.**
 
 Used to build summary cards: a `Card` holds a headline stat plus a row of
@@ -22,11 +22,11 @@ Used to build summary cards: a `Card` holds a headline stat plus a row of
 
 | prop | values | default | Figma |
 |---|---|---|---|
-| `label` | `ReactNode` | — | text layer `label` |
-| `value` | `ReactNode` | — | text layer `value` |
+| `label` | `ReactNode` | - | text layer `label` |
+| `value` | `ReactNode` | - | text layer `value` |
 | `tone` | `default` `danger` | `default` | variant `tone` |
 | `size` | `sm` `lg` | `sm` | variant `size` |
-| `showArrow` | `boolean` — the ↗ "drill in" affordance | `false` | property `Show arrow` |
+| `showArrow` | `boolean` - the ↗ "drill in" affordance | `false` | property `Show arrow` |
 
 Renders a **`<button type="button">`**; drive navigation from `onClick`. Standard
 button props (`disabled`, `onClick`, `aria-*`, …) pass through. `className` merges.
@@ -36,13 +36,13 @@ button props (`disabled`, `onClick`, `aria-*`, …) pass through. `className` me
 ```
 button.stat
 └─ span.content   (column: label over value)
-   ├─ span.label  — "Moving"
-   └─ span.value  — "112"
+   ├─ span.label  - "Moving"
+   └─ span.value  - "112"
 └─ ArrowUpRight   (lg + showArrow only, pushed right)
 ```
 
-- `sm` — column, hug both. ~59px tall (1440 migration, was ~70px).
-- `lg` — row, `space-between`; label/value block left, arrow right. ~63px tall (was ~75px).
+- `sm` - column, hug both. ~59px tall (1440 migration, was ~70px).
+- `lg` - row, `space-between`; label/value block left, arrow right. ~63px tall (was ~75px).
 
 ## Appearance
 
@@ -51,17 +51,17 @@ button.stat
 | surface | `color/card/background/default` (#fcfcfc) |
 | radius | `radius/control` → 8 |
 | catch (rest / hover) | 1.5px white, top + left (`color/card/border`) |
-| border (focus / active) | **full** 1.5px primary (`color/card/border-active` → brand 500) — replaces the catch |
+| border (focus / active) | **full** 1.5px primary (`color/card/border-active` → brand 500) - replaces the catch |
 | shadow (rest) | `Viginette/2xs` → `inset 2px 2px 12px #f0f0f0`, `0 1px 8px rgba(0,0,0,.20)` |
 | shadow (hover) | `Viginette/2xs hover` → drop shadow deepens to `0 2px 12px rgba(0,0,0,.25)` |
 | padding | `space/8` block · `space/12` inline |
 | gap (lg, block↔arrow) | `space/8` |
 | label | `sm` `text/body/sm` · `lg` `text/body/md` |
-| value | `sm` `text/heading/sm` (was `heading/md`) · `lg` `text/heading/md` (was `heading/lg`) — 1440 migration, shifted one more step down than the automatic type-scale cascade alone; colour `color/text/strong` (one step lighter than a main card heading), or `color/text/danger` when `tone="danger"` |
+| value | `sm` `text/heading/sm` (was `heading/md`) · `lg` `text/heading/md` (was `heading/lg`) - 1440 migration, shifted one more step down than the automatic type-scale cascade alone; colour `color/text/strong` (one step lighter than a main card heading), or `color/text/danger` when `tone="danger"` |
 | arrow | 24px, `color/text/subtle` |
 
 The glass shadow pair (`Viginette/2xs` / `…hover`) is the **shared glass-button
-treatment** — StatButton, Button, and any glass button use it for rest/hover.
+treatment** - StatButton, Button, and any glass button use it for rest/hover.
 Not tokenised (effect, hand-tuned); extracted into the CSS with its Figma origin.
 
 ## States (CSS, not variants)
@@ -69,7 +69,7 @@ Not tokenised (effect, hand-tuned); extracted into the CSS with its Figma origin
 | state | treatment |
 |---|---|
 | `:hover` | shadow → `Viginette/2xs hover` |
-| `:focus-visible` **and** `:active` | the white top-left catch becomes a **full 1.5px primary border** (`color/card/border-active`) — identical for both. No outline ring |
+| `:focus-visible` **and** `:active` | the white top-left catch becomes a **full 1.5px primary border** (`color/card/border-active`) - identical for both. No outline ring |
 | `:disabled` | 70% opacity, `cursor: default`, no hover/active |
 
 Figma carries the full `state` axis (`default` · `hover` · `active` · `focus` ·
@@ -78,7 +78,7 @@ Figma carries the full `state` axis (`default` · `hover` · `active` · `focus`
 
 ## Figma
 
-Component set **`StatButton`** — `tone` (2) × `size` (2) × `state` (5:
+Component set **`StatButton`** - `tone` (2) × `size` (2) × `state` (5:
 default/hover/active/focus/disabled) = 20 variants, plus `Show arrow` (bool) +
 `arrow` (instance-swap). Rebuilt from the kit `Stat - button`: all colour /
 radius / spacing / type rebound to the new collections; `Text Combination` kit
@@ -89,6 +89,6 @@ opacity.
 
 ## a11y
 
-It's a real `<button>` — focus, Enter/Space, `disabled` all native. If the label
-alone isn't a clear action target, pass `aria-label` (e.g. `"Moving — 112, open
+It's a real `<button>` - focus, Enter/Space, `disabled` all native. If the label
+alone isn't a clear action target, pass `aria-label` (e.g. `"Moving - 112, open
 table"`).

@@ -9,9 +9,9 @@ type Base = Omit<HTMLAttributes<HTMLSpanElement>, 'children'> & {
   /** `sm` (28px, default) · `md` (32px) · `lg` (36px) · `xl` (40px) · `2xl`
    * (44px). Same box/radius grading as `IconButton`'s primary variant. */
   size?: IconCellSize;
-  /** `neutral` (default) · `brand` · `success` · `warning` · `danger` — a
+  /** `neutral` (default) · `brand` · `success` · `warning` · `danger` - a
    * flat tint off the semantic `background.<tone>-subtle` / `text.<tone>`
-   * pair (not `Badge`'s own tokens — `Badge` moved to a glass glow/shadow
+   * pair (not `Badge`'s own tokens - `Badge` moved to a glass glow/shadow
    * recipe on 2026-09-16 that IconCell deliberately doesn't follow). */
   tone?: IconCellTone;
 };
@@ -21,7 +21,7 @@ export type IconCellProps =
   | (Base & { icon?: never; children: ReactNode });
 
 /**
- * A static badge-shaped cell — same size/radius grading as `IconButton`'s
+ * A static badge-shaped cell - same size/radius grading as `IconButton`'s
  * primary variant, but non-interactive (no hover/active states) and holds
  * either a single icon or short text (usually a number, e.g. a queue
  * position like "#5"). See `docs/components/IconCell.md`.

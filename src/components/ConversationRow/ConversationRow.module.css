@@ -20,9 +20,9 @@
   background-color: var(--color-scrollable-area-row-shadow-hover);
 }
 
-/* Selected wears Tile's recipe exactly (owner, 2026-10-01) — the white
+/* Selected wears Tile's recipe exactly (owner, 2026-10-01) - the white
    second-layer card: its fill, its 2/1 white catch, soft inner shadow and
-   faint drop — so the open conversation lifts off the card the way every
+   faint drop - so the open conversation lifts off the card the way every
    Tile does. Values mirror Tile.module.css; change them together. */
 .row[data-selected] {
   background-color: var(--color-tile-background);
@@ -56,7 +56,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  /* room for descenders under the clip, given back — as Row's heading
+  /* room for descenders under the clip, given back - as Row's heading
      (owner, 2026-10-03: "Wójcik" lost its j's tail) */
   padding-bottom: 0.2em;
   margin-bottom: -0.2em;
@@ -101,7 +101,7 @@
 }
 
 /* The dashboard chat card's unread pill (owner, 2026-10-01): brand.500
-   with a 1px brand.400 catch along the top-left — the house light — and
+   with a 1px brand.400 catch along the top-left - the house light - and
    tabular figures so a count doesn't jitter as it changes. */
 .unread {
   display: inline-flex;

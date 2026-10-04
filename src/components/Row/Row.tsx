@@ -20,7 +20,7 @@ export type RowSize = 'sm' | 'md' | 'lg';
  * mapping so callers don't have to memorise it. */
 const DESCRIPTION_LABEL_GROUP_SIZE: Record<RowSize, LabelSize> = { sm: '2xs', md: 'xs', lg: 'sm' };
 
-/** Locked to `IconCell` — never a generic slot. Mirrors `IconCell`'s own
+/** Locked to `IconCell` - never a generic slot. Mirrors `IconCell`'s own
  * icon-xor-children union, minus `size` (`Row` controls that itself, keyed
  * off its own `size`). See docs/components/Row.md for why this is a typed
  * prop and not a `ReactNode` slot like `status`/`action`. */
@@ -31,10 +31,10 @@ export type RowLeading =
 const ICON_CELL_SIZE: Record<RowSize, 'sm' | 'md' | 'lg'> = { sm: 'sm', md: 'md', lg: 'lg' };
 
 type Base = Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> & {
-  /** `sm` (8px padding) · `md` (10px, default) · `lg` (12px) — same step
+  /** `sm` (8px padding) · `md` (10px, default) · `lg` (12px) - same step
    * controls the heading/description text size pairing. */
   size?: RowSize;
-  /** Optional leading accessory — always an `IconCell`, sized to match
+  /** Optional leading accessory - always an `IconCell`, sized to match
    * `size`. Omit entirely for a row with no leading element. */
   leading?: RowLeading;
   heading: ReactNode;
@@ -42,10 +42,10 @@ type Base = Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> & {
    * `color="subtle"`. Pass a bare `<LabelGroup>` (Row fills `size` + `color`)
    * or a string/node (Row wraps it in one `Label`). */
   description: ReactNode;
-  /** Trailing, left side — a `Badge` or `SeverityBadge`, usually. Freeform
+  /** Trailing, left side - a `Badge` or `SeverityBadge`, usually. Freeform
    * within itself; always renders left-of-`action`. */
   status?: ReactNode;
-  /** Trailing, right side — a `Button` and/or `IconButton`, usually.
+  /** Trailing, right side - a `Button` and/or `IconButton`, usually.
    * Freeform within itself; always renders right-of-`status`. */
   action?: ReactNode;
   onClick?: () => void;
@@ -73,10 +73,10 @@ function resolveDescription(description: ReactNode, size: RowSize): ReactNode {
 
 /**
  * A single list row for `ScrollableArea` (`Next task` reference lists,
- * fleet-problem lists, etc.) — one fixed anatomy, not a generic `Slot` like
+ * fleet-problem lists, etc.) - one fixed anatomy, not a generic `Slot` like
  * `Card`: `[leading?] [heading+description, fills] [status?] [action?]`.
  *
- * No fill by default (matches `color/scrollableArea/row/*` — rows in a
+ * No fill by default (matches `color/scrollableArea/row/*` - rows in a
  * recessed scroll track stay transparent). Hover is always a wash so the
  * active row is visible while scanning; keyboard/`role="button"` only when
  * `onClick` is passed. See docs/components/Row.md.

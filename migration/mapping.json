@@ -81,11 +81,11 @@
   ],
 
   "rawHex": {
-    "#15adc3b2": "skip — teal glass fill (effect)",
-    "#15adc31a": "skip — teal glass (effect)",
-    "#ffffff1a": "skip — white glass highlight (effect)",
-    "#4040401a": "skip — dark scrim (effect)",
+    "#15adc3b2": "skip - teal glass fill (effect)",
+    "#15adc31a": "skip - teal glass (effect)",
+    "#ffffff1a": "skip - white glass highlight (effect)",
+    "#4040401a": "skip - dark scrim (effect)",
     "#ffffff":   "color/surface/default",
-    "#989898":   "manual — mid grey, low count, check context"
+    "#989898":   "manual - mid grey, low count, check context"
   }
 }

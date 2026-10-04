@@ -1,6 +1,6 @@
 /* Square icon-only button. The glass skin comes from Button's `.surface`
    (imported); this file is just the square layout + per-size dimensions.
-   1440 migration: sizes are unified across variant now (same as Button) —
+   1440 migration: sizes are unified across variant now (same as Button) -
    one exception, tertiary's `xs` is uniquely 24px (every other combo's size
    is purely size-driven, not variant-driven). font-size sets the 1em icon. */
 .iconButton {

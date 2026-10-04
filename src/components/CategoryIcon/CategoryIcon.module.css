@@ -40,7 +40,7 @@
   --icon-size: 1.25rem;
 }
 
-/* Glass (owner, 2026-10-03: "restyled to our chart element like style") —
+/* Glass (owner, 2026-10-03: "restyled to our chart element like style") -
    the tile wears the chart marks' recipe (src/glass.css): solid in its
    category colour, a catch along the top-left edge, a deeper inner shade,
    and its own colour thrown down and right. Each colour below only sets
@@ -57,7 +57,7 @@
   box-shadow: none;
 }
 
-/* emphasis=strong — saturated fill + white icon (modules) */
+/* emphasis=strong - saturated fill + white icon (modules) */
 .tile[data-emphasis='strong'][data-color='brand']   { --glass-fill: var(--color-category-brand-background); }
 .tile[data-emphasis='strong'][data-color='teal']    { --glass-fill: var(--color-category-teal-background); }
 .tile[data-emphasis='strong'][data-color='rose']    { --glass-fill: var(--color-category-rose-background); }
@@ -70,7 +70,7 @@
 .tile[data-emphasis='strong'][data-color='blue']    { --glass-fill: var(--color-category-blue-background); }
 .tile[data-emphasis='strong'] .icon { color: var(--color-text-on-brand); }
 
-/* emphasis=muted — the hue desaturated (not lightened), still a white icon (settings) */
+/* emphasis=muted - the hue desaturated (not lightened), still a white icon (settings) */
 .tile[data-emphasis='muted'][data-color='brand']   { --glass-fill: var(--color-category-brand-background-muted); }
 .tile[data-emphasis='muted'][data-color='teal']    { --glass-fill: var(--color-category-teal-background-muted); }
 .tile[data-emphasis='muted'][data-color='rose']    { --glass-fill: var(--color-category-rose-background-muted); }

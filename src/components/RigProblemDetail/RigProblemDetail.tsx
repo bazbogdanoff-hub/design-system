@@ -23,11 +23,11 @@ export interface RigProblemDetailProps extends Omit<HTMLAttributes<HTMLDivElemen
 }
 
 /**
- * The rig detail modal — a `Modal` (`padding="sm"`) whose header pairs the
+ * The rig detail modal - a `Modal` (`padding="sm"`) whose header pairs the
  * rig id with a `SeverityBadge`, and whose body lays 3 `EntityProblemPanel`s
  * (truck/trailer/driver) side by side in equal-width columns. Single-purpose
  * assembly for one specific interaction (unlike `Headercard` or
- * `EntityProblemPanel`, which are reused broadly) — composes `Modal` and
+ * `EntityProblemPanel`, which are reused broadly) - composes `Modal` and
  * `EntityProblemPanel` directly, never detached.
  */
 export const RigProblemDetail = forwardRef<HTMLDivElement, RigProblemDetailProps>(function RigProblemDetail(

@@ -13,12 +13,12 @@ const NAME: Record<ChannelLogoChannel, string> = {
 };
 
 export interface ChannelLogoProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> {
-  /** Which messaging app. In-app messages have no logo — render nothing. */
+  /** Which messaging app. In-app messages have no logo - render nothing. */
   channel: ChannelLogoChannel;
   /** `xs` (12) · `sm` (20) · `md` (28) · `lg` (36, the height of an `lg`
    * `IconButton`, so it sits beside one in a header). */
   size?: ChannelLogoSize;
-  /** `true` (default): the app's own logo — its white mark on a rounded
+  /** `true` (default): the app's own logo - its white mark on a rounded
    * tile in its brand colour. `false`: the bare mark in `currentColor`, for
    * running text (a message's time line). */
   tile?: boolean;
@@ -28,8 +28,8 @@ export interface ChannelLogoProps extends Omit<HTMLAttributes<HTMLSpanElement>, 
 }
 
 /**
- * A messaging app's logo (owner, 2026-10-01, built code-first) — Telegram,
- * WhatsApp, Viber — for saying which channel a conversation or a message
+ * A messaging app's logo (owner, 2026-10-01, built code-first) - Telegram,
+ * WhatsApp, Viber - for saying which channel a conversation or a message
  * travelled on. Marks are Simple Icons' (CC0), verbatim; colours are the
  * apps' own (`color.channelLogo.*`), not ours to retune. Phosphor has no
  * Viber mark and only approximations of the others, hence its own artwork.

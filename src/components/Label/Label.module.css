@@ -1,4 +1,4 @@
-/* Mirrors text/body/* exactly (size / weight / line-height / letter-spacing) —
+/* Mirrors text/body/* exactly (size / weight / line-height / letter-spacing) -
    Label is body weight, NOT the label scale's semibold (that's Tag's job).
    Reuses the --text-body-* vars rather than duplicating them. */
 .label {
@@ -49,7 +49,7 @@
   letter-spacing: var(--text-body-xl-letter-spacing);
 }
 
-/* color/label/* — plain aliases of the semantic text ramp, per-instance */
+/* color/label/* - plain aliases of the semantic text ramp, per-instance */
 .label[data-color='default'] { color: var(--color-label-default); }
 .label[data-color='subtle']  { color: var(--color-label-subtle); }
 .label[data-color='muted']   { color: var(--color-label-muted); }

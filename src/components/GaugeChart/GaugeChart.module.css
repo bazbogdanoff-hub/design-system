@@ -20,7 +20,7 @@
   overflow: visible;
 }
 
-/* Nothing on the gauge — a flat recessed band, like an empty progress
+/* Nothing on the gauge - a flat recessed band, like an empty progress
    segment. */
 .empty {
   stroke: var(--color-surface-recessed);
@@ -40,7 +40,7 @@
   opacity: 1;
 }
 
-/* Entrance — the arc rises out of a slight shrink from its base. Plays once,
+/* Entrance - the arc rises out of a slight shrink from its base. Plays once,
    on mount. */
 .arc {
   transform-box: view-box;
@@ -55,7 +55,7 @@
   }
 }
 
-/* The bowl — the headline (or the hovered segment) and what it counts. */
+/* The bowl - the headline (or the hovered segment) and what it counts. */
 .centre {
   position: absolute;
   left: 0;
@@ -67,7 +67,7 @@
   pointer-events: none;
 }
 
-/* heading.xl (28), one step under the donut's display.md — the bowl is
+/* heading.xl (28), one step under the donut's display.md - the bowl is
    smaller than the donut's middle (owner, 2026-09-30). */
 .value {
   font-family: var(--text-heading-xl-font-family);

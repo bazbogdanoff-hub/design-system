@@ -15,29 +15,29 @@ export type SidebarMode = 'collapsed' | 'expanded';
 
 export interface SidebarModule {
   id: string;
-  /** `brand` (Operations) · `success` (Assets) · `danger` (Alerts) — the
+  /** `brand` (Operations) · `success` (Assets) · `danger` (Alerts) - the
    * module's fixed color identity. Position in the switcher is purely
    * `modules`' own array order; color and position are independent, so
    * reordering modules never implies recoloring them. */
   tone: SidebarNavItemTone;
-  /** Visible only to assistive tech — the switcher segments themselves are
+  /** Visible only to assistive tech - the switcher segments themselves are
    * bare color pills with no visible label, matching the Figma component. */
   label: string;
 }
 
 export interface SidebarProps extends Omit<HTMLAttributes<HTMLElement>, 'children'> {
-  /** Pass the same value given to the parent `AppShell`'s own `sidebarMode`
-   * — labels stay in sync with the rail's actual width. */
+  /** Pass the same value given to the parent `AppShell`'s own `sidebarMode` -
+   * labels stay in sync with the rail's actual width. */
   mode?: SidebarMode;
   /** The 3 fixed modules for the top switcher, in display order. */
   modules: SidebarModule[];
   activeModule: string;
   onModuleChange: (id: string) => void;
-  /** The active module's own nav items — a list of `SidebarNavItem`s. */
+  /** The active module's own nav items - a list of `SidebarNavItem`s. */
   children: ReactNode;
   userName: ReactNode;
   userInitials: ReactNode;
-  /** Optional photo for the Profile row — when set, replaces the initials `Avatar`. */
+  /** Optional photo for the Profile row - when set, replaces the initials `Avatar`. */
   userAvatar?: ReactNode;
   /** `MenuRow`s for the profile dropdown when Profile opens a menu
    * (legacy). Omit / unused when `onProfileClick` navigates to a profile page. */
@@ -45,23 +45,23 @@ export interface SidebarProps extends Omit<HTMLAttributes<HTMLElement>, 'childre
   onSettingsClick?: () => void;
   /** Highlight the Settings row (e.g. when `/settings` is the current route). */
   settingsActive?: boolean;
-  /** Navigate to the profile screen — when set, Profile no longer toggles the menu. */
+  /** Navigate to the profile screen - when set, Profile no longer toggles the menu. */
   onProfileClick?: () => void;
   /** Highlight the Profile row (e.g. when `/profile` is the current route). */
   profileActive?: boolean;
   /** Extra `SidebarNavItem`s at the top of the bottom section, above Profile
-   * and Settings — app-wide places that belong to no module (owner,
+   * and Settings - app-wide places that belong to no module (owner,
    * 2026-09-30: Messages and the Aegis assistant). Settings stays last: its
    * row carries the section's deep corner. */
   bottomItems?: ReactNode;
-  /** The wordmark text next to the brand mark — ignored when collapsed. */
+  /** The wordmark text next to the brand mark - ignored when collapsed. */
   name: ReactNode;
   /** Temporary: toggles collapsed ↔ expanded (icon under logo + divider). */
   onModeToggle?: () => void;
 }
 
 /**
- * The app's left rail — the brand mark up top, a module switcher (picking
+ * The app's left rail - the brand mark up top, a module switcher (picking
  * one swaps `children` to that module's own nav), the active module's nav
  * list in its own rounded section, and a fixed bottom section for
  * [bottomItems →] Profile → Settings. `AppShell` still owns the rail's width/background,
@@ -119,7 +119,7 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
   }, [activeModule, children]);
 
   // A newly picked module opens at the top of its list, not at the scroll
-  // position the previous module was left at — then the effect below brings
+  // position the previous module was left at - then the effect below brings
   // its current row into view, so it forgets the row it last placed.
   const activeRowRef = useRef<Element | null>(null);
   useEffect(() => {
@@ -129,7 +129,7 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
 
   // The current page's row is never left under an edge fade (owner,
   // 2026-10-02: on a short window the last row loaded half-covered). Only
-  // when the active row changes — a load, a navigation, a module switch —
+  // when the active row changes - a load, a navigation, a module switch -
   // so it never fights a list the user has scrolled themselves. A row's own
   // height of room clears the fade (2.5rem) with air to spare.
   useEffect(() => {

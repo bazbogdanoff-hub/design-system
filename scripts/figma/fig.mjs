@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * fig.mjs — send one Figma Plugin API snippet to the figmosha2 bridge and print
+ * fig.mjs - send one Figma Plugin API snippet to the figmosha2 bridge and print
  * the result as JSON. The figma-audit and figma-safe-edit skills both use this.
  *
  *   node scripts/figma/fig.mjs snippet.js
@@ -50,7 +50,7 @@ try {
 const data = await resp.json().catch(() => ({}));
 
 if (resp.status === 503) {
-  console.error('plugin not connected — in Figma Desktop: Plugins → Development → Figmosha Bridge');
+  console.error('plugin not connected - in Figma Desktop: Plugins → Development → Figmosha Bridge');
   process.exit(3);
 }
 if (!data.ok) {

@@ -1,6 +1,6 @@
 /* Page owns scroll + padding + sticky regions inside the AppShell content slot.
    Content padding is `space/16` (layout-guide offset); regions can `bleed` it
-   away horizontally. AppShell's .content must NOT also pad — that doubles the
+   away horizontally. AppShell's .content must NOT also pad - that doubles the
    inset. CSS vars below mirror Figma's Page layoutGrids (16 / gutter 16 /
    offset 16 / stretch) for Grid to inherit. */
 .page {
@@ -15,7 +15,7 @@
   box-sizing: border-box;
 }
 
-/* ---- scroll layout — the whole page scrolls -------------------------------- */
+/* ---- scroll layout - the whole page scrolls -------------------------------- */
 .page[data-layout='scroll'] {
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -38,7 +38,7 @@
   padding: 0;
 }
 
-/* ---- fixed layout — grid, only .body scrolls ------------------------------- */
+/* ---- fixed layout - grid, only .body scrolls ------------------------------- */
 .page[data-layout='fixed'] {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;

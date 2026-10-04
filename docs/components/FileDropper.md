@@ -1,9 +1,9 @@
 # FileDropper
 
-A drag-and-drop file upload zone. **L2** — composes `ProgressBar` and
+A drag-and-drop file upload zone. **L2** - composes `ProgressBar` and
 `HelperText`, both sides. Built React-first from a reference screenshot of
 the idle state (per this session's usual "build in code first, review live"
-call for undesigned components), then ported into Figma to match — see
+call for undesigned components), then ported into Figma to match - see
 **Figma** below.
 
 ```tsx
@@ -38,24 +38,24 @@ call for undesigned components), then ported into Figma to match — see
 
 | prop | type | default | notes |
 |---|---|---|---|
-| `status` | `idle` \| `uploading` \| `success` \| `error` | `idle` | fully controlled — the component never sets its own status |
-| `heading` | `ReactNode` — required | — | idle-state title |
+| `status` | `idle` \| `uploading` \| `success` \| `error` | `idle` | fully controlled - the component never sets its own status |
+| `heading` | `ReactNode` - required | - | idle-state title |
 | `description` | `ReactNode` | `"Click to upload, or drag a file here"` | idle-state subtext |
-| `file` | `{ name: string; size?: string }` | — | required (in practice) once `status` leaves `idle` |
+| `file` | `{ name: string; size?: string }` | - | required (in practice) once `status` leaves `idle` |
 | `progress` | `number` (0–100) | `0` | read only while `status="uploading"` |
-| `errorMessage` | `ReactNode` | — | rendered as a `HelperText` (`tone="error"`) under the filename |
-| `accept` / `multiple` | forwarded to the native `<input type="file">` | — | |
-| `disabled` | `boolean` | — | no click, drag, or trailing action |
-| `onFilesSelected` | `(files: FileList) => void` — required | — | fires on click-pick or drop, in **any** status — dropping again replaces the current file |
-| `onCancel` / `onRemove` / `onRetry` | `() => void` | — | trailing action shown only in the matching status, and only if passed |
+| `errorMessage` | `ReactNode` | - | rendered as a `HelperText` (`tone="error"`) under the filename |
+| `accept` / `multiple` | forwarded to the native `<input type="file">` | - | |
+| `disabled` | `boolean` | - | no click, drag, or trailing action |
+| `onFilesSelected` | `(files: FileList) => void` - required | - | fires on click-pick or drop, in **any** status - dropping again replaces the current file |
+| `onCancel` / `onRemove` / `onRetry` | `() => void` | - | trailing action shown only in the matching status, and only if passed |
 
-## Controlled, not stateful — same split as `ProgressBar`
+## Controlled, not stateful - same split as `ProgressBar`
 
-Picking or dropping a file never changes `status` itself — it only calls
+Picking or dropping a file never changes `status` itself - it only calls
 `onFilesSelected`. The caller owns the actual upload (start it, track
 `progress`, land on `success` or `error`) and drives every other prop from
 that. This mirrors `ProgressBar`'s own "I just render `value`, I don't own
-the timer" boundary — a `FileDropper` that quietly moved itself from
+the timer" boundary - a `FileDropper` that quietly moved itself from
 `uploading` to `success` on a fixed timeout would fight whatever real upload
 logic the consumer has.
 
@@ -63,7 +63,7 @@ logic the consumer has.
 
 The whole box is a `<label>` wrapping a visually-hidden (clip-rect, not
 `display:none`) native `<input type="file">`. Clicking anywhere activates the
-input via native label semantics — no `ref.click()` trick needed — and the
+input via native label semantics - no `ref.click()` trick needed - and the
 hidden input stays keyboard-focusable/operable (Tab reaches it, Space/Enter
 opens the file dialog) for free. Drag-and-drop is layered on top with manual
 `onDragEnter`/`onDragOver`/`onDragLeave`/`onDrop` handlers on the label
@@ -72,10 +72,10 @@ over a child element doesn't flicker the highlight off.
 
 The 3 trailing action buttons (cancel/remove/retry) sit *inside* the label.
 Each `onClick` calls both `preventDefault()` and `stopPropagation()` before
-the real handler — otherwise clicking "remove" would also re-open the file
+the real handler - otherwise clicking "remove" would also re-open the file
 picker via the label's own default action.
 
-## Only the border carries state color — same restraint as `Input`
+## Only the border carries state color - same restraint as `Input`
 
 `Input`'s icon/affix colors never react to hover/focus/error, only the
 border does (see `Input.md`). `FileDropper` follows the same rule: the
@@ -83,14 +83,14 @@ leading icon is `DocumentIcon` (`color.icon.subtle`, neutral) while
 `uploading`, and only swaps to a colored status glyph
 (`CheckCircleIcon`/`WarningIcon`, reused from `EmptyState`/`HelperText`
 rather than redrawn) on `success`/`error`. The border is dashed at `idle`,
-solid everywhere else, and only turns `color.border.danger` on `error` — it
+solid everywhere else, and only turns `color.border.danger` on `error` - it
 never turns green on `success`, since the status glyph + optional `size`
 metadata already carry that signal without needing a second channel.
 
 ## Drag-over always wins, in every status
 
 Dragging a file over the zone highlights it (`color.border.brand` +
-`color.background.brand-subtle`) regardless of the current `status` —
+`color.background.brand-subtle`) regardless of the current `status` -
 dropping a new file onto an already-`success`/`error` row is a legitimate
 "replace it" gesture, not blocked. `disabled` is the only state drag-over
 can't override.
@@ -99,32 +99,32 @@ can't override.
 
 Same "one small glyph per fixed meaning" pattern as `HelperText`'s
 `InfoIcon`/`WarningIcon`: `UploadIcon` (idle), `DocumentIcon` (neutral file),
-`CloseIcon` (cancel/remove), `RetryIcon` (error retry) — all four are now
+`CloseIcon` (cancel/remove), `RetryIcon` (error retry) - all four are now
 thin wrappers around the real `@phosphor-icons/react` package (`UploadSimple`/
 `FileText`/`X`/`ArrowClockwise`, Bold weight), not hand-drawn approximations.
 
 ## Figma
 
-**`FileDropper`** (`10282:25711`) — 5 variants, one `status` axis
-(`idle`/`uploading`/`success`/`error`/`disabled` — `disabled` folded into the
+**`FileDropper`** (`10282:25711`) - 5 variants, one `status` axis
+(`idle`/`uploading`/`success`/`error`/`disabled` - `disabled` folded into the
 same axis rather than a separate boolean, same convention `Button`/`Input`
 use for their own `state`). Built in Figma **after** the React port, from the
-same reference screenshot — reuses real instances throughout rather than
+same reference screenshot - reuses real instances throughout rather than
 redrawing: `IconButton` (`tertiary`/`sm`) for the trailing action (glyph
-swapped per status — `X` for cancel/remove, `ArrowClockwise` for retry),
+swapped per status - `X` for cancel/remove, `ArrowClockwise` for retry),
 `ProgressBar` (`sm`/`brand`) for the uploading fill, `HelperText`
 (`sm`/`error`) for the error message. Status glyphs are the file's own
 Phosphor icons (`UploadSimple`, `FileText`, `CheckCircle`, `Warning`) with
-their `Vector` fill bound directly to the matching semantic color variable —
+their `Vector` fill bound directly to the matching semantic color variable -
 same technique `Input`'s `leading-icon`/`trailing-icon` already use. Layers:
 `badge`/`heading`/`description` (idle, disabled) and `statusIcon`/`info`
 (`fileName` + `fileMeta`/`progress`/`HelperText`)/`action` (the 3 row
-states) — lowercase role names throughout, per convention.
+states) - lowercase role names throughout, per convention.
 
 **2026-09-19: Figma/React parity closed.** The React icons
 (`UploadIcon`/`DocumentIcon`/`CloseIcon`/`RetryIcon`) were hand-drawn
 approximations, visually close but not pixel-identical to Figma's actual
 `UploadSimple`/`FileText`/`X`/`ArrowClockwise`. Replaced with thin wrappers
 around the real `@phosphor-icons/react` package (same names, Bold weight,
-confirmed via the Figma bridge) — now genuinely pixel-identical, not just
+confirmed via the Figma bridge) - now genuinely pixel-identical, not just
 close, across every icon-bearing component in the system (see `HANDOFF.md`).

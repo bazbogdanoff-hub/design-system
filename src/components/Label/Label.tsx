@@ -13,14 +13,14 @@ export type LabelColor =
   | 'danger';
 
 export interface LabelProps extends HTMLAttributes<HTMLSpanElement> {
-  /** `2xs` (10px) · `xs` (12px) · `sm` (13px) · `md` (14px, default) · `lg` (15px) · `xl` (16px) — mirrors `text/body/*`. */
+  /** `2xs` (10px) · `xs` (12px) · `sm` (13px) · `md` (14px, default) · `lg` (15px) · `xl` (16px) - mirrors `text/body/*`. */
   size?: LabelSize;
-  /** Per-instance text color — `color.label.*`, plain aliases of the semantic text ramp. */
+  /** Per-instance text color - `color.label.*`, plain aliases of the semantic text ramp. */
   color?: LabelColor;
 }
 
 /**
- * A plain, colorable inline text bit — sentence-case, body weight. The atomic
+ * A plain, colorable inline text bit - sentence-case, body weight. The atomic
  * piece `LabelGroup` composes (e.g. `TK-4021` in `TK-4021 | TL-88 | Dumont`).
  *
  * Distinct from `Tag` (uppercase, semibold, category eyebrow) and `Badge`

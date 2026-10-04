@@ -13,10 +13,10 @@ export interface PaginationProps extends Omit<HTMLAttributes<HTMLDivElement>, 'c
 }
 
 /**
- * "Page X of Y" + a prev/next control — the minimal pagination this system
+ * "Page X of Y" + a prev/next control - the minimal pagination this system
  * needs so far (no page-number buttons). Boundaries disable themselves
  * (`page <= 1` / `page >= totalPages`) rather than requiring the caller to
- * compute that — same "the component knows its own edge cases" reasoning
+ * compute that - same "the component knows its own edge cases" reasoning
  * `Slider`'s min/max clamping uses.
  */
 export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(function Pagination(

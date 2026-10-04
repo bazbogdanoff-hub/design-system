@@ -1,4 +1,4 @@
-/* FolderDropper — see FolderDropper.tsx. Geometry and springs live in the TSX;
+/* FolderDropper - see FolderDropper.tsx. Geometry and springs live in the TSX;
    this is the material. */
 
 .root {
@@ -7,14 +7,14 @@
   align-items: flex-end;
   gap: var(--space-24);
   /* Room above the folder for the sheet that is uploading. Waiting sheets
-     pile a little higher and may rise past it — overflow stays visible. */
+     pile a little higher and may rise past it - overflow stays visible. */
   padding-top: 3.75rem;
-  /* Room on the left for the folder's drop shadow — flush, the dialog clipped it
+  /* Room on the left for the folder's drop shadow - flush, the dialog clipped it
      (owner, 2026-10-03). */
   padding-left: var(--space-12);
   min-width: 0;
 }
-/* stacked — one file: the folder centred, its row in a slot underneath,
+/* stacked - one file: the folder centred, its row in a slot underneath,
    less room above (a sheet may rise a little past it; overflow is visible). */
 .root[data-layout='stacked'] {
   flex-direction: column;
@@ -55,7 +55,7 @@
   perspective-origin: 50% 100%;
 }
 
-/* ---- back — the primary button's glass (SVG filter: catch, inner shadow,
+/* ---- back - the primary button's glass (SVG filter: catch, inner shadow,
    drop shadow, the chart marks' recipe) ----------------------------------- */
 .back {
   position: absolute;
@@ -102,7 +102,7 @@
   background: var(--color-zinc-200);
 }
 
-/* ---- front — the same material at a quarter of the fill over a small blur,
+/* ---- front - the same material at a quarter of the fill over a small blur,
    deepening behind its words (owner, 2026-10-02) --------------------------- */
 .front {
   position: absolute;
@@ -142,7 +142,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-/* Two lines for the title — the front is narrow, and a document's name or
+/* Two lines for the title - the front is narrow, and a document's name or
    "Upload the renewed document" should read whole, not end in "…". */
 .title {
   display: -webkit-box;
@@ -166,7 +166,7 @@
   letter-spacing: var(--text-caption-letter-spacing);
 }
 
-/* ---- the list — every finished or failed file, newest first -------------- */
+/* ---- the list - every finished or failed file, newest first -------------- */
 .actions {
   display: inline-flex;
   gap: var(--space-4);
@@ -178,9 +178,9 @@
   display: flex;
   flex-direction: column;
 }
-/* side — beside the folder: its width reserved from the start (a content-
+/* side - beside the folder: its width reserved from the start (a content-
    sized dialog would otherwise widen when the first row arrives), its height
-   the folder column's — the scroller is laid over it, reaching up into the
+   the folder column's - the scroller is laid over it, reaching up into the
    room above the folder, so rows never add height. Rows sit at the bottom,
    level with the folder, and scroll up past it. */
 .root[data-layout='side'] .list {
@@ -199,7 +199,7 @@
 .root[data-layout='side'] .listScroll > :first-child {
   margin-top: auto;
 }
-/* stacked — one row's slot, held open while empty; its width taken from
+/* stacked - one row's slot, held open while empty; its width taken from
    the box, never added to it (a long file name widened the dialog). */
 .root[data-layout='stacked'] .list {
   height: 3.25rem;
@@ -211,7 +211,7 @@
   align-self: flex-start;
 }
 
-/* A row arrives by growing from the folder's side on a small overshoot —
+/* A row arrives by growing from the folder's side on a small overshoot -
    transform only, so it never re-lays the page out per frame (owner,
    2026-10-03: "it lags and tweaks"). Nothing fades. Removing shrinks it. */
 .item {

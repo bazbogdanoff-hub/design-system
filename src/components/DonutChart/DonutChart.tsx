@@ -9,7 +9,7 @@ export interface DonutChartDatum {
   key: string;
   label: string;
   value: number;
-  /** Any CSS color value — usually a token var. */
+  /** Any CSS color value - usually a token var. */
   color: string;
 }
 
@@ -33,14 +33,14 @@ const SHADOW_ROOM = 8;
 const THICKNESS_PX = 24;
 
 /**
- * A part-of-a-whole ring (owner, 2026-09-29) — slices of one total, the
+ * A part-of-a-whole ring (owner, 2026-09-29) - slices of one total, the
  * total in the middle. Built in code first; the Figma master follows from
  * docs/components/DonutChart.md.
  *
  * Every slice is its own rounded block with a gap on each side, and wears
  * the glass recipe (lib/glassFilter.tsx) like BarChart's blocks. Hovering or
  * focusing a slice dims the others and puts that slice's value and name in
- * the middle — no floating tooltip. Pair with `ChartLegend` /
+ * the middle - no floating tooltip. Pair with `ChartLegend` /
  * `ChartLegendGroup` for identity; a screen-reader table carries the values.
  * Fills its container; the ring is the largest square that fits.
  */
@@ -61,7 +61,7 @@ export function DonutChart({
   const size = Math.max(80, Math.min(measured.width || 200, measured.height || 200));
   const thickness = THICKNESS_PX * remScale;
   // The glass scales with the ring (owner, 2026-09-29): a 1px catch on a
-  // 24px ring reads as clay, not depth — 8% of the thickness, 2–3px; the
+  // 24px ring reads as clay, not depth - 8% of the thickness, 2–3px; the
   // inner shadow grows by thickness / 16, the pill height it was tuned on.
   const catchWidth = Math.min(3, Math.max(2, thickness * 0.08));
   const innerScale = thickness / 16;

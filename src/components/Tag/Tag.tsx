@@ -16,17 +16,17 @@ export type TagColor =
   | 'blue';
 
 export interface TagProps extends HTMLAttributes<HTMLSpanElement> {
-  /** `xs` (12px, default) · `sm` (13px) · `md` (14px) · `lg` (15px) · `xl` (16px) — mirrors `text/label/*`'s scale. */
+  /** `xs` (12px, default) · `sm` (13px) · `md` (14px) · `lg` (15px) · `xl` (16px) - mirrors `text/label/*`'s scale. */
   size?: TagSize;
   /** One of the 10 validated `color.category.*` hues. Order matters if you're
-   * ever auto-assigning colors round-robin — see `docs/components/Tag.md`. */
+   * ever auto-assigning colors round-robin - see `docs/components/Tag.md`. */
   color?: TagColor;
 }
 
 /**
- * A plain colored, uppercase, bold label — no background, no padding. The
+ * A plain colored, uppercase, bold label - no background, no padding. The
  * "category eyebrow" pattern (a module/type tag sitting above a title,
- * e.g. `MAINTENANCE`), not a filled chip — `color.category.*` is text-only
+ * e.g. `MAINTENANCE`), not a filled chip - `color.category.*` is text-only
  * for now (a `.background` pairing for filled use, e.g. settings cells, is
  * planned separately). Distinct from `Badge`, which stays non-uppercase and
  * is reserved for the fixed status vocabulary (neutral/brand/success/

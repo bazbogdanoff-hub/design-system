@@ -9,7 +9,7 @@ const targets = [
   'row', 'stack', 'grid', 'modal',
   'button', 'iconbutton', 'icon button',
 ];
-const norm = (s) => s.toLowerCase().replace(/[–—_-]/g, ' ').replace(/\s+/g, ' ').trim();
+const norm = (s) => s.toLowerCase().replace(/[– - _-]/g, ' ').replace(/\s+/g, ' ').trim();
 
 const out = [];
 for (const page of figma.root.children) {

@@ -1,7 +1,7 @@
 ---
 name: figma-safe-edit
 description: >-
-  Applies design-system changes to the Figma file through the figmosha2 bridge —
+  Applies design-system changes to the Figma file through the figmosha2 bridge -
   the WRITE counterpart to figma-audit. Two modes: (1) build clean
   Primitives/Semantic/Component variable collections + text styles straight from
   this repo's tokens/*.json, and (2) apply the approved findings in
@@ -18,17 +18,17 @@ description: >-
 # Figma Safe Edit
 
 Turns a plan into changes in the Figma file. Everything here mutates a live file
-that **cannot be undone through figmosha2** — the safety scaffolding below is not
+that **cannot be undone through figmosha2** - the safety scaffolding below is not
 optional.
 
-## Hard preconditions — check every one, every run
+## Hard preconditions - check every one, every run
 
 1. **Not the real file.** The target open in Figma Desktop is a **duplicate** or a
    **Figma branch**, never the canonical file. Ask the user to confirm which, by
    name. If they can't confirm, stop.
-2. **Bridge up + smoke test** — `node scripts/figma/fig.mjs scripts/figma/ping.js`
+2. **Bridge up + smoke test** - `node scripts/figma/fig.mjs scripts/figma/ping.js`
    returns the expected file. Confirm the file name matches the duplicate/branch.
-3. **A clean starting version** — run the checkpoint snippet
+3. **A clean starting version** - run the checkpoint snippet
    (`h`-free: `return await figma.saveVersionHistoryAsync("safe-edit: baseline")`)
    so there's a labelled point to roll back to in Figma's version history.
 4. **`migration/` exists** (gitignored bar `migration/journal.jsonl` +
@@ -38,7 +38,7 @@ If any fails, do not send a single write.
 
 ## Two modes
 
-### Mode A — build collections from `tokens/*.json`
+### Mode A - build collections from `tokens/*.json`
 
 The repo tokens are the source of truth; this generates their Figma
 counterparts. Use when the file has no clean collections yet, or to (re)create
@@ -59,9 +59,9 @@ Emits idempotent snippet files into `migration/`:
 
 Run them **in order**, one per `fig.mjs` call, verifying after each
 ([references/build-collections.md](references/build-collections.md) explains what
-each does and how it stays idempotent — re-running updates, never duplicates).
+each does and how it stays idempotent - re-running updates, never duplicates).
 
-### Mode B — apply `audit/findings.json`
+### Mode B - apply `audit/findings.json`
 
 ```
 node .claude/skills/figma-safe-edit/scripts/plan.mjs
@@ -71,34 +71,34 @@ Reads findings with `status: "approved"`, orders them into dependency-safe
 batches, writes `migration/plan.md` (human) + `migration/batches.json` (machine).
 Batch order is fixed because dependencies only flow one way:
 
-1. `collection-structure` — create/rename collections, add the `Light` mode
+1. `collection-structure` - create/rename collections, add the `Light` mode
 2. primitive `variable-naming` / creation
 3. semantic `variable-naming`, `variable-raw-value` (raw → alias)
 4. component `variable-naming`, bindings
-5. `component-binding` — repoint nodes off primitives onto semantic tokens
-6. `raw-color` / `create-and-bind` — bind loose node fills
+5. `component-binding` - repoint nodes off primitives onto semantic tokens
+6. `raw-color` / `create-and-bind` - bind loose node fills
 7. `component-naming`, `variant-naming`
 8. `style-not-variable`
-9. `merge`, then `delete` / `unused-primitive` — **last**, nothing references them by now
+9. `merge`, then `delete` / `unused-primitive` - **last**, nothing references them by now
 
 ## The batch loop
 
 For each batch in order:
 
-1. **Checkpoint** — `return await figma.saveVersionHistoryAsync("safe-edit: before <batch>")`.
-2. **Apply** — one `fig.mjs` call per batch of operations. Each operation follows
+1. **Checkpoint** - `return await figma.saveVersionHistoryAsync("safe-edit: before <batch>")`.
+2. **Apply** - one `fig.mjs` call per batch of operations. Each operation follows
    the recipe in [references/operations.md](references/operations.md) and is
    **idempotent**: read current state, skip if already done, else change, then
    read back and include the before/after in the return value.
    **Batch size:** ≤20 for variable renames/rebinds/creates. **≤5 for
-   `createTextStyle` and node-tree-walking ops** — heavy operations hang a long
+   `createTextStyle` and node-tree-walking ops** - heavy operations hang a long
    exec, and figmosha2 can't resume a timeout (a killed client leaves the plugin
    still running, which can double-apply). When in doubt, smaller.
-3. **Journal** — append every operation's result to `migration/journal.jsonl`
+3. **Journal** - append every operation's result to `migration/journal.jsonl`
    (`{ts, batch, findingId, action, targetId, before, after, ok, note}`).
-4. **Verify** — the snippet's return value already carries before/after; confirm
+4. **Verify** - the snippet's return value already carries before/after; confirm
    each op's `after` matches `proposed`. Any mismatch → stop the batch, report.
-5. **Gate** — batches 5, 9 (node rebinds, deletes) and anything touching >50
+5. **Gate** - batches 5, 9 (node rebinds, deletes) and anything touching >50
    nodes: report the plan to the user and wait for "go" before sending.
 
 Never let a batch run unattended past a failure. A half-applied batch is
@@ -115,8 +115,8 @@ recoverable (idempotent re-run); a blindly-continued one may not be.
 ## Never
 
 - Run against the canonical file.
-- `figma.currentPage.selection`-based edits — always target by id from the plan.
+- `figma.currentPage.selection`-based edits - always target by id from the plan.
 - Delete before every reference is repointed (the plan orders this; don't reorder).
-- Bundle unrelated changes into one batch "to save time" — batches are the
+- Bundle unrelated changes into one batch "to save time" - batches are the
   rollback granularity.
 - Continue after an unexplained verify mismatch.

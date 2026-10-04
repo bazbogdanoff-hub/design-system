@@ -2,10 +2,10 @@ import { useLayoutEffect, type RefObject } from 'react';
 
 /**
  * Which horizontal sides of an element sit on its container's padding edge
- * (owner, 2026-09-29 — a Badge rule, like the card corner rule an app-side
+ * (owner, 2026-09-29 - a Badge rule, like the card corner rule an app-side
  * one Figma can't express).
  *
- * The container is the nearest ancestor that is both rounded and padded — a
+ * The container is the nearest ancestor that is both rounded and padded - a
  * card, a tile, a modal. A badge whose left side lies on that container's
  * left padding edge is `start`; right side on the right edge, `end`. Badge
  * CSS then gives both corners on that side (top and bottom) the badge's
@@ -30,7 +30,7 @@ function paddedHost(el: HTMLElement): HTMLElement | null {
 }
 
 /* ---- one shared batch for every badge on the page --------------------------
-   Measuring badge by badge — read, write, read, write — made the browser
+   Measuring badge by badge - read, write, read, write - made the browser
    recompute layout before each read (24+ times on the Tasks board; owner
    2026-09-30 perf pass). Now every badge that mounted or resized is queued,
    and one pass measures them all, then writes them all. The pass runs in a
@@ -86,7 +86,7 @@ function flush() {
       }
     }
     // "Full" is half the height, rounded up (owner, 2026-09-29: 32 → 16,
-    // 31 → 16, 30 → 15) — a real radius instead of 9999px. With 9999px on
+    // 31 → 16, 30 → 15) - a real radius instead of 9999px. With 9999px on
     // one side, the browser shrinks every corner in proportion to fit, and
     // the 6 / 8 edge corners collapsed to nearly square.
     const half = `${Math.ceil(el.offsetHeight / 2)}px`;

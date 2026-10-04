@@ -13,7 +13,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** `sm` · `md` (default) · `lg` · `xl`. Height is unified across variants now
    * (1440 migration) except two exceptions: `xs` (renamed from `2sm`) is
    * `secondary`/`tertiary` only, `2xl` is `primary` only. Not enforced at the
-   * type level — same approach as the old relative scale, just documented. */
+   * type level - same approach as the old relative scale, just documented. */
   size?: ButtonSize;
   /** Icon before the label. Replaced by the spinner while `loading`. */
   leadingIcon?: ReactNode;
@@ -24,13 +24,13 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Render as the child element (e.g. an `<a>` or a router `<Link>`). */
   asChild?: boolean;
   /** `light` (default) on a card; `dark` inside the dark app-frame chat card
-   * (2026-10-01) — `secondary` takes the sidebar panel's colour and soft
+   * (2026-10-01) - `secondary` takes the sidebar panel's colour and soft
    * inner shade, with white text. Other variants are unchanged. */
   surface?: 'light' | 'dark';
 }
 
 /**
- * The button. One component, three emphases (`variant`). States are CSS —
+ * The button. One component, three emphases (`variant`). States are CSS -
  * `:hover`, `:focus-visible` / `:active` (identical), `:disabled`. `loading`
  * swaps the leading icon for a spinner and blocks interaction.
  * For an icon-only square button use `IconButton`.

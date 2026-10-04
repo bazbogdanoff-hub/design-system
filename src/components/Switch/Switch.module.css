@@ -36,7 +36,7 @@
 }
 .switch[data-checked] .thumb {
   /* Travel distance always equals the thumb's own size at every size step
-     (track width = 2 * thumb + 2 * 2px padding) — see Switch.md. */
+     (track width = 2 * thumb + 2 * 2px padding) - see Switch.md. */
   transform: translateX(var(--thumb-size));
 }
 
@@ -50,7 +50,7 @@
 }
 
 /* Motion (playground, 2026-09-28): the thumb travels on a spring, and while
-   pressed it stretches toward the side it will go — the switch visibly
+   pressed it stretches toward the side it will go - the switch visibly
    "gathers" before it flips. A checked thumb stretches leftward, so its
    right edge stays put. */
 .thumb {

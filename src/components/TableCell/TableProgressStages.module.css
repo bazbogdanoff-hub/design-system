@@ -12,17 +12,17 @@
   gap: var(--space-2);
 }
 
-/* Not reached yet — flat, sunk into the card like an empty progress
+/* Not reached yet - flat, sunk into the card like an empty progress
    segment. */
 .stage {
   flex: none;
   width: 1.5rem;
   height: 0.5rem;
-  border-radius: 3px; /* hand-tuned, not a token — the bar corner scaled to an 8px block, as on legend swatches */
+  border-radius: 3px; /* hand-tuned, not a token - the bar corner scaled to an 8px block, as on legend swatches */
   background: var(--color-table-progress-stages-unfilled);
 }
 
-/* Reached — the glass pattern (src/glass.css), scaled to this size like
+/* Reached - the glass pattern (src/glass.css), scaled to this size like
    the legend swatches: a 1px catch top-left, a short inner shadow, and the
    primary Button's plain drop shadow shrunk to fit. */
 .stage[data-done] {
@@ -34,7 +34,7 @@
     0 1px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* The current stage — the same block, a step taller. */
+/* The current stage - the same block, a step taller. */
 .stage[data-current] {
   height: 0.75rem;
   border-radius: 4px; /* the bar corner, as on BarChart's blocks */

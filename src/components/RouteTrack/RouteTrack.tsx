@@ -7,9 +7,9 @@ import styles from './RouteTrack.module.css';
 export interface RouteTrackStop {
   /** React key. Falls back to the index when absent. */
   id?: string;
-  /** Where this stop is — the bold line. */
+  /** Where this stop is - the bold line. */
   place: ReactNode;
-  /** What happens there — the quiet line under it. */
+  /** What happens there - the quiet line under it. */
   process?: ReactNode;
   /** Overrides the default `MapPin`. */
   icon?: ReactNode;
@@ -23,11 +23,11 @@ type Base = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
    * four stops the second sits at `0.333`. Clamped.
    */
   progress: number;
-  /** Hides the vehicle marker — for a finished or not-yet-started route. */
+  /** Hides the vehicle marker - for a finished or not-yet-started route. */
   hideVehicle?: boolean;
 };
 
-/** An accessible name is required — `aria-label`, or `aria-labelledby`. Same
+/** An accessible name is required - `aria-label`, or `aria-labelledby`. Same
  * mandatory-name pattern as `ProgressBar` and `TableProgressStages`. */
 export type RouteTrackProps =
   | (Base & { 'aria-label': string; 'aria-labelledby'?: never })
@@ -37,13 +37,13 @@ export type RouteTrackProps =
  * A route as one wide band: pinned stops joined by segments, the travelled
  * part filled, and a vehicle marker riding the head of the fill.
  *
- * Not `TableProgressStages` — that's the same idea shrunk into a table cell
+ * Not `TableProgressStages` - that's the same idea shrunk into a table cell
  * (bare dots, no labels, whole segments only, no marker) and it stays as it
  * is. Not `ProgressBar` either: this has named places, and the fill is
  * geometry, not a percentage readout. Checked both before building, the same
  * way `TableProgressStages` records checking `ProgressBar` and `Tracker`.
  *
- * Every surface here is the `Button` treatment — reached stops and the filled
+ * Every surface here is the `Button` treatment - reached stops and the filled
  * segment wear `button/primary/*`, unreached ones `button/secondary/*`,
  * including the glass catch and the coloured vignette. That's what Figma
  * authored (`RouteCard`, 10746:21164), not a liberty taken here.
@@ -88,7 +88,7 @@ export const RouteTrack = forwardRef<HTMLDivElement, RouteTrackProps>(function R
           const reached = clamped * segments >= i;
 
           /* The segment drawn in this iteration is the one *before* this stop,
-             so it is segment `i - 1` — not `i`. Behind the vehicle it's full,
+             so it is segment `i - 1` - not `i`. Behind the vehicle it's full,
              ahead of it empty, and the one it's in is filled to exactly where
              the marker sits, which is what makes the two agree. */
           const segment = i - 1;

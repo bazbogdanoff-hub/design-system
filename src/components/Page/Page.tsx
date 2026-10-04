@@ -8,24 +8,24 @@ export type PageLayout = 'scroll' | 'fixed';
 
 export interface PageProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * `scroll` (default) — the whole page scrolls, padded. Simple screens.
-   * `fixed` — grid `[Header | Body | Footer]`, only `Page.Body` scrolls.
+   * `scroll` (default) - the whole page scrolls, padded. Simple screens.
+   * `fixed` - grid `[Header | Body | Footer]`, only `Page.Body` scrolls.
    *   Header and Footer stay pinned. Table / master-detail screens.
    */
   layout?: PageLayout;
-  /** `scroll` layout only — pad the page. Off for a page that manages its own padding. */
+  /** `scroll` layout only - pad the page. Off for a page that manages its own padding. */
   padded?: boolean;
   children?: ReactNode;
 }
 
 interface RegionProps extends HTMLAttributes<HTMLElement> {
-  /** Drop the horizontal padding — this region goes flush to the content-card edge (tables, maps). */
+  /** Drop the horizontal padding - this region goes flush to the content-card edge (tables, maps). */
   bleed?: boolean;
   children?: ReactNode;
 }
 
 export interface PageHeaderProps extends Omit<RegionProps, 'title'> {
-  /** Page title — rendered as `<h1>`. */
+  /** Page title - rendered as `<h1>`. */
   title?: ReactNode;
   /** Right-aligned actions (buttons). */
   actions?: ReactNode;
@@ -35,7 +35,7 @@ const PageRoot = forwardRef<HTMLDivElement, PageProps>(function Page(
   { layout = 'scroll', padded = true, className, children, ...rest },
   ref,
 ) {
-  // The page decides which of its cards' corners are outer (24) — see
+  // The page decides which of its cards' corners are outer (24) - see
   // lib/surfaceCorners.ts. It needs its own handle on the element as well as
   // passing the caller's ref through.
   const localRef = useRef<HTMLDivElement | null>(null);

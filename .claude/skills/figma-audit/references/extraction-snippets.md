@@ -9,18 +9,18 @@ node scripts/figma/fig.mjs <snippet-file.js> --out audit/raw/<name>.json
 
 **Before relying on these:** run `scripts/figma/ping.js`, then the phase-1
 snippet on the real file. If a shape looks wrong, the installed Figma API version
-differs — fix it here once so later runs are clean.
+differs - fix it here once so later runs are clean.
 
 Gotchas:
 - `await figma.loadAllPagesAsync()` first, before any non-current page.
-- `node.fillStyleId` / `strokeStyleId` can be `figma.mixed` (a Symbol) — guard with `typeof … === 'string'`.
-- Reading `componentPropertyDefinitions` on a **variant** `COMPONENT` (child of a set) throws — read it on the set, skip set children.
+- `node.fillStyleId` / `strokeStyleId` can be `figma.mixed` (a Symbol) - guard with `typeof … === 'string'`.
+- Reading `componentPropertyDefinitions` on a **variant** `COMPONENT` (child of a set) throws - read it on the set, skip set children.
 - Figma colours are 0–1 floats. Hex = `Math.round(channel * 255)`.
 - Use the `…Async` getters; sync variants are deprecated.
 
 ---
 
-## Phase 1 — overview  → `audit/raw/overview.json`
+## Phase 1 - overview  → `audit/raw/overview.json`
 
 ```js
 await figma.loadAllPagesAsync();
@@ -49,7 +49,7 @@ return {
 
 ---
 
-## Phase 2 — variables  → `audit/raw/variables.json`
+## Phase 2 - variables  → `audit/raw/variables.json`
 
 ```js
 const collections = await figma.variables.getLocalVariableCollectionsAsync();
@@ -94,7 +94,7 @@ Row: `{ id, name, type, collection, modes: { <modeName>: {hex} | {alias,aliasId}
 
 ---
 
-## Phase 2 — styles  → `audit/raw/styles.json`
+## Phase 2 - styles  → `audit/raw/styles.json`
 
 ```js
 const toHex = (c) => { const h = (n) => Math.round(n * 255).toString(16).padStart(2, '0'); return '#' + h(c.r) + h(c.g) + h(c.b); };
@@ -115,7 +115,7 @@ return {
 
 ---
 
-## Phase 3 — components  → `audit/raw/components.json`
+## Phase 3 - components  → `audit/raw/components.json`
 
 ```js
 await figma.loadAllPagesAsync();
@@ -143,7 +143,7 @@ return { components };
 
 ---
 
-## Phase 4 — colour usage, one page  → `audit/raw/usage-<page>.json`
+## Phase 4 - colour usage, one page  → `audit/raw/usage-<page>.json`
 
 Put the page name on the first line, or template it in.
 

@@ -11,7 +11,7 @@
       },
       "muted": {
         "$value": "{color.zinc.300}",
-        "$description": "A visibly deeper recessed fill than subtle — the AppShell content-slot backdrop the screen sits on"
+        "$description": "A visibly deeper recessed fill than subtle - the AppShell content-slot backdrop the screen sits on"
       },
       "emphasis": {
         "$value": "{color.zinc.700}",
@@ -23,11 +23,11 @@
       },
       "overlay": {
         "$value": "{color.alpha-black.40}",
-        "$description": "Modal / drawer scrim — the darkener behind a centered modal. Pure black at 40% (was a zinc-950 tint at ~70%; lightened + de-tinted so the interface stays readable behind the modal). `color.modal.scrim` aliases this."
+        "$description": "Modal / drawer scrim - the darkener behind a centered modal. Pure black at 40% (was a zinc-950 tint at ~70%; lightened + de-tinted so the interface stays readable behind the modal). `color.modal.scrim` aliases this."
       },
       "overlay-subtle": {
         "$value": "{color.alpha-black.3}",
-        "$description": "Neutral hover/press wash — layers on top of whatever's underneath instead of replacing it (row hover, list-item hover, etc.), unlike background.subtle which is an opaque swap"
+        "$description": "Neutral hover/press wash - layers on top of whatever's underneath instead of replacing it (row hover, list-item hover, etc.), unlike background.subtle which is an opaque swap"
       },
       "brand": {
         "default": {
@@ -76,7 +76,7 @@
       },
       "warning-strong": {
         "$value": "{color.orange.500}",
-        "$description": "Orange alert accent — the warning pill/icon in the alert system, distinct from amber warning"
+        "$description": "Orange alert accent - the warning pill/icon in the alert system, distinct from amber warning"
       },
       "warning-strong-subtle": {
         "$value": "{color.orange.100}",
@@ -98,15 +98,15 @@
       },
       "card": {
         "$value": "{color.extra.card}",
-        "$description": "Card fill — cool near-white #f6f7f8 (product override, not on the Tailwind scale; was #fcfcfc until 2026-09-28)"
+        "$description": "Card fill - cool near-white #f6f7f8 (product override, not on the Tailwind scale; was #fcfcfc until 2026-09-28)"
       },
       "card-item": {
         "$value": "{color.extra.card-item}",
-        "$description": "A card-like element sitting on a card — StatButton, secondary Button and its derivatives. One step lighter than surface.card, so it reads above it. (Distinct from surface.raised, the white popover surface.)"
+        "$description": "A card-like element sitting on a card - StatButton, secondary Button and its derivatives. One step lighter than surface.card, so it reads above it. (Distinct from surface.raised, the white popover surface.)"
       },
       "recessed": {
         "$value": "{color.extra.recessed}",
-        "$description": "A zone sunk into a card — table header band, scroll tray. One step below surface.card; moves with it."
+        "$description": "A zone sunk into a card - table header band, scroll tray. One step below surface.card; moves with it."
       },
       "subtle": {
         "$value": "{color.zinc.50}",
@@ -122,25 +122,25 @@
       },
       "inverse": {
         "$value": "{color.zinc.900}",
-        "$description": "The one surface that stays dark regardless of theme — Tooltip's fill."
+        "$description": "The one surface that stays dark regardless of theme - Tooltip's fill."
       }
     },
     "text": {
       "default": {
         "$value": "{color.zinc.950}",
-        "$description": "Main headings — h1/h2, page titles. zinc.950 since 2026-09-28 (was 900), the far end of the ladder so headings and subheadings read as two blacks."
+        "$description": "Main headings - h1/h2, page titles. zinc.950 since 2026-09-28 (was 900), the far end of the ladder so headings and subheadings read as two blacks."
       },
       "strong": {
         "$value": "{color.zinc.700}",
-        "$description": "Subheadings — h3–h6, section/card titles. zinc.700 since 2026-09-28 (was 800, too close to the heading black to register as a separate level; 600 was tried first and read too light); two steps above body text (subtle, zinc.500)."
+        "$description": "Subheadings - h3–h6, section/card titles. zinc.700 since 2026-09-28 (was 800, too close to the heading black to register as a separate level; 600 was tried first and read too light); two steps above body text (subtle, zinc.500)."
       },
       "subtle": {
         "$value": "{color.zinc.500}",
-        "$description": "Body text — the default reading colour for paragraphs and UI copy"
+        "$description": "Body text - the default reading colour for paragraphs and UI copy"
       },
       "muted": {
         "$value": "{color.zinc.400}",
-        "$description": "Muted / de-emphasised text — hints, placeholders, timestamps, captions"
+        "$description": "Muted / de-emphasised text - hints, placeholders, timestamps, captions"
       },
       "disabled": {
         "$value": "{color.zinc.300}",
@@ -166,19 +166,19 @@
       },
       "brand-solid": {
         "$value": "{color.background.brand.default}",
-        "$description": "Text that must read as the same accent as a solid brand fill nearby (a bar, a dot) — aliases background.brand.default itself, not a hand-picked shade, so the two can never drift apart. NOT for text on a light/subtle background — text.brand (700) stays there; this is ~100 lighter and won't clear AA on brand-subtle."
+        "$description": "Text that must read as the same accent as a solid brand fill nearby (a bar, a dot) - aliases background.brand.default itself, not a hand-picked shade, so the two can never drift apart. NOT for text on a light/subtle background - text.brand (700) stays there; this is ~100 lighter and won't clear AA on brand-subtle."
       },
       "success-solid": {
         "$value": "{color.background.success}",
-        "$description": "Text matching a solid success fill nearby — see brand-solid."
+        "$description": "Text matching a solid success fill nearby - see brand-solid."
       },
       "warning-solid": {
         "$value": "{color.background.warning}",
-        "$description": "Text matching a solid (amber) warning fill nearby — see brand-solid. Not warning-strong (orange) — that hue is scoped to the alert-pill system only."
+        "$description": "Text matching a solid (amber) warning fill nearby - see brand-solid. Not warning-strong (orange) - that hue is scoped to the alert-pill system only."
       },
       "danger-solid": {
         "$value": "{color.background.danger.default}",
-        "$description": "Text matching a solid danger fill nearby — see brand-solid."
+        "$description": "Text matching a solid danger fill nearby - see brand-solid."
       },
       "info": {
         "$value": "{color.blue.700}"
@@ -197,7 +197,7 @@
       },
       "on-success": {
         "$value": "{color.white}",
-        "$description": "Text on color.background.success — added alongside on-brand/on-danger for SegmentedControlItem's tone fills; same white-on-solid-mid-tone pattern."
+        "$description": "Text on color.background.success - added alongside on-brand/on-danger for SegmentedControlItem's tone fills; same white-on-solid-mid-tone pattern."
       },
       "on-inverse": {
         "$value": "{color.white}",
@@ -235,7 +235,7 @@
       },
       "highlight-active": {
         "$value": "{color.brand.500}",
-        "$description": "Glass edge highlight when the surface is focused/active — a full 1.5px primary border that replaces the white top-left catch"
+        "$description": "Glass edge highlight when the surface is focused/active - a full 1.5px primary border that replaces the white top-left catch"
       }
     },
     "icon": {
@@ -271,34 +271,34 @@
     },
     "chart": {
       "severity": {
-        "$description": "The four severity steps as chart series (owner, 2026-09-29) — validated as one categorical palette on the card (#f6f6f8), all six checks pass. Status colours: always with a legend, never reused for other series.",
+        "$description": "The four severity steps as chart series (owner, 2026-09-29) - validated as one categorical palette on the card (#f6f6f8), all six checks pass. Status colours: always with a legend, never reused for other series.",
         "critical": { "$value": "{color.rose.600}" },
         "warning": { "$value": "{color.orange.500}" },
         "attention": { "$value": "{color.extra.chart-attention}" },
         "low": { "$value": "{color.emerald.500}" }
       },
-      "window": { "$value": "{color.extra.chart-window}", "$description": "The slot a timed item has to land in — TimelineChart's delivery-window band and its tooltip swatch (owner, 2026-09-30)." },
-      "1": { "$value": "{color.brand.400}", "$description": "Categorical series 1 — placeholder palette, revisit with the real chart component. Migrated from brand.500 to match Figma's lighter chart ramp." },
-      "2": { "$value": "{color.cyan.500}", "$description": "Not migrated to cyan.400 — failed the dataviz skill's lightness-band check at .400 (L 0.797, above the 0.77 ceiling)." },
-      "3": { "$value": "{color.amber.500}", "$description": "Not migrated to amber.400 — failed the lightness-band check at .400 (L 0.837)." },
-      "4": { "$value": "{color.emerald.600}", "$description": "Not migrated to emerald.400/500 — .400 failed the lightness-band check (L 0.773); .500 cleared it but its pair with rose.500 fell to CVD ΔE 5.6, under the 6.0 floor. .600 clears both (ΔE 8.3)." },
+      "window": { "$value": "{color.extra.chart-window}", "$description": "The slot a timed item has to land in - TimelineChart's delivery-window band and its tooltip swatch (owner, 2026-09-30)." },
+      "1": { "$value": "{color.brand.400}", "$description": "Categorical series 1 - placeholder palette, revisit with the real chart component. Migrated from brand.500 to match Figma's lighter chart ramp." },
+      "2": { "$value": "{color.cyan.500}", "$description": "Not migrated to cyan.400 - failed the dataviz skill's lightness-band check at .400 (L 0.797, above the 0.77 ceiling)." },
+      "3": { "$value": "{color.amber.500}", "$description": "Not migrated to amber.400 - failed the lightness-band check at .400 (L 0.837)." },
+      "4": { "$value": "{color.emerald.600}", "$description": "Not migrated to emerald.400/500 - .400 failed the lightness-band check (L 0.773); .500 cleared it but its pair with rose.500 fell to CVD ΔE 5.6, under the 6.0 floor. .600 clears both (ΔE 8.3)." },
       "5": { "$value": "{color.rose.500}" },
-      "6": { "$value": "{color.violet.500}", "$description": "Not migrated to violet.400 — passed alone, but paired with sky.400 fell to CVD ΔE 5.2. .500 restores separation." },
-      "7": { "$value": "{color.sky.400}", "$description": "Migrated from sky.600 to match Figma's lighter chart ramp — passes paired with violet.500." },
-      "8": { "$value": "{color.lime.500}", "$description": "Not migrated to lime.400 — failed the lightness-band check at .400 (L 0.849, the worst offender)." }
+      "6": { "$value": "{color.violet.500}", "$description": "Not migrated to violet.400 - passed alone, but paired with sky.400 fell to CVD ΔE 5.2. .500 restores separation." },
+      "7": { "$value": "{color.sky.400}", "$description": "Migrated from sky.600 to match Figma's lighter chart ramp - passes paired with violet.500." },
+      "8": { "$value": "{color.lime.500}", "$description": "Not migrated to lime.400 - failed the lightness-band check at .400 (L 0.849, the worst offender)." }
     },
     "category": {
-      "$description": "A general-purpose named-hue set for badge labels / settings cells / anything needing an arbitrary category identity color, distinct from color.chart.* (data-series identity) and color.badge.* (fixed status vocabulary: neutral/brand/success/warning/danger). Validated with the dataviz skill's validate_palette.js in ADJACENT-only mode (same rigor as color.chart.*, relaxed from an earlier --pairs all pass that only found 6 safe hues — module/badge colors don't have a chart's fixed legend order, but a --pairs-all bar was judged stricter than needed here). ALL CHECKS PASS in the object-key order below — that order is not incidental, it's the validated sequence (brand/teal/rose/lime/fuchsia/cyan/pink/violet/emerald/blue): any consumer that auto-assigns 'the next category color' (a picker, a round-robin tagger) MUST cycle through them in this order, not alphabetically or by insertion into some other list — reordering can reintroduce an adjacent clash this pass specifically ruled out (e.g. teal directly next to cyan, or pink next to rose, both tested and rejected). 3 of the 10 (teal, cyan, lime) trade contrast for distinctness (2.9-3.3:1 vs. own-100, short of 4.5:1) — accepted because a category color is always paired with a visible label, satisfying the skill's 'secondary encoding' exception the same way the CVD floor-band findings below are. Consumed by Tag (text only) and CategoryIcon (text/background/background-muted) — this is deliberately capped at these 10 hues, not the larger 16-color set `CategoryIcon`'s Figma predecessor (\"Colored icons\") used; the extra 6 (sky/indigo/purple/green/yellow/taupe) were never validated for CVD/contrast here and were dropped rather than carried forward unvetted. `background` added 2026-09-14 for CategoryIcon's `emphasis=strong` (modules) — deliberately reuses the exact same primitive as `text` (not a new shade): the two are used as opposite roles (colored-text-on-white vs. white-icon-on-color), and contrast is symmetric between a color pair regardless of which side is foreground, so the already-validated `text` contrast ratio carries over unchanged. `background-muted` added the same day for `emphasis=muted` (settings, 'just slightly less saturated and accented than default') — a first pass tried each hue's pale `.100` tint (matching the `color.background.brand-subtle` precedent) but that read as a completely different treatment (pale fill + colored icon) rather than a gentler version of the same one; a plain lighter Tailwind step (e.g. .700→.600) was tried next and rejected too — Tailwind ramps often get MORE saturated approaching their chroma peak (~400-500) while getting lighter, the opposite of the ask, confirmed by inspecting each hue's own HSL saturation across steps. `background-muted` is instead a **first-of-its-kind exception to this file's alias-only convention** (there's no existing raw-hex precedent to point to here — flagging that plainly rather than overstating it): each hue's `background` value converted to HSL, saturation reduced by a flat 0.20 (hue and lightness held fixed so contrast barely moves), converted back to hex — carries its own explicit `$type` since there's no alias chain for Style Dictionary to infer one from. Verified against a white icon on top: worst case (lime) is 3.74:1, comfortably above the 3:1 UI-graphics floor, every other hue clears 4.1-6.9:1. Recompute with the same method (S -= 0.20, H/L fixed) if `background` ever changes for a hue.",
-      "brand":   { "text": { "$value": "{color.brand.600}",   "$description": "indigo.600 — reuses the existing brand primitive rather than a separate value" }, "background": { "$value": "{color.brand.600}" }, "background-muted": { "$type": "color", "$value": "#625bd0", "$description": "brand.600 desaturated -0.20 in HSL (H 243, L 59 held; S 75->55). Contrast vs. white icon: 5.35:1." } },
-      "teal":    { "text": { "$value": "{color.teal.600}",    "$description": "Not .700 — fails the chroma floor at that depth (reads gray), same issue as cyan. Contrast vs. own-100 is 3.3:1 — accepted per the always-a-label mitigation on the group description." }, "background": { "$value": "{color.teal.600}" }, "background-muted": { "$type": "color", "$value": "#1d847b", "$description": "teal.600 desaturated -0.20 in HSL (H 175, L 32 held; S 84->64). Contrast vs. white icon: 4.53:1." } },
-      "rose":    { "text": { "$value": "{color.rose.700}",    "$description": "700, not 600 — .600 doesn't clear 4.5:1 contrast." }, "background": { "$value": "{color.rose.700}" }, "background-muted": { "$type": "color", "$value": "#a92747", "$description": "rose.700 desaturated -0.20 in HSL (H 345, L 41 held; S 83->63). Contrast vs. white icon: 6.84:1." } },
-      "lime":    { "text": { "$value": "{color.lime.600}",    "$description": "Not .700 — turns muddy-olive, indistinguishable from emerald under the stricter all-pairs test that was relaxed for this set; still the right shade under adjacent-only since lime and emerald are kept non-adjacent. Contrast vs. own-100 is 2.9:1 at .600 — accepted per the always-a-label mitigation." }, "background": { "$value": "{color.lime.600}" }, "background-muted": { "$type": "color", "$value": "#62911f", "$description": "lime.600 desaturated -0.20 in HSL (H 85, L 35 held; S 85->65). Contrast vs. white icon: 3.74:1 — the weakest of the 10, still clears the 3:1 UI-graphics floor; same always-a-label mitigation as .text above." } },
-      "fuchsia": { "text": { "$value": "{color.fuchsia.700}", "$description": "700, not 600 — .600 doesn't clear 4.5:1 contrast." }, "background": { "$value": "{color.fuchsia.700}" }, "background-muted": { "$type": "color", "$value": "#91309b", "$description": "fuchsia.700 desaturated -0.20 in HSL (H 295, L 40 held; S 72->52). Contrast vs. white icon: 6.76:1." } },
-      "cyan":    { "text": { "$value": "{color.cyan.600}",    "$description": "Not .700 — fails the chroma floor (reads gray) at that depth. Contrast vs. own-100 is 3.3:1 — accepted per the always-a-label mitigation." }, "background": { "$value": "{color.cyan.600}" }, "background-muted": { "$type": "color", "$value": "#1b869f", "$description": "cyan.600 desaturated -0.20 in HSL (H 192, L 36 held; S 91->71). Contrast vs. white icon: 4.25:1." } },
-      "pink":    { "text": { "$value": "{color.pink.700}",    "$description": "700, not 600 — .600 doesn't clear 4.5:1 contrast. Kept non-adjacent to rose (its nearest Tailwind neighbor, ΔE 4.6 at dark shades — would fail right next to it)." }, "background": { "$value": "{color.pink.700}" }, "background-muted": { "$type": "color", "$value": "#a92d61", "$description": "pink.700 desaturated -0.20 in HSL (H 335, L 42 held; S 78->58). Contrast vs. white icon: 6.50:1." } },
-      "violet":  { "text": { "$value": "{color.violet.600}",  "$description": "Kept non-adjacent to brand/indigo (its nearest neighbor, ΔE as low as 0.9 under some CVD types at .700 — would fail right next to it)." }, "background": { "$value": "{color.violet.600}" }, "background-muted": { "$type": "color", "$value": "#8250d7", "$description": "violet.600 desaturated -0.20 in HSL (H 262, L 58 held; S 83->63). Contrast vs. white icon: 5.17:1." } },
-      "emerald": { "text": { "$value": "{color.emerald.700}", "$description": "700, not 600 — .600 doesn't clear 4.5:1 contrast." }, "background": { "$value": "{color.emerald.700}" }, "background-muted": { "$type": "color", "$value": "#106c52", "$description": "emerald.700 desaturated -0.20 in HSL (H 163, L 24 held; S 94->74). Contrast vs. white icon: 6.42:1." } },
-      "blue":    { "text": { "$value": "{color.blue.700}",    "$description": "Kept non-adjacent to brand/indigo (its nearest neighbor — the two are easily confused at matching shades)." }, "background": { "$value": "{color.blue.700}" }, "background-muted": { "$type": "color", "$value": "#365ac0", "$description": "blue.700 desaturated -0.20 in HSL (H 224, L 48 held; S 76->56). Contrast vs. white icon: 6.25:1." } }
+      "$description": "A general-purpose named-hue set for badge labels / settings cells / anything needing an arbitrary category identity color, distinct from color.chart.* (data-series identity) and color.badge.* (fixed status vocabulary: neutral/brand/success/warning/danger). Validated with the dataviz skill's validate_palette.js in ADJACENT-only mode (same rigor as color.chart.*, relaxed from an earlier --pairs all pass that only found 6 safe hues - module/badge colors don't have a chart's fixed legend order, but a --pairs-all bar was judged stricter than needed here). ALL CHECKS PASS in the object-key order below - that order is not incidental, it's the validated sequence (brand/teal/rose/lime/fuchsia/cyan/pink/violet/emerald/blue): any consumer that auto-assigns 'the next category color' (a picker, a round-robin tagger) MUST cycle through them in this order, not alphabetically or by insertion into some other list - reordering can reintroduce an adjacent clash this pass specifically ruled out (e.g. teal directly next to cyan, or pink next to rose, both tested and rejected). 3 of the 10 (teal, cyan, lime) trade contrast for distinctness (2.9-3.3:1 vs. own-100, short of 4.5:1) - accepted because a category color is always paired with a visible label, satisfying the skill's 'secondary encoding' exception the same way the CVD floor-band findings below are. Consumed by Tag (text only) and CategoryIcon (text/background/background-muted) - this is deliberately capped at these 10 hues, not the larger 16-color set `CategoryIcon`'s Figma predecessor (\"Colored icons\") used; the extra 6 (sky/indigo/purple/green/yellow/taupe) were never validated for CVD/contrast here and were dropped rather than carried forward unvetted. `background` added 2026-09-14 for CategoryIcon's `emphasis=strong` (modules) - deliberately reuses the exact same primitive as `text` (not a new shade): the two are used as opposite roles (colored-text-on-white vs. white-icon-on-color), and contrast is symmetric between a color pair regardless of which side is foreground, so the already-validated `text` contrast ratio carries over unchanged. `background-muted` added the same day for `emphasis=muted` (settings, 'just slightly less saturated and accented than default') - a first pass tried each hue's pale `.100` tint (matching the `color.background.brand-subtle` precedent) but that read as a completely different treatment (pale fill + colored icon) rather than a gentler version of the same one; a plain lighter Tailwind step (e.g. .700→.600) was tried next and rejected too - Tailwind ramps often get MORE saturated approaching their chroma peak (~400-500) while getting lighter, the opposite of the ask, confirmed by inspecting each hue's own HSL saturation across steps. `background-muted` is instead a **first-of-its-kind exception to this file's alias-only convention** (there's no existing raw-hex precedent to point to here - flagging that plainly rather than overstating it): each hue's `background` value converted to HSL, saturation reduced by a flat 0.20 (hue and lightness held fixed so contrast barely moves), converted back to hex - carries its own explicit `$type` since there's no alias chain for Style Dictionary to infer one from. Verified against a white icon on top: worst case (lime) is 3.74:1, comfortably above the 3:1 UI-graphics floor, every other hue clears 4.1-6.9:1. Recompute with the same method (S -= 0.20, H/L fixed) if `background` ever changes for a hue.",
+      "brand":   { "text": { "$value": "{color.brand.600}",   "$description": "indigo.600 - reuses the existing brand primitive rather than a separate value" }, "background": { "$value": "{color.brand.600}" }, "background-muted": { "$type": "color", "$value": "#625bd0", "$description": "brand.600 desaturated -0.20 in HSL (H 243, L 59 held; S 75->55). Contrast vs. white icon: 5.35:1." } },
+      "teal":    { "text": { "$value": "{color.teal.600}",    "$description": "Not .700 - fails the chroma floor at that depth (reads gray), same issue as cyan. Contrast vs. own-100 is 3.3:1 - accepted per the always-a-label mitigation on the group description." }, "background": { "$value": "{color.teal.600}" }, "background-muted": { "$type": "color", "$value": "#1d847b", "$description": "teal.600 desaturated -0.20 in HSL (H 175, L 32 held; S 84->64). Contrast vs. white icon: 4.53:1." } },
+      "rose":    { "text": { "$value": "{color.rose.700}",    "$description": "700, not 600 - .600 doesn't clear 4.5:1 contrast." }, "background": { "$value": "{color.rose.700}" }, "background-muted": { "$type": "color", "$value": "#a92747", "$description": "rose.700 desaturated -0.20 in HSL (H 345, L 41 held; S 83->63). Contrast vs. white icon: 6.84:1." } },
+      "lime":    { "text": { "$value": "{color.lime.600}",    "$description": "Not .700 - turns muddy-olive, indistinguishable from emerald under the stricter all-pairs test that was relaxed for this set; still the right shade under adjacent-only since lime and emerald are kept non-adjacent. Contrast vs. own-100 is 2.9:1 at .600 - accepted per the always-a-label mitigation." }, "background": { "$value": "{color.lime.600}" }, "background-muted": { "$type": "color", "$value": "#62911f", "$description": "lime.600 desaturated -0.20 in HSL (H 85, L 35 held; S 85->65). Contrast vs. white icon: 3.74:1 - the weakest of the 10, still clears the 3:1 UI-graphics floor; same always-a-label mitigation as .text above." } },
+      "fuchsia": { "text": { "$value": "{color.fuchsia.700}", "$description": "700, not 600 - .600 doesn't clear 4.5:1 contrast." }, "background": { "$value": "{color.fuchsia.700}" }, "background-muted": { "$type": "color", "$value": "#91309b", "$description": "fuchsia.700 desaturated -0.20 in HSL (H 295, L 40 held; S 72->52). Contrast vs. white icon: 6.76:1." } },
+      "cyan":    { "text": { "$value": "{color.cyan.600}",    "$description": "Not .700 - fails the chroma floor (reads gray) at that depth. Contrast vs. own-100 is 3.3:1 - accepted per the always-a-label mitigation." }, "background": { "$value": "{color.cyan.600}" }, "background-muted": { "$type": "color", "$value": "#1b869f", "$description": "cyan.600 desaturated -0.20 in HSL (H 192, L 36 held; S 91->71). Contrast vs. white icon: 4.25:1." } },
+      "pink":    { "text": { "$value": "{color.pink.700}",    "$description": "700, not 600 - .600 doesn't clear 4.5:1 contrast. Kept non-adjacent to rose (its nearest Tailwind neighbor, ΔE 4.6 at dark shades - would fail right next to it)." }, "background": { "$value": "{color.pink.700}" }, "background-muted": { "$type": "color", "$value": "#a92d61", "$description": "pink.700 desaturated -0.20 in HSL (H 335, L 42 held; S 78->58). Contrast vs. white icon: 6.50:1." } },
+      "violet":  { "text": { "$value": "{color.violet.600}",  "$description": "Kept non-adjacent to brand/indigo (its nearest neighbor, ΔE as low as 0.9 under some CVD types at .700 - would fail right next to it)." }, "background": { "$value": "{color.violet.600}" }, "background-muted": { "$type": "color", "$value": "#8250d7", "$description": "violet.600 desaturated -0.20 in HSL (H 262, L 58 held; S 83->63). Contrast vs. white icon: 5.17:1." } },
+      "emerald": { "text": { "$value": "{color.emerald.700}", "$description": "700, not 600 - .600 doesn't clear 4.5:1 contrast." }, "background": { "$value": "{color.emerald.700}" }, "background-muted": { "$type": "color", "$value": "#106c52", "$description": "emerald.700 desaturated -0.20 in HSL (H 163, L 24 held; S 94->74). Contrast vs. white icon: 6.42:1." } },
+      "blue":    { "text": { "$value": "{color.blue.700}",    "$description": "Kept non-adjacent to brand/indigo (its nearest neighbor - the two are easily confused at matching shades)." }, "background": { "$value": "{color.blue.700}" }, "background-muted": { "$type": "color", "$value": "#365ac0", "$description": "blue.700 desaturated -0.20 in HSL (H 224, L 48 held; S 76->56). Contrast vs. white icon: 6.25:1." } }
     }
   }
 }

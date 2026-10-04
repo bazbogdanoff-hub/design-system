@@ -1,5 +1,5 @@
 /** Picks a round axis max + step (e.g. max 30, step 5) so gridlines land on
- * clean numbers instead of the raw data max. Assumes a zero baseline — for
+ * clean numbers instead of the raw data max. Assumes a zero baseline - for
  * `BarChart`, where the filled area encodes magnitude and must start at 0. */
 export function niceScale(maxValue: number, targetTicks = 6): { max: number; step: number } {
   if (maxValue <= 0) return { max: targetTicks, step: 1 };
@@ -11,7 +11,7 @@ export function niceScale(maxValue: number, targetTicks = 6): { max: number; ste
   return { max, step };
 }
 
-/** Same rounding, but for a scale that doesn't need a zero baseline — a line
+/** Same rounding, but for a scale that doesn't need a zero baseline - a line
  * chart's mark encodes trend/position, not a filled magnitude from zero, so
  * cramping the range down to the data's own min/max (rounded to clean
  * ticks) reads the trend far better than forcing every line down near a

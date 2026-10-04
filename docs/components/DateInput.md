@@ -1,6 +1,6 @@
 # DateInput
 
-A date field that opens `Calendar` (owner, 2026-10-02). **L2, React only** —
+A date field that opens `Calendar` (owner, 2026-10-02). **L2, React only** -
 `Input` + `IconButton` + `Card` + `Calendar`.
 
 ```tsx
@@ -11,10 +11,10 @@ A date field that opens `Calendar` (owner, 2026-10-02). **L2, React only** —
 
 | prop | type | default | notes |
 |---|---|---|---|
-| `value` | `string` (`yyyy-mm-dd`) — required | | `''` for no date |
-| `onChange` | `(value: string) => void` — required | | the value, not the event |
+| `value` | `string` (`yyyy-mm-dd`) - required | | `''` for no date |
+| `onChange` | `(value: string) => void` - required | | the value, not the event |
 | `today` | `string` | device date | passed to `Calendar` |
-| `weekStartsOn` | `0` \| `1` | `0` | passed to `Calendar` — Sunday or Monday first |
+| `weekStartsOn` | `0` \| `1` | `0` | passed to `Calendar` - Sunday or Monday first |
 | `size`, `error`, `disabled`, `id`, `min`, `max`, … | | | as `Input` |
 
 - The field is a **native date input**, so a date can still be typed segment

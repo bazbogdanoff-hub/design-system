@@ -30,18 +30,18 @@ type Base = Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'type' | 'check
   checked?: boolean;
   /** Initial checked state when uncontrolled. */
   defaultChecked?: boolean;
-  /** A visual third state layered on top of `checked` — shows a dash instead
+  /** A visual third state layered on top of `checked` - shows a dash instead
    * of a checkmark (e.g. a "select all" box when only some rows are
    * selected). Not a real DOM attribute: `indeterminate` isn't settable via
-   * JSX on a native `<input>`, only imperatively via a ref — this component
+   * JSX on a native `<input>`, only imperatively via a ref - this component
    * owns that plumbing so consumers never touch a ref for it. Figma has no
    * `checked=true, indeterminate=true` variant (a real fact can't be both at
-   * once); this component doesn't render one either — `indeterminate` wins
+   * once); this component doesn't render one either - `indeterminate` wins
    * when both are passed. */
   indeterminate?: boolean;
 };
 
-/** An accessible name is required — `aria-label`, or `aria-labelledby`. Same
+/** An accessible name is required - `aria-label`, or `aria-labelledby`. Same
  * mandatory-name pattern as `IconButton`/`ProgressBar`/`Slider`: the box has
  * no visible text of its own for a screen reader to announce (pair it with a
  * real `<label>` in your own markup and pass that text again here, or point
@@ -51,26 +51,26 @@ export type CheckboxProps =
   | (Base & { 'aria-labelledby': string; 'aria-label'?: never });
 
 /**
- * A rounded-square box wrapping a real `<input type="checkbox">` — native
+ * A rounded-square box wrapping a real `<input type="checkbox">` - native
  * keyboard/click/focus/label-association behavior for free, same reason
  * `Radio` wraps `<input type="radio">` instead of a hand-rolled
- * `role="checkbox"` div. The input is visually hidden (not `display:none` —
+ * `role="checkbox"` div. The input is visually hidden (not `display:none` -
  * still focusable/clickable, just transparent and stretched over the whole
  * box) and a decorative `<span>` underneath renders the visible chrome,
  * reacting to the real input's `:hover`/`:focus-visible`/`:disabled` via the
- * sibling combinator — the same "input drives it, a plain span shows it"
+ * sibling combinator - the same "input drives it, a plain span shows it"
  * split `Slider`'s track/fill uses.
  *
- * Controlled (`checked` + `onChange`) or uncontrolled (`defaultChecked`) —
+ * Controlled (`checked` + `onChange`) or uncontrolled (`defaultChecked`) -
  * same split `Slider` uses for `value`/`defaultValue`: internally always
  * rendered from one `currentChecked`, seeded once from `defaultChecked` when
  * the consumer isn't driving `checked`.
  *
- * `checked` and `indeterminate` share the same filled brand box (no border)
- * — only the glyph differs (check vs. dash). Disabled uses a muted gray
+ * `checked` and `indeterminate` share the same filled brand box (no border) -
+ * only the glyph differs (check vs. dash). Disabled uses a muted gray
  * glyph (`color.text.disabled`), never the white checked-glyph color, so a
  * disabled+checked box doesn't render an unreadable near-invisible mark on
- * its own pale gray fill — see `Checkbox.md`.
+ * its own pale gray fill - see `Checkbox.md`.
  */
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
   {

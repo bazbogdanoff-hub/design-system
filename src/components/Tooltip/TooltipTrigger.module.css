@@ -1,6 +1,6 @@
 /* The anchor is the positioning context and the hover region. The bubble
    sits inside it, so moving the pointer from the trigger onto the bubble
-   never leaves the anchor — that is what keeps it open while hovered. */
+   never leaves the anchor - that is what keeps it open while hovered. */
 .anchor {
   position: relative;
   display: inline-flex;
@@ -8,7 +8,7 @@
 }
 
 /* The gap between trigger and bubble is this wrapper's padding, not an
-   offset — so it is part of the hover region, not a dead strip that would
+   offset - so it is part of the hover region, not a dead strip that would
    close the tooltip on the way across. */
 .bubble {
   position: absolute;
@@ -62,7 +62,7 @@
   padding-left: var(--space-6);
 }
 
-/* Motion (playground, 2026-09-28): the bubble grows out of the trigger — it
+/* Motion (playground, 2026-09-28): the bubble grows out of the trigger - it
    starts a few pixels toward it, slightly small, and springs into place.
    `translate` / `scale` are the individual transform properties, so they
    stack on the centring `transform` above instead of replacing it. */

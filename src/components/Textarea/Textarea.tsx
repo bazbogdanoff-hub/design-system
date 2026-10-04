@@ -13,18 +13,18 @@ import styles from './Textarea.module.css';
 export type TextareaSize = 'sm' | 'md' | 'lg';
 
 export interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
-  /** `sm` (72px) · `md` (80px, default) · `lg` (88px) — exactly 2x `Input`'s own scale at each step; a default starting height for a notes-style field, not a hard cap (still grows with `rows`/manual resize). With `autoGrow`, the size instead picks `Input`'s height for one line (36 · 40 · 44). */
+  /** `sm` (72px) · `md` (80px, default) · `lg` (88px) - exactly 2x `Input`'s own scale at each step; a default starting height for a notes-style field, not a hard cap (still grows with `rows`/manual resize). With `autoGrow`, the size instead picks `Input`'s height for one line (36 · 40 · 44). */
   size?: TextareaSize;
-  /** Error state — reddens the border and sets `aria-invalid`. */
+  /** Error state - reddens the border and sets `aria-invalid`. */
   error?: boolean;
-  /** A message field (2026-10-01): starts one line tall — `Input`'s own
-   * height — and grows with what's typed, up to `maxRows`, then scrolls.
+  /** A message field (2026-10-01): starts one line tall - `Input`'s own
+   * height - and grows with what's typed, up to `maxRows`, then scrolls.
    * No manual resize. */
   autoGrow?: boolean;
   /** With `autoGrow`, the most lines shown before the text scrolls.
    * Default 8. */
   maxRows?: number;
-  /** An interactive element at the end, inside the border — a send button.
+  /** An interactive element at the end, inside the border - a send button.
    * It stays on the last line as the field grows, as in a messenger. Use an
    * `IconButton` a step shorter than the field (`md` in an `md` field), as
    * `Input`'s `trailingAction`. */
@@ -35,12 +35,12 @@ export interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaE
 }
 
 /**
- * A multi-line text field — a real native `<textarea>`, styled directly with
+ * A multi-line text field - a real native `<textarea>`, styled directly with
  * `Input`'s own tokens (`color.input.*`, `radius.input`) rather than
  * `Input`'s wrapper-owns-chrome pattern. No icon/affix slots: unlike a
  * single-line `Input`, a notes-style field doesn't gain anything from a
  * leading/trailing icon, and skipping the wrapper span keeps this the
- * simpler of the two — no abstraction beyond what a plain styled `<textarea>`
+ * simpler of the two - no abstraction beyond what a plain styled `<textarea>`
  * already needs. Vertically resizable by default, matching the native
  * element's own convention.
  *
@@ -77,7 +77,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
   );
 
   // Height follows content: reset, measure, cap. Runs on every value change
-  // too — a controlled value cleared after sending must shrink back.
+  // too - a controlled value cleared after sending must shrink back.
   const fit = useCallback(() => {
     const el = localRef.current;
     if (!el || !autoGrow) return;

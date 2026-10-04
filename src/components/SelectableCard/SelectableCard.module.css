@@ -1,6 +1,6 @@
 /* Card already gives the surface; this adds the choice states and the one
    internal row. Spacing between the top row and the consumer's children is
-   this card's own gap — children never carry margins. */
+   this card's own gap - children never carry margins. */
 .card {
   gap: var(--space-12);
   cursor: pointer;
@@ -13,7 +13,7 @@
 /* Selected: a 1px brand ring replaces Card's top+left white catch; the
    vignette shadow is kept, so the card still reads as the same surface.
 
-   Keyboard focus mirrors it — house rule for now: focus reuses the active
+   Keyboard focus mirrors it - house rule for now: focus reuses the active
    look (as Button does) until focus states are designed. Focus sits on the
    radio, but the card is what's being chosen, so the card shows it.
    `:focus-visible` only, so a mouse click doesn't. */
@@ -33,7 +33,7 @@
 }
 
 /* Trailing sits LEFT of the radio, with the radio pushed to the card's right
-   edge by the row's space-between — owner's call, 2026-09-26.
+   edge by the row's space-between - owner's call, 2026-09-26.
 
    Done with `order` rather than by reordering the JSX, so the DOM keeps the
    radio first. The radio carries the card's accessible name, and a screen

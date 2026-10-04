@@ -9,12 +9,12 @@
      against that element rather than the viewport. */
   position: fixed;
 
-  /* Above table body / later siblings — otherwise the drop shadow paints
+  /* Above table body / later siblings - otherwise the drop shadow paints
      underneath the next opaque region and looks like it "isn't there". */
   z-index: 40;
   border-radius: var(--radius-popover);
   /* Elevation shared by both variants (card keeps Card's inset glass on the
-     inner shell). Alpha-black ramp — not raw rgba. */
+     inner shell). Alpha-black ramp - not raw rgba. */
   box-shadow:
     0 4px 8px 0 var(--color-alpha-black-15),
     0 12px 32px 0 var(--color-alpha-black-25);
@@ -30,7 +30,7 @@
   overflow: hidden;
 }
 
-/* Card already owns fill / inset glass / radius — only clip content here. */
+/* Card already owns fill / inset glass / radius - only clip content here. */
 .cardShell {
   overflow: hidden;
 }
@@ -44,8 +44,8 @@
 }
 
 /* ---- enter / exit (motion playground, 2026-09-28) ----------------------------
-   The menu grows out of the corner nearest its trigger — top-left or
-   top-right by `align`, the bottom corners when it flipped above — and
+   The menu grows out of the corner nearest its trigger - top-left or
+   top-right by `align`, the bottom corners when it flipped above - and
    shrinks back into it on close. The enter starts once the menu is placed
    (`data-placed`), so it never plays at the pre-measure hidden spot. */
 .menu {

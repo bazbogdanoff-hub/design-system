@@ -18,7 +18,7 @@ export interface LabelGroupProps extends HTMLAttributes<HTMLDivElement> {
   /** Default `color` for child `Label`s that don't set one. When set, skips
    *  Headercard total/active/inactive inference. `Row` always passes `subtle`. */
   color?: LabelColor;
-  /** `Label` elements — 2–4 is the intended range. Real 1px dividers are
+  /** `Label` elements - 2–4 is the intended range. Real 1px dividers are
    *  inserted between them automatically. */
   children: ReactElement<LabelProps> | Array<ReactElement<LabelProps> | null | false | undefined>;
 }
@@ -47,7 +47,7 @@ function inferStatColor(text: string): LabelColor | undefined {
 }
 
 /**
- * A short run of `Label`s separated by real 1px vertical dividers — the
+ * A short run of `Label`s separated by real 1px vertical dividers - the
  * pipe-separated pattern (`TK-4021 | TL-88 | Dumont`). The divider is fixed
  * chrome (`color.text.subtle`), never one of `Label`'s own colors. Used as
  * `Row`'s `description`. See `docs/components/LabelGroup.md`.

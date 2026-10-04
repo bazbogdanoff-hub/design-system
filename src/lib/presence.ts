@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 /**
  * Keeps something mounted for `exitMs` after `open` goes false, so its exit
  * animation can play (motion playground, 2026-09-28). `closing` is true for
- * that window — style it with `data-state="closing"`. Under reduced motion
+ * that window - style it with `data-state="closing"`. Under reduced motion
  * it unmounts straight away. `onExited` runs once it is gone.
  */
 export function usePresence(
@@ -12,7 +12,7 @@ export function usePresence(
   onExited?: () => void,
 ): { present: boolean; closing: boolean } {
   const [present, setPresent] = useState(open);
-  // Opening is immediate — adjust during render rather than a frame later.
+  // Opening is immediate - adjust during render rather than a frame later.
   if (open && !present) setPresent(true);
 
   const exited = useRef(onExited);

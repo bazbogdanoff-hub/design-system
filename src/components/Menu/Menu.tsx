@@ -22,12 +22,12 @@ export type MenuAlign = 'start' | 'end';
 export type MenuSize = 'sm' | 'md' | 'lg';
 
 export interface MenuProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
-  /** `default` — a plain bordered/shadowed dropdown shell, for `Select`/`Input`-triggered menus. `card` — reuses the real `Card` component for its shell, for `Filter`-triggered menus. */
+  /** `default` - a plain bordered/shadowed dropdown shell, for `Select`/`Input`-triggered menus. `card` - reuses the real `Card` component for its shell, for `Filter`-triggered menus. */
   variant?: MenuVariant;
-  /** Cascades to every `MenuRow` inside — match whatever size triggered this menu (the `Input`/`Select`/`Filter`). */
+  /** Cascades to every `MenuRow` inside - match whatever size triggered this menu (the `Input`/`Select`/`Filter`). */
   size?: MenuSize;
   /** Which edge the panel is pinned to. `start` (default) grows rightward from
-   * the trigger's left edge — right for a wide trigger like a `Select`. `end`
+   * the trigger's left edge - right for a wide trigger like a `Select`. `end`
    * grows leftward from its right edge, which is what a trigger sitting at the
    * right of a header needs: a `start` menu there runs off the card. */
   align?: MenuAlign;
@@ -47,18 +47,18 @@ function mergeRefs<T>(...refs: Array<React.Ref<T> | undefined>) {
 }
 
 /**
- * A dropdown panel — anchored, not floating-UI-positioned. Renders
+ * A dropdown panel - anchored, not floating-UI-positioned. Renders
  * `position: absolute; top: 100%` relative to its own nearest positioned
  * ancestor, so the consumer wraps its trigger + `Menu` in a
  * `position: relative` box (`Select` does this internally). No collision
- * detection or auto-flip — a full popover-positioning system is its own
+ * detection or auto-flip - a full popover-positioning system is its own
  * project; this covers the common "opens below, room underneath" case, the
  * only one this design system's screens need so far. `align` is the manual
  * stand-in for the horizontal half of that: the consumer says which way there
  * is room, because the component cannot measure.
  *
  * Closes on an outside click or Escape. Not a portal+backdrop like
- * `Overlay` — that's the right mechanism for a modal, not a dropdown, which
+ * `Overlay` - that's the right mechanism for a modal, not a dropdown, which
  * should stay inline and close without dimming the page behind it.
  */
 export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
@@ -69,7 +69,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
   // Stays mounted through its exit animation (it scales back into its trigger).
   const { present, closing } = usePresence(open, EXIT_MS);
   /* The anchor is whatever box the consumer made `position: relative` around
-     its trigger — the same box this used to be absolutely positioned inside.
+     its trigger - the same box this used to be absolutely positioned inside.
      Reading it from the DOM keeps the API unchanged: no anchorRef to thread
      through every Select, Filter and IconButton that opens a menu. */
   const [placement, setPlacement] = useState<{
@@ -83,7 +83,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
 
      `position: fixed` rather than `absolute` because absolute is clipped by
      any ancestor that scrolls, and menus open inside scrolling panels all the
-     time — a Select in a side panel, a Filter above a table. Fixed escapes
+     time - a Select in a side panel, a Filter above a table. Fixed escapes
      overflow entirely.
 
      The trade is that fixed does not move with its anchor, so this recomputes
@@ -136,7 +136,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
     if (!open) return;
     /* The anchor box holds the menu and its trigger, and every trigger
        toggles. Closing on the trigger's mousedown let the click that follows
-       reopen the menu — tapping an open Filter flickered and stayed open. A
+       reopen the menu - tapping an open Filter flickered and stayed open. A
        press inside the anchor is the trigger's (or a row's) to handle. */
     function handlePointerDown(event: MouseEvent) {
       const anchor = localRef.current?.parentElement;

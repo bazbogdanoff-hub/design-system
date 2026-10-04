@@ -9,7 +9,7 @@ export interface FilterProps extends Omit<ButtonProps, 'variant' | 'size'> {
 }
 
 /**
- * A filter trigger for card/table headers — `Button` fixed to `variant="secondary"`.
+ * A filter trigger for card/table headers - `Button` fixed to `variant="secondary"`.
  * Same composition in Figma: each `Filter` variant nests a real `Button`
  * instance, so states/tokens/icons all come from `Button` directly, nothing
  * duplicated here.

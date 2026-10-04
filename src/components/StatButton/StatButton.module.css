@@ -15,7 +15,7 @@
   font: inherit;
   transition: box-shadow 120ms ease;
 
-  /* glass — "Viginette/2xs" from Figma, hand-tuned (NOT tokens):
+  /* glass - "Viginette/2xs" from Figma, hand-tuned (NOT tokens):
      1) 1.5px white catch, top + left  → color/card/border
      2) inner vignette  → inset 2px 2px 12px var(--color-card-item-vignette)
      3) drop shadow     → 0 1px 8px rgba(0,0,0,.20) */
@@ -32,7 +32,7 @@
   gap: var(--space-8);
 }
 
-/* hover — "Viginette/2xs hover": deeper, wider drop shadow */
+/* hover - "Viginette/2xs hover": deeper, wider drop shadow */
 .stat:hover:not(:disabled) {
   box-shadow:
     inset 1.5px 1.5px 0 0 var(--color-card-border),
@@ -40,7 +40,7 @@
     0 2px 12px 0 rgba(0, 0, 0, 0.25);
 }
 
-/* focus and active are identical — the top-left white catch becomes a full
+/* focus and active are identical - the top-left white catch becomes a full
    1.5px primary border (the glass focus treatment; shared by all glass surfaces). */
 .stat:focus-visible,
 .stat:active:not(:disabled) {

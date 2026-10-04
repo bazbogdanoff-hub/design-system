@@ -8,23 +8,23 @@ export type CategoryIconEmphasis = 'strong' | 'muted';
 
 export interface CategoryIconProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'color'> {
   /** `sm` (28px) · `md` (32px) · `lg` (36px) · `xl` (40px) · `2xl` (44px,
-   * default) — the same box/icon/radius scale as `IconCell`. */
+   * default) - the same box/icon/radius scale as `IconCell`. */
   size?: CategoryIconSize;
-  /** One of the 10 validated `color.category.*` hues — same palette as
+  /** One of the 10 validated `color.category.*` hues - same palette as
    * `Tag`, same round-robin order matters if auto-assigning. */
   color: TagColor;
-  /** `strong` (default) — saturated fill + white icon, for **modules**.
-   * `muted` — the same hue genuinely desaturated (not just lightened, see
+  /** `strong` (default) - saturated fill + white icon, for **modules**.
+   * `muted` - the same hue genuinely desaturated (not just lightened, see
    * `color.category.*.background-muted`), still a white icon, for
    * **settings**. */
   emphasis?: CategoryIconEmphasis;
-  /** Disabled — flat 30% opacity, matching the legacy reference. */
+  /** Disabled - flat 30% opacity, matching the legacy reference. */
   disabled?: boolean;
   icon: ReactNode;
 }
 
 /**
- * A colored icon tile for categorical identity — arbitrary category color
+ * A colored icon tile for categorical identity - arbitrary category color
  * (like `Tag`'s `color`), not status meaning (that's `IconCell`'s `tone`).
  * Used for module icons and settings nav icons; kept as a sibling of
  * `IconCell` rather than merged into it since the two vocabularies

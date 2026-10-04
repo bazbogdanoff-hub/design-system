@@ -7,13 +7,13 @@
   background: var(--color-card-background-default);
   border-radius: var(--radius-card);
 
-  /* same glass stack as Card — hand-tuned, not tokens (see Card.module.css) */
+  /* same glass stack as Card - hand-tuned, not tokens (see Card.module.css) */
   box-shadow:
     inset 1.5px 1.5px 0 0 var(--color-card-border),
     inset 4px 4px 16px 0 var(--color-card-vignette);
 }
 
-/* Outer corners — set by Page (lib/surfaceCorners.ts), same as Card. */
+/* Outer corners - set by Page (lib/surfaceCorners.ts), same as Card. */
 .card[data-corner-outer~='tl'] { border-top-left-radius: var(--radius-card-outer); }
 .card[data-corner-outer~='tr'] { border-top-right-radius: var(--radius-card-outer); }
 .card[data-corner-outer~='bl'] { border-bottom-left-radius: var(--radius-card-outer); }
@@ -26,7 +26,7 @@
   min-width: 0;
 }
 
-/* `controls` in place of a label group — see Headercard.tsx. Controls are
+/* `controls` in place of a label group - see Headercard.tsx. Controls are
    ~32px tall: they need more room under the heading than a text stat line,
    and the actions line up with the heading rather than the card's middle. */
 .card[data-has-controls] {

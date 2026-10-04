@@ -10,18 +10,18 @@ type Base = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
   caption?: ReactNode;
 };
 
-/** An accessible name is required — `aria-label`, or `aria-labelledby`. Same
+/** An accessible name is required - `aria-label`, or `aria-labelledby`. Same
  * mandatory-name pattern as `ProgressBar`. */
 export type TableProgressStagesProps =
   | (Base & { 'aria-label': string; 'aria-labelledby'?: never })
   | (Base & { 'aria-labelledby': string; 'aria-label'?: never });
 
 /**
- * A compact multi-stage tracker — one small block per stage, in the charts'
+ * A compact multi-stage tracker - one small block per stage, in the charts'
  * glass (owner, 2026-09-30; was dots joined by a line): stages reached are
  * glass blocks, the current one a step taller, the rest flat and recessed.
  * Not `ProgressBar` (a continuous 0–100% fill) and not `Tracker` (a big
- * time-left countdown card) — "discrete named stages, one of which is
+ * time-left countdown card) - "discrete named stages, one of which is
  * current" stays its own thing, same call made in Figma.
  */
 export const TableProgressStages = forwardRef<HTMLDivElement, TableProgressStagesProps>(function TableProgressStages(

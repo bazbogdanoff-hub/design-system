@@ -5,20 +5,20 @@ import styles from './ListCardHeader.module.css';
 export type ListCardHeaderSize = 'xs' | 'sm' | 'md' | 'lg';
 
 export interface ListCardHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
-  /** `xs` (16/12) · `sm` (18/13) · `md` (20/14, default) · `lg` (24/16) —
+  /** `xs` (16/12) · `sm` (18/13) · `md` (20/14, default) · `lg` (24/16) -
    * `text.heading.*` / `text.body.*` at the same size step. Usually left
-   * unset and cascaded from a `ListCard` ancestor — see `ListCard`'s own
+   * unset and cascaded from a `ListCard` ancestor - see `ListCard`'s own
    * `size` prop. */
   size?: ListCardHeaderSize;
   heading: ReactNode;
-  /** The second, muted line. Omit entirely to render just the heading —
+  /** The second, muted line. Omit entirely to render just the heading -
    * mirrors the Figma reference's own `description` boolean (default
    * `true` there; here it's just "is the prop present"). */
   description?: ReactNode;
 }
 
 /**
- * `ListCard`'s title region — a heading and an optional muted description
+ * `ListCard`'s title region - a heading and an optional muted description
  * line, stacked with no gap between them (matches the Figma reference
  * exactly: `itemSpacing: 0`). Always sits directly on `ListCard`'s own
  * padded `Card` surface, never on its own background.

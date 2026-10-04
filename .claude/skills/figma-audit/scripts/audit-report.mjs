@@ -1,5 +1,5 @@
 /**
- * figma-audit · phase 5 — cross-check the raw Figma dumps against
+ * figma-audit · phase 5 - cross-check the raw Figma dumps against
  * design-system-conventions and emit audit/findings.json + audit/report.md.
  *
  * Reads:
@@ -68,8 +68,8 @@ function loadExpected() {
     byPath[p] = val;
     const h = hex6(val);
     if (h) (byHex[h] ||= []).push(p);
-    // any {color.<hue>.<step>} reference — including the brand ramp's
-    // {color.indigo.N} — keeps that hue alive
+    // any {color.<hue>.<step>} reference - including the brand ramp's
+    // {color.indigo.N} - keeps that hue alive
     const m = typeof raw === 'string' && raw.match(/\{(color\.[a-z]+\.\d+)\}/);
     if (m) referencedPrimitives.add(m[1]);
   }
@@ -167,11 +167,11 @@ for (const c of variablesDump.collections) {
   if (collRole[c.id] === 'mixed')
     add('STRUCT', 'collection-structure', 'high', { kind: 'collection', id: c.id, name: c.name },
       c.name, 'split into Primitives / Semantic / Component',
-      'one collection mixes primitive and semantic/component variables — they need separate collections to theme', 'manual-review');
+      'one collection mixes primitive and semantic/component variables - they need separate collections to theme', 'manual-review');
   if (collRole[c.id] !== 'primitive' && !c.modes.some((m) => /light/i.test(m)))
     add('STRUCT', 'collection-structure', 'medium', { kind: 'collection', id: c.id, name: c.name },
       `modes: ${c.modes.join(', ')}`, 'add a "Light" mode',
-      'semantic/component collection has no Light mode — conventions expect Light now, Dark later', 'manual-review');
+      'semantic/component collection has no Light mode - conventions expect Light now, Dark later', 'manual-review');
   if (collRole[c.id] === 'primitive' && c.modes.length > 1)
     add('STRUCT', 'collection-structure', 'medium', { kind: 'collection', id: c.id, name: c.name },
       `modes: ${c.modes.join(', ')}`, 'one mode', 'primitives collection should have a single mode', 'manual-review');
@@ -202,7 +202,7 @@ for (const v of variablesDump.variables) {
   const guess = proposeCanonical(v.name, expSet);
   if (!guess) {
     add('VAR', 'variable-off-catalog', 'medium', target, v.name, null,
-      'name maps to nothing in the approved catalogue — decide if it should exist', 'manual-review');
+      'name maps to nothing in the approved catalogue - decide if it should exist', 'manual-review');
   } else if (!guess.exact) {
     add('VAR', 'variable-naming', 'medium', target, v.name, guess.proposed.replaceAll('.', '/'),
       `rename to the catalogue grammar (${guess.proposed})`, 'rename');
@@ -215,7 +215,7 @@ for (const v of variablesDump.variables) {
       const primMatch = h && Object.entries(expected.byPath).find(([p, x]) => isPrimitivePath(p) && hex6(x) === h);
       add('VAR', 'variable-raw-value', 'high', { ...target, id: `${v.id}:${mode}`, mode }, `${mode}: ${val.hex}`,
         primMatch ? `alias → ${primMatch[0].replaceAll('.', '/')}` : 'alias → (no primitive matches this hex)',
-        `${role} variable holds a raw colour in mode "${mode}" — every semantic/component variable must be an alias`,
+        `${role} variable holds a raw colour in mode "${mode}" - every semantic/component variable must be an alias`,
         primMatch ? 'rebind' : 'manual-review');
     }
   }
@@ -236,7 +236,7 @@ for (const s of stylesDump.paint || []) {
   const match = h && expected.byHex[h]?.[0];
   add('STY', 'style-not-variable', 'medium', { kind: 'style', id: s.id, name: s.name },
     s.name, match ? match.replaceAll('.', '/') : 'a variable in the Semantic collection',
-    'this system is variable-based — local paint styles should become variables', 'convert-style-to-variable');
+    'this system is variable-based - local paint styles should become variables', 'convert-style-to-variable');
 }
 
 // --- components: naming + variants ---
@@ -275,7 +275,7 @@ for (const r of usageRows) {
       const semMatch = h && (expected.byHex[h] || []).find((p) => expected.semanticPaths.has(p));
       add('USE', 'component-binding', 'high', target, r.binding,
         semMatch ? `variable:${semMatch.replaceAll('.', '/')}` : 'a semantic token',
-        'node is bound to a primitive — must go through a semantic (or component) token', semMatch ? 'rebind' : 'manual-review');
+        'node is bound to a primitive - must go through a semantic (or component) token', semMatch ? 'rebind' : 'manual-review');
     }
     continue;
   }
@@ -285,13 +285,13 @@ for (const r of usageRows) {
     const isPalette = h && Object.entries(expected.byPath).some(([p, x]) => isPrimitivePath(p) && hex6(x) === h);
     if (exactSem)
       add('USE', 'raw-color', 'medium', target, r.hex, `variable:${exactSem.replaceAll('.', '/')}`,
-        `raw fill matches ${exactSem} exactly — bind it`, 'create-and-bind');
+        `raw fill matches ${exactSem} exactly - bind it`, 'create-and-bind');
     else if (isPalette)
       add('USE', 'raw-color', 'medium', target, r.hex, 'a semantic token (hex is on the palette but ambiguous)',
-        'raw fill uses a palette colour directly — pick the semantic token that expresses the intent', 'manual-review');
+        'raw fill uses a palette colour directly - pick the semantic token that expresses the intent', 'manual-review');
     else
       add('USE', 'off-palette-color', 'low', target, r.hex, 'palette colour or a product-override token',
-        'raw fill is not on the Tailwind palette — a mistake, or one of the planned 2–3 product overrides', 'manual-review');
+        'raw fill is not on the Tailwind palette - a mistake, or one of the planned 2–3 product overrides', 'manual-review');
   }
 }
 
@@ -320,7 +320,7 @@ writeFileSync(OUT_JSON, JSON.stringify(out, null, 2) + '\n');
 const esc = (s) => String(s ?? '').replace(/\|/g, '\\|');
 let md = `# Figma audit report\n\n`;
 md += `${out.generatedAt} · file: ${out.figmaFile.name ?? '(unknown)'}\n\n`;
-md += `**${findings.length} findings** — ${Object.entries(byCategory).map(([k, v]) => `${k}: ${v}`).join(' · ')}\n\n`;
+md += `**${findings.length} findings** - ${Object.entries(byCategory).map(([k, v]) => `${k}: ${v}`).join(' · ')}\n\n`;
 md += `${variablesDump.variables.length} variables · ${(componentsDump.components || []).length} components · ${usageRows.length} coloured nodes scanned\n\n`;
 md += `Triage: edit \`proposed\` / \`action\` in \`audit/findings.json\`, set \`status\` to \`approved\` / \`skip\` / \`manual\`. Then run figma-safe-edit.\n\n`;
 for (const sev of ['high', 'medium', 'low']) {
@@ -330,7 +330,7 @@ for (const sev of ['high', 'medium', 'low']) {
   md += `| id | category | current | → proposed | action | status |\n|---|---|---|---|---|---|\n`;
   for (const f of group) {
     const t = f.target.name || f.target.id;
-    md += `| ${f.id} | ${f.category} | ${esc(t)} — ${esc(f.current)} | ${esc(f.proposed)} | ${f.action} | ${f.status} |\n`;
+    md += `| ${f.id} | ${f.category} | ${esc(t)} - ${esc(f.current)} | ${esc(f.proposed)} | ${f.action} | ${f.status} |\n`;
   }
   md += `\n`;
 }

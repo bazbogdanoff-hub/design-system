@@ -13,7 +13,7 @@ export interface ChatComposerFile {
   type: string;
   /** Pre-formatted ("1.2 MB"). */
   size?: string;
-  /** An object URL — pictures show as a thumbnail. */
+  /** An object URL - pictures show as a thumbnail. */
   preview?: string;
 }
 
@@ -24,13 +24,13 @@ export interface ChatComposerProps {
   onSubmit: () => void;
   placeholder?: string;
   /** `light` (default) in a card on the page; `dark` in the dark app-frame
-   * card — the field takes the sidebar's active-tab recipe. */
+   * card - the field takes the sidebar's active-tab recipe. */
   surface?: 'light' | 'dark';
-  /** Whether Send can fire — default: there's text. */
+  /** Whether Send can fire - default: there's text. */
   canSubmit?: boolean;
   /** Sending or saving: everything waits. */
   busy?: boolean;
-  /** The button's name and glyph — "Save" with a check while editing. */
+  /** The button's name and glyph - "Save" with a check while editing. */
   submitLabel?: string;
   submitIcon?: ReactNode;
   /** Shows the paperclip before the field; picked files come here. */
@@ -43,7 +43,7 @@ export interface ChatComposerProps {
   /** Editing a sent message: a bar above the field shows what; Esc or ×
    * calls onCancel. */
   editing?: { original: ReactNode; onCancel: () => void };
-  /** A line above the field — a file that can't be sent. */
+  /** A line above the field - a file that can't be sent. */
   error?: ReactNode;
   maxLength?: number;
   /** Lines before the field scrolls. Default 8. */
@@ -54,8 +54,8 @@ export interface ChatComposerProps {
 
 /**
  * Where a message is written (owner, 2026-10-01; built code-first from the
- * Messages page): the paperclip, then the field — Textarea's message mode,
- * one line tall, growing to `maxRows` with send kept on its last line —
+ * Messages page): the paperclip, then the field - Textarea's message mode,
+ * one line tall, growing to `maxRows` with send kept on its last line -
  * and above it, when there are any, the files waiting and the editing bar.
  * Enter sends, Shift+Enter breaks a line, Esc leaves an edit; an IME's
  * Enter picks its word. Fully controlled: the screen owns the text, the

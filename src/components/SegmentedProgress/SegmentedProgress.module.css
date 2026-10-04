@@ -6,7 +6,7 @@
   min-width: 0;
 }
 
-/* Empty — flat, sunk into the card it sits on. */
+/* Empty - flat, sunk into the card it sits on. */
 .segment {
   flex: 1 1 0;
   min-width: 0;
@@ -15,7 +15,7 @@
   background: var(--color-surface-recessed);
 }
 
-/* Filled — the glass pattern (src/glass.css) in the primary Button's fill.
+/* Filled - the glass pattern (src/glass.css) in the primary Button's fill.
    This segment is where the pattern was drawn from (owner, 2026-09-28/29):
    a 1px top-left catch (1.5 reads heavy on a 16px segment), the inner
    shadow, and its own colour thrown down and to the right instead of a grey
@@ -35,7 +35,7 @@
     3px 6px 12px -2px color-mix(in srgb, var(--glass-fill) var(--glass-light-far), transparent);
 }
 
-/* Entrance — the segments rise into the row left to right, then the filled
+/* Entrance - the segments rise into the row left to right, then the filled
    ones light up in turn, like a charge running along the bar. `--i` is the
    segment's index, set inline. A segment that fills later (a task gets
    done) lights up the same way. */

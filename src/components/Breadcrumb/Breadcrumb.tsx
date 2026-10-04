@@ -12,14 +12,14 @@ export interface BreadcrumbEntry {
 }
 
 export interface BreadcrumbProps extends Omit<HTMLAttributes<HTMLElement>, 'children'> {
-  /** 2–4 entries — matches the Figma reference's own configurable range.
+  /** 2–4 entries - matches the Figma reference's own configurable range.
    * The last entry always renders as the current page (non-clickable),
    * regardless of whether it has an `href`. */
   items: BreadcrumbEntry[];
 }
 
 /**
- * A real multi-level trail — `nav` + `ol` of `BreadcrumbItem`s separated by
+ * A real multi-level trail - `nav` + `ol` of `BreadcrumbItem`s separated by
  * a caret. Distinct from `Headercard`'s own ad hoc "Back" button, which is a
  * single return-to-previous action, not a trail.
  */

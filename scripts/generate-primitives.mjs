@@ -51,43 +51,43 @@ for (const hue of HUES) {
 }
 
 // --- brand.color.json : brand ramp + product overrides ------------------------
-// No $type here on purpose — it's declared once, on the `color` group in
+// No $type here on purpose - it's declared once, on the `color` group in
 // primitives.color.json, and inherited through the alias chain. A second
 // declaration makes Style Dictionary log a token collision.
 const brand = { brand: {}, extra: {} };
 for (const step of STEPS) {
   brand.brand[step] = { $value: `{color.${BRAND_HUE}.${step}}` };
 }
-// Product-override primitives — bespoke hexes not on the Tailwind scale.
+// Product-override primitives - bespoke hexes not on the Tailwind scale.
 brand.extra.card = {
   $value: '#f6f6f8',
   $description:
-    'cool near-white card fill — product override (owner, 2026-09-29: #f6f7f8 → #f6f6f8, tuned by eye to the most contrast for white items before it reads grey; was #fcfcfc before 2026-09-28)',
+    'cool near-white card fill - product override (owner, 2026-09-29: #f6f7f8 → #f6f6f8, tuned by eye to the most contrast for white items before it reads grey; was #fcfcfc before 2026-09-28)',
 };
 // The card moved down a step, so the surfaces keyed to it move with it and
 // keep the steps they had against #fcfcfc (owner, 2026-09-28).
 brand.extra.recessed = {
   $value: '#ebecef',
   $description:
-    'recessed zone inside a card — table header band, scroll tray, progress pill, segmented-control track. Darkened #eeeff1 → #ebecef (owner, 2026-09-30): the empty segments and the track read too faint on the card',
+    'recessed zone inside a card - table header band, scroll tray, progress pill, segmented-control track. Darkened #eeeff1 → #ebecef (owner, 2026-09-30): the empty segments and the track read too faint on the card',
 };
 // Card-looking things that sit ON a card (StatButton, secondary Button and
 // everything built on it) keep the old lighter fill, so they read as raised
 // above the card, with the vignette that was tuned for that fill.
-// (Not "raised": surface.raised already exists — white, for popovers.)
+// (Not "raised": surface.raised already exists - white, for popovers.)
 brand.extra['card-item'] = {
   $value: '#fcfcfc',
-  $description: 'fill of a card-like element sitting on a card — one step lighter than the card (the pre-2026-09-28 card fill)',
+  $description: 'fill of a card-like element sitting on a card - one step lighter than the card (the pre-2026-09-28 card fill)',
 };
 brand.extra['card-item-vignette'] = {
   $value: '#f0f0f0',
-  $description: 'glass inner-shadow colour for card items — the original vignette, tuned for the #fcfcfc fill',
+  $description: 'glass inner-shadow colour for card items - the original vignette, tuned for the #fcfcfc fill',
 };
-// The white task tile's own glass (owner, 2026-09-29) — flat white alone did
+// The white task tile's own glass (owner, 2026-09-29) - flat white alone did
 // not hold on the card. Alpha is part of the colour: 30% and 60%.
 brand.extra['tile-shadow'] = {
   $value: '#e4e4e84d',
-  $description: 'TaskTile drop shadow colour — #e4e4e8 at 30%',
+  $description: 'TaskTile drop shadow colour - #e4e4e8 at 30%',
 };
 // The severity chart's 'attention' step (owner, 2026-09-29). Off the Tailwind
 // scale on purpose: amber/yellow .500 sit too light for the chart band on
@@ -95,22 +95,22 @@ brand.extra['tile-shadow'] = {
 // step the dataviz validator passes beside orange.600 and emerald.600.
 brand.extra['chart-attention'] = {
   $value: '#f0b90b',
-  $description: 'severity chart — attention, one step lighter (owner, 2026-09-29 trial) beside rose.600 / orange.500 / emerald.500: passes the CVD and normal-vision checks, sits just above the chart lightness band (L 0.81) so relies on the legend and tooltips. The fully validated darker set was #e0a800 with rose.700 / orange.600 / emerald.600',
+  $description: 'severity chart - attention, one step lighter (owner, 2026-09-29 trial) beside rose.600 / orange.500 / emerald.500: passes the CVD and normal-vision checks, sits just above the chart lightness band (L 0.81) so relies on the legend and tooltips. The fully validated darker set was #e0a800 with rose.700 / orange.600 / emerald.600',
 };
 // The timeline's delivery-window band (owner, 2026-09-30). surface.recessed
 // vanished as the tooltip's swatch on white; one cool step darker reads on
 // both the card and the tooltip. Off the zinc scale on purpose.
 brand.extra['chart-window'] = {
   $value: '#e7e8eb',
-  $description: 'TimelineChart delivery-window band and its tooltip swatch — a step below surface.recessed (owner, 2026-09-30: between #e3e4e8, too heavy, and the recessed grey, too faint), visible on white as well as on the #f6f6f8 card',
+  $description: 'TimelineChart delivery-window band and its tooltip swatch - a step below surface.recessed (owner, 2026-09-30: between #e3e4e8, too heavy, and the recessed grey, too faint), visible on white as well as on the #f6f6f8 card',
 };
 brand.extra['tile-lift-shadow'] = {
   $value: '#18181b1f',
-  $description: 'TaskTile hover lift — zinc 900 at 12%, dark enough to read as height on the #f6f6f8 card (owner, 2026-09-29)',
+  $description: 'TaskTile hover lift - zinc 900 at 12%, dark enough to read as height on the #f6f6f8 card (owner, 2026-09-29)',
 };
 brand.extra['tile-inner-shadow'] = {
   $value: '#f0f0f099',
-  $description: 'TaskTile inner shadow colour — #f0f0f0 at 60%',
+  $description: 'TaskTile inner shadow colour - #f0f0f0 at 60%',
 };
 brand.extra.vignette = {
   $value: '#eaebed',
@@ -121,4 +121,4 @@ brand.extra.vignette = {
 console.log('Generating token files:');
 write('tokens/primitives.color.json', { color });
 write('tokens/brand.color.json', { color: brand });
-console.log(`Done — ${HUES.length} hues x ${STEPS.length} steps + white/black, brand -> ${BRAND_HUE}.`);
+console.log(`Done - ${HUES.length} hues x ${STEPS.length} steps + white/black, brand -> ${BRAND_HUE}.`);

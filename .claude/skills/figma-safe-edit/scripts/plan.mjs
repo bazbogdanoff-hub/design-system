@@ -9,7 +9,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 
 const ROOT = process.cwd();
 const src = `${ROOT}/audit/findings.json`;
-if (!existsSync(src)) { console.error('no audit/findings.json — run figma-audit first'); process.exit(1); }
+if (!existsSync(src)) { console.error('no audit/findings.json - run figma-audit first'); process.exit(1); }
 const { findings = [] } = JSON.parse(readFileSync(src, 'utf8'));
 mkdirSync(`${ROOT}/migration`, { recursive: true });
 
@@ -74,12 +74,12 @@ let md = `# Migration plan\n\n${new Date().toISOString()}\n\n`;
 md += `${approved.length} approved · ${findings.length - approved.length} not approved (skipped)\n\n`;
 md += `Run batches in order. Checkpoint (\`saveVersionHistoryAsync\`) before each. Gated batches wait for your go.\n\n`;
 for (const b of ordered) {
-  md += `## Batch ${b.no} — ${b.name}${b.gated ? '  ⚠ gated' : ''} (${b.ops.length})\n\n`;
+  md += `## Batch ${b.no} - ${b.name}${b.gated ? '  ⚠ gated' : ''} (${b.ops.length})\n\n`;
   md += `| finding | action | target | → |\n|---|---|---|---|\n`;
   for (const o of b.ops) md += `| ${o.findingId} | ${o.action} | ${o.targetId} | ${o.proposed ?? ''} |\n`;
   md += `\n`;
 }
-if (!ordered.length) md += `_Nothing approved yet — set \`status: "approved"\` on findings in audit/findings.json._\n`;
+if (!ordered.length) md += `_Nothing approved yet - set \`status: "approved"\` on findings in audit/findings.json._\n`;
 writeFileSync(`${ROOT}/migration/plan.md`, md);
 
 console.log(`${approved.length} approved → ${ordered.length} batches → migration/plan.md, migration/batches.json`);

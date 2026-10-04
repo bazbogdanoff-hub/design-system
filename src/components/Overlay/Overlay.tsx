@@ -23,33 +23,33 @@ export interface OverlayProps extends Omit<HTMLAttributes<HTMLDivElement>, 'chil
   onClose?: () => void;
   /** The modal panel. Give it `role="dialog"` + `aria-modal="true"` + a label. */
   children: ReactNode;
-  /** `center` (default) or `top` — where the panel sits when it's shorter than the viewport. */
+  /** `center` (default) or `top` - where the panel sits when it's shorter than the viewport. */
   align?: 'center' | 'top';
   /** Close when the scrim (not the panel) is clicked. Default `true`. */
   closeOnBackdropClick?: boolean;
   /** Close on the Escape key. Default `true`. */
   closeOnEscape?: boolean;
-  /** `default` — the light 40% darkener that keeps the interface readable
-   * behind a dialog. `strong` — 80%, for content that wants the room dark
+  /** `default` - the light 40% darkener that keeps the interface readable
+   * behind a dialog. `strong` - 80%, for content that wants the room dark
    * around it: a full-screen picture (owner, 2026-10-01). */
   scrim?: 'default' | 'strong';
   /** Lock body scroll while open. Default `true`. */
   lockScroll?: boolean;
   /** Called once the exit animation has finished and the overlay is gone.
    * A modal that lives on its own route closes by setting `open` false and
-   * navigating here — navigating straight away would unmount it mid-exit. */
+   * navigating here - navigating straight away would unmount it mid-exit. */
   onExited?: () => void;
 }
 
 /**
- * The modal scrim + centering layer — `position: fixed; inset: 0`, portalled to
+ * The modal scrim + centering layer - `position: fixed; inset: 0`, portalled to
  * `<body>`, fill `color/modal/scrim`. Whatever you pass as `children` is the
  * modal panel; `Overlay` only darkens, centers, and dismisses.
  *
  * Handled now: backdrop-click + Escape to close, body scroll-lock, focus moves
  * in on open and is restored on close, enter/exit animation (the scrim fades,
- * the panel rises in and sinks out — it stays mounted through the exit; see
- * `onExited`). **Not yet:** focus *trapping* (tab can leave the panel) — that
+ * the panel rises in and sinks out - it stays mounted through the exit; see
+ * `onExited`). **Not yet:** focus *trapping* (tab can leave the panel) - that
  * arrives with the `Dialog` panel component. Until then, put
  * `role="dialog"`/`aria-modal`/a label on your panel yourself. See
  * `docs/components/Overlay.md`.
@@ -76,7 +76,7 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function Overlay
   const { present, closing } = usePresence(open, EXIT_MS, onExited);
   const restoreFocusTo = useRef<HTMLElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  // a backdrop "click" must start AND end on the backdrop — otherwise a drag
+  // a backdrop "click" must start AND end on the backdrop - otherwise a drag
   // that begins inside the panel and releases on the scrim would close it.
   const backdropMouseDown = useRef(false);
 

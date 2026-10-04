@@ -1,4 +1,4 @@
-/* Calendar — month grid with a sliding week pill and day disc.
+/* Calendar - month grid with a sliding week pill and day disc.
    Geometry is one cell size and two gaps; the pill and the disc are placed
    from the highlighted day's row / column (--_row, --_col, set inline), so
    moving the highlight is a transform and springs. */
@@ -36,7 +36,7 @@
   gap: var(--space-8);
 }
 
-/* ---- weekday letters — today's carries a brand dot underneath ------------- */
+/* ---- weekday letters - today's carries a brand dot underneath ------------- */
 .weekdays {
   display: grid;
   grid-template-columns: repeat(7, var(--_cell));
@@ -102,7 +102,7 @@
 .day[data-week] { color: var(--color-text-on-brand); }
 .day[data-week][data-outside] { color: color-mix(in srgb, var(--color-text-on-brand) 60%, transparent); }
 .day[data-active] { color: var(--color-text-default); }
-/* the new day's number turns once its disc has arrived, not before — the old
+/* the new day's number turns once its disc has arrived, not before - the old
    day's turns back at once (the delay lives only on [data-active]) */
 .day[data-active] { transition-delay: 240ms; }
 
@@ -112,7 +112,7 @@
   outline-offset: -2px;
 }
 
-/* ---- the week pill — the primary button's skin ---------------------------- */
+/* ---- the week pill - the primary button's skin ---------------------------- */
 .pill {
   position: absolute;
   top: 0;
@@ -129,7 +129,7 @@
   transition: transform 460ms var(--_spring);
 }
 
-/* ---- the day disc — card glass sitting in the pill ------------------------ */
+/* ---- the day disc - card glass sitting in the pill ------------------------ */
 .disc {
   position: absolute;
   top: var(--_inset);
@@ -146,7 +146,7 @@
     calc(var(--_col) * (var(--_cell) + var(--_col-gap))),
     calc(var(--_row) * (var(--_cell) + var(--_row-gap)))
   );
-  /* hands over a beat after the pill — it rides in, then finds its day */
+  /* hands over a beat after the pill - it rides in, then finds its day */
   transition: transform 520ms var(--_spring) 50ms;
 }
 

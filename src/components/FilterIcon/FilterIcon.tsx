@@ -13,17 +13,17 @@ export type FilterIconSize = 'sm' | 'md';
 type DistributiveOmit<T, K extends keyof any> = T extends unknown ? Omit<T, K> : never;
 
 export type FilterIconProps = DistributiveOmit<IconButtonProps, 'variant' | 'size' | 'icon'> & {
-  /** `sm` (28px) · `md` (32px, default — match `Filter`'s default when
+  /** `sm` (28px) · `md` (32px, default - match `Filter`'s default when
    * sitting in a `FilterBar`). */
   size?: FilterIconSize;
 };
 
 /**
- * The add-a-filter trigger for `FilterBar` — `IconButton` fixed to
+ * The add-a-filter trigger for `FilterBar` - `IconButton` fixed to
  * `variant="secondary"`. Shows a **funnel** at rest and morphs to a **"+"** on
  * hover / press / while its menu is open (`aria-expanded`), because its job is
  * *adding* a filter, not filtering directly. Both glyphs are fixed (not a
- * prop), matching Figma's `Filter — icon` — which now carries the same
+ * prop), matching Figma's `Filter - icon` - which now carries the same
  * funnel→plus state swap.
  *
  * Future: clicking opens a context menu listing every filter available for the

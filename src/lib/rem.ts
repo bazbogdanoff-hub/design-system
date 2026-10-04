@@ -1,7 +1,7 @@
 import { useSyncExternalStore } from 'react';
 
 /**
- * Pixels per `rem` — the root font size. Everything in the system is sized in
+ * Pixels per `rem` - the root font size. Everything in the system is sized in
  * rem, so raising the root (see `scale.css`) scales the whole UI. This is for
  * the few places that compute geometry in JS (SVG charts, table row fill, menu
  * placement), which author their numbers at the 16px reference and multiply.
@@ -19,7 +19,7 @@ function subscribe(onChange: () => void): () => void {
   return () => window.removeEventListener('resize', onChange);
 }
 
-/** The live root scale against the 16px reference — `1` at 16px, `1.125` at 18px. */
+/** The live root scale against the 16px reference - `1` at 16px, `1.125` at 18px. */
 export function useRemScale(): number {
   return useSyncExternalStore(subscribe, () => remPx() / 16, () => 1);
 }

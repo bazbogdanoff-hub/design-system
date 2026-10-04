@@ -10,7 +10,7 @@ export interface SpinnerProps extends Omit<SVGProps<SVGSVGElement>, 'width' | 'h
 }
 
 /**
- * A standalone loading indicator — a rotating 3/4 arc, real pixel sizes and
+ * A standalone loading indicator - a rotating 3/4 arc, real pixel sizes and
  * `color.spinner.icon` (unlike `Button`'s own internal spinner, which is
  * `1em`/`currentColor` so it tracks the label it replaces). Same glyph as
  * `Button`'s, matching the Figma reference reusing the file's existing

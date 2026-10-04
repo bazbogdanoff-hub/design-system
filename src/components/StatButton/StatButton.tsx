@@ -7,19 +7,19 @@ export type StatButtonSize = 'sm' | 'lg';
 
 export interface StatButtonProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value'> {
-  /** The metric name — e.g. "Moving", "In transit". */
+  /** The metric name - e.g. "Moving", "In transit". */
   label: ReactNode;
-  /** The metric figure — e.g. 112. */
+  /** The metric figure - e.g. 112. */
   value: ReactNode;
-  /** `default` · `danger` (turns the value red — a figure that signals a problem). */
+  /** `default` · `danger` (turns the value red - a figure that signals a problem). */
   tone?: StatButtonTone;
-  /** `sm` (default, compact — stacks inside a card) · `lg` (prominent, can show the arrow). */
+  /** `sm` (default, compact - stacks inside a card) · `lg` (prominent, can show the arrow). */
   size?: StatButtonSize;
-  /** Show the "drill into the table" arrow. `lg` only — ignored on `sm`. */
+  /** Show the "drill into the table" arrow. `lg` only - ignored on `sm`. */
   showArrow?: boolean;
 }
 
-/** ArrowUpRight — path extracted verbatim from the Figma StatButton icon. */
+/** ArrowUpRight - path extracted verbatim from the Figma StatButton icon. */
 function ArrowUpRight() {
   return (
     <svg className={styles.arrow} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
@@ -34,7 +34,7 @@ function ArrowUpRight() {
 }
 
 /**
- * A stat that acts as a button — a metric (label + value) on a glass surface
+ * A stat that acts as a button - a metric (label + value) on a glass surface
  * that navigates to the sorted table for that metric. L2 pattern.
  *
  * Renders a `<button>`; drive navigation from `onClick`. States are CSS:

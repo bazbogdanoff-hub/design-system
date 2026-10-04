@@ -1,6 +1,6 @@
 # ScrollableArea
 
-A generic vertically-scrolling container — recessed background, inner-shadow
+A generic vertically-scrolling container - recessed background, inner-shadow
 edges. **L1 primitive.**
 
 ```tsx
@@ -14,7 +14,7 @@ edges. **L1 primitive.**
 | `as` | element type | `div` |
 | `asChild` | `boolean` | `false` |
 
-No variants — one component, matching Figma exactly. Standard `div` props
+No variants - one component, matching Figma exactly. Standard `div` props
 pass through.
 
 Sizing is the consumer's job: `ScrollableArea` only owns `overflow-y: auto` +
@@ -29,7 +29,7 @@ zone" token used elsewhere) for the fill, `color.scrollableArea.shadow` (→
 
 ## Figma
 
-`ScrollableArea` — one component, no variants. `clipsContent: true`, a single
-`content` slot (lowercase — a generic single region, same convention as
+`ScrollableArea` - one component, no variants. `clipsContent: true`, a single
+`content` slot (lowercase - a generic single region, same convention as
 `Page`'s scroll-layout `content` slot). `min-height: 0` in the CSS isn't
 modeled in Figma (a flexbox-in-a-column gotcha, code-only).

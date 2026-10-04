@@ -1,7 +1,7 @@
 # ChartCard
 
-The card shell every chart sits in — title + legend + filters/action on
-**one header row**, chart body below. **L2 pattern** — composes
+The card shell every chart sits in - title + legend + filters/action on
+**one header row**, chart body below. **L2 pattern** - composes
 [`Card`](./Card.md) (`padding="md"`, never detached).
 
 ```tsx
@@ -21,13 +21,13 @@ The card shell every chart sits in — title + legend + filters/action on
 | prop | type | notes |
 |---|---|---|
 | `title` | `ReactNode` | card heading, `text/heading/md` |
-| `titleAccessory` | `ReactNode` — optional | a small companion right after the title, centred on it, 12px away — e.g. `CalendarHeatmapLead`, a count the whole chart qualifies. Outside the `<h3>`, so it keeps its own type and can be a button (owner, 2026-09-30) |
-| `legend` | `ChartLegendItem[]` — optional | renders a `ChartLegend` on the same header row; omit for a single-series chart |
-| `filters` | `ReactNode` — optional | `Filter` instance(s), grouped with `action` at the header's right edge |
-| `action` | `ReactNode` — optional | a single trailing icon action next to the filters — e.g. an expand/"view full chart" `IconButton` |
-| `headerGap` | `'sm' | 'md'` — default `md` | space between the header row and the chart: 16px, or 8px for a chart whose own top row (an axis) already sets it off from the title — the dashboard timeline (owner, 2026-09-30) |
-| `bodyAlign` | `'stretch' | 'end'` — default `stretch` | `end`: the chart keeps its own height (give it one) and sits at the card's foot; the space above grows instead — a card matched to a taller neighbour keeps its chart still rather than stretching it (owner, 2026-09-30) |
-| `children` | `ReactNode` | the chart itself — `BarChart`, or any future chart type |
+| `titleAccessory` | `ReactNode` - optional | a small companion right after the title, centred on it, 12px away - e.g. `CalendarHeatmapLead`, a count the whole chart qualifies. Outside the `<h3>`, so it keeps its own type and can be a button (owner, 2026-09-30) |
+| `legend` | `ChartLegendItem[]` - optional | renders a `ChartLegend` on the same header row; omit for a single-series chart |
+| `filters` | `ReactNode` - optional | `Filter` instance(s), grouped with `action` at the header's right edge |
+| `action` | `ReactNode` - optional | a single trailing icon action next to the filters - e.g. an expand/"view full chart" `IconButton` |
+| `headerGap` | `'sm' | 'md'` - default `md` | space between the header row and the chart: 16px, or 8px for a chart whose own top row (an axis) already sets it off from the title - the dashboard timeline (owner, 2026-09-30) |
+| `bodyAlign` | `'stretch' | 'end'` - default `stretch` | `end`: the chart keeps its own height (give it one) and sits at the card's foot; the space above grows instead - a card matched to a taller neighbour keeps its chart still rather than stretching it (owner, 2026-09-30) |
+| `children` | `ReactNode` | the chart itself - `BarChart`, or any future chart type |
 
 The body grows from its content (`flex: 1 1 auto`), not from zero: a card
 given a height is filled as before, and a card left to size itself (`height:
@@ -35,41 +35,41 @@ auto`) fits its content instead of measuring as header-only.
 
 `className`, `style`, `...divProps` pass through to the `Card` root.
 
-## Per-chart filters — a deliberate exception
+## Per-chart filters - a deliberate exception
 
 The dataviz skill's own guidance is "filters live in one shared row above
 all charts, never inside a chart card." This component intentionally does
 the opposite, matching the reference mockups: each chart scopes its own
 date-range/dimension independently (a "Deliveries" card and a "Fuel cost"
 card can show different countries at once). Noted here so it doesn't read
-as an oversight of the skill's advice — it's a conscious per-product choice,
+as an oversight of the skill's advice - it's a conscious per-product choice,
 not a mistake.
 
 ## Anatomy
 
 ```
 Card (padding md, height: 100%, flex column, box-sizing border-box)
-└─ div.header  (row, space-between, gap space/16 — never wraps)
-│  ├─ h3.title        — {title}
-│  ├─ div.legendRow   — <ChartLegend/> (flex:1, centered in the free space)
+└─ div.header  (row, space-between, gap space/16 - never wraps)
+│  ├─ h3.title        - {title}
+│  ├─ div.legendRow   - <ChartLegend/> (flex:1, centered in the free space)
 │  └─ div.trailing
-│     ├─ div.filters  — {filters}
+│     ├─ div.filters  - {filters}
 │     └─ {action}
-└─ div.body (flex: 1, min-height: 0) — {children}
+└─ div.body (flex: 1, min-height: 0) - {children}
 ```
 
 Header uses `justify-content: space-between` so the gaps between title,
 legend, and filters are automatic (no fixed middle padding). Legend stays
-on that same row at every card width — no container-query wrap.
+on that same row at every card width - no container-query wrap.
 
 ## Sizing
 
 The card root takes `height: 100%` and `.body` takes `flex: 1; min-height: 0`
 so the chart body stretches to fill whatever height the card is given by its
-own container — the header row keeps its natural height, the chart gets the
+own container - the header row keeps its natural height, the chart gets the
 rest. This only produces a real (non-zero) height if something above
 `ChartCard` actually constrains it (a fixed-height wrapper, a grid cell,
-`style={{ height }}`) — an unconstrained `ChartCard` collapses to its
+`style={{ height }}`) - an unconstrained `ChartCard` collapses to its
 header's height. See [`BarChart`'s responsive sizing
 notes](./BarChart.md#responsive-sizing) for how the chart itself measures
 and fills that space.

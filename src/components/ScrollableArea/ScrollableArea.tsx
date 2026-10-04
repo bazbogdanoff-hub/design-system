@@ -11,9 +11,9 @@ export interface ScrollableAreaProps extends HTMLAttributes<HTMLElement> {
 }
 
 /**
- * A generic vertically-scrolling container — recessed background, inner-shadow
+ * A generic vertically-scrolling container - recessed background, inner-shadow
  * edges. No variants (matches Figma: one component, no properties). Sizing is
- * up to the consumer (flex/grid parent, explicit height, etc.) — this only
+ * up to the consumer (flex/grid parent, explicit height, etc.) - this only
  * owns overflow + the recessed look.
  */
 export const ScrollableArea = forwardRef<HTMLElement, ScrollableAreaProps>(function ScrollableArea(

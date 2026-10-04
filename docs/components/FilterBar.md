@@ -2,7 +2,7 @@
 
 A header row for cards/tables that need filtering: an **optional** add-filter
 trigger (`FilterIcon`) plus any number of `Filter`s. Everything sits in **one
-wrapping row** and stays aligned as it wraps. **L2 pattern** — composes a
+wrapping row** and stays aligned as it wraps. **L2 pattern** - composes a
 single `Stack` (`direction="row" gap="md" align="center" wrap`).
 
 ```tsx
@@ -15,18 +15,18 @@ single `Stack` (`direction="row" gap="md" align="center" wrap`).
 
 | prop | values | default |
 |---|---|---|
-| `children` | `Filter` instances — any number, **including none** | — |
-| `size` | `sm` (28px) · `md` (32px) — applied to the leading `FilterIcon`; match your `Filter`s | `md` |
-| `onAddFilter` | click handler for the add-filter trigger. **Its presence renders the trigger** | — |
+| `children` | `Filter` instances - any number, **including none** | - |
+| `size` | `sm` (28px) · `md` (32px) - applied to the leading `FilterIcon`; match your `Filter`s | `md` |
+| `onAddFilter` | click handler for the add-filter trigger. **Its presence renders the trigger** | - |
 | `addFilterLabel` | accessible name for the trigger | `"Add filter"` |
-| `addFilterMenuOpen` | reflects a future menu's open state onto the trigger (keeps it showing "+") | — |
+| `addFilterMenuOpen` | reflects a future menu's open state onto the trigger (keeps it showing "+") | - |
 
 Everything else is `StackProps` (minus `direction`/`gap`/`align`/`wrap`,
 which are fixed) passed straight through.
 
 ## The trigger is no longer always present
 
-The old rule — a funnel icon fixed as the mandatory first element — was
+The old rule - a funnel icon fixed as the mandatory first element - was
 **dropped**. Now:
 
 - **Pass `onAddFilter`** → the trigger renders (as the first item in the same
@@ -35,7 +35,7 @@ The old rule — a funnel icon fixed as the mandatory first element — was
   nothing to filter and nothing to add doesn't need the component at all.
 
 The trigger itself (`FilterIcon`) shows a **funnel at rest** and a **"+" on
-hover / press / while its menu is open** — its job is *adding* a filter (a
+hover / press / while its menu is open** - its job is *adding* a filter (a
 future context menu of every available filter with show/hide checkboxes), not
 filtering directly. See [FilterIcon.md](./FilterIcon.md).
 
@@ -48,11 +48,11 @@ together (no pinned element to fight the wrap).
 
 ## Figma
 
-**`FilterBar`** (renamed from the owner's `Filterholder`) — one component, no
+**`FilterBar`** (renamed from the owner's `Filterholder`) - one component, no
 variants. The `filters` **SLOT** is `layoutWrap: WRAP` with `space/12` on
-both axes and center-aligns its children; the `Filter — icon` instance now
+both axes and center-aligns its children; the `Filter - icon` instance now
 lives **inside** that slot as its first child (previously a pinned sibling of
-the slot) — which is what lets it wrap and align with the `Filter`s instead
+the slot) - which is what lets it wrap and align with the `Filter`s instead
 of anchoring separately. React mirrors this as one flat
 `<Stack row wrap>{trigger}{children}</Stack>`.
 

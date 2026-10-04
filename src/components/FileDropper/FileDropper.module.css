@@ -24,7 +24,7 @@
   border: 1px solid var(--color-border-danger);
 }
 
-/* drag-over wins over every status's own border/background — feedback while
+/* drag-over wins over every status's own border/background - feedback while
    dragging applies whether the zone is empty or already holding a file
    (dropping again replaces it) */
 .root[data-drag-over]:not([data-disabled]) {
@@ -54,7 +54,7 @@
   color: var(--color-text-disabled);
 }
 
-/* visually hidden but focusable/keyboard-operable native input — the real
+/* visually hidden but focusable/keyboard-operable native input - the real
    click/keyboard target, same clip technique as any sr-only utility */
 .hiddenInput {
   position: absolute;
@@ -90,7 +90,7 @@
   margin-bottom: var(--space-8);
   border-radius: var(--radius-full);
   /* the primary Button's surface treatment: brand-400 fill, glass-catch stroke,
-     coloured vignette, drop shadow — same tokens as Button, but the glass catch
+     coloured vignette, drop shadow - same tokens as Button, but the glass catch
      is 1px here rather than Button's 1.5px: this is a 40px circle, not a button */
   background: var(--color-button-primary-background-default);
   color: var(--color-button-primary-icon);

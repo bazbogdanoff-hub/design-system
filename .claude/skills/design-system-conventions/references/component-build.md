@@ -1,17 +1,17 @@
-# Building a component — Figma ↔ React
+# Building a component - Figma ↔ React
 
 Code is the source of truth. The Figma component and the React component are the
 same thing; when they disagree, the React one is right and Figma gets fixed.
 
 ## Workflow (per component)
 
-1. **Spec** — a `docs/components/<Name>.md` is written first: the prop/variant
+1. **Spec** - a `docs/components/<Name>.md` is written first: the prop/variant
    table, anatomy, states, tokens, a11y notes. Both sides build from it.
-2. **Figma** — the designer builds the component set from the spec.
-3. **Extract** — pull the built component's exact values via figmosha
+2. **Figma** - the designer builds the component set from the spec.
+3. **Extract** - pull the built component's exact values via figmosha
    (effects, spacing, any per-variant overrides) so the CSS matches pixel-for-pixel.
-4. **React** — implement in `src/components/<Name>/`, styled with the token CSS vars.
-5. **Commit** — component + its `docs/components/<Name>.md`, push.
+4. **React** - implement in `src/components/<Name>/`, styled with the token CSS vars.
+5. **Commit** - component + its `docs/components/<Name>.md`, push.
 
 ## Figma rules
 
@@ -26,7 +26,7 @@ same thing; when they disagree, the React one is right and Figma gets fixed.
   treatments stay as Figma effects, hand-tuned per component. The extract step
   reads their exact values into the CSS.
 - Interaction states (`hover`, `focus`, `active`, `disabled`) are **not** variants
-  in the production component — they're CSS pseudo-classes / `data-` attributes in
+  in the production component - they're CSS pseudo-classes / `data-` attributes in
   code. Only a documentation board uses state variants.
 - Auto-layout everywhere; padding/gap from `space/*`.
 
@@ -44,7 +44,7 @@ src/components/<Name>/
 - **`asChild?: boolean`** via `@radix-ui/react-slot` `Slot` for polymorphism
   (render as `<a>`, `<button>`, Next `<Link>`, …). Non-interactive containers
   included.
-- **className merge:** `className={cn(styles.root, className)}` — consumer classes
+- **className merge:** `className={cn(styles.root, className)}` - consumer classes
   win. Spread `...rest` onto the root.
 - **Variants → `data-` attributes**, not conditional class strings:
   `<div data-padding={padding} data-elevation={elevation}>` and the CSS targets

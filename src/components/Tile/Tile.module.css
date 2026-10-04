@@ -1,8 +1,8 @@
-/* The second-layer card (owner, 2026-09-29) — white on a card, with its own
+/* The second-layer card (owner, 2026-09-29) - white on a card, with its own
    glass: a white catch 2px top + left, 1px bottom + right; a soft inner
    shadow (1/1, blur 8); a faint drop shadow (0.5/0.5, blur 2, spread 2).
    Colours are tokens (color.tile.*); the geometry is hand-tuned here, like
-   every glass recipe. The catch is drawn as inset shadows, not a border — an
+   every glass recipe. The catch is drawn as inset shadows, not a border - an
    inside stroke, as in Figma, so padding and content don't move by a pixel. */
 .tile {
   box-sizing: border-box;
@@ -30,13 +30,13 @@
   padding: var(--space-16);
 }
 
-/* interactive — the tile lifts toward the pointer ("reaches for your
+/* interactive - the tile lifts toward the pointer ("reaches for your
    mouse"): it rises 2px and grows 1% on a small spring, and its shadow falls
    further in the darker lift colour (the resting 30% grey is invisible on the
-   card) — a close shadow for the edge, a wide one for the height.
+   card) - a close shadow for the edge, a wide one for the height.
 
    Only transform and opacity animate (owner, 2026-09-30 perf pass): the
-   lifted shadow is drawn once, on ::after, and fades in — animating the
+   lifted shadow is drawn once, on ::after, and fades in - animating the
    box-shadow itself repainted the tile on every frame of the lift. The
    tile isolates so the negative-z ::after sits above the tile's own fill
    and below its content, never behind the card it stands on. */

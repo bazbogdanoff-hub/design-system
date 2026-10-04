@@ -11,7 +11,7 @@ export type ChatBubbleSurface = 'light' | 'dark';
 export type ChatBubbleSize = 'sm' | 'lg';
 
 export interface ChatBubblePhoto {
-  /** Absent while a signed URL loads — the picture keeps its space. */
+  /** Absent while a signed URL loads - the picture keeps its space. */
   src?: string;
   alt: string;
   /** Pixels; the bubble reserves this shape before the picture arrives. */
@@ -32,10 +32,10 @@ export interface ChatBubbleFile {
 }
 
 export interface ChatBubbleProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
-  /** `in` — someone else's, on the left; `out` — yours, on the right. */
+  /** `in` - someone else's, on the left; `out` - yours, on the right. */
   side: ChatBubbleSide;
-  /** `light` (default) — on the page: white Tile in, brand glass out.
-   * `dark` — inside the dark app-frame card: the sidebar panel in, the
+  /** `light` (default) - on the page: white Tile in, brand glass out.
+   * `dark` - inside the dark app-frame card: the sidebar panel in, the
    * sidebar's brand pair out. */
   surface?: ChatBubbleSurface;
   /** Text: `lg` (15, default) for a conversation page, `sm` (13) for a
@@ -44,7 +44,7 @@ export interface ChatBubbleProps extends Omit<HTMLAttributes<HTMLDivElement>, 'c
   /** The first bubble of a run from one sender: square top corner toward
    * them, and a tail growing out of it. The rest of the run is round. */
   tail?: boolean;
-  /** A small line over the text — "Aegis · draft". Not for names in a
+  /** A small line over the text - "Aegis · draft". Not for names in a
    * one-to-one conversation: the header says who. */
   label?: ReactNode;
   /** A picture: fills the bubble bar a 4 frame and sets its width, the
@@ -52,23 +52,23 @@ export interface ChatBubbleProps extends Omit<HTMLAttributes<HTMLDivElement>, 'c
   photo?: ChatBubblePhoto;
   /** A document: a row that opens it; it sets the width, as a photo does. */
   file?: ChatBubbleFile;
-  /** The text — or a photo's / file's caption. Line breaks are kept. */
+  /** The text - or a photo's / file's caption. Line breaks are kept. */
   children?: ReactNode;
   /** Under the text, right-aligned: the channel's mark, "edited", the time
    * (24-hour, pre-formatted). Omit all three for no line. */
   time?: ReactNode;
   channel?: ChannelLogoChannel;
   edited?: boolean;
-  /** Below everything — sources, a Copy button. */
+  /** Below everything - sources, a Copy button. */
   footer?: ReactNode;
-  /** Quieter — the message being edited. */
+  /** Quieter - the message being edited. */
   dimmed?: boolean;
 }
 
 /**
  * One message in a conversation (owner, 2026-10-01; built code-first from
  * the Messages page). Its edge light is an SVG filter on the painted shape,
- * so a tail is lit with the body as one piece — see `filters.ts`, and
+ * so a tail is lit with the body as one piece - see `filters.ts`, and
  * docs/components/ChatBubble.md for the why. Right-click and other events
  * pass through to the bubble.
  */

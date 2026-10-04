@@ -17,7 +17,7 @@
   grid-column: var(--start, auto) / span var(--span, var(--grid-cols, var(--page-cols, 16)));
 }
 
-/* Tier overrides. Literal copies of `tierQueries` in lib/breakpoints.ts —
+/* Tier overrides. Literal copies of `tierQueries` in lib/breakpoints.ts -
    CSS cannot read the constant, so change one, change both. `--start` is
    dropped: a start column authored for 16 desktop columns is wrong at a
    different span. */

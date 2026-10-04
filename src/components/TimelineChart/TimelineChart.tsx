@@ -7,19 +7,19 @@ export type TimelineTone = 'default' | 'danger' | 'pending';
 
 export interface TimelineItem {
   key: string;
-  /** Left column, first line — e.g. the shipment code. */
+  /** Left column, first line - e.g. the shipment code. */
   label: ReactNode;
-  /** Left column, second line — e.g. the route. */
+  /** Left column, second line - e.g. the route. */
   sublabel?: ReactNode;
   /** The trip itself: from `start` (pickup) to `end` (ETA or arrival). */
   start: string | Date;
   end: string | Date;
   /** The delivery window, drawn behind the trip as a recessed band. */
   window?: { start: string | Date; end: string | Date };
-  /** `default` — on its way; `danger` — will miss its window; `pending` —
+  /** `default` - on its way; `danger` - will miss its window; `pending` -
    * not departed yet (paler). */
   tone?: TimelineTone;
-  /** Makes the row a button — e.g. open the shipment. */
+  /** Makes the row a button - e.g. open the shipment. */
   onSelect?: () => void;
 }
 
@@ -41,14 +41,14 @@ const time = (v: string | Date) => (v instanceof Date ? v : new Date(v)).getTime
 const defaultFormat = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
 
 /**
- * Trips across time (owner, 2026-09-30) — one row per item, a glass bar from
+ * Trips across time (owner, 2026-09-30) - one row per item, a glass bar from
  * its start to its end over a recessed band for its delivery window, a "now"
  * line through every row. A bar that runs past its window is `danger`. Same
  * glass as the other charts (src/glass.css). Built in code first; the Figma
  * master follows from docs/components/TimelineChart.md.
  *
  * Drawn in HTML, not SVG, so the glass is the same CSS recipe as the
- * progress pill — no filters to rasterise.
+ * progress pill - no filters to rasterise.
  */
 export function TimelineChart({
   items,
@@ -96,7 +96,7 @@ export function TimelineChart({
 
   const nowShown = now.getTime() >= span.start && now.getTime() <= span.end;
 
-  // Times off today carry their weekday — an ETA of "11:48" is ambiguous
+  // Times off today carry their weekday - an ETA of "11:48" is ambiguous
   // when the trip ends tomorrow.
   const when = (ms: number) => {
     const d = new Date(ms);
@@ -171,7 +171,7 @@ export function TimelineChart({
               onPointerLeave={() => setHovered((k) => (k === it.key ? null : k))}
               onFocus={() => setHovered(it.key)}
               onBlur={() => setHovered((k) => (k === it.key ? null : k))}
-              aria-label={it.onSelect ? `${typeof it.label === 'string' ? it.label : ''} — ${summary}` : undefined}
+              aria-label={it.onSelect ? `${typeof it.label === 'string' ? it.label : ''}, ${summary}` : undefined}
               style={{ '--i': i } as CSSProperties}
             >
               <span className={styles.labels}>

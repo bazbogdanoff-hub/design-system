@@ -1,5 +1,5 @@
 /**
- * Builds preview/index.html — a static swatch sheet for every token in
+ * Builds preview/index.html - a static swatch sheet for every token in
  * build/tokens.css. Fully self-contained (no fetch), opens from file://.
  *
  * Run: npm run preview   (runs the token build first)
@@ -14,7 +14,7 @@ const typeCss = readFileSync(`${ROOT}/build/typography.css`, 'utf8');
 const textClasses = [...typeCss.matchAll(/\.(text-[\w-]+)\s*\{/g)].map((m) => m[1]);
 const specimens = textClasses.map((c) => {
   const size = (typeCss.match(new RegExp(`\\.${c}\\s*\\{[^}]*font-size:\\s*var\\(--(font-size-\\d+)\\)`)) || [])[1] || '';
-  return `<div class="spec"><span class="${c}">Track shipment #48213 — Rotterdam to Hamburg</span>` +
+  return `<div class="spec"><span class="${c}">Track shipment #48213 - Rotterdam to Hamburg</span>` +
     `<code class="nm">${c.replace('text-', '')}${size ? ' · ' + size.replace('font-size-', '') + 'px' : ''}</code></div>`;
 }).join('');
 
@@ -89,7 +89,7 @@ const html = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Design tokens — preview</title>
+<title>Design tokens - preview</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap');
 ${css}
@@ -127,19 +127,19 @@ h3 .c { color: var(--color-text-muted); font-weight: 400; }
 </style>
 </head>
 <body>
-<h1>Logistics CRM — design tokens</h1>
+<h1>Logistics CRM - design tokens</h1>
 <p class="sub">${tokens.filter((t) => t.name.startsWith('color-')).length} colour vars + ${textClasses.length} text styles · generated from <code>build/</code> · Plus Jakarta Sans · neutral = zinc · brand = indigo</p>
 
-<h2>Typography <span style="font-weight:400;text-transform:none;letter-spacing:0">— text.* semantic styles</span></h2>
+<h2>Typography <span style="font-weight:400;text-transform:none;letter-spacing:0">- text.* semantic styles</span></h2>
 ${specimens}
 
-<h2>Radius <span style="font-weight:400;text-transform:none;letter-spacing:0">— scale · semantic · component</span></h2>
+<h2>Radius <span style="font-weight:400;text-transform:none;letter-spacing:0">- scale · semantic · component</span></h2>
 ${radiusBlock}
 
-<h2>Spacing <span style="font-weight:400;text-transform:none;letter-spacing:0">— space.* (no semantic tier)</span></h2>
+<h2>Spacing <span style="font-weight:400;text-transform:none;letter-spacing:0">- space.* (no semantic tier)</span></h2>
 ${spaceBlock}
 
-<h2>Semantic <span style="font-weight:400;text-transform:none;letter-spacing:0">— the colour API components use</span></h2>
+<h2>Semantic <span style="font-weight:400;text-transform:none;letter-spacing:0">- the colour API components use</span></h2>
 ${semantic}
 
 <h2>Component</h2>
@@ -148,7 +148,7 @@ ${components}
 <h2>Brand ramp</h2>
 ${group('color.brand.* → indigo', tokens.filter(isBrand))}
 
-<h2>Primitives <span style="font-weight:400;text-transform:none;letter-spacing:0">— full Tailwind palette, prune later</span></h2>
+<h2>Primitives <span style="font-weight:400;text-transform:none;letter-spacing:0">- full Tailwind palette, prune later</span></h2>
 ${primitives}
 </body>
 </html>
@@ -156,4 +156,4 @@ ${primitives}
 
 mkdirSync(`${ROOT}/preview`, { recursive: true });
 writeFileSync(`${ROOT}/preview/index.html`, html);
-console.log(`preview/index.html — ${tokens.length} tokens`);
+console.log(`preview/index.html - ${tokens.length} tokens`);

@@ -10,12 +10,12 @@ import styles from './Select.module.css';
 export interface SelectOption {
   value: string;
   label: ReactNode;
-  /** Decorative — not focusable. */
+  /** Decorative - not focusable. */
   icon?: ReactNode;
 }
 
 export interface SelectProps {
-  /** `sm` · `md` (default) · `lg` — the same scale (and the same visual chrome) as `Input`. */
+  /** `sm` · `md` (default) · `lg` - the same scale (and the same visual chrome) as `Input`. */
   size?: InputSize;
   options: SelectOption[];
   /** The selected option's `value`. Omit for no selection. */
@@ -29,11 +29,11 @@ export interface SelectProps {
 }
 
 /**
- * "An input with a caret that opens options to choose" — not a modified
+ * "An input with a caret that opens options to choose" - not a modified
  * `Input` (a native `<input>` can't drive a real dropdown of choices) but a
  * real, functional trigger + `Menu` composition, so it's a genuinely usable
  * control and not just an `Input` that looks clickable. The trigger reuses
- * `Input`'s own CSS classes directly (`.field`/`.icon`, cross-imported —
+ * `Input`'s own CSS classes directly (`.field`/`.icon`, cross-imported -
  * same reuse `IconButton` already does with `Button.module.css`) rather
  * than re-declaring the border/radius/height/hover states, so it's pixel-
  * identical to a real `Input` at rest. `:focus` is added locally since the

@@ -6,14 +6,14 @@ import styles from './Calendar.module.css';
 
 export interface CalendarProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'> {
   /** The picked day, `yyyy-mm-dd` (what a native date input holds). `''` or
-   * omitted — nothing picked; the highlight then sits on today. */
+   * omitted - nothing picked; the highlight then sits on today. */
   value?: string;
-  /** `pick` — a day was clicked (or Enter / Space on it) · `move` — the
+  /** `pick` - a day was clicked (or Enter / Space on it) · `move` - the
    * arrow keys or Page Up / Down walked to it. A popover closes on `pick`. */
   onChange?: (value: string, how: 'pick' | 'move') => void;
   /** Today, `yyyy-mm-dd`. Defaults to the device's date; pass it to pin. */
   today?: string;
-  /** First column — `0` Sunday (default) · `1` Monday. */
+  /** First column - `0` Sunday (default) · `1` Monday. */
   weekStartsOn?: 0 | 1;
 }
 
@@ -29,7 +29,7 @@ const MONTH = new Intl.DateTimeFormat('en-US', { month: 'long' });
 const WEEKDAY = new Intl.DateTimeFormat('en-US', { weekday: 'narrow' });
 const DAY_LABEL = new Intl.DateTimeFormat('en-US', { dateStyle: 'full' });
 
-/** Six weeks from the first column on or before the 1st — the grid never
+/** Six weeks from the first column on or before the 1st - the grid never
  * changes height between months. */
 function monthGrid(year: number, month: number, weekStartsOn: 0 | 1) {
   const first = new Date(year, month, 1);
@@ -44,7 +44,7 @@ function monthGrid(year: number, month: number, weekStartsOn: 0 | 1) {
  * The highlighted day's whole week is one pill in the primary-button skin,
  * and the day itself is a disc of card glass inside it; picking another day
  * springs the pill to its week and slides the disc along. The highlight is
- * the picked day, or today while nothing is picked. Today is always marked —
+ * the picked day, or today while nothing is picked. Today is always marked -
  * a brand dot under its weekday letter and its number in brand.
  *
  * Controlled by `value` for the pick; the month on view is its own state,

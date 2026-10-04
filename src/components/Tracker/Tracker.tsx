@@ -10,7 +10,7 @@ export type TrackerUrgency =
 
 export interface TrackerProps {
   urgency: TrackerUrgency;
-  /** Forces danger regardless of the time-based escalation below — e.g. a
+  /** Forces danger regardless of the time-based escalation below - e.g. a
    * flagged critical/blocking task. Wins over everything, including `asap`. */
   important?: boolean;
   className?: string;
@@ -22,7 +22,7 @@ type Tone = 'good' | 'warning' | 'danger';
 type Display = { label: string; value: string };
 
 /** Whichever trips first: proportion of the window gone, or an absolute
- * floor — a task can have plenty of window left by ratio and still be
+ * floor - a task can have plenty of window left by ratio and still be
  * genuinely urgent in absolute terms (or vice versa on a short window). */
 function countdownTone(remainingSeconds: number, totalSeconds: number): Tone {
   if (remainingSeconds <= 0) return 'danger';
@@ -32,7 +32,7 @@ function countdownTone(remainingSeconds: number, totalSeconds: number): Tone {
   return 'good';
 }
 
-/** No ratio branch here on purpose — a scheduled task has no honest "total"
+/** No ratio branch here on purpose - a scheduled task has no honest "total"
  * to measure against (no assumed created-at timestamp), so only the
  * absolute floors apply. See docs/components/Tracker.md. */
 function scheduledTone(secondsUntilDue: number): Tone {
@@ -74,7 +74,7 @@ function formatCountdown(seconds: number): Display {
 }
 
 /** Tightens to relative countdown-style text under the same 1-hour mark
- * where scheduledTone can first escalate — an exact clock time stops being
+ * where scheduledTone can first escalate - an exact clock time stops being
  * useful once the deadline is imminent. Words stay on the label; the hero
  * line is count / clock only. */
 function formatDue(dueAt: Date, now: Date): Display {
@@ -98,13 +98,13 @@ function formatDue(dueAt: Date, now: Date): Display {
 }
 
 // countdown-good -> success (an actively healthy countdown); scheduled's
-// calm state -> brand (a neutral "on the books" identity, not a countdown —
+// calm state -> brand (a neutral "on the books" identity, not a countdown -
 // deliberately a different color from countdown-good even though both are
 // "fine," because they mean different things); asap's calm state -> brand
 // too, distinct from every danger state so "immediate" isn't confused with
-// "about to expire" — unless `important` is set, which wins over everything
+// "about to expire" - unless `important` is set, which wins over everything
 // including asap (see TrackerProps.important) and turns it danger like any
-// other mode. No dedicated 5th tone was added for asap — reuses what
+// other mode. No dedicated 5th tone was added for asap - reuses what
 // already exists on ProgressBar. See docs/components/Tracker.md.
 function progressTone(mode: TrackerUrgency['mode'], tone: Tone): ProgressBarTone {
   if (tone === 'danger') return 'danger';
@@ -113,7 +113,7 @@ function progressTone(mode: TrackerUrgency['mode'], tone: Tone): ProgressBarTone
 }
 
 /** Re-renders on an interval so time-derived text/tone stay live without the
- * consumer re-rendering the tree — `null` disables ticking entirely (asap
+ * consumer re-rendering the tree - `null` disables ticking entirely (asap
  * has nothing to tick). */
 function useTick(intervalMs: number | null) {
   const [, setTick] = useState(0);
@@ -125,7 +125,7 @@ function useTick(intervalMs: number | null) {
 }
 
 /**
- * The counter block for `NextTask` — a label, a hero value, and a
+ * The counter block for `NextTask` - a label, a hero value, and a
  * `ProgressBar` in one fixed shape across all three time modes; only the
  * track's fill amount, color, and (for `asap`) a persistent accent change.
  * See `docs/components/Tracker.md` for the full urgency-resolution table.
@@ -136,7 +136,7 @@ export function Tracker({ urgency, important = false, className }: TrackerProps)
   useTick(urgency.mode === 'countdown' ? 1000 : urgency.mode === 'scheduled' ? 30_000 : null);
 
   // `remainingSeconds` is a snapshot as of whenever the consumer last had
-  // real data — tick it down locally from the moment it arrived rather than
+  // real data - tick it down locally from the moment it arrived rather than
   // freezing it or requiring the consumer to re-render every second.
   const baseRef = useRef({ remaining: 0, capturedAt: Date.now() });
   if (urgency.mode === 'countdown' && baseRef.current.remaining !== urgency.remainingSeconds) {

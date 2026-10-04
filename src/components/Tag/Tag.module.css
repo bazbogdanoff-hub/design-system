@@ -1,4 +1,4 @@
-/* Mirrors text/label/* exactly (size/weight/line-height/letter-spacing) —
+/* Mirrors text/label/* exactly (size/weight/line-height/letter-spacing) -
    only text-transform differs. Reuses the existing --text-label-* vars
    rather than duplicating them; a Figma text style can't compose two
    styles together (hence text/badge-label/* existing there as a real

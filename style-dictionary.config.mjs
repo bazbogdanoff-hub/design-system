@@ -8,7 +8,7 @@
  *
  * `expand` splits the composite typography tokens (text.body.md) into individual
  * sub-props (--text-body-md-font-size …). The css platform uses an explicit
- * transform list WITHOUT `size/rem` — our dimension values are already authored
+ * transform list WITHOUT `size/rem` - our dimension values are already authored
  * as final CSS (`0.9375rem`, `-0.02em`) and must pass through untouched.
  *
  * outputReferences keeps the colour alias chain intact so a future Dark mode

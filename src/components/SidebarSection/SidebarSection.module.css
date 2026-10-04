@@ -17,14 +17,14 @@
 }
 
 .section[data-content='settings'] {
-  /* top-left top-right bottom-right bottom-left — deep corner is bottom-right */
+  /* top-left top-right bottom-right bottom-left - deep corner is bottom-right */
   padding-block: var(--space-4);
   border-radius: var(--radius-panel) var(--radius-panel) var(--radius-sidebar-section-deep) var(--radius-panel);
 }
 
 /* ---- the travelling highlight (lib/slidingHighlight.ts) ----------------------
-   The current row's glass — the same recipe SidebarNavItem's active frame
-   wore on its own — as one element the hook moves from row to row. Edges,
+   The current row's glass - the same recipe SidebarNavItem's active frame
+   wore on its own - as one element the hook moves from row to row. Edges,
    radius (copied from the row's frame, so the Settings row's deep corner
    morphs in) and opacity are set inline. Rows ride above it. */
 .highlight {

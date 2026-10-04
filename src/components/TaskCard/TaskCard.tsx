@@ -8,36 +8,36 @@ import { cn } from '../../lib/cn';
 import styles from './TaskCard.module.css';
 
 export interface TaskCardProps {
-  /** `list` (default) — standalone, used on the tasks page, no stack.
-   * `queue` — wrapped in the 3-ghost stacked-deck effect, used inside
-   * `NextTask` where this card is the front of a queue. `tasks` — a smaller
+  /** `list` (default) - standalone, used on the tasks page, no stack.
+   * `queue` - wrapped in the 3-ghost stacked-deck effect, used inside
+   * `NextTask` where this card is the front of a queue. `tasks` - a smaller
    * standalone card (matches Figma's `context=tasks`, added for a dense
    * grid of tasks): a smaller `IconCell` and tighter internal spacing, no
    * stack. */
   context?: 'list' | 'queue' | 'tasks';
-  /** Queue position for the leading cell — formatted as `#${position}`.
+  /** Queue position for the leading cell - formatted as `#${position}`.
    * Always `1` for `context="queue"` (`NextTask` only ever shows the front
    * task); a real, varying number for `context="list"`. */
   position: number;
   /** The category tag sitting above the title. `module` (sidebar module
    * name) drives Tag color and, when set, a tooltip: `From "…"`. The tag
    * then takes keyboard focus, because the module is otherwise shown only
-   * by colour — the tooltip is how anyone who can't see the colour gets it. */
+   * by colour - the tooltip is how anyone who can't see the colour gets it. */
   category: { label: ReactNode; color: TagColor; module?: string };
   title: ReactNode;
   description: ReactNode;
   severity: SeverityLevel;
-  /** The trailing action — usually a primary `Button`. */
+  /** The trailing action - usually a primary `Button`. */
   action?: ReactNode;
   className?: string;
 }
 
 /**
- * A task summary card — queue-position cell, category tag, title,
+ * A task summary card - queue-position cell, category tag, title,
  * description, severity, and a trailing action. Composes `Card`, `IconCell`,
- * `Tag`, and `SeverityBadge` (never detached) — L2 pattern. `context="queue"`
+ * `Tag`, and `SeverityBadge` (never detached) - L2 pattern. `context="queue"`
  * adds 3 decorative ghost layers behind it (aria-hidden, no content) to read
- * as "the front of a stack" — the real queue depth belongs in visible text
+ * as "the front of a stack" - the real queue depth belongs in visible text
  * elsewhere (e.g. "+3 after this"), not in how many edges are drawn. See
  * `docs/components/TaskCard.md`.
  */

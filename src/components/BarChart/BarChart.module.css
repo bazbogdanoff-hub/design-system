@@ -7,7 +7,7 @@
 .svg {
   display: block;
   /* width/height are set as explicit SVG attributes (matching the measured
-     container 1:1, see useContainerSize) — no CSS-level scaling here, that
+     container 1:1, see useContainerSize) - no CSS-level scaling here, that
      would shrink/grow the text along with the plot area. */
 }
 
@@ -25,7 +25,7 @@
   fill: var(--color-text-subtle);
 }
 
-/* Entrance — each column grows from the baseline, left to right. The
+/* Entrance - each column grows from the baseline, left to right. The
    transform origin (the baseline) is set inline; view-box so it is in SVG
    units. Plays once, on mount. */
 .bar {
@@ -64,7 +64,7 @@
   outline-offset: 2px;
 }
 
-/* Screen-reader-only table — the table-view accessibility twin of the
+/* Screen-reader-only table - the table-view accessibility twin of the
    chart. Visually hidden, never `display:none` (that would remove it from
    the accessibility tree too). */
 .srOnlyTable {

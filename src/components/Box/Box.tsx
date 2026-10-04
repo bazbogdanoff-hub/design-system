@@ -14,9 +14,9 @@ export interface BoxProps extends HTMLAttributes<HTMLElement> {
   px?: Space;
   /** Vertical padding (overrides `p`). */
   py?: Space;
-  /** Background — a `surface`/`background` token. */
+  /** Background - a `surface`/`background` token. */
   bg?: Bg;
-  /** Corner radius — a radius role token. */
+  /** Corner radius - a radius role token. */
   radius?: Radius;
   /** 1px `border.default`. */
   border?: boolean;
@@ -27,7 +27,7 @@ export interface BoxProps extends HTMLAttributes<HTMLElement> {
 }
 
 /**
- * The generic styled box — a `div` (or `as` / `asChild`) with token-driven
+ * The generic styled box - a `div` (or `as` / `asChild`) with token-driven
  * padding, background, radius and border. Layout composition lives in `Stack`.
  */
 export const Box = forwardRef<HTMLElement, BoxProps>(function Box(

@@ -1,7 +1,7 @@
 # SegmentedControl
 
-A track of mutually-exclusive options — "choose exactly one of N visible
-choices" (e.g. List/Grid/Map). **L1** — Figma + React, both built this
+A track of mutually-exclusive options - "choose exactly one of N visible
+choices" (e.g. List/Grid/Map). **L1** - Figma + React, both built this
 session, replacing an old pre-token "Switch"/"Switch item" pair found
 elsewhere in the file (see below).
 
@@ -23,60 +23,60 @@ const [view, setView] = useState('list');
 
 | prop | type | default | notes |
 |---|---|---|---|
-| `size` | `sm` \| `md` \| `lg` \| `xs` | `md` | same height scale as `Button` (`size.control.*`) — cascades to every `SegmentedControlItem` inside. `xs` is a distinct track recipe for the sidebar module switcher only |
-| `collapsed` | `boolean` | | `xs`-only: the sidebar's own collapsed/expanded state — shrinks every item's height from 24 to 16. No effect at any other size |
-| `children` | `ReactNode` — required | | `SegmentedControlItem`s |
+| `size` | `sm` \| `md` \| `lg` \| `xs` | `md` | same height scale as `Button` (`size.control.*`) - cascades to every `SegmentedControlItem` inside. `xs` is a distinct track recipe for the sidebar module switcher only |
+| `collapsed` | `boolean` | | `xs`-only: the sidebar's own collapsed/expanded state - shrinks every item's height from 24 to 16. No effect at any other size |
+| `children` | `ReactNode` - required | | `SegmentedControlItem`s |
 
 Renders a real `<div role="radiogroup">`; each item is a real
 `<button role="radio">` (see [SegmentedControlItem.md](./SegmentedControlItem.md)).
 
-## `xs` — a different track entirely, not a 4th step on the same scale
+## `xs` - a different track entirely, not a 4th step on the same scale
 
 `sm`/`md`/`lg` share one look: a recessed gray track (`space-2` padding,
-`color.background.subtle`) with items floating on top. `xs` — built for the
-sidebar's module switcher — is the opposite: transparent, no padding, no
+`color.background.subtle`) with items floating on top. `xs` - built for the
+sidebar's module switcher - is the opposite: transparent, no padding, no
 track-level radius, a 1px item gap, each item carrying its own edge
 rounding via `position` (see [SegmentedControlItem.md](./SegmentedControlItem.md#position)).
 `collapsed` only exists at this size, for the same reason `Sidebar` and
-`SidebarSection` both have their own `collapsed` axis — it's the mechanism
+`SidebarSection` both have their own `collapsed` axis - it's the mechanism
 this whole component family uses for "smaller in the collapsed sidebar,"
 not a separate size step.
 
 ## Why this replaces "Switch"/"Switch item," not `Switch`
 
 The file already had an unrelated pre-token "Switch" (`6033:16788`) +
-"Switch item" (`4227:6728`) pair — a 3-segment view-switcher used repeatedly
+"Switch item" (`4227:6728`) pair - a 3-segment view-switcher used repeatedly
 in old screen headers, built before this system's tokens existed (raw hex
 fills, a legacy stroke/shadow "glass" treatment bound to variables from the
 old shim collections, `ExtraBold`/`SemiBold` weight-swap for
 selected/unselected). Inspected its structure (padding, radius, the "one
 pill floats above a recessed track" shape) and rebuilt the same functional
-pattern on this system's own tokens and sizes — but under new names,
+pattern on this system's own tokens and sizes - but under new names,
 **`SegmentedControl`/`SegmentedControlItem`**, because `Switch` already
 means something else in this system (`10221:13885`, the boolean on/off
 toggle) and reusing it here would collide. The old pair is left in place,
-untouched — not a rename, a fresh replacement; nothing currently using the
+untouched - not a rename, a fresh replacement; nothing currently using the
 old one was repointed.
 
-## Sizing — `size.control`, not `size.input`
+## Sizing - `size.control`, not `size.input`
 
-Uses the existing `size.control.{sm,md,lg}` (28/32/36px) — the same scale
+Uses the existing `size.control.{sm,md,lg}` (28/32/36px) - the same scale
 `Button` uses, deliberately, since a view-switcher like this typically sits
 in a toolbar next to `Button`/`Filter`, and should align with them at a
 matching size step. `Input`'s own scale (`size.input.*`, resized up a step
-in an earlier session) was not used here — the two scales are intentionally
+in an earlier session) was not used here - the two scales are intentionally
 independent (see `Input.md`).
 
 ## Figma
 
-`SegmentedControl` (`10323:16996`) — 5 variants: `size`(sm/md/lg/xs) ×
-`collapsed`(false/true, `xs` only — the 3 non-`xs` sizes all carry
+`SegmentedControl` (`10323:16996`) - 5 variants: `size`(sm/md/lg/xs) ×
+`collapsed`(false/true, `xs` only - the 3 non-`xs` sizes all carry
 `collapsed=false` as a filler value for property-key consistency, no visual
 effect). The 3 original sizes: a recessed track
 (`color.segmentedControl.track.background` → `color.background.subtle`,
 zinc.100) holding `SegmentedControlItem` instances, `space.2` padding on all
 sides, radius `radius.segmentedControl.{size}` (mirrors
-`radius.button.{size}` — chip/control/control), built from 3 plain frames
+`radius.button.{size}` - chip/control/control), built from 3 plain frames
 combined via `combineAsVariants`, the same technique `Menu`/`Pagination`
 used. The 2 `xs` variants: a transparent, unpadded, unrounded track
 (`collapsed=true`: 48×16 · `collapsed=false`: 164×24) holding 3 real
@@ -86,7 +86,7 @@ scratch.
 
 ## `mode="tabs"`
 
-Same look, tab semantics — for switching which content panel is showing
+Same look, tab semantics - for switching which content panel is showing
 (e.g. an entity page's Overview / Fuel & costs / Service / History), where
 `choice` is for picking a value.
 
@@ -112,13 +112,13 @@ Same look, tab semantics — for switching which content panel is showing
 |---|---|---|
 | track role | `radiogroup` | `tablist` |
 | item role | `radio`, `aria-checked` | `tab`, `aria-selected` |
-| Tab key | stops on every item | **one** stop — the selected tab (roving `tabindex`) |
-| arrows / Home / End | — | move between tabs **and** show that tab (automatic activation — implemented by clicking the focused item, so `onClick` stays the one source of truth) |
+| Tab key | stops on every item | **one** stop - the selected tab (roving `tabindex`) |
+| arrows / Home / End | - | move between tabs **and** show that tab (automatic activation - implemented by clicking the focused item, so `onClick` stays the one source of truth) |
 | consumer wires | nothing | `id` + `aria-controls` per item; the panel's `role="tabpanel"` + `aria-labelledby` |
 
-**Figma:** no change — the two modes look identical.
+**Figma:** no change - the two modes look identical.
 
-## Motion — the travelling highlight (2026-09-28)
+## Motion - the travelling highlight (2026-09-28)
 
 The picked item's fill is **one element that travels between items**, not
 a fill each item switches on and off (`lib/slidingHighlight.ts`). On a
@@ -132,15 +132,15 @@ stretches as it goes and settles to size with a small overshoot.
   pill, over the bare segments; it blends tone to tone and morphs its corner
   radius (`position`) as it travels. It carries the picked segment's focus
   ring, since it covers it.
-- First placement, resizes and a sidebar toggle don't travel — only a change
+- First placement, resizes and a sidebar toggle don't travel - only a change
   of item does. Reduced motion: it jumps.
 - Items must be **direct children** of the control (the highlight looks for
   `:scope > [data-selected]`).
 
 An item rendered outside a `SegmentedControl` keeps its own fill.
 
-**Figma:** no change — at rest it looks identical.
+**Figma:** no change - at rest it looks identical.
 
 ## `surface="dark"` (2026-10-01)
 
-Inside `ChatFrame` (the dashboard chat card): a recessed track (20% black, a soft inner shade), the travelling highlight on the sidebar panel colour instead of the secondary Button's glass, labels white at 70% and white when picked. The picked label's rule is written at `.track[data-on='dark'][data-sliding] > [data-selected]:not([data-tone])` — it has to outweigh `SegmentedControlItem`'s own sliding-track label rule (0,4,0), which sets the light track's dark text.
+Inside `ChatFrame` (the dashboard chat card): a recessed track (20% black, a soft inner shade), the travelling highlight on the sidebar panel colour instead of the secondary Button's glass, labels white at 70% and white when picked. The picked label's rule is written at `.track[data-on='dark'][data-sliding] > [data-selected]:not([data-tone])` - it has to outweigh `SegmentedControlItem`'s own sliding-track label rule (0,4,0), which sets the light track's dark text.

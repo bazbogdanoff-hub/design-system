@@ -8,27 +8,27 @@ import styles from './TaskTile.module.css';
 export type TaskTileLayout = 'card' | 'row';
 
 export interface TaskTileProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
-  /** `card` (default) — badge and action on top, title and description
-   * below, fills the height its grid cell gives it. `row` — one line:
+  /** `card` (default) - badge and action on top, title and description
+   * below, fills the height its grid cell gives it. `row` - one line:
    * position, title, badge, action; for the List view. */
   layout?: TaskTileLayout;
   severity: SeverityLevel;
   title: ReactNode;
   /** Card layout only. Clamped to three lines. */
   description?: ReactNode;
-  /** Row layout only — the task's rank, shown in a small tile at the start. */
+  /** Row layout only - the task's rank, shown in a small tile at the start. */
   position?: number;
-  /** Top-right in `card`, end of the line in `row` — usually an arrow
+  /** Top-right in `card`, end of the line in `row` - usually an arrow
    * `IconButton` (`md`, secondary) that opens the task. */
   action?: ReactNode;
-  /** Opens the task — the whole tile becomes the control: click, or Enter /
+  /** Opens the task - the whole tile becomes the control: click, or Enter /
    * Space when focused. An `action` inside keeps its own click (it doesn't
    * also trigger this). */
   onOpen?: () => void;
 }
 
 /**
- * A task on the Tasks board — a `Tile` (the second-layer card, owner
+ * A task on the Tasks board - a `Tile` (the second-layer card, owner
  * 2026-09-29), interactive: it lifts on hover. Built in code first; the
  * Figma master follows from docs/components/TaskTile.md.
  *

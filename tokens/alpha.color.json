@@ -1,8 +1,8 @@
 {
   "color": {
     "alpha-black": {
-      "1": { "$value": "#00000003", "$description": "1% black — barely-there wash" },
-      "3": { "$value": "#00000008", "$description": "3% black — default hover wash" },
+      "1": { "$value": "#00000003", "$description": "1% black - barely-there wash" },
+      "3": { "$value": "#00000008", "$description": "3% black - default hover wash" },
       "5": { "$value": "#0000000d" },
       "10": { "$value": "#0000001a" },
       "15": { "$value": "#00000026" },

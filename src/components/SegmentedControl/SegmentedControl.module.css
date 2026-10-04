@@ -7,7 +7,7 @@
 }
 
 /* ---- the travelling highlight (lib/slidingHighlight.ts) ----------------------
-   One element for the picked item's fill, moved between items by the hook —
+   One element for the picked item's fill, moved between items by the hook -
    its edges, radius and opacity are set inline. Neutral: the secondary
    Button's glass (Button.module.css, applied in the TSX), under the labels.
    Toned (the sidebar switcher): the tone's solid fill over the bare
@@ -66,7 +66,7 @@
   border-radius: var(--radius-segmented-control-lg);
 }
 
-/* xs — the sidebar module switcher. Flush against the panel it sits in:
+/* xs - the sidebar module switcher. Flush against the panel it sits in:
    no padding, no background of its own, no track-level radius (each item
    rounds its own outer corner via `position` instead). */
 .track[data-size='xs'] {
@@ -97,7 +97,7 @@
   color: var(--color-white);
 }
 /* Over SegmentedControlItem's own `[data-sliding] > .item[data-selected]
-   :not([data-tone])` (0,4,0), which sets the light track's dark label —
+   :not([data-tone])` (0,4,0), which sets the light track's dark label -
    at 0,3,0 this lost, and the picked label went dark. */
 .track[data-on='dark'][data-sliding] > [data-selected]:not([data-tone]) {
   color: var(--color-white);

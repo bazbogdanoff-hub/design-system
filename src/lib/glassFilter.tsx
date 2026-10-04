@@ -1,11 +1,11 @@
 /**
- * The glass pattern (src/glass.css) as an SVG filter, for chart marks —
+ * The glass pattern (src/glass.css) as an SVG filter, for chart marks -
  * SVG ignores box-shadow. One per colour: the primary Button's plain drop
  * shadow (0 1 8, black 20%), the source, then the inner shadow and the 1px
  * catch along the top-left edge (owner, 2026-09-29). Shared by BarChart and
  * DonutChart so every chart mark wears the same recipe.
  *
- * `region` is the filter's user-space area — pass the whole chart, so the
+ * `region` is the filter's user-space area - pass the whole chart, so the
  * shadow is never clipped at the mark's bounding box.
  */
 export function GlassFilter({
@@ -19,14 +19,14 @@ export function GlassFilter({
   id: string;
   color: string;
   region: { x: number; y: number; width: number; height: number };
-  /** px of the top-left catch — 1 on bar blocks; bigger marks (a donut
+  /** px of the top-left catch - 1 on bar blocks; bigger marks (a donut
    * ring) need 2–3 or the edge reads as soft clay rather than depth. */
   catchWidth?: number;
   /** Degrees the mark's own frame is rotated by (DonutChart turns its ring
    * −90° to start at twelve). Filter offsets live in that frame, so they are
-   * turned back by this much — the light keeps coming from the top left. */
+   * turned back by this much - the light keeps coming from the top left. */
   frameRotation?: number;
-  /** Scales the inner shadow (offset 2, blur 12 at 1) with the mark — the
+  /** Scales the inner shadow (offset 2, blur 12 at 1) with the mark - the
    * recipe was tuned on a 16px pill, so a thicker mark passes thickness / 16. */
   innerScale?: number;
 }) {
@@ -63,7 +63,7 @@ export function GlassFilter({
   );
 }
 
-/** A filter id safe inside url(#…) — React's useId has colons. */
+/** A filter id safe inside url(#…) - React's useId has colons. */
 export function glassFilterId(base: string, index: number): string {
   return `glass${base.replace(/[^a-zA-Z0-9_-]/g, '')}-${index}`;
 }

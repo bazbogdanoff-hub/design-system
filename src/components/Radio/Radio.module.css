@@ -6,7 +6,7 @@
 }
 
 /* Same "real input under a pointer-events:none decorative span" split
-   Checkbox uses — see Checkbox.module.css for the full rationale. */
+   Checkbox uses - see Checkbox.module.css for the full rationale. */
 .input {
   position: absolute;
   inset: 0;
@@ -43,7 +43,7 @@
   border-color: var(--color-radio-border-disabled);
 }
 
-/* checked signals via border color + the inner dot only — background stays
+/* checked signals via border color + the inner dot only - background stays
    the same plain white token in every state, never a solid fill. */
 .wrapper[data-checked] .circle {
   border-color: var(--color-radio-border-on);

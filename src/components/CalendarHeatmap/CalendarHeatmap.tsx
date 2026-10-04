@@ -11,7 +11,7 @@ export interface CalendarHeatmapDay {
 }
 
 export interface CalendarHeatmapLeadProps {
-  /** e.g. "Lapsed" — not drawn (owner, 2026-09-30: the red count reads on
+  /** e.g. "Lapsed" - not drawn (owner, 2026-09-30: the red count reads on
    * its own by the title); it names the square for screen readers and on
    * hover. */
   label: string;
@@ -22,7 +22,7 @@ export interface CalendarHeatmapLeadProps {
 }
 
 /**
- * What already fell off a CalendarHeatmap (owner, 2026-09-30) — e.g. lapsed
+ * What already fell off a CalendarHeatmap (owner, 2026-09-30) - e.g. lapsed
  * documents: a small square in the danger glass holding the count. Its own piece so it can sit in the chart card's header, by the
  * title, rather than inside the plot.
  */
@@ -47,13 +47,13 @@ export function CalendarHeatmapLead({ label, count, onSelect, unit = ['item', 'i
 export interface CalendarHeatmapProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onSelect'> {
   /** Counts by day. Days not listed count 0. */
   days: CalendarHeatmapDay[];
-  /** First day shown — earlier days of its week are left blank. Defaults to
+  /** First day shown - earlier days of its week are left blank. Defaults to
    * today. */
   start?: Date;
   /** How many weeks, Monday to Sunday. Default 12. */
   weeks?: number;
-  /** `strip` (default) — weeks run left to right as columns, weekdays down
-   * the side: a long look ahead in little room. `calendar` — the weeks as
+  /** `strip` (default) - weeks run left to right as columns, weekdays down
+   * the side: a long look ahead in little room. `calendar` - the weeks as
    * rows under the weekdays, like a wall calendar, each square large enough
    * to carry its day number: a few weeks, read day by day. */
   layout?: 'strip' | 'calendar';
@@ -61,7 +61,7 @@ export interface CalendarHeatmapProps extends Omit<HTMLAttributes<HTMLDivElement
   onSelect?: (date: string) => void;
   /** What the count counts: `['document', 'documents']`. */
   unit?: [singular: string, plural: string];
-  /** Extra tooltip rows for a day — e.g. which documents. */
+  /** Extra tooltip rows for a day - e.g. which documents. */
   detail?: (date: string) => ChartTooltipRow[];
   'aria-label': string;
 }
@@ -76,7 +76,7 @@ const WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const level = (n: number) => (n <= 0 ? 0 : n >= 3 ? 3 : n);
 
 /**
- * Counts per day across the coming weeks (owner, 2026-09-30) — columns are
+ * Counts per day across the coming weeks (owner, 2026-09-30) - columns are
  * weeks, rows Monday to Sunday, a day's glass getting fuller the more falls
  * on it. Empty days sit recessed, like an empty progress segment. Built for
  * the dashboard's document expiries; what has already lapsed is the

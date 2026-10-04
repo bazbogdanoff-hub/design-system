@@ -6,9 +6,9 @@
   flex-direction: column;
 }
 
-/* the drop shadow lives on this wrapper, never on the Card instance itself —
+/* the drop shadow lives on this wrapper, never on the Card instance itself -
    Card's own inner-shadow (its default vignette) stays untouched regardless
-   of context. Hand-tuned to match Figma's DROP_SHADOW effect exactly — no
+   of context. Hand-tuned to match Figma's DROP_SHADOW effect exactly - no
    elevation token scale exists yet (same situation as ChartTooltip's shadow). */
 .shadow {
   flex: 1 1 auto;
@@ -20,7 +20,7 @@
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.25);
 }
 
-/* Outer corners — Page marks the wrapper (lib/surfaceCorners.ts); the Card
+/* Outer corners - Page marks the wrapper (lib/surfaceCorners.ts); the Card
    inside is nested, so it takes the same corners from here. */
 .shadow[data-corner-outer~='tl'],
 .shadow[data-corner-outer~='tl'] > .card { border-top-left-radius: var(--radius-card-outer); }
@@ -60,7 +60,7 @@
   line-height: var(--text-heading-xs-line-height);
   letter-spacing: var(--text-heading-xs-letter-spacing);
   color: var(--color-text-strong);
-  /* One line — titles should be written short; ellipsis if they overrun. */
+  /* One line - titles should be written short; ellipsis if they overrun. */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -74,7 +74,7 @@
   line-height: var(--text-body-sm-line-height);
   letter-spacing: var(--text-body-sm-letter-spacing);
   color: var(--color-text-subtle);
-  /* Max two rows — brief what/with; full copy on task detail. */
+  /* Max two rows - brief what/with; full copy on task detail. */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -89,7 +89,7 @@
   margin-top: auto;
 }
 
-/* context="tasks" — dense grid card: tighter slot spacing, no drop shadow
+/* context="tasks" - dense grid card: tighter slot spacing, no drop shadow
    (grid density; Card's own glass vignette stays). */
 [data-context='tasks'] .card {
   gap: var(--space-8);
@@ -98,10 +98,10 @@
   box-shadow: none;
 }
 
-/* ---------- context="queue" — 3 decorative ghosts + the real card ---------- */
+/* ---------- context="queue" - 3 decorative ghosts + the real card ---------- */
 /* All layers share one grid cell (a ghost has no content of its own to size
    by, so it stretches to match the front card's real height via the shared
-   grid row) — the classic stacked-card technique, no JS measurement needed.
+   grid row) - the classic stacked-card technique, no JS measurement needed.
    padding-top reserves room for the furthest ghost's peek above the front
    card. Geometry (10px higher / 20px narrower per layer back) matches the
    original hand-built version this replaces exactly. */
@@ -121,7 +121,7 @@
 
 .ghost {
   /* Same height as the front card (grid cell sized by `.shadow`). Do NOT
-     `align-self: stretch` with a negative top margin — stretch sizes as
+     `align-self: stretch` with a negative top margin - stretch sizes as
      area−margins, so a −10/−20/−30 top margin grows the ghost by that much,
      keeps bottoms flush with the front, and stacks 4× the drop shadow. Same
      height + elevate → bottoms sit above the front edge and their shadow is
@@ -136,7 +136,7 @@
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.25);
 }
 /* Each layer back is exactly 20px narrower than the one in front of it
-   (10px higher via negative top margin). Width via calc — not side margins —
+   (10px higher via negative top margin). Width via calc - not side margins -
    so the cascade stays visible as the queue stretches. */
 .ghost1 { width: calc(100% - 1.25rem); margin-top: -0.625rem; z-index: 3; }
 .ghost2 { width: calc(100% - 2.5rem); margin-top: -1.25rem; z-index: 2; }

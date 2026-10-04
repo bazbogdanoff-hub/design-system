@@ -12,7 +12,7 @@ export type BadgeTone =
   | 'warning-strong'
   | 'danger';
 export type BadgeSize = 'xs' | 'sm' | 'md' | 'lg';
-/** Icon shape variant — `default` (uniform radius) · `hasIcon` (32px left corners). */
+/** Icon shape variant - `default` (uniform radius) · `hasIcon` (32px left corners). */
 export type BadgeIcon = 'default' | 'hasIcon';
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
@@ -20,7 +20,7 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   tone?: BadgeTone;
   /** `xs` (12) · `sm` (13) · `md` (14, default) · `lg` (16). */
   size?: BadgeSize;
-  /** Icon variant. `default` — text only, uniform radius. `hasIcon` — leading
+  /** Icon variant. `default` - text only, uniform radius. `hasIcon` - leading
    * icon slot + 32px left corners (right corners stay the size radius). */
   icon?: BadgeIcon;
   /** Leading glyph when `icon="hasIcon"`. Inherits tone colour via `currentColor`. */
@@ -30,7 +30,7 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 /**
- * A small status/label pill — subtle tinted fill, bold label, optional leading
+ * A small status/label pill - subtle tinted fill, bold label, optional leading
  * icon. Semantic `tone`, not a colour. Presentational: no border, no elevation,
  * no interaction states.
  *
@@ -72,7 +72,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
       data-icon={icon}
       {...rest}
     >
-      {/* asChild forwards to a single consumer element — the consumer composes
+      {/* asChild forwards to a single consumer element - the consumer composes
           their own icon in that case; leadingIcon is only for the plain span. */}
       {asChild ? (
         children

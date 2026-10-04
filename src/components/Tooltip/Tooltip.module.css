@@ -23,7 +23,7 @@
   overflow-wrap: break-word;
 }
 
-/* a rotated square, half tucked behind the pill — the standard web
+/* a rotated square, half tucked behind the pill - the standard web
    tooltip-arrow technique (Figma's own reference is a real 3-point polygon,
    which CSS has no direct equivalent for without clip-path) */
 .arrow {

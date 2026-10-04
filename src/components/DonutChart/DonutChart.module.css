@@ -11,7 +11,7 @@
   display: block;
 }
 
-/* Nothing in the ring — a flat recessed track, like an empty progress
+/* Nothing in the ring - a flat recessed track, like an empty progress
    segment. */
 .empty {
   stroke: var(--color-surface-recessed);
@@ -29,7 +29,7 @@
   opacity: 1;
 }
 
-/* Entrance — the ring turns into place from a quarter back and grows out of
+/* Entrance - the ring turns into place from a quarter back and grows out of
    a slight shrink. Plays once, on mount (and on each switch to it). */
 .ring {
   transform-box: view-box;
@@ -45,7 +45,7 @@
   }
 }
 
-/* The middle — the total (or the hovered slice) and what it counts. */
+/* The middle - the total (or the hovered slice) and what it counts. */
 .centre {
   position: absolute;
   inset: 0;

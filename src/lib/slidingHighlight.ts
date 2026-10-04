@@ -9,7 +9,7 @@ import { useLayoutEffect, type RefObject } from 'react';
  * The group renders a single absolutely positioned element (`highlightRef`)
  * that wears the highlight's skin; the items stop painting their own. On
  * every change of the marked item the element's four edges move to the new
- * item with CSS transitions — the edge in the direction of travel leaves a
+ * item with CSS transitions - the edge in the direction of travel leaves a
  * beat before the trailing one, so the highlight stretches as it goes and
  * settles back to size when it lands.
  *
@@ -17,7 +17,7 @@ import { useLayoutEffect, type RefObject } from 'react';
  *   take. Measured through the group's own transform scale, so a group
  *   mid-entrance (scaled by the page entrance) still lands exactly.
  * - First placement, resizes and re-appearing after having no target do not
- *   travel — only a change of item does.
+ *   travel - only a change of item does.
  * - The skin's radius is copied from the target, so per-size or
  *   per-position corners morph along the way.
  * - `data-tone` is copied too, for skins that colour by the item's tone.
@@ -26,7 +26,7 @@ import { useLayoutEffect, type RefObject } from 'react';
 
 /** ms for an edge to travel. */
 const TRAVEL_MS = 420;
-/** ms the trailing edge waits behind the leading one — the stretch. */
+/** ms the trailing edge waits behind the leading one - the stretch. */
 const LAG_MS = 70;
 /** Arrives with a small overshoot, like the rest of the app's springs. */
 const TRAVEL_EASE = 'cubic-bezier(0.34, 1.22, 0.64, 1)';
@@ -57,7 +57,7 @@ export function useSlidingHighlight(
     const measure = (target: HTMLElement): Edges => {
       const c = container.getBoundingClientRect();
       const r = target.getBoundingClientRect();
-      // The layout size, unrounded — offsetWidth / clientWidth are whole
+      // The layout size, unrounded - offsetWidth / clientWidth are whole
       // pixels, and at a fractional rem that alone read as a 0.8% "scale",
       // which put a row 290px down the sidebar 2.5px off (owner, 2026-10-02).
       const cs = getComputedStyle(container);
@@ -70,7 +70,7 @@ export function useSlidingHighlight(
           : px(cs.width) + px(cs.paddingLeft) + px(cs.paddingRight) + borderX;
       const scale = c.width > 0 && layoutWidth > 0 ? layoutWidth / c.width : 1;
       // The padding box the insets count from (a scrollbar, where there is
-      // one, is outside it — clientWidth is right for that axis but rounded).
+      // one, is outside it - clientWidth is right for that axis but rounded).
       const innerWidth = container.offsetWidth === container.clientWidth + borderX ? c.width * scale - borderX : container.clientWidth;
       const innerHeight = container.offsetHeight === container.clientHeight + borderY ? c.height * scale - borderY : container.clientHeight;
       const left = (r.left - c.left) * scale - px(cs.borderLeftWidth) + container.scrollLeft;
@@ -130,7 +130,7 @@ export function useSlidingHighlight(
 
     // A new item marked: travel. Mutation callbacks run before paint, so
     // the old item never shows unhighlighted for a frame.
-    // Records on the highlight itself are this hook's own writes — skipped,
+    // Records on the highlight itself are this hook's own writes - skipped,
     // or copying `data-tone` would re-trigger it forever.
     const mutations = new MutationObserver((records) => {
       if (records.some((r) => r.target !== highlight)) place(true);

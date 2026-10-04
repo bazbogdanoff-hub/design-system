@@ -8,7 +8,7 @@
 .stack[data-direction='row'] { flex-direction: row; }
 .stack[data-wrap] { flex-wrap: wrap; }
 
-/* gap — space scale */
+/* gap - space scale */
 .stack[data-gap='none'] { gap: 0; }
 .stack[data-gap='2xs'] { gap: var(--space-2); }
 .stack[data-gap='xs'] { gap: var(--space-4); }
@@ -32,7 +32,7 @@
 .stack[data-justify='between'] { justify-content: space-between; }
 
 /* stretch columns: equal width, equal height.
-   Compound selector on purpose — `.columns` alone (0,1,0) loses to
+   Compound selector on purpose - `.columns` alone (0,1,0) loses to
    `.stack[data-direction='column']` (0,2,0), so a bare <Stack columns>
    silently stayed a column (parity audit STACK-001). */
 .stack.columns {

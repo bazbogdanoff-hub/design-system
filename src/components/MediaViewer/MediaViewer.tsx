@@ -9,7 +9,7 @@ export interface MediaViewerItem {
   /** Absent while it loads. */
   src?: string;
   name: string;
-  /** Under the name — when it was sent, pre-formatted. */
+  /** Under the name - when it was sent, pre-formatted. */
   detail?: ReactNode;
 }
 

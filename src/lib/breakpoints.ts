@@ -1,7 +1,7 @@
 import { useSyncExternalStore } from 'react';
 
 /**
- * Viewport breakpoints. Not DTCG tokens (DTCG has no breakpoint type) — plain
+ * Viewport breakpoints. Not DTCG tokens (DTCG has no breakpoint type) - plain
  * constants. Values match Tailwind's, the de-facto web standard.
  *
  * This is a desktop-first CRM: `lg` (1024) is the real floor. Design screens
@@ -24,19 +24,19 @@ export const up = (bp: Breakpoint): string => `(min-width: ${breakpoints[bp]}px)
 export const down = (bp: Breakpoint): string => `(max-width: ${breakpoints[bp] - 1}px)`;
 
 /**
- * Layout tiers — what templates and `Grid` switch on. Three, not five: the
+ * Layout tiers - what templates and `Grid` switch on. Three, not five: the
  * breakpoints above are the vocabulary, the tiers are the decisions.
  *
- * - `wide` — a 1920 monitor at 100%. 1600 rather than `2xl` (1536) because
+ * - `wide` - a 1920 monitor at 100%. 1600 rather than `2xl` (1536) because
  *   1536 is a 1920 laptop at Windows' 125% scaling, which is a laptop and
  *   belongs in `desktop`. The height floor keeps a 1600×900 monitor (≈770
  *   tall once the browser is drawn) out.
- * - `desktop` — 1280–1599: 1366, 1440, 1536. The Figma reference.
- * - `tablet` — below 1280. Rails drop under the main column.
+ * - `desktop` - 1280–1599: 1366, 1440, 1536. The Figma reference.
+ * - `tablet` - below 1280. Rails drop under the main column.
  *
  * Tiers decide placement only. **Size** is `scale.css`: the root grows
  * smoothly from 16px at 1440 to 20px at 1920, independent of any tier. So in
- * rem a `wide` screen is barely roomier than `desktop` — 1600 is 92rem across,
+ * rem a `wide` screen is barely roomier than `desktop` - 1600 is 92rem across,
  * 1920 is 96rem, against 90rem at 1440. Judge `wide` placement at 1600 as
  * well as 1920.
  *

@@ -1,10 +1,10 @@
 /* Full-viewport modal scrim + centering layer. The modal panel is `children`.
-   Fill is color/modal/scrim (alpha-black/40 — a light, neutral darkener that
+   Fill is color/modal/scrim (alpha-black/40 - a light, neutral darkener that
    keeps the interface readable behind it). */
 .overlay {
   position: fixed;
   inset: 0;
-  /* No z-index token scale yet — raw value until Popover/Menu/Tooltip/Toast
+  /* No z-index token scale yet - raw value until Popover/Menu/Tooltip/Toast
      land and a z/* layer family is worth adding. Modal sits above app chrome. */
   z-index: 1000;
   display: flex;
@@ -16,7 +16,7 @@
   overscroll-behavior: contain;
 }
 
-/* The strong scrim (2026-10-01) — a full-screen picture wants the room dark. */
+/* The strong scrim (2026-10-01) - a full-screen picture wants the room dark. */
 .overlay[data-scrim='strong'] {
   background-color: var(--color-modal-scrim-strong);
 }

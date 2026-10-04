@@ -4,30 +4,30 @@ import styles from './Headercard.module.css';
 
 type Base = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
   heading: ReactNode;
-  /** Beside the heading, and deliberately **outside** the `<h1>` — related
+  /** Beside the heading, and deliberately **outside** the `<h1>` - related
    * entities as `EntityChip`s, a status `Badge`, a count. Anything put in
    * `heading` itself becomes part of the page's accessible name, so a rig
    * titled "RIG-01" with three member chips would announce as
    * "RIG-01 TK-001 TR-004 Wójcik". This slot exists so that does not happen.
    *
    * Laid out as a row with `space/4` between children and `space/8` from the
-   * heading — the chip-group spacing from Figma. */
+   * heading - the chip-group spacing from Figma. */
   aside?: ReactNode;
-  /** Right-side slot — whatever mix of a "Back" `Button`, a
+  /** Right-side slot - whatever mix of a "Back" `Button`, a
    * `SegmentedControl`, a settings `IconButton`, etc. is relevant for the
    * page. Freeform; Headercard doesn't construct this itself. */
   actions?: ReactNode;
 };
 
 /**
- * Under the heading goes **either** a stat `labelGroup` **or** `controls` —
+ * Under the heading goes **either** a stat `labelGroup` **or** `controls` -
  * never both, which the type enforces.
  */
 export type HeadercardProps = Base &
   (
     | {
         /** Usually a `<LabelGroup>` of stat `Label`s (e.g. "86 total | 75
-         * active | 11 inactive"). Omit entirely to show heading-only —
+         * active | 11 inactive"). Omit entirely to show heading-only -
          * mirrors the Figma reference's own `hasLabelGroup` boolean. Sits
          * `space/2` under the heading, as in the Figma reference. */
         labelGroup?: ReactNode;
@@ -35,7 +35,7 @@ export type HeadercardProps = Base &
       }
     | {
         labelGroup?: never;
-        /** Controls under the heading in place of a label group — e.g. a
+        /** Controls under the heading in place of a label group - e.g. a
          * severity `Badge` beside an `IconButton`. These are ~32px tall, so
          * they sit `space/10` under the heading rather than the label
          * group's `space/2`, and `actions` align to the top of the card
@@ -45,7 +45,7 @@ export type HeadercardProps = Base &
   );
 
 /**
- * The page-header card most pages use — a `Card`-replica surface (same
+ * The page-header card most pages use - a `Card`-replica surface (same
  * fill/radius as `Table`'s own root) holding a fixed left side (heading +
  * an optional `aside` beside it, and an optional stat `LabelGroup` **or** a
  * row of `controls`) and a free

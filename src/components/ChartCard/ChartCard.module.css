@@ -10,7 +10,7 @@
   gap: var(--space-8);
 }
 
-/* One row: title | legend | filters+action — free space distributes between them. */
+/* One row: title | legend | filters+action - free space distributes between them. */
 .header {
   display: flex;
   align-items: center;
@@ -64,7 +64,7 @@
 
 /* Grows from its content, not from zero (owner, 2026-09-30): a card given a
    height is filled exactly as before, but a card left to size itself (the
-   dashboard's timeline, in a scrolling column) now fits its content — with
+   dashboard's timeline, in a scrolling column) now fits its content - with
    a zero basis the browser measured it as header-only and the chart spilled
    out over the next card. */
 .body {
@@ -75,13 +75,13 @@
   flex-direction: column;
 }
 
-/* The chart fills the body — from its content size, for the same reason. */
+/* The chart fills the body - from its content size, for the same reason. */
 .body > * {
   flex: 1 1 auto;
   min-height: 0;
 }
 
-/* bodyAlign="end" — the chart at its own height, at the foot of the card. */
+/* bodyAlign="end" - the chart at its own height, at the foot of the card. */
 .body[data-align='end'] {
   justify-content: flex-end;
 }

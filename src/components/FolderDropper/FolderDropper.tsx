@@ -25,9 +25,9 @@ export interface FolderDropperProps {
   files: FolderDropperFile[];
   /** Picked or dropped. The consumer adds them to `files` and uploads them. */
   onFilesSelected: (files: File[]) => void;
-  /** A row's remove button — called once the row has shrunk away. */
+  /** A row's remove button - called once the row has shrunk away. */
   onRemove?: (id: string) => void;
-  /** A failed row's retry button — the consumer sets the file back to
+  /** A failed row's retry button - the consumer sets the file back to
    * `queued` (or `uploading`) and its sheet comes back to try again. */
   onRetry?: (id: string) => void;
   accept?: string;
@@ -37,10 +37,10 @@ export interface FolderDropperProps {
   heading?: string;
   description?: string;
   className?: string;
-  /** Scales every spring's clock — for motion-review labs only. */
+  /** Scales every spring's clock - for motion-review labs only. */
   timeScale?: number;
   /**
-   * `side` — the list beside the folder, for many files · `stacked` — the
+   * `side` - the list beside the folder, for many files · `stacked` - the
    * row under it, for one (owner, 2026-10-03: a narrow one-file dialog
    * widened when a list appeared beside the folder). Defaults to `side` when
    * `multiple`, `stacked` when not. Either way the space is reserved from the
@@ -49,7 +49,7 @@ export interface FolderDropperProps {
   layout?: 'side' | 'stacked';
 }
 
-/* ---- geometry (px) — 0.72 of the lab's first size (owner, 2026-10-02: "make
+/* ---- geometry (px) - 0.72 of the lab's first size (owner, 2026-10-02: "make
    it smaller generally", to fit a one-file dialog) -------------------------- */
 const W = 172; // folder width
 const BACK_H = 128; // back panel, tab included
@@ -58,11 +58,11 @@ const TAB_H = 12;
 const FRONT_H = 84; // front panel (bottom-aligned)
 const SHEET_W = 96;
 const SHEET_H = 100;
-/** Sheet top when it sits inside — it peeks this far above the front. */
+/** Sheet top when it sits inside - it peeks this far above the front. */
 const SHEET_IN_Y = BACK_H - FRONT_H - 28;
-/** Sheet top while it waits — raised most of its height above its seat. */
+/** Sheet top while it waits - raised most of its height above its seat. */
 const SHEET_HOVER_Y = SHEET_IN_Y - SHEET_H * 0.7;
-/** Shown inside at most — older files are in there, just not drawn. */
+/** Shown inside at most - older files are in there, just not drawn. */
 const MAX_VISIBLE = 4;
 /** Waiting sheets shown above the folder at most. */
 const MAX_QUEUED_VISIBLE = 3;
@@ -74,7 +74,7 @@ const FAN = [
   { x: -3, r: 3, y: -4 },
 ];
 
-/* ---- springs (stiffness / damping) — as approved in the lab --------------- */
+/* ---- springs (stiffness / damping) - as approved in the lab --------------- */
 const SPRING = {
   sheet: { k: 260, c: 17 },
   sheetPop: { k: 420, c: 20 },
@@ -93,7 +93,7 @@ const LAND_KICK = -1.6;
 const ERROR_KICK = 380;
 /** A removed row shrinks this long before `onRemove`. */
 const REMOVE_MS = 220;
-/** A failed sheet jolts and shakes this long, then shrinks away — its row
+/** A failed sheet jolts and shakes this long, then shrinks away - its row
  * (Failed · Retry · Remove) carries it from there (owner, 2026-10-03). */
 const ERROR_SHOW_S = 0.9;
 
@@ -129,7 +129,7 @@ const fileIcon = (name: string) =>
     <FileText weight="fill" />
   );
 
-/* ---- accept — enforced, not just a picker hint (owner, 2026-10-03: "you
+/* ---- accept - enforced, not just a picker hint (owner, 2026-10-03: "you
    can't put a cat gif instead of a document"). `accept` on the input only
    filters the picker's default view; a drop, or "All files" in the picker,
    gets anything through. ------------------------------------------------- */
@@ -147,7 +147,7 @@ const tokens = (accept?: string) =>
     .split(',')
     .map((t) => t.trim().toLowerCase())
     .filter(Boolean);
-/** A MIME type against `accept` — '' (the browser didn't say) passes. */
+/** A MIME type against `accept` - '' (the browser didn't say) passes. */
 function mimeAccepted(mime: string, accept?: string) {
   const list = tokens(accept);
   if (!list.length || !mime) return true;
@@ -156,7 +156,7 @@ function mimeAccepted(mime: string, accept?: string) {
     t.startsWith('.') ? EXT_MIME[t.slice(1)] === m : t.endsWith('/*') ? m.startsWith(t.slice(0, -1)) : t === m,
   );
 }
-/** A file against `accept` — by extension, or by its MIME type. */
+/** A file against `accept` - by extension, or by its MIME type. */
 function fileAccepted(file: File, accept?: string) {
   const list = tokens(accept);
   if (!list.length) return true;
@@ -164,7 +164,7 @@ function fileAccepted(file: File, accept?: string) {
   if (list.some((t) => t.startsWith('.') && name.endsWith(t))) return true;
   return !!file.type && list.some((t) => !t.startsWith('.') && mimeAccepted(file.type, t));
 }
-/** "PDF, PNG or JPG" — what `accept` allows, in words. */
+/** "PDF, PNG or JPG" - what `accept` allows, in words. */
 function acceptWords(accept?: string) {
   const words: string[] = [];
   for (const t of tokens(accept)) {
@@ -179,26 +179,26 @@ function acceptWords(accept?: string) {
 }
 /** How long a refused file's message stays on the folder. */
 const REFUSED_MS = 2600;
-/** The folder's "no" — a sideways wobble on the lean springs (px/s, deg/s). */
+/** The folder's "no" - a sideways wobble on the lean springs (px/s, deg/s). */
 const REFUSE_KICK_X = 260;
 const REFUSE_KICK_R = 90;
 
 /**
- * The document upload (owner, 2026-10-02 — a folder, from a reference, built
+ * The document upload (owner, 2026-10-02 - a folder, from a reference, built
  * in a lab first): a folder files drop into as they upload, and a list of
  * every file beside it.
  *
- * - **Folder** — the back in the primary button's glass, a frosted front at a
+ * - **Folder** - the back in the primary button's glass, a frosted front at a
  *   quarter of that fill (deepening behind its words), white sheets between.
  *   At most four sheets show, however many files it holds.
- * - **Upload** — a picked file's sheet grows in above the folder, the front
+ * - **Upload** - a picked file's sheet grows in above the folder, the front
  *   swings partly open, the sheet sinks as `progress` rises and drops in on
  *   `done` with a bounce; the folder squashes on the landing. Up to three
  *   waiting sheets pile above. An `error` jolts the sheet back up and shakes
  *   it, red-edged.
- * - **Drag-over** — the front swings fully open and the folder leans toward
+ * - **Drag-over** - the front swings fully open and the folder leans toward
  *   the pointer, following it.
- * - **Layout** — centred while empty; when files arrive it walks to the left
+ * - **Layout** - centred while empty; when files arrive it walks to the left
  *   and the list grows in beside it, newest first, a row per finished file.
  *
  * All motion is springs, integrated per frame (a beat that starts early takes
@@ -231,7 +231,7 @@ export function FolderDropper({
   const sheets = useRef(new Map<string, SheetState>());
   const filterId = `folder-glass-${useId().replace(/[^a-zA-Z0-9_-]/g, '')}`;
   const [dragOver, setDragOver] = useState(false);
-  /** A drag whose files are the wrong type — the folder stays shut. */
+  /** A drag whose files are the wrong type - the folder stays shut. */
   const [dragRefused, setDragRefused] = useState(false);
   /** The last refused pick, shown on the folder for a moment. */
   const [refused, setRefused] = useState<string | null>(null);
@@ -264,7 +264,7 @@ export function FolderDropper({
     const measure = () => {
       const padLeft = parseFloat(getComputedStyle(root).paddingLeft) || 0;
       centreOffset.current = Math.max(0, (root.clientWidth - W) / 2 - padLeft);
-      // Empty, it sits in the middle of the whole box — the room kept above
+      // Empty, it sits in the middle of the whole box - the room kept above
       // for sheets included (and, stacked, the row's slot below); files
       // arriving, it settles to where the sheets have their room (owner,
       // 2026-10-03).
@@ -329,7 +329,7 @@ export function FolderDropper({
             erroredAt: null,
           };
           if (f.status === 'done') {
-            // Already in the folder when it mounted — no entrance.
+            // Already in the folder when it mounted - no entrance.
             const slot = doneSlot.get(f.id) ?? MAX_VISIBLE;
             const fan = FAN[Math.min(slot, MAX_VISIBLE - 1)]!;
             s.y.x = SHEET_IN_Y + fan.y;
@@ -339,7 +339,7 @@ export function FolderDropper({
           }
           sheets.current.set(f.id, s);
         }
-        // Retried: a fresh try — it may fail (and shake) again.
+        // Retried: a fresh try - it may fail (and shake) again.
         if (f.status !== 'error' && s.erroredAt !== null) s.erroredAt = null;
 
         if (f.status === 'done') {
@@ -459,8 +459,8 @@ export function FolderDropper({
     setDragRefused(false);
     pointer.current = { x: 0, y: 0 };
   };
-  /** While dragging only MIME types are known (no names); none matching —
-   * and the browser saying what they are — means refuse. */
+  /** While dragging only MIME types are known (no names); none matching -
+   * and the browser saying what they are - means refuse. */
   const dragAcceptable = (e: DragEvent) => {
     const types = [...e.dataTransfer.items].filter((i) => i.kind === 'file').map((i) => i.type);
     return !types.length || types.some((t) => !t || mimeAccepted(t, accept));
@@ -598,7 +598,7 @@ export function FolderDropper({
         </button>
       </div>
 
-      {/* Reserved from the start — rows arriving never resize the component. */}
+      {/* Reserved from the start - rows arriving never resize the component. */}
       <div ref={slotRef} className={styles.list} aria-label="Uploaded files">
         <div className={styles.listScroll}>
           {listed

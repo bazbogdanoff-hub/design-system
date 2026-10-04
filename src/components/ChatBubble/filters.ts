@@ -3,15 +3,15 @@
  *
  * A box-shadow follows the box, not the shape, so on a bubble with a tail it
  * stops at the joint and creases the side the tail grows from. A filter works
- * from the painted alpha — body and tail as one silhouette — so the catch,
+ * from the painted alpha - body and tail as one silhouette - so the catch,
  * the inner band and the drop run unbroken round both. Each recipe is the
  * design system's own, re-expressed (box-shadow blur b is stdDeviation b/2;
  * a negative spread is an erode, a positive one a dilate):
  *
- *   light out  glass.css on the primary fill — catch, inner, two lights
- *   light in   Tile — 2/1 white catch, inner 1 1 8, drop 0.5 0.5 2 spread 2
- *   dark out   the sidebar's brand pair — brand.400 catch, 2px inner shade
- *   dark in    the sidebar panel — a 4px inner shade all round
+ *   light out  glass.css on the primary fill - catch, inner, two lights
+ *   light in   Tile - 2/1 white catch, inner 1 1 8, drop 0.5 0.5 2 spread 2
+ *   dark out   the sidebar's brand pair - brand.400 catch, 2px inner shade
+ *   dark in    the sidebar panel - a 4px inner shade all round
  *
  * One hidden <svg> holds all four, added to <body> the first time a bubble
  * mounts; colours are CSS variables, so they follow the tokens.

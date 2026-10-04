@@ -13,25 +13,25 @@ import { Card } from '../Card';
 import { useRemScale } from '../../lib/rem';
 import styles from './Table.module.css';
 
-/** Hard cap for body row / cell height — fill can be smaller, never larger.
+/** Hard cap for body row / cell height - fill can be smaller, never larger.
  * Authored at the 16px root (4.25rem) and scaled with it. */
 const TABLE_ROW_MAX_HEIGHT_PX = 68;
 
-/** Width roles with a set width — never measured, never grown. */
+/** Width roles with a set width - never measured, never grown. */
 const FIXED_WIDTHS = new Set(['checkbox', 'radio', 'icon', 'action', 'timestamp']);
 
 export interface TableProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   /** Left-aligned in the header row. Omit along with `actions` to hide the header entirely. */
   filters?: ReactNode;
-  /** Right-aligned in the header row — 0 to N buttons. Just compose them; there's no per-button prop, an empty/omitted slot simply takes no space. */
+  /** Right-aligned in the header row - 0 to N buttons. Just compose them; there's no per-button prop, an empty/omitted slot simply takes no space. */
   actions?: ReactNode;
-  /** The header row — a `<TableRow>` of `<TableHeaderCell>`s. */
+  /** The header row - a `<TableRow>` of `<TableHeaderCell>`s. */
   header: ReactNode;
-  /** Body rows — `<TableRow>`s of `<TableCell>`s. */
+  /** Body rows - `<TableRow>`s of `<TableCell>`s. */
   children: ReactNode;
   /** How many rows are currently selected. The footer's left side (and the footer itself, if `pagination` is also absent) only appears once this is truthy. */
   selectedCount?: number;
-  /** Shown next to the selection count — e.g. a "Delete" button. Only rendered when `selectedCount` is truthy. */
+  /** Shown next to the selection count - e.g. a "Delete" button. Only rendered when `selectedCount` is truthy. */
   selectionActions?: ReactNode;
   /** The `<Pagination>` element, right-aligned in the footer. */
   pagination?: ReactNode;
@@ -39,19 +39,19 @@ export interface TableProps extends Omit<HTMLAttributes<HTMLDivElement>, 'childr
 
 /**
  * Card surface + header (filters/actions) + a real `<table>` + footer
- * (selection/pagination) — the same 3-region shape built in Figma, ported
+ * (selection/pagination) - the same 3-region shape built in Figma, ported
  * with one structural difference: `hasHeader`/`hasFooter`/`hasFilters`/
  * `hasSelection`/`hasPagination` were real exposed booleans there because
- * Figma has no way to compute "is this content present" — here they're just
+ * Figma has no way to compute "is this content present" - here they're just
  * `filters/actions/selectedCount/pagination` being truthy or not, plain
  * conditional rendering.
  *
  * Wraps the real `Card` (`padding="none"`) rather than replicating its
- * fill/radius/shadow — Figma couldn't nest a live `Card` **instance** without
+ * fill/radius/shadow - Figma couldn't nest a live `Card` **instance** without
  * hitting a real Slot-insertion depth limit, but that restriction doesn't
  * exist in React, so this is the one place code and the Figma reference
  * deliberately diverge in how they reach the identical visual result. `Card`
- * itself gained `overflow: hidden` under `padding="none"` for this — the
+ * itself gained `overflow: hidden` under `padding="none"` for this - the
  * header/rows/footer all sit flush against its rounded corners.
  *
  * Body row height is measured (content area minus thead, divided by row
@@ -92,8 +92,8 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
   // Columns as wide as their content, pinned columns stuck (2026-10-01).
   // The locked row fill takes cell content out of flow, so a column was
   // sized by its header and anything wider was cut mid-value. Each column's
-  // widest content is measured — the extent of what's in it, not the cell,
-  // so columns shrink back as well as grow — and set as its header's
+  // widest content is measured - the extent of what's in it, not the cell,
+  // so columns shrink back as well as grow - and set as its header's
   // min-width; past the card's width, `.content` scrolls sideways. Pinned
   // columns (`pin` on the cells) get their sticky offsets here, and the
   // scroll position marks which edges have more beyond them.

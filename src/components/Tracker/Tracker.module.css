@@ -41,7 +41,7 @@
 .value[data-tone='danger']  { color: var(--color-text-danger-solid); }
 .value[data-tone='brand']   { color: var(--color-text-brand-solid); }
 
-/* Fixed 260px track — fills up to that cap, centered under the value. */
+/* Fixed 260px track - fills up to that cap, centered under the value. */
 .bar {
   width: 100%;
   max-width: 16.25rem;

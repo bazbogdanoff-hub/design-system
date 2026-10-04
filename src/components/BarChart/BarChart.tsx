@@ -10,7 +10,7 @@ export interface BarChartSeries {
   /** Matches a key in each datum's `values`. */
   key: string;
   label: string;
-  /** Any CSS color value — usually a token var, e.g. `var(--color-chart-1)`. */
+  /** Any CSS color value - usually a token var, e.g. `var(--color-chart-1)`. */
   color: string;
 }
 
@@ -25,31 +25,31 @@ export interface BarChartProps {
   /** Stacking order, bottom to top. */
   series: BarChartSeries[];
   /** Total SVG height in px, including the x-axis label band. Omit to fill
-   * whatever height the container gives it (the usual case — put `BarChart`
+   * whatever height the container gives it (the usual case - put `BarChart`
    * in a flex/grid area with a real height, e.g. `ChartCard`'s body). */
   height?: number;
   valueFormatter?: (value: number) => string;
-  /** Overall chart description for assistive tech — the data itself is
+  /** Overall chart description for assistive tech - the data itself is
    * always reachable per-bar (focusable) and via the hidden table below. */
   'aria-label'?: string;
 }
 
 const GAP_PX = 2; // surface-color gap between stacked segments (marks-and-anatomy.md)
-/** Room around a block for its glass filter — the drop shadow's blur (σ 4)
+/** Room around a block for its glass filter - the drop shadow's blur (σ 4)
  * fades out well inside 16px. */
 const FILTER_ROOM = 16;
 const CORNER_PX = 4; // rounded data-end radius
 const MAX_BAR_THICKNESS_PX = 24;
 const MIN_HEIGHT_PX = 140; // pre-measurement / degenerate-container fallback
 // Top inset leaves a little room for hover tooltips above tall bars.
-// `left` is only the floor — the real left inset is measured from the widest
+// `left` is only the floor - the real left inset is measured from the widest
 // axis label (see `padLeft`). A fixed 24 was enough for single-digit counts
 // and cut four-figure money labels off the left edge of the viewBox.
 const PADDING_PX = { top: 20, right: 16, bottom: 24, left: 24 };
 /** Distance from a label's right edge to the axis. */
 const AXIS_LABEL_GAP_PX = 8;
 
-/** A rectangle with all four corners rounded — every stacked block is its
+/** A rectangle with all four corners rounded - every stacked block is its
  * own rounded block (owner, 2026-09-29). The radius shrinks to fit a short
  * or narrow block. */
 function roundedRectPath(x: number, y: number, width: number, height: number, radius: number): string {
@@ -70,7 +70,7 @@ function roundedRectPath(x: number, y: number, width: number, height: number, ra
 
 /**
  * A stacked bar chart. Thin bars (<=24px), rounded outer end, square
- * baseline, a 2px surface gap between segments — see
+ * baseline, a 2px surface gap between segments - see
  * `docs/components/BarChart.md`. Every value is reachable three ways: the
  * hovered/focused tooltip, the axis gridlines, and a visually-hidden table
  * (screen readers only) so nothing is gated behind hover.
@@ -104,7 +104,7 @@ export function BarChart({
   const [wrapperRef, measuredSize] = useContainerSize<HTMLDivElement>();
 
   // The SVG's coordinate space matches the container's real pixel size 1:1
-  // (no CSS-level scaling) — bars/gridlines stretch to fill it, but text
+  // (no CSS-level scaling) - bars/gridlines stretch to fill it, but text
   // drawn at e.g. 12px stays 12px regardless of card size. Pre-measurement
   // fallbacks only matter for the very first paint.
   const height = fixedHeight ?? Math.max(MIN_HEIGHT, measuredSize.height);
@@ -254,7 +254,7 @@ export function BarChart({
               >
                 {datum.category}
               </text>
-              {/* hit target — the whole column, taller/wider than the bar itself */}
+              {/* hit target - the whole column, taller/wider than the bar itself */}
               <rect
                 x={padLeft + bandWidth * i}
                 y={PADDING.top}
@@ -292,7 +292,7 @@ export function BarChart({
           style={{
             left: `${((padLeft + bandWidth * (activeIndex + 0.5)) / intrinsicWidth) * 100}%`,
             // clamped so a near-max bar's tooltip can't render above the
-            // chart's own top edge — PADDING.top already reserves the
+            // chart's own top edge - PADDING.top already reserves the
             // typical headroom, this is the safety net for tall tooltips
             top: `${(Math.max(yFor(activeTotal), 48) / height) * 100}%`,
             transform: 'translate(-50%, calc(-100% - 0.5rem))',
@@ -300,7 +300,7 @@ export function BarChart({
         />
       )}
 
-      {/* screen-reader-only data table — every value stays reachable without hovering */}
+      {/* screen-reader-only data table - every value stays reachable without hovering */}
       {/* Hidden in a div, not on the table: a table won't shrink below its
           rows, so a 1px table still stretched the page's scroll height. */}
       <div className={styles.srOnlyTable}>

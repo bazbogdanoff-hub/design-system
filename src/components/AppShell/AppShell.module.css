@@ -1,5 +1,5 @@
 /* Fluid app shell. Fills the viewport; only .content scrolls.
-   Dimensions (sidebar width, gutter, content padding, radius) are set here —
+   Dimensions (sidebar width, gutter, content padding, radius) are set here -
    promote to size/app/* tokens later if they need to vary. */
 .shell {
   --app-sidebar-width: 4rem;
@@ -13,16 +13,16 @@
 }
 
 .shell[data-sidebar='expanded'] {
-  /* 180px, not the 240 this was originally set to — that number predated
+  /* 180px, not the 240 this was originally set to - that number predated
      the real `Sidebar` component; corrected to match its actual built
      width now that it exists (64px collapsed / 180px expanded, confirmed
      in Figma and in the React port). */
   --app-sidebar-width: 11.25rem;
 }
 
-/* the 64px/180px rail — empty dark bar by default; consumer fills it.
+/* the 64px/180px rail - empty dark bar by default; consumer fills it.
    stretch (not center) so the Sidebar can width:100% and respect its own
-   10/6 horizontal inset — center was shrinking panels and flushing them
+   10/6 horizontal inset - center was shrinking panels and flushing them
    to the left edge of the viewport. */
 .sidebar {
   display: flex;
@@ -36,7 +36,7 @@
   box-sizing: border-box;
 }
 
-/* right column — carries the gutter around the content card */
+/* right column - carries the gutter around the content card */
 .main {
   min-width: 0;
   min-height: 0;
@@ -46,7 +46,7 @@
 }
 
 /* Rounded surface the screen lives on. Dumb chrome only (bg / radius /
-   clip) — Page owns padding + scroll. Do NOT pad here or Page's own
+   clip) - Page owns padding + scroll. Do NOT pad here or Page's own
    padding stacks on top and the content inset doubles. */
 .content {
   flex: 1;
@@ -67,7 +67,7 @@
 @property --app-sidebar-width {
   syntax: '<length>';
   inherits: true;
-  initial-value: 0px; /* must be font-independent to be valid, so not rem — never used: .shell always sets the width */
+  initial-value: 0px; /* must be font-independent to be valid, so not rem - never used: .shell always sets the width */
 }
 
 .shell {

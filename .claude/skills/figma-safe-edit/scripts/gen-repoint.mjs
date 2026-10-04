@@ -31,4 +31,4 @@ for (const [oldName, newName] of Object.entries(MAP)) {
 return { repointed: done.length, done, libraryVarsForNodePass: libraryVars, targetMissing: missTarget };
 `;
 writeFileSync(`${ROOT}/migration/repoint-local.js`, snippet);
-console.log(`migration/repoint-local.js — ${Object.keys(map).length} mapping entries`);
+console.log(`migration/repoint-local.js - ${Object.keys(map).length} mapping entries`);

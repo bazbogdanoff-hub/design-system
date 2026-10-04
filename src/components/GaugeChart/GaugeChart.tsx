@@ -10,7 +10,7 @@ export interface GaugeChartDatum {
   key: string;
   label: string;
   value: number;
-  /** Any CSS color value — usually a token var. */
+  /** Any CSS color value - usually a token var. */
   color: string;
 }
 
@@ -22,7 +22,7 @@ export interface GaugeChartProps extends Omit<HTMLAttributes<HTMLDivElement>, 'c
   value: ReactNode;
   /** Under the headline, e.g. "fit to run · 57 / 60". */
   caption?: ReactNode;
-  /** Makes each segment a button — e.g. open the units behind it. */
+  /** Makes each segment a button - e.g. open the units behind it. */
   onSelect?: (key: string) => void;
   valueFormatter?: (value: number) => string;
   /** The segments' names under the arc, in the legend tile (values are
@@ -41,7 +41,7 @@ const MAX_OUTER_PX = 100; // the arc stops growing here (owner, 2026-09-30: 136 
 const MIN_SEGMENT_PX = 16; // shortest arc a non-zero segment is drawn with
 
 /**
- * A half-ring gauge (owner, 2026-09-30) — the donut's glass, opened into an
+ * A half-ring gauge (owner, 2026-09-30) - the donut's glass, opened into an
  * arc from nine o'clock over the top to three, and thicker (28px to its 24). Segments
  * share the arc by value, left to right; the headline sits in the bowl.
  * Hovering or focusing a segment dims the others and puts its value and
@@ -100,8 +100,8 @@ export function GaugeChart({
   const pt = (r: number, a: number) => `${(cx + r * Math.cos(a)).toFixed(2)},${(cy + r * Math.sin(a)).toFixed(2)}`;
 
   // Every segment gets at least MIN_SEGMENT_PX of arc beyond its gap,
-  // borrowed from the largest: one in sixty is ~6px of arc — less than its
-  // own corners — and would collapse into a radial splinter. The exact
+  // borrowed from the largest: one in sixty is ~6px of arc - less than its
+  // own corners - and would collapse into a radial splinter. The exact
   // values stay in the legend and on hover.
   const minSweep = (MIN_SEGMENT_PX * s + gap) / mid;
   const sweeps = slices.map((d) => (d.value / total) * Math.PI);

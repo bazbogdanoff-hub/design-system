@@ -19,14 +19,14 @@
   color: var(--color-segmented-control-item-text-hover);
 }
 
-/* selected, no tone — see SegmentedControlItem.tsx: gets Button's own
+/* selected, no tone - see SegmentedControlItem.tsx: gets Button's own
    .surface[data-variant='secondary'] glass skin instead of a color here */
 
-/* tone track, unselected (sidebar module switcher's other segments) — a
+/* tone track, unselected (sidebar module switcher's other segments) - a
    two-layer glass look (a flat zinc fill + a black-alpha wash on top),
    tone-agnostic on purpose: unselected never carries a module's color, only
    `selected` does. `position` rounds whichever outer corner touches the
-   switcher's own panel edge — `start`/`end` only, `middle` stays uniform. */
+   switcher's own panel edge - `start`/`end` only, `middle` stays uniform. */
 .item[data-tone]:not([data-selected]) {
   background:
     linear-gradient(var(--color-segmented-control-item-xs-default-overlay), var(--color-segmented-control-item-xs-default-overlay)),
@@ -44,7 +44,7 @@
 }
 
 .item[data-tone] {
-  /* the xs pill's own base corner — not on the primitive radius scale,
+  /* the xs pill's own base corner - not on the primitive radius scale,
      a deliberate per-component exception (same pattern documented on
      component.color.json's `sidebar` block for this component's colors) */
   border-radius: 0.1875rem;
@@ -56,10 +56,10 @@
   border-top-right-radius: var(--radius-panel);
 }
 
-/* tone track, selected — a solid tone-colored fill instead of the glass
+/* tone track, selected - a solid tone-colored fill instead of the glass
    surface (see SegmentedControlItem.tsx for why this fully swaps rather
    than layers on top of it). Deliberately NOT the shared background.<tone>
-   token (600/700, calibrated for light surfaces) — those read muddy on this
+   token (600/700, calibrated for light surfaces) - those read muddy on this
    dark track, so this uses the sidebar-scoped 500/400 pair instead: fill at
    500 for the segment's own solid area, accent at 400 for its stroke/inner
    shadow (see component.color.json's `sidebar` block for the full why). */
@@ -95,7 +95,7 @@
 /* Inside a SegmentedControl, the picked fill is the control's one
    travelling highlight (SegmentedControl.module.css, lib/slidingHighlight.ts).
    The picked item keeps the text colour the glass would have given it, and a
-   toned one wears the same bare segment as its neighbours — the tone's fill
+   toned one wears the same bare segment as its neighbours - the tone's fill
    arrives on top of it. Placed after the selected rules so it wins. */
 [data-sliding] > .item[data-selected]:not([data-tone]) {
   color: var(--color-button-secondary-text);
@@ -143,7 +143,7 @@
   letter-spacing: var(--text-label-lg-letter-spacing);
 }
 
-/* xs — the sidebar module switcher only. Flex-fills the track evenly
+/* xs - the sidebar module switcher only. Flex-fills the track evenly
    (SegmentedControl sizes its xs track itself; items don't set a width). */
 [data-size='xs'] .item {
   flex: 1 1 0;
@@ -170,7 +170,7 @@
   }
 }
 
-/* count (2026-10-01) — the dashboard chat card's unread pill: brand.500
+/* count (2026-10-01) - the dashboard chat card's unread pill: brand.500
    with a brand.400 catch, tabular figures. */
 .count {
   display: inline-grid;

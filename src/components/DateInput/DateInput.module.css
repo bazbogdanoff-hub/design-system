@@ -3,7 +3,7 @@
   width: 100%;
 }
 
-/* The browser's own picker icon goes — the calendar IconButton replaces it. */
+/* The browser's own picker icon goes - the calendar IconButton replaces it. */
 .input::-webkit-calendar-picker-indicator {
   display: none;
 }

@@ -9,14 +9,14 @@
   overflow: hidden;
 }
 
-/* Text / badge columns — hug intrinsic one-line width; never wrap mid-value. */
+/* Text / badge columns - hug intrinsic one-line width; never wrap mid-value. */
 .cell:not([data-width]),
 .cell[data-width='wide'] {
   width: auto;
   white-space: nowrap;
 }
 
-/* Primary text columns (Model, etc.) — floor so short values still breathe. */
+/* Primary text columns (Model, etc.) - floor so short values still breathe. */
 .cell[data-width='wide'] {
   min-width: 12rem;
 }
@@ -25,7 +25,7 @@
    fill is absolutely positioned, so cell content contributes no intrinsic
    width: a column with no role is sized by its *header*, and anything wider
    under it is clipped. `action` holds a small `Button`; `value` holds a
-   figure — money, a distance, a duration — that outruns a short header. */
+   figure - money, a distance, a duration - that outruns a short header. */
 .cell[data-width='action'] {
   width: 8rem;
   min-width: 8rem;
@@ -36,7 +36,7 @@
   min-width: 7rem;
   white-space: nowrap;
 }
-/* A date and time on one line — "Sep 17, 7:46 PM" outruns any header a date
+/* A date and time on one line - "Sep 17, 7:46 PM" outruns any header a date
    column would carry, and 7rem still cuts the time off.
 
    Fixed, not a minimum: a timestamp's width doesn't vary, so this column has
@@ -48,7 +48,7 @@
   white-space: nowrap;
 }
 
-/* Control columns — fixed 48px rail for checkbox / radio / icon-only. */
+/* Control columns - fixed 48px rail for checkbox / radio / icon-only. */
 .cell[data-width='checkbox'],
 .cell[data-width='radio'],
 .cell[data-width='icon'] {
@@ -74,7 +74,7 @@
   padding: 0;
 }
 
-/* Locked fill — content out of flow so it can't expand the row. */
+/* Locked fill - content out of flow so it can't expand the row. */
 :global([data-row-fill]) .fill {
   position: absolute;
   inset: 0;
@@ -103,8 +103,8 @@
   z-index: 1;
   background-color: inherit;
 }
-/* A pinned cell is its own layer (sticky + z-index), so a menu opened from it
-   — the row's ⋮ (2026-10-04) — painted under the next rows' pinned cells.
+/* A pinned cell is its own layer (sticky + z-index), so a menu opened from it -
+   the row's ⋮ (2026-10-04) - painted under the next rows' pinned cells.
    While it holds an open menu it rises above them, as the table header does
    for its Filter menus. */
 .cell[data-pin]:has([role='menu']) {
@@ -123,7 +123,7 @@
   box-shadow: -6px 0 8px -6px var(--color-alpha-black-20);
 }
 /* The row's hover wash is an inset shadow on the <tr>, which an opaque
-   pinned cell would hide — the cell carries it too. */
+   pinned cell would hide - the cell carries it too. */
 :global(tbody tr:hover) > .cell[data-pin] {
   box-shadow: inset 0 0 0 1000px var(--color-table-row-shadow-hover);
 }
@@ -140,7 +140,7 @@
 }
 
 /* The row's focus ring is an outline on the <tr>, which an opaque pinned
-   cell paints over — the cell draws its own stretch of it (top, bottom, and
+   cell paints over - the cell draws its own stretch of it (top, bottom, and
    its outer side). After the hover rules: focus wins when both apply. */
 :global(tbody tr:focus-visible) > .cell[data-pin='start'],
 :global(tbody tr:has(:focus-visible)) > .cell[data-pin='start'] {

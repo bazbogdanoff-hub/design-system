@@ -12,12 +12,12 @@ import styles from './DateInput.module.css';
 
 export interface DateInputProps
   extends Omit<InputProps, 'type' | 'value' | 'defaultValue' | 'onChange' | 'trailingIcon' | 'trailingAction'> {
-  /** `yyyy-mm-dd`, or `''` for no date — what a native date input holds. */
+  /** `yyyy-mm-dd`, or `''` for no date - what a native date input holds. */
   value: string;
   onChange: (value: string) => void;
   /** Today for the calendar, `yyyy-mm-dd`. Defaults to the device's date. */
   today?: string;
-  /** The calendar's first column — `0` Sunday (default) · `1` Monday. */
+  /** The calendar's first column - `0` Sunday (default) · `1` Monday. */
   weekStartsOn?: 0 | 1;
 }
 
@@ -28,15 +28,15 @@ const CLOSE_AFTER_PICK_MS = 380;
 const BUTTON_SIZE = { sm: 'sm', md: 'md', lg: 'lg' } as const;
 
 /**
- * A date field (owner, 2026-10-02): `Input` with a native date input inside
- * — so a date can still be typed segment by segment — whose browser picker
+ * A date field (owner, 2026-10-02): `Input` with a native date input inside -
+ * so a date can still be typed segment by segment - whose browser picker
  * icon is replaced by our own calendar `IconButton`. The button opens
  * `Calendar` on a card below the field (above it when there is more room
  * there); picking a day fills the field and closes it. Escape or a click
  * outside closes it too.
  *
- * The panel borrows `Menu`'s shell — fixed positioning, elevation, the
- * grow-out-of-its-corner enter and exit — and pins to the field's right
+ * The panel borrows `Menu`'s shell - fixed positioning, elevation, the
+ * grow-out-of-its-corner enter and exit - and pins to the field's right
  * edge, under the button that opened it.
  */
 export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(function DateInput(
@@ -52,7 +52,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(function D
   const [placement, setPlacement] = useState<{ top: number; left: number; above: boolean } | null>(null);
 
   // Placed in viewport space, like Menu: fixed escapes scrolling panels and
-  // modals; re-placed on scroll (capture — inner panels too) and resize.
+  // modals; re-placed on scroll (capture - inner panels too) and resize.
   useLayoutEffect(() => {
     if (!open) {
       setPlacement(null);

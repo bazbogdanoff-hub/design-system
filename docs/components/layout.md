@@ -1,10 +1,10 @@
-# Layout primitives — `Box` + `Stack`
+# Layout primitives - `Box` + `Stack`
 
-The two low-level building blocks for composition. Everything spatial is a token —
+The two low-level building blocks for composition. Everything spatial is a token -
 app code never writes raw `px` for gap, padding, or radius.
 
-- **`Box`** — a styled container. Token padding / background / radius / border.
-- **`Stack`** — a flex container. Token gap + alignment. The workhorse.
+- **`Box`** - a styled container. Token padding / background / radius / border.
+- **`Stack`** - a flex container. Token gap + alignment. The workhorse.
 
 Both are polymorphic (`as`, `asChild`) and forward their ref.
 
@@ -22,9 +22,9 @@ Both are polymorphic (`as`, `asChild`) and forward their ref.
 | `bg` | `default` `subtle` `card` `sunken` | `surface/*` · `background/subtle` |
 | `radius` | `chip` `control` `panel` `container` | radius roles (6 · 8 · 12 · 16) |
 | `border` | `boolean` | 1px `border/default` |
-| `as` / `asChild` | — | element / merge onto child |
+| `as` / `asChild` | - | element / merge onto child |
 
-`px`/`py` override `p` on their axis. `Box` does **no** layout — it's a leaf
+`px`/`py` override `p` on their axis. `Box` does **no** layout - it's a leaf
 surface. For arranging children, wrap them in a `Stack`.
 
 ## `Stack`

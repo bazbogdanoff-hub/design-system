@@ -69,7 +69,7 @@
   color: var(--color-text-subtle);
   white-space: nowrap;
 }
-/* Now — the one line that is not background: brand, over the bars. */
+/* Now - the one line that is not background: brand, over the bars. */
 .now {
   position: absolute;
   top: calc(-1 * var(--space-4));
@@ -152,7 +152,7 @@
   height: 100%;
 }
 
-/* The delivery window — recessed, like an empty progress segment: the slot
+/* The delivery window - recessed, like an empty progress segment: the slot
    the trip has to land in. */
 .window {
   position: absolute;
@@ -163,7 +163,7 @@
   background: var(--color-chart-window);
 }
 
-/* The trip — the glass pattern (src/glass.css) at the pill's weight: 1px
+/* The trip - the glass pattern (src/glass.css) at the pill's weight: 1px
    catch, the inner shadow, the Button's plain drop shadow. */
 .bar {
   --glass-fill: var(--color-chart-1);
@@ -185,7 +185,7 @@
 .bar[data-tone='danger'] {
   --glass-fill: var(--color-chart-severity-critical);
 }
-/* Not departed yet — booked, still paler. */
+/* Not departed yet - booked, still paler. */
 .bar[data-tone='pending'] {
   opacity: 0.45;
 }

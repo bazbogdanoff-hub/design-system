@@ -1,58 +1,58 @@
 {
   "radius": {
-    "card": { "$value": "{radius.2xl}", "$description": "16px — owner, 2026-09-28: cards moved off radius.container (12) while modals stay on it" },
-    "card-outer": { "$value": "{radius.4xl}", "$description": "24px — a top-level card's corner that sits in a corner of the page (owner, 2026-09-28). Applied by Page at runtime; see src/lib/surfaceCorners.ts" },
+    "card": { "$value": "{radius.2xl}", "$description": "16px - owner, 2026-09-28: cards moved off radius.container (12) while modals stay on it" },
+    "card-outer": { "$value": "{radius.4xl}", "$description": "24px - a top-level card's corner that sits in a corner of the page (owner, 2026-09-28). Applied by Page at runtime; see src/lib/surfaceCorners.ts" },
     "page": { "$value": "{radius.page-container}" },
     "modal": { "$value": "{radius.container}" },
     "table": { "$value": "{radius.panel}" },
     "popover": { "$value": "{radius.panel}" },
     "button": {
-      "xs": { "$value": "{radius.chip}", "$description": "6 — 1440 migration: sizes unified across variant, one radius per size now (was per-variant-per-size). Renamed from 2sm — xs reads as a logical bottom step of the sm/md/lg/xl/2xl scale, matching how 2xl reads as the logical top step." },
+      "xs": { "$value": "{radius.chip}", "$description": "6 - 1440 migration: sizes unified across variant, one radius per size now (was per-variant-per-size). Renamed from 2sm - xs reads as a logical bottom step of the sm/md/lg/xl/2xl scale, matching how 2xl reads as the logical top step." },
       "sm": { "$value": "{radius.chip}", "$description": "6" },
       "md": { "$value": "{radius.control}", "$description": "8" },
       "lg": { "$value": "{radius.control}", "$description": "8" },
       "xl": { "$value": "{radius.control}", "$description": "8" },
-      "2xl": { "$value": "{radius.panel}", "$description": "12 — primary only" }
+      "2xl": { "$value": "{radius.panel}", "$description": "12 - primary only" }
     },
     "input": { "$value": "{radius.control}" },
     "badge": {
-      "sm": { "$value": "{radius.full}", "$description": "pill (owner, 2026-09-28: was radius.chip 6) — badges are pills so status never reads as a button; xs reuses it" },
+      "sm": { "$value": "{radius.full}", "$description": "pill (owner, 2026-09-28: was radius.chip 6) - badges are pills so status never reads as a button; xs reuses it" },
       "md": { "$value": "{radius.full}", "$description": "pill (owner, 2026-09-28: was radius.control 8)" },
       "lg": { "$value": "{radius.full}", "$description": "pill (owner, 2026-09-28: was radius.control 8)" },
       "edge": {
-        "sm": { "$value": "{radius.chip}", "$description": "6 — the original sm radius, for both corners on a side touching the card padding (owner, 2026-09-29, lib/edgeCorners.ts); xs reuses it" },
-        "md": { "$value": "{radius.control}", "$description": "8 — the original md radius, same rule" },
-        "lg": { "$value": "{radius.control}", "$description": "8 — the original lg radius, same rule" }
+        "sm": { "$value": "{radius.chip}", "$description": "6 - the original sm radius, for both corners on a side touching the card padding (owner, 2026-09-29, lib/edgeCorners.ts); xs reuses it" },
+        "md": { "$value": "{radius.control}", "$description": "8 - the original md radius, same rule" },
+        "lg": { "$value": "{radius.control}", "$description": "8 - the original lg radius, same rule" }
       }
     },
     "checkbox": {
       "$value": "{radius.sm}",
-      "$description": "4, flat across all sizes — a checkbox's corner rounding doesn't scale with its box size, same reasoning as radius.input staying flat across Input's sizes."
+      "$description": "4, flat across all sizes - a checkbox's corner rounding doesn't scale with its box size, same reasoning as radius.input staying flat across Input's sizes."
     },
     "switch": {
       "$value": "{radius.full}",
-      "$description": "Pill track + circular thumb at every size — a switch is always fully rounded, no size-dependent step needed."
+      "$description": "Pill track + circular thumb at every size - a switch is always fully rounded, no size-dependent step needed."
     },
     "radio": {
       "$value": "{radius.full}",
-      "$description": "Circular at every size, same reasoning as radius.switch — no size-dependent corner step. Was never scaffolded when Radio's other component colour tokens were added; added now while building Radio's React port (confirmed via the Figma master, 10222:14006 — cornerRadius 9999 on all 18 variants)."
+      "$description": "Circular at every size, same reasoning as radius.switch - no size-dependent corner step. Was never scaffolded when Radio's other component colour tokens were added; added now while building Radio's React port (confirmed via the Figma master, 10222:14006 - cornerRadius 9999 on all 18 variants)."
     },
     "segmentedControl": {
-      "sm": { "$value": "{radius.chip}", "$description": "6 — mirrors radius.button.sm; the track and its items share this radius (a small inset gap between them reads fine without stepping the track's radius up)." },
-      "md": { "$value": "{radius.control}", "$description": "8 — mirrors radius.button.md/lg." },
-      "lg": { "$value": "{radius.control}", "$description": "8 — mirrors radius.button.md/lg." }
+      "sm": { "$value": "{radius.chip}", "$description": "6 - mirrors radius.button.sm; the track and its items share this radius (a small inset gap between them reads fine without stepping the track's radius up)." },
+      "md": { "$value": "{radius.control}", "$description": "8 - mirrors radius.button.md/lg." },
+      "lg": { "$value": "{radius.control}", "$description": "8 - mirrors radius.button.md/lg." }
     },
     "tooltip": {
       "$value": "{radius.chip}",
-      "$description": "6, flat — same small-chrome radius Badge/Button-sm use, at every size (a tooltip has no size-dependent step)."
+      "$description": "6, flat - same small-chrome radius Badge/Button-sm use, at every size (a tooltip has no size-dependent step)."
     },
     "avatar": {
       "$value": "{radius.full}",
-      "$description": "Always a full circle, at every size — same reasoning as radius.switch/radio."
+      "$description": "Always a full circle, at every size - same reasoning as radius.switch/radio."
     },
     "sidebar": {
       "section": {
-        "$description": "The sidebar's own content-section containers (nav-list / settings-profile block) — corners that touch the panel's own edge use radius.panel (12, same as everywhere else); the two corners below are the ones with no matching semantic step. `top` is the small detail-radius where a section abuts the module switcher above it, not a true card edge. `deep` is the settings section's single exaggerated bottom-right corner (24, matching radius.page-container's value but unrelated to its meaning — a deliberate one-off flourish, not a page viewport). Both are deliberate primitive-alias exceptions, scoped to this one component.",
+        "$description": "The sidebar's own content-section containers (nav-list / settings-profile block) - corners that touch the panel's own edge use radius.panel (12, same as everywhere else); the two corners below are the ones with no matching semantic step. `top` is the small detail-radius where a section abuts the module switcher above it, not a true card edge. `deep` is the settings section's single exaggerated bottom-right corner (24, matching radius.page-container's value but unrelated to its meaning - a deliberate one-off flourish, not a page viewport). Both are deliberate primitive-alias exceptions, scoped to this one component.",
         "top": { "$value": "{radius.sm}", "$description": "4" },
         "deep": { "$value": "{radius.4xl}", "$description": "24" }
       }
@@ -61,21 +61,21 @@
   "size": {
     "control": {
       "$type": "dimension",
-      "sm": { "$value": "1.75rem", "$description": "28px, RAW — not aliased to space/*, which jumps 24→32 with nothing at 28. A control's height is a sizing concern, not a spacing one. Matches Button's own sm/xs height exactly, so a Button and a same-size-step control align in a toolbar. This is the size/control/* token flagged as a TODO in Button.md/HANDOFF. Input no longer uses this scale — see size.input below." },
-      "md": { "$value": "2rem", "$description": "32px — matches Button md height. Could alias {space.32}; kept a sibling raw value to sm/lg instead for consistency within this group." },
-      "lg": { "$value": "2.25rem", "$description": "36px — matches Button lg height." }
+      "sm": { "$value": "1.75rem", "$description": "28px, RAW - not aliased to space/*, which jumps 24→32 with nothing at 28. A control's height is a sizing concern, not a spacing one. Matches Button's own sm/xs height exactly, so a Button and a same-size-step control align in a toolbar. This is the size/control/* token flagged as a TODO in Button.md/HANDOFF. Input no longer uses this scale - see size.input below." },
+      "md": { "$value": "2rem", "$description": "32px - matches Button md height. Could alias {space.32}; kept a sibling raw value to sm/lg instead for consistency within this group." },
+      "lg": { "$value": "2.25rem", "$description": "36px - matches Button lg height." }
     },
     "input": {
       "$type": "dimension",
-      "sm": { "$value": "2.25rem", "$description": "36px, RAW — owner resized Input up a full step in Figma, deliberately diverging from size.control (still shared by Button). Equals size.control.lg/Button's own lg height, but kept as Input's own scale rather than reused since the two are free to move independently now." },
-      "md": { "$value": "2.5rem", "$description": "40px — equals Button's xl height, coincidentally; Input's own scale." },
-      "lg": { "$value": "2.75rem", "$description": "44px — equals Button's 2xl height, coincidentally; Input's own scale." }
+      "sm": { "$value": "2.25rem", "$description": "36px, RAW - owner resized Input up a full step in Figma, deliberately diverging from size.control (still shared by Button). Equals size.control.lg/Button's own lg height, but kept as Input's own scale rather than reused since the two are free to move independently now." },
+      "md": { "$value": "2.5rem", "$description": "40px - equals Button's xl height, coincidentally; Input's own scale." },
+      "lg": { "$value": "2.75rem", "$description": "44px - equals Button's 2xl height, coincidentally; Input's own scale." }
     },
     "textarea": {
       "$type": "dimension",
-      "sm": { "$value": "4.5rem", "$description": "72px — exactly 2x size.input.sm (36px). A notes/multi-line field's default height, not a hard cap — the element still grows with content/manual resize. Deliberately derived from Input's own scale (double it) rather than an independent value, so the two stay proportional if Input's scale ever moves again." },
-      "md": { "$value": "5rem", "$description": "80px — 2x size.input.md (40px)." },
-      "lg": { "$value": "5.5rem", "$description": "88px — 2x size.input.lg (44px)." }
+      "sm": { "$value": "4.5rem", "$description": "72px - exactly 2x size.input.sm (36px). A notes/multi-line field's default height, not a hard cap - the element still grows with content/manual resize. Deliberately derived from Input's own scale (double it) rather than an independent value, so the two stay proportional if Input's scale ever moves again." },
+      "md": { "$value": "5rem", "$description": "80px - 2x size.input.md (40px)." },
+      "lg": { "$value": "5.5rem", "$description": "88px - 2x size.input.lg (44px)." }
     },
     "progressBar": {
       "$type": "dimension",
@@ -84,16 +84,16 @@
       "lg": { "$value": "1.125rem", "$description": "18px track height. Fill = 22px (size.progressBar.fill.lg)." },
       "fill": {
         "$type": "dimension",
-        "sm": { "$value": "0.5rem", "$description": "8px — fill pill, always taller than the sm track (6px)." },
-        "md": { "$value": "0.75rem", "$description": "12px — fill pill, always taller than the md track (10px)." },
-        "lg": { "$value": "1.375rem", "$description": "22px — fill pill, always taller than the lg track (18px)." }
+        "sm": { "$value": "0.5rem", "$description": "8px - fill pill, always taller than the sm track (6px)." },
+        "md": { "$value": "0.75rem", "$description": "12px - fill pill, always taller than the md track (10px)." },
+        "lg": { "$value": "1.375rem", "$description": "22px - fill pill, always taller than the lg track (18px)." }
       }
     },
     "spinner": {
       "$type": "dimension",
-      "sm": { "$value": "1rem", "$description": "16px — matches this system's standard inline-icon scale (MenuRow/TableCellText icons at md size)." },
-      "md": { "$value": "1.25rem", "$description": "20px — was 24px; tightened to a 16/20/24 progression (a standard icon-scale triplet) instead of the original 16/24/32, which jumped straight past 20." },
-      "lg": { "$value": "1.5rem", "$description": "24px — was 32px, for the same reason as md: keeps the scale on 16/20/24 rather than skipping a step." }
+      "sm": { "$value": "1rem", "$description": "16px - matches this system's standard inline-icon scale (MenuRow/TableCellText icons at md size)." },
+      "md": { "$value": "1.25rem", "$description": "20px - was 24px; tightened to a 16/20/24 progression (a standard icon-scale triplet) instead of the original 16/24/32, which jumped straight past 20." },
+      "lg": { "$value": "1.5rem", "$description": "24px - was 32px, for the same reason as md: keeps the scale on 16/20/24 rather than skipping a step." }
     },
     "avatar": {
       "$type": "dimension",
@@ -101,7 +101,7 @@
       "sm": { "$value": "1.75rem", "$description": "28px" },
       "md": { "$value": "2rem", "$description": "32px" },
       "lg": { "$value": "2.5rem", "$description": "40px" },
-      "xl": { "$value": "2.75rem", "$description": "44px — the owner's 5-size request (44/40/32/28/24) mapped onto this system's usual xs–xl naming rather than exposing raw numbers as variant names." }
+      "xl": { "$value": "2.75rem", "$description": "44px - the owner's 5-size request (44/40/32/28/24) mapped onto this system's usual xs–xl naming rather than exposing raw numbers as variant names." }
     }
   }
 }

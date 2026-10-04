@@ -2,36 +2,36 @@
   transition: background-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* header row — collapsed to one flat state, no hover/focus/status treatment */
+/* header row - collapsed to one flat state, no hover/focus/status treatment */
 thead .row {
   /* explicit 44px matches the TableRow variant=header master. It already
-     rendered ~44 by accident — the <th>'s inherited 16px font strut, not the
-     13px label, was setting the band — so pinning it stops the header
+     rendered ~44 by accident - the <th>'s inherited 16px font strut, not the
+     13px label, was setting the band - so pinning it stops the header
      drifting if inherited type ever changes (parity audit THEAD-001). */
   height: 2.75rem;
   background: var(--color-table-header-background-default);
   border-bottom: 1px solid var(--color-border-default);
 }
 
-/* body rows — measured fill height from Table, never above 68px */
+/* body rows - measured fill height from Table, never above 68px */
 tbody .row {
   height: var(--table-row-height, 4.25rem);
   background: var(--color-table-row-background-default);
   border-bottom: 1px solid var(--color-border-subtle);
 }
 
-/* hover — a translucent wash layered over whatever background is already
+/* hover - a translucent wash layered over whatever background is already
    there (inset box-shadow, not a background swap), same technique the
    original Row/ScrollableArea hover already uses */
 tbody .row:hover {
   box-shadow: inset 0 0 0 1000px var(--color-table-row-shadow-hover);
 }
 
-/* focus/active — background is identical to default on purpose (owner's
+/* focus/active - background is identical to default on purpose (owner's
    call, matching Input's own restraint: focus changes the border, never the
    fill), so only the ring is drawn here. Keyboard focus only (owner,
    2026-10-02): `:focus-within` also lit a row whose button had merely been
-   clicked — or got focus back when a dialog it opened closed. */
+   clicked - or got focus back when a dialog it opened closed. */
 tbody .row:focus-visible,
 tbody .row:has(:focus-visible) {
   outline: 1px solid var(--color-table-row-border-active);
@@ -48,8 +48,8 @@ tbody .row[data-selected] {
   background: var(--color-table-row-background-selected);
 }
 
-/* Motion (playground, 2026-09-28): a row that mounts — a new page, a filter
-   change, data landing — settles in: a short fade and a 4px rise, each row a
+/* Motion (playground, 2026-09-28): a row that mounts - a new page, a filter
+   change, data landing - settles in: a short fade and a 4px rise, each row a
    hair after the one above (capped at ten, so a long page doesn't trail).
    Rows that stay (a re-render, a sort) keep their elements and don't replay.
    `sibling-index()` is new; where it isn't supported the delay line drops

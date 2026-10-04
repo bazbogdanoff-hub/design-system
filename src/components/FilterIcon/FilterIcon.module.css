@@ -1,5 +1,5 @@
 /* The funnel is the rest glyph; hover / press / open-menu swap it for the "+".
-   Pure CSS swap — no JS state. `display:none` keeps the hidden glyph out of
+   Pure CSS swap - no JS state. `display:none` keeps the hidden glyph out of
    layout so the button never jumps. Specificity has to beat Button's own
    `.surface [data-btn-icon] > svg { display:block }`. */
 .filterIcon [data-btn-icon] > .plus {

@@ -1,7 +1,7 @@
-/* Same box/radius grading as IconButton's primary variant — see that
+/* Same box/radius grading as IconButton's primary variant - see that
    component's own module for the source of these numbers. Icon size and
-   text size are two different scales here (14/16/18/20/20 vs 12/13/14/15/16
-   — a cell holds one or the other, never both), so each is set explicitly
+   text size are two different scales here (14/16/18/20/20 vs 12/13/14/15/16 -
+   a cell holds one or the other, never both), so each is set explicitly
    per step rather than reusing one font-size the way IconButton does for
    its icon-only case. */
 .cell {
@@ -67,13 +67,13 @@
   letter-spacing: var(--text-label-xl-letter-spacing);
 }
 
-/* Was reusing Badge's own component tokens directly — no longer safe to do
+/* Was reusing Badge's own component tokens directly - no longer safe to do
    since Badge's 2026-09-16 glass redesign replaced its flat `background` with
    a `glow`/`shadow` pair meant for a radial-gradient recipe, not a flat fill.
    IconCell stays flat, so it points at the semantic `-subtle` tint tokens
-   directly instead (still semantic-tier, per convention — not a primitive). */
+   directly instead (still semantic-tier, per convention - not a primitive). */
 /* neutral sits on cards, so it takes the recessed step below the card fill
-   (2026-09-28) — zinc.100 stopped reading against the darker #f6f7f8 card. */
+   (2026-09-28) - zinc.100 stopped reading against the darker #f6f7f8 card. */
 .cell[data-tone='neutral'] { background: var(--color-surface-recessed); color: var(--color-text-subtle); }
 .cell[data-tone='brand']   { background: var(--color-background-brand-subtle); color: var(--color-text-brand); }
 .cell[data-tone='success'] { background: var(--color-background-success-subtle); color: var(--color-text-success); }

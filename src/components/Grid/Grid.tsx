@@ -7,7 +7,7 @@ type Gap = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export interface GridProps extends HTMLAttributes<HTMLDivElement> {
   /** Column count. Default 16 (Page layout guide). */
   columns?: number;
-  /** Gutter — `space/*` (none·4·8·12·16·20). Default `lg` (16). */
+  /** Gutter - `space/*` (none·4·8·12·16·20). Default `lg` (16). */
   gap?: Gap;
 }
 

@@ -4,21 +4,21 @@
   vertical-align: middle;
   box-sizing: border-box;
 
-  /* label shape — `text/label/*`; size sets font-size per data-size below.
+  /* label shape - `text/label/*`; size sets font-size per data-size below.
      tight line-height (1.15) keeps the label box small enough that a 1em icon
-     never grows the badge — height is stable with or without an icon. */
+     never grows the badge - height is stable with or without an icon. */
   font-family: var(--text-label-md-font-family);
   font-weight: var(--text-label-md-font-weight);
   letter-spacing: var(--text-label-md-letter-spacing);
   line-height: var(--text-label-md-line-height);
   white-space: nowrap;
 
-  /* Glass recipe: soft centre highlight + colored inset shadow — no flat fill.
+  /* Glass recipe: soft centre highlight + colored inset shadow - no flat fill.
      color-mix bakes in the 30% opacity so only the glow is translucent.
 
-     The highlight (owner, 2026-09-29) keeps the default badge's glow —
+     The highlight (owner, 2026-09-29) keeps the default badge's glow -
      solid through the middle 9.8%, fading to nothing at the rim, the profile
-     of the old 51.1% ellipse — and stretches with the label instead of
+     of the old 51.1% ellipse - and stretches with the label instead of
      thinning out: it is one vertical glow across the full width (::before),
      faded toward each end over the length the default badge ("Badge" at
      that size, --_badge-base-half) fades over. A wider badge grows the solid
@@ -35,7 +35,7 @@
 
   /* The inner rim scales with the badge, like the radial glow (which is in %
      already). A fixed 5px read heavy on xs and hairline on lg. md is the
-     reference — 5px on a ~32px badge — and the others follow its height:
+     reference - 5px on a ~32px badge - and the others follow its height:
      xs 3.5 · sm 4 · md 5 · lg 6. Rem, so the rim tracks the root scale too. */
   --_badge-glow-blur: 0.3125rem;
   box-shadow: inset 0 0 var(--_badge-glow-blur) 0 var(--_badge-shadow);
@@ -71,16 +71,16 @@
   --_badge-base-half: 1.5rem; /* half of the 48.0px default (Satoshi) */
   --_badge-glow-blur: 0.21875rem;
   gap: var(--space-4);
-  /* xs and sm keep their original side padding (owner, 2026-09-28 — the +4
+  /* xs and sm keep their original side padding (owner, 2026-09-28 - the +4
      tried with the pill shape read too wide at these sizes); md and lg have
      the extra room. */
   padding: var(--space-4) var(--space-6);
   font-size: var(--text-label-xs-font-size);
   /* label/xs is the one step in this scale with wider tracking than the
-     others (they're all `normal`) — sm/md/lg get away with only overriding
+     others (they're all `normal`) - sm/md/lg get away with only overriding
      font-size above the shared md-based letter-spacing; xs can't. */
   letter-spacing: var(--text-label-xs-letter-spacing);
-  /* reuses sm's radius token, not a new radius/badge/xs — Figma bound xs to
+  /* reuses sm's radius token, not a new radius/badge/xs - Figma bound xs to
      the same radius/badge/sm variable (6px) rather than create a parallel
      one, since the value is identical. */
   border-radius: var(--radius-badge-sm);
@@ -132,7 +132,7 @@
    Every badge is a pill since 2026-09-28, so the variant no longer changes the
    shape; the prop stays for compatibility until the Figma master drops it. */
 
-/* leading icon — 1em box, inherits the tone colour via currentColor */
+/* leading icon - 1em box, inherits the tone colour via currentColor */
 .icon {
   display: inline-flex;
   flex: none;
@@ -147,7 +147,7 @@
 
 /* Edge corners (owner, 2026-09-29): a badge side that sits on its card's
    padding edge (lib/edgeCorners.ts sets data-edge) gets both of its corners
-   on that side — top and bottom — back at the badge's original radius (6 for
+   on that side - top and bottom - back at the badge's original radius (6 for
    xs/sm, 8 for md/lg). The other side stays a full pill; a badge touching
    neither side is a full pill all round. */
 .badge {

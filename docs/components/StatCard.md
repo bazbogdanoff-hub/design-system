@@ -1,10 +1,10 @@
 # StatCard
 
-A dashboard summary card — **L2 pattern.** A `Card` holding a headline stat, an
+A dashboard summary card - **L2 pattern.** A `Card` holding a headline stat, an
 optional trend `badge`, and a row of `StatButton`s that drill into tables.
 
 Composes [`Card`](./Card.md) (locked to `padding="md"`, was `"lg"` before the 1440
-migration) — never detached.
+migration) - never detached.
 
 ## API
 
@@ -23,9 +23,9 @@ migration) — never detached.
 |---|---|---|
 | `label` | `ReactNode` | headline metric name |
 | `value` | `ReactNode` | headline figure |
-| `badge` | `ReactNode` — optional | trend / status, top-right; usually a `<Badge>` |
-| `size` | `'sm' | 'md'` — default `md` | `sm`: each type one step down (`label.lg` over `heading.lg`) and 12 to the buttons, for a row of cards that must leave room below it — the dashboard's readiness strip (owner, 2026-09-30). The figure stays at 24, six above `StatButton's` 18, clear of the 20-vs-18 collapse |
-| `children` | `ReactNode` — optional | the `StatButton` row; buttons share the width evenly |
+| `badge` | `ReactNode` - optional | trend / status, top-right; usually a `<Badge>` |
+| `size` | `'sm' | 'md'` - default `md` | `sm`: each type one step down (`label.lg` over `heading.lg`) and 12 to the buttons, for a row of cards that must leave room below it - the dashboard's readiness strip (owner, 2026-09-30). The figure stays at 24, six above `StatButton's` 18, clear of the 20-vs-18 collapse |
+| `children` | `ReactNode` - optional | the `StatButton` row; buttons share the width evenly |
 
 `className`, `style`, `...divProps` pass through to the `Card` root.
 
@@ -35,32 +35,32 @@ migration) — never detached.
 Card (padding md)
 └─ div.header   (row, space-between)
 │  ├─ div.content   (column)
-│  │  ├─ span.label  — "Blocked"  · text/heading/xs · color/text/subtle
-│  │  └─ span.value  — "2"        · text/heading/md · color/text/default
-│  └─ {badge}        — optional, flex:none
-└─ div.stats    (row, gap space/16) — <StatButton>s, each flex:1
+│  │  ├─ span.label  - "Blocked"  · text/heading/xs · color/text/subtle
+│  │  └─ span.value  - "2"        · text/heading/md · color/text/default
+│  └─ {badge}        - optional, flex:none
+└─ div.stats    (row, gap space/16) - <StatButton>s, each flex:1
 ```
 
 1440 migration: label moved `heading/sm` → `heading/xs`, and value moved out of
-the `display` group entirely — `display/md` → `heading/xl` (28px) — one more
+the `display` group entirely - `display/md` → `heading/xl` (28px) - one more
 step than the automatic type-scale cascade alone would give it.
 
 **2026-09-23, owner's call:** the value came back down to `heading/md` (20px).
 28px read as a page headline inside a rail card; at 20px the figure still
 outweighs its `heading/xs` label, by one step instead of three. Figma's
-`StatCard` still has the 28px value — it needs the same change.
+`StatCard` still has the 28px value - it needs the same change.
 
-`color/text/default` for the headline value (the "main" number — one step darker
+`color/text/default` for the headline value (the "main" number - one step darker
 than a `StatButton` value, which is `color/text/strong`).
 
 ## Figma ↔ React
 
-Figma **`StatCard`** set: one property **`badge`** (`false` / `true`) — a variant,
+Figma **`StatCard`** set: one property **`badge`** (`false` / `true`) - a variant,
 not a boolean, because the content lives inside `Card`'s slot and slot content
 can't take component properties. It reads as a toggle in the panel.
 
 The stat row is **two fixed `StatButton` instances** in Figma (the common case);
-React takes **`children`** — any number. Override the Figma instances' text /
+React takes **`children`** - any number. Override the Figma instances' text /
 props in place; don't detach. Text layers default to `label` = "Label",
 `value` = "0".
 

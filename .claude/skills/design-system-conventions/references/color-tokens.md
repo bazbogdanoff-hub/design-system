@@ -26,24 +26,24 @@ Figma variable, and the machine-readable source of truth is the DTCG files in
   audit tracks which hues the semantic layer actually references. Months out, the
   unused hues get deleted, the generator + `tailwindcss` devDep removed, and
   `primitives.color.json` becomes hand-maintained.
-- Naming: `color.<hue>.<step>`. A primitive is a raw hex — never an alias, with
+- Naming: `color.<hue>.<step>`. A primitive is a raw hex - never an alias, with
   the single exception below.
 
-**Brand ramp** — `color.brand.<step>` → `{color.indigo.<step>}`. The one blessed
+**Brand ramp** - `color.brand.<step>` → `{color.indigo.<step>}`. The one blessed
 primitive→primitive alias. Swap the `BRAND_HUE` const in
 `scripts/generate-primitives.mjs` to re-brand. Semantic tokens reference
 `color.brand.*`, never `color.indigo.*` directly.
 
-**Product overrides** (2–3 expected, TBD in Figma) — bespoke hexes for a specific
+**Product overrides** (2–3 expected, TBD in Figma) - bespoke hexes for a specific
 card/button look that aren't on the Tailwind scale. When specified, they go in
 `primitives.color.json` under their own group (e.g. `color.accent.*`) as raw
 values, and a semantic token aliases them. Not invented yet.
 
-**Alpha-black ramp** — `color.alpha-black.<1|3|5|10|15|20|25|30|40|50|60|70|80|90|100>`,
-in a separate hand-written `tokens/alpha.color.json` (NOT `primitives.color.json`
-— that file is fully regenerated from Tailwind every build and would wipe a
+**Alpha-black ramp** - `color.alpha-black.<1|3|5|10|15|20|25|30|40|50|60|70|80|90|100>`,
+in a separate hand-written `tokens/alpha.color.json` (NOT `primitives.color.json` -
+that file is fully regenerated from Tailwind every build and would wipe a
 hand-added family). Raw hex-alpha steps (`100` aliases `{color.black}`). Meant
-to be layered on top of arbitrary content — a hover/press wash that composites
+to be layered on top of arbitrary content - a hover/press wash that composites
 correctly regardless of what's underneath, instead of an opaque color swap.
 
 ---
@@ -52,24 +52,24 @@ correctly regardless of what's underneath, instead of an opaque color swap.
 
 `tokens/semantic.color.json` · Figma collection **Semantic** (mode `Light` now,
 `Dark` later). **Every entry is an alias into a primitive.** The "Dark →" column
-is the intended direction for when Dark mode is built — not built yet.
+is the intended direction for when Dark mode is built - not built yet.
 
 Structure notes:
 - Tokens with interaction states are a **group** with `.default` as the rest state:
   `color.background.brand.default` / `.hover` / `.active`.
 - `role`+`prominence` with no state is **one kebab segment**: `background.brand-subtle`.
 
-### `color.background.*` — canvas & large fills
+### `color.background.*` - canvas & large fills
 
 | Token | Light → | Use for | Dark → |
 |---|---|---|---|
 | `background.default` | `zinc.50` | page / app canvas | `zinc.950` |
 | `background.subtle` | `zinc.100` | inset zones, striped rows, panels flush with the page | `zinc.900` |
-| `background.muted` | `zinc.300` | a visibly deeper recessed fill than subtle — AppShell's content-slot backdrop | `tbd` |
+| `background.muted` | `zinc.300` | a visibly deeper recessed fill than subtle - AppShell's content-slot backdrop | `tbd` |
 | `background.emphasis` | `zinc.700` | high-contrast fills: tooltips, inverse callouts, **`AppShell`'s sidebar rail** | `zinc.50` |
 | `background.disabled` | `zinc.100` | disabled control fill | `zinc.800` |
 | `background.overlay` | `#09090bb3` *(raw)* | modal / drawer scrim | `#09090bcc` |
-| `background.overlay-subtle` | `alpha-black.3` | hover/press wash — layers on top of whatever's underneath instead of replacing it (row hover, list-item hover) | `tbd` — likely needs `alpha-white.*` in dark mode, a black wash won't read on a dark background |
+| `background.overlay-subtle` | `alpha-black.3` | hover/press wash - layers on top of whatever's underneath instead of replacing it (row hover, list-item hover) | `tbd` - likely needs `alpha-white.*` in dark mode, a black wash won't read on a dark background |
 | `background.brand.default` | `brand.600` | primary button, active nav item, selected state | `brand.500` |
 | `background.brand.hover` | `brand.700` | hover of `background.brand` | `brand.400` |
 | `background.brand.active` | `brand.800` | pressed / active | `brand.300` |
@@ -82,9 +82,9 @@ Structure notes:
 | `background.warning` | `amber.500` | solid warning badge | `amber.400` |
 | `background.warning-subtle` | `amber.100` | warning banner / badge fill | `amber.950` |
 | `background.info` | `blue.600` | solid info badge | `blue.500` |
-| `background.info-subtle` | `blue.50` | info banner fill *(still 50 — brand/success/warning/danger moved to 100 for badges; revisit for parity)* | `blue.950` |
+| `background.info-subtle` | `blue.50` | info banner fill *(still 50 - brand/success/warning/danger moved to 100 for badges; revisit for parity)* | `blue.950` |
 
-### `color.surface.*` — raised containers
+### `color.surface.*` - raised containers
 
 A `surface` sits *on* the `background`. Shadow or separating border → it's a surface.
 
@@ -95,34 +95,34 @@ A `surface` sits *on* the `background`. Shadow or separating border → it's a s
 | `surface.raised` | `white` | surface with elevation shadow: popover, dropdown | `zinc.800` |
 | `surface.sunken` | `zinc.100` | wells, code blocks, inset track | `zinc.950` |
 
-*(In dark mode surfaces are **lighter** than the canvas — expected.)*
+*(In dark mode surfaces are **lighter** than the canvas - expected.)*
 
 ### `color.text.*`
 
 | Token | Light → | Use for | Dark → |
 |---|---|---|---|
-| `text.default` | `zinc.900` | **main headings** — h1/h2, page titles | `zinc.50` |
-| `text.strong` | `zinc.800` | **subheadings** — h3–h6, section/card titles | `zinc.100` |
-| `text.subtle` | `zinc.500` | **body text** — the default reading colour for paragraphs and UI copy | `zinc.300` |
-| `text.muted` | `zinc.400` | muted / de-emphasised — hints, placeholders, timestamps, captions | `zinc.500` |
+| `text.default` | `zinc.900` | **main headings** - h1/h2, page titles | `zinc.50` |
+| `text.strong` | `zinc.800` | **subheadings** - h3–h6, section/card titles | `zinc.100` |
+| `text.subtle` | `zinc.500` | **body text** - the default reading colour for paragraphs and UI copy | `zinc.300` |
+| `text.muted` | `zinc.400` | muted / de-emphasised - hints, placeholders, timestamps, captions | `zinc.500` |
 | `text.disabled` | `zinc.300` | disabled control text | `zinc.600` |
 | `text.brand` | `brand.700` | links, brand-colored labels | `brand.300` |
 | `text.danger` | `red.700` | validation errors, destructive labels | `red.300` |
 | `text.success` | `green.700` | success messages | `green.300` |
 | `text.warning` | `amber.700` | warning messages | `amber.300` |
 | `text.info` | `blue.700` | informational messages | `blue.300` |
-| `text.brand-solid` | `= background.brand.default` (`brand.600`) | text that must read as the **same accent** as a solid fill nearby (a bar, a dot) — an alias of the background token itself, not a hand-picked shade, so the two can never drift apart | `= background.brand.default` |
+| `text.brand-solid` | `= background.brand.default` (`brand.600`) | text that must read as the **same accent** as a solid fill nearby (a bar, a dot) - an alias of the background token itself, not a hand-picked shade, so the two can never drift apart | `= background.brand.default` |
 | `text.success-solid` | `= background.success` (`green.600`) | see `text.brand-solid` | `= background.success` |
-| `text.warning-solid` | `= background.warning` (`amber.500`) | see `text.brand-solid` — **not** `warning-strong` (orange), that hue stays scoped to the alert-pill system only | `= background.warning` |
+| `text.warning-solid` | `= background.warning` (`amber.500`) | see `text.brand-solid` - **not** `warning-strong` (orange), that hue stays scoped to the alert-pill system only | `= background.warning` |
 | `text.danger-solid` | `= background.danger.default` (`red.600`) | see `text.brand-solid` | `= background.danger.default` |
 | `text.on-brand` | `white` | text on `background.brand*` | `white` |
 | `text.on-emphasis` | `zinc.50` | text on `background.emphasis` | `zinc.900` |
 | `text.on-danger` | `white` | text on `background.danger*` | `white` |
 
-> **`*-solid` vs. the plain tone token** — `text.success` (700) is tuned for
+> **`*-solid` vs. the plain tone token** - `text.success` (700) is tuned for
 > AA contrast on `background.success-subtle` (green.100, ~4.56:1); its 600
 > counterpart would drop that to ~3.00:1 and fail. `text.success-solid`
-> exists for a different job entirely — text sitting *next to* a solid
+> exists for a different job entirely - text sitting *next to* a solid
 > fill (e.g. a legend label beside a bar) that needs to read as the same
 > color, not text *on top of* a light background. Never swap one for the
 > other's use case.
@@ -138,7 +138,7 @@ A `surface` sits *on* the `background`. Shadow or separating border → it's a s
 | `border.danger` | `red.600` | invalid input | `red.400` |
 | `border.focus` | `brand.500` | focus ring | `brand.400` |
 | `border.highlight` | `white` | white edge catch for glass / raised surfaces | `white` |
-| `border.highlight-active` | `brand.500` | focused/active glass surface — full 1.5px primary border replacing the white catch | `brand.400` |
+| `border.highlight-active` | `brand.500` | focused/active glass surface - full 1.5px primary border replacing the white catch | `brand.400` |
 
 ### `color.icon.*`
 
@@ -173,7 +173,7 @@ mapping and the rule for adding a new component.
 | `color.background.warning-strong-subtle` | `orange.50` | orange pill fill |
 | `color.text.warning-strong` | `orange.700` | orange pill text |
 | `color.icon.warning-strong` | `orange.600` | orange pill icon |
-| `color.chart.1 … 8` | `brand.400 / cyan.500 / amber.500 / emerald.600 / rose.500 / violet.500 / sky.400 / lime.500` | categorical palette for `BarChart`/`LineChart`. **Not a uniform `.400`** — validated against the dataviz skill's `validate_palette.js` first, and a straight `.400` migration failed lightness-band, CVD-separation, and contrast checks worse than the palette it would have replaced. Only `chart.1`/`chart.7` actually landed on `.400`; the other 6 needed `.500`/`.600` to pass. Each exception's specific reason is in `tokens/semantic.color.json`'s `$description` for that entry — read those before ever touching this palette again, and re-run the validator, don't find-replace a shade number. |
+| `color.chart.1 … 8` | `brand.400 / cyan.500 / amber.500 / emerald.600 / rose.500 / violet.500 / sky.400 / lime.500` | categorical palette for `BarChart`/`LineChart`. **Not a uniform `.400`** - validated against the dataviz skill's `validate_palette.js` first, and a straight `.400` migration failed lightness-band, CVD-separation, and contrast checks worse than the palette it would have replaced. Only `chart.1`/`chart.7` actually landed on `.400`; the other 6 needed `.500`/`.600` to pass. Each exception's specific reason is in `tokens/semantic.color.json`'s `$description` for that entry - read those before ever touching this palette again, and re-run the validator, don't find-replace a shade number. |
 
 `color.badge.warning-strong.{background,text}` is the component-tier pair for the orange pill.
 
@@ -190,7 +190,7 @@ mapping and the rule for adding a new component.
    (and the token becomes a `.default`/`.hover`/… group).
 5. **Does the thing it sits on have a colored fill?** → use an `on-*` text/icon token.
 
-If two tokens both seem right, a distinction is missing from the catalog — raise
+If two tokens both seem right, a distinction is missing from the catalog - raise
 it rather than guessing.
 
 ## Adding or changing a token
@@ -198,7 +198,7 @@ it rather than guessing.
 The catalog is the gate:
 
 1. Confirm no existing token covers the need (§ Choosing the right token).
-2. Add the row here first — name, light alias, "use for", dark direction.
+2. Add the row here first - name, light alias, "use for", dark direction.
 3. Add it to `tokens/semantic.color.json` (or `component.color.json`) as an alias.
 4. `npm run build:tokens`, confirm it resolves.
 5. Create the Figma variable `color/<path>` in the matching collection, aliased, in the `Light` mode.

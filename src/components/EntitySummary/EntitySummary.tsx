@@ -7,9 +7,9 @@ import styles from './EntitySummary.module.css';
 export interface EntitySummaryProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {
   /** The entity's icon, shown in a clickable primary `IconButton`. */
   icon: ReactNode;
-  /** Accessible name for the icon trigger — required, since unlike a decorative `IconCell` this is a real button that navigates to the entity's own page. */
+  /** Accessible name for the icon trigger - required, since unlike a decorative `IconCell` this is a real button that navigates to the entity's own page. */
   iconLabel: string;
-  /** Click handler for the icon trigger — wire this to navigation. */
+  /** Click handler for the icon trigger - wire this to navigation. */
   onIconClick?: MouseEventHandler<HTMLButtonElement>;
   heading: ReactNode;
   description: ReactNode;
@@ -24,7 +24,7 @@ export interface EntitySummaryProps extends Omit<HTMLAttributes<HTMLDivElement>,
  * trailer/driver column).
  *
  * Deliberately **not** built on `Row`, despite the visual resemblance
- * ([leading] [heading+description] [trailing]) — three real differences:
+ * ([leading] [heading+description] [trailing]) - three real differences:
  * the leading icon is an interactive `IconButton` here (`Row.leading` is
  * locked to a decorative `IconCell` on purpose), the background is always
  * filled (`Row` never fills by default), and the trailing slot is always

@@ -1,5 +1,5 @@
 /* The root scale. Every size in the system is rem, so this one rule scales the
-   whole UI — type, spacing, radii and controls together, proportions intact.
+   whole UI - type, spacing, radii and controls together, proportions intact.
    Borders, outlines and shadows stay px so hairlines stay hairlines.
 
    Fluid, not stepped: 16px at 1440 wide, growing linearly to 20px at 1920

@@ -13,7 +13,7 @@ Used by the `figma-audit` and `figma-safe-edit` skills.
 ## Every session
 
 1. Open the target file in **Figma Desktop** (not the browser).
-2. **Plugins → Development → Figmosha Bridge** — leave the little window open.
+2. **Plugins → Development → Figmosha Bridge** - leave the little window open.
 3. Start the bridge in a terminal:
    ```
    node C:\Users\Dell\IdeaProjects\figmosha2\bridge.mjs

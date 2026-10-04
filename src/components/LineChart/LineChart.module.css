@@ -7,7 +7,7 @@
 .svg {
   display: block;
   /* width/height are set as explicit SVG attributes (matching the measured
-     container 1:1, see useContainerSize) — no CSS-level scaling here, that
+     container 1:1, see useContainerSize) - no CSS-level scaling here, that
      would shrink/grow the text along with the plot area. */
 }
 
@@ -25,7 +25,7 @@
   fill: var(--color-text-subtle);
 }
 
-/* The goal line (`reference`) — dashed and neutral, a level to read the
+/* The goal line (`reference`) - dashed and neutral, a level to read the
    line against rather than a series of its own. */
 .reference {
   stroke: var(--color-border-strong);
@@ -47,17 +47,17 @@
   stroke-linejoin: round;
 }
 /* Glass line (owner, 2026-09-30): catch and vignette are 2px strokes set
-   0.25px above and below; the 1.5px line over them leaves 0.5px of each —
+   0.25px above and below; the 1.5px line over them leaves 0.5px of each -
    2.5px from top to bottom. */
 .line[data-layer='body'] {
   stroke-width: 1.5;
 }
 
 .area {
-  opacity: 0.1; /* a soft glow under the line, not a from-zero fill — see docs */
+  opacity: 0.1; /* a soft glow under the line, not a from-zero fill - see docs */
 }
 
-/* Entrance — plays once, on mount. The line draws itself (pathLength=1 on
+/* Entrance - plays once, on mount. The line draws itself (pathLength=1 on
    the element makes a dash of 1 the whole line); the area wipes in behind
    it on the same curve, a beat later. */
 .line {
@@ -117,7 +117,7 @@
   outline-offset: 2px;
 }
 
-/* Screen-reader-only table — the table-view accessibility twin of the
+/* Screen-reader-only table - the table-view accessibility twin of the
    chart. Visually hidden, never `display:none` (that would remove it from
    the accessibility tree too). */
 .srOnlyTable {

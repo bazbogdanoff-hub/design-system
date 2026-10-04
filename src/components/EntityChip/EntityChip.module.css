@@ -1,5 +1,5 @@
-/* Figma `EntityChip` 10772:10486. Badge's glass recipe at xs — same glow,
-   same inset shadow, same neutral text token, same 4/6 padding — but a chip
+/* Figma `EntityChip` 10772:10486. Badge's glass recipe at xs - same glow,
+   same inset shadow, same neutral text token, same 4/6 padding - but a chip
    that holds an icon at rest and widens to show its label. 26px closed
    (6 + 14 + 6), 43px open (6 + 14 + 4 + 13 + 6). */
 .chip {
@@ -8,7 +8,7 @@
   vertical-align: middle;
   box-sizing: border-box;
 
-  /* label/xs — 12px semibold, the same step Badge xs uses. Tight line-height
+  /* label/xs - 12px semibold, the same step Badge xs uses. Tight line-height
      keeps the box at 24px whether or not the label is showing. */
   font-family: var(--text-label-xs-font-family);
   font-weight: var(--text-label-xs-font-weight);
@@ -19,7 +19,7 @@
 
   /* The gap opens with the label. It has to be a real `gap` that animates,
      not padding on the label: padding sits outside the content box, so the
-     element doing the clipping cannot clip its own padding — that left 4px
+     element doing the clipping cannot clip its own padding - that left 4px
      behind at rest, making the chip 30px wide and shoving the icon off
      centre. */
   gap: 0;
@@ -31,7 +31,7 @@
      fixed height restores 5/5 against the 6/6 sides, and `align-items:
      center` does the centring. */
   min-height: 1.5rem;
-  /* `radius-chip` (6), not the `radius/md` Figma bound — identical value, and
+  /* `radius-chip` (6), not the `radius/md` Figma bound - identical value, and
      this is the token that means "chip". Uniform on all four corners: Badge
      capsules its left side whenever it has an icon, which is the rule this
      component exists to break. */
@@ -48,7 +48,7 @@
 }
 
 /* Interactive chips are real buttons. Only the cursor and the UA appearance
-   need touching — `.chip` already declares font and colour, and author styles
+   need touching - `.chip` already declares font and colour, and author styles
    beat the UA sheet. Never `font: inherit` here: it is a shorthand, so it
    would hand back font-size and line-height to whatever encloses the chip,
    and this one sits inside an `<h1>`. */
@@ -62,7 +62,7 @@
   align-items: center;
   justify-content: center;
   flex: none;
-  /* 14px against 12px type — the icon is the resting state's whole content,
+  /* 14px against 12px type - the icon is the resting state's whole content,
      so it runs a step larger than Badge's 1em glyph. */
   width: 0.875rem;
   height: 0.875rem;
@@ -73,8 +73,8 @@
   height: 100%;
 }
 
-/* The reveal. The label is always in the DOM — it is the chip's accessible
-   name — and is clipped to zero width at rest by a 0fr grid column, then
+/* The reveal. The label is always in the DOM - it is the chip's accessible
+   name - and is clipped to zero width at rest by a 0fr grid column, then
    animated open. Visibility is presentational; nothing is hidden from a
    screen reader, and `display: none` would have hidden it from one. */
 .label {
@@ -83,7 +83,7 @@
   transition: grid-template-columns 140ms ease;
 }
 
-/* `:focus`, not `:focus-visible` — the label is content, and it belongs on
+/* `:focus`, not `:focus-visible` - the label is content, and it belongs on
    screen whenever the chip is focused, including after a click. The ring
    further down stays on `:focus-visible`, so a mouse click reveals the label
    without also drawing an outline. */

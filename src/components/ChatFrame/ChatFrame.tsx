@@ -30,36 +30,36 @@ export interface ChatFramePeer {
   name: ReactNode;
   /** "Driver · DR-002 · Telegram". */
   detail?: ReactNode;
-  /** The back caret — to the list of conversations. */
+  /** The back caret - to the list of conversations. */
   onBack: () => void;
   backLabel?: string;
 }
 
 export interface ChatFrameProps extends Omit<HTMLAttributes<HTMLElement>, 'children'> {
-  /** The icon in the header's left tile — what the chat is with. */
+  /** The icon in the header's left tile - what the chat is with. */
   icon: ReactNode;
-  /** The header's switch — a `SegmentedControl surface="dark"`. */
+  /** The header's switch - a `SegmentedControl surface="dark"`. */
   switcher: ReactNode;
   /** The header's right tile: open this chat full size. */
   onExpand: () => void;
   expandLabel: string;
   /** Who an open conversation is with, under the header, with a way back. */
   peer?: ChatFramePeer;
-  /** The conversation or the list — takes the rest of the height. The
+  /** The conversation or the list - takes the rest of the height. The
    * consumer owns its scrolling. */
   children: ReactNode;
-  /** Pinned to the foot — suggestions, a `ChatComposer surface="dark"`. */
+  /** Pinned to the foot - suggestions, a `ChatComposer surface="dark"`. */
   footer?: ReactNode;
 }
 
 /**
- * The dashboard's chat card (owner, 2026-10-01) — **for that card only.**
+ * The dashboard's chat card (owner, 2026-10-01) - **for that card only.**
  * The app frame reaching into the page: the AppShell's own fill, the main
  * cards' border recipe in the frame's tones, 16 corners on top and the
  * page's 24 at the foot; inside, header tiles in the sidebar panel's colour.
  * Built to carry `ChatBubble`, `DayDivider`, `ConversationRow`,
  * `SegmentedControl`, `Button` and `ChatComposer` in their `surface="dark"`
- * variants. Not a general dark card — a second use is a design question
+ * variants. Not a general dark card - a second use is a design question
  * first. See docs/components/ChatFrame.md.
  */
 export const ChatFrame = forwardRef<HTMLElement, ChatFrameProps>(function ChatFrame(
@@ -67,8 +67,8 @@ export const ChatFrame = forwardRef<HTMLElement, ChatFrameProps>(function ChatFr
   ref,
 ) {
   // While the pointer is over the card, the page holds still (owner,
-  // 2026-10-01): a scroll moves something inside the card that can take it
-  // — the conversation, the chip row, the list — or nothing. Otherwise the
+  // 2026-10-01): a scroll moves something inside the card that can take it -
+  // the conversation, the chip row, the list - or nothing. Otherwise the
   // header, the composer, or a thread at its end handed the gesture to the
   // page. A native listener: React's onWheel is passive and can't cancel.
   const local = useRef<HTMLElement | null>(null);

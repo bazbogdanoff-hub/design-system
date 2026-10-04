@@ -12,14 +12,14 @@ export interface NextTaskProps extends Omit<HTMLAttributes<HTMLDivElement>, 'chi
   viewAllLabel?: string;
   /** A `<Tracker>`. */
   tracker: ReactNode;
-  /** A `<TaskCard context="queue">` — the front of the queue. */
+  /** A `<TaskCard context="queue">` - the front of the queue. */
   taskCard: ReactNode;
 }
 
 /**
- * The "what's next" dashboard widget — a `Tracker` (time-left/due/asap) atop
+ * The "what's next" dashboard widget - a `Tracker` (time-left/due/asap) atop
  * the front `TaskCard` of a queue, in a `Card`. Composes both directly
- * (never detached) — L2 pattern.
+ * (never detached) - L2 pattern.
  */
 export const NextTask = forwardRef<HTMLDivElement, NextTaskProps>(function NextTask(
   { onViewAll, viewAllLabel = 'View all tasks', tracker, taskCard, className, ...rest },

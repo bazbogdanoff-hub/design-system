@@ -4,7 +4,7 @@
  *
  * Shim strategy (like the colour repoint): instead of rebinding thousands of
  * text nodes, REDEFINE each old Title/* / paragraph* style in place to match the
- * mapped text/* spec — size, line-height, tracking, family — while keeping the
+ * mapped text/* spec - size, line-height, tracking, family - while keeping the
  * weight from the style's own name suffix. Nodes keep their bindings and render
  * to the new scale. Node-rebind + old-style deletion happens later.
  *

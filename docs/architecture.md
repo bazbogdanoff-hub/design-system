@@ -4,15 +4,15 @@
 
 | layer | examples | knows about | lives in |
 |---|---|---|---|
-| **L1 · Primitive** | `Card`, `Badge`, `Button`, `Input`, `Text`, `Divider` | nothing — pure layout / style | this repo (`src/components/`) |
+| **L1 · Primitive** | `Card`, `Badge`, `Button`, `Input`, `Text`, `Divider` | nothing - pure layout / style | this repo (`src/components/`) |
 | **L2 · Pattern** | `StatCard`, `EmptyState`, `Alert`, `Banner`, `Toolbar` | a *shape* that recurs across products, still domain-agnostic | this repo (`src/components/`) |
-| **L3 · Domain** | `ShipmentCard`, `RouteTimeline`, `CarrierPanel`, `Chart card` | *product entities* — shipment, carrier, PO#, route | **the app** (`dzrep/src/components/`), imports `@bazbogdanoff/design-system` |
+| **L3 · Domain** | `ShipmentCard`, `RouteTimeline`, `CarrierPanel`, `Chart card` | *product entities* - shipment, carrier, PO#, route | **the app** (`dzrep/src/components/`), imports `@bazbogdanoff/design-system` |
 
 ### The test for where a component belongs
 
 > *Would this exact component make sense in a different company's CRM?*
 
-Yes → L1/L2, design system. No — it references *your* entities → L3, app code.
+Yes → L1/L2, design system. No - it references *your* entities → L3, app code.
 
 L3 components **compose** L1/L2 (`<ShipmentCard>` renders `<Card>`, `<Badge>`,
 `<StatCard>`, `<Button>` internally). They are product code, versioned with the app.
@@ -37,7 +37,7 @@ data plus a `children` escape hatch.
 
 ## Figma: never detach
 
-Detaching a component orphans the copy from its primitive — a later change to the
+Detaching a component orphans the copy from its primitive - a later change to the
 glass effect, `radius/card`, or a token won't reach it. Always:
 
 1. nest an **instance** of the primitive,
@@ -45,18 +45,18 @@ glass effect, `radius/card`, or a token won't reach it. Always:
 3. publish the result as its own component.
 
 A Figma `ShipmentCard` is a frame containing a `Card` instance with its slot
-filled — not a detached copy of `Card` with edits.
+filled - not a detached copy of `Card` with edits.
 
 ## Icons
 
 No icon dependency in this repo. Icon props (`leadingIcon`/`trailingIcon` on
-`Button`, `icon` on `IconButton`, etc.) are typed `ReactNode` — the consuming
+`Button`, `icon` on `IconButton`, etc.) are typed `ReactNode` - the consuming
 app supplies the element. The CRM app uses **Phosphor Icons**, mostly `bold`
-and `filled` weights (`regular` rarely) — they scale cleanly with the
+and `filled` weights (`regular` rarely) - they scale cleanly with the
 component's size scale, so no icon-specific sizing logic is needed here.
 
 In Figma, icon slots are boolean + instance-swap component properties bound
-to an icon component set that exists **only for Figma showcase** — it isn't
+to an icon component set that exists **only for Figma showcase** - it isn't
 mirrored in code and shouldn't be treated as this design system's icon API.
 
 ## Build order

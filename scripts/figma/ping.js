@@ -1,4 +1,4 @@
-// Smoke test — confirms the bridge + plugin + Figma are wired up.
+// Smoke test - confirms the bridge + plugin + Figma are wired up.
 // node scripts/figma/fig.mjs scripts/figma/ping.js
 await figma.loadAllPagesAsync();
 return {

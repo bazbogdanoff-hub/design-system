@@ -4,7 +4,7 @@
 
 A component token exists to give one component a **named override point** so a
 future tweak ("make secondary buttons warmer") is one edit, not a hunt through
-CSS. Every component token **aliases a semantic token** — never a primitive,
+CSS. Every component token **aliases a semantic token** - never a primitive,
 never a raw value.
 
 Canonical path: `color.<component>.<part>[.<variant>][.<state>]`
@@ -17,7 +17,7 @@ tokens for components that don't exist yet just creates more to keep in sync.
 
 Procedure:
 1. List the colored parts of the component (background, text, border, icon…) and its meaningful variants/states.
-2. For each, find the semantic token that already expresses the intent. If none fits, the *semantic* catalog is missing something — fix that first ([color-tokens.md](color-tokens.md)).
+2. For each, find the semantic token that already expresses the intent. If none fits, the *semantic* catalog is missing something - fix that first ([color-tokens.md](color-tokens.md)).
 3. Add the group to `tokens/component.color.json`, `npm run build:tokens`.
 4. Create the matching Figma variables in the **Component** collection.
 5. The React component's CSS uses only `--color-<component>-*` vars.
@@ -40,7 +40,7 @@ Procedure:
 | `button.disabled.background` | `background.disabled` |
 | `button.disabled.text` | `text.disabled` |
 
-`disabled` is shared across variants — one token pair, applied when the button is disabled regardless of `variant`.
+`disabled` is shared across variants - one token pair, applied when the button is disabled regardless of `variant`.
 
 ### `card`
 
@@ -48,8 +48,8 @@ Procedure:
 |---|---|
 | `card.background.default` | `surface.card` |
 | `card.background.hover` | `surface.subtle` *(clickable cards only, not used yet)* |
-| `card.border` | `border.highlight` — white top-left glass catch |
-| `card.border-active` | `border.highlight-active` — full primary border on focus/active; shared by StatButton + other glass buttons |
+| `card.border` | `border.highlight` - white top-left glass catch |
+| `card.border-active` | `border.highlight-active` - full primary border on focus/active; shared by StatButton + other glass buttons |
 
 ### `input`
 
@@ -74,7 +74,7 @@ Six tones. Each is `subtle` background + matching text.
 | `badge.danger.background` / `.text` | `background.danger-subtle` / `text.danger` |
 | `badge.info.background` / `.text` | `background.info-subtle` / `text.info` |
 
-Map shipment/order statuses onto these tones in the app layer (e.g. `delivered → success`, `delayed → warning`, `cancelled → danger`) — don't add per-status tokens.
+Map shipment/order statuses onto these tones in the app layer (e.g. `delivered → success`, `delayed → warning`, `cancelled → danger`) - don't add per-status tokens.
 
 ### `table`
 
@@ -82,7 +82,7 @@ Map shipment/order statuses onto these tones in the app layer (e.g. `delivered �
 |---|---|
 | `table.header.background` / `.text` | `surface.subtle` / `text.subtle` |
 | `table.row.background.default` / `.selected` | `surface.default` / `background.brand-subtle` |
-| `table.row.shadow.hover` | `background.overlay-subtle` *(inset shadow, not a fill — rows have no background by default; shared with `scrollableArea.row.shadow.hover`)* |
+| `table.row.shadow.hover` | `background.overlay-subtle` *(inset shadow, not a fill - rows have no background by default; shared with `scrollableArea.row.shadow.hover`)* |
 | `table.border` | `border.subtle` |
 
 ### `modal`
@@ -99,7 +99,7 @@ Map shipment/order statuses onto these tones in the app layer (e.g. `delivered �
 |---|---|
 | `scrollableArea.background` | `background.subtle` |
 | `scrollableArea.shadow` | `alpha-black.15` |
-| `scrollableArea.row.shadow.hover` | `background.overlay-subtle` *(inset shadow, not a fill — rows have no background by default; shared with `table.row.shadow.hover`)* |
+| `scrollableArea.row.shadow.hover` | `background.overlay-subtle` *(inset shadow, not a fill - rows have no background by default; shared with `table.row.shadow.hover`)* |
 
 ## Figma ↔ React component mapping
 

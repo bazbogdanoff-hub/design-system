@@ -5,7 +5,7 @@
   height: 1.5rem;
 }
 
-/* the visible track + fill — a plain decorative span pair, same shape as
+/* the visible track + fill - a plain decorative span pair, same shape as
    ProgressBar's own track/fill (see Slider.tsx for why this beats a
    vendor-prefixed pseudo-element background). Absolutely positioned +
    vertically centered so it sits directly behind the (also absolutely
@@ -34,7 +34,7 @@
   background: var(--color-text-disabled);
 }
 
-/* the real input — invisible except for its thumb; it owns the full
+/* the real input - invisible except for its thumb; it owns the full
    wrapper box so click-anywhere-to-jump and dragging keep working exactly
    like a native range input */
 .slider {
@@ -52,14 +52,14 @@
   cursor: not-allowed;
 }
 /* the default browser focus outline draws around the input's whole
-   (invisible) box — suppressed in favor of the thumb's own focus-visible
+   (invisible) box - suppressed in favor of the thumb's own focus-visible
    ring below, the only focus indicator that should be visible */
 .slider:focus-visible {
   outline: none;
 }
 
 /* IMPORTANT: never comma-combine a ::-webkit-* selector with a ::-moz-*
-   one — an unrecognized vendor pseudo-element invalidates the WHOLE
+   one - an unrecognized vendor pseudo-element invalidates the WHOLE
    selector list for a plain style rule, so Chrome silently drops a rule
    like `.x::-webkit-foo, .x::-moz-foo { ... }` in its entirety. Every pair
    below is two separate rules. */
@@ -76,7 +76,7 @@
 
 /* ---- thumb ---- */
 /* Centered within the native track's flat 24px box, which is always taller
-   than the thumb — so margin-top is a small positive offset here (not
+   than the thumb - so margin-top is a small positive offset here (not
    negative), and it differs per size since the gap to fill varies. */
 .slider::-webkit-slider-thumb {
   appearance: none;

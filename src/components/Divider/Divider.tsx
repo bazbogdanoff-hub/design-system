@@ -10,7 +10,7 @@ export interface DividerProps extends HTMLAttributes<HTMLHRElement> {
 }
 
 /**
- * A plain 1px rule — `color.divider.line`. A real `<hr>` (semantic
+ * A plain 1px rule - `color.divider.line`. A real `<hr>` (semantic
  * "thematic break"), not a styled `<div>`. Orientation just swaps which
  * dimension is 1px; sizing along the other axis is up to the consumer's
  * layout (a flex/grid parent, `width`/`height`, etc.).

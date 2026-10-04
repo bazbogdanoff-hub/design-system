@@ -8,7 +8,7 @@ description: >-
   Figma cleanup or token migration, and whenever the user asks what's wrong with
   their Figma variables/components/naming, wants a design-system compliance check,
   a list of raw/off-palette colours, mis-bound components, or duplicate
-  variables. This skill NEVER mutates Figma — it only reads. The fixing is done
+  variables. This skill NEVER mutates Figma - it only reads. The fixing is done
   separately by figma-safe-edit, which consumes this skill's findings.json.
   Trigger words: audit, inventory, Figma variables, naming check, design system
   compliance, raw colours, unbound, mis-bound, duplicates, migration plan,
@@ -21,22 +21,22 @@ Produce a complete, trustworthy picture of the current Figma file and every way
 it diverges from `design-system-conventions`. Output is a plan, not a change.
 
 **This skill is read-only.** No `set`, no rename, no rebind, no delete. If a fix
-is obvious, record it as a proposed action in `findings.json` — do not apply it.
+is obvious, record it as a proposed action in `findings.json` - do not apply it.
 Applying is `figma-safe-edit`'s job, gated on user approval.
 
 ## Before you start
 
-1. **Bring the bridge up** — see [references/bridge-setup.md](references/bridge-setup.md)
+1. **Bring the bridge up** - see [references/bridge-setup.md](references/bridge-setup.md)
    ("Every session"): target file open in Figma Desktop, Figmosha Bridge plugin
    running, `node C:\Users\Dell\IdeaProjects\figmosha2\bridge.mjs` running.
-2. **Smoke test:** `node scripts/figma/fig.mjs scripts/figma/ping.js` — must
+2. **Smoke test:** `node scripts/figma/fig.mjs scripts/figma/ping.js` - must
    print the file name, pages, and collections before you go further.
-3. **Load `design-system-conventions`** — it is the yardstick. Every finding is
+3. **Load `design-system-conventions`** - it is the yardstick. Every finding is
    "current Figma state" vs "what that skill says it should be."
 4. Create `audit/` with subdir `audit/raw/`. `audit/raw/` is gitignored (large
    dumps); `audit/findings.json` and `audit/report.md` are committed.
 
-## Token budget — read this
+## Token budget - read this
 
 Figma node trees are enormous. A careless audit burns the whole context window on
 JSON you'll never look at directly. Rules:
@@ -49,7 +49,7 @@ JSON you'll never look at directly. Rules:
   names first (cheap). Only expand a node when a finding depends on its internals.
 - **No screenshots / image exports** during the audit. This is a data pass.
 - **Let the script do the diffing.** `scripts/audit-report.mjs` compares the raw
-  dumps against the conventions catalogue — you don't reason over every row by hand.
+  dumps against the conventions catalogue - you don't reason over every row by hand.
 
 ## Phases
 
@@ -61,7 +61,7 @@ variable collection list (id, name, modes, variable count), counts of local
 paint/text/effect styles, count of components + component sets. Nothing deeper yet.
 
 ### 2 · Variables & styles  → `audit/raw/variables.json`, `audit/raw/styles.json`
-For every collection: every variable — `id`, `name`, `resolvedType`,
+For every collection: every variable - `id`, `name`, `resolvedType`,
 `variableCollectionId`, and per mode either the raw value or the alias target
 (resolve alias `id` → target `name`). For every style: `id`, `name`, `type`, the
 paint(s)/value, and any `boundVariables`.
@@ -74,7 +74,7 @@ sets the child component names. Don't traverse component internals yet.
 
 ### 4 · Colour usage  → `audit/raw/usage-<page>.json` (one file per page)
 Per page, every node carrying a visible SOLID fill or stroke. For each: node
-`id`, `name`, `type`, the resolved colour hex, and the binding —
+`id`, `name`, `type`, the resolved colour hex, and the binding -
 `variable:<name>` / `style:<name>` / `raw`. This is the expensive phase: do it
 one page at a time, write, clear, next page.
 
@@ -104,9 +104,9 @@ input to `figma-safe-edit`.
 | `component-naming` | component name breaks the PascalCase / `Category/Component` rule |
 | `variant-naming` | variant property or value casing/name inconsistent (`Size` vs `size`, `Type` vs `variant`) |
 | `duplicate` | two variables / components that are the same thing under different names |
-| `unused-primitive` | a Tailwind hue no semantic token references — prune candidate |
+| `unused-primitive` | a Tailwind hue no semantic token references - prune candidate |
 
-## Output contract — `audit/findings.json`
+## Output contract - `audit/findings.json`
 
 ```json
 {
@@ -135,5 +135,5 @@ the work. Keep IDs stable across re-runs so triage decisions survive a re-audit
 
 ## Re-running
 
-Safe any time — it's read-only. Re-run after `figma-safe-edit` applies a batch to
+Safe any time - it's read-only. Re-run after `figma-safe-edit` applies a batch to
 confirm the findings cleared and nothing regressed.

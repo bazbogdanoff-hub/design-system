@@ -7,7 +7,7 @@ import { useLayoutEffect, type RefObject } from 'react';
  * this the right side of a scrolling page reads as padding + scrollbar while
  * the left reads as padding alone.
  *
- * Measured rather than assumed — the bar's width is styled per app, scales
+ * Measured rather than assumed - the bar's width is styled per app, scales
  * with the root, and exists only while the content overflows.
  */
 export function useScrollbarGutter(ref: RefObject<HTMLElement | null>): void {

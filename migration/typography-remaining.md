@@ -1,8 +1,8 @@
-# Typography migration — COMPLETE
+# Typography migration - COMPLETE
 
 All old text styles are handled.
 
-- **Deleted** (unused, cleaned up by hand): every non-`Title/` old style —
+- **Deleted** (unused, cleaned up by hand): every non-`Title/` old style -
   `paragraph*`, `monospace*`, standalone `heading 1–4`, standalone `caption`.
 - **Redefined in place** (shim): all **53 `Title/*`** styles. Each now uses
   **Plus Jakarta Sans**, with size / line-height / letter-spacing from the
@@ -30,10 +30,10 @@ tracking ∈ {−2%, −1%, 0%, +1%}.
 
 ## Left for the component rebuild
 
-The `Title/*` styles are now **shims** — text nodes still name them, but they
+The `Title/*` styles are now **shims** - text nodes still name them, but they
 render on the new scale. During the component rebuild:
 
-1. Rebind text nodes to the real `text/*` styles (drop the weight variants —
+1. Rebind text nodes to the real `text/*` styles (drop the weight variants -
    pick the one `text/*` style; weight is fixed by the style, not chosen per node).
 2. Delete the `Title/*` styles once nothing references them.
 

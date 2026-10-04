@@ -10,7 +10,7 @@ type Justify = 'start' | 'center' | 'end' | 'between';
 export interface StackProps extends HTMLAttributes<HTMLElement> {
   /** `column` (default) or `row`. */
   direction?: 'row' | 'column';
-  /** Gap between children — `space/*` (none·2·4·8·12·16·20·24). */
+  /** Gap between children - `space/*` (none·2·4·8·12·16·20·24). */
   gap?: Gap;
   /** Cross-axis alignment. */
   align?: Align;
@@ -18,14 +18,14 @@ export interface StackProps extends HTMLAttributes<HTMLElement> {
   justify?: Justify;
   /** Allow wrapping (row only). */
   wrap?: boolean;
-  /** Row only — children share the width evenly and stretch to equal height. */
+  /** Row only - children share the width evenly and stretch to equal height. */
   columns?: boolean;
   as?: ElementType;
   asChild?: boolean;
 }
 
 /**
- * The layout workhorse — a flex container with token gap. `direction="row"
+ * The layout workhorse - a flex container with token gap. `direction="row"
  * columns` gives the stretch-columns layout (equal-width, equal-height panels)
  * used inside the AppShell content area.
  */

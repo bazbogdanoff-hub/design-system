@@ -13,20 +13,20 @@ export interface AvatarProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'chil
   size?: AvatarSize;
   /** Bottom-right status dot. Omit for none. */
   status?: AvatarStatus;
-  /** Top-right action badge (add/delete), independent of `status` — they
+  /** Top-right action badge (add/delete), independent of `status` - they
    * coincide in some references but aren't the same concept. Omit for none. */
   action?: AvatarAction;
-  /** The initials. No image-upload story exists yet — this is the
+  /** The initials. No image-upload story exists yet - this is the
    * fallback-state reference, always initials/text, never a photo. */
   children: ReactNode;
 }
 
 /**
- * A circular avatar — initials on a neutral fill, an optional status dot
+ * A circular avatar - initials on a neutral fill, an optional status dot
  * (bottom-right) and an optional action badge (top-right, add/delete) each
  * on their own white ring so they read as cutouts over the avatar underneath.
  * Both badges sit flush at the avatar's own corner (not overlapping past its
- * edge) — a deliberate v1 choice, matching the Figma reference exactly.
+ * edge) - a deliberate v1 choice, matching the Figma reference exactly.
  */
 export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
   { size = 'md', status, action, children, className, ...rest },

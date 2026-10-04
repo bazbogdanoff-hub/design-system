@@ -8,11 +8,11 @@ export type CardPadding = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   /** Inner padding on all sides. `none` (0) · `xs` (8) · `sm` (12) · `md` (16, default) · `lg` (20) · `xl` (24).
    * `xs` is for a card that is a container for controls rather than for
-   * content — a toolbar, a control bar — where 12 already reads as a margin
+   * content - a toolbar, a control bar - where 12 already reads as a margin
    * around buttons that carry their own padding. */
   padding?: CardPadding;
-  /** Lifts the card off whatever is behind it, for a card that FLOATS —
-   *  over a map, over a canvas — rather than sitting in a page.
+  /** Lifts the card off whatever is behind it, for a card that FLOATS -
+   *  over a map, over a canvas - rather than sitting in a page.
    *
    *  This exists because the glass look is itself a `box-shadow`, so a
    *  consumer adding a drop shadow in its own stylesheet replaces the glass
@@ -24,7 +24,7 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * A surface that groups related content — a padded box, nothing more.
+ * A surface that groups related content - a padded box, nothing more.
  * Always the glass look: #f6f7f8 fill, 16px radius, an asymmetric white catch on
  * the top + left edges, and a soft inner "vignette xs" shadow.
  *

@@ -1,7 +1,7 @@
 # Page
 
 The per-screen layout contract. Lives inside the [`AppShell`](./AppShell.md)
-content slot and **owns all scrolling, padding and sticky regions** — the
+content slot and **owns all scrolling, padding and sticky regions** - the
 AppShell content frame itself never scrolls and has no padding.
 
 Every screen is:
@@ -28,7 +28,7 @@ track and scales as the page width changes.
 
 ## Two layouts
 
-### `scroll` (default) — simple screens
+### `scroll` (default) - simple screens
 
 The whole page scrolls; it's padded (`space/16` offset). Header is a flow
 block, not sticky.
@@ -40,7 +40,7 @@ block, not sticky.
 </Page>
 ```
 
-### `fixed` — table / master-detail screens
+### `fixed` - table / master-detail screens
 
 `display: grid; grid-template-rows: auto 1fr auto`. Header and Footer stay
 pinned; **`Page.Body` is the only scroll region** (so a table's sticky column
@@ -65,12 +65,12 @@ headers work, and pagination never scrolls away).
 | | prop | |
 |---|---|---|
 | `Page` | `layout` | `scroll` (default) · `fixed` |
-| | `padded` | `scroll` only — pad the page (default `true`) |
+| | `padded` | `scroll` only - pad the page (default `true`) |
 | `Page.Header` | `title` | `<h1>`, `text/heading/xl` |
 | | `actions` | right-aligned node (buttons) |
-| | `bleed` | drop horizontal padding — region goes flush to the content-card edge |
+| | `bleed` | drop horizontal padding - region goes flush to the content-card edge |
 | | `children` | rendered below the title row (filters, tabs) |
-| `Page.Body` | `bleed` | as above — the usual place: full-width tables, maps, kanban |
+| `Page.Body` | `bleed` | as above - the usual place: full-width tables, maps, kanban |
 | `Page.Footer` | `bleed` | as above |
 
 All regions take `className` + native attrs.
@@ -79,7 +79,7 @@ All regions take `className` + native attrs.
 
 The content card has `overflow: hidden` and rounded corners. A region with
 `bleed` drops its horizontal padding so its content aligns with the card's inner
-edge — the clip makes the corner look intentional. Use it for anything that
+edge - the clip makes the corner look intentional. Use it for anything that
 wants the full width: `DataTable`, route maps, kanban boards, edge-to-edge
 toolbars. Everything else keeps the `space/16` offset.
 
@@ -87,7 +87,7 @@ toolbars. Everything else keeps the `space/16` offset.
 
 - **Scroll lives here, never in AppShell.** `scroll` layout → the `.page`
   scrolls. `fixed` layout → only `Page.Body` scrolls.
-- **No outer margins on screen content** — spacing is the parent `Stack`'s gap
+- **No outer margins on screen content** - spacing is the parent `Stack`'s gap
   or `Page`'s padding.
 - **Overlays portal to `<body>`** (dropdowns, popovers, tooltips, modals,
   toasts). A right-edge **slide-over** is `position: absolute` within the
@@ -95,7 +95,7 @@ toolbars. Everything else keeps the `space/16` offset.
 
 ## Composition
 
-`AppShell content slot` → `<Page>` → cards. **Never cards directly in the slot** —
+`AppShell content slot` → `<Page>` → cards. **Never cards directly in the slot** -
 the slot is dumb chrome (bg / radius / clip); `Page` owns padding, scroll, sticky
 regions and the header.
 
@@ -117,11 +117,11 @@ regions and the header.
 </AppShell>
 ```
 
-Content inside `Page.Body` lays out on [`Grid`](./Grid.md)'s **16** columns —
+Content inside `Page.Body` lays out on [`Grid`](./Grid.md)'s **16** columns -
 see that doc for spans and approximate pixel widths.
 
 ## Figma
 
 `Page` carries a native Figma `layoutGrids` overlay (16 columns, gutter/offset
-16, stretch) — not a standalone guide frame. Screen frames compose `AppShell` +
+16, stretch) - not a standalone guide frame. Screen frames compose `AppShell` +
 content on that grid; React `Page` + `Grid` are the code counterpart.

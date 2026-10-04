@@ -20,14 +20,14 @@ type Base = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> & {
   asChild?: boolean;
 };
 
-/** An accessible name is required — `aria-label`, or `aria-labelledby`. */
+/** An accessible name is required - `aria-label`, or `aria-labelledby`. */
 export type IconButtonProps =
   | (Base & { 'aria-label': string; 'aria-labelledby'?: never })
   | (Base & { 'aria-labelledby': string; 'aria-label'?: never });
 
 /**
  * A square icon-only button. Same glass skin, variants, sizes and states as
- * `Button` — just one centred icon (or the spinner) and no label. An accessible
+ * `Button` - just one centred icon (or the spinner) and no label. An accessible
  * name is mandatory.
  */
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(function IconButton(

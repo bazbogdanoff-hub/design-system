@@ -2,7 +2,7 @@
    The surface is data-on, not data-surface: Page treats every [data-surface]
    as a card when it computes outer corners.
    The fill is a plain colour; the edge light is an SVG filter on the painted
-   shape (filters.ts), so the tail — painted in the same fill — is lit with
+   shape (filters.ts), so the tail - painted in the same fill - is lit with
    the body as one piece. Each variant sets four things: --_fill, the text
    colour, the meta colour, the filter. */
 .bubble {
@@ -53,7 +53,7 @@
   --_meta: color-mix(in srgb, var(--color-text-on-brand) 75%, transparent);
   filter: url(#ds-bubble-light-out);
 }
-/* Dark, in: the sidebar's panel — inside the dark app-frame card. */
+/* Dark, in: the sidebar's panel - inside the dark app-frame card. */
 .bubble[data-on='dark'][data-side='in'] {
   --_fill: var(--color-sidebar-panel-background);
   --_text: var(--color-white);
@@ -112,7 +112,7 @@
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
-/* Under the text: channel mark, "edited", time — smaller than the text. */
+/* Under the text: channel mark, "edited", time - smaller than the text. */
 .meta {
   display: inline-flex;
   align-self: flex-end;

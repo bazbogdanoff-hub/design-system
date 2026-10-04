@@ -5,8 +5,8 @@
  * with only the two fills swapped for tokens: `#818CF8` (button/primary/
  * background) became `currentColor`, and `#AAB1F9` (button/primary/border)
  * became the `--_route-marker-catch` custom property the stylesheet sets.
- * Everything else — the doubled paths that make the 1px glass catch, and the
- * four filters carrying the #6570e1 vignette and the drop shadows — is
+ * Everything else - the doubled paths that make the 1px glass catch, and the
+ * four filters carrying the #6570e1 vignette and the drop shadows - is
  * Figma's own output, kept as-is rather than reconstructed by hand.
  *
  * **The box is 52x43, not 37x32.** Figma exports with the shadow bleed

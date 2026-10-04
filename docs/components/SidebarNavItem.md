@@ -1,14 +1,14 @@
 # SidebarNavItem
 
-One row in the sidebar's nav list — a bare monochrome icon (no colored
+One row in the sidebar's nav list - a bare monochrome icon (no colored
 tile), the module-toned label, with a neutral glass highlight on the active
-row. **L1** — Figma + React, both built this session; rewritten this pass
+row. **L1** - Figma + React, both built this session; rewritten this pass
 to replace an earlier, incorrect light-surface color recipe.
 
 ```tsx
 <SidebarNavItem icon={<ShieldCheckIcon />} label="Security" />
 <SidebarNavItem icon={<GridFourIcon />} label="Task Hub" active tone="brand" />
-<SidebarNavItem icon={<ShieldCheckIcon />} />                {/* collapsed sidebar — icon only */}
+<SidebarNavItem icon={<ShieldCheckIcon />} />                {/* collapsed sidebar - icon only */}
 <SidebarNavItem avatar={<Avatar size="sm">JD</Avatar>} label="Profile" />
 ```
 
@@ -19,25 +19,25 @@ to replace an earlier, incorrect light-surface color recipe.
 | `label` | `ReactNode` | | omit for the collapsed sidebar's icon-only row |
 | `active` | `boolean` | `false` | is this the current page within the active module |
 | `tone` | `'brand'` \| `'success'` \| `'danger'` | `'brand'` | matches whichever module this row belongs to; ignored unless `active` |
-| `settingsCorner` | `boolean` | `false` | **Settings row only** — bottom-right frame radius 16px (`radius.2xl`) instead of 8, nesting inside the section's 24px deep corner |
-| `count` | `number` | | something waiting behind the row (unread messages). Expanded: a solid pill (20 tall, min 20 wide, 6 side padding, `radius.full`, fill `sidebar.brand-accent`, `label.xs` in `text.on-brand`) at the frame's trailing end, `space-8` from its edge, `99+` past 99. Not `Badge` — its tinted recipe is for light cards and reads dark-on-dark on the sidebar. Collapsed: an 8px dot in `sidebar.brand-accent`, `space-8` in from the leading cell's top-right; the figure stays in the accessible name. Omit or 0 for none |
+| `settingsCorner` | `boolean` | `false` | **Settings row only** - bottom-right frame radius 16px (`radius.2xl`) instead of 8, nesting inside the section's 24px deep corner |
+| `count` | `number` | | something waiting behind the row (unread messages). Expanded: a solid pill (20 tall, min 20 wide, 6 side padding, `radius.full`, fill `sidebar.brand-accent`, `label.xs` in `text.on-brand`) at the frame's trailing end, `space-8` from its edge, `99+` past 99. Not `Badge` - its tinted recipe is for light cards and reads dark-on-dark on the sidebar. Collapsed: an 8px dot in `sidebar.brand-accent`, `space-8` in from the leading cell's top-right; the figure stays in the accessible name. Omit or 0 for none |
 
-**`count` — Figma build notes** (2026-10-01, owner-approved, built
-code-first; no master yet): expanded — the pill above as the last child of
+**`count` - Figma build notes** (2026-10-01, owner-approved, built
+code-first; no master yet): expanded - the pill above as the last child of
 `.frame`, the label keeping fill-width so the pill sits right, 8 right
-padding; collapsed — an 8×8 ellipse placed 8 in from the
+padding; collapsed - an 8×8 ellipse placed 8 in from the
 40×40 leading cell's top-right, fill `color/sidebar/brand-accent`.
 
 Every other native `<button>` prop passes through (`onClick`, `disabled`, …).
 
-## `icon` vs `avatar` — two slots, not one with an override
+## `icon` vs `avatar` - two slots, not one with an override
 
-A Profile row's leading visual isn't a small monochrome icon scaled to fit —
+A Profile row's leading visual isn't a small monochrome icon scaled to fit -
 `Avatar` has its own natural size (28px at `size="sm"`) and internal layout
 that isn't built to scale outside its own variant sizes. An earlier version
 of this row swapped a generic icon slot's underlying component to `Avatar`
 after the fact; that force-resized it into the icon's 20×20 box and visibly
-distorted it. Fixed by giving `avatar` its own slot instead — same "two
+distorted it. Fixed by giving `avatar` its own slot instead - same "two
 anatomies, two slots" reasoning `CategoryIcon`/`IconCell` already document.
 Both slots render inside the same 40×40 centered box, but only `icon` gets
 the fixed 20×20 inner constraint; `avatar` renders at its own size.
@@ -51,14 +51,14 @@ button.item          ← hit target, padding space/4 vertical only (→ 48px tal
    └─ span.label     ← expanded only
 ```
 
-The active highlight must **not** paint on `.item` — that would include the
+The active highlight must **not** paint on `.item` - that would include the
 4px gutters and read as a full 48px chrome. It fills `.frame` instead
 (height/width fill of the padded content box = 40px tall).
 
-## Active — a neutral highlight, not a color wash
+## Active - a neutral highlight, not a color wash
 
 The active row's highlight is the same glass fill/overlay recipe as the
-module switcher — tone-agnostic on purpose. Stroke is **top + left only**:
+module switcher - tone-agnostic on purpose. Stroke is **top + left only**:
 
 ```css
 box-shadow:
@@ -72,9 +72,9 @@ box-shadow:
 Only the icon and label recolor to the active module's `tone` (via
 `color.sidebar.<tone>.accent`).
 
-## Collapsed vs. expanded — omit `label`, not a prop
+## Collapsed vs. expanded - omit `label`, not a prop
 
-No `collapsed` prop here — `Sidebar` decides whether to pass `label` at all
+No `collapsed` prop here - `Sidebar` decides whether to pass `label` at all
 based on its own `mode`, the same convention the old rail-based `Sidebar`
 already used for its own bottom-cluster rows. `[data-mode='collapsed']`
 (read off the `Sidebar` ancestor) centers the icon. Rows have no horizontal
@@ -82,7 +82,7 @@ padding in either mode (only `space-4` vertical).
 
 ## Figma
 
-`SidebarNavItem` (`10603:32870`) — 12 variants: `collapsed`(true/false) ×
+`SidebarNavItem` (`10603:32870`) - 12 variants: `collapsed`(true/false) ×
 `leading`(icon/avatar) × `tone`(neutral/brand/success/danger) ×
 `state`(default/active/hover), not a full cross-product (`tone` only varies
 for `state=active`; `leading=avatar` only exists at `state=default`). Every

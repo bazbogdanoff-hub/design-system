@@ -1,7 +1,7 @@
 {
   "color": {
     "channelLogo": {
-      "$description": "Third-party brand colours for ChannelLogo (2026-10-01) — the messaging apps' own, from Simple Icons (CC0). Not ours to retune: a channel logo is recognised by its colour.",
+      "$description": "Third-party brand colours for ChannelLogo (2026-10-01) - the messaging apps' own, from Simple Icons (CC0). Not ours to retune: a channel logo is recognised by its colour.",
       "telegram": { "$value": "#26a5e4" },
       "whatsapp": { "$value": "#25d366" },
       "viber": { "$value": "#7360f2" },
@@ -12,7 +12,7 @@
         "background": {
           "default": {
             "$value": "{color.brand.400}",
-            "$description": "Primary button fill — a lightened brand. Button-only gimmick: color.text.brand / color.icon.brand stay at 600 everywhere else."
+            "$description": "Primary button fill - a lightened brand. Button-only gimmick: color.text.brand / color.icon.brand stay at 600 everywhere else."
           },
           "hover": {
             "$value": "{color.brand.500}"
@@ -27,14 +27,14 @@
         "border": {
           "default": {
             "$value": "#aab1f9",
-            "$description": "Glass catch on the coloured primary surface — hand-tuned, not on the palette."
+            "$description": "Glass catch on the coloured primary surface - hand-tuned, not on the palette."
           },
           "hover": {
             "$value": "#7a85f8"
           },
           "active": {
             "$value": "{color.white}",
-            "$description": "Full 1.5px white border on focus / active — high contrast on the brand fill (parallels color.button.secondary.border.active)."
+            "$description": "Full 1.5px white border on focus / active - high contrast on the brand fill (parallels color.button.secondary.border.active)."
           }
         },
         "shadow": {
@@ -51,7 +51,7 @@
         "background": {
           "default": {
             "$value": "{color.card-item.background}",
-            "$description": "The card-item glass surface, same as StatButton — one step lighter than the card it sits on (2026-09-28). Unchanged by state (hover swaps the shadow, not the fill)."
+            "$description": "The card-item glass surface, same as StatButton - one step lighter than the card it sits on (2026-09-28). Unchanged by state (hover swaps the shadow, not the fill)."
           }
         },
         "text": {
@@ -75,7 +75,7 @@
         "text": {
           "default": {
             "$value": "{color.text.strong}",
-            "$description": "Text-only button — same colour as the secondary label at rest; hover adds an underline."
+            "$description": "Text-only button - same colour as the secondary label at rest; hover adds an underline."
           },
           "active": {
             "$value": "{color.text.brand}",
@@ -116,7 +116,7 @@
         },
         "hover": {
           "$value": "{color.surface.subtle}",
-          "$description": "Reserved — for the future interactive-card hover state (not used yet)"
+          "$description": "Reserved - for the future interactive-card hover state (not used yet)"
         }
       },
       "border": {
@@ -129,24 +129,24 @@
       },
       "border-active": {
         "$value": "{color.border.highlight-active}",
-        "$description": "Focused/active glass border — full 1.5px primary, replaces the white top-left catch. Shared by Card, StatButton, and other glass buttons."
+        "$description": "Focused/active glass border - full 1.5px primary, replaces the white top-left catch. Shared by Card, StatButton, and other glass buttons."
       }
     },
     "badge": {
-      "$description": "Redesigned to a glass recipe (2026-09-16): a radial highlight glow + a colored inner shadow, both hand-tuned per tone off each tone's own primitive ramp — no flat `background` fill anymore, so that key is gone from every tone below. `glow`/`shadow` are a deliberate primitive-alias exception (same treatment as `table.row.background.danger/success`): there's no existing semantic role at the 300/400 prominence step these need, and the recipe is a per-component visual effect (like `button.primary.shadow`), not a general-purpose color decision. `text` is *also* now a deliberate primitive alias for all 6 tones, not just warning's pre-existing one below — each badge's label (and its optional leading icon, which reuses this same token) reads better one step lighter (600) than the shared semantic text.<tone> (which sits at 700, calibrated for body text elsewhere), consistent with the rationale warning's exception already documented.",
+      "$description": "Redesigned to a glass recipe (2026-09-16): a radial highlight glow + a colored inner shadow, both hand-tuned per tone off each tone's own primitive ramp - no flat `background` fill anymore, so that key is gone from every tone below. `glow`/`shadow` are a deliberate primitive-alias exception (same treatment as `table.row.background.danger/success`): there's no existing semantic role at the 300/400 prominence step these need, and the recipe is a per-component visual effect (like `button.primary.shadow`), not a general-purpose color decision. `text` is *also* now a deliberate primitive alias for all 6 tones, not just warning's pre-existing one below - each badge's label (and its optional leading icon, which reuses this same token) reads better one step lighter (600) than the shared semantic text.<tone> (which sits at 700, calibrated for body text elsewhere), consistent with the rationale warning's exception already documented.",
       "neutral": {
         "glow": { "$value": "{color.zinc.300}" },
-        "shadow": { "$value": "{color.zinc.400}", "$description": "One step darker than glow — neutral has no hue to lean on, so the inner shadow needs the extra step to read as depth rather than just a flat gray smear." },
+        "shadow": { "$value": "{color.zinc.400}", "$description": "One step darker than glow - neutral has no hue to lean on, so the inner shadow needs the extra step to read as depth rather than just a flat gray smear." },
         "text": { "$value": "{color.zinc.600}" }
       },
       "brand": {
         "glow": { "$value": "{color.brand.300}" },
-        "shadow": { "$value": "{color.brand.400}", "$description": "One step darker than glow, same reasoning as neutral.shadow — brand kept the asymmetric pair rather than being flattened to match the other 4 tones." },
+        "shadow": { "$value": "{color.brand.400}", "$description": "One step darker than glow, same reasoning as neutral.shadow - brand kept the asymmetric pair rather than being flattened to match the other 4 tones." },
         "text": { "$value": "{color.brand.600}" }
       },
       "success": {
         "glow": { "$value": "{color.emerald.300}" },
-        "shadow": { "$value": "{color.emerald.300}", "$description": "Same step as glow — unlike neutral/brand, success/warning/danger/warning-strong reuse one shade for both, since their own hue already carries enough depth without a darker second step." },
+        "shadow": { "$value": "{color.emerald.300}", "$description": "Same step as glow - unlike neutral/brand, success/warning/danger/warning-strong reuse one shade for both, since their own hue already carries enough depth without a darker second step." },
         "text": { "$value": "{color.emerald.600}" }
       },
       "warning": {
@@ -154,7 +154,7 @@
         "shadow": { "$value": "{color.amber.300}" },
         "text": {
           "$value": "{color.amber.600}",
-          "$description": "One step lighter than text.warning (amber.700) — deliberate primitive alias so the amber `warning` badge is clearly distinct from the orange `warning-strong` badge. Small contrast tradeoff (~3.2:1) accepted for level differentiation."
+          "$description": "One step lighter than text.warning (amber.700) - deliberate primitive alias so the amber `warning` badge is clearly distinct from the orange `warning-strong` badge. Small contrast tradeoff (~3.2:1) accepted for level differentiation."
         }
       },
       "warning-strong": {
@@ -174,7 +174,7 @@
         "text": {
           "$value": "{color.text.info}"
         },
-        "$description": "Untouched by the 2026-09-16 glass redesign above — `info` has no matching Figma variant on the Badge component (a pre-existing code-only tone), so there's no glass recipe to port for it yet. Still the old flat background/text shape."
+        "$description": "Untouched by the 2026-09-16 glass redesign above - `info` has no matching Figma variant on the Badge component (a pre-existing code-only tone), so there's no glass recipe to port for it yet. Still the old flat background/text shape."
       }
     },
     "table": {
@@ -182,7 +182,7 @@
         "background": {
           "default": {
             "$value": "{color.surface.recessed}",
-            "$description": "surface.recessed since 2026-09-28 (was zinc.100, which the darker card fill caught up with). Owner decided the header row only ever needs one flat color — no separate active/focused state — so this took over the value that had briefly been header.background.active; the original default (color.surface.subtle, zinc.50) was removed since it's no longer used anywhere."
+            "$description": "surface.recessed since 2026-09-28 (was zinc.100, which the darker card fill caught up with). Owner decided the header row only ever needs one flat color - no separate active/focused state - so this took over the value that had briefly been header.background.active; the original default (color.surface.subtle, zinc.50) was removed since it's no longer used anywhere."
           }
         },
         "text": {
@@ -193,34 +193,34 @@
         "background": {
           "default": {
             "$value": "{color.card.background.default}",
-            "$description": "Fixed from color.surface.default (#ffffff) — rows/cells sit directly on Table's own Card-replica surface (#fcfcfc via color.card.background.default), not as a separate white panel. TableCell itself is transparent; TableRow is what actually carries this fill."
+            "$description": "Fixed from color.surface.default (#ffffff) - rows/cells sit directly on Table's own Card-replica surface (#fcfcfc via color.card.background.default), not as a separate white panel. TableCell itself is transparent; TableRow is what actually carries this fill."
           },
           "selected": {
             "$value": "{color.background.brand-subtle}"
           },
           "active": {
             "$value": "{color.table.row.background.default}",
-            "$description": "Focused row — mirrors row.background.default exactly (owner's call: the fill doesn't change on focus, only the border does — same restraint Input uses for its own focus state). Aliased to the token, not duplicated, so it can never drift from default."
+            "$description": "Focused row - mirrors row.background.default exactly (owner's call: the fill doesn't change on focus, only the border does - same restraint Input uses for its own focus state). Aliased to the token, not duplicated, so it can never drift from default."
           },
           "danger": {
             "$value": "{color.rose.50}",
-            "$description": "Deliberate primitive alias, one step paler than color.background.danger-subtle (rose.100) — owner's explicit choice for a low-contrast row wash, not the louder banner-style danger-subtle tone."
+            "$description": "Deliberate primitive alias, one step paler than color.background.danger-subtle (rose.100) - owner's explicit choice for a low-contrast row wash, not the louder banner-style danger-subtle tone."
           },
           "success": {
             "$value": "{color.emerald.50}",
-            "$description": "Deliberate primitive alias, one step paler than color.background.success-subtle (emerald.100) — same reasoning as row.background.danger."
+            "$description": "Deliberate primitive alias, one step paler than color.background.success-subtle (emerald.100) - same reasoning as row.background.danger."
           }
         },
         "border": {
           "active": {
             "$value": "{color.border.focus}",
-            "$description": "1px focus ring around the whole row — the only visible signal for the active/focused state now that its background mirrors default. Same token Input uses for its own focus border."
+            "$description": "1px focus ring around the whole row - the only visible signal for the active/focused state now that its background mirrors default. Same token Input uses for its own focus border."
           }
         },
         "shadow": {
           "hover": {
             "$value": "{color.background.overlay-subtle}",
-            "$description": "Inset shadow, not a fill — the row has no background by default, hover darkens via an inner-shadow wash instead of swapping a fill. Shared with scrollableArea.row.shadow.hover."
+            "$description": "Inset shadow, not a fill - the row has no background by default, hover darkens via an inner-shadow wash instead of swapping a fill. Shared with scrollableArea.row.shadow.hover."
           }
         }
       },
@@ -240,7 +240,7 @@
       },
       "scrim-strong": {
         "$value": "{color.alpha-black.80}",
-        "$description": "Overlay scrim=\"strong\" — the dark room around a full-screen picture (owner, 2026-10-01)."
+        "$description": "Overlay scrim=\"strong\" - the dark room around a full-screen picture (owner, 2026-10-01)."
       }
     },
     "card-item": {
@@ -250,29 +250,29 @@
       },
       "vignette": {
         "$value": "{color.extra.card-item-vignette}",
-        "$description": "Their inner-shadow colour — the original #f0f0f0, tuned for the #fcfcfc card-item fill."
+        "$description": "Their inner-shadow colour - the original #f0f0f0, tuned for the #fcfcfc card-item fill."
       }
     },
     "tile": {
       "background": {
         "$value": "{color.surface.default}",
-        "$description": "White — the second-layer card (Tile): anything card-like sitting on a card (owner, 2026-09-29)."
+        "$description": "White - the second-layer card (Tile): anything card-like sitting on a card (owner, 2026-09-29)."
       },
       "border": {
         "$value": "{color.white}",
-        "$description": "The glass catch (owner, 2026-09-29): 2px top + left, 1px bottom + right — widths in TaskTile.module.css."
+        "$description": "The glass catch (owner, 2026-09-29): 2px top + left, 1px bottom + right - widths in TaskTile.module.css."
       },
       "shadow": {
         "$value": "{color.extra.tile-shadow}",
-        "$description": "Drop shadow x 0.5, y 0.5, blur 2, spread 2 — geometry in the CSS."
+        "$description": "Drop shadow x 0.5, y 0.5, blur 2, spread 2 - geometry in the CSS."
       },
       "lift-shadow": {
         "$value": "{color.extra.tile-lift-shadow}",
-        "$description": "Hover lift: a close 0 2 6 -1 and a wide 0 12 24 -6 — geometry in the CSS."
+        "$description": "Hover lift: a close 0 2 6 -1 and a wide 0 12 24 -6 - geometry in the CSS."
       },
       "inner-shadow": {
         "$value": "{color.extra.tile-inner-shadow}",
-        "$description": "Inner shadow x 1, y 1, blur 8 — geometry in the CSS."
+        "$description": "Inner shadow x 1, y 1, blur 8 - geometry in the CSS."
       }
     },
     "scrollableArea": {
@@ -282,37 +282,37 @@
       },
       "shadow": {
         "$value": "{color.alpha-black.15}",
-        "$description": "Inner-shadow tint at the scroll edges. Was a raw #00000026 before the alpha-black primitive ramp existed — now a proper alias, same value (15%)."
+        "$description": "Inner-shadow tint at the scroll edges. Was a raw #00000026 before the alpha-black primitive ramp existed - now a proper alias, same value (15%)."
       },
       "row": {
         "shadow": {
           "hover": {
             "$value": "{color.background.overlay-subtle}",
-            "$description": "Inset shadow, not a fill — rows have no background by default. Shared with table.row.shadow.hover."
+            "$description": "Inset shadow, not a fill - rows have no background by default. Shared with table.row.shadow.hover."
           }
         },
         "border": {
           "focus": {
             "$value": "{color.border.focus}",
-            "$description": "1px inset border for keyboard focus — inset (box-shadow, not outline) to stay consistent with the row's own no-fill, inset-shadow-hover treatment instead of an outer glow."
+            "$description": "1px inset border for keyboard focus - inset (box-shadow, not outline) to stay consistent with the row's own no-fill, inset-shadow-hover treatment instead of an outer glow."
           },
           "divider": {
             "$value": "{color.border.default}",
-            "$description": "Permanent 1px bottom-only divider between rows in a list — every state (default/hover/focus), unlike hover/focus which only apply on interaction. Owner changed this from border.subtle (zinc.100, \"faint separators\") to border.default (zinc.200, \"inputs, cards, dividers\") directly in Figma — a plain divider apparently read as too faint at subtle. CSS: box-shadow inset (layout-neutral, stacks with the focus ring as a second shadow layer). Figma: a real per-side stroke (strokeBottomWeight 1, others 0, INSIDE align, strokesIncludedInLayout false) — NOT an effect. An INNER_SHADOW effect on this frame (which has no fill) was confirmed to corrupt Figma's own text rendering for this file's variable-font weight; a stroke on the same no-fill frame does not. See docs/components/Row.md and HANDOFF.md §6."
+            "$description": "Permanent 1px bottom-only divider between rows in a list - every state (default/hover/focus), unlike hover/focus which only apply on interaction. Owner changed this from border.subtle (zinc.100, \"faint separators\") to border.default (zinc.200, \"inputs, cards, dividers\") directly in Figma - a plain divider apparently read as too faint at subtle. CSS: box-shadow inset (layout-neutral, stacks with the focus ring as a second shadow layer). Figma: a real per-side stroke (strokeBottomWeight 1, others 0, INSIDE align, strokesIncludedInLayout false) - NOT an effect. An INNER_SHADOW effect on this frame (which has no fill) was confirmed to corrupt Figma's own text rendering for this file's variable-font weight; a stroke on the same no-fill frame does not. See docs/components/Row.md and HANDOFF.md §6."
           }
         }
       }
     },
     "switch": {
       "track": {
-        "off": { "$value": "{color.surface.sunken}", "$description": "zinc.100, \"wells, code blocks, inset track\" — literally the inset-track description this token already carries, reused verbatim for the off-state track." },
+        "off": { "$value": "{color.surface.sunken}", "$description": "zinc.100, \"wells, code blocks, inset track\" - literally the inset-track description this token already carries, reused verbatim for the off-state track." },
         "on": { "$value": "{color.background.brand.default}", "$description": "brand.600, same token Button primary/selected-state uses." },
         "on-hover": { "$value": "{color.background.brand.hover}" },
         "disabled": { "$value": "{color.background.disabled}" }
       },
       "thumb": {
         "$value": "{color.white}",
-        "$description": "Always a plain white circle regardless of track state — the track color alone carries on/off/disabled."
+        "$description": "Always a plain white circle regardless of track state - the track color alone carries on/off/disabled."
       }
     },
     "checkbox": {
@@ -325,24 +325,24 @@
       "border": {
         "off": { "$value": "{color.border.default}" },
         "off-hover": { "$value": "{color.border.strong}" },
-        "disabled": { "$value": "{color.border.subtle}", "$description": "Same value as background.disabled (zinc.100) — a disabled checkbox reads as one flat muted shape, no separate border needed to stand out." },
-        "focus": { "$value": "{color.border.focus}", "$description": "Added when Checkbox adopted a real focus variant (the previous 3-state default/hover/disabled set never modeled one) — same token Input/TableRow use for their own focus border." }
+        "disabled": { "$value": "{color.border.subtle}", "$description": "Same value as background.disabled (zinc.100) - a disabled checkbox reads as one flat muted shape, no separate border needed to stand out." },
+        "focus": { "$value": "{color.border.focus}", "$description": "Added when Checkbox adopted a real focus variant (the previous 3-state default/hover/disabled set never modeled one) - same token Input/TableRow use for their own focus border." }
       },
       "icon": {
         "default": {
           "$value": "{color.white}",
-          "$description": "The checkmark (checked) / dash (indeterminate) glyph — white against the brand fill. Was a flat `checkbox.icon` leaf before React needed a disabled variant; the Figma master (4182:3616) still binds its glyph vectors to the old flat `color/checkbox/icon` name for every state, disabled included — a real Figma↔code drift, not fixed here (bridge is read-only for this task). Worth a follow-up: rename the Figma variable to `color/checkbox/icon/default` and add a sibling `color/checkbox/icon/disabled` bound onto the disabled+checked/indeterminate master variants."
+          "$description": "The checkmark (checked) / dash (indeterminate) glyph - white against the brand fill. Was a flat `checkbox.icon` leaf before React needed a disabled variant; the Figma master (4182:3616) still binds its glyph vectors to the old flat `color/checkbox/icon` name for every state, disabled included - a real Figma↔code drift, not fixed here (bridge is read-only for this task). Worth a follow-up: rename the Figma variable to `color/checkbox/icon/default` and add a sibling `color/checkbox/icon/disabled` bound onto the disabled+checked/indeterminate master variants."
         },
         "disabled": {
           "$value": "{color.text.disabled}",
-          "$description": "Same restraint as `radio.dot.disabled` — a disabled control's glyph reads as muted gray, not a bright white mark on a pale gray fill (which would be nearly invisible). Not yet reflected in the Figma master, see `default`'s note."
+          "$description": "Same restraint as `radio.dot.disabled` - a disabled control's glyph reads as muted gray, not a bright white mark on a pale gray fill (which would be nearly invisible). Not yet reflected in the Figma master, see `default`'s note."
         }
       }
     },
     "radio": {
       "background": {
         "$value": "{color.surface.default}",
-        "$description": "Radio keeps a plain white fill in every state, checked included — unlike Checkbox, which fills solid. The dot (see below) is what signals checked, not the fill."
+        "$description": "Radio keeps a plain white fill in every state, checked included - unlike Checkbox, which fills solid. The dot (see below) is what signals checked, not the fill."
       },
       "border": {
         "off": { "$value": "{color.border.default}" },
@@ -362,7 +362,7 @@
         "disabled": { "$value": "{color.background.disabled}" }
       },
       "border": {
-        "$description": "Owner, 2026-10-01: with the colour grading border.default (zinc.200) read too heavy, and border.subtle (zinc.100) disappeared; the zinc scale has nothing between. Rest reuses the recessed grey #ebecef (extra.recessed) as the middle — owner chose reuse over a new zinc.150. Note the coupling: retuning the recessed surface moves the input stroke too. Hover stays border.strong (zinc.300).",
+        "$description": "Owner, 2026-10-01: with the colour grading border.default (zinc.200) read too heavy, and border.subtle (zinc.100) disappeared; the zinc scale has nothing between. Rest reuses the recessed grey #ebecef (extra.recessed) as the middle - owner chose reuse over a new zinc.150. Note the coupling: retuning the recessed surface moves the input stroke too. Hover stays border.strong (zinc.300).",
         "default": { "$value": "{color.extra.recessed}" },
         "hover": { "$value": "{color.border.strong}" },
         "focus": { "$value": "{color.border.focus}" },
@@ -376,15 +376,15 @@
       },
       "icon": {
         "$value": "{color.text.subtle}",
-        "$description": "Leading/trailing icon color — always subtle, doesn't change with border state (hover/focus/error don't recolor it)."
+        "$description": "Leading/trailing icon color - always subtle, doesn't change with border state (hover/focus/error don't recolor it)."
       },
       "affix": {
         "$value": "{color.text.subtle}",
-        "$description": "Prepend/append text color (e.g. a fixed unit or protocol prefix inside the field) — a subtle, non-editable annotation next to the value, not the value's own text color."
+        "$description": "Prepend/append text color (e.g. a fixed unit or protocol prefix inside the field) - a subtle, non-editable annotation next to the value, not the value's own text color."
       }
     },
     "label": {
-      "$description": "The Label component's per-instance text color — a plain, colorable inline text bit (sentence-case, not uppercase like Tag). Just aliases the semantic text ramp; no new values. The divider between labels in a LabelGroup is NOT one of these — it's fixed chrome (color.text.subtle).",
+      "$description": "The Label component's per-instance text color - a plain, colorable inline text bit (sentence-case, not uppercase like Tag). Just aliases the semantic text ramp; no new values. The divider between labels in a LabelGroup is NOT one of these - it's fixed chrome (color.text.subtle).",
       "default": { "$value": "{color.text.default}" },
       "subtle": { "$value": "{color.text.subtle}" },
       "muted": { "$value": "{color.text.muted}" },
@@ -395,13 +395,13 @@
     },
     "formField": {
       "label": {
-        "default": { "$value": "{color.text.strong}", "$description": "The headline above the field, at rest — matches Row's own heading color (a field label reads as a subheading, not a page heading)." },
+        "default": { "$value": "{color.text.strong}", "$description": "The headline above the field, at rest - matches Row's own heading color (a field label reads as a subheading, not a page heading)." },
         "primary": { "$value": "{color.text.brand}" },
         "error": { "$value": "{color.text.danger}" }
       }
     },
     "helperText": {
-      "$description": "The icon+message row a FormField shows below its control in a non-default state. Two tones only for now — primary (an informational note) and error (validation failure) — deliberately no 'default' entry since HelperText never renders in the default state.",
+      "$description": "The icon+message row a FormField shows below its control in a non-default state. Two tones only for now - primary (an informational note) and error (validation failure) - deliberately no 'default' entry since HelperText never renders in the default state.",
       "icon": {
         "primary": { "$value": "{color.icon.brand}" },
         "error": { "$value": "{color.icon.danger}" }
@@ -413,7 +413,7 @@
     },
     "segmentedControl": {
       "track": {
-        "background": { "$value": "{color.surface.recessed}", "$description": "The recessed track the pill items sit in — surface.recessed since 2026-09-28 (was zinc.100). The sidebar's xs switcher draws no track, so this only reaches switchers on cards." }
+        "background": { "$value": "{color.surface.recessed}", "$description": "The recessed track the pill items sit in - surface.recessed since 2026-09-28 (was zinc.100). The sidebar's xs switcher draws no track, so this only reaches switchers on cards." }
       },
       "item": {
         "text": {
@@ -422,10 +422,10 @@
           "disabled": { "$value": "{color.text.disabled}" }
         },
         "background": {
-          "hover": { "$value": "{color.background.overlay-subtle}", "$description": "Same alpha-black wash MenuRow/Row/TableRow already use for hover — a flat background here (not an inset shadow), since an unselected item has no fill of its own to layer over." }
+          "hover": { "$value": "{color.background.overlay-subtle}", "$description": "Same alpha-black wash MenuRow/Row/TableRow already use for hover - a flat background here (not an inset shadow), since an unselected item has no fill of its own to layer over." }
         },
         "xs": {
-          "$description": "The xs size's own unselected recipe (2026-09-18) — introduced for the sidebar module switcher, where the item's own glass fill/border/inner-shadow/overlay (zinc + alpha-black, not the shared item.background.hover alpha-wash above) carries the unselected look regardless of tone, since tone only ever colors the `selected` state. Deliberate primitive-alias exception, same reasoning as `sidebar.navItem.hover`. `fill`/`border`/`innerShadow` step one lighter on hover (400 vs 500, everywhere at once); `overlay` instead steps UP in opacity (alpha-black.15 -> .25) — owner's follow-up tweak once the 400-step recipe was in place, making hover read as a firmer press rather than just a paler tint.",
+          "$description": "The xs size's own unselected recipe (2026-09-18) - introduced for the sidebar module switcher, where the item's own glass fill/border/inner-shadow/overlay (zinc + alpha-black, not the shared item.background.hover alpha-wash above) carries the unselected look regardless of tone, since tone only ever colors the `selected` state. Deliberate primitive-alias exception, same reasoning as `sidebar.navItem.hover`. `fill`/`border`/`innerShadow` step one lighter on hover (400 vs 500, everywhere at once); `overlay` instead steps UP in opacity (alpha-black.15 -> .25) - owner's follow-up tweak once the 400-step recipe was in place, making hover read as a firmer press rather than just a paler tint.",
           "default": {
             "fill": { "$value": "{color.zinc.500}" },
             "border": { "$value": "{color.zinc.500}" },
@@ -442,25 +442,25 @@
       }
     },
     "progressBar": {
-      "$description": "Striped-fill redesign (2026-09-16), revised same day: the fill is its own bordered, shadowed pill with a diagonal line pattern of the tone's main color + a lighter tint. Owner moved the main fill one step lighter (600/500 -> 500/400 — 'more subtle') and moved `border`/`shadow` off per-tone hue.700 onto shared neutral glass tokens (a white edge highlight + a flat black-alpha shadow, matching Card's own glass vocabulary) after prototyping on one variant — `fill`/`border`/`shadow` below reflect that final state, not the original per-tone-hue.700 version. `fill`/`stripe` stay a deliberate primitive-alias exception (same treatment as `badge.<tone>.glow/shadow` — no semantic role at these exact prominence steps, and it's a per-component visual effect); `border`/`shadow` now route through real existing semantic/primitive tokens instead (`color.border.highlight`, `color.alpha-black.20`), so they're no longer primitive-tier exceptions themselves, just reuse of tokens already established for the same glass look elsewhere.",
+      "$description": "Striped-fill redesign (2026-09-16), revised same day: the fill is its own bordered, shadowed pill with a diagonal line pattern of the tone's main color + a lighter tint. Owner moved the main fill one step lighter (600/500 -> 500/400 - 'more subtle') and moved `border`/`shadow` off per-tone hue.700 onto shared neutral glass tokens (a white edge highlight + a flat black-alpha shadow, matching Card's own glass vocabulary) after prototyping on one variant - `fill`/`border`/`shadow` below reflect that final state, not the original per-tone-hue.700 version. `fill`/`stripe` stay a deliberate primitive-alias exception (same treatment as `badge.<tone>.glow/shadow` - no semantic role at these exact prominence steps, and it's a per-component visual effect); `border`/`shadow` now route through real existing semantic/primitive tokens instead (`color.border.highlight`, `color.alpha-black.20`), so they're no longer primitive-tier exceptions themselves, just reuse of tokens already established for the same glass look elsewhere.",
       "track": {
-        "border": { "$value": "{color.border.default}", "$description": "The gray track's own 0.5px frame — plain semantic, no tone variation (the track is always neutral)." }
+        "border": { "$value": "{color.border.default}", "$description": "The gray track's own 0.5px frame - plain semantic, no tone variation (the track is always neutral)." }
       },
       "fill": {
-        "border": { "$value": "{color.border.highlight}", "$description": "White edge highlight, not tone-colored — the same glass-catch token Card/Modal use, reused here rather than inventing a white primitive alias." },
-        "shadow": { "$value": "{color.alpha-black.20}", "$description": "Flat neutral shadow, not tone-colored — replaces the earlier per-tone hue.700 shadow." }
+        "border": { "$value": "{color.border.highlight}", "$description": "White edge highlight, not tone-colored - the same glass-catch token Card/Modal use, reused here rather than inventing a white primitive alias." },
+        "shadow": { "$value": "{color.alpha-black.20}", "$description": "Flat neutral shadow, not tone-colored - replaces the earlier per-tone hue.700 shadow." }
       },
       "brand": {
-        "fill": { "$value": "{color.brand.500}", "$description": "One step lighter than the shared color.background.brand.default (600) — ProgressBar's own main color now diverges from that semantic token on purpose, so lightening it here never affects Button/Badge/etc." },
-        "stripe": { "$value": "{color.brand.400}", "$description": "Kept at 400 (not shifted down with fill) — owner's explicit preference for a very subtle fill/stripe contrast, tighter than the original 2-step gap." }
+        "fill": { "$value": "{color.brand.500}", "$description": "One step lighter than the shared color.background.brand.default (600) - ProgressBar's own main color now diverges from that semantic token on purpose, so lightening it here never affects Button/Badge/etc." },
+        "stripe": { "$value": "{color.brand.400}", "$description": "Kept at 400 (not shifted down with fill) - owner's explicit preference for a very subtle fill/stripe contrast, tighter than the original 2-step gap." }
       },
       "success": {
         "fill": { "$value": "{color.emerald.500}" },
         "stripe": { "$value": "{color.emerald.400}" }
       },
       "warning": {
-        "fill": { "$value": "{color.amber.500}", "$description": "Owner's correction — the 500-600->400-500 ramp shift briefly landed this at amber.400, one step below the shared color.background.warning (amber.500); owner wanted warning's fill to stay at 500, unlike the other 3 tones which did shift down a step." },
-        "stripe": { "$value": "{color.amber.400}", "$description": "One step below fill (500), same relative gap the other 3 tones have between their own fill and stripe — the earlier 'same as fill' note no longer applies now that fill moved back to 500." }
+        "fill": { "$value": "{color.amber.500}", "$description": "Owner's correction - the 500-600->400-500 ramp shift briefly landed this at amber.400, one step below the shared color.background.warning (amber.500); owner wanted warning's fill to stay at 500, unlike the other 3 tones which did shift down a step." },
+        "stripe": { "$value": "{color.amber.400}", "$description": "One step below fill (500), same relative gap the other 3 tones have between their own fill and stripe - the earlier 'same as fill' note no longer applies now that fill moved back to 500." }
       },
       "danger": {
         "fill": { "$value": "{color.rose.500}" },
@@ -468,7 +468,7 @@
       }
     },
     "sidebar": {
-      "$description": "Component-scoped exceptions from the sidebar's own design (2026-09-17), none matching an existing semantic step: `icon.default`/`text.default` are a deliberately dimmer 'on dark' than the shared icon.on-emphasis/text.on-emphasis (zinc.50) — a calmer, quieter default for a nav rail meant to recede behind the page content, not compete with it. `panel.background` sits between the shared background.emphasis (zinc.700, the sidebar's own base) and background.subtle (zinc.100) with no existing semantic step at zinc.600; `panel.innerShadow` is the matching inset-edge tint for that same panel surface, one step down at zinc.500 (replaces a raw unbound literal that was previously hand-set directly on the panel effect in Figma, not aliased to anything). `<tone>.fill`/`<tone>.accent` deliberately do NOT reuse the shared background.<tone>/text.<tone>/icon.<tone> tokens (600/700) — those steps are calibrated for tone-as-accent on a LIGHT surface; on this component's dark background they read muddy and low-contrast. 500 (fill, for the module switcher's larger solid area) and 400 (accent, for the switcher's stroke/inner-shadow and the active nav row's icon+text) are one and two steps lighter respectively, matching what actually reads clearly against color.background.emphasis. `navItem.active.*` is the active/current nav row's own recipe — a neutral glass highlight (fill/overlay/border/innerShadow, all zinc/alpha-black, matching the module switcher's unselected-item recipe) that stays tone-agnostic on purpose: only the row's icon+text recolor per module (via `<tone>.accent` above), the highlight pill itself never does. All primitive-alias exceptions, scoped to this one component.",
+      "$description": "Component-scoped exceptions from the sidebar's own design (2026-09-17), none matching an existing semantic step: `icon.default`/`text.default` are a deliberately dimmer 'on dark' than the shared icon.on-emphasis/text.on-emphasis (zinc.50) - a calmer, quieter default for a nav rail meant to recede behind the page content, not compete with it. `panel.background` sits between the shared background.emphasis (zinc.700, the sidebar's own base) and background.subtle (zinc.100) with no existing semantic step at zinc.600; `panel.innerShadow` is the matching inset-edge tint for that same panel surface, one step down at zinc.500 (replaces a raw unbound literal that was previously hand-set directly on the panel effect in Figma, not aliased to anything). `<tone>.fill`/`<tone>.accent` deliberately do NOT reuse the shared background.<tone>/text.<tone>/icon.<tone> tokens (600/700) - those steps are calibrated for tone-as-accent on a LIGHT surface; on this component's dark background they read muddy and low-contrast. 500 (fill, for the module switcher's larger solid area) and 400 (accent, for the switcher's stroke/inner-shadow and the active nav row's icon+text) are one and two steps lighter respectively, matching what actually reads clearly against color.background.emphasis. `navItem.active.*` is the active/current nav row's own recipe - a neutral glass highlight (fill/overlay/border/innerShadow, all zinc/alpha-black, matching the module switcher's unselected-item recipe) that stays tone-agnostic on purpose: only the row's icon+text recolor per module (via `<tone>.accent` above), the highlight pill itself never does. All primitive-alias exceptions, scoped to this one component.",
       "icon": {
         "default": { "$value": "{color.zinc.200}" }
       },
@@ -499,44 +499,44 @@
           "innerShadow": { "$value": "{color.zinc.500}" }
         },
         "hover": {
-          "fill": { "$value": "{color.zinc.500}", "$description": "Deliberately simpler than active — a flat wash with no border/inner-shadow/overlay, so hover reads as a lighter, transient touch compared to the fuller active recipe above." }
+          "fill": { "$value": "{color.zinc.500}", "$description": "Deliberately simpler than active - a flat wash with no border/inner-shadow/overlay, so hover reads as a lighter, transient touch compared to the fuller active recipe above." }
         }
       },
       "logo": {
-        "mark": { "$value": "{color.white}", "$description": "Owner's explicit call: the logo stays pure white on the sidebar regardless of theme — not an alias into the zinc ramp like every other sidebar token above, since this one is never meant to soften or recede. Was bound to a raw color.zinc.100 in Figma before this fix (an off-white, not the intended pure white)." },
-        "wordmark": { "$value": "{color.white}", "$description": "Same reasoning as mark, for the adjacent wordmark text — was bound to color.zinc.200 in Figma, inconsistent with the mark's own (also-wrong) near-white; both now resolve to the one correct value." }
+        "mark": { "$value": "{color.white}", "$description": "Owner's explicit call: the logo stays pure white on the sidebar regardless of theme - not an alias into the zinc ramp like every other sidebar token above, since this one is never meant to soften or recede. Was bound to a raw color.zinc.100 in Figma before this fix (an off-white, not the intended pure white)." },
+        "wordmark": { "$value": "{color.white}", "$description": "Same reasoning as mark, for the adjacent wordmark text - was bound to color.zinc.200 in Figma, inconsistent with the mark's own (also-wrong) near-white; both now resolve to the one correct value." }
       }
     },
     "tableProgressStages": {
-      "filled": { "$value": "{color.button.primary.background.default}", "$description": "Reached stages (done + current) — the glass fill of the progress pill (owner, 2026-09-30: stages restyled as glass blocks like the charts; was background.brand.default, brand 600, the old dot-and-line tracker's colour)." },
-      "unfilled": { "$value": "{color.surface.recessed}", "$description": "Stages not reached yet — flat, sunk into the card like an empty progress segment. surface.recessed since 2026-09-28." }
+      "filled": { "$value": "{color.button.primary.background.default}", "$description": "Reached stages (done + current) - the glass fill of the progress pill (owner, 2026-09-30: stages restyled as glass blocks like the charts; was background.brand.default, brand 600, the old dot-and-line tracker's colour)." },
+      "unfilled": { "$value": "{color.surface.recessed}", "$description": "Stages not reached yet - flat, sunk into the card like an empty progress segment. surface.recessed since 2026-09-28." }
     },
     "tooltip": {
-      "background": { "$value": "{color.surface.inverse}", "$description": "The one component that stays dark regardless of theme — a tooltip needs contrast against whatever's underneath, light or dark page alike." },
+      "background": { "$value": "{color.surface.inverse}", "$description": "The one component that stays dark regardless of theme - a tooltip needs contrast against whatever's underneath, light or dark page alike." },
       "text": { "$value": "{color.text.on-inverse}" }
     },
     "divider": {
       "line": {
         "$value": "{color.border.subtle}",
-        "$description": "The standalone Divider atom's own line color. Distinct from LabelGroup's internal divider, which deliberately stays on color.text.subtle as fixed chrome — not unified, since that one predates this token and isn't worth a breaking rebind for a coincidental match."
+        "$description": "The standalone Divider atom's own line color. Distinct from LabelGroup's internal divider, which deliberately stays on color.text.subtle as fixed chrome - not unified, since that one predates this token and isn't worth a breaking rebind for a coincidental match."
       }
     },
     "spinner": {
-      "icon": { "$value": "{color.icon.default}", "$description": "A sensible static default — real usage typically recolors it via context (the same way Button's own built-in spinner adopts each variant's icon color), same restraint as an inline icon." }
+      "icon": { "$value": "{color.icon.default}", "$description": "A sensible static default - real usage typically recolors it via context (the same way Button's own built-in spinner adopts each variant's icon color), same restraint as an inline icon." }
     },
     "breadcrumb": {
       "text": {
         "default": { "$value": "{color.text.subtle}", "$description": "An earlier, clickable crumb." },
         "hover": { "$value": "{color.text.default}" },
-        "current": { "$value": "{color.text.strong}", "$description": "The last crumb — the current page, not a link." },
-        "primary": { "$value": "{color.text.brand}", "$description": "An optional brand-colored crumb — for calling out one segment of the trail (e.g. the entity type), independent of which crumb is current." }
+        "current": { "$value": "{color.text.strong}", "$description": "The last crumb - the current page, not a link." },
+        "primary": { "$value": "{color.text.brand}", "$description": "An optional brand-colored crumb - for calling out one segment of the trail (e.g. the entity type), independent of which crumb is current." }
       },
       "icon": { "$value": "{color.icon.subtle}", "$description": "The separator glyph between crumbs." }
     },
     "avatar": {
-      "background": { "$value": "{color.surface.recessed}", "$description": "Neutral placeholder fill behind initials — not per-user hashed color, a static reference can't model that. surface.recessed since 2026-09-28 (was zinc.100)." },
+      "background": { "$value": "{color.surface.recessed}", "$description": "Neutral placeholder fill behind initials - not per-user hashed color, a static reference can't model that. surface.recessed since 2026-09-28 (was zinc.100)." },
       "text": { "$value": "{color.text.strong}", "$description": "The initials." },
-      "ring": { "$value": "{color.surface.default}", "$description": "The ring around the status dot and the action badge — separates them visually from the avatar image underneath, same idea as a real UI's cutout." },
+      "ring": { "$value": "{color.surface.default}", "$description": "The ring around the status dot and the action badge - separates them visually from the avatar image underneath, same idea as a real UI's cutout." },
       "status": {
         "online": { "$value": "{color.background.success}" },
         "offline": { "$value": "{color.background.muted}" }
@@ -544,7 +544,7 @@
       "action": {
         "add": { "$value": "{color.background.brand.default}" },
         "delete": { "$value": "{color.background.danger.default}" },
-        "icon": { "$value": "{color.white}", "$description": "The add/delete glyph inside the action badge — white against either solid fill." }
+        "icon": { "$value": "{color.white}", "$description": "The add/delete glyph inside the action badge - white against either solid fill." }
       }
     }
   }

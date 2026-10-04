@@ -11,7 +11,7 @@
 .field[data-state='primary'] .label { color: var(--color-form-field-label-primary); }
 .field[data-state='error'] .label { color: var(--color-form-field-label-error); }
 
-/* headline mirrors text/label/* one step DOWN from the field's own size —
+/* headline mirrors text/label/* one step DOWN from the field's own size -
    same downshift LabelGroup/Row use for their description text
    (sm->xs, md->sm, lg->md), not a naive same-size pairing. */
 .field[data-size='sm'] .label {

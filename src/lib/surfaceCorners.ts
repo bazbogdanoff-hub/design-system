@@ -1,11 +1,11 @@
 import { useLayoutEffect, type RefObject } from 'react';
 
 /**
- * Outer corners of a page's cards (owner, 2026-09-28 — an app rule; Figma
+ * Outer corners of a page's cards (owner, 2026-09-28 - an app rule; Figma
  * cannot express it, so it is not in the component masters).
  *
- * A top-level card's corner is **outer** — rounded to `radius.card-outer`
- * (24) instead of `radius.card` (16) — only when both hold:
+ * A top-level card's corner is **outer** - rounded to `radius.card-outer`
+ * (24) instead of `radius.card` (16) - only when both hold:
  *
  * 1. **Both edges meeting at that corner lie on the page's inner border**
  *    (the edge of `Page`'s padding). The corner sits in a corner of the
@@ -23,7 +23,7 @@ import { useLayoutEffect, type RefObject } from 'react';
  * component's CSS; attributes rather than custom properties because
  * attributes do not inherit into nested cards.
  *
- * Geometry is measured, so it follows every layout the page takes — tier
+ * Geometry is measured, so it follows every layout the page takes - tier
  * spans, stacked tablet rails, content that loads late.
  */
 
@@ -48,7 +48,7 @@ function contentBox(page: HTMLElement): Box {
   const originX = rect.left + page.clientLeft;
   // A page that scrolls: the border that matters is the scrolled content's,
   // so a card at the very end of a long page still reaches the bottom
-  // corners. A page that doesn't (dashboard, list pages): the visible box —
+  // corners. A page that doesn't (dashboard, list pages): the visible box -
   // its scrollHeight can include overflow nobody sees, e.g. drop shadows.
   const scrolls = /(auto|scroll)/.test(cs.overflowY);
   const originY = rect.top + page.clientTop - (scrolls ? page.scrollTop : 0);
@@ -65,7 +65,7 @@ function contentBox(page: HTMLElement): Box {
  * The element's box where layout put it: its bounding rect with any
  * translate / scale on it, or on its ancestors up to `stop`, taken back out.
  * Entrance animations move cards with transforms, and the corners must
- * follow where a card lands, not where it is mid-flight — otherwise a card
+ * follow where a card lands, not where it is mid-flight - otherwise a card
  * sliding in reads as "not touching the page" and snaps from 16 to 24 when
  * it arrives. Scale is assumed about the centre (the default origin) and
  * only the element's own counts; nothing rotates cards.

@@ -3,11 +3,11 @@ import { cn } from '../../lib/cn';
 import styles from './ChartLegend.module.css';
 
 export interface ChartLegendItem {
-  /** Series key — must match a `BarChart` series `key` for consistent color. */
+  /** Series key - must match a `BarChart` series `key` for consistent color. */
   key: string;
   /** Series name shown next to the swatch. */
   label: string;
-  /** Any CSS color value — usually a token var, e.g. `var(--color-chart-1)`. */
+  /** Any CSS color value - usually a token var, e.g. `var(--color-chart-1)`. */
   color: string;
 }
 
@@ -16,7 +16,7 @@ export interface ChartLegendProps extends HTMLAttributes<HTMLUListElement> {
 }
 
 /**
- * The identity channel for a chart with 2+ series — a swatch + label per
+ * The identity channel for a chart with 2+ series - a swatch + label per
  * series. Never color-alone: the label is always visible text, never
  * colored itself (identity comes from the swatch beside it).
  */

@@ -4,15 +4,15 @@ import { CheckCircleIcon } from './CheckCircleIcon';
 import styles from './EmptyState.module.css';
 
 export interface EmptyStateProps extends HTMLAttributes<HTMLDivElement> {
-  /** Defaults to a success-colored checkmark — override for a different context (search returned nothing, a list has no data yet, etc.). */
+  /** Defaults to a success-colored checkmark - override for a different context (search returned nothing, a list has no data yet, etc.). */
   icon?: ReactNode;
   heading: ReactNode;
   description?: ReactNode;
 }
 
 /**
- * A short "nothing here" state — icon + a line of text, optionally a second
- * muted line, all centered. Generic (not itself about "no issues") — the
+ * A short "nothing here" state - icon + a line of text, optionally a second
+ * muted line, all centered. Generic (not itself about "no issues") - the
  * default checkmark icon fits a resolved/all-clear context; pass your own
  * `icon` for others (an empty search, no data yet).
  *

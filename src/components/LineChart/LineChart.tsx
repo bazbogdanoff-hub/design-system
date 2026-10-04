@@ -9,7 +9,7 @@ export interface LineChartSeries {
   /** Matches a key in each datum's `values`. */
   key: string;
   label: string;
-  /** Any CSS color value — usually a token var, e.g. `var(--color-chart-1)`. */
+  /** Any CSS color value - usually a token var, e.g. `var(--color-chart-1)`. */
   color: string;
 }
 
@@ -22,13 +22,13 @@ export interface LineChartDatum {
 export interface LineChartProps {
   data: LineChartDatum[];
   series: LineChartSeries[];
-  /** Fills the area under each line down to the plot's own bottom edge —
+  /** Fills the area under each line down to the plot's own bottom edge -
    * a soft "glow," not a from-zero magnitude encoding (the axis itself
    * doesn't start at 0; see `docs/components/LineChart.md`). Defaults to
    * on for a single series, off for 2+ (overlapping fills read poorly). */
   area?: boolean;
   /** Total SVG height in px, including the x-axis label band. Omit to fill
-   * whatever height the container gives it (the usual case — put
+   * whatever height the container gives it (the usual case - put
    * `LineChart` in a flex/grid area with a real height, e.g. `ChartCard`'s
    * body). */
   height?: number;
@@ -37,10 +37,10 @@ export interface LineChartProps {
    * start, and listed in the tooltip (owner, 2026-09-30: the on-time target).
    * The y-range always takes it in. */
   reference?: { value: number; label: string };
-  /** Makes each category's column a button — click, Enter or Space — e.g.
+  /** Makes each category's column a button - click, Enter or Space - e.g.
    * open that week's records. */
   onSelect?: (index: number) => void;
-  /** Overall chart description for assistive tech — the data itself is
+  /** Overall chart description for assistive tech - the data itself is
    * always reachable per-point (focusable) and via the hidden table below. */
   'aria-label'?: string;
 }
@@ -52,7 +52,7 @@ const MIN_HEIGHT_PX = 140; // pre-measurement / degenerate-container fallback
 // invisible columns for day labels + hover (line vertices stay edge→edge).
 const PADDING_PX = { top: 20, right: 16, bottom: 24, left: 48 };
 
-/** Catmull-Rom → cubic Bézier smoothing (tension 1/6) — the standard way to
+/** Catmull-Rom → cubic Bézier smoothing (tension 1/6) - the standard way to
  * draw a smooth curve through a set of points without overshooting them. */
 function smoothPath(points: { x: number; y: number }[]): string {
   if (points.length === 0) return '';
@@ -72,7 +72,7 @@ function smoothPath(points: { x: number; y: number }[]): string {
   return d;
 }
 
-/** The same curve as `smoothPath`, shifted `offset` along its normal —
+/** The same curve as `smoothPath`, shifted `offset` along its normal -
  * positive toward the top of the chart. Sampled densely (each segment as a
  * short polyline) because a cubic's true offset is not itself a cubic; a
  * plain vertical shift would thin to nothing on the steep parts. Used for
@@ -105,9 +105,9 @@ function offsetPath(points: { x: number; y: number }[], offset: number, steps = 
 }
 
 /**
- * A line chart — one smooth line per series, optional area fill, a hover
+ * A line chart - one smooth line per series, optional area fill, a hover
  * crosshair with per-series dot markers and a tooltip (mandatory for
- * line/area per the dataviz skill — unlike a bar chart, the mark itself
+ * line/area per the dataviz skill - unlike a bar chart, the mark itself
  * has no other affordance to land a pointer on). See
  * `docs/components/LineChart.md`.
  */
@@ -142,7 +142,7 @@ export function LineChart({
   // (e.g. at the foot of a ChartCard) instead of it filling the space.
   const wrapperStyle = fixedHeight != null ? { height: fixedHeight } : undefined;
 
-  // Nothing to plot yet (e.g. still loading): an empty frame, not a crash —
+  // Nothing to plot yet (e.g. still loading): an empty frame, not a crash -
   // every path below assumes at least one point.
   if (data.length === 0 || series.length === 0) {
     return <div className={styles.wrapper} ref={wrapperRef} style={wrapperStyle} role="img" aria-label={ariaLabel} />;
@@ -165,7 +165,7 @@ export function LineChart({
   // Line vertices run edge → edge. Hit targets are equal columns like
   // BarChart (each holds its own vertex); the crosshair, marker, tooltip and
   // x label all sit on the vertex, so the dot is the value the tooltip reads
-  // (owner, 2026-09-30 — they used to sit at the column centre, off the point).
+  // (owner, 2026-09-30 - they used to sit at the column centre, off the point).
   const bandWidth = plotWidth / Math.max(1, data.length);
   const xFor = (i: number) =>
     PADDING.left + (data.length === 1 ? plotWidth / 2 : (plotWidth * i) / (data.length - 1));
@@ -217,7 +217,7 @@ export function LineChart({
           );
         })}
 
-        {/* the goal: dashed, under the lines, labelled at its left end — a
+        {/* the goal: dashed, under the lines, labelled at its left end - a
             trend heads toward its goal, so the start is where the line is
             furthest from it and the label stays clear */}
         {reference && (
@@ -255,7 +255,7 @@ export function LineChart({
               {areaPath && <path d={areaPath} fill={s.color} className={styles.area} />}
               {/* The line in glass (owner, 2026-09-30), 2.5px from top to
                   bottom: a 0.5px catch of light, the 1.5px line, a 0.5px
-                  vignette — the chart elements' catch and inner shadow,
+                  vignette - the chart elements' catch and inner shadow,
                   light falling from above. Drawn as three strokes: the
                   catch and vignette offset along the curve's normal (so
                   they stay 0.5px on the steep parts too), the line over
@@ -304,7 +304,7 @@ export function LineChart({
           </g>
         )}
 
-        {/* x-axis category labels + hit targets — equal columns like BarChart */}
+        {/* x-axis category labels + hit targets - equal columns like BarChart */}
         {data.map((datum, i) => {
           return (
             <g key={datum.category}>
@@ -378,7 +378,7 @@ export function LineChart({
         />
       )}
 
-      {/* screen-reader-only data table — every value stays reachable without hovering */}
+      {/* screen-reader-only data table - every value stays reachable without hovering */}
       {/* Hidden in a div, not on the table: a table won't shrink below its
           rows, so a 1px table still stretched the page's scroll height. */}
       <div className={styles.srOnlyTable}>

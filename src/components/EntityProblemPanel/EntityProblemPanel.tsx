@@ -7,17 +7,17 @@ export interface EntityProblemPanelProps extends Omit<HTMLAttributes<HTMLDivElem
   /** An `<EntitySummary>` for this entity/column. */
   summary: ReactNode;
   /** `Row` elements for this entity's issues. Omit (or pass `null`) to show
-   * `emptyState` instead — built at this grain (not a combinatorial
+   * `emptyState` instead - built at this grain (not a combinatorial
    * `RigProblemDetail`) so any mix of which entities have issues is just
    * picking which panels get `children` vs. `emptyState`. */
   children?: ReactNode;
-  /** Shown instead of the rows list when there's nothing here — usually an
+  /** Shown instead of the rows list when there's nothing here - usually an
    * `<EmptyState>`. */
   emptyState?: ReactNode;
 }
 
 /**
- * One entity's problem column — an `EntitySummary` header + either a
+ * One entity's problem column - an `EntitySummary` header + either a
  * scrollable list of `Row`s or an `EmptyState`. Pairs with
  * `RigProblemDetail`, which lays 3 of these out side by side.
  */

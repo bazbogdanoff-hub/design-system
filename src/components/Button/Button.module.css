@@ -1,5 +1,5 @@
 /* ============================================================================
-   .surface — the shared glass-button skin. Used by Button AND IconButton.
+   .surface - the shared glass-button skin. Used by Button AND IconButton.
    Variant colour / border / shadow / state logic lives here, keyed by
    [data-variant]. Layout (size, padding, square) is per-component below.
    Effect values are the "Viginette/2xs*" Figma styles, hand-tuned (not tokens);
@@ -19,7 +19,7 @@
     transform 260ms cubic-bezier(0.34, 1.5, 0.64, 1);
 }
 
-/* Press — the button gives a little under the finger and springs back on
+/* Press - the button gives a little under the finger and springs back on
    release (motion playground, 2026-09-28). Quick in, springy out: the
    transition above is the release; this one is the press. */
 .surface:active:not(:disabled):not([aria-disabled='true']) {
@@ -43,7 +43,7 @@
   opacity: 0.7;
 }
 
-/* icon / spinner slots — colour comes from --_btn-icon set per variant */
+/* icon / spinner slots - colour comes from --_btn-icon set per variant */
 .surface [data-btn-icon] {
   display: inline-flex;
   flex: none;
@@ -117,7 +117,7 @@
   transform: rotate(180deg);
 }
 
-/* ---- tertiary — no surface, underline on hover, brand on active ------------ */
+/* ---- tertiary - no surface, underline on hover, brand on active ------------ */
 .surface[data-variant='tertiary'] {
   --_btn-icon: var(--color-button-tertiary-icon-default);
   color: var(--color-button-tertiary-text-default);
@@ -140,7 +140,7 @@
 }
 
 /* ============================================================================
-   .button — the text button layout (label + optional icons, hug width)
+   .button - the text button layout (label + optional icons, hug width)
    ============================================================================ */
 .button {
   display: inline-flex;
@@ -150,7 +150,7 @@
   user-select: none;
 }
 
-/* height / padding-inline / gap / label style / radius — 1440 migration:
+/* height / padding-inline / gap / label style / radius - 1440 migration:
    unified across variant now (every variant gets the same height/padding/
    font/radius at a given size). Two exceptions, applied as overrides below:
    primary's gap stays a flat space/6 at every size (secondary/tertiary scale

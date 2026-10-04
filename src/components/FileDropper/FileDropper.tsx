@@ -22,9 +22,9 @@ import styles from './FileDropper.module.css';
 export type FileDropperStatus = 'idle' | 'uploading' | 'success' | 'error';
 
 export interface FileDropperFile {
-  /** The file's display name — shown once `status` leaves `idle`. */
+  /** The file's display name - shown once `status` leaves `idle`. */
   name: string;
-  /** A pre-formatted size string (e.g. `"2.4 MB"`) — shown on `success`. Not computed from a `File` object; pass what you want displayed. */
+  /** A pre-formatted size string (e.g. `"2.4 MB"`) - shown on `success`. Not computed from a `File` object; pass what you want displayed. */
   size?: string;
 }
 
@@ -36,7 +36,7 @@ export interface FileDropperProps
   heading: ReactNode;
   /** The idle-state subtext. Defaults to the standard "click or drag" instruction. */
   description?: ReactNode;
-  /** The current/last-picked file — required once `status` leaves `idle`. */
+  /** The current/last-picked file - required once `status` leaves `idle`. */
   file?: FileDropperFile;
   /** `0`–`100`. Only read while `status="uploading"`. */
   progress?: number;
@@ -46,9 +46,9 @@ export interface FileDropperProps
   accept?: string;
   /** Forwarded to the native file input. */
   multiple?: boolean;
-  /** Disables the dropzone and the native input — no click, drag, or actions. */
+  /** Disables the dropzone and the native input - no click, drag, or actions. */
   disabled?: boolean;
-  /** Fires with the picked/dropped `FileList` — from a click, or a drop, in any status (dropping again replaces the current file). */
+  /** Fires with the picked/dropped `FileList` - from a click, or a drop, in any status (dropping again replaces the current file). */
   onFilesSelected: (files: FileList) => void;
   /** Trailing action while `status="uploading"`. Omit to hide the action. */
   onCancel?: () => void;
@@ -63,18 +63,18 @@ export interface FileDropperProps
  * placeholder; `uploading`/`success`/`error` switch to a compact file row
  * (icon + name + status) once a file is picked. The whole box is a real
  * `<label>` around a visually-hidden `<input type="file">`, so click-to-browse
- * and the native file picker's own a11y come for free — drag-and-drop is
+ * and the native file picker's own a11y come for free - drag-and-drop is
  * layered on top via manual handlers.
  *
  * State is fully controlled: picking/dropping a file only calls
  * `onFilesSelected` (or the matching action), it never updates `status`
  * itself. The caller owns the upload (progress, success, failure) and drives
- * `status`/`file`/`progress`/`errorMessage` accordingly — same "presentational,
+ * `status`/`file`/`progress`/`errorMessage` accordingly - same "presentational,
  * not stateful" split `ProgressBar` uses for `value`.
  *
- * Only the border communicates state color (default/danger) — the leading
+ * Only the border communicates state color (default/danger) - the leading
  * icon otherwise stays neutral (`DocumentIcon`) and only swaps to a colored
- * status glyph on `success`/`error` — same restraint `Input` uses (icon/affix
+ * status glyph on `success`/`error` - same restraint `Input` uses (icon/affix
  * never react to state, only the border does).
  */
 export const FileDropper = forwardRef<HTMLLabelElement, FileDropperProps>(function FileDropper(

@@ -25,7 +25,7 @@
 }
 
 /* Let Filter/Select menus (and their drop shadows) paint above the table
-   body — without this, later opaque rows cover the menu elevation. */
+   body - without this, later opaque rows cover the menu elevation. */
 .header {
   position: relative;
   z-index: 2;
@@ -43,7 +43,7 @@
   gap: var(--space-16);
 }
 
-/* the real scroll boundary — horizontal only; vertical size is locked via
+/* the real scroll boundary - horizontal only; vertical size is locked via
    measured `--table-row-height` so body rows fill without scrolling */
 .content {
   width: 100%;
@@ -55,7 +55,7 @@
 
 .grid {
   width: 100%;
-  /* Hug body rows — do NOT stretch to 100%. A tall table distributes
+  /* Hug body rows - do NOT stretch to 100%. A tall table distributes
      leftover height into rows (max-height on <tr> is ignored), which made
      page-2's 2 rows blow up to fill the content area. */
   height: auto;

@@ -1,4 +1,4 @@
-/* The bordered box lives on the WRAPPER, not the native <input> — so leading/
+/* The bordered box lives on the WRAPPER, not the native <input> - so leading/
    trailing icons and prepend/append text sit inside the same field, share its
    border/background, and the whole box reacts to focus (:focus-within). The
    <input> itself is borderless/transparent and just fills the remaining space. */
@@ -49,7 +49,7 @@
   color: var(--color-input-text-placeholder);
 }
 /* An empty date/time field draws its mm/dd/yyyy segments as text, not as a
-   placeholder — give them the placeholder colour until a value is set
+   placeholder - give them the placeholder colour until a value is set
    (controlled fields only: `data-empty` comes from `value === ''`). */
 .input[data-empty]::-webkit-datetime-edit {
   color: var(--color-input-text-placeholder);
@@ -81,7 +81,7 @@
   letter-spacing: var(--text-body-lg-letter-spacing);
 }
 
-/* leading / trailing icon — sized off font-size like Button's own icon slot */
+/* leading / trailing icon - sized off font-size like Button's own icon slot */
 .icon {
   display: inline-flex;
   flex: none;
@@ -97,7 +97,7 @@
 .field[data-size='md'] .icon { font-size: 1rem; }
 .field[data-size='lg'] .icon { font-size: 1.125rem; }
 
-/* prepend / append text — a fixed, non-editable, subtly-coloured annotation
+/* prepend / append text - a fixed, non-editable, subtly-coloured annotation
    (a unit, a protocol prefix) sharing the field's own type scale, never the
    value's own text color. */
 .affix {
@@ -121,9 +121,9 @@
   font-weight: var(--text-body-lg-font-weight);
 }
 
-/* trailingAction — an interactive element (a send IconButton) at the end,
+/* trailingAction - an interactive element (a send IconButton) at the end,
    inside the border (owner, 2026-09-30). The field's end padding drops to
-   4px so it sits snug; its corners run parallel to the field's — the
+   4px so it sits snug; its corners run parallel to the field's - the
    field's radius less that 4px inset. [data-has-action] lifts this over the
    action's own radius rule. */
 .field[data-has-action] {

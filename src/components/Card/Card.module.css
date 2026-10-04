@@ -5,7 +5,7 @@
   background: var(--color-card-background-default);
   border-radius: var(--radius-card);
 
-  /* Glass — matches the Figma "Card" effect stack; hand-tuned, NOT tokens.
+  /* Glass - matches the Figma "Card" effect stack; hand-tuned, NOT tokens.
      Both insets so they're layout-neutral (Figma strokesIncludedInLayout: false):
      1) 1.5px white catch, top + left only  -> color/card/border
      2) "vignette xs" inner shadow          -> offset 4/4, blur 16, color/card/vignette */
@@ -14,7 +14,7 @@
     inset 4px 4px 16px 0 var(--color-card-vignette);
 }
 
-/* Outer corners — set by Page (lib/surfaceCorners.ts) on a top-level card
+/* Outer corners - set by Page (lib/surfaceCorners.ts) on a top-level card
    whose corner sits in a corner of the page. The rest keep radius.card. */
 .card[data-corner-outer~='tl'] { border-top-left-radius: var(--radius-card-outer); }
 .card[data-corner-outer~='tr'] { border-top-right-radius: var(--radius-card-outer); }
@@ -33,7 +33,7 @@
     0 12px 32px 0 var(--color-alpha-black-25);
 }
 
-/* only `none` clips — that's the one padding where a consumer's content is
+/* only `none` clips - that's the one padding where a consumer's content is
    expected to sit flush against Card's own rounded corners (e.g. Table's
    header/rows/footer). The padded variants don't clip, so a popover or
    focus ring on padded content isn't cut off unexpectedly. */

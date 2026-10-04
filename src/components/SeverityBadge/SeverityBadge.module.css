@@ -1,4 +1,4 @@
-/* format="icon" — bare triangle, no chip. Colour = the level's tone text colour;
+/* format="icon" - bare triangle, no chip. Colour = the level's tone text colour;
    SeverityIcon inherits it via currentColor. Sized by SeverityIcon's `size`. */
 .icon {
   display: inline-flex;

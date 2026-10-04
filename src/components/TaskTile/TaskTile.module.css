@@ -1,10 +1,10 @@
-/* The surface — white fill, glass catch, shadows, hover lift — is Tile's
+/* The surface - white fill, glass catch, shadows, hover lift - is Tile's
    (components/Tile). This file is only the task's own layout. */
 .tile {
   min-width: 0;
 }
 
-/* onOpen — the whole tile is the link to its task. */
+/* onOpen - the whole tile is the link to its task. */
 .tile[data-openable] {
   cursor: pointer;
 }
@@ -13,7 +13,7 @@
   outline-offset: 2px;
 }
 
-/* Hover anywhere on the tile and the action's icon leans the way it goes —
+/* Hover anywhere on the tile and the action's icon leans the way it goes -
    right by default (an arrow: "open"), up for an action marked
    `data-nudge="up"` (an upload). The tile has no elevation to say it's
    live, so the motion says it (motion playground, 2026-09-28). The spring

@@ -17,23 +17,23 @@ export type FormFieldSize = InputSize;
 export interface FormFieldProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   /** The headline above the control. */
   label: ReactNode;
-  /** `sm` · `md` (default) · `lg` — cascades to a bare `<Input>` child and to the headline/`HelperText` sizing. The headline itself renders one `text/label/*` step down from this (`sm`→`xs`, `md`→`sm`, `lg`→`md`), same downshift `LabelGroup`/`Row` use for their description text. */
+  /** `sm` · `md` (default) · `lg` - cascades to a bare `<Input>` child and to the headline/`HelperText` sizing. The headline itself renders one `text/label/*` step down from this (`sm`→`xs`, `md`→`sm`, `lg`→`md`), same downshift `LabelGroup`/`Row` use for their description text. */
   size?: FormFieldSize;
   /** `default` (headline at rest, no helper) · `primary` (headline + helper in brand color) · `error` (headline + helper in danger color). */
   state?: FormFieldState;
-  /** Shown as a `HelperText` below the control — only when `state` isn't `default`. */
+  /** Shown as a `HelperText` below the control - only when `state` isn't `default`. */
   helperText?: ReactNode;
   /** Associates the headline with the control via a real `<label htmlFor>`. */
   htmlFor?: string;
-  /** The control — usually an `Input`. A bare `<Input>` (no explicit `size`) inherits this field's `size`. */
+  /** The control - usually an `Input`. A bare `<Input>` (no explicit `size`) inherits this field's `size`. */
   children: ReactNode;
 }
 
 /**
- * Label + control + conditional helper text — the standard wrapper for a
+ * Label + control + conditional helper text - the standard wrapper for a
  * single form field. `default` is just a headline above the control;
  * `primary`/`error` additionally color the headline and add a `HelperText`
- * row below, in the matching tone. Not `Input`-specific — any control can be
+ * row below, in the matching tone. Not `Input`-specific - any control can be
  * `children`, though only a bare `Input` gets its `size` auto-filled.
  */
 export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(function FormField(

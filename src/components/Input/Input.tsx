@@ -5,24 +5,24 @@ import styles from './Input.module.css';
 export type InputSize = 'sm' | 'md' | 'lg';
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
-  /** `sm` (36px) · `md` (40px, default) · `lg` (44px) — Input's own scale, no longer tied to `Button`'s heights (owner resized it a full step up in Figma). */
+  /** `sm` (36px) · `md` (40px, default) · `lg` (44px) - Input's own scale, no longer tied to `Button`'s heights (owner resized it a full step up in Figma). */
   size?: InputSize;
-  /** Icon at the start of the field, inside the border. Decorative — not focusable. */
+  /** Icon at the start of the field, inside the border. Decorative - not focusable. */
   leadingIcon?: ReactNode;
-  /** Icon at the end of the field, inside the border. Decorative — not focusable. */
+  /** Icon at the end of the field, inside the border. Decorative - not focusable. */
   trailingIcon?: ReactNode;
-  /** Fixed, non-editable text before the value (e.g. `https://`) — subtle color, shares the field's border. */
+  /** Fixed, non-editable text before the value (e.g. `https://`) - subtle color, shares the field's border. */
   prependText?: ReactNode;
-  /** Fixed, non-editable text after the value (e.g. `kg`, `.com`) — subtle color, shares the field's border. */
+  /** Fixed, non-editable text after the value (e.g. `kg`, `.com`) - subtle color, shares the field's border. */
   appendText?: ReactNode;
-  /** An interactive element at the very end, inside the border — e.g. a
+  /** An interactive element at the very end, inside the border - e.g. a
    * send `IconButton` (owner, 2026-09-30: the chat composer). Unlike
    * `trailingIcon` it is focusable and clickable. The field's end padding
    * drops to 4px so it sits snug, and its corners run parallel to the
    * field's. Use an `IconButton` a step shorter than the field (`md` in an
    * `md` field). */
   trailingAction?: ReactNode;
-  /** Error state — reddens the border and sets `aria-invalid`. */
+  /** Error state - reddens the border and sets `aria-invalid`. */
   error?: boolean;
   /** Class on the outer field box (the bordered element). `className` targets the `<input>` itself. */
   wrapperClassName?: string;
@@ -30,16 +30,16 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
 
 /**
  * A single-line text field. The border/background/radius live on a wrapper
- * around the native `<input>` — not the input itself — so `leadingIcon`,
+ * around the native `<input>` - not the input itself - so `leadingIcon`,
  * `trailingIcon`, `prependText`, and `appendText` can sit inside the same
  * bordered field and the whole box reacts to focus, not just the input.
  *
  * `prependText`/`appendText` are fixed annotations (a unit, a protocol
- * prefix) — always `color/input/affix` (subtle), never part of the value and
+ * prefix) - always `color/input/affix` (subtle), never part of the value and
  * never editable themselves. Icons are decorative (`aria-hidden`) and always
  * `color/input/icon` (also subtle) regardless of field state.
  *
- * Figma is at full parity (30 variants — `size` × `state` × `filled` — plus
+ * Figma is at full parity (30 variants - `size` × `state` × `filled` - plus
  * these 4 accessories as boolean component properties); see docs/components/Input.md.
  */
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(

@@ -2,7 +2,7 @@ import type { SVGProps } from 'react';
 import styles from './Button.module.css';
 
 /**
- * The button loading spinner — a 3/4 arc rotating via CSS. Colour = `currentColor`,
+ * The button loading spinner - a 3/4 arc rotating via CSS. Colour = `currentColor`,
  * size = `1em` (the button sets font-size, so it tracks the label). Internal to
  * Button / IconButton.
  */
