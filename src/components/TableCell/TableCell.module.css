@@ -103,6 +103,13 @@
   z-index: 1;
   background-color: inherit;
 }
+/* A pinned cell is its own layer (sticky + z-index), so a menu opened from it
+   — the row's ⋮ (2026-10-04) — painted under the next rows' pinned cells.
+   While it holds an open menu it rises above them, as the table header does
+   for its Filter menus. */
+.cell[data-pin]:has([role='menu']) {
+  z-index: 3;
+}
 .cell[data-pin='start'] {
   left: var(--pin-offset, 0px);
 }
