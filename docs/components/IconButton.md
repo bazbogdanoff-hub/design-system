@@ -14,6 +14,7 @@ A **square** icon-only button. Same glass skin, variants, sizes and states as
 | `icon` | `ReactNode` - **required** | - |
 | `loading` | `boolean` - spinner replaces the icon, interaction blocked | `false` |
 | `asChild` | `boolean` | `false` |
+| `surface` | `light` · `dark` - `dark` restyles `secondary` for `ChatFrame`, exactly as [`Button`](./Button.md)'s (2026-10-04) | `light` |
 
 **`aria-label` (or `aria-labelledby`) is required** - enforced by the type. All
 other button props pass through.

@@ -18,6 +18,10 @@ type Base = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> & {
   loading?: boolean;
   /** Render as the child element (e.g. an `<a>`). */
   asChild?: boolean;
+  /** `light` (default) on a card; `dark` inside the dark app-frame chat card,
+   * as `Button`'s (2026-10-04: the card's "+" beside its suggestion chips).
+   * Restyles `secondary` only, from the same shared CSS. */
+  surface?: 'light' | 'dark';
 };
 
 /** An accessible name is required - `aria-label`, or `aria-labelledby`. */
@@ -31,7 +35,7 @@ export type IconButtonProps =
  * name is mandatory.
  */
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(function IconButton(
-  { variant = 'secondary', size = 'md', icon, loading = false, asChild = false, className, type = 'button', disabled, ...rest },
+  { variant = 'secondary', size = 'md', icon, loading = false, asChild = false, surface = 'light', className, type = 'button', disabled, ...rest },
   ref,
 ) {
   const Comp = asChild ? Slot : 'button';
@@ -41,6 +45,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(functio
       className={cn(buttonStyles.surface, styles.iconButton, className)}
       data-variant={variant}
       data-size={size}
+      data-on={surface === 'dark' ? 'dark' : undefined}
       data-loading={loading || undefined}
       aria-busy={loading || undefined}
       {...(asChild
