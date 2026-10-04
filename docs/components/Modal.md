@@ -11,7 +11,7 @@ const [open, setOpen] = useState(true);
 <Overlay open={open} onClose={() => setOpen(false)} onExited={onClose}>
   <Modal
     width="md"
-    padding="md"
+    padding="lg"
     heading="Delete TK-021?"
     onClose={() => setOpen(false)}
     role="dialog"
@@ -35,7 +35,7 @@ const [open, setOpen] = useState(true);
 | `onClose` | `() => void` | - | wired to the header's close `IconButton` (secondary, `md`); omit to hide the button |
 | `children` | `ReactNode` | - | the content; it scrolls inside the panel when the panel is held shorter than it |
 | `footer` | `ReactNode` | - | omit to drop the footer row; the buttons in it are the caller's (right-aligned, 8 apart, is the house pattern) |
-| `padding` | `'lg' \| 'md' \| 'sm' \| 'xs'` | `'lg'` | 24 / 20 / 16 / 12. The gap between header, content and footer matches the padding |
+| `padding` | `'xl' \| 'lg' \| 'md' \| 'sm'` | `'xl'` | 24 / 20 / 16 / 12, the same names and sizes as `Card`'s. The gap between header, content and footer matches the padding |
 | `width` | `'sm' \| 'md' \| 'lg'` | - | 24 / 30 / 36rem, never wider than the screen less `space/32`. Omit to size to the content |
 
 Other `div` props pass through to the panel: put `role="dialog"`,
@@ -58,23 +58,25 @@ one-field dialog sized to its content was "unusably narrow". In Aegis:
 Leave it off only for content with a fixed size of its own, such as the
 "Ask Aegis" question grid, which sets its own width.
 
-## Padding names are not Card's
+## Padding names are Card's
 
-`Modal`'s steps are one notch bigger than `Card`'s at each name: `Modal`
-`sm` is 16, `Card` `sm` is 12; `Modal` `md` is 20, `Card` `md` is 16. Both
-Figma masters say so (parity audit CARD-003), so neither side is "fixed"
-without the other. `padding="md"` (20) is what the app's dialogs use.
+Since 2026-10-04 (owner, parity audit CARD-003) `Modal` uses `Card`'s
+names and sizes: `sm` 12, `md` 16, `lg` 20, `xl` 24. Before that its names
+sat one notch bigger (`sm` was 16), so the same word meant two sizes. Every
+dialog kept its size in the move: what was `md` (20) is now `lg`, which is
+what the app's dialogs use. **Figma to do:** rename the Modal master's
+padding variants to match.
 
 ## Surface
 
 The card surface, replicated rather than nested: `color/card/background/default`,
 the same inset border and vignette as `Card`, corner `radius/modal`
-(`radius.container`, 12). It does not wrap a `Card`, because the padding
-scales don't line up.
+(`radius.container`, 12). It does not wrap a `Card`: the header, content and
+footer gap follows the padding, which a nested card would not.
 
 ## Figma
 
-**`Modal`**: auto-layout vertical, `space/24` padding and gap at `lg`; a
+**`Modal`**: auto-layout vertical, `space/24` padding and gap at `xl`; a
 header row (heading text style `text/heading/sm`, close `IconButton`
 instance), a `content` slot, and an optional `footer` slot. The `width`
 variants are not in the master yet (code-first, 2026-10-03); build them as a

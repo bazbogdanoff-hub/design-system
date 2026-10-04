@@ -37,7 +37,7 @@ export const RigProblemDetail = forwardRef<HTMLDivElement, RigProblemDetailProps
   return (
     <Modal
       ref={ref}
-      padding="sm"
+      padding="md"
       onClose={onClose}
       footer={footer}
       className={cn(className)}

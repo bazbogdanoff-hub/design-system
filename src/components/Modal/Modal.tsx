@@ -4,14 +4,13 @@ import { CloseIcon } from '../FileDropper/CloseIcon';
 import { cn } from '../../lib/cn';
 import styles from './Modal.module.css';
 
-export type ModalPadding = 'lg' | 'md' | 'sm' | 'xs';
+export type ModalPadding = 'xl' | 'lg' | 'md' | 'sm';
 export type ModalWidth = 'sm' | 'md' | 'lg';
 
 export interface ModalProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
-  /** `lg` (24px, default) · `md` (20px) · `sm` (16px) · `xs` (12px) - its own
-   * scale, one notch bigger than `Card`'s at each name (no relation -
-   * `Modal` doesn't nest a `Card`, it replicates the same surface fill/radius
-   * directly, since the padding numbers don't line up). */
+  /** `xl` (24px, default) · `lg` (20px) · `md` (16px) · `sm` (12px) - the
+   * same names and sizes as `Card`'s (owner, 2026-10-04; Modal's names used
+   * to sit one notch bigger, so `sm` meant 16 here and 12 on a Card). */
   padding?: ModalPadding;
   heading: ReactNode;
   /** Wired to the header's `IconButton`. Omit to hide the close button. */
@@ -32,7 +31,7 @@ export interface ModalProps extends Omit<HTMLAttributes<HTMLDivElement>, 'childr
  * (`<Overlay open={...} onClose={...}><Modal ...>...</Modal></Overlay>`).
  */
 export const Modal = forwardRef<HTMLDivElement, ModalProps>(function Modal(
-  { padding = 'lg', heading, onClose, children, footer, width, className, ...rest },
+  { padding = 'xl', heading, onClose, children, footer, width, className, ...rest },
   ref,
 ) {
   return (
