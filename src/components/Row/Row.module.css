@@ -32,13 +32,12 @@
   background-color: var(--color-scrollable-area-row-shadow-hover);
 }
 
+/* The shared keyboard-focus ring (owner, 2026-10-04): 2px of
+   color/border/focus, inside the row - rows sit flush in scroll areas, which
+   would clip a ring drawn outside. */
 .row[data-interactive]:focus-visible {
-  outline: none;
-  /* stacks with the divider above rather than replacing it - two shadow
-     layers, comma-separated, both inset. */
-  box-shadow:
-    inset 0 -1px 0 0 var(--color-scrollable-area-row-border-divider),
-    inset 0 0 0 1px var(--color-scrollable-area-row-border-focus);
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: -2px;
 }
 
 .text {

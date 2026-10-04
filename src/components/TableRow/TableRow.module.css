@@ -34,8 +34,9 @@ tbody .row:hover {
    clicked - or got focus back when a dialog it opened closed. */
 tbody .row:focus-visible,
 tbody .row:has(:focus-visible) {
-  outline: 1px solid var(--color-table-row-border-active);
-  outline-offset: -1px;
+  /* The shared keyboard-focus ring (owner, 2026-10-04): 2px, inside. */
+  outline: 2px solid var(--color-table-row-border-active);
+  outline-offset: -2px;
 }
 
 tbody .row[data-status='danger'] {

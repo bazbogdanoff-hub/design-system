@@ -142,17 +142,25 @@
 /* The row's focus ring is an outline on the <tr>, which an opaque pinned
    cell paints over - the cell draws its own stretch of it (top, bottom, and
    its outer side). After the hover rules: focus wins when both apply. */
-:global(tbody tr:focus-visible) > .cell[data-pin='start'],
-:global(tbody tr:has(:focus-visible)) > .cell[data-pin='start'] {
+:global(tbody tr:focus-visible) > .cell[data-pin],
+:global(tbody tr:has(:focus-visible)) > .cell[data-pin] {
   box-shadow:
-    inset 1px 0 0 0 var(--color-table-row-border-active),
-    inset 0 1px 0 0 var(--color-table-row-border-active),
-    inset 0 -1px 0 0 var(--color-table-row-border-active);
+    inset 0 2px 0 0 var(--color-table-row-border-active),
+    inset 0 -2px 0 0 var(--color-table-row-border-active);
 }
-:global(tbody tr:focus-visible) > .cell[data-pin='end'],
-:global(tbody tr:has(:focus-visible)) > .cell[data-pin='end'] {
+/* Only the outermost pinned cell draws the side, so no line runs between two
+   pinned cells. */
+:global(tbody tr:focus-visible) > .cell[data-pin='start']:first-child,
+:global(tbody tr:has(:focus-visible)) > .cell[data-pin='start']:first-child {
   box-shadow:
-    inset -1px 0 0 0 var(--color-table-row-border-active),
-    inset 0 1px 0 0 var(--color-table-row-border-active),
-    inset 0 -1px 0 0 var(--color-table-row-border-active);
+    inset 2px 0 0 0 var(--color-table-row-border-active),
+    inset 0 2px 0 0 var(--color-table-row-border-active),
+    inset 0 -2px 0 0 var(--color-table-row-border-active);
+}
+:global(tbody tr:focus-visible) > .cell[data-pin='end']:last-child,
+:global(tbody tr:has(:focus-visible)) > .cell[data-pin='end']:last-child {
+  box-shadow:
+    inset -2px 0 0 0 var(--color-table-row-border-active),
+    inset 0 2px 0 0 var(--color-table-row-border-active),
+    inset 0 -2px 0 0 var(--color-table-row-border-active);
 }
