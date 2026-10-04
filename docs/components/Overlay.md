@@ -24,6 +24,7 @@ const [open, setOpen] = useState(false);
 | `closeOnBackdropClick` | `boolean` | `true` | |
 | `closeOnEscape` | `boolean` | `true` | |
 | `lockScroll` | `boolean` | `true` | locks body scroll while open |
+| `onExited` | `() => void` | - | called once the exit animation has finished and the overlay is gone. Keep the dialog mounted, set `open` false, and unmount it here, or the exit is cut off |
 
 | `scrim` | `'default'` \| `'strong'` | `'default'` | `strong` is `color/modal/scrim-strong` (alpha-black/80) - for a full-screen picture, where the room should go dark (owner, 2026-10-01) |
 
@@ -41,12 +42,11 @@ de-tinted so the interface stays readable behind the modal. Any future drawer
 **Now:** backdrop-click + Escape to close (a backdrop click must both press
 *and* release on the scrim - a drag that starts on the panel won't dismiss),
 body scroll-lock, focus moves into the panel on open and is restored to the
-trigger on close, portal to `<body>`.
+trigger on close, portal to `<body>`, and an enter/exit animation (the scrim fades, the panel rises in and sinks out; it stays mounted through the exit, see `onExited`).
 
 **Not yet** - these come with the `Dialog` panel component:
 - **Focus trapping** - Tab can currently leave the panel. Until `Dialog`
   lands, add a trap yourself if the modal is long-lived.
-- **Enter/exit animation** - `open` is a hard mount/unmount.
 - **`role="dialog"` / `aria-modal` / labelling** - put these on *your* panel,
   not the scrim. `Overlay` is `role`-less chrome.
 
