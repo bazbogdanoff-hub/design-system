@@ -29,6 +29,10 @@ export interface GaugeChartProps extends Omit<HTMLAttributes<HTMLDivElement>, 'c
    * on hover and in the table).
    * Default on. */
   legend?: boolean;
+  /** The arc's largest outer radius, in px at the 16px root (default 100).
+   * It still shrinks to fit its box; this only lets a roomier card grow it
+   * (Finance's Owed to us, owner 2026-10-05). */
+  maxRadius?: number;
   'aria-label': string;
 }
 
@@ -59,6 +63,7 @@ export function GaugeChart({
   onSelect,
   valueFormatter = (v) => String(v),
   legend = true,
+  maxRadius = MAX_OUTER_PX,
   className,
   'aria-label': ariaLabel,
   ...rest
@@ -76,7 +81,7 @@ export function GaugeChart({
   // The arc is the widest half ring that fits both ways, up to MAX_OUTER_PX.
   const width = Math.max(160 * s, measured.width || 320);
   const heightLimit = measured.height || width / 2 + 2 * room;
-  const outer = Math.max(thickness * 1.5, Math.min(MAX_OUTER_PX * s, width / 2 - room, heightLimit - 2 * room));
+  const outer = Math.max(thickness * 1.5, Math.min(maxRadius * s, width / 2 - room, heightLimit - 2 * room));
   const mid = outer - thickness / 2;
   const cx = width / 2;
   const cy = outer + room;
