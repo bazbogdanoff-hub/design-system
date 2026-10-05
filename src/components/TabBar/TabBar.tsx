@@ -9,8 +9,9 @@ export interface TabBarProps extends Omit<HTMLAttributes<HTMLElement>, 'children
   /** Whether the menu (`NavSheet`) is showing - flips the button to a close. */
   menuOpen: boolean;
   onMenuToggle: () => void;
-  /** The module's most-used pages: up to 4 `SidebarNavItem`s, icon only,
-   * each with an `aria-label`. Every page is also in the menu. */
+  /** The module's most-used pages: up to 4 `SidebarNavItem`s, each with an
+   * `aria-label`; icon only, except the `active` one, which also takes its
+   * `label` and widens to show it. Every page is also in the menu. */
   children: ReactNode;
 }
 

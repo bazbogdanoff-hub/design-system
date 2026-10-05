@@ -14,7 +14,10 @@
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  border-radius: var(--radius-card);
+  /* 12, as every card inside the page on phone (owner, 2026-10-05). The
+     bar sits outside the page card, so AppShell's phone --radius-card
+     doesn't reach it; set here, not inherited. */
+  border-radius: var(--radius-xl);
   background: var(--color-sidebar-panel-background);
   box-shadow: inset 0 0 4px var(--color-sidebar-panel-inner-shadow);
 }
@@ -42,6 +45,23 @@
 .tabs > :not(.highlight) {
   position: relative;
   z-index: 1;
+}
+
+/* The current tab names itself, as a row on the expanded sidebar (owner,
+   2026-10-05): it takes its icon + label width and the other tabs share
+   what is left, never below the 40 frame. A long name ellipsises. */
+.tabs > [data-active] {
+  flex: 0 1 auto;
+  width: auto; /* the row is 100% wide by default */
+}
+.tabs > :not(.highlight):not([data-active]) {
+  min-width: var(--space-40);
+}
+.tabs > [data-active] [data-highlight] {
+  width: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  padding-right: var(--space-12);
 }
 
 /* The menu lists everything; while it is open no tab claims to be current. */
