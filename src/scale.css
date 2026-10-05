@@ -13,3 +13,19 @@
 html {
   font-size: clamp(100%, calc(100% + 0.8333vw - 12px), 125%);
 }
+
+/* Phone tier (owner, 2026-10-05): headings and display figures drop one
+   step on the type scale; body, label and heading-xs stay, they already
+   suit a phone. Line heights are ratios, so they follow. Literal copy of
+   the phone query in lib/breakpoints.ts. */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  :root {
+    --text-display-xl-font-size: var(--font-size-36);
+    --text-display-lg-font-size: var(--font-size-32);
+    --text-display-md-font-size: var(--font-size-28);
+    --text-heading-xl-font-size: var(--font-size-24);
+    --text-heading-lg-font-size: var(--font-size-20);
+    --text-heading-md-font-size: var(--font-size-18);
+    --text-heading-sm-font-size: var(--font-size-16);
+  }
+}
