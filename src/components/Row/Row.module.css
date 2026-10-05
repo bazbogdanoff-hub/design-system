@@ -17,6 +17,12 @@
   box-shadow: inset 0 -1px 0 0 var(--color-scrollable-area-row-border-divider);
 }
 
+/* On a white Tile the default divider reads heavy: one step lighter
+   (owner, 2026-10-05). */
+.row[data-divider='subtle'] {
+  box-shadow: inset 0 -1px 0 0 var(--color-scrollable-area-row-border-divider-subtle);
+}
+
 .row[data-size='sm'] { padding: var(--space-8); gap: var(--space-8); }
 .row[data-size='md'] { padding: var(--space-10); gap: var(--space-10); }
 .row[data-size='lg'] { padding: var(--space-12); gap: var(--space-12); }

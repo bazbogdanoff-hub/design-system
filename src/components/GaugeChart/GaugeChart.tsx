@@ -73,14 +73,22 @@ export function GaugeChart({
   const glassBase = useId();
   const s = useRemScale();
 
-  const thickness = THICKNESS_PX * s;
-  const corner = CORNER_PX * s;
-  const gap = GAP_PX * s;
-  const room = SHADOW_ROOM_PX * s;
-
-  // The arc is the widest half ring that fits both ways, up to MAX_OUTER_PX.
+  // Past the usual 100 (maxRadius), the gauge scales as a whole: band,
+  // corners, gaps and shadow room grow with the arc, so a bigger gauge keeps
+  // the same thick look rather than thinning out (owner, 2026-10-05).
   const width = Math.max(160 * s, measured.width || 320);
-  const heightLimit = measured.height || width / 2 + 2 * room;
+  const baseRoom = SHADOW_ROOM_PX * s;
+  const heightLimit = measured.height || width / 2 + 2 * baseRoom;
+  const fit = Math.min(maxRadius * s, width / 2 - baseRoom, heightLimit - 2 * baseRoom);
+  const grow = Math.max(1, fit / (MAX_OUTER_PX * s));
+  const g = s * grow;
+
+  const thickness = THICKNESS_PX * g;
+  const corner = CORNER_PX * g;
+  const gap = GAP_PX * g;
+  const room = SHADOW_ROOM_PX * g;
+
+  // The arc is the widest half ring that fits both ways, up to maxRadius.
   const outer = Math.max(thickness * 1.5, Math.min(maxRadius * s, width / 2 - room, heightLimit - 2 * room));
   const mid = outer - thickness / 2;
   const cx = width / 2;
@@ -108,7 +116,7 @@ export function GaugeChart({
   // borrowed from the largest: one in sixty is ~6px of arc - less than its
   // own corners - and would collapse into a radial splinter. The exact
   // values stay in the legend and on hover.
-  const minSweep = (MIN_SEGMENT_PX * s + gap) / mid;
+  const minSweep = (MIN_SEGMENT_PX * g + gap) / mid;
   const sweeps = slices.map((d) => (d.value / total) * Math.PI);
   const deficit = sweeps.reduce((sum, w) => sum + Math.max(0, minSweep - w), 0);
   const largest = sweeps.indexOf(Math.max(...sweeps));

@@ -28,7 +28,7 @@ this page.
 | `onSelect` | `(key) => void` - makes each segment a button | - |
 | `valueFormatter` | `(value) => string` | `String(v)` |
 | `legend` | `boolean` - segment names under the arc, in the legend tile | `true` |
-| `maxRadius` | `number` - the arc's largest outer radius in px at the 16px root; it still shrinks to fit. Raise it only for a card with room to spare (Finance's Owed to us uses 140) | `100` |
+| `maxRadius` | `number` - the arc's largest outer radius in px at the 16px root; it still shrinks to fit. Past 100 the whole gauge scales (band, corners, gaps), keeping its proportions. Raise it only for a card with room to spare (Finance's Owed to us uses 140) | `100` |
 | `aria-label` | `string` | - |
 
 ## Geometry (all at the 16px root, scaling with it)

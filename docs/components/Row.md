@@ -119,6 +119,7 @@ floating inside the list.
 | hover | flat fill | `color/scrollableArea/row/shadow/hover` → `background/overlay-subtle` |
 | focus-visible | 1px inset border | `color/scrollableArea/row/border/focus` → `border/focus` (brand.500) |
 | every state | permanent 1px bottom divider | `color/scrollableArea/row/border/divider` → `border/default` (zinc.200) |
+| `divider="subtle"` | the same divider one step lighter, for rows on a white `Tile` (owner, 2026-10-05) | `color/scrollableArea/row/border/divider-subtle` → `border/subtle` (zinc.100) |
 
 Hover is a plain `background-color`, not `box-shadow` - an earlier version
 used an inset-shadow "flood the box" trick (still how the token's own name

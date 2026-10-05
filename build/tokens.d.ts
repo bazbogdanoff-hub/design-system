@@ -166,6 +166,8 @@ export const ColorScrollableAreaRowShadowHover: string;
 export const ColorScrollableAreaRowBorderFocus: string;
 /** Permanent 1px bottom-only divider between rows in a list - every state (default/hover/focus), unlike hover/focus which only apply on interaction. Owner changed this from border.subtle (zinc.100, "faint separators") to border.default (zinc.200, "inputs, cards, dividers") directly in Figma - a plain divider apparently read as too faint at subtle. CSS: box-shadow inset (layout-neutral, stacks with the focus ring as a second shadow layer). Figma: a real per-side stroke (strokeBottomWeight 1, others 0, INSIDE align, strokesIncludedInLayout false) - NOT an effect. An INNER_SHADOW effect on this frame (which has no fill) was confirmed to corrupt Figma's own text rendering for this file's variable-font weight; a stroke on the same no-fill frame does not. See docs/components/Row.md and HANDOFF.md §6. */
 export const ColorScrollableAreaRowBorderDivider: string;
+/** The row divider one step lighter, for a list that sits on a white Tile, where border.default reads heavy (owner, 2026-10-05). Row divider="subtle". */
+export const ColorScrollableAreaRowBorderDividerSubtle: string;
 /** zinc.100, "wells, code blocks, inset track" - literally the inset-track description this token already carries, reused verbatim for the off-state track. */
 export const ColorSwitchTrackOff: string;
 /** brand.600, same token Button primary/selected-state uses. */

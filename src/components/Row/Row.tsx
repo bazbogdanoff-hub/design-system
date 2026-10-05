@@ -49,6 +49,9 @@ type Base = Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> & {
    * Freeform within itself; always renders right-of-`status`. */
   action?: ReactNode;
   onClick?: () => void;
+  /** The bottom divider: `default` (border.default) or `subtle`
+   * (border.subtle), for a list on a white `Tile` (owner, 2026-10-05). */
+  divider?: 'default' | 'subtle';
 };
 
 export type RowProps = Base;
@@ -82,7 +85,7 @@ function resolveDescription(description: ReactNode, size: RowSize): ReactNode {
  * `onClick` is passed. See docs/components/Row.md.
  */
 export const Row = forwardRef<HTMLDivElement, RowProps>(function Row(
-  { size = 'md', leading, heading, description, status, action, onClick, className, ...rest },
+  { size = 'md', leading, heading, description, status, action, onClick, divider = 'default', className, ...rest },
   ref,
 ) {
   const interactive = onClick != null;
@@ -101,6 +104,7 @@ export const Row = forwardRef<HTMLDivElement, RowProps>(function Row(
       ref={ref}
       className={cn(styles.row, className)}
       data-size={size}
+      data-divider={divider === 'subtle' ? 'subtle' : undefined}
       data-interactive={interactive || undefined}
       role={interactive ? 'button' : undefined}
       tabIndex={interactive ? 0 : undefined}

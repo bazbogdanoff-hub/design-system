@@ -110,6 +110,8 @@ Map shipment/order statuses onto these tones in the app layer (e.g. `delivered â
 | `scrollableArea.background` | `background.subtle` |
 | `scrollableArea.shadow` | `alpha-black.15` |
 | `scrollableArea.row.shadow.hover` | `background.overlay-subtle` *(inset shadow, not a fill - rows have no background by default; shared with `table.row.shadow.hover`)* |
+| `scrollableArea.row.border.divider` | `border.default` *(permanent 1px bottom divider)* |
+| `scrollableArea.row.border.divider-subtle` | `border.subtle` *(the same, for rows on a white `Tile`; Row `divider="subtle"`)* |
 
 ## Figma â†” React component mapping
 
