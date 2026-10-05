@@ -111,7 +111,9 @@ export function BridgeChart({
     return out;
   }, [scale]);
   const hasNegative = scale.min < 0;
-  const amount = (r: { from: number; to: number }) => Math.abs(r.to - r.from);
+  // A bar from zero is a signed value (a truck's loss reads −€664); a
+  // floating bar is an amount, its length.
+  const amount = (r: { from: number; to: number }) => (r.from === 0 ? r.to : Math.abs(r.to - r.from));
 
   return (
     <div className={cn(styles.chart, className)} role="group" aria-label={ariaLabel} {...rest}>
