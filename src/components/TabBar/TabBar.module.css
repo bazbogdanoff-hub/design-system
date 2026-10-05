@@ -1,0 +1,71 @@
+/* Phone tier bar (owner, 2026-10-05). Two panels 10 apart: the menu
+   button's, square, and the tabs', taking the rest. Each holds sidebar
+   rows (48 tall: a 40 frame in a 4 inset), so the bar is 48 and every
+   target meets 44-48 without a hidden hitbox. */
+.bar {
+  display: flex;
+  gap: var(--space-10);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.panel {
+  position: relative; /* the travelling highlight's containing block */
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: var(--radius-card);
+  background: var(--color-sidebar-panel-background);
+  box-shadow: inset 0 0 4px var(--color-sidebar-panel-inner-shadow);
+}
+
+.menu {
+  flex: none;
+  width: var(--space-48);
+  justify-content: center;
+}
+
+.tabs {
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: space-around;
+  padding-inline: var(--space-4);
+}
+
+/* A row fills its cell: the whole share of the bar is the target. */
+.tabs > :not(.highlight),
+.menu > * {
+  flex: 1 1 0;
+  min-width: 0;
+  justify-content: center;
+}
+.tabs > :not(.highlight) {
+  position: relative;
+  z-index: 1;
+}
+
+/* The menu lists everything; while it is open no tab claims to be current. */
+.tabs[data-menu-open] .highlight {
+  opacity: 0 !important;
+}
+
+/* The same glass as SidebarSection's travelling highlight. */
+.highlight {
+  position: absolute;
+  z-index: 0;
+  box-sizing: border-box;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    linear-gradient(var(--color-sidebar-nav-item-active-overlay), var(--color-sidebar-nav-item-active-overlay)),
+    var(--color-sidebar-nav-item-active-fill);
+  box-shadow:
+    inset 1px 1px 0 0 var(--color-sidebar-nav-item-active-border),
+    inset -1px -1px 2px 0 var(--color-sidebar-nav-item-active-inner-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .highlight {
+    transition: none !important;
+  }
+}

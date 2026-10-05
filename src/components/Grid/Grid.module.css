@@ -32,3 +32,11 @@
     grid-column: var(--start, auto) / span var(--span-wide, var(--span, var(--grid-cols, var(--page-cols, 16))));
   }
 }
+
+/* Phone: one column, whatever the spans say. Last, so it wins over the
+   tablet rule (a landscape phone can be wider than 640). */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  .item {
+    grid-column: 1 / -1;
+  }
+}

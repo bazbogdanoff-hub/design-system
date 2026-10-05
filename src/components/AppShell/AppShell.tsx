@@ -18,6 +18,12 @@ export interface AppShellProps extends HTMLAttributes<HTMLDivElement> {
   sidebarMode?: AppShellSidebarMode;
   /** The screen. Fills the padded, rounded, scrolling main area. */
   children?: ReactNode;
+  /** Phone tier only: the bar under the page card (a `TabBar`). The sidebar
+   * is hidden there, so this is the phone's navigation. */
+  bottomBar?: ReactNode;
+  /** Phone tier only: drawn over the page card, the same size, while it is
+   * set (a `NavSheet`, the open menu). The bar stays put under it. */
+  overlay?: ReactNode;
 }
 
 /**
@@ -30,7 +36,7 @@ export interface AppShellProps extends HTMLAttributes<HTMLDivElement> {
  * `<AppShell sidebar={<CrmSidebar/>}>…page content…</AppShell>`.
  */
 export const AppShell = forwardRef<HTMLDivElement, AppShellProps>(function AppShell(
-  { sidebar, sidebarMode = 'collapsed', children, className, ...rest },
+  { sidebar, sidebarMode = 'collapsed', children, bottomBar, overlay, className, ...rest },
   ref,
 ) {
   return (
@@ -38,7 +44,9 @@ export const AppShell = forwardRef<HTMLDivElement, AppShellProps>(function AppSh
       <div className={styles.sidebar}>{sidebar}</div>
       <div className={styles.main}>
         <div className={styles.content}>{children}</div>
+        {overlay != null && <div className={styles.overlay}>{overlay}</div>}
       </div>
+      {bottomBar != null && <div className={styles.bottomBar}>{bottomBar}</div>}
     </div>
   );
 });

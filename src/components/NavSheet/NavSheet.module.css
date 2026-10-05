@@ -1,0 +1,151 @@
+/* The phone menu (owner, 2026-10-05). Same size and corners as the page
+   card it covers; the sidebar's dark panel, so it reads as the nav. */
+.sheet {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-16) var(--space-12);
+  box-sizing: border-box;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: var(--radius-card);
+  background: var(--color-sidebar-panel-background);
+  box-shadow: inset 0 0 4px var(--color-sidebar-panel-inner-shadow);
+  animation: nav-sheet-in 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes nav-sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-8));
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding-inline: var(--space-4);
+}
+
+.switcher {
+  width: 100%;
+}
+.switcher > * {
+  flex: 1 1 0;
+}
+
+/* Four to a row at 390 and 360; the tile is the target (68 tall). */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-8) var(--space-4);
+}
+
+.divider {
+  height: 1px;
+  flex: none;
+  background: var(--color-border-highlight);
+  opacity: 0.12;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  min-width: 0;
+  padding: var(--space-4) 0;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-sidebar-text-default);
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  line-height: 1.35;
+}
+
+.frame {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-40);
+  height: var(--space-40);
+  border-radius: var(--radius-control);
+  transition: background-color 120ms ease;
+}
+
+.tile:hover:not([data-active]) .frame {
+  background: var(--color-sidebar-nav-item-hover-fill);
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-20);
+  height: var(--space-20);
+  color: var(--color-sidebar-icon-default);
+}
+.icon > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dot {
+  position: absolute;
+  top: var(--space-8);
+  right: var(--space-8);
+  width: var(--space-8);
+  height: var(--space-8);
+  border-radius: 50%;
+  background: var(--color-sidebar-brand-accent);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.tile[data-active] .frame {
+  background:
+    linear-gradient(var(--color-sidebar-nav-item-active-overlay), var(--color-sidebar-nav-item-active-overlay)),
+    var(--color-sidebar-nav-item-active-fill);
+  box-shadow:
+    inset 1px 1px 0 0 var(--color-sidebar-nav-item-active-border),
+    inset -1px -1px 2px 0 var(--color-sidebar-nav-item-active-inner-shadow);
+}
+.tile[data-active][data-tone='brand'],
+.tile[data-active][data-tone='brand'] .icon {
+  color: var(--color-sidebar-brand-accent);
+}
+.tile[data-active][data-tone='success'],
+.tile[data-active][data-tone='success'] .icon {
+  color: var(--color-sidebar-success-accent);
+}
+.tile[data-active][data-tone='danger'],
+.tile[data-active][data-tone='danger'] .icon {
+  color: var(--color-sidebar-danger-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet {
+    animation: none;
+  }
+}

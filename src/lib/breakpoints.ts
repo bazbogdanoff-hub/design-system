@@ -33,6 +33,10 @@ export const down = (bp: Breakpoint): string => `(max-width: ${breakpoints[bp] -
  *   tall once the browser is drawn) out.
  * - `desktop` - 1280–1599: 1366, 1440, 1536. The Figma reference.
  * - `tablet` - below 1280. Rails drop under the main column.
+ * - `phone` - below 640 (`sm`), or a phone on its side: short (under 500)
+ *   with a touch screen. The sidebar gives way to a bottom bar, the page
+ *   card scrolls, and every grid column collapses to one (owner,
+ *   2026-10-05). `pointer: coarse` keeps a short desktop window out.
  *
  * Tiers decide placement only. **Size** is `scale.css`: the root grows
  * smoothly from 16px at 1440 to 20px at 1920, independent of any tier. So in
@@ -43,15 +47,17 @@ export const down = (bp: Breakpoint): string => `(max-width: ${breakpoints[bp] -
  * **CSS cannot read these.** `Grid.module.css` repeats the queries as
  * literals; change one, change both.
  */
-export type Tier = 'tablet' | 'desktop' | 'wide';
+export type Tier = 'phone' | 'tablet' | 'desktop' | 'wide';
 
 export const tierQueries = {
   wide: '(min-width: 1600px) and (min-height: 820px)',
   tablet: `(max-width: ${breakpoints.xl - 1}px)`,
+  phone: `(max-width: ${breakpoints.sm - 1}px), (max-height: 499px) and (pointer: coarse)`,
 } as const;
 
 function readTier(): Tier {
   if (typeof window === 'undefined' || !window.matchMedia) return 'desktop';
+  if (window.matchMedia(tierQueries.phone).matches) return 'phone';
   if (window.matchMedia(tierQueries.wide).matches) return 'wide';
   if (window.matchMedia(tierQueries.tablet).matches) return 'tablet';
   return 'desktop';
@@ -59,7 +65,7 @@ function readTier(): Tier {
 
 function subscribe(onChange: () => void): () => void {
   if (typeof window === 'undefined' || !window.matchMedia) return () => {};
-  const lists = [tierQueries.wide, tierQueries.tablet].map((q) => window.matchMedia(q));
+  const lists = [tierQueries.wide, tierQueries.tablet, tierQueries.phone].map((q) => window.matchMedia(q));
   lists.forEach((list) => list.addEventListener('change', onChange));
   return () => lists.forEach((list) => list.removeEventListener('change', onChange));
 }

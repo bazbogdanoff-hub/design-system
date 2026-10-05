@@ -79,3 +79,47 @@
     transition: none;
   }
 }
+
+/* ---- phone tier (lib/breakpoints.ts, literal copy) -------------------------
+   Owner, 2026-10-05: the page card above, the bar below, 10 around and
+   between them. The bottom inset grows to clear the home indicator.
+   Only the page card scrolls, so the browser's toolbars never collapse
+   and the height never changes under the user. */
+.bottomBar,
+.overlay {
+  display: none;
+}
+
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  .shell {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: var(--space-10);
+    padding: var(--space-10) var(--space-10) max(var(--space-10), env(safe-area-inset-bottom));
+    box-sizing: border-box;
+    transition: none;
+  }
+  .sidebar {
+    display: none;
+  }
+  .main {
+    position: relative;
+    padding: 0;
+  }
+  .content {
+    border-radius: var(--radius-card);
+    /* A card's page-corner radius (24) would overhang this 16 card. */
+    --radius-card-outer: var(--radius-card);
+  }
+  .overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+  }
+  .bottomBar {
+    display: block;
+    min-width: 0;
+  }
+}

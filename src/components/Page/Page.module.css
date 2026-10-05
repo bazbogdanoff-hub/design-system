@@ -87,3 +87,20 @@
   gap: var(--space-8);
   flex: none;
 }
+
+/* ---- phone tier (lib/breakpoints.ts, literal copy) -------------------------
+   12 inset and an 8 step between the page's blocks (owner, 2026-10-05). */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  .page {
+    --_page-pad: var(--space-12);
+  }
+  .page[data-layout='scroll'] .header {
+    margin-bottom: var(--space-8);
+  }
+  .page[data-layout='fixed'] .header {
+    padding-bottom: var(--space-8);
+  }
+  .page[data-layout='fixed'] .body {
+    padding-top: var(--space-8);
+  }
+}

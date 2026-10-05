@@ -257,6 +257,12 @@ export type { SidebarProps, SidebarMode, SidebarModule } from './components/Side
 export { SidebarNavItem } from './components/SidebarNavItem';
 export type { SidebarNavItemProps, SidebarNavItemTone } from './components/SidebarNavItem';
 
+export { TabBar } from './components/TabBar';
+export type { TabBarProps } from './components/TabBar';
+
+export { NavSheet, NavTile } from './components/NavSheet';
+export type { NavSheetProps, NavTileProps } from './components/NavSheet';
+
 export { SidebarSection } from './components/SidebarSection';
 export type { SidebarSectionProps, SidebarSectionContent } from './components/SidebarSection';
 
