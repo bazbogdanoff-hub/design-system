@@ -202,6 +202,46 @@
   }
 }
 
+/* Phone (owner, 2026-10-05): the label column moves above the bar, so the
+   track gets the card's whole width. One caption line, "code · route",
+   then the track. The caption wears the card's fill, so the guides pass
+   behind it rather than through the text. */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  .axisRow,
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .axisRow > span:first-child {
+    display: none;
+  }
+  .guides {
+    left: 0;
+  }
+  .row {
+    height: auto;
+    grid-template-rows: auto 1.25rem;
+    row-gap: var(--space-2);
+    padding-block: var(--space-4);
+  }
+  .labels {
+    position: relative;
+    z-index: 3;
+    flex-direction: row;
+    align-items: baseline;
+    gap: var(--space-6);
+    width: fit-content;
+    max-width: 100%;
+    padding: 0 var(--space-4) 0 0;
+    background: var(--color-card-background-default);
+  }
+  .label {
+    flex: none;
+  }
+  .sublabel::before {
+    content: '· ';
+  }
+}
+
 .srOnlyTable {
   position: absolute;
   width: 1px;

@@ -52,6 +52,16 @@ not departed yet, paler), `onSelect?` (makes the row a button).
   weight; `danger` wears `color.chart.severity.critical`, `pending` is at
   45% opacity. Grows in from its start on mount (reduced motion: off).
 
+## Phone
+
+On the `phone` tier (owner, 2026-10-05) the label column moves above the
+bar, so the track takes the whole width: one caption line, "code · route"
+(the sublabel gets a " · " in front), then a 1.25rem track. The caption
+wears the card's fill, so gridlines and the "now" line pass behind it, not
+through the text. Desktop and tablet are unchanged. How many rows to show
+is the caller's: the dashboard lists 5 on phone, late first, with a link
+to the rest.
+
 ## Tooltip
 
 On hover or focus: Pickup, ETA and Window, each on one line. Times off today
