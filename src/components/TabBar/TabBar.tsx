@@ -45,7 +45,7 @@ export const TabBar = forwardRef<HTMLElement, TabBarProps>(function TabBar(
           onClick={onMenuToggle}
         />
       </div>
-      <div ref={setTabsRef} className={cn(styles.panel, styles.tabs)} data-sliding="" data-menu-open={menuOpen || undefined}>
+      <div ref={setTabsRef} className={cn(styles.panel, styles.tabs)} data-sliding="">
         <span ref={highlightRef} aria-hidden="true" className={styles.highlight} />
         {children}
       </div>
