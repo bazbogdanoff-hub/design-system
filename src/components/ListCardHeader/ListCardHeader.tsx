@@ -15,6 +15,10 @@ export interface ListCardHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>
    * mirrors the Figma reference's own `description` boolean (default
    * `true` there; here it's just "is the prop present"). */
   description?: ReactNode;
+  /** The heading's colour: `default` (`color.text.default`), or `strong`
+   * (`color.text.strong`) for a heading on a `Tile` inside a card, one level
+   * under the card's own (owner, 2026-10-05). */
+  headingColor?: 'default' | 'strong';
 }
 
 /**
@@ -24,12 +28,14 @@ export interface ListCardHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>
  * padded `Card` surface, never on its own background.
  */
 export const ListCardHeader = forwardRef<HTMLDivElement, ListCardHeaderProps>(function ListCardHeader(
-  { size = 'md', heading, description, className, ...rest },
+  { size = 'md', heading, description, headingColor = 'default', className, ...rest },
   ref,
 ) {
   return (
     <div ref={ref} className={cn(styles.header, className)} data-size={size} {...rest}>
-      <p className={styles.heading}>{heading}</p>
+      <p className={styles.heading} data-color={headingColor === 'strong' ? 'strong' : undefined}>
+        {heading}
+      </p>
       {description != null && <p className={styles.description}>{description}</p>}
     </div>
   );

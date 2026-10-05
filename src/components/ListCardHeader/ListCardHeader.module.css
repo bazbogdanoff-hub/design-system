@@ -70,3 +70,8 @@
   line-height: var(--text-body-lg-line-height);
   letter-spacing: var(--text-body-lg-letter-spacing);
 }
+
+/* A heading on a Tile, one level under its card's title. */
+.heading[data-color='strong'] {
+  color: var(--color-text-strong);
+}

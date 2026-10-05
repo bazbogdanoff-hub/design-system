@@ -45,3 +45,7 @@ inside `ListCard`'s own `Card` slot - `description`'s boolean is exposed up
 to `ListCard`'s own instance panel via Figma's one-level nested-instance-
 property exposure (see HANDOFF §6 for why this only reaches a direct
 parent, not further).
+
+## headingColor
+
+`default` (`color.text.default`) or `strong` (`color.text.strong`): a heading on a `Tile` inside a card takes `strong`, one level under the card's own title (owner, 2026-10-05).
