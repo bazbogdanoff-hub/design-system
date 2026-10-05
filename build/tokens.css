@@ -505,6 +505,9 @@
   --color-chart-severity-warning: var(--color-orange-500);
   --color-chart-severity-attention: var(--color-extra-chart-attention);
   --color-chart-severity-low: var(--color-emerald-500);
+  --color-chart-gain: var(--color-emerald-500); /** Money made - BridgeChart's profit. A status colour: good. Validated with chart.total and chart.1 on the card. */
+  --color-chart-loss: var(--color-rose-600); /** Money lost - BridgeChart's loss. A status colour: bad. */
+  --color-chart-compare: var(--color-extra-chart-window); /** The comparison period behind a bar - BridgeChart's last-period band (owner, 2026-10-05: drawn the way TimelineChart draws its window). Same grey as chart.window, a different meaning, so its own name. */
   --color-chart-window: var(--color-extra-chart-window); /** The slot a timed item has to land in - TimelineChart's delivery-window band and its tooltip swatch (owner, 2026-09-30). */
   --color-category-teal-text: var(--color-teal-600); /** Not .700 - fails the chroma floor at that depth (reads gray), same issue as cyan. Contrast vs. own-100 is 3.3:1 - accepted per the always-a-label mitigation on the group description. */
   --color-category-teal-background: var(--color-teal-600);
@@ -729,6 +732,9 @@
   --color-sidebar-brand-fill: var(--color-brand-500);
   --color-sidebar-brand-accent: var(--color-brand-400);
   --color-table-progress-stages-unfilled: var(--color-surface-recessed); /** Stages not reached yet - flat, sunk into the card like an empty progress segment. surface.recessed since 2026-09-28. */
+  --color-bridge-chart-gain: var(--color-chart-gain);
+  --color-bridge-chart-loss: var(--color-chart-loss);
+  --color-bridge-chart-compare: var(--color-chart-compare);
   --color-tooltip-background: var(--color-surface-inverse); /** The one component that stays dark regardless of theme - a tooltip needs contrast against whatever's underneath, light or dark page alike. */
   --color-tooltip-text: var(--color-text-on-inverse);
   --color-divider-line: var(--color-border-subtle); /** The standalone Divider atom's own line color. Distinct from LabelGroup's internal divider, which deliberately stays on color.text.subtle as fixed chrome - not unified, since that one predates this token and isn't worth a breaking rebind for a coincidental match. */
@@ -756,6 +762,7 @@
   --color-border-highlight-active: var(--color-brand-500); /** Glass edge highlight when the surface is focused/active - a full 1.5px primary border that replaces the white top-left catch */
   --color-icon-brand: var(--color-brand-600);
   --color-chart-1: var(--color-brand-400); /** Categorical series 1 - placeholder palette, revisit with the real chart component. Migrated from brand.500 to match Figma's lighter chart ramp. */
+  --color-chart-total: var(--color-brand-600); /** A total drawn as a mark - BridgeChart's revenue (owner, 2026-10-05). One step deeper than chart.1 so the cost lines (chart.1) read as a lighter step of it: brand.400 vs brand.600 passes all dataviz checks on the card (normal-vision dE 18.4); brand.300 or .200 for the costs failed. */
   --color-category-brand-text: var(--color-brand-600); /** indigo.600 - reuses the existing brand primitive rather than a separate value */
   --color-category-brand-background: var(--color-brand-600);
   --radius-page: var(--radius-page-container);
@@ -799,6 +806,8 @@
   --color-helper-text-icon-primary: var(--color-icon-brand);
   --color-helper-text-text-primary: var(--color-text-brand);
   --color-table-progress-stages-filled: var(--color-button-primary-background-default); /** Reached stages (done + current) - the glass fill of the progress pill (owner, 2026-09-30: stages restyled as glass blocks like the charts; was background.brand.default, brand 600, the old dot-and-line tracker's colour). */
+  --color-bridge-chart-total: var(--color-chart-total); /** Revenue and other totals. */
+  --color-bridge-chart-cost: var(--color-chart-1); /** A cost line: the periwinkle every chart uses for data, a lighter step of the total. */
   --color-breadcrumb-text-primary: var(--color-text-brand); /** An optional brand-colored crumb - for calling out one segment of the trail (e.g. the entity type), independent of which crumb is current. */
   --color-avatar-action-add: var(--color-background-brand-default);
   --color-text-brand-solid: var(--color-background-brand-default); /** Text that must read as the same accent as a solid brand fill nearby (a bar, a dot) - aliases background.brand.default itself, not a hand-picked shade, so the two can never drift apart. NOT for text on a light/subtle background - text.brand (700) stays there; this is ~100 lighter and won't clear AA on brand-subtle. */

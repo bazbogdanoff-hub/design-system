@@ -283,6 +283,13 @@ export const ColorSidebarLogoWordmark: string;
 export const ColorTableProgressStagesFilled: string;
 /** Stages not reached yet - flat, sunk into the card like an empty progress segment. surface.recessed since 2026-09-28. */
 export const ColorTableProgressStagesUnfilled: string;
+/** Revenue and other totals. */
+export const ColorBridgeChartTotal: string;
+/** A cost line: the periwinkle every chart uses for data, a lighter step of the total. */
+export const ColorBridgeChartCost: string;
+export const ColorBridgeChartGain: string;
+export const ColorBridgeChartLoss: string;
+export const ColorBridgeChartCompare: string;
 /** The one component that stays dark regardless of theme - a tooltip needs contrast against whatever's underneath, light or dark page alike. */
 export const ColorTooltipBackground: string;
 export const ColorTooltipText: string;
@@ -697,6 +704,14 @@ export const ColorChartSeverityCritical: string;
 export const ColorChartSeverityWarning: string;
 export const ColorChartSeverityAttention: string;
 export const ColorChartSeverityLow: string;
+/** A total drawn as a mark - BridgeChart's revenue (owner, 2026-10-05). One step deeper than chart.1 so the cost lines (chart.1) read as a lighter step of it: brand.400 vs brand.600 passes all dataviz checks on the card (normal-vision dE 18.4); brand.300 or .200 for the costs failed. */
+export const ColorChartTotal: string;
+/** Money made - BridgeChart's profit. A status colour: good. Validated with chart.total and chart.1 on the card. */
+export const ColorChartGain: string;
+/** Money lost - BridgeChart's loss. A status colour: bad. */
+export const ColorChartLoss: string;
+/** The comparison period behind a bar - BridgeChart's last-period band (owner, 2026-10-05: drawn the way TimelineChart draws its window). Same grey as chart.window, a different meaning, so its own name. */
+export const ColorChartCompare: string;
 /** The slot a timed item has to land in - TimelineChart's delivery-window band and its tooltip swatch (owner, 2026-09-30). */
 export const ColorChartWindow: string;
 /** indigo.600 - reuses the existing brand primitive rather than a separate value */
