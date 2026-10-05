@@ -49,6 +49,24 @@
   z-index: 1;
 }
 
+/* A page that is none of the tabs gets a third panel: square, as the menu
+   button's, its icon highlighted, no name (owner, 2026-10-05: a name had
+   92-122 to fit in and was cut). With no current tab to fill the panel,
+   the four tabs spread evenly, still 4 from its ends. */
+.current {
+  flex: none;
+  width: var(--space-48);
+  justify-content: center;
+}
+.current > * {
+  flex: 1 1 0;
+  min-width: 0;
+  justify-content: center;
+}
+.bar[data-current] .tabs {
+  justify-content: space-between;
+}
+
 /* The current tab names itself, as a row on the expanded sidebar (owner,
    2026-10-05). The other tabs are just their 40 frame; the current one
    fills everything left. A long name ellipsises. */

@@ -12,7 +12,7 @@ conversation or message travelled on. **Built code-first** (owner,
 | prop | type | default | notes |
 |---|---|---|---|
 | `channel` | `'telegram'` \| `'whatsapp'` \| `'viber'` | | in-app has no logo - render nothing |
-| `size` | `'xs'` \| `'sm'` \| `'md'` \| `'lg'` | `'md'` | 12 · 20 · 28 · 36. `lg` is an `lg` `IconButton`'s height, so a tile sits level beside one |
+| `size` | `'xs'` \| `'sm'` \| `'md'` \| `'lg'` | `'md'` | 12 · 16 · 28 · 36. `lg` is an `lg` `IconButton`'s height, so a tile sits level beside one |
 | `tile` | `boolean` | `true` | `true`: white mark on a rounded square in the app's colour. `false`: the bare mark in `currentColor` |
 | `decorative` | `boolean` | `false` | the app's name is the accessible label unless the name is written beside it |
 

@@ -13,6 +13,11 @@ export interface TabBarProps extends Omit<HTMLAttributes<HTMLElement>, 'children
    * `aria-label`; icon only, except the `active` one, which also takes its
    * `label` and widens to show it. Every page is also in the menu. */
   children: ReactNode;
+  /** The page you are on when it is none of the tabs (Messages, Profile,
+   * Settings, Aegis, a page reached through the menu): one `SidebarNavItem`,
+   * `active`, icon only with an `aria-label`, in a square third panel
+   * (owner, 2026-10-05). Omit on a tab's page. */
+  current?: ReactNode;
 }
 
 /**
@@ -23,7 +28,7 @@ export interface TabBarProps extends Omit<HTMLAttributes<HTMLElement>, 'children
  * share of the bar - the touch target is the whole cell.
  */
 export const TabBar = forwardRef<HTMLElement, TabBarProps>(function TabBar(
-  { menuOpen, onMenuToggle, children, className, ...rest },
+  { menuOpen, onMenuToggle, children, current, className, ...rest },
   ref,
 ) {
   // The current tab's glass travels between tabs, as in SidebarSection.
@@ -35,7 +40,14 @@ export const TabBar = forwardRef<HTMLElement, TabBarProps>(function TabBar(
   }, []);
 
   return (
-    <nav ref={ref} className={cn(styles.bar, className)} data-mode="collapsed" aria-label="Main" {...rest}>
+    <nav
+      ref={ref}
+      className={cn(styles.bar, className)}
+      data-mode="collapsed"
+      data-current={current != null || undefined}
+      aria-label="Main"
+      {...rest}
+    >
       <div className={cn(styles.panel, styles.menu)}>
         <SidebarNavItem
           icon={menuOpen ? <X weight="bold" /> : <List weight="bold" />}
@@ -49,6 +61,7 @@ export const TabBar = forwardRef<HTMLElement, TabBarProps>(function TabBar(
         <span ref={highlightRef} aria-hidden="true" className={styles.highlight} />
         {children}
       </div>
+      {current != null && <div className={cn(styles.panel, styles.current)}>{current}</div>}
     </nav>
   );
 });

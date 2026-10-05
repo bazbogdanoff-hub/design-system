@@ -12,7 +12,8 @@
 /* Object sizes in rem, as IconButton sets its own: md matches IconButton
    sm (28), lg matches IconButton lg (36) so a tile sits level beside one. */
 .logo[data-size='xs'] { width: 0.75rem; height: 0.75rem; }
-.logo[data-size='sm'] { width: 1.25rem; height: 1.25rem; }
+/* sm is 16 (owner, 2026-10-05): beside a name in a chat header. */
+.logo[data-size='sm'] { width: 1rem; height: 1rem; }
 .logo[data-size='md'] { width: 1.75rem; height: 1.75rem; }
 .logo[data-size='lg'] { width: 2.25rem; height: 2.25rem; }
 
