@@ -93,6 +93,13 @@ Dashboard-style rows where panels share the width and match height:
 
 ---
 
+## Phone: the menu is always on top
+
+On `phone` the page card is its own stacking context (`isolation:
+isolate`), so nothing on a page, whatever its `z-index` (the dashboard's
+floating assistant button is 3), can rise over the open `overlay` (the
+`NavSheet`, z-index 2) (owner, 2026-10-05).
+
 ## Breakpoints
 
 Not DTCG tokens - constants in `src/lib/breakpoints.ts` (Tailwind's values):

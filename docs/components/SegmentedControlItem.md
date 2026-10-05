@@ -93,6 +93,14 @@ switcher's rounded end visually agrees with the panel below it. Without
 `tone` set, `position` has no effect (the generic List/Grid/Map track has no
 concept of "flush against a panel edge").
 
+## Phone: a 44 tall tap
+
+On `phone` (owner, 2026-10-05) each item carries an invisible `::after`
+2.75rem (44) tall, centred on it, the touch-target minimum; the control's
+size does not change. A row that scrolls sideways around a control clips
+that tap unless it leaves room: in Aegis the entity tabs row pads 8 above
+and below and takes it back with a negative margin.
+
 ## Figma
 
 `SegmentedControlItem` (`10323:16971`) - 39 variants: `size`(sm/md/lg/xs) ×

@@ -190,3 +190,17 @@
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }
+
+/* Phone (owner, 2026-10-05): every item takes a tap 44 tall (the touch
+   target minimum), centred on it, without growing the control. The item is
+   positioned by its track (SegmentedControl.module.css). */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  .item::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: 50%;
+    height: 2.75rem;
+    transform: translateY(-50%);
+  }
+}

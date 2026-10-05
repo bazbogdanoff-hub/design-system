@@ -112,6 +112,9 @@
     border-radius: var(--radius-2xl);
     --radius-card: var(--radius-xl);
     --radius-card-outer: var(--radius-xl);
+    /* Its own layer, so nothing on the page (the dashboard's floating
+       assistant button at z-index 3) can rise over the open menu. */
+    isolation: isolate;
   }
   .overlay {
     position: absolute;
