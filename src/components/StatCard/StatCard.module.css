@@ -79,3 +79,20 @@
   flex: 1 1 0;
   min-width: 0;
 }
+
+/* Phone tier (owner, 2026-10-05; literal copy of lib/breakpoints.ts): the
+   name, the figure and the badge only. The drill-down buttons go - the card
+   sits two to a row - and the badge takes Badge's sm size. */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  .stats {
+    display: none;
+  }
+  .header {
+    flex-wrap: wrap;
+  }
+  .badge > * {
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-6);
+    font-size: var(--text-label-sm-font-size);
+  }
+}

@@ -92,4 +92,34 @@
   .left {
     flex: 1 1 10rem;
   }
+  /* With controls (entity tabs): heading and actions share the top line,
+     the controls take the whole width under both (owner, 2026-10-05: the
+     tabs clipped beside a column the actions held empty). */
+  .card[data-has-controls] {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: var(--space-10);
+  }
+  .card[data-has-controls] .left {
+    display: contents;
+  }
+  .card[data-has-controls] .controls {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    min-width: 0;
+  }
+  .card[data-has-controls] .actions {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  /* Chips beside a heading drop under it rather than crush it. */
+  .headingRow {
+    flex-wrap: wrap;
+  }
+  /* The stat line keeps its first two figures - the screen lists its main
+     ones first (owner, 2026-10-05). A LabelGroup's children run label,
+     divider, label: everything from the second divider on goes. */
+  .left > :not(.headingRow):not(.controls) > :nth-child(n + 4) {
+    display: none;
+  }
 }

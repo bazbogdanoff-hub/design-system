@@ -18,6 +18,9 @@ export interface GridItemProps extends HTMLAttributes<HTMLDivElement> {
   spanSm?: number;
   /** Columns to span at the `wide` tier (≥1600 × ≥820). Defaults to `span`. */
   spanWide?: number;
+  /** Columns to span at the `phone` tier, out of `columns`. Default: the
+   * full width, one item per line. */
+  spanPhone?: number;
   /** 1-based start column. */
   start?: number;
 }
@@ -38,19 +41,21 @@ const GridRoot = forwardRef<HTMLDivElement, GridProps>(function Grid(
 });
 
 const GridItem = forwardRef<HTMLDivElement, GridItemProps>(function GridItem(
-  { span, spanSm, spanWide, start, className, style, ...rest },
+  { span, spanSm, spanWide, spanPhone, start, className, style, ...rest },
   ref,
 ) {
   return (
     <div
       ref={ref}
       className={cn(styles.item, className)}
+      data-span-phone={spanPhone != null ? '' : undefined}
       style={
         {
           '--span': span,
           '--span-sm': spanSm ?? span,
           '--span-wide': spanWide ?? span,
           '--start': start,
+          '--span-phone': spanPhone,
           ...style,
         } as CSSProperties
       }

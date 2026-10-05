@@ -39,4 +39,7 @@
   .item {
     grid-column: 1 / -1;
   }
+  .item[data-span-phone] {
+    grid-column: span var(--span-phone);
+  }
 }
