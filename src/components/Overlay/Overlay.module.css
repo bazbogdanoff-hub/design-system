@@ -33,6 +33,25 @@
   margin-block: 0;
 }
 
+/* Phone (owner, 2026-10-05): a 20 safe zone on every side (more where the
+   device's own inset is larger), and the panel never extends past it. A
+   panel taller than the room scrolls inside itself (Modal's content), so
+   its header and footer stay on screen. */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  .overlay {
+    padding:
+      max(var(--space-20), env(safe-area-inset-top))
+      max(var(--space-20), env(safe-area-inset-right))
+      max(var(--space-20), env(safe-area-inset-bottom))
+      max(var(--space-20), env(safe-area-inset-left));
+  }
+  .overlay > * {
+    box-sizing: border-box;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
 /* ---- enter / exit (motion playground, 2026-09-28) ----------------------------
    The scrim fades in its own colour, and the panel rises out of a slight
    shrink with a little spring; on close it sinks back out while the scrim

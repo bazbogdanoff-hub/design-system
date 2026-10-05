@@ -57,6 +57,14 @@ with `margin-block: auto`, not `align-items: center` - so a panel taller than
 the viewport scrolls from its top edge instead of being clipped. `align="top"`
 pins it to the top (drop the auto margins) for panels that are usually tall.
 
+## Phone: a 20 safe zone
+
+On the `phone` tier (owner, 2026-10-05) the scrim pads 20 on every side,
+or the device's safe-area inset where that is larger, and caps its panel at
+the room inside (`max-width` and `max-height: 100%`). A panel never
+reaches the screen edge; a tall one scrolls inside itself instead of the
+scrim scrolling it, so a `Modal` keeps its header and footer in view.
+
 ## z-index
 
 Raw `z-index: 1000` for now - there's no layer-token scale yet. Add a `z/*`

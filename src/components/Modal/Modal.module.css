@@ -18,6 +18,14 @@
 .modal[data-width='md'] { --_modal-width: 30rem; }
 .modal[data-width='lg'] { --_modal-width: 36rem; }
 
+/* Phone: the width is the Overlay's room inside its 20 safe zone, not the
+   viewport less 32 (which ran past the zone). */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  .modal[data-width] {
+    width: min(var(--_modal-width), 100%);
+  }
+}
+
 .header {
   display: flex;
   align-items: flex-start;
