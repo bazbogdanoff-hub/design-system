@@ -31,7 +31,9 @@
 .tabs {
   flex: 1 1 auto;
   min-width: 0;
-  justify-content: space-around;
+  /* 4 on every side and between tabs: the same inset the 48 panel leaves
+     around a 40 frame top and bottom (owner, 2026-10-05). */
+  gap: var(--space-4);
   padding-inline: var(--space-4);
 }
 
@@ -48,18 +50,17 @@
 }
 
 /* The current tab names itself, as a row on the expanded sidebar (owner,
-   2026-10-05): it takes its icon + label width and the other tabs share
-   what is left, never below the 40 frame. A long name ellipsises. */
-.tabs > [data-active] {
-  flex: 0 1 auto;
-  width: auto; /* the row is 100% wide by default */
-}
+   2026-10-05). The other tabs are just their 40 frame; the current one
+   fills everything left. A long name ellipsises. */
 .tabs > :not(.highlight):not([data-active]) {
-  min-width: var(--space-40);
+  flex: none;
+  width: var(--space-40);
+}
+.tabs > [data-active] {
+  flex: 1 1 0;
 }
 .tabs > [data-active] [data-highlight] {
-  width: auto;
-  max-width: 100%;
+  width: 100%;
   justify-content: flex-start;
   padding-right: var(--space-12);
 }
