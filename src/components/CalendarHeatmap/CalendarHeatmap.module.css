@@ -291,3 +291,12 @@ button.lead:hover {
     animation: none;
   }
 }
+
+/* Phone (owner, 2026-10-05; literal copy of lib/breakpoints.ts): a 1st is
+   just "1" - the month is plain from where it falls, and "1 Nov" overflowed
+   the narrow cell. */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  .monthName {
+    display: none;
+  }
+}

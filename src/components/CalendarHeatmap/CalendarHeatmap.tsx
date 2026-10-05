@@ -171,9 +171,8 @@ export function CalendarHeatmap({
       >
         {layout === 'calendar' && (
           <span className={styles.dayNumber} aria-hidden="true">
-            {cell.date.getDate() === 1
-              ? `${cell.date.getDate()} ${monthFormat.format(cell.date)}`
-              : cell.date.getDate()}
+            {cell.date.getDate()}
+            {cell.date.getDate() === 1 && <span className={styles.monthName}> {monthFormat.format(cell.date)}</span>}
           </span>
         )}
         {hovered === cell.key && (

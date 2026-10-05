@@ -106,10 +106,12 @@
     position: relative;
     padding: 0;
   }
+  /* The page card keeps 16. Every card on it is 12 round (owner,
+     2026-10-05), its page corners too - a 24 would overhang the page. */
   .content {
-    border-radius: var(--radius-card);
-    /* A card's page-corner radius (24) would overhang this 16 card. */
-    --radius-card-outer: var(--radius-card);
+    border-radius: var(--radius-2xl);
+    --radius-card: var(--radius-xl);
+    --radius-card-outer: var(--radius-xl);
   }
   .overlay {
     position: absolute;

@@ -43,3 +43,13 @@
 .card[data-padding='md']   { padding: var(--space-16); }
 .card[data-padding='lg']   { padding: var(--space-20); }
 .card[data-padding='xl']   { padding: var(--space-24); }
+
+/* Phone tier (owner, 2026-10-05; literal copy of lib/breakpoints.ts): every
+   padded card is 12 in - md, lg and xl alike. xs keeps its 8, none its 0. */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  .card[data-padding='md'],
+  .card[data-padding='lg'],
+  .card[data-padding='xl'] {
+    padding: var(--space-12);
+  }
+}

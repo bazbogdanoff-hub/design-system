@@ -1,4 +1,4 @@
-import { useMemo, useState, type CSSProperties, type HTMLAttributes, type ReactNode } from 'react';
+import { useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type HTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 import { ChartTooltip } from '../ChartTooltip';
 import styles from './TimelineChart.module.css';
@@ -75,8 +75,25 @@ export function TimelineChart({
   const len = (a: number, b: number) =>
     `${(((Math.min(b, span.end) - Math.max(a, span.start)) / width) * 100).toFixed(3)}%`;
 
-  // Axis ticks every 3 hours (or 6 when the span is long), on whole hours.
-  const step = (width > 30 * HOUR ? 6 : 3) * HOUR;
+  // Axis ticks on whole hours, as close as their labels allow: the plot's
+  // measured width decides (owner, 2026-10-05: at phone width 3-hour ticks
+  // piled into one smudge). A label needs about 3rem; the steps run 1, 2,
+  // 3, 6, 12, 24 hours. Before the first measure: 3, or 6 on a long span.
+  const axisRef = useRef<HTMLDivElement>(null);
+  const [axisPx, setAxisPx] = useState<number | null>(null);
+  useLayoutEffect(() => {
+    const el = axisRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setAxisPx(el.clientWidth));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const step = useMemo(() => {
+    if (axisPx == null || axisPx <= 0) return (width > 30 * HOUR ? 6 : 3) * HOUR;
+    const labelPx = 3 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const hours = [1, 2, 3, 6, 12, 24].find((h) => (h * HOUR / width) * axisPx >= labelPx) ?? 24;
+    return hours * HOUR;
+  }, [axisPx, width]);
   const ticks = useMemo(() => {
     const out: number[] = [];
     for (let t = Math.ceil(span.start / step) * step; t <= span.end; t += step) out.push(t);
@@ -120,10 +137,10 @@ export function TimelineChart({
       {/* Axis */}
       <div className={styles.axisRow} aria-hidden="true">
         <span />
-        <div className={styles.axis}>
+        <div ref={axisRef} className={styles.axis}>
           {ticks.map((t) => (
             <span key={t} className={styles.tick} style={{ left: pct(t) }}>
-              {nearNow(t) ? null : timeFormatter(new Date(t))}
+              {nearNow(t) || t >= span.end ? null : timeFormatter(new Date(t))}
             </span>
           ))}
         </div>

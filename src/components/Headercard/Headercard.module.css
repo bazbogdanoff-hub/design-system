@@ -86,6 +86,7 @@
    squeezing the heading (Phone pass step 3). */
 @media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
   .card {
+    padding: var(--space-12);
     flex-wrap: wrap;
     row-gap: var(--space-12);
   }
