@@ -210,7 +210,13 @@ export function GaugeChart({
         </svg>
 
         {/* The bowl: the headline, or the hovered segment. */}
-        <div className={styles.centre} style={{ bottom: room }} aria-hidden="true">
+        <div
+          className={styles.centre}
+          // The bowl's text grows with the gauge (owner, 2026-10-05), by
+          // transform so its type tokens stay as they are.
+          style={{ bottom: room, transform: grow > 1 ? `scale(${grow})` : undefined }}
+          aria-hidden="true"
+        >
           <span className={styles.value}>{active ? valueFormatter(active.value) : value}</span>
           {(active || caption != null) && <span className={styles.caption}>{active ? active.label : caption}</span>}
         </div>
