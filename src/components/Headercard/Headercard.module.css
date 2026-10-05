@@ -80,3 +80,16 @@
   gap: var(--space-10);
   flex: none;
 }
+
+/* Phone tier (lib/breakpoints.ts, literal copy): the actions take the next
+   line when they and the heading don't fit side by side, instead of
+   squeezing the heading (Phone pass step 3). */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  .card {
+    flex-wrap: wrap;
+    row-gap: var(--space-12);
+  }
+  .left {
+    flex: 1 1 10rem;
+  }
+}

@@ -1,0 +1,61 @@
+.card {
+  box-sizing: border-box;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  min-width: 0;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  min-width: 0;
+}
+.leading,
+.trailing {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+.title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-12) var(--space-16);
+  margin: 0;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+.label {
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  line-height: var(--text-label-xs-line-height);
+  color: var(--color-text-subtle);
+}
+.value {
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* A row's fact and selection, as TableRow tints them. */
+.card[data-status='danger'] {
+  background: var(--color-table-row-background-danger);
+}
+.card[data-status='success'] {
+  background: var(--color-table-row-background-success);
+}
+.card[data-selected] {
+  background: var(--color-table-row-background-selected);
+}

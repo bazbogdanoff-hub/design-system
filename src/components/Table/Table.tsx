@@ -35,6 +35,9 @@ export interface TableProps extends Omit<HTMLAttributes<HTMLDivElement>, 'childr
   selectionActions?: ReactNode;
   /** The `<Pagination>` element, right-aligned in the footer. */
   pagination?: ReactNode;
+  /** Phone tier (owner, 2026-10-05): the body is a stack of `TableCard`s
+   * instead of a `<table>`; `header` is not drawn. Header and footer stay. */
+  cards?: boolean;
 }
 
 /**
@@ -60,7 +63,7 @@ export interface TableProps extends Omit<HTMLAttributes<HTMLDivElement>, 'childr
  * still scrolled.
  */
 export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
-  { filters, actions, header, children, selectedCount, selectionActions, pagination, className, ...rest },
+  { filters, actions, header, children, selectedCount, selectionActions, pagination, cards = false, className, ...rest },
   ref,
 ) {
   const hasHeader = filters != null || actions != null;
@@ -180,13 +183,16 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
   });
 
   return (
-    <Card ref={ref} padding="none" className={cn(styles.table, className)} {...rest}>
+    <Card ref={ref} padding="none" className={cn(styles.table, className)} data-cards={cards || undefined} {...rest}>
       {hasHeader && (
         <div className={styles.header}>
           <div className={styles.filters}>{filters}</div>
           <div className={styles.actions}>{actions}</div>
         </div>
       )}
+      {cards ? (
+        <div className={styles.cards}>{children}</div>
+      ) : (
       <div className={styles.content} ref={contentRef}>
         <table
           ref={tableRef}
@@ -203,6 +209,7 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
           <tbody>{children}</tbody>
         </table>
       </div>
+      )}
       {hasFooter && (
         <div className={styles.footer}>
           <div className={styles.selection}>

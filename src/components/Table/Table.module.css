@@ -84,3 +84,16 @@
   align-items: center;
   flex: none;
 }
+
+/* `cards` - the phone tier's body: TableCards stacked 8 apart, inset as
+   the header is. Grows with its cards; the page scrolls. */
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-12);
+}
+.table[data-cards] {
+  height: auto;
+  flex: none;
+}

@@ -257,6 +257,9 @@ export type { SidebarProps, SidebarMode, SidebarModule } from './components/Side
 export { SidebarNavItem } from './components/SidebarNavItem';
 export type { SidebarNavItemProps, SidebarNavItemTone } from './components/SidebarNavItem';
 
+export { TableCard } from './components/TableCard';
+export type { TableCardProps, TableCardField } from './components/TableCard';
+
 export { TabBar } from './components/TabBar';
 export type { TabBarProps } from './components/TabBar';
 
