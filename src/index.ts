@@ -178,6 +178,8 @@ export type { DateInputProps } from './components/DateInput';
 
 export { CalendarHeatmap, CalendarHeatmapLead } from './components/CalendarHeatmap';
 export type { CalendarHeatmapProps, CalendarHeatmapDay, CalendarHeatmapLeadProps } from './components/CalendarHeatmap';
+export { BridgeChart } from './components/BridgeChart';
+export type { BridgeChartProps, BridgeRow, BridgeTone } from './components/BridgeChart';
 export { TimelineChart } from './components/TimelineChart';
 export type { TimelineChartProps, TimelineItem, TimelineTone } from './components/TimelineChart';
 export { DonutChart } from './components/DonutChart';

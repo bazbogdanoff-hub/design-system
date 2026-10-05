@@ -93,6 +93,16 @@ Map shipment/order statuses onto these tones in the app layer (e.g. `delivered â
 | `modal.border` | `border.default` |
 | `modal.scrim` | `background.overlay` |
 
+### `bridgeChart`
+
+| token | aliases |
+|---|---|
+| `bridgeChart.total` | `chart.total` |
+| `bridgeChart.cost` | `chart.1` |
+| `bridgeChart.gain` | `chart.gain` |
+| `bridgeChart.loss` | `chart.loss` |
+| `bridgeChart.compare` | `chart.compare` |
+
 ### `scrollableArea`
 
 | Token | â†’ semantic |

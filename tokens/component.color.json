@@ -511,6 +511,13 @@
       "filled": { "$value": "{color.button.primary.background.default}", "$description": "Reached stages (done + current) - the glass fill of the progress pill (owner, 2026-09-30: stages restyled as glass blocks like the charts; was background.brand.default, brand 600, the old dot-and-line tracker's colour)." },
       "unfilled": { "$value": "{color.surface.recessed}", "$description": "Stages not reached yet - flat, sunk into the card like an empty progress segment. surface.recessed since 2026-09-28." }
     },
+    "bridgeChart": {
+      "total": { "$value": "{color.chart.total}", "$description": "Revenue and other totals." },
+      "cost": { "$value": "{color.chart.1}", "$description": "A cost line: the periwinkle every chart uses for data, a lighter step of the total." },
+      "gain": { "$value": "{color.chart.gain}" },
+      "loss": { "$value": "{color.chart.loss}" },
+      "compare": { "$value": "{color.chart.compare}" }
+    },
     "tooltip": {
       "background": { "$value": "{color.surface.inverse}", "$description": "The one component that stays dark regardless of theme - a tooltip needs contrast against whatever's underneath, light or dark page alike." },
       "text": { "$value": "{color.text.on-inverse}" }

@@ -277,6 +277,10 @@
         "attention": { "$value": "{color.extra.chart-attention}" },
         "low": { "$value": "{color.emerald.500}" }
       },
+      "total": { "$value": "{color.brand.600}", "$description": "A total drawn as a mark - BridgeChart's revenue (owner, 2026-10-05). One step deeper than chart.1 so the cost lines (chart.1) read as a lighter step of it: brand.400 vs brand.600 passes all dataviz checks on the card (normal-vision dE 18.4); brand.300 or .200 for the costs failed." },
+      "gain": { "$value": "{color.emerald.500}", "$description": "Money made - BridgeChart's profit. A status colour: good. Validated with chart.total and chart.1 on the card." },
+      "loss": { "$value": "{color.rose.600}", "$description": "Money lost - BridgeChart's loss. A status colour: bad." },
+      "compare": { "$value": "{color.extra.chart-window}", "$description": "The comparison period behind a bar - BridgeChart's last-period band (owner, 2026-10-05: drawn the way TimelineChart draws its window). Same grey as chart.window, a different meaning, so its own name." },
       "window": { "$value": "{color.extra.chart-window}", "$description": "The slot a timed item has to land in - TimelineChart's delivery-window band and its tooltip swatch (owner, 2026-09-30)." },
       "1": { "$value": "{color.brand.400}", "$description": "Categorical series 1 - placeholder palette, revisit with the real chart component. Migrated from brand.500 to match Figma's lighter chart ramp." },
       "2": { "$value": "{color.cyan.500}", "$description": "Not migrated to cyan.400 - failed the dataviz skill's lightness-band check at .400 (L 0.797, above the 0.77 ceiling)." },

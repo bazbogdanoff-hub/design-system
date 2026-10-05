@@ -174,6 +174,9 @@ mapping and the rule for adding a new component.
 | `color.text.warning-strong` | `orange.700` | orange pill text |
 | `color.icon.warning-strong` | `orange.600` | orange pill icon |
 | `color.chart.1 … 8` | `brand.400 / cyan.500 / amber.500 / emerald.600 / rose.500 / violet.500 / sky.400 / lime.500` | categorical palette for `BarChart`/`LineChart`. **Not a uniform `.400`** - validated against the dataviz skill's `validate_palette.js` first, and a straight `.400` migration failed lightness-band, CVD-separation, and contrast checks worse than the palette it would have replaced. Only `chart.1`/`chart.7` actually landed on `.400`; the other 6 needed `.500`/`.600` to pass. Each exception's specific reason is in `tokens/semantic.color.json`'s `$description` for that entry - read those before ever touching this palette again, and re-run the validator, don't find-replace a shade number. |
+| `color.chart.total` | `brand.600` | a total as a mark: BridgeChart's revenue. Deeper than `chart.1` so costs (`chart.1`) read as its lighter step; brand.300/.200 for costs failed the validator (owner, 2026-10-05) |
+| `color.chart.gain` / `color.chart.loss` | `emerald.500` / `rose.600` | money made / lost: BridgeChart's profit and loss. Status colours |
+| `color.chart.compare` | `extra.chart-window` | the comparison period behind a bar (BridgeChart). Same grey as `chart.window`, its own meaning |
 
 `color.badge.warning-strong.{background,text}` is the component-tier pair for the orange pill.
 
