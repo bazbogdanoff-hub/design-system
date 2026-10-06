@@ -1,29 +1,154 @@
+/* One table row on phone (2026-10-06): the same kind of thing in the same
+   place on every card. Type: eyebrow label/xs subtle · title heading/xs
+   strong (a heading inside a card) · subtitle and facts body/sm · figure
+   label/lg, tabular. */
 .card {
   box-sizing: border-box;
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  gap: var(--space-12);
-  min-width: 0;
-}
-
-.top {
-  display: flex;
-  align-items: center;
   gap: var(--space-8);
   min-width: 0;
 }
+
+/* Eyebrow (or the title, when there is none), then the badge and actions
+   at the right edge, where the eye runs down the list. */
+.top {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-8);
+  min-width: 0;
+}
+.top[data-eyebrow] {
+  align-items: center;
+}
 .leading,
+.badge,
 .trailing {
   display: flex;
   align-items: center;
   flex: none;
 }
-.title {
+
+.eyebrow {
   flex: 1 1 auto;
   min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  line-height: var(--text-label-xs-line-height);
+  color: var(--color-text-subtle);
+  font-variant-numeric: tabular-nums;
 }
 
+.head {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+.title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-family: var(--text-heading-xs-font-family);
+  font-size: var(--text-heading-xs-font-size);
+  font-weight: var(--text-heading-xs-font-weight);
+  line-height: var(--text-heading-xs-line-height);
+  color: var(--color-text-strong);
+}
+.subtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--text-body-sm-font-weight);
+  line-height: var(--text-body-sm-line-height);
+  color: var(--color-text-subtle);
+}
+
+/* Facts share one line, never wrapping, so every card in a table is the
+   same height; the last to run out of room ends in an ellipsis. The
+   figure holds the bottom-right corner. */
+.bottom {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-12);
+  min-width: 0;
+}
+.facts {
+  display: flex;
+  flex: 1 1 auto;
+  gap: var(--space-12);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.fact {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+  gap: var(--space-4);
+  min-width: 0;
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--text-body-sm-font-weight);
+  line-height: var(--text-body-sm-line-height);
+  color: var(--color-text-default);
+}
+.fact[data-tone='danger'] {
+  color: var(--color-text-danger);
+}
+.factIcon {
+  display: inline-flex;
+  flex: none;
+  width: var(--space-16);
+  height: var(--space-16);
+  color: var(--color-text-subtle);
+}
+.fact[data-tone='danger'] .factIcon {
+  color: var(--color-text-danger);
+}
+.factIcon > svg {
+  width: 100%;
+  height: 100%;
+}
+.factValue {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.figure {
+  flex: none;
+  font-family: var(--text-label-lg-font-family);
+  font-size: var(--text-label-lg-font-size);
+  font-weight: var(--text-label-lg-font-weight);
+  line-height: var(--text-label-lg-line-height);
+  color: var(--color-text-default);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* The older anatomy, for a table not yet mapped to facts. */
 .fields {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
