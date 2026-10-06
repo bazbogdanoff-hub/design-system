@@ -664,15 +664,15 @@ export const ColorBorderDefault: string;
 export const ColorBorderSubtle: string;
 /** Emphasized / hover borders */
 export const ColorBorderStrong: string;
-/** Selected input, active tab */
+/** Selected input, active tab. brand.500 since 2026-10-06 (owner: every primary line one step lighter; was 600) */
 export const ColorBorderBrand: string;
 /** Invalid input */
 export const ColorBorderDanger: string;
-/** Focus ring */
+/** Focus ring. brand.400 since 2026-10-06 (owner: one step lighter; was 500) */
 export const ColorBorderFocus: string;
 /** White edge highlight for glass / raised surfaces (asymmetric top-left catch) */
 export const ColorBorderHighlight: string;
-/** Glass edge highlight when the surface is focused/active - a full 1.5px primary border that replaces the white top-left catch */
+/** Glass edge highlight when the surface is focused/active - a full 1.5px primary border that replaces the white top-left catch. brand.400 since 2026-10-06 (was 500) */
 export const ColorBorderHighlightActive: string;
 /** Standalone UI icons */
 export const ColorIconDefault: string;
