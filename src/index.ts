@@ -27,6 +27,8 @@ export type { ProgressBarProps, ProgressBarSize, ProgressBarTone } from './compo
 
 export { SegmentedProgress } from './components/SegmentedProgress';
 export type { SegmentedProgressProps } from './components/SegmentedProgress';
+export { ProgressSteps } from './components/ProgressSteps';
+export type { ProgressStepsProps, ProgressStep, ProgressStepEvent } from './components/ProgressSteps';
 
 export { Tracker } from './components/Tracker';
 export type { TrackerProps, TrackerUrgency } from './components/Tracker';

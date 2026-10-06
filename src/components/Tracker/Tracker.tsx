@@ -166,7 +166,7 @@ export function Tracker({
       // The track now runs from the start to now; the deadline is a notch,
       // named on its own line (the right end is now, not the deadline).
       if (start) notch = ((due.getTime() - start.getTime()) / (now.getTime() - start.getTime())) * 100;
-      passed = `${dueLabel} was ${timeFormatter(due)}`;
+      passed = dueLabel === 'Due' ? `Was due ${timeFormatter(due)}` : `${dueLabel} was ${timeFormatter(due)}`;
     } else {
       label = 'Due in';
       value = formatDuration(untilDue);

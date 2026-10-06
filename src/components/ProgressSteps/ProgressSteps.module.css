@@ -1,0 +1,152 @@
+/* Stages on a vertical rail (owner, 2026-10-06). Type: step name
+   label/md (strong when reached, subtle ahead) · when caption subtle,
+   tabular · note and events body/xs subtle. */
+.steps {
+  --_disc: var(--space-20);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* One step: the disc in its own column, the rail running down from it to
+   the next. The step's bottom padding is the rail's run, so it is the
+   step's own geometry, not spacing between siblings. */
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--_disc) minmax(0, 1fr);
+  column-gap: var(--space-12);
+  padding-bottom: var(--space-16);
+}
+.step:last-child {
+  padding-bottom: 0;
+}
+.step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  /* One line from disc to disc, 2 clear of each. */
+  top: calc(var(--_disc) + var(--space-2));
+  bottom: var(--space-2);
+  left: calc(var(--_disc) / 2 - 1px);
+  width: 2px;
+  border-radius: 1px;
+  background: var(--color-border-default);
+}
+/* Between two reached steps the rail is brand. */
+.step[data-state='done']:not(:last-child)::before {
+  background: var(--color-button-primary-background-default);
+}
+
+/* The disc: Prism once reached (docs/patterns/Prism.md), a well ahead. */
+.disc {
+  --glass-fill: var(--color-button-primary-background-default);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--_disc);
+  height: var(--_disc);
+  border-radius: var(--radius-full);
+  color: var(--color-white);
+}
+.step[data-state='done'] .disc,
+.step[data-state='current'] .disc {
+  background-color: var(--glass-fill);
+  box-shadow:
+    inset 1px 1px 0 0 color-mix(in srgb, var(--glass-fill), white var(--glass-catch-mix)),
+    inset 2px 2px 12px 0 color-mix(in oklch, var(--glass-fill), black var(--glass-inner-mix)),
+    2px 3px 5px -1px color-mix(in srgb, var(--glass-fill) var(--glass-light-near), transparent),
+    3px 6px 12px -2px color-mix(in srgb, var(--glass-fill) var(--glass-light-far), transparent);
+}
+.disc > svg {
+  width: var(--space-12);
+  height: var(--space-12);
+}
+/* The current step is lit: Prism with a white centre and a soft halo. */
+.step[data-state='current'] .disc::after {
+  content: '';
+  width: var(--space-6);
+  height: var(--space-6);
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+}
+.step[data-state='current'] .disc {
+  outline: 4px solid color-mix(in srgb, var(--glass-fill) 18%, transparent);
+}
+.step[data-state='ahead'] .disc {
+  background-color: var(--color-checkbox-background-off);
+  box-shadow:
+    inset 1px 1px 3px 0 var(--color-alpha-black-20),
+    inset 0 0 0 1px var(--color-alpha-black-10);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+/* The name centres on the disc. */
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-12);
+  min-height: var(--_disc);
+  padding-top: calc((var(--_disc) - var(--text-label-md-font-size) * 1.15) / 2);
+  box-sizing: border-box;
+}
+.label {
+  font-family: var(--text-label-md-font-family);
+  font-size: var(--text-label-md-font-size);
+  font-weight: var(--text-label-md-font-weight);
+  line-height: var(--text-label-md-line-height);
+  color: var(--color-text-strong);
+}
+.step[data-state='ahead'] .label {
+  color: var(--color-text-subtle);
+}
+.at {
+  flex: none;
+  font-family: var(--text-caption-font-family);
+  font-size: var(--text-caption-font-size);
+  font-weight: var(--text-caption-font-weight);
+  line-height: var(--text-caption-line-height);
+  color: var(--color-text-subtle);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.note,
+.eventLabel {
+  margin: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-family: var(--text-body-xs-font-family);
+  font-size: var(--text-body-xs-font-size);
+  font-weight: var(--text-body-xs-font-weight);
+  line-height: var(--text-body-xs-line-height);
+  color: var(--color-text-subtle);
+}
+.events {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.event {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-12);
+  min-width: 0;
+}
+.eventLabel {
+  min-width: 0;
+  color: var(--color-text-default);
+}
