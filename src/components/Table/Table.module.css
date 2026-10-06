@@ -88,7 +88,7 @@
 .selectionActions {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-8);
   padding-left: var(--space-8);
 }
 
@@ -121,23 +121,24 @@
   flex: none;
 }
 
-/* Phone: the tile and the pages don't fit one line (owner, 2026-10-06), so
-   a selection takes its own full-width line above the pages. The footer is
-   the table's last thing, so the line it adds moves nothing above it. */
+/* Phone (owner, 2026-10-06): the tile floats at the bottom of the screen,
+   over the page, where the dashboard's assistant button sits: the page
+   card's 12 in from its sides and 24 up (clear of its round corners), above the tab bar (48) and the shell's 10
+   around it. The footer gives the same height back at its end, so the last
+   card can scroll clear of it. */
 @media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
-  .footer:has(.selectionTile) {
-    flex-wrap: wrap;
-  }
-  .selection:has(.selectionTile) {
-    flex: 1 1 100%;
-  }
   .selectionTile {
-    flex: 1 1 auto;
+    position: fixed;
+    z-index: 3;
+    left: calc(var(--space-10) + var(--space-12));
+    right: calc(var(--space-10) + var(--space-12));
+    bottom: calc(max(var(--space-10), env(safe-area-inset-bottom)) + var(--space-48) + var(--space-10) + var(--space-24));
+    filter: drop-shadow(0 var(--space-4) var(--space-12) var(--color-alpha-black-15));
   }
   .selectionActions {
     margin-left: auto;
   }
-  .footer:has(.selectionTile) .pagination {
-    margin-left: auto;
+  .footer:has(.selectionTile) {
+    padding-bottom: calc(var(--space-16) + 2.25rem + var(--space-24));
   }
 }
