@@ -28,6 +28,9 @@ export interface SelectableCardProps {
   /** `card` (default) or `tile`: a choice among others inside one card
    * (owner, 2026-10-06: the task page's options, grouped as Context is). */
   surface?: 'card' | 'tile';
+  /** Where the radio sits on the top row: `end` (default, after `trailing`)
+   * or `start`, before it (owner, 2026-10-06: the task page's choices). */
+  radio?: 'start' | 'end';
   className?: string;
 }
 
@@ -62,6 +65,7 @@ export const SelectableCard = forwardRef<HTMLDivElement, SelectableCardProps>(fu
     padding = 'md',
     radioSize = 'md',
     surface = 'card',
+    radio = 'end',
     className,
   },
   ref,
@@ -97,6 +101,7 @@ export const SelectableCard = forwardRef<HTMLDivElement, SelectableCardProps>(fu
       ref={ref}
       className={cn(styles.card, className)}
       data-surface={surface}
+      data-radio={radio}
       data-selected={checked || undefined}
       data-disabled={disabled || undefined}
       onClick={handleClick}
@@ -109,6 +114,7 @@ export const SelectableCard = forwardRef<HTMLDivElement, SelectableCardProps>(fu
       ref={ref}
       className={cn(styles.card, className)}
       data-surface={surface}
+      data-radio={radio}
       data-selected={checked || undefined}
       data-disabled={disabled || undefined}
       onClick={handleClick}

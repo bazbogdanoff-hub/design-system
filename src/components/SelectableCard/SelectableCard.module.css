@@ -58,3 +58,11 @@
 .card[data-surface='tile']:has(input[type='radio']:focus-visible) {
   box-shadow: inset 0 0 0 1px var(--color-border-brand);
 }
+
+/* Radio first: it leads the row, the trailing content follows it. */
+.card[data-radio='start'] .top {
+  justify-content: flex-start;
+}
+.card[data-radio='start'] .trailing {
+  order: 0;
+}
