@@ -135,22 +135,32 @@
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
-/* A fact that is a link (a phone number to call) reads as tappable in
-   brand, without a web underline. */
-.factValue a {
+/* A fact that is a link or a button (a phone number to call, a file to
+   open) reads as tappable in brand, without a web underline or a box. */
+.factValue a,
+.factValue button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
   color: var(--color-text-brand);
   text-decoration: none;
 }
 /* A 44 tall tap (the phone rule), so a near miss calls rather than opening
    the card. A link fact is never the last one, so it never needs the
    ellipsis its overflow would clip the tap with. */
-.factValue:has(> a) {
+.factValue:has(> a),
+.factValue:has(> button) {
   overflow: visible;
 }
-.factValue > a {
+.factValue > a,
+.factValue > button {
   position: relative;
 }
-.factValue > a::after {
+.factValue > a::after,
+.factValue > button::after {
   content: '';
   position: absolute;
   left: 0;
@@ -159,7 +169,8 @@
   height: 2.75rem;
   transform: translateY(-50%);
 }
-.factValue a:focus-visible {
+.factValue a:focus-visible,
+.factValue button:focus-visible {
   outline: 2px solid var(--color-border-focus);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
