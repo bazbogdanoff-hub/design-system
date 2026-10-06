@@ -15,7 +15,8 @@ Card surface + header (filters/actions) + a real `<table>` + footer
     </TableRow>
   }
   selectedCount={selected.length}
-  selectionActions={<Button variant="tertiary" size="sm">Delete</Button>}
+  selectionActions={<Button variant="secondary" size="sm">Delete</Button>}
+  onClearSelection={() => setSelected([])}
   pagination={<Pagination page={page} totalPages={10} onPageChange={setPage} />}
 >
   {rows.map((row) => (
@@ -33,11 +34,15 @@ Card surface + header (filters/actions) + a real `<table>` + footer
 | `header` | `ReactNode` - required | a `<TableRow>` of `<TableHeaderCell>`s |
 | `children` | `ReactNode` - required | body `<TableRow>`s of `<TableCell>`s |
 | `selectedCount` | `number` | shows the footer's selection panel once truthy |
-| `selectionActions` | `ReactNode` | shown next to the selection count |
+| `selectionActions` | `ReactNode` | `sm` buttons after the count, inside the selection tile |
+| `onClearSelection` | `() => void` | the tile's leading ×; without it no × |
 | `pagination` | `ReactNode` | the footer's right side |
 
 The header region renders only if `filters` or `actions` is passed; the
-footer only if `selectedCount` is truthy or `pagination` is passed.
+footer only if `selectedCount` is truthy or `pagination` is passed. The
+selection is a `Tile` (× clear, "N selected", the actions) at the footer's
+left, pagination at its right; the footer reserves the tile's 36 from the
+start, so a first tick moves nothing (owner, 2026-10-06).
 
 ## Booleans in Figma become plain conditionals here
 

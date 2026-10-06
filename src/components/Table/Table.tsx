@@ -8,8 +8,11 @@ import {
   type HTMLAttributes,
   type ReactNode,
 } from 'react';
+import { X } from '@phosphor-icons/react';
 import { cn } from '../../lib/cn';
 import { Card } from '../Card';
+import { IconButton } from '../IconButton';
+import { Tile } from '../Tile';
 import { useRemScale } from '../../lib/rem';
 import styles from './Table.module.css';
 
@@ -31,8 +34,12 @@ export interface TableProps extends Omit<HTMLAttributes<HTMLDivElement>, 'childr
   children: ReactNode;
   /** How many rows are currently selected. The footer's left side (and the footer itself, if `pagination` is also absent) only appears once this is truthy. */
   selectedCount?: number;
-  /** Shown next to the selection count - e.g. a "Delete" button. Only rendered when `selectedCount` is truthy. */
+  /** Shown after the selection count - e.g. "Mark inactive", "Export CSV",
+   * "Delete" as `sm` buttons. Only rendered when `selectedCount` is truthy. */
   selectionActions?: ReactNode;
+  /** Clears the selection: the tile's leading × (owner, 2026-10-06). Without
+   * it the tile shows no ×. */
+  onClearSelection?: () => void;
   /** The `<Pagination>` element, right-aligned in the footer. */
   pagination?: ReactNode;
   /** Phone tier (owner, 2026-10-05): the body is a stack of `TableCard`s
@@ -63,7 +70,7 @@ export interface TableProps extends Omit<HTMLAttributes<HTMLDivElement>, 'childr
  * still scrolled.
  */
 export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
-  { filters, actions, header, children, selectedCount, selectionActions, pagination, cards = false, className, ...rest },
+  { filters, actions, header, children, selectedCount, selectionActions, onClearSelection, pagination, cards = false, className, ...rest },
   ref,
 ) {
   const hasHeader = filters != null || actions != null;
@@ -213,11 +220,23 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
       {hasFooter && (
         <div className={styles.footer}>
           <div className={styles.selection}>
+            {/* The selection tile (owner, 2026-10-06): × first, the count,
+                then the actions. Its height is reserved in the footer from
+                the start, so ticking the first row moves nothing. */}
             {Boolean(selectedCount) && (
-              <>
+              <Tile radius="md" className={styles.selectionTile}>
+                {onClearSelection && (
+                  <IconButton
+                    variant="tertiary"
+                    size="sm"
+                    aria-label="Clear selection"
+                    icon={<X weight="bold" aria-hidden="true" />}
+                    onClick={onClearSelection}
+                  />
+                )}
                 <span className={styles.selectionCount}>{selectedCount} selected</span>
-                {selectionActions}
-              </>
+                {selectionActions != null && <span className={styles.selectionActions}>{selectionActions}</span>}
+              </Tile>
             )}
           </div>
           <div className={styles.pagination}>{pagination}</div>
