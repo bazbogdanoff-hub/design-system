@@ -36,12 +36,13 @@
 
 .tooltip[data-position='top'] .arrow {
   bottom: -0.25rem;
-  left: 50%;
+  /* TooltipTrigger moves it when the bubble is pushed to stay on screen */
+  left: var(--_arrow-x, 50%);
   margin-left: -0.25rem;
 }
 .tooltip[data-position='bottom'] .arrow {
   top: -0.25rem;
-  left: 50%;
+  left: var(--_arrow-x, 50%);
   margin-left: -0.25rem;
 }
 .tooltip[data-position='left'] .arrow {

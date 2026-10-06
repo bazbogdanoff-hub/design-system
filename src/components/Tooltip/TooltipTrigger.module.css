@@ -1,18 +1,25 @@
-/* The anchor is the positioning context and the hover region. The bubble
-   sits inside it, so moving the pointer from the trigger onto the bubble
-   never leaves the anchor - that is what keeps it open while hovered. */
+/* The anchor is the trigger's box and its hover region. */
 .anchor {
   position: relative;
   display: inline-flex;
   width: fit-content;
 }
 
-/* The gap between trigger and bubble is this wrapper's padding, not an
+/* The bubble lives in a portal on <body>, fixed to the viewport, so no
+   scrolling box clips it (a Modal's body cut the first field's tooltip off
+   under the heading, and a hidden bubble past its edge made it scroll
+   sideways; owner, 2026-10-06). It sits above the Overlay (1000); there is
+   no z-index token scale yet. `left` / `top` and the arrow's offset come
+   from TooltipTrigger, measured on open and kept on screen.
+
+   The gap between trigger and bubble is this wrapper's padding, not an
    offset - so it is part of the hover region, not a dead strip that would
    close the tooltip on the way across. */
 .bubble {
-  position: absolute;
-  z-index: 2;
+  position: fixed;
+  z-index: 1100;
+  top: 0;
+  left: 0;
   display: block;
   opacity: 0;
   visibility: hidden;
@@ -34,38 +41,13 @@
   }
 }
 
-.anchor[data-position='top'] .bubble {
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding-bottom: var(--space-6);
-}
-
-.anchor[data-position='bottom'] .bubble {
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding-top: var(--space-6);
-}
-
-.anchor[data-position='left'] .bubble {
-  right: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  padding-right: var(--space-6);
-}
-
-.anchor[data-position='right'] .bubble {
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  padding-left: var(--space-6);
-}
+.bubble[data-position='top'] { padding-bottom: var(--space-6); }
+.bubble[data-position='bottom'] { padding-top: var(--space-6); }
+.bubble[data-position='left'] { padding-right: var(--space-6); }
+.bubble[data-position='right'] { padding-left: var(--space-6); }
 
 /* Motion (playground, 2026-09-28): the bubble grows out of the trigger - it
-   starts a few pixels toward it, slightly small, and springs into place.
-   `translate` / `scale` are the individual transform properties, so they
-   stack on the centring `transform` above instead of replacing it. */
+   starts a few pixels toward it, slightly small, and springs into place. */
 .bubble {
   scale: 0.96;
   transition:
@@ -74,23 +56,23 @@
     scale 0.12s ease,
     visibility 0s linear 0.12s;
 }
-.anchor[data-position='top'] .bubble {
+.bubble[data-position='top'] {
   translate: 0 0.25rem;
-  transform-origin: bottom center;
+  transform-origin: var(--_arrow-x, 50%) 100%;
 }
-.anchor[data-position='bottom'] .bubble {
+.bubble[data-position='bottom'] {
   translate: 0 -0.25rem;
-  transform-origin: top center;
+  transform-origin: var(--_arrow-x, 50%) 0%;
 }
-.anchor[data-position='left'] .bubble {
+.bubble[data-position='left'] {
   translate: 0.25rem 0;
   transform-origin: center right;
 }
-.anchor[data-position='right'] .bubble {
+.bubble[data-position='right'] {
   translate: -0.25rem 0;
   transform-origin: center left;
 }
-.anchor .bubble[data-open] {
+.bubble[data-open] {
   translate: 0 0;
   scale: 1;
   transition:
@@ -100,8 +82,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .anchor .bubble,
-  .anchor .bubble[data-open] {
+  .bubble,
+  .bubble[data-open] {
     translate: 0 0;
     scale: 1;
     transition: none;

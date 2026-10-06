@@ -35,7 +35,11 @@ Two parts, deliberately separate:
   in the DOM - screen readers read the text as the control's description
   even while it's visually hidden.
 - `prefers-reduced-motion` removes the fade.
-- No collision handling: it opens on the chosen side, centred.
+- The bubble is portalled to `<body>` and fixed to the viewport (z-index
+  1100, above `Overlay`), so a scrolling box such as a Modal's body neither
+  clips it nor scrolls sideways because of it (owner, 2026-10-06). It opens
+  on the chosen side, centred, pushed along to stay 8 clear of the screen's
+  edges; the arrow keeps pointing at the trigger. It never flips sides.
 
 ## Long text
 
