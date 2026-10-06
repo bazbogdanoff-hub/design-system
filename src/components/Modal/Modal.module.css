@@ -65,3 +65,12 @@
 .modal[data-padding='lg'] { padding: var(--space-20); gap: var(--space-20); }
 .modal[data-padding='md'] { padding: var(--space-16); gap: var(--space-16); }
 .modal[data-padding='sm'] { padding: var(--space-12); gap: var(--space-12); }
+
+/* Phone (owner, 2026-10-06): 12 all round whatever the padding name, and
+   12 between header, body and footer, as gap follows padding. */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  .modal[data-padding] {
+    padding: var(--space-12);
+    gap: var(--space-12);
+  }
+}

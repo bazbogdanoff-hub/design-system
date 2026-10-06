@@ -32,7 +32,11 @@ const rules = [];
     const cls = 'text-' + path.join('-');
     const lines = Object.entries(PROP)
       .filter(([k]) => k in node.$value)
-      .map(([k, css]) => `  ${css}: ${refToVar(node.$value[k])};`);
+      // Through the role's own --text-* variable, not the primitive, so an
+      // override of the role (the phone type step in src/scale.css) reaches
+      // the utility classes too (owner, 2026-10-06: .text-heading-sm stayed 18
+      // on phone while its role was 16).
+      .map(([, css]) => `  ${css}: var(--${cls}-${css});`);
     if (path.at(-1) === 'overline') lines.push('  text-transform: uppercase;');
     rules.push(`.${cls} {\n${lines.join('\n')}\n}`);
     return;
