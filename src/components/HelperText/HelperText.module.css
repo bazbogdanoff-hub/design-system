@@ -4,16 +4,20 @@
 .helper {
   display: inline-flex;
   align-items: flex-start;
-  gap: var(--space-6);
+  /* 4, as the label row's info icon: with the glyph's own inset, 6 read as
+     the icon drifting off its text (owner, 2026-10-06). */
+  gap: var(--space-4);
 }
 
+/* One line of the message tall (the icon and message share a font size and
+   line height), the glyph centred in it: it sits on the first line's middle
+   whatever the wrap. A 0.1em nudge left it 1.4 to 2.3 high. */
 .icon {
   display: inline-flex;
   flex: none;
   align-items: center;
-  /* nudge down half a line so the glyph lines up with the first line of text,
-     not the whole (possibly multi-line) block */
-  margin-top: 0.1em;
+  line-height: var(--text-body-md-line-height);
+  height: 1lh;
 }
 .icon > svg {
   display: block;
