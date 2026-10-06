@@ -50,6 +50,10 @@
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
+  /* Never sideways: a control's invisible 44 tap on phone (Retry and Remove
+     on a file row) reaching past the edge made the dialog scroll (owner,
+     2026-10-06). */
+  overflow-x: hidden;
   padding: var(--space-6);
   margin: calc(-1 * var(--space-6));
 }
