@@ -43,8 +43,8 @@ footer only if `selectedCount` is truthy or `pagination` is passed. The
 selection is a `Tile` (× clear, "N selected", the actions) at the footer's
 left, pagination at its right; the footer reserves the tile's 36 from the
 start, so a first tick moves nothing (owner, 2026-10-06). On phone it is a
-`Card` bar instead: fixed across the bottom of the page card, its full width,
-48 tall, flush with its bottom; the footer gives that height back.
+`Card` bar instead: fixed across the bottom of the page card inside the page padding,
+48 tall, 12 from its edges; the footer gives that height back.
 
 ## Booleans in Figma become plain conditionals here
 
