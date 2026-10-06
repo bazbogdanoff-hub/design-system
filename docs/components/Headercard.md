@@ -81,3 +81,7 @@ ellipsises; everything under the heading (stat line, controls, chips, a
 description) keeps the full width, so the button moves nothing but the
 heading's start. Aegis passes it on phone only, when there is an in-app page
 to return to.
+
+On phone the heading never wraps: a long one ends in an ellipsis, and the
+`aside` (in Aegis, a status icon) keeps its place beside it (owner,
+2026-10-06).

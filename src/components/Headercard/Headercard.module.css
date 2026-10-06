@@ -113,9 +113,15 @@
     grid-column: 2;
     grid-row: 1;
   }
-  /* Chips beside a heading drop under it rather than crush it. */
+  /* Phone (owner, 2026-10-06): the heading never wraps; a long one ends in
+     an ellipsis, and what sits beside it (a status icon) keeps its place. */
   .headingRow {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+  }
+  .heading {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   /* The stat line keeps its first two figures - the screen lists its main
      ones first (owner, 2026-10-05). A LabelGroup's children run label,
@@ -151,30 +157,15 @@
   grid-column: 1;
   grid-row: 1;
 }
-.card[data-back] .heading {
+.card[data-back] .left > :first-child {
   grid-column: 2;
   grid-row: 1;
-  min-width: 0;
-}
-/* Chips beside the heading take a full-width line of their own under it:
-   beside a ← there is no room for them (a rig's three ran under its
-   badge). */
-.card[data-back] .headingRow {
-  display: contents;
-}
-.card[data-back] .aside {
-  grid-column: 1 / -1;
-  grid-row: 2;
-  flex-wrap: wrap;
   min-width: 0;
 }
 .card[data-back] .left > :nth-child(2) {
   grid-column: 1 / -1;
   grid-row: 2;
   min-width: 0;
-}
-.card[data-back]:has(.aside) .left > :nth-child(2) {
-  grid-row: 3;
 }
 .card[data-back] .actions {
   grid-column: 3;
