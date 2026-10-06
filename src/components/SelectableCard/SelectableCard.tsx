@@ -1,5 +1,6 @@
 import { forwardRef, type MouseEvent, type ReactNode } from 'react';
 import { Card, type CardPadding } from '../Card';
+import { Tile } from '../Tile';
 import { Radio, type RadioSize } from '../Radio';
 import { cn } from '../../lib/cn';
 import styles from './SelectableCard.module.css';
@@ -24,6 +25,9 @@ export interface SelectableCardProps {
   /** `Card` padding. `md` (default). */
   padding?: CardPadding;
   radioSize?: RadioSize;
+  /** `card` (default) or `tile`: a choice among others inside one card
+   * (owner, 2026-10-06: the task page's options, grouped as Context is). */
+  surface?: 'card' | 'tile';
   className?: string;
 }
 
@@ -57,6 +61,7 @@ export const SelectableCard = forwardRef<HTMLDivElement, SelectableCardProps>(fu
     children,
     padding = 'md',
     radioSize = 'md',
+    surface = 'card',
     className,
   },
   ref,
@@ -70,15 +75,8 @@ export const SelectableCard = forwardRef<HTMLDivElement, SelectableCardProps>(fu
     onSelect();
   }
 
-  return (
-    <Card
-      ref={ref}
-      padding={padding}
-      className={cn(styles.card, className)}
-      data-selected={checked || undefined}
-      data-disabled={disabled || undefined}
-      onClick={handleClick}
-    >
+  const content = (
+    <>
       <div className={styles.top}>
         <Radio
           name={name}
@@ -92,6 +90,31 @@ export const SelectableCard = forwardRef<HTMLDivElement, SelectableCardProps>(fu
         {trailing != null && <div className={styles.trailing}>{trailing}</div>}
       </div>
       {children}
+    </>
+  );
+  return surface === 'tile' ? (
+    <Tile
+      ref={ref}
+      className={cn(styles.card, className)}
+      data-surface={surface}
+      data-selected={checked || undefined}
+      data-disabled={disabled || undefined}
+      onClick={handleClick}
+      padding={padding === 'sm' || padding === 'xs' ? padding : 'md'}
+    >
+      {content}
+    </Tile>
+  ) : (
+    <Card
+      ref={ref}
+      className={cn(styles.card, className)}
+      data-surface={surface}
+      data-selected={checked || undefined}
+      data-disabled={disabled || undefined}
+      onClick={handleClick}
+      padding={padding}
+    >
+      {content}
     </Card>
   );
 });

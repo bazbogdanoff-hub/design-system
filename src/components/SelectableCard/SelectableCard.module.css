@@ -47,3 +47,14 @@
   align-items: center;
   gap: var(--space-8);
 }
+
+/* As a Tile: a column like Card, and the selected / focus ring on the
+   tile's own surface. */
+.card[data-surface='tile'] {
+  display: flex;
+  flex-direction: column;
+}
+.card[data-surface='tile'][data-selected],
+.card[data-surface='tile']:has(input[type='radio']:focus-visible) {
+  box-shadow: inset 0 0 0 1px var(--color-border-brand);
+}
