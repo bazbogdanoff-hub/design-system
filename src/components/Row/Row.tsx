@@ -7,7 +7,7 @@ import {
   type ReactElement,
   type ReactNode,
 } from 'react';
-import { IconCell, type IconCellTone } from '../IconCell';
+import { IconCell, type IconCellSize, type IconCellTone } from '../IconCell';
 import { Label, type LabelSize } from '../Label';
 import { LabelGroup, type LabelGroupProps } from '../LabelGroup';
 import { cn } from '../../lib/cn';
@@ -21,12 +21,13 @@ export type RowSize = 'sm' | 'md' | 'lg';
 const DESCRIPTION_LABEL_GROUP_SIZE: Record<RowSize, LabelSize> = { sm: '2xs', md: 'xs', lg: 'sm' };
 
 /** Locked to `IconCell` - never a generic slot. Mirrors `IconCell`'s own
- * icon-xor-children union, minus `size` (`Row` controls that itself, keyed
- * off its own `size`). See docs/components/Row.md for why this is a typed
+ * icon-xor-children union. `size` follows the row's own unless set: a
+ * compact row with a larger tile (owner, 2026-10-06: the parts used list).
+ * See docs/components/Row.md for why this is a typed
  * prop and not a `ReactNode` slot like `status`/`action`. */
 export type RowLeading =
-  | { icon: ReactNode; children?: never; tone?: IconCellTone }
-  | { icon?: never; children: ReactNode; tone?: IconCellTone };
+  | { icon: ReactNode; children?: never; tone?: IconCellTone; size?: IconCellSize }
+  | { icon?: never; children: ReactNode; tone?: IconCellTone; size?: IconCellSize };
 
 const ICON_CELL_SIZE: Record<RowSize, 'sm' | 'md' | 'lg'> = { sm: 'sm', md: 'md', lg: 'lg' };
 
@@ -114,7 +115,7 @@ export const Row = forwardRef<HTMLDivElement, RowProps>(function Row(
       {...rest}
     >
       {leading && (
-        <IconCell size={ICON_CELL_SIZE[size]} tone={leading.tone} {...(leading.icon != null ? { icon: leading.icon } : { children: leading.children })} />
+        <IconCell size={leading.size ?? ICON_CELL_SIZE[size]} tone={leading.tone} {...(leading.icon != null ? { icon: leading.icon } : { children: leading.children })} />
       )}
       <div className={styles.text}>
         <p className={styles.heading}>{heading}</p>
