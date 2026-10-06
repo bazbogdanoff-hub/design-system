@@ -232,7 +232,7 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
                 {onClearSelection && (
                   <IconButton
                     variant="tertiary"
-                    size="sm"
+                    size={phone ? 'lg' : 'sm'}
                     aria-label="Clear selection"
                     icon={<X weight="bold" aria-hidden="true" />}
                     onClick={onClearSelection}

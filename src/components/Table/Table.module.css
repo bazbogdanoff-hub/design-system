@@ -134,17 +134,19 @@
     right: calc(var(--space-10) + var(--space-12));
     bottom: calc(max(var(--space-10), env(safe-area-inset-bottom)) + var(--space-48) + var(--space-10) + var(--space-12));
     flex-direction: row;
-    height: var(--space-48);
+    /* 36 controls (owner, 2026-10-06), 8 around them. */
+    height: calc(2.25rem + 2 * var(--space-8));
     /* Card's own padding rule (none) outranks a single class. */
     padding: 0 var(--space-8);
     border-radius: var(--radius-card);
-    filter: drop-shadow(0 calc(-1 * var(--space-2)) var(--space-12) var(--color-alpha-black-15));
+    /* Above and below alike, so it stands clear of the page either way. */
+    filter: drop-shadow(0 0 var(--space-12) var(--color-alpha-black-15));
   }
   .selectionActions {
     margin-left: auto;
     gap: var(--space-12);
   }
   .footer:has(.selectionBar) {
-    padding-bottom: calc(var(--space-16) + var(--space-48) + var(--space-12));
+    padding-bottom: calc(var(--space-16) + 2.25rem + 2 * var(--space-8) + var(--space-12));
   }
 }
