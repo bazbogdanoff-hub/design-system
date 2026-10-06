@@ -607,9 +607,13 @@ export function FolderDropper({
             .map((f) => (
               <div key={f.id} className={styles.item} data-removing={removing.has(f.id) || undefined}>
                 <div className={styles.itemInner}>
+                  {/* As the parts in a repair's close: a large neutral tile, the
+                      name over the size, a small secondary remove, no divider
+                      (owner, 2026-10-06). */}
                   <Row
-                    size="sm"
-                    leading={{ icon: fileIcon(f.name), tone: 'brand' }}
+                    size="md"
+                    divider="none"
+                    leading={{ icon: fileIcon(f.name), size: 'lg' }}
                     heading={f.name}
                     description={
                       <LabelGroup>
@@ -624,7 +628,7 @@ export function FolderDropper({
                       <span className={styles.actions}>
                         {f.status === 'error' && onRetry ? (
                           <IconButton
-                            variant="tertiary"
+                            variant="secondary"
                             size="sm"
                             icon={<ArrowClockwise weight="bold" />}
                             aria-label={`Retry ${f.name}`}
@@ -634,7 +638,7 @@ export function FolderDropper({
                         ) : null}
                         {onRemove ? (
                           <IconButton
-                            variant="tertiary"
+                            variant="secondary"
                             size="sm"
                             icon={<X weight="bold" />}
                             aria-label={`Remove ${f.name}`}

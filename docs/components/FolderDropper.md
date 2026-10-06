@@ -49,7 +49,7 @@ parent.
   `color.text.on-brand` with a soft glow for contrast over the sheets.
 - **Sheets** - white, 96 × 100, three grey lines; fanned, at most **4**
   shown however many files the folder holds.
-- **List** - beside the folder, a `Row` (sm) per finished **or failed**
+- **List** - beside the folder, a `Row` (md, large neutral tile, no divider, secondary sm buttons; as the parts in a repair's close) per finished **or failed**
   file, newest first: file-type `IconCell` (Phosphor fill), name, size, ✕.
   A failed row (owner, 2026-10-03) shows the file's `error` in danger
   in place of its size, and ↻ retry beside ✕.
@@ -86,7 +86,7 @@ one-file dialog widened and jumped when a list appeared beside the folder):
 - `side` reserves the list's width (14rem basis) from the start; the list's
   height is the folder column's, with a scroller laid over it that reaches
   up into the room above the folder - rows never add height.
-- `stacked` holds one row's slot (3.25rem) open under the folder from the
+- `stacked` holds one row's slot (3.625rem) open under the folder from the
   start, its width taken from the box. Empty, the folder sits mid-block
   (room above + slot below shared); uploading, it rises so the sheet has
   room, and the row fills the slot.

@@ -202,7 +202,9 @@
 /* stacked - one row's slot, held open while empty; its width taken from
    the box, never added to it (a long file name widened the dialog). */
 .root[data-layout='stacked'] .list {
-  height: 3.25rem;
+  /* An md Row with a large tile, as the parts in a repair's close (owner,
+     2026-10-06); it was 3.25rem for the sm row. */
+  height: 3.625rem;
   width: 0;
   min-width: 100%;
   overflow: visible;
