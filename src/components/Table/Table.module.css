@@ -120,3 +120,24 @@
   height: auto;
   flex: none;
 }
+
+/* Phone: the tile and the pages don't fit one line (owner, 2026-10-06), so
+   a selection takes its own full-width line above the pages. The footer is
+   the table's last thing, so the line it adds moves nothing above it. */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  .footer:has(.selectionTile) {
+    flex-wrap: wrap;
+  }
+  .selection:has(.selectionTile) {
+    flex: 1 1 100%;
+  }
+  .selectionTile {
+    flex: 1 1 auto;
+  }
+  .selectionActions {
+    margin-left: auto;
+  }
+  .footer:has(.selectionTile) .pagination {
+    margin-left: auto;
+  }
+}
