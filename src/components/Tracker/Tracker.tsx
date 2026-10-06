@@ -25,6 +25,9 @@ export interface TrackerProps {
   /** One line under the track: what the deadline is ("Next checkpoint ·
    * Koroszczyn"). */
   context?: ReactNode;
+  /** Show the start and due under the track. Default true; off when the
+   * screen lists them elsewhere (the task page on phone, owner 2026-10-06). */
+  ends?: boolean;
   /** Formats the ends' times. Default: "Sep 30, 13:48". */
   timeFormatter?: (d: Date) => string;
   className?: string;
@@ -108,6 +111,7 @@ export function Tracker({
   dueLabel = 'Due',
   context,
   timeFormatter = defaultTime,
+  ends: showEnds = true,
   className,
 }: TrackerProps) {
   // A countdown shows seconds under an hour; scheduled only needs to notice
@@ -186,7 +190,7 @@ export function Tracker({
       >
         <span className={styles.bar} style={{ width: `${fill.toFixed(2)}%` } as CSSProperties} />
       </div>
-      {ends.length > 0 && (
+      {showEnds && ends.length > 0 && (
         <dl className={styles.ends}>
           {ends.map((e) => (
             <div key={e.label} className={styles.end}>
