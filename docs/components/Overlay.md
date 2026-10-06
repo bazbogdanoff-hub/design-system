@@ -57,13 +57,15 @@ with `margin-block: auto`, not `align-items: center` - so a panel taller than
 the viewport scrolls from its top edge instead of being clipped. `align="top"`
 pins it to the top (drop the auto margins) for panels that are usually tall.
 
-## Phone: a 20 safe zone
+## Phone: the page's padded area
 
-On the `phone` tier (owner, 2026-10-05) the scrim pads 20 on every side,
-or the device's safe-area inset where that is larger, and caps its panel at
-the room inside (`max-width` and `max-height: 100%`). A panel never
-reaches the screen edge; a tall one scrolls inside itself instead of the
-scrim scrolling it, so a `Modal` keeps its header and footer in view.
+On the `phone` tier the scrim pads its panel into the page's own padded
+area (owner, 2026-10-06; it was a flat 20 from 2026-10-05): 22 from the
+sides and top (the shell's 10 plus the page's 12), and 12 above the page
+card's bottom, so the tab bar stays clear. The device's safe-area inset
+wins where larger. It caps the panel at that room (`max-width` and
+`max-height: 100%`); a tall one scrolls inside itself instead of the scrim
+scrolling it, so a `Modal` keeps its header and footer in view.
 
 ## z-index
 

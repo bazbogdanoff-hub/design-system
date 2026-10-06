@@ -33,17 +33,19 @@
   margin-block: 0;
 }
 
-/* Phone (owner, 2026-10-05): a 20 safe zone on every side (more where the
-   device's own inset is larger), and the panel never extends past it. A
-   panel taller than the room scrolls inside itself (Modal's content), so
-   its header and footer stay on screen. */
+/* Phone: the panel stays inside the page's own padded area (owner,
+   2026-10-06), as the page's cards do: the shell's 10 plus the page's 12
+   from the sides and top, and 12 above the page card's bottom, which sits on
+   the tab bar (48) and the shell's 10 under it. The device's inset wins
+   where larger. A panel taller than the room scrolls inside itself (Modal's
+   content), so its header and footer stay on screen. */
 @media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
   .overlay {
     padding:
-      max(var(--space-20), env(safe-area-inset-top))
-      max(var(--space-20), env(safe-area-inset-right))
-      max(var(--space-20), env(safe-area-inset-bottom))
-      max(var(--space-20), env(safe-area-inset-left));
+      max(calc(var(--space-10) + var(--space-12)), env(safe-area-inset-top))
+      max(calc(var(--space-10) + var(--space-12)), env(safe-area-inset-right))
+      calc(max(var(--space-10), env(safe-area-inset-bottom)) + var(--space-48) + var(--space-10) + var(--space-12))
+      max(calc(var(--space-10) + var(--space-12)), env(safe-area-inset-left));
   }
   .overlay > * {
     box-sizing: border-box;

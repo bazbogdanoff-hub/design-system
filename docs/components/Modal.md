@@ -58,8 +58,8 @@ one-field dialog sized to its content was "unusably narrow". In Aegis:
 Leave it off only for content with a fixed size of its own, such as the
 "Ask Aegis" question grid, which sets its own width.
 
-On `phone` a `width` is capped at the Overlay's room inside its 20 safe
-zone (Overlay.md), not at the viewport less 32, and a dialog taller than
+On `phone` a `width` is capped at the Overlay's room, the page's padded
+area (Overlay.md), not at the viewport less 32, and a dialog taller than
 that room scrolls its content between a fixed header and footer.
 
 ## Padding names are Card's
