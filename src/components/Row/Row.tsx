@@ -50,8 +50,9 @@ type Base = Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> & {
   action?: ReactNode;
   onClick?: () => void;
   /** The bottom divider: `default` (border.default) or `subtle`
-   * (border.subtle), for a list on a white `Tile` (owner, 2026-10-05). */
-  divider?: 'default' | 'subtle';
+   * (border.subtle), for a list on a white `Tile` (owner, 2026-10-05), or
+   * `none`: rows set apart by their list's spacing alone (owner, 2026-10-06). */
+  divider?: 'default' | 'subtle' | 'none';
 };
 
 export type RowProps = Base;
@@ -104,7 +105,7 @@ export const Row = forwardRef<HTMLDivElement, RowProps>(function Row(
       ref={ref}
       className={cn(styles.row, className)}
       data-size={size}
-      data-divider={divider === 'subtle' ? 'subtle' : undefined}
+      data-divider={divider === 'default' ? undefined : divider}
       data-interactive={interactive || undefined}
       role={interactive ? 'button' : undefined}
       tabIndex={interactive ? 0 : undefined}
