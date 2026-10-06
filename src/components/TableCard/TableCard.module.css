@@ -106,7 +106,8 @@
   font-size: var(--text-body-xs-font-size);
   font-weight: var(--text-body-xs-font-weight);
   line-height: var(--text-body-xs-line-height);
-  color: var(--color-text-default);
+  /* Secondary text, subtle as its icon (owner, 2026-10-06); danger stays red. */
+  color: var(--color-text-subtle);
 }
 .fact:last-child {
   flex: 0 1 auto;

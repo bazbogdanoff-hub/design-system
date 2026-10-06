@@ -51,7 +51,7 @@ eye runs down the badges or the figures instead of reading each card.
   value ("329 trips"), don't add a label line.
 - Type: eyebrow `label/xs` + `color.text.subtle`, tabular · title
   `heading/xs` + `color.text.strong` · subtitle `body/sm` +
-  `color.text.subtle` · facts `body/xs` + `color.text.default` under a 1px `color.border.subtle` line, icon
+  `color.text.subtle` · facts `body/xs` + `color.text.subtle` under a 1px `color.border.subtle` line, icon
   `color.text.subtle` · figure `label/lg` + `color.text.default`, tabular.
 
 ## In Aegis
