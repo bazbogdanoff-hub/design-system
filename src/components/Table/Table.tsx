@@ -13,6 +13,7 @@ import { cn } from '../../lib/cn';
 import { Card } from '../Card';
 import { IconButton } from '../IconButton';
 import { Tile } from '../Tile';
+import { useTier } from '../../lib/breakpoints';
 import { useRemScale } from '../../lib/rem';
 import styles from './Table.module.css';
 
@@ -73,6 +74,7 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
   { filters, actions, header, children, selectedCount, selectionActions, onClearSelection, pagination, cards = false, className, ...rest },
   ref,
 ) {
+  const phone = useTier() === 'phone';
   const hasHeader = filters != null || actions != null;
   const hasFooter = Boolean(selectedCount) || pagination != null;
   const bodyRowCount = Math.max(1, Children.toArray(children).length);
@@ -224,7 +226,9 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
                 then the actions. Its height is reserved in the footer from
                 the start, so ticking the first row moves nothing. */}
             {Boolean(selectedCount) && (
-              <Tile radius="md" className={styles.selectionTile}>
+              // Phone (owner, 2026-10-06): a Card, not a Tile - a bar across
+              // the bottom of the page, 48 tall.
+              <SelectionSurface phone={phone}>
                 {onClearSelection && (
                   <IconButton
                     variant="tertiary"
@@ -236,7 +240,7 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
                 )}
                 <span className={styles.selectionCount}>{selectedCount} selected</span>
                 {selectionActions != null && <span className={styles.selectionActions}>{selectionActions}</span>}
-              </Tile>
+              </SelectionSurface>
             )}
           </div>
           <div className={styles.pagination}>{pagination}</div>
@@ -245,3 +249,15 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
     </Card>
   );
 });
+
+function SelectionSurface({ phone, children }: { phone: boolean; children: ReactNode }) {
+  return phone ? (
+    <Card padding="none" className={cn(styles.selectionTile, styles.selectionBar)}>
+      {children}
+    </Card>
+  ) : (
+    <Tile radius="md" className={styles.selectionTile}>
+      {children}
+    </Tile>
+  );
+}
