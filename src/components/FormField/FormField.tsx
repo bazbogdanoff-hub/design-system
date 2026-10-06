@@ -9,6 +9,8 @@ import {
 import { cn } from '../../lib/cn';
 import { Input, type InputProps, type InputSize } from '../Input';
 import { HelperText, type HelperTextTone } from '../HelperText';
+import { InfoIcon } from '../HelperText/InfoIcon';
+import { TooltipTrigger } from '../Tooltip';
 import styles from './FormField.module.css';
 
 export type FormFieldState = 'default' | HelperTextTone;
@@ -23,6 +25,11 @@ export interface FormFieldProps extends Omit<HTMLAttributes<HTMLDivElement>, 'ch
   state?: FormFieldState;
   /** Shown as a `HelperText` below the control - only when `state` isn't `default`. */
   helperText?: ReactNode;
+  /** A note about the field, behind a brand info icon after the headline:
+   * shown in a tooltip on hover (desktop) or tap (phone) instead of a row of
+   * coloured text under the control (owner, 2026-10-06). The headline stays
+   * default. Errors still show below, as `state="error"`. */
+  info?: ReactNode;
   /** Associates the headline with the control via a real `<label htmlFor>`. */
   htmlFor?: string;
   /** The control - usually an `Input`. A bare `<Input>` (no explicit `size`) inherits this field's `size`. */
@@ -37,7 +44,7 @@ export interface FormFieldProps extends Omit<HTMLAttributes<HTMLDivElement>, 'ch
  * `children`, though only a bare `Input` gets its `size` auto-filled.
  */
 export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(function FormField(
-  { label, size = 'md', state = 'default', helperText, htmlFor, children, className, ...rest },
+  { label, size = 'md', state = 'default', helperText, info, htmlFor, children, className, ...rest },
   ref,
 ) {
   const tone: HelperTextTone | null = state === 'default' ? null : state;
@@ -51,9 +58,22 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(function For
 
   return (
     <div ref={ref} className={cn(styles.field, className)} data-size={size} data-state={state} {...rest}>
-      <label htmlFor={htmlFor} className={styles.label}>
-        {label}
-      </label>
+      {info != null ? (
+        <div className={styles.labelRow}>
+          <label htmlFor={htmlFor} className={styles.label}>
+            {label}
+          </label>
+          <TooltipTrigger content={info} position="top">
+            <button type="button" className={styles.info} aria-label={typeof label === 'string' ? `About ${label}` : 'About this field'}>
+              <InfoIcon aria-hidden="true" />
+            </button>
+          </TooltipTrigger>
+        </div>
+      ) : (
+        <label htmlFor={htmlFor} className={styles.label}>
+          {label}
+        </label>
+      )}
       {resolvedChildren}
       {tone != null && helperText != null && (
         <HelperText tone={tone} size={size}>

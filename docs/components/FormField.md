@@ -77,3 +77,11 @@ plain frame) wrapping a size-matched `Input` instance, and, only on
 `primary`/`error` variants, a `HelperText` instance at the matching
 size/tone. `default` variants have no `HelperText` child at all, matching
 React exactly (it never renders regardless of the `helperText` prop).
+
+## Info note
+
+`info` (owner, 2026-10-06): a note about the field behind a brand info icon
+right after the headline, at the headline's size, in a `Tooltip` on hover
+(desktop) or tap (phone). Use it instead of `state="primary"` + `helperText`
+for guidance; the headline stays default and nothing is added under the
+control. Errors still show below with `state="error"`.
