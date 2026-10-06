@@ -1,48 +1,134 @@
+/* The deadline card's content (owner, 2026-10-06). The text stays in the
+   default colours; only the bar's material says how it's going. */
 .tracker {
+  --glass-fill: var(--color-chart-1);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--space-16);
+  gap: var(--space-12);
   width: 100%;
+  min-width: 0;
 }
+.tracker[data-tone='warning'] { --glass-fill: var(--color-chart-severity-warning); }
+.tracker[data-tone='danger']  { --glass-fill: var(--color-chart-severity-critical); }
+.tracker[data-tone='done']    { --glass-fill: var(--color-chart-severity-low); }
 
 .text {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--space-8);
-  text-align: center;
+  gap: var(--space-2);
 }
-
 .label {
   margin: 0;
-  font-family: var(--text-heading-xs-font-family);
-  font-size: var(--text-heading-xs-font-size);
-  font-weight: var(--text-heading-xs-font-weight);
-  line-height: var(--text-heading-xs-line-height);
-  letter-spacing: var(--text-heading-xs-letter-spacing);
+  font-family: var(--text-label-sm-font-family);
+  font-size: var(--text-label-sm-font-size);
+  font-weight: var(--text-label-sm-font-weight);
+  line-height: var(--text-label-sm-line-height);
   color: var(--color-text-subtle);
 }
-
 .value {
   margin: 0;
-  font-family: var(--text-display-md-font-family);
-  font-size: var(--text-display-md-font-size);
-  font-weight: var(--text-display-md-font-weight);
-  line-height: var(--text-display-md-line-height);
-  letter-spacing: var(--text-display-md-letter-spacing);
-  font-variant-numeric: tabular-nums; /* a ticking countdown shouldn't jitter width per digit */
+  font-family: var(--text-heading-md-font-family);
+  font-size: var(--text-heading-md-font-size);
+  font-weight: var(--text-heading-md-font-weight);
+  line-height: var(--text-heading-md-line-height);
+  letter-spacing: var(--text-heading-md-letter-spacing);
+  color: var(--color-text-default);
+  /* a ticking figure shouldn't change width per digit */
+  font-variant-numeric: tabular-nums;
 }
 
-/* matches whichever ProgressBar tone is showing beneath it, via the
-   -solid text tokens (text color == the bar's own fill color) */
-.value[data-tone='success'] { color: var(--color-text-success-solid); }
-.value[data-tone='warning'] { color: var(--color-text-warning-solid); }
-.value[data-tone='danger']  { color: var(--color-text-danger-solid); }
-.value[data-tone='brand']   { color: var(--color-text-brand-solid); }
-
-/* Fixed 260px track - fills up to that cap, centered under the value. */
+/* The well: recessed, as Prism's off state (docs/patterns/Prism.md). */
+.track {
+  position: relative;
+  height: var(--space-12);
+  border-radius: var(--radius-full);
+  background: var(--color-chart-window);
+  box-shadow:
+    inset 1px 1px 3px 0 var(--color-alpha-black-20),
+    inset 0 0 0 1px var(--color-alpha-black-10);
+}
+/* The bar: the chart marks' glass (src/glass.css), grown in from the left. */
 .bar {
-  width: 100%;
-  max-width: 16.25rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  min-width: var(--space-12);
+  border-radius: var(--radius-full);
+  background-color: var(--glass-fill);
+  box-shadow:
+    inset 1px 1px 0 0 color-mix(in srgb, var(--glass-fill), white var(--glass-catch-mix)),
+    inset 2px 2px 12px 0 color-mix(in oklch, var(--glass-fill), black var(--glass-inner-mix)),
+    2px 3px 5px -1px color-mix(in srgb, var(--glass-fill) var(--glass-light-near), transparent),
+    3px 6px 12px -2px color-mix(in srgb, var(--glass-fill) var(--glass-light-far), transparent);
+  transform-origin: left center;
+  animation: tracker-bar-in 700ms cubic-bezier(0.22, 1, 0.36, 1) 150ms backwards;
+}
+/* Where the deadline was, once the bar has run past it. */
+.notch {
+  position: absolute;
+  top: calc(-1 * var(--space-4));
+  bottom: calc(-1 * var(--space-4));
+  width: 2px;
+  margin-left: -1px;
+  border-radius: 1px;
+  background: var(--color-text-default);
+}
+@keyframes tracker-bar-in {
+  from {
+    transform: scaleX(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bar {
+    animation: none;
+  }
+}
+
+/* The ends: the first at the left, the last at the right. */
+.ends {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-12);
+  margin: 0;
+}
+.end {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+.end:last-child:not(:first-child) {
+  text-align: right;
+}
+.end dt {
+  font-family: var(--text-caption-font-family);
+  font-size: var(--text-caption-font-size);
+  font-weight: var(--text-caption-font-weight);
+  line-height: var(--text-caption-line-height);
+  color: var(--color-text-subtle);
+}
+.end dd {
+  margin: 0;
+  font-family: var(--text-label-sm-font-family);
+  font-size: var(--text-label-sm-font-size);
+  font-weight: var(--text-label-sm-font-weight);
+  line-height: var(--text-label-sm-line-height);
+  color: var(--color-text-default);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+/* The deadline once passed, and what it is: one block under the ends. */
+.notes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.context {
+  margin: 0;
+  font-family: var(--text-body-sm-font-family);
+  font-size: var(--text-body-sm-font-size);
+  font-weight: var(--text-body-sm-font-weight);
+  line-height: var(--text-body-sm-line-height);
+  color: var(--color-text-subtle);
 }

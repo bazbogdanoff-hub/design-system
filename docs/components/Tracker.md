@@ -1,100 +1,76 @@
 # Tracker
 
-The counter block for `NextTask` (not yet built) - a label, a hero value,
-and a `ProgressBar`, in one fixed shape across three time modes. **L1
-primitive**, from the Figma component of the same name.
+How much time a task has: the task page's deadline card (owner,
+2026-10-06; it replaced the old centred clock with its striped bar). A
+small label, the figure in the default text colour, and a **time track**:
+a recessed well from the window's start to its deadline, a glass bar
+filling with the time used. **Only the bar's material carries the
+situation**; the text never turns red. Sits on a `Card` (`padding="md"`).
+The Figma frame still shows the old clock and needs redrawing from this
+page.
 
 ```tsx
+<Tracker
+  urgency={{ mode: 'scheduled', dueAt: checkpointEta, startAt: detectedAt }}
+  dueLabel="Checkpoint ETA"
+  context="Next checkpoint · Koroszczyn, PL/BY"
+  important={severity === 'critical'}
+/>
 <Tracker urgency={{ mode: 'countdown', remainingSeconds: 792, totalSeconds: 1800 }} />
-<Tracker urgency={{ mode: 'scheduled', dueAt: '2026-09-09T09:00:00' }} />
 <Tracker urgency={{ mode: 'asap' }} />
+<Tracker urgency={{ mode: 'done', doneAt: closedAt, startAt: detectedAt }} />
 ```
 
 | prop | values | default |
 |---|---|---|
-| `urgency` | `{ mode: 'countdown', remainingSeconds, totalSeconds }` \| `{ mode: 'scheduled', dueAt: Date \| string }` \| `{ mode: 'asap' }` | - |
-| `important` | `boolean` - forces danger regardless of the time-based escalation below, including over `asap` | `false` |
+| `urgency` | `countdown { remainingSeconds, totalSeconds }` · `scheduled { dueAt, startAt? }` · `asap` · `done { doneAt?, startAt? }` | - |
+| `important` | forces danger whatever the time says, `asap` included; ignored once `done` | `false` |
+| `startLabel` / `dueLabel` | names of the track's ends | `Detected` / `Due` |
+| `context` | one line under the ends: what the deadline is | - |
+| `timeFormatter` | `(d: Date) => string` for the ends | `Sep 30, 13:48` |
 
-Self-ticking: `countdown` re-renders every second (seconds are the
-displayed unit below an hour), `scheduled` every 30s, `asap` never - the
-consumer passes a snapshot (`remainingSeconds` as of whenever it last had
-real data, or a fixed `dueAt`) and `Tracker` keeps the display live on its
-own rather than requiring the parent to re-render every tick.
+Self-ticking: `countdown` every second (seconds show under an hour),
+`scheduled` every 30 s, `asap` and `done` never. The consumer passes a
+snapshot; `Tracker` keeps it live.
 
 ## Anatomy
 
 ```
-div.tracker (flex column, gap space/16)
-├─ div.text (flex column, gap space/8)
-│  ├─ p.label  - text/heading/xs, color/text/subtle
-│  └─ p.value  - text/display/md, color/text/<tone>-solid
-└─ ProgressBar (size lg, max-width 260px, tone matches .value's tone)
+div.tracker (column, gap space/12; --glass-fill by tone)
+├─ div.text (gap space/2)
+│  ├─ p.label  - text/label/sm, color/text/subtle      "Due in"
+│  └─ p.value  - text/heading/md, color/text/default    "2d 11h" (tabular)
+├─ div.track  - the well: color/chart/window, inset shade, 12 tall, pill
+│  ├─ span.bar   - the glass recipe (src/glass.css), grows in from the left
+│  └─ span.notch - 2px, color/text/default: where the deadline was, once passed
+├─ dl.ends    - start left, end right: caption + label/sm (tabular)
+└─ div.notes  - "Checkpoint ETA was …" once passed, then `context` (body/sm subtle)
 ```
 
-Same shape in every state - nothing is added, removed, or repositioned.
-Only the label text, the value text, the `ProgressBar`'s `tone`, and its
-fill amount change.
+## The bar's material
 
-## Urgency resolution
+| situation | `--glass-fill` |
+|---|---|
+| calm | `color/chart/1` (Prism's brand) |
+| warning | `color/chart/severity/warning` |
+| danger, overdue, or `important` | `color/chart/severity/critical` |
+| done | `color/chart/severity/low` |
 
-Checked in this order, first match wins:
+## Urgency and fill
 
-```
-1. important === true              -> danger, always (including over asap)
-2. mode === 'asap'                 -> its own accent, not good/warning/danger
-3. mode === 'countdown':
-     remaining <= 0                              -> danger (overdue)
-     ratio <= 0.2  OR  remaining <= 300  (5m)     -> danger
-     ratio <= 0.5  OR  remaining <= 1800 (30m)    -> warning
-     else                                          -> good
-4. mode === 'scheduled':
-     secondsUntilDue <= 0                          -> danger (overdue)
-     secondsUntilDue <= 300  (5m)                  -> danger
-     secondsUntilDue <= 1800 (30m)                 -> warning
-     else                                           -> good
-```
+- **scheduled with `startAt`:** fill = time used of `startAt` → `dueAt`.
+  Warning at 30 min left or four-fifths of the window used; danger at 5 min.
+  **Overdue:** the track runs `startAt` → now, full, with a notch where the
+  deadline was; the right end reads "Now" and a note names the deadline
+  ("Checkpoint ETA was Sep 30, 13:48").
+- **scheduled without `startAt`:** no honest total to measure against, so
+  only the absolute floors apply and the bar is full.
+- **countdown:** fill = share of `totalSeconds` used; warning at half or 30
+  min, danger at a fifth or 5 min.
+- **asap:** "Priority · As soon as possible", full bar, brand (danger if
+  `important`).
+- **done:** "Closed after 7d 0h" when both ends are known, the closing
+  time when only that is, else "Done". Emerald, full.
 
-`scheduled` deliberately has **no ratio branch** - there's no honest
-"total" to measure against (no assumed created-at timestamp), so only the
-absolute floors apply. That's the one asymmetry with `countdown`, and it's
-intentional.
-
-## Color mapping - good/warning/danger to `ProgressBarTone`
-
-`ProgressBar` only has 4 tones (`brand`/`success`/`warning`/`danger`) - no
-dedicated neutral or "asap" hue. Rather than add a 5th tone unprompted:
-
-| state | `ProgressBarTone` | why |
-|---|---|---|
-| `countdown`, good | `success` | an actively healthy countdown |
-| `scheduled`, good | `brand` | a neutral "on the books" identity - deliberately a *different* color from countdown-good even though both are "fine," because they mean different things |
-| either, warning | `warning` | shared - once it's urgent, both modes should look equally urgent |
-| either, danger | `danger` | shared |
-| `asap` | `brand` | deliberately distinct from every danger state, so "immediate" is never confused with "about to expire." Revisit if this doesn't read right - it was a pragmatic call within the existing 4 tones, not a settled design decision. |
-
-## Track fill
-
-- `countdown` → `clamp(remaining / total, 0, 1)`, literal - the only mode
-  where fill actually varies.
-- `scheduled` / `asap` → always full (100%). A scheduled task isn't
-  "draining" toward its deadline in any way we can honestly measure, and
-  `asap` has no deadline to measure at all.
-
-## Value formatting
-
-Words stay on the small label; the hero line is **count / clock only**.
-
-| mode | far | near (< 1h) | overdue |
-|---|---|---|---|
-| `countdown` | label `Time left` · value `4h 20m` | label `Time left` · value `13m 12s` (ticks) | label `Overdue` · value `3m` |
-| `scheduled` | label `Tomorrow` / `Wed` / `Today` · value `1:29 PM` | label `Due in` · value `22m` | label `Overdue` · value `12m` |
-| `asap` | label `Priority` · value `ASAP` | - | - |
-
-## Figma note
-
-The Figma component's fill-width can't be varied per state via instance
-override - Figma silently blocks resizing that nested rectangle through a
-`ProgressBar` instance (confirmed: the identical resize works fine on the
-`ProgressBar` master directly). All of Figma's `Tracker` variants therefore
-show the same default fill ratio; only this React implementation actually
-computes `countdown`'s literal fill percentage.
+Durations: `2d 11h` from two days, `5h 59m` under that, `24m 58s` (ticking)
+under an hour in a countdown.
