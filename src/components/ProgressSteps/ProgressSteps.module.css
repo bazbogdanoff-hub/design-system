@@ -63,16 +63,13 @@
   width: var(--space-12);
   height: var(--space-12);
 }
-/* The current step is lit: Prism with a white centre and a soft halo. */
+/* The current step: Prism with a white centre (no halo: owner, 2026-10-06). */
 .step[data-state='current'] .disc::after {
   content: '';
   width: var(--space-6);
   height: var(--space-6);
   border-radius: var(--radius-full);
   background: var(--color-white);
-}
-.step[data-state='current'] .disc {
-  outline: 4px solid color-mix(in srgb, var(--glass-fill) 18%, transparent);
 }
 .step[data-state='ahead'] .disc {
   background-color: var(--color-checkbox-background-off);

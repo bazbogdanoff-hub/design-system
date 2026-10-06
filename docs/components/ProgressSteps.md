@@ -39,7 +39,7 @@ On a list or a table row the small version stays `TableProgressStages`.
 ol.steps
 └─ li.step (grid: 20 disc column, 12 gap, body) - padding-bottom 16 is the rail's run
    ├─ ::before   the rail, 2px, disc to disc (2 clear of each); brand below a done step
-   ├─ span.disc  20: Prism + check (done) · Prism + white dot + soft halo (current) · white well (ahead)
+   ├─ span.disc  20: Prism + check (done) · Prism + white dot (current) · white well (ahead)
    └─ div.body (gap 4)
       ├─ head     label (label/md, strong; subtle ahead) · at (caption subtle, tabular)
       ├─ p.note   body/xs subtle, wraps in full
