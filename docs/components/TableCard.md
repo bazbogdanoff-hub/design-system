@@ -34,7 +34,7 @@ eye runs down the badges or the figures instead of reading each card.
 | `eyebrow` | the row's code ("SH-1046") or date, small, above the title. Omit it and the title takes the top line |
 | `subtitle` | one line of context |
 | `badge` | the row's **one** state, a `Badge` `size="sm"`, top right |
-| `facts` | `{ icon, value, label, tone? }[]`: a 12 Phosphor glyph (`bold`) instead of a visible label; `label` is read to screen readers. `tone: 'danger'` turns the value red (late, overdue, expiring) |
+| `facts` | `{ icon, value, label, tone? }[]`: a 14 Phosphor glyph (1em of `label/md`, as Button and Badge) (`bold`) instead of a visible label; `label` is read to screen readers. `tone: 'danger'` turns the value red (late, overdue, expiring) |
 | `figure` | the row's key number (money, a score, stock on hand), bottom right, tabular |
 | `leading` | a selection `Checkbox`, before the eyebrow |
 | `trailing` | the row's actions, after the badge |

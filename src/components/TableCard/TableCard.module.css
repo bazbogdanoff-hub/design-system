@@ -117,8 +117,10 @@
 .factIcon {
   display: inline-flex;
   flex: none;
-  width: var(--space-12);
-  height: var(--space-12);
+  /* 14, as Button and Badge draw theirs: 1em of the label/md size (owner,
+     2026-10-06). */
+  width: var(--text-label-md-font-size);
+  height: var(--text-label-md-font-size);
   color: var(--color-text-subtle);
 }
 .fact[data-tone='danger'] .factIcon {
