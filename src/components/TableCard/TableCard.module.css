@@ -95,9 +95,10 @@
   padding: 0;
   list-style: none;
 }
+/* Earlier facts keep their width; only the last gives way. */
 .fact {
   display: flex;
-  flex: 0 1 auto;
+  flex: none;
   align-items: center;
   gap: var(--space-4);
   min-width: 0;
@@ -106,6 +107,9 @@
   font-weight: var(--text-body-xs-font-weight);
   line-height: var(--text-body-xs-line-height);
   color: var(--color-text-default);
+}
+.fact:last-child {
+  flex: 0 1 auto;
 }
 .fact[data-tone='danger'] {
   color: var(--color-text-danger);
@@ -130,6 +134,35 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
+}
+/* A fact that is a link (a phone number to call) reads as tappable in
+   brand, without a web underline. */
+.factValue a {
+  color: var(--color-text-brand);
+  text-decoration: none;
+}
+/* A 44 tall tap (the phone rule), so a near miss calls rather than opening
+   the card. A link fact is never the last one, so it never needs the
+   ellipsis its overflow would clip the tap with. */
+.factValue:has(> a) {
+  overflow: visible;
+}
+.factValue > a {
+  position: relative;
+}
+.factValue > a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2.75rem;
+  transform: translateY(-50%);
+}
+.factValue a:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 .figure {
   flex: none;
