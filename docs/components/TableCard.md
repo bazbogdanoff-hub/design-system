@@ -34,7 +34,7 @@ eye runs down the badges or the figures instead of reading each card.
 | `eyebrow` | the row's code ("SH-1046") or date, small, above the title. Omit it and the title takes the top line |
 | `subtitle` | one line of context |
 | `badge` | the row's **one** state, a `Badge` `size="sm"`, top right |
-| `facts` | `{ icon, value, label, tone? }[]`: a 16 Phosphor glyph (`bold`) instead of a visible label; `label` is read to screen readers. `tone: 'danger'` turns the value red (late, overdue, expiring) |
+| `facts` | `{ icon, value, label, tone? }[]`: a 12 Phosphor glyph (`bold`) instead of a visible label; `label` is read to screen readers. `tone: 'danger'` turns the value red (late, overdue, expiring) |
 | `figure` | the row's key number (money, a score, stock on hand), bottom right, tabular |
 | `leading` | a selection `Checkbox`, before the eyebrow |
 | `trailing` | the row's actions, after the badge |
@@ -51,7 +51,7 @@ eye runs down the badges or the figures instead of reading each card.
   value ("329 trips"), don't add a label line.
 - Type: eyebrow `label/xs` + `color.text.subtle`, tabular · title
   `heading/xs` + `color.text.strong` · subtitle `body/sm` +
-  `color.text.subtle` · facts `body/sm` + `color.text.default`, icon
+  `color.text.subtle` · facts `body/xs` + `color.text.default` under a 1px `color.border.subtle` line, icon
   `color.text.subtle` · figure `label/lg` + `color.text.default`, tabular.
 
 ## In Aegis

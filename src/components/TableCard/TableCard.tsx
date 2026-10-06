@@ -11,7 +11,7 @@ export interface TableCardField {
 }
 
 export interface TableCardFact {
-  /** A 16 Phosphor glyph, `weight="bold"`, standing in for the label. */
+  /** A 12 Phosphor glyph, `weight="bold"`, standing in for the label. */
   icon: ReactNode;
   value: ReactNode;
   /** What the fact is ("ETA"), for screen readers: the icon carries it on

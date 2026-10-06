@@ -1,6 +1,6 @@
 /* One table row on phone (2026-10-06): the same kind of thing in the same
    place on every card. Type: eyebrow label/xs subtle · title heading/xs
-   strong (a heading inside a card) · subtitle and facts body/sm · figure
+   strong (a heading inside a card) · subtitle body/sm · facts body/xs · figure
    label/lg, tabular. */
 .card {
   box-sizing: border-box;
@@ -76,11 +76,15 @@
 /* Facts share one line, never wrapping, so every card in a table is the
    same height; the last to run out of room ends in an ellipsis. The
    figure holds the bottom-right corner. */
+/* Set off from the title block by a thin line (owner, 2026-10-06), the
+   facts a step smaller than the subtitle. */
 .bottom {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: var(--space-12);
   min-width: 0;
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border-subtle);
 }
 .facts {
   display: flex;
@@ -97,10 +101,10 @@
   align-items: center;
   gap: var(--space-4);
   min-width: 0;
-  font-family: var(--text-body-sm-font-family);
-  font-size: var(--text-body-sm-font-size);
-  font-weight: var(--text-body-sm-font-weight);
-  line-height: var(--text-body-sm-line-height);
+  font-family: var(--text-body-xs-font-family);
+  font-size: var(--text-body-xs-font-size);
+  font-weight: var(--text-body-xs-font-weight);
+  line-height: var(--text-body-xs-line-height);
   color: var(--color-text-default);
 }
 .fact[data-tone='danger'] {
@@ -109,8 +113,8 @@
 .factIcon {
   display: inline-flex;
   flex: none;
-  width: var(--space-16);
-  height: var(--space-16);
+  width: var(--space-12);
+  height: var(--space-12);
   color: var(--color-text-subtle);
 }
 .fact[data-tone='danger'] .factIcon {
