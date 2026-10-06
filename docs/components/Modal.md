@@ -71,6 +71,14 @@ dialog kept its size in the move: what was `md` (20) is now `lg`, which is
 what the app's dialogs use. **Figma to do:** rename the Modal master's
 padding variants to match.
 
+## Footer on phone
+
+On the phone tier the footer's buttons split the full width equally and
+stand one size up (sm to md, md to lg, lg to xl, xl to 2xl), from Modal's
+CSS through Button's `data-size`: pass the desktop size, nothing else.
+Anything beside the buttons (a form's error) wraps onto its own line above
+them (owner, 2026-10-06).
+
 ## Surface
 
 The card surface, replicated rather than nested: `color/card/background/default`,
