@@ -65,4 +65,6 @@
 }
 .card[data-radio='start'] .trailing {
   order: 0;
+  flex: 1;
+  min-width: 0;
 }
