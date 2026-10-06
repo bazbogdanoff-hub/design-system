@@ -54,9 +54,27 @@
   display: flex;
   flex-direction: column;
 }
+/* As a tile it lifts on hover as the task tiles do (Tile interactive);
+   selected is that lift held, with a brand ring inside the tile's own glass
+   (owner, 2026-10-06). */
 .card[data-surface='tile'][data-selected],
 .card[data-surface='tile']:has(input[type='radio']:focus-visible) {
-  box-shadow: inset 0 0 0 1px var(--color-border-brand);
+  box-shadow:
+    inset 0 0 0 1px var(--color-border-brand),
+    inset 2px 2px 0 0 var(--color-tile-border),
+    inset 1px 1px 8px 0 var(--color-tile-inner-shadow),
+    0.5px 0.5px 2px 2px var(--color-tile-shadow);
+}
+.card[data-surface='tile'][data-selected] {
+  transform: translateY(-0.125rem) scale(1.01);
+}
+.card[data-surface='tile'][data-selected]::after {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .card[data-surface='tile'][data-selected] {
+    transform: none;
+  }
 }
 
 /* Radio first: it leads the row, the trailing content follows it. */

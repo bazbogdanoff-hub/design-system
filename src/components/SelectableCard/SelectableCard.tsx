@@ -99,6 +99,7 @@ export const SelectableCard = forwardRef<HTMLDivElement, SelectableCardProps>(fu
   return surface === 'tile' ? (
     <Tile
       ref={ref}
+      interactive={!disabled}
       className={cn(styles.card, className)}
       data-surface={surface}
       data-radio={radio}
