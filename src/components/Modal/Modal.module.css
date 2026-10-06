@@ -43,10 +43,15 @@
   color: var(--color-text-default);
 }
 
+/* It scrolls, so it clips: 6 of room on every side (taken back by the
+   margin, so nothing moves) keeps the controls' shadows whole at its edges
+   (owner, 2026-10-06: the Add button's was cut). */
 .content {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
+  padding: var(--space-6);
+  margin: calc(-1 * var(--space-6));
 }
 
 .footer {
