@@ -51,3 +51,21 @@
   font-size: 1.25rem;
   border-radius: var(--radius-button-2xl);
 }
+
+/* Phone (owner, 2026-10-05): a tap at least 44 × 44, centred, without
+   growing the button. `:where` keeps the positioning at zero specificity,
+   so a button placed by its screen (the floating assistant) still wins. */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  :where(.iconButton) {
+    position: relative;
+  }
+  .iconButton::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: max(100%, 2.75rem);
+    height: max(100%, 2.75rem);
+    transform: translate(-50%, -50%);
+  }
+}

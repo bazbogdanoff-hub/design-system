@@ -35,6 +35,13 @@
   display: flex;
   gap: var(--space-8);
 }
+/* Phone: 16 apart, so the arrows' 44 taps (IconButton) meet without
+   overlapping (owner, 2026-10-06). */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  .nav {
+    gap: var(--space-16);
+  }
+}
 
 /* ---- weekday letters - today's carries a brand dot underneath ------------- */
 .weekdays {

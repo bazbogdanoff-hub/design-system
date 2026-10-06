@@ -245,3 +245,22 @@
   outline-offset: 2px;
   box-shadow: inset 0 0 4px var(--color-sidebar-panel-inner-shadow);
 }
+
+/* Phone (owner, 2026-10-05): every Button (and Filter, a Button) takes a
+   tap at least 44 tall, centred, without growing; it is already wide
+   enough. `:where` keeps the positioning at zero specificity, so a button
+   placed by its screen (position: fixed, absolute) still wins. */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  :where(.button) {
+    position: relative;
+  }
+  .button::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: max(100%, 2.75rem);
+    transform: translateY(-50%);
+  }
+}
