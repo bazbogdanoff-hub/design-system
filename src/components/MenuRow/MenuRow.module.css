@@ -44,6 +44,13 @@
   white-space: nowrap;
 }
 
+.meta {
+  flex: none;
+  color: var(--color-text-subtle);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
 .check {
   display: inline-flex;
   flex: none;

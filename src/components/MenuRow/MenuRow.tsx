@@ -7,6 +7,9 @@ export interface MenuRowProps extends Omit<ButtonHTMLAttributes<HTMLButtonElemen
   /** Decorative - not focusable. */
   icon?: ReactNode;
   children: ReactNode;
+  /** A short value at the right, subtle and tabular ("380 L"), in place of
+   * joining it to the label with a dot (owner, 2026-10-06). */
+  meta?: ReactNode;
   /** Shows a right-aligned brand-colored checkmark. */
   selected?: boolean;
 }
@@ -24,7 +27,7 @@ export interface MenuRowProps extends Omit<ButtonHTMLAttributes<HTMLButtonElemen
  * prop here, no cloning needed.
  */
 export const MenuRow = forwardRef<HTMLButtonElement, MenuRowProps>(function MenuRow(
-  { icon, children, selected, className, type = 'button', ...rest },
+  { icon, children, meta, selected, className, type = 'button', ...rest },
   ref,
 ) {
   return (
@@ -42,6 +45,7 @@ export const MenuRow = forwardRef<HTMLButtonElement, MenuRowProps>(function Menu
         </span>
       )}
       <span className={styles.label}>{children}</span>
+      {meta != null && <span className={styles.meta}>{meta}</span>}
       {selected && (
         <span className={styles.check} aria-hidden="true">
           <CheckIcon />

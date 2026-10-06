@@ -12,6 +12,9 @@ export interface SelectOption {
   label: ReactNode;
   /** Decorative - not focusable. */
   icon?: ReactNode;
+  /** A short value at the option's right, in the menu only ("380 L on
+   * hand"); the closed field shows the label alone. */
+  meta?: ReactNode;
 }
 
 export interface SelectProps {
@@ -73,6 +76,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(function Select
           <MenuRow
             key={option.value}
             icon={option.icon}
+            meta={option.meta}
             selected={option.value === value}
             onClick={() => {
               onChange?.(option.value);
