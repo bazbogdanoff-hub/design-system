@@ -37,9 +37,11 @@ when it appears; `primary` doesn't (it's not urgent).
 
 ## Sizing
 
-Icon size mirrors `Input`'s own leading/trailing icon scale exactly (14 / 16
-/ 18px) since `HelperText` sits directly under an `Input` of the same size -
-message text uses `text/body/{size}`, same scale `Input`'s value text uses.
+Text and icon match the field label above it (owner, 2026-10-06: a step
+larger read as louder than the name): `sm` body/xs and a 12 icon, `md`
+body/sm and 13, `lg` body/md and 14 - the label's `label/xs`, `sm`, `md`
+sizes. The icon is 1em of that size. Figma still shows the older
+Input-matched scale.
 
 ## Figma
 
