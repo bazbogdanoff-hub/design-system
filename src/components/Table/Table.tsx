@@ -252,9 +252,13 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(function Table(
 
 function SelectionSurface({ phone, children }: { phone: boolean; children: ReactNode }) {
   return phone ? (
-    <Card padding="none" className={cn(styles.selectionTile, styles.selectionBar)}>
-      {children}
-    </Card>
+    <>
+      {/* The page dissolves under the bar: its own layer, below it. */}
+      <span className={styles.selectionFade} aria-hidden="true" />
+      <Card padding="xs" className={cn(styles.selectionTile, styles.selectionBar)}>
+        {children}
+      </Card>
+    </>
   ) : (
     <Tile radius="md" className={styles.selectionTile}>
       {children}

@@ -123,7 +123,7 @@
 
 /* Phone (owner, 2026-10-06): the selection is a bar, a Card across the
    bottom of the page card, inside the page's 12 padding like every card on
-   it (owner, 2026-10-06): its full width, 48 tall, above the tab bar (48) and the
+   it (owner, 2026-10-06): its full width, 52 tall, above the tab bar (48) and the
    shell's 10 around it. The page scrolls behind it; the footer gives its
    height back so the last card scrolls clear. */
 @media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
@@ -136,11 +136,34 @@
     flex-direction: row;
     /* 36 controls (owner, 2026-10-06), 8 around them. */
     height: calc(2.25rem + 2 * var(--space-8));
-    /* Card's own padding rule (none) outranks a single class. */
-    padding: 0 var(--space-8);
+    /* xs: 8 all round, 36 controls in 52 (Card's padding="none" would clip
+       the fade below with its overflow). */
+    padding: var(--space-8);
     border-radius: var(--radius-card);
-    /* Above and below alike, so it stands clear of the page either way. */
-    filter: drop-shadow(0 0 var(--space-12) var(--color-alpha-black-15));
+    box-shadow:
+      /* Card's glass, then the bar's own lift. */
+      inset 1.5px 1.5px 0 0 var(--color-card-border),
+      inset 4px 4px 16px 0 var(--color-card-vignette),
+      0 var(--space-2) var(--space-16) var(--color-alpha-black-20);
+  }
+  /* The page dissolves under the bar (owner, 2026-10-06): from the page
+     card's bottom edge up past the bar, its colour and a blur fade in, so
+     the list never meets the bar at a hard line. Its own fixed layer under
+     the bar (a pseudo-element of the bar painted over its surface). */
+  .selectionFade {
+    position: fixed;
+    z-index: 2;
+    left: var(--space-10);
+    right: var(--space-10);
+    bottom: calc(max(var(--space-10), env(safe-area-inset-bottom)) + var(--space-48) + var(--space-10));
+    height: calc(2.25rem + 2 * var(--space-8) + var(--space-12) + var(--space-40));
+    pointer-events: none;
+    background: linear-gradient(to top, var(--color-background-muted) 40%, transparent);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    mask-image: linear-gradient(to top, black 55%, transparent);
+    -webkit-mask-image: linear-gradient(to top, black 55%, transparent);
+    border-radius: 0 0 var(--radius-page) var(--radius-page);
   }
   .selectionActions {
     margin-left: auto;
