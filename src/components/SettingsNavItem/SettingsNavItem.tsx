@@ -1,3 +1,4 @@
+import { CaretRight } from '@phosphor-icons/react';
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 import { CategoryIcon } from '../CategoryIcon';
@@ -18,6 +19,9 @@ export interface SettingsNavItemProps extends Omit<ButtonHTMLAttributes<HTMLButt
   /** A small unread-style indicator dot, independent of `active` - they
    * coincide in the reference mockup but aren't the same concept. */
   badge?: boolean;
+  /** A trailing › for a list whose rows open a page of their own - the
+   * phone settings list (owner, 2026-10-06). */
+  chevron?: boolean;
 }
 
 /**
@@ -27,7 +31,7 @@ export interface SettingsNavItemProps extends Omit<ButtonHTMLAttributes<HTMLButt
  * optional trailing notification dot.
  */
 export const SettingsNavItem = forwardRef<HTMLButtonElement, SettingsNavItemProps>(function SettingsNavItem(
-  { icon, color, label, active, badge, className, type = 'button', ...rest },
+  { icon, color, label, active, badge, chevron, className, type = 'button', ...rest },
   ref,
 ) {
   return (
@@ -42,6 +46,11 @@ export const SettingsNavItem = forwardRef<HTMLButtonElement, SettingsNavItemProp
       <CategoryIcon icon={icon} color={color} size="md" emphasis="strong" />
       <span className={styles.label}>{label}</span>
       {badge && <span className={styles.badge} aria-hidden="true" />}
+      {chevron && (
+        <span className={styles.chevron} aria-hidden="true">
+          <CaretRight weight="bold" />
+        </span>
+      )}
     </button>
   );
 });

@@ -38,3 +38,13 @@
   border-radius: 9999px;
   background: var(--color-background-brand-default);
 }
+
+.chevron {
+  display: inline-flex;
+  flex: none;
+  color: var(--color-icon-subtle);
+}
+.chevron > svg {
+  width: 1em;
+  height: 1em;
+}
