@@ -150,3 +150,8 @@
   min-width: 0;
   color: var(--color-text-default);
 }
+
+/* The stage note keeps to one line (owner, 2026-10-06: less under each name). */
+.note {
+  -webkit-line-clamp: 1;
+}
