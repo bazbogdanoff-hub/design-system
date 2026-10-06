@@ -184,7 +184,7 @@
   font-size: var(--text-label-lg-font-size);
   font-weight: var(--text-label-lg-font-weight);
   line-height: var(--text-label-lg-line-height);
-  color: var(--color-text-default);
+  color: var(--color-text-strong);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }

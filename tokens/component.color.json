@@ -374,7 +374,7 @@
         "disabled": { "$value": "{color.border.subtle}" }
       },
       "text": {
-        "default": { "$value": "{color.text.default}" },
+        "default": { "$value": "{color.text.strong}" },
         "placeholder": { "$value": "{color.text.muted}" },
         "disabled": { "$value": "{color.text.disabled}" }
       },
@@ -389,7 +389,7 @@
     },
     "label": {
       "$description": "The Label component's per-instance text color - a plain, colorable inline text bit (sentence-case, not uppercase like Tag). Just aliases the semantic text ramp; no new values. The divider between labels in a LabelGroup is NOT one of these - it's fixed chrome (color.text.subtle).",
-      "default": { "$value": "{color.text.default}" },
+      "default": { "$value": "{color.text.strong}" },
       "subtle": { "$value": "{color.text.subtle}" },
       "muted": { "$value": "{color.text.muted}" },
       "brand": { "$value": "{color.text.brand}" },
@@ -422,7 +422,7 @@
       "item": {
         "text": {
           "default": { "$value": "{color.text.subtle}" },
-          "hover": { "$value": "{color.text.default}" },
+          "hover": { "$value": "{color.text.strong}" },
           "disabled": { "$value": "{color.text.disabled}" }
         },
         "background": {
@@ -538,7 +538,7 @@
     "breadcrumb": {
       "text": {
         "default": { "$value": "{color.text.subtle}", "$description": "An earlier, clickable crumb." },
-        "hover": { "$value": "{color.text.default}" },
+        "hover": { "$value": "{color.text.strong}" },
         "current": { "$value": "{color.text.strong}", "$description": "The last crumb - the current page, not a link." },
         "primary": { "$value": "{color.text.brand}", "$description": "An optional brand-colored crumb - for calling out one segment of the trail (e.g. the entity type), independent of which crumb is current." }
       },

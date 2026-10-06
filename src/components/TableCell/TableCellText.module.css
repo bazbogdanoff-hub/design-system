@@ -53,7 +53,7 @@
    identifier (e.g. an ID column) reads clearly heavier than its own
    default-emphasis siblings (e.g. a PROBLEM/STATION column) in the same row */
 .title[data-emphasis='strong'] {
-  color: var(--color-text-default);
+  color: var(--color-text-strong);
   /* the master's textStrong variant is text/label/sm (13/600/1.15), not
      body/sm recoloured - it changes weight and line-height too
      (parity audit TCELL-001) */

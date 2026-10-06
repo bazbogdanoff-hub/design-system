@@ -13,7 +13,7 @@
   font-size: var(--text-label-md-font-size);
   font-weight: var(--text-label-md-font-weight);
   line-height: var(--text-label-md-line-height);
-  color: var(--color-text-default);
+  color: var(--color-text-strong);
 }
 
 .item:hover:not([data-variant='secondary']) {

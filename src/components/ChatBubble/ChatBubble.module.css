@@ -42,7 +42,7 @@
 /* Light, in: the white Tile. */
 .bubble[data-on='light'][data-side='in'] {
   --_fill: var(--color-tile-background);
-  --_text: var(--color-text-default);
+  --_text: var(--color-text-strong);
   --_meta: var(--color-text-subtle);
   filter: url(#ds-bubble-light-in);
 }

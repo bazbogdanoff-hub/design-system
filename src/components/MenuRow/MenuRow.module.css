@@ -8,7 +8,7 @@
   background: transparent;
   cursor: pointer;
   text-align: left;
-  color: var(--color-text-default);
+  color: var(--color-text-strong);
   border-radius: var(--radius-chip);
 }
 

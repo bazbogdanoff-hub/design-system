@@ -86,7 +86,7 @@
   max-width: 16rem;
   padding: var(--space-8) 2.5rem var(--space-8) var(--space-8);
   background: var(--color-surface-card-item);
-  color: var(--color-text-default);
+  color: var(--color-text-strong);
 }
 /* A hairline round each, over the picture so a light photo keeps an edge. */
 .thumb::after,

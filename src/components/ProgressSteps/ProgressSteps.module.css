@@ -143,6 +143,6 @@
 }
 .eventLabel {
   min-width: 0;
-  color: var(--color-text-default);
+  color: var(--color-text-strong);
 }
 
