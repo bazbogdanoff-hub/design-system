@@ -26,32 +26,32 @@
   min-width: 0;
 }
 
-/* icon size mirrors Input's own leading/trailing icon scale exactly, since
-   HelperText sits directly below an Input of the same size */
-.helper[data-size='sm'] .icon { font-size: 0.875rem; }
-.helper[data-size='md'] .icon { font-size: 1rem; }
-.helper[data-size='lg'] .icon { font-size: 1.125rem; }
+/* Text and icon at the size of the field's label above (owner, 2026-10-06:
+   a step larger read as louder than the name): sm 12, md 13, lg 14. */
+.helper[data-size='sm'] .icon { font-size: var(--text-label-xs-font-size); }
+.helper[data-size='md'] .icon { font-size: var(--text-label-sm-font-size); }
+.helper[data-size='lg'] .icon { font-size: var(--text-label-md-font-size); }
 
 .helper[data-size='sm'] .message {
+  font-family: var(--text-body-xs-font-family);
+  font-size: var(--text-body-xs-font-size);
+  font-weight: var(--text-body-xs-font-weight);
+  line-height: var(--text-body-xs-line-height);
+  letter-spacing: var(--text-body-xs-letter-spacing);
+}
+.helper[data-size='md'] .message {
   font-family: var(--text-body-sm-font-family);
   font-size: var(--text-body-sm-font-size);
   font-weight: var(--text-body-sm-font-weight);
   line-height: var(--text-body-sm-line-height);
   letter-spacing: var(--text-body-sm-letter-spacing);
 }
-.helper[data-size='md'] .message {
+.helper[data-size='lg'] .message {
   font-family: var(--text-body-md-font-family);
   font-size: var(--text-body-md-font-size);
   font-weight: var(--text-body-md-font-weight);
   line-height: var(--text-body-md-line-height);
   letter-spacing: var(--text-body-md-letter-spacing);
-}
-.helper[data-size='lg'] .message {
-  font-family: var(--text-body-lg-font-family);
-  font-size: var(--text-body-lg-font-size);
-  font-weight: var(--text-body-lg-font-weight);
-  line-height: var(--text-body-lg-line-height);
-  letter-spacing: var(--text-body-lg-letter-spacing);
 }
 
 .helper[data-tone='primary'] .icon { color: var(--color-helper-text-icon-primary); }
