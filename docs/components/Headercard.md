@@ -72,3 +72,12 @@ The master has a `hasLabelGroup` boolean. Add:
   off, and the card's counter-axis alignment **top**.
 - Showcase: a severity `Badge md` + a secondary `IconButton md` in the slot,
   with a secondary "Back" `Button` in actions.
+
+## Back (owner, 2026-10-06)
+
+`onBack` draws a ← (Phosphor `ArrowLeft`, secondary `md` `IconButton`) at
+the start of the heading's line. The heading sits beside it on one line and
+ellipsises; everything under the heading (stat line, controls, chips, a
+description) keeps the full width, so the button moves nothing but the
+heading's start. Aegis passes it on phone only, when there is an in-app page
+to return to.

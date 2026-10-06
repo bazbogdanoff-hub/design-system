@@ -1,5 +1,7 @@
 import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
+import { ArrowLeft } from '@phosphor-icons/react';
 import { cn } from '../../lib/cn';
+import { IconButton } from '../IconButton';
 import styles from './ListCardHeader.module.css';
 
 export type ListCardHeaderSize = 'xs' | 'sm' | 'md' | 'lg';
@@ -19,6 +21,9 @@ export interface ListCardHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>
    * (`color.text.strong`) for a heading on a `Tile` inside a card, one level
    * under the card's own (owner, 2026-10-05). */
   headingColor?: 'default' | 'strong';
+  /** A ← before the heading, on its line (owner, 2026-10-06: the phone
+   * back button); the description keeps the full width under both. */
+  onBack?: () => void;
 }
 
 /**
@@ -28,11 +33,21 @@ export interface ListCardHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>
  * padded `Card` surface, never on its own background.
  */
 export const ListCardHeader = forwardRef<HTMLDivElement, ListCardHeaderProps>(function ListCardHeader(
-  { size = 'md', heading, description, headingColor = 'default', className, ...rest },
+  { size = 'md', heading, description, headingColor = 'default', onBack, className, ...rest },
   ref,
 ) {
   return (
-    <div ref={ref} className={cn(styles.header, className)} data-size={size} {...rest}>
+    <div ref={ref} className={cn(styles.header, className)} data-size={size} data-back={onBack != null || undefined} {...rest}>
+      {onBack != null && (
+        <IconButton
+          className={styles.back}
+          variant="secondary"
+          size="md"
+          aria-label="Back"
+          icon={<ArrowLeft weight="bold" aria-hidden="true" />}
+          onClick={onBack}
+        />
+      )}
       <p className={styles.heading} data-color={headingColor === 'strong' ? 'strong' : undefined}>
         {heading}
       </p>

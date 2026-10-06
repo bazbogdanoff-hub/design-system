@@ -1,5 +1,7 @@
 import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
+import { ArrowLeft } from '@phosphor-icons/react';
 import { cn } from '../../lib/cn';
+import { IconButton } from '../IconButton';
 import styles from './Headercard.module.css';
 
 type Base = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
@@ -17,6 +19,11 @@ type Base = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
    * `SegmentedControl`, a settings `IconButton`, etc. is relevant for the
    * page. Freeform; Headercard doesn't construct this itself. */
   actions?: ReactNode;
+  /** A ← at the start of the heading's line (owner, 2026-10-06: the phone
+   * back button). The heading starts after it and ellipsises before the
+   * actions; the stat line or controls keep the full width under both, so
+   * nothing below moves. Pass it only when there is somewhere to go back to. */
+  onBack?: () => void;
 };
 
 /**
@@ -52,12 +59,23 @@ export type HeadercardProps = Base &
  * right-side slot for page actions.
  */
 export const Headercard = forwardRef<HTMLDivElement, HeadercardProps>(function Headercard(
-  { heading, aside, labelGroup, controls, actions, className, ...rest },
+  { heading, aside, labelGroup, controls, actions, onBack, className, ...rest },
   ref,
 ) {
   const hasControls = controls != null;
   return (
-    <div ref={ref} className={cn(styles.card, className)} data-has-controls={hasControls || undefined} data-surface="" {...rest}>
+    <div ref={ref} className={cn(styles.card, className)} data-has-controls={hasControls || undefined} data-back={onBack != null || undefined} data-surface="" {...rest}>
+      {onBack != null && (
+        <div className={styles.back}>
+          <IconButton
+            variant="secondary"
+            size="md"
+            aria-label="Back"
+            icon={<ArrowLeft weight="bold" aria-hidden="true" />}
+            onClick={onBack}
+          />
+        </div>
+      )}
       <div className={styles.left}>
         {aside != null ? (
           <div className={styles.headingRow}>

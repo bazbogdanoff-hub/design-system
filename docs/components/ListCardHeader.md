@@ -49,3 +49,12 @@ parent, not further).
 ## headingColor
 
 `default` (`color.text.default`) or `strong` (`color.text.strong`): a heading on a `Tile` inside a card takes `strong`, one level under the card's own title (owner, 2026-10-05).
+
+## Back (owner, 2026-10-06)
+
+`onBack` draws a ← (Phosphor `ArrowLeft`, secondary `md` `IconButton`) at
+the start of the heading's line. The heading sits beside it on one line and
+ellipsises; everything under the heading (stat line, controls, chips, a
+description) keeps the full width, so the button moves nothing but the
+heading's start. Aegis passes it on phone only, when there is an in-app page
+to return to.

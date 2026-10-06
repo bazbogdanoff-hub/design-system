@@ -75,3 +75,28 @@
 .heading[data-color='strong'] {
   color: var(--color-text-strong);
 }
+
+/* Back (owner, 2026-10-06): ← and the heading share the first line, the
+   description takes the full width under both. */
+.header[data-back] {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: var(--space-10);
+}
+.header[data-back] .back {
+  grid-column: 1;
+  grid-row: 1;
+}
+.header[data-back] .heading {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.header[data-back] .description {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
