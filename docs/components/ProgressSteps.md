@@ -42,8 +42,8 @@ ol.steps
    ├─ span.disc  20: Prism + check (done) · Prism + white dot + soft halo (current) · white well (ahead)
    └─ div.body (gap 4)
       ├─ head     label (label/md, strong; subtle ahead) · at (caption subtle, tabular)
-      ├─ p.note   body/xs subtle, 2 lines
-      └─ ul.events  each: label (body/xs default, 2 lines) · at (caption subtle)
+      ├─ p.note   body/xs subtle, wraps in full
+      └─ ul.events  each: label (body/xs default, wraps) · at (caption subtle)
 ```
 
 Prism and the well are the recipes in `docs/patterns/Prism.md`.

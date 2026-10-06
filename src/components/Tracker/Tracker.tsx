@@ -97,8 +97,8 @@ function useTick(intervalMs: number | null) {
  * recessed well from the window's start to its deadline, a glass bar
  * filling with the time used. Only the bar's material carries the
  * situation - Prism when calm, warning or danger glass when it isn't,
- * emerald once done. Past the deadline the bar runs on to now and a notch
- * marks where the deadline was. The ends and an optional context line sit
+ * emerald once done. Past the deadline the bar is full, in danger, and the
+ * figure says by how much. The ends and an optional context line sit
  * under it. Sits on a Card; see docs/components/Tracker.md.
  */
 export function Tracker({
@@ -126,9 +126,7 @@ export function Tracker({
   let value: string;
   let tone: Tone;
   let fill = 100; // % of the track
-  let notch: number | null = null; // % where the deadline sits, once passed
   const ends: { label: string; at: Date }[] = [];
-  let passed: string | null = null; // the deadline, once the track has run past it
 
   if (urgency.mode === 'asap') {
     label = 'Priority';
@@ -162,11 +160,9 @@ export function Tracker({
     if (untilDue <= 0) {
       label = 'Overdue';
       value = formatDuration(-untilDue);
+      // The whole window used: full, in danger; the figure says by how much
+      // (owner, 2026-10-06: the ends show the real dates, not now).
       tone = 'danger';
-      // The track now runs from the start to now; the deadline is a notch,
-      // named on its own line (the right end is now, not the deadline).
-      if (start) notch = ((due.getTime() - start.getTime()) / (now.getTime() - start.getTime())) * 100;
-      passed = dueLabel === 'Due' ? `Was due ${timeFormatter(due)}` : `${dueLabel} was ${timeFormatter(due)}`;
     } else {
       label = 'Due in';
       value = formatDuration(untilDue);
@@ -174,7 +170,7 @@ export function Tracker({
       fill = used == null ? 100 : Math.max(0, Math.min(100, used * 100));
     }
     if (start) ends.push({ label: startLabel, at: start });
-    ends.push(passed != null && start ? { label: 'Now', at: now } : { label: dueLabel, at: due });
+    ends.push({ label: dueLabel, at: due });
   }
 
   return (
@@ -189,7 +185,6 @@ export function Tracker({
         aria-label={`${label}: ${value}${ends.map((e) => `, ${e.label.toLowerCase()} ${timeFormatter(e.at)}`).join('')}`}
       >
         <span className={styles.bar} style={{ width: `${fill.toFixed(2)}%` } as CSSProperties} />
-        {notch != null && <span className={styles.notch} style={{ left: `${notch.toFixed(2)}%` }} />}
       </div>
       {ends.length > 0 && (
         <dl className={styles.ends}>
@@ -201,12 +196,7 @@ export function Tracker({
           ))}
         </dl>
       )}
-      {(passed != null || context != null) && (
-        <div className={styles.notes}>
-          {passed != null && <p className={styles.context}>{passed}</p>}
-          {context != null && <p className={styles.context}>{context}</p>}
-        </div>
-      )}
+      {context != null && <p className={styles.context}>{context}</p>}
     </div>
   );
 }

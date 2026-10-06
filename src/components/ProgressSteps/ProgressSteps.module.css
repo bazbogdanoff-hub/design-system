@@ -120,11 +120,9 @@
 
 .note,
 .eventLabel {
+  /* Wraps in full: nothing here is cut off (owner, 2026-10-06). */
   margin: 0;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
+  overflow-wrap: anywhere;
   font-family: var(--text-body-xs-font-family);
   font-size: var(--text-body-xs-font-size);
   font-weight: var(--text-body-xs-font-weight);
@@ -151,7 +149,3 @@
   color: var(--color-text-default);
 }
 
-/* The stage note keeps to one line (owner, 2026-10-06: less under each name). */
-.note {
-  -webkit-line-clamp: 1;
-}

@@ -41,10 +41,9 @@ div.tracker (column, gap space/12; --glass-fill by tone)
 │  ├─ p.label  - text/label/sm, color/text/subtle      "Due in"
 │  └─ p.value  - text/heading/md, color/text/default    "2d 11h" (tabular)
 ├─ div.track  - the well: color/chart/window, inset shade, 12 tall, pill
-│  ├─ span.bar   - the glass recipe (src/glass.css), grows in from the left
-│  └─ span.notch - 2px, color/text/default: where the deadline was, once passed
+│  └─ span.bar   - the glass recipe (src/glass.css), grows in from the left
 ├─ dl.ends    - start left, end right: caption + label/sm (tabular)
-└─ div.notes  - "Checkpoint ETA was …" once passed, then `context` (body/sm subtle)
+└─ p.context  - optional, body/sm subtle
 ```
 
 ## The bar's material
@@ -60,9 +59,8 @@ div.tracker (column, gap space/12; --glass-fill by tone)
 
 - **scheduled with `startAt`:** fill = time used of `startAt` → `dueAt`.
   Warning at 30 min left or four-fifths of the window used; danger at 5 min.
-  **Overdue:** the track runs `startAt` → now, full, with a notch where the
-  deadline was; the right end reads "Now" and a note names the deadline
-  ("Checkpoint ETA was Sep 30, 13:48").
+  **Overdue:** full, in danger, the ends still the real start and deadline;
+  the figure says by how much (owner, 2026-10-06).
 - **scheduled without `startAt`:** no honest total to measure against, so
   only the absolute floors apply and the bar is full.
 - **countdown:** fill = share of `totalSeconds` used; warning at half or 30

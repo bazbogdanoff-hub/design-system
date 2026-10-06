@@ -64,16 +64,6 @@
   transform-origin: left center;
   animation: tracker-bar-in 700ms cubic-bezier(0.22, 1, 0.36, 1) 150ms backwards;
 }
-/* Where the deadline was, once the bar has run past it. */
-.notch {
-  position: absolute;
-  top: calc(-1 * var(--space-4));
-  bottom: calc(-1 * var(--space-4));
-  width: 2px;
-  margin-left: -1px;
-  border-radius: 1px;
-  background: var(--color-text-default);
-}
 @keyframes tracker-bar-in {
   from {
     transform: scaleX(0);
@@ -117,12 +107,6 @@
   color: var(--color-text-default);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
-}
-/* The deadline once passed, and what it is: one block under the ends. */
-.notes {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
 }
 .context {
   margin: 0;
