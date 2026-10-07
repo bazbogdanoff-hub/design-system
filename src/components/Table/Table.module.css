@@ -120,6 +120,19 @@
   height: auto;
   flex: none;
 }
+/* One 12 everywhere (owner, 2026-10-07): the header and footer pad as the
+   cards do, and the list adds no second 12 against them - the filters sat
+   16 from the top and 28 from the first card. */
+.table[data-cards] .header,
+.table[data-cards] .footer {
+  padding: var(--space-12);
+}
+.table[data-cards] .header + .cards {
+  padding-top: 0;
+}
+.table[data-cards] .cards:has(+ .footer) {
+  padding-bottom: 0;
+}
 
 /* Phone (owner, 2026-10-06): the selection is a bar, a Card across the
    bottom of the page card, inside the page's 12 padding like every card on
@@ -169,7 +182,8 @@
     margin-left: auto;
     gap: var(--space-12);
   }
-  .footer:has(.selectionBar) {
+  .footer:has(.selectionBar),
+  .table[data-cards] .footer:has(.selectionBar) {
     padding-bottom: calc(var(--space-16) + 2.25rem + 2 * var(--space-8) + var(--space-12));
   }
 }
