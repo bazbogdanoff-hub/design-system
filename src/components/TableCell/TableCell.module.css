@@ -164,3 +164,19 @@
     inset 0 2px 0 0 var(--color-table-row-border-active),
     inset 0 -2px 0 0 var(--color-table-row-border-active);
 }
+
+/* The card's white edge, carried down every row (owner, 2026-10-07): a row
+   runs edge to edge and its fill covered the card's 1.5px left catch, so
+   the first cell draws the same catch. A pseudo-element, so the pin, hover
+   and focus shadows above stay as they are. */
+.cell:first-child::before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1.5px;
+  background: var(--color-card-border);
+  pointer-events: none;
+}

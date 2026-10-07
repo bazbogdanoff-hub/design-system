@@ -100,3 +100,19 @@
 :global([data-more-end]) .cell[data-pin-edge='end'] {
   box-shadow: -6px 0 8px -6px var(--color-alpha-black-20);
 }
+
+/* The card's white edge down the header band too (TableCell.module.css). */
+.cell:first-child:not([data-pin]) {
+  position: relative;
+}
+.cell:first-child::before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1.5px;
+  background: var(--color-card-border);
+  pointer-events: none;
+}
