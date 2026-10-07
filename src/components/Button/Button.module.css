@@ -126,9 +126,10 @@
     inset 2px 2px 12px 0 var(--color-card-item-vignette),
     0 2px 12px 0 rgba(0, 0, 0, 0.25);
 }
-/* A state that lasts (a menu open, a toggle on) keeps the brand ring; a
-   press alone doesn't (owner, 2026-10-07). */
-.surface[data-variant='secondary'][aria-expanded='true']:not(:disabled):not([aria-disabled='true']),
+/* Only a toggle that is on keeps the brand ring (aria-pressed, data-active:
+   the Filters button while filters are set). A press doesn't, and neither
+   does an open menu: the menu and the flipped caret say it (owner,
+   2026-10-07: Filter treated as every other button). */
 .surface[data-variant='secondary'][aria-pressed='true']:not(:disabled):not([aria-disabled='true']),
 .surface[data-variant='secondary'][data-active]:not(:disabled):not([aria-disabled='true']) {
   box-shadow:
