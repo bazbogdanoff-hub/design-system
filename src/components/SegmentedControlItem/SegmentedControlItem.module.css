@@ -181,8 +181,15 @@
   margin-inline-start: var(--space-6);
   padding-inline: var(--space-4);
   border-radius: var(--radius-full);
-  background: var(--color-brand-500);
-  box-shadow: inset 1px 1px 0 0 var(--color-brand-400);
+  /* Prism (owner, 2026-10-07): every count pill wears the on-control glass,
+     as a checked Checkbox, a selected Radio, an on Switch. */
+  --glass-fill: var(--color-button-primary-background-default);
+  background-color: var(--glass-fill);
+  box-shadow:
+    inset 1px 1px 0 0 color-mix(in srgb, var(--glass-fill), white var(--glass-catch-mix)),
+    inset 2px 2px 12px 0 color-mix(in oklch, var(--glass-fill), black var(--glass-inner-mix)),
+    2px 3px 5px -1px color-mix(in srgb, var(--glass-fill) var(--glass-light-near), transparent),
+    3px 6px 12px -2px color-mix(in srgb, var(--glass-fill) var(--glass-light-far), transparent);
   color: var(--color-text-on-brand);
   font-family: var(--text-label-xs-font-family);
   font-size: var(--text-label-xs-font-size);

@@ -42,6 +42,7 @@ What is *off* doesn't stay flat beside Prism. It sinks:
 | `Checkbox` | checked or indeterminate |
 | `Radio` | selected: the whole disc, with a white dot |
 | `Switch` | on: the track; the thumb is a white raised piece |
+| count pills: `Button` `count`, `SegmentedControlItem` `count`, `ConversationRow` unread, `SidebarNavItem` count | always (owner, 2026-10-07); white figures. `Button`'s is 16, the rest 20 |
 | chart marks, `CategoryIcon` | always, in their own data colour (`--glass-fill` per series or category) |
 
 The last row is the same recipe in other colours. *Prism* by itself means the
