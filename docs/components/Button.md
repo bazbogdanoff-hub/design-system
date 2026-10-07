@@ -91,3 +91,10 @@ names, which `xs` no longer is.
 Real `<button>` - focus, Enter/Space, `disabled` native. `loading` sets
 `aria-busy`. For an icon-only button use `IconButton` (it requires an
 `aria-label`).
+
+## Count
+
+`count` adds the brand counter pill after the label (owner, 2026-10-07): the
+same pill as `SegmentedControlItem` and `ConversationRow` unread. `99+` past
+99; the pill is hidden from screen readers, so name the count in the
+button's `aria-label`.

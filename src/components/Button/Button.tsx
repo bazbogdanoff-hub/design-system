@@ -21,6 +21,10 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   trailingIcon?: ReactNode;
   /** Show the loading spinner (in the leading slot); disables interaction, label stays. */
   loading?: boolean;
+  /** A count after the label - how many filters are set (owner, 2026-10-07):
+   * the brand pill Messages and the segmented tabs use for unread. Omit or 0
+   * for none; `99+` past 99. Name it in the button's aria-label too. */
+  count?: number;
   /** Render as the child element (e.g. an `<a>` or a router `<Link>`). */
   asChild?: boolean;
   /** `light` (default) on a card; `dark` inside the dark app-frame chat card
@@ -42,6 +46,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     leadingIcon,
     trailingIcon,
     loading = false,
+    count,
     asChild = false,
     surface = 'light',
     className,
@@ -83,6 +88,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     >
       {lead}
       <Slottable>{children}</Slottable>
+      {count != null && count > 0 && (
+        <span className={styles.count} aria-hidden="true">
+          {count > 99 ? '99+' : count}
+        </span>
+      )}
       {trail}
     </Comp>
   );

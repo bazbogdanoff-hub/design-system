@@ -264,3 +264,23 @@
     transform: translateY(-50%);
   }
 }
+
+/* The count pill (owner, 2026-10-07): the same as SegmentedControlItem's
+   and ConversationRow's unread - brand.500, a brand.400 catch, tabular. */
+.count {
+  display: inline-grid;
+  place-items: center;
+  box-sizing: border-box;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-full);
+  background: var(--color-brand-500);
+  box-shadow: inset 1px 1px 0 0 var(--color-brand-400);
+  color: var(--color-text-on-brand);
+  font-family: var(--text-label-xs-font-family);
+  font-size: var(--text-label-xs-font-size);
+  font-weight: var(--text-label-xs-font-weight);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}

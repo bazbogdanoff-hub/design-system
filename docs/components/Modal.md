@@ -94,3 +94,5 @@ instance), a `content` slot, and an optional `footer` slot. The `width`
 variants are not in the master yet (code-first, 2026-10-03); build them as a
 `width` property of `hug` / `sm` / `md` / `lg` with fixed widths of 384 / 480
 / 576 at the 16px root.
+
+On phone the title is `heading/lg` (owner, 2026-10-07).

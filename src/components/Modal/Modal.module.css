@@ -42,6 +42,17 @@
   letter-spacing: var(--text-heading-sm-letter-spacing);
   color: var(--color-text-default);
 }
+/* Phone (owner, 2026-10-07): the dialog's title one step up, heading/lg
+   (20 there): it leads everything in the dialog, cards and sub-heads included. */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  .heading {
+    font-family: var(--text-heading-lg-font-family);
+    font-size: var(--text-heading-lg-font-size);
+    font-weight: var(--text-heading-lg-font-weight);
+    line-height: var(--text-heading-lg-line-height);
+    letter-spacing: var(--text-heading-lg-letter-spacing);
+  }
+}
 
 /* It scrolls, so it clips: 6 of room on every side (taken back by the
    margin, so nothing moves) keeps the controls' shadows whole at its edges
