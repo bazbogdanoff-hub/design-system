@@ -31,6 +31,30 @@
     transform 90ms ease-out;
 }
 
+/* Phone (owner, 2026-10-07): the press swells instead. A finger covers a
+   button, a small icon button entirely, so a shrink happens out of sight;
+   growing out from under the finger is the reaction you can see. A touch
+   wider than tall (jelly, not a balloon), springing in; the release above
+   carries it back through a dip below rest. Desktop keeps the shrink: a
+   mouse click is the established press-in. */
+@media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
+  .surface:active:not(:disabled):not([aria-disabled='true']) {
+    transform: scale(1.05, 1.03);
+    transition:
+      box-shadow 120ms ease,
+      background-color 120ms ease,
+      color 120ms ease,
+      transform 160ms cubic-bezier(0.34, 1.4, 0.64, 1);
+  }
+  .surface {
+    transition:
+      box-shadow 120ms ease,
+      background-color 120ms ease,
+      color 120ms ease,
+      transform 320ms cubic-bezier(0.34, 1.6, 0.64, 1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .surface:active:not(:disabled):not([aria-disabled='true']) {
     transform: none;

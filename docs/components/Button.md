@@ -98,3 +98,10 @@ Real `<button>` - focus, Enter/Space, `disabled` native. `loading` sets
 same pill as `SegmentedControlItem` and `ConversationRow` unread. `99+` past
 99; the pill is hidden from screen readers, so name the count in the
 button's `aria-label`.
+
+## Press
+
+Desktop: the button shrinks to 96% under the click and springs back. Phone
+(owner, 2026-10-07): it swells to 105% wide, 103% tall, since a finger hides a
+shrink, and the release springs back through a small dip. No ring while
+pressed; reduced motion turns the movement off.
