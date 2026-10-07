@@ -39,10 +39,11 @@ type Base = Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> & {
    * `size`. Omit entirely for a row with no leading element. */
   leading?: RowLeading;
   heading: ReactNode;
-  /** Always rendered as a size-matched `LabelGroup` with Labels defaulting to
+  /** Rendered as a size-matched `LabelGroup` with Labels defaulting to
    * `color="subtle"`. Pass a bare `<LabelGroup>` (Row fills `size` + `color`)
    * or a string/node (Row wraps it in one `Label`). */
-  description: ReactNode;
+  /** Omit for a one-line row - a list of choices (owner, 2026-10-07). */
+  description?: ReactNode;
   /** Trailing, left side - a `Badge` or `SeverityBadge`, usually. Freeform
    * within itself; always renders left-of-`action`. */
   status?: ReactNode;
@@ -91,7 +92,7 @@ export const Row = forwardRef<HTMLDivElement, RowProps>(function Row(
   ref,
 ) {
   const interactive = onClick != null;
-  const resolvedDescription = resolveDescription(description, size);
+  const resolvedDescription = description != null ? resolveDescription(description, size) : null;
 
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (!interactive) return;
@@ -119,7 +120,7 @@ export const Row = forwardRef<HTMLDivElement, RowProps>(function Row(
       )}
       <div className={styles.text}>
         <p className={styles.heading}>{heading}</p>
-        <div className={styles.description}>{resolvedDescription}</div>
+        {resolvedDescription != null && <div className={styles.description}>{resolvedDescription}</div>}
       </div>
       {(status != null || action != null) && (
         <div className={styles.trailing}>

@@ -198,3 +198,6 @@ flagging so it isn't rediscovered as a surprise bug later.
 is passed - plain, non-interactive `<div>` otherwise. Not a native
 `<button>` on purpose: `action`/`leading` can hold real interactive elements
 (`Button`, `IconButton`), which can't legally nest inside a `<button>`.
+
+`description` is optional (owner, 2026-10-07): leave it out for a one-line
+row, such as a list of choices.
