@@ -13,8 +13,9 @@ export interface TabBarProps extends Omit<HTMLAttributes<HTMLElement>, 'children
    * `aria-label`; icon only, except the `active` one, which also takes its
    * `label` and widens to show it. Every page is also in the menu. */
   children: ReactNode;
-  /** The page you are on when it is none of the tabs (Messages, Profile,
-   * Settings, Aegis, a page reached through the menu): one `SidebarNavItem`,
+  /** The page you are on when it is outside the module (Messages, Profile,
+   * Settings, Aegis; a module page off the tabs takes the last tab's place
+   * instead, owner 2026-10-08): one `SidebarNavItem`,
    * `active`, icon only with an `aria-label`, in a square third panel
    * (owner, 2026-10-05). Omit on a tab's page. */
   current?: ReactNode;

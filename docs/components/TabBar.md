@@ -33,11 +33,14 @@ In the app it is wired once, in `AppLayout`, from each module's
   `aria-label`. The **current tab** (`active`) shows its name and fills what
   is left. The current tab's glass travels between tabs
   (`useSlidingHighlight`), as in the sidebar.
-- **Third panel** (`current`): on a page that is none of the tabs (Messages,
-  Aegis, Profile, Settings, a page reached through the menu), that page's
-  item, highlighted and icon only, in a square 48 panel on the right; the
-  tabs then spread evenly. A name there was cut at 92-122 wide, so it is
-  icon only (owner, 2026-10-05).
+- **Third panel** (`current`): on Messages, Aegis, Profile or Settings,
+  that page's item, highlighted and icon only, in a square 48 panel on the
+  right; the tabs then spread evenly. A name there was cut at 92-122 wide,
+  so it is icon only (owner, 2026-10-05).
+- **A module page off the tabs** (reached through the menu) takes the last
+  tab's place, named and highlighted as any current tab, until a tab is
+  picked (owner, 2026-10-08). The app does the swap (`AppLayout`); the bar
+  just shows the 4 items it is given.
 - **Touch:** each tab's whole cell is its target, so every target meets 44
   to 48 without a hidden hitbox.
 - The tab keeps its highlight while the menu is open.
