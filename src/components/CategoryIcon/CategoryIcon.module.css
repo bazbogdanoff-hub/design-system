@@ -95,15 +95,7 @@
   height: var(--icon-size);
 }
 
-/* ---- xs, dark, helmet (owner, 2026-10-08) --------------------------------- */
-
-/* xs: 16, a mark beside text (as ChannelLogo sm beside a name). */
-.tile[data-size='xs'] {
-  width: 1rem;
-  height: 1rem;
-  border-radius: var(--radius-sm);
-  --icon-size: 0.625rem;
-}
+/* ---- dark, helmet, drop (owner, 2026-10-08) ------------------------------ */
 
 /* dark: the shell's own dark, the colour the logo stands on (the admin
    module). The same in both emphases; the icon white as every strong tile. */
@@ -130,9 +122,6 @@
     drop-shadow(2px 3px 2px color-mix(in srgb, var(--glass-fill) var(--glass-light-near), transparent))
     drop-shadow(3px 6px 5px color-mix(in srgb, var(--glass-fill) var(--glass-light-far), transparent));
 }
-.tile[data-size='xs'] .helmet {
-  filter: drop-shadow(1px 1px 1px color-mix(in srgb, var(--glass-fill) var(--glass-light-near), transparent));
-}
 .helmetPath {
   fill: var(--glass-fill);
 }
@@ -141,4 +130,19 @@
 }
 .catch {
   flood-color: color-mix(in srgb, var(--glass-fill), white var(--glass-catch-mix));
+}
+
+/* drop: the primary Button's neutral shadow (0 1px 8px, 20% black) for the
+   coloured light the glass throws; the catch and the inner shade stay. */
+.tile[data-shadow='drop'] {
+  box-shadow:
+    inset 1px 1px 0 0 color-mix(in srgb, var(--glass-fill), white var(--glass-catch-mix)),
+    inset 2px 2px 12px 0 color-mix(in oklch, var(--glass-fill), black var(--glass-inner-mix)),
+    0 1px 8px 0 var(--color-alpha-black-20);
+}
+.tile[data-shape='helmet'][data-shadow='drop'] {
+  box-shadow: none;
+}
+.tile[data-shadow='drop'] .helmet {
+  filter: drop-shadow(0 1px 4px var(--color-alpha-black-20));
 }

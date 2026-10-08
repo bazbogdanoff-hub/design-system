@@ -233,7 +233,14 @@ export { Breadcrumb } from './components/Breadcrumb';
 export type { BreadcrumbProps, BreadcrumbEntry } from './components/Breadcrumb';
 
 export { CategoryIcon } from './components/CategoryIcon';
-export type { CategoryIconProps, CategoryIconSize, CategoryIconEmphasis } from './components/CategoryIcon';
+export type {
+  CategoryIconProps,
+  CategoryIconSize,
+  CategoryIconEmphasis,
+  CategoryIconColor,
+  CategoryIconShape,
+  CategoryIconShadow,
+} from './components/CategoryIcon';
 
 export { SettingsNavItem } from './components/SettingsNavItem';
 export type { SettingsNavItemProps } from './components/SettingsNavItem';
@@ -273,6 +280,8 @@ export type { SidebarSectionProps, SidebarSectionContent } from './components/Si
 
 export { Logo } from './components/Logo';
 export type { LogoProps } from './components/Logo';
+export { LogoHelmet } from './components/Logo';
+export type { LogoHelmetProps } from './components/Logo';
 
 export { breakpoints, up, down, tierQueries, useTier } from './lib/breakpoints';
 export type { Breakpoint, Tier } from './lib/breakpoints';
