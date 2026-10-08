@@ -1,6 +1,7 @@
-import { useId, useState } from 'react';
+import { useId, useRef, useState } from 'react';
 import { ChartTooltip } from '../ChartTooltip';
 import { niceScaleRange } from '../../lib/niceScale';
+import { isKeyboardFocus, isTouch, useTouchScrub } from '../../lib/touchScrub';
 import { useContainerSize } from '../../lib/useContainerSize';
 import { useRemScale } from '../../lib/rem';
 import styles from './LineChart.module.css';
@@ -149,6 +150,10 @@ export function LineChart({
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const titleId = useId();
   const [wrapperRef, measuredSize] = useContainerSize<HTMLDivElement>();
+  // Touch: drag to read, tap to open (lib/touchScrub). The column under the
+  // finger, from where it is across the plot; set by the render below.
+  const columnAt = useRef<(clientX: number) => number | null>(() => null);
+  const scrub = useTouchScrub((x) => columnAt.current(x), setActiveIndex);
 
   // A fixed `height` sizes the wrapper too, so a parent can place the chart
   // (e.g. at the foot of a ChartCard) instead of it filling the space.
@@ -200,11 +205,19 @@ export function LineChart({
     data.map((d, i) => ({ x: xFor(i), y: yFor(d.values[s.key] ?? 0) })),
   );
 
+  columnAt.current = (clientX) => {
+    const svg = wrapperRef.current?.querySelector('svg');
+    if (!svg) return null;
+    const r = svg.getBoundingClientRect();
+    const x = ((clientX - r.left) / (r.width || 1)) * intrinsicWidth;
+    return Math.min(data.length - 1, Math.max(0, Math.floor((x - PADDING.left) / Math.max(1, bandWidth))));
+  };
+
   const active = activeIndex != null ? data[activeIndex] : null;
   const activeX = activeIndex != null ? xFor(activeIndex) : 0;
 
   return (
-    <div className={styles.wrapper} ref={wrapperRef} style={wrapperStyle}>
+    <div className={styles.wrapper} ref={wrapperRef} style={wrapperStyle} {...scrub}>
       <svg
         className={styles.svg}
         width={intrinsicWidth}
@@ -360,9 +373,9 @@ export function LineChart({
                 aria-label={`${datum.category}: ${series
                   .map((s) => `${s.label} ${valueFormatter(datum.values[s.key] ?? 0)}`)
                   .join(', ')}`}
-                onPointerEnter={() => setActiveIndex(i)}
-                onPointerLeave={() => setActiveIndex((cur) => (cur === i ? null : cur))}
-                onFocus={() => setActiveIndex(i)}
+                onPointerEnter={(e) => !isTouch(e) && setActiveIndex(i)}
+                onPointerLeave={(e) => !isTouch(e) && setActiveIndex((cur) => (cur === i ? null : cur))}
+                onFocus={(e) => isKeyboardFocus(e.currentTarget) && setActiveIndex(i)}
                 onBlur={() => setActiveIndex((cur) => (cur === i ? null : cur))}
                 className={styles.hitTarget}
               />

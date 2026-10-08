@@ -86,6 +86,16 @@ the column's centre - off the point, so the dot and the tooltip disagreed;
 since 2026-09-30 everything sits on the vertex, the x labels too. The
 tooltip stays on one line and opens inward near either end of the chart.
 
+**Touch** (owner, 2026-10-08; `lib/touchScrub.ts`): drag to read, tap to
+open. A finger sliding sideways moves the crosshair and tooltip with it and
+they clear when it lifts; a drag never fires `onSelect`. Up or down still
+scrolls the page (`touch-action: pan-y`). A tap fires `onSelect` and shows no
+tooltip; focus shows one only from the keyboard.
+
+The curve's control points are held between the two points they join
+(2026-10-08), so a sharp dip never overshoots below its lowest value into
+the axis. The value labels' column fits its longest label, at most 48.
+
 An empty `data` (still loading) draws an empty frame rather than throwing.
 
 ## Accessibility

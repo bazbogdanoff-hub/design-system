@@ -2,6 +2,9 @@
   position: relative;
   width: 100%;
   height: 100%;
+  /* Touch (lib/touchScrub): a sideways drag reads the chart, up and down
+     still scrolls the page. */
+  touch-action: pan-y;
 }
 
 .svg {
