@@ -8,7 +8,7 @@ import { Avatar } from '../Avatar';
 import { Logo } from '../Logo';
 import { Menu } from '../Menu';
 import { GearSixIcon } from './GearSixIcon';
-import { SidebarSimpleIcon } from './SidebarSimpleIcon';
+import { CaretLeft } from '@phosphor-icons/react';
 import styles from './Sidebar.module.css';
 
 export type SidebarMode = 'collapsed' | 'expanded';
@@ -56,7 +56,9 @@ export interface SidebarProps extends Omit<HTMLAttributes<HTMLElement>, 'childre
   bottomItems?: ReactNode;
   /** The wordmark text next to the brand mark - ignored when collapsed. */
   name: ReactNode;
-  /** Temporary: toggles collapsed ↔ expanded (icon under logo + divider). */
+  /** Collapses / expands the rail. When set, a pill under the logo takes
+   * the divider's place (owner, 2026-10-08, idea C): under the mark in both
+   * modes, its caret turning with the rail. */
   onModeToggle?: () => void;
 }
 
@@ -161,16 +163,19 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
         <Logo collapsed={collapsed} name={name} />
       </div>
 
-      <div className={styles.divider} />
-
-      {onModeToggle != null && (
-        <SidebarNavItem
-          icon={<SidebarSimpleIcon />}
-          label={!collapsed ? 'Collapse' : undefined}
-          tone="brand"
-          aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-          onClick={onModeToggle}
-        />
+      {onModeToggle != null ? (
+        <div className={styles.toggleRow}>
+          <button
+            type="button"
+            className={styles.toggle}
+            aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            onClick={onModeToggle}
+          >
+            <CaretLeft weight="bold" aria-hidden="true" className={styles.caret} />
+          </button>
+        </div>
+      ) : (
+        <div className={styles.divider} />
       )}
 
       <div className={styles.switcherGroup}>

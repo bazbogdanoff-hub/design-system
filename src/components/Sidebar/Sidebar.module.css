@@ -29,6 +29,73 @@
   flex: none;
 }
 
+/* The expand / collapse pill (owner, 2026-10-08, idea C), in the divider's
+   place. The row is 16 tall and the 20-tall pill overflows it evenly, so
+   with the sidebar's 16 gaps the logo and the switcher sit 48 apart and the
+   pill has 14 above and below. Under the mark in both modes: its left edge
+   on the mark's when expanded, centred under it when collapsed, as the
+   header aligns the mark. */
+.toggleRow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--space-16);
+  flex: none;
+}
+.sidebar[data-mode='collapsed'] > .toggleRow {
+  justify-content: center;
+}
+
+.toggle {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.5rem;
+  height: 1.25rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  color: var(--color-sidebar-icon-default);
+  background: var(--color-sidebar-panel-background);
+  box-shadow:
+    inset 1px 1px 0 0 color-mix(in srgb, var(--color-border-highlight) 16%, transparent),
+    inset 0 0 4px var(--color-sidebar-panel-inner-shadow),
+    0 2px 6px var(--color-alpha-black-25);
+  transition:
+    transform 160ms ease,
+    color 160ms ease;
+}
+.toggle:hover {
+  color: var(--color-sidebar-brand-accent);
+  transform: scale(1.08);
+}
+.toggle:active {
+  transform: scale(0.96);
+}
+.toggle:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* Collapsed, the caret points out, to expand: turned, not swapped, so it
+   reads as one control changing direction with the rail. */
+.caret {
+  width: 0.75rem;
+  height: 0.75rem;
+  flex: none;
+  transition: transform 340ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+.sidebar[data-mode='collapsed'] .caret {
+  transform: rotate(180deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .toggle,
+  .caret {
+    transition: none;
+  }
+}
+
 .switcherGroup {
   display: flex;
   flex-direction: column;

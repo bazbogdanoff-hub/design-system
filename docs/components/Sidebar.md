@@ -46,6 +46,7 @@ const modules = [
 | `settingsActive` | `boolean` | `false` | brand-active highlight on the Settings row |
 | `bottomItems` | `ReactNode` | | extra `SidebarNavItem`s at the top of the bottom section, above Profile and Settings - app-wide places that belong to no module (owner, 2026-09-30: Messages and the Aegis assistant). Settings stays last: its row carries the section's deep corner |
 | `name` | `ReactNode` - required | | the wordmark text next to the brand mark |
+| `onModeToggle` | `() => void` | | collapses / expands the rail: a pill under the logo replaces the divider (see below) |
 
 `SidebarModule` is `{ id: string; tone: 'brand' \| 'success' \| 'danger'; label: string }` -
 `tone` is the module's fixed color identity, `label` is visible only to
@@ -65,12 +66,23 @@ overlay, not a mask: the list scrolls inside the panel itself, and a mask
 would fade the panel's fill and corners too. A newly picked module opens at
 the top of its list.
 
+## The expand / collapse pill
+
+With `onModeToggle` set, a 40 x 20 pill in the sidebar panel's fill sits
+under the logo in the divider's place (owner, 2026-10-08, idea C of the
+Aegis lab; it replaced a "Collapse" nav row). The logo and the switcher sit
+48 apart, 14 above and below the pill. It stays under the mark in both
+modes: its left edge on the mark's when expanded, centred under it when
+collapsed. The caret points in to collapse and turns (340 ms, with the
+rail) to point out and expand. Hover lifts its colour to the brand accent
+and scales it 1.08; transforms only. No Figma frame yet.
+
 ## Structure
 
 ```
 Sidebar
 ├─ Logo (collapsed-aware - mark only vs. mark + wordmark)
-├─ divider
+├─ divider, or the expand / collapse pill when `onModeToggle` is set
 ├─ SegmentedControl (size="xs", collapsed-aware) - the module switcher
 ├─ SidebarSection (content="module") - the active module's nav list
 │    (margin-top: -space/6 so the switcher overlaps it by 6px; switcher z-index above)
