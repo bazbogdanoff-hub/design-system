@@ -6,9 +6,11 @@ import styles from './CategoryIcon.module.css';
 
 export type CategoryIconSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 export type CategoryIconEmphasis = 'strong' | 'muted';
-/** A category hue, or `dark`: the shell's own dark (owner, 2026-10-08: the
- * admin module, the colour the logo stands on). */
-export type CategoryIconColor = TagColor | 'dark';
+/** A category hue; `dark`, the shell's own dark (owner, 2026-10-08: the
+ * admin module, the colour the logo stands on); or a module's own colour as
+ * the sidebar shows it (`sidebar-*`, the 500 fills: brighter than the
+ * category hues). */
+export type CategoryIconColor = TagColor | 'dark' | 'sidebar-brand' | 'sidebar-danger' | 'sidebar-success';
 /** `tile` (default) - the rounded square with an icon. `helmet` - the
  * logo's helmet piece itself, in the same glass, with no icon (owner,
  * 2026-10-08: the admin module). */

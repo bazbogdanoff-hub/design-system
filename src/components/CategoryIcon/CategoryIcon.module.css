@@ -102,6 +102,17 @@
 .tile[data-color='dark'] {
   --glass-fill: var(--color-background-emphasis);
 }
+/* A module's own colour, as the sidebar's module switcher shows it. */
+.tile[data-color='sidebar-brand'] {
+  --glass-fill: var(--color-sidebar-brand-fill);
+}
+.tile[data-color='sidebar-danger'] {
+  --glass-fill: var(--color-sidebar-danger-fill);
+}
+.tile[data-color='sidebar-success'] {
+  --glass-fill: var(--color-sidebar-success-fill);
+}
+.tile[data-color^='sidebar-'] .icon,
 .tile[data-color='dark'] .icon {
   color: var(--color-text-on-brand);
 }
