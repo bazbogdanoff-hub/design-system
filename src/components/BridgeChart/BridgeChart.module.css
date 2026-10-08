@@ -167,40 +167,20 @@
 
 /* ---- phone tier (lib/breakpoints.ts, literal copy) -------------------------
    2026-10-08: beside a 7.5rem name and a 5.5rem amount the track was about
-   60 wide at 360. As TimelineChart's phone mode: the name and the amount
-   share a line, the bar takes the full width under them. The gridlines run
-   the full width too, so the name and the amount sit on a card-coloured
-   patch they don't cross. */
+   60 wide at 360. On phone each line is one block: the name and the amount
+   on a line, the bar the full width under them, a divider between lines.
+   No axis and no gridlines (owner, 2026-10-08): cut to the bar's strip they
+   read as disconnected from anything; the amount carries the number. */
 @media (max-width: 639px), (max-height: 499px) and (pointer: coarse) {
   .axisRow,
+  .guides {
+    display: none;
+  }
   .row {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
       'label value'
       'track track';
-  }
-  .axisRow > span {
-    display: none;
-  }
-  .axis {
-    grid-column: 1 / -1;
-  }
-  /* The end labels sit inside their lines rather than centred on them, or
-     they hang off the card. */
-  .tick[data-edge='start'] {
-    transform: none;
-  }
-  .tick[data-edge='end'] {
-    transform: translateX(-100%);
-  }
-  /* Each line one block (owner, 2026-10-08: a bar sat as near the next
-     name as its own). A divider between lines, 10 above and below, 6 from
-     the name to its bar. The gridlines are drawn in each bar's own strip
-     (the step and zero from BridgeChart.tsx), so they never cross a name. */
-  .guides {
-    display: none;
-  }
-  .row {
     height: auto;
     row-gap: var(--space-6);
     padding-block: var(--space-10);
@@ -221,18 +201,6 @@
   .track {
     grid-area: track;
     height: 1.25rem;
-    background:
-      linear-gradient(
-        to right,
-        transparent calc(var(--_zero-at) - 0.5px),
-        var(--_zero-color) calc(var(--_zero-at) - 0.5px) calc(var(--_zero-at) + 0.5px),
-        transparent calc(var(--_zero-at) + 0.5px)
-      ),
-      repeating-linear-gradient(
-        to right,
-        var(--color-border-default) 0 1px,
-        transparent 1px var(--_tick-step)
-      );
   }
 }
 

@@ -1,6 +1,5 @@
 import { useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type HTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
-import { useTier } from '../../lib/breakpoints';
 import { ChartTooltip } from '../ChartTooltip';
 import styles from './BridgeChart.module.css';
 
@@ -93,7 +92,6 @@ export function BridgeChart({
   ...rest
 }: BridgeChartProps) {
   const [hovered, setHovered] = useState<string | null>(null);
-  const phone = useTier() === 'phone';
 
   // One scale for every row, zero always in it.
   const scale = useMemo(() => {
@@ -112,7 +110,7 @@ export function BridgeChart({
     for (let t = scale.min; t <= scale.max + scale.step / 2; t += scale.step) out.push(Math.round(t * 1e6) / 1e6);
     return out;
   }, [scale]);
-  // Tick labels as close as they fit (2026-10-08: at phone width every
+  // Tick labels as close as they fit (2026-10-08: on a narrow track every
   // label piled into one smudge), as TimelineChart does: the axis's measured
   // width decides, a label needs about 3.5rem ("−€1.5k"), and zero always keeps its own.
   // The gridlines stay at every tick.
@@ -132,52 +130,20 @@ export function BridgeChart({
     return Math.max(1, Math.ceil(labelPx / gapPx));
   }, [axisPx, ticks.length, scale.step, span]);
   const zeroAt = Math.max(0, ticks.indexOf(0));
-  // Which ticks get a label. An end label sits inside its line on phone (it
-  // would hang off the card centred), so it reaches a whole label inward:
-  // it stays only with 1.5 labels of room to the next one.
-  const labelled = useMemo(() => {
-    const on = ticks.map((_, i) => (i - zeroAt) % labelEvery === 0);
-    if (phone && axisPx != null && axisPx > 0 && ticks.length > 1) {
-      const labelPx = 3.5 * parseFloat(getComputedStyle(document.documentElement).fontSize);
-      const gapPx = (scale.step / span) * axisPx;
-      const last = ticks.length - 1;
-      if (on[0] && labelEvery * gapPx < 1.5 * labelPx && zeroAt !== 0) on[0] = false;
-      if (on[last] && labelEvery * gapPx < 1.5 * labelPx && zeroAt !== last) on[last] = false;
-    }
-    return on;
-  }, [phone, ticks, zeroAt, labelEvery, axisPx, scale.step, span]);
   const hasNegative = scale.min < 0;
   // A bar from zero is a signed value (a truck's loss reads −€664); a
   // floating bar is an amount, its length.
   const amount = (r: { from: number; to: number }) => (r.from === 0 ? r.to : Math.abs(r.to - r.from));
 
-  // Phone draws the gridlines in each bar's strip (the CSS): the step
-  // between ticks and where zero sits, strong only when losses run left.
-  const gridVars = {
-    '--_tick-step': `${((scale.step / span) * 100).toFixed(3)}%`,
-    '--_zero-at': `${pos(0).toFixed(3)}%`,
-    '--_zero-color': hasNegative ? 'var(--color-border-strong)' : 'transparent',
-  } as CSSProperties;
-
   return (
-    <div
-      className={cn(styles.chart, className)}
-      role="group"
-      aria-label={ariaLabel}
-      {...rest}
-      style={{ ...gridVars, ...rest.style }}
-    >
+    <div className={cn(styles.chart, className)} role="group" aria-label={ariaLabel} {...rest}>
+      {/* Phone hides the axis and the gridlines (the CSS). */}
       <div className={styles.axisRow} aria-hidden="true">
         <span />
         <div className={styles.axis} ref={axisRef}>
           {ticks.map((t, i) =>
-            labelled[i] ? (
-              <span
-                key={t}
-                className={styles.tick}
-                data-edge={i === 0 ? 'start' : i === ticks.length - 1 ? 'end' : undefined}
-                style={{ left: `${pos(t)}%` }}
-              >
+            (i - zeroAt) % labelEvery === 0 ? (
+              <span key={t} className={styles.tick} style={{ left: `${pos(t)}%` }}>
                 {valueFormatter(t)}
               </span>
             ) : null,
