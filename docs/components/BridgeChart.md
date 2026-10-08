@@ -58,6 +58,13 @@ share of revenue), `onSelect?` (makes the row a button).
   end it starts at (a cost from the right); reduced motion: off.
 - **Amount:** `text/label/sm`, `color.text.default`, tabular figures, right
   aligned.
+- **Tick labels** (2026-10-08): as close as they fit, from the axis's
+  measured width (a label needs about 3.5rem); zero always keeps its own,
+  and the gridlines stay at every tick.
+- **Phone:** as TimelineChart's phone mode. The label and the amount share a
+  line, on a card-coloured patch; the track takes the full width under them.
+  End tick labels sit inside their lines, and one is dropped when the next
+  label is closer than 1.5 labels.
 
 ## Colour (owner, 2026-10-05; validated)
 
