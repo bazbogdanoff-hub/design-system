@@ -94,3 +94,51 @@
   width: var(--icon-size);
   height: var(--icon-size);
 }
+
+/* ---- xs, dark, helmet (owner, 2026-10-08) --------------------------------- */
+
+/* xs: 16, a mark beside text (as ChannelLogo sm beside a name). */
+.tile[data-size='xs'] {
+  width: 1rem;
+  height: 1rem;
+  border-radius: var(--radius-sm);
+  --icon-size: 0.625rem;
+}
+
+/* dark: the shell's own dark, the colour the logo stands on (the admin
+   module). The same in both emphases; the icon white as every strong tile. */
+.tile[data-color='dark'] {
+  --glass-fill: var(--color-background-emphasis);
+}
+.tile[data-color='dark'] .icon {
+  color: var(--color-text-on-brand);
+}
+
+/* helmet: no box of its own; the piece wears the glass (the SVG filter in
+   CategoryIcon.tsx for the catch and the inner shade, these drop-shadows
+   for the light it throws down and to the right, as the tile's). */
+.tile[data-shape='helmet'] {
+  background: none;
+  box-shadow: none;
+}
+.helmet {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter:
+    drop-shadow(2px 3px 2px color-mix(in srgb, var(--glass-fill) var(--glass-light-near), transparent))
+    drop-shadow(3px 6px 5px color-mix(in srgb, var(--glass-fill) var(--glass-light-far), transparent));
+}
+.tile[data-size='xs'] .helmet {
+  filter: drop-shadow(1px 1px 1px color-mix(in srgb, var(--glass-fill) var(--glass-light-near), transparent));
+}
+.helmetPath {
+  fill: var(--glass-fill);
+}
+.shade {
+  flood-color: color-mix(in oklch, var(--glass-fill), black var(--glass-inner-mix));
+}
+.catch {
+  flood-color: color-mix(in srgb, var(--glass-fill), white var(--glass-catch-mix));
+}
