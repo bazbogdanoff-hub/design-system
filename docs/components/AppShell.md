@@ -124,19 +124,42 @@ implemented that.)
 
 ### Tiers
 
-The breakpoints are vocabulary; the three tiers are what **placement**
-switches on (spans, counts, the sidebar). They never set a size.
-`useTier()` returns the live one; `tierQueries` holds the media strings.
+The breakpoints are vocabulary; the four tiers are what **placement**
+switches on (spans, counts, the sidebar). They never set a size, except the
+phone type step (below). `useTier()` returns the live one; `tierQueries`
+holds the media strings.
 
 | tier | viewport | typical |
 |---|---|---|
 | `wide` | ≥1600 **and** ≥820 tall | 1920 monitor at 100% |
 | `desktop` | 1280–1599 (or ≥1600 but short) | 1366, 1440, 1536 - the Figma reference |
-| `tablet` | <1280 | iPad, small laptops |
+| `tablet` | 640–1279 | iPad, small laptops |
+| `phone` | <640, **or** <500 tall with a coarse pointer | a phone either way up |
 
 - 1536 is `desktop`, not `wide`: it is a 1920 laptop at Windows' 125%.
 - The height floor keeps a 1600×900 monitor (≈770 tall once the browser is
   drawn) out of `wide`.
+- `phone` (2026-10-05) is `(max-width: 639px), (max-height: 499px) and
+  (pointer: coarse)`: a phone on its side is still a phone, a short desktop
+  window is not. CSS cannot read `useTier()`, so every CSS module repeats
+  that query as a literal: grep for `max-width: 639px` to find them all, and
+  change them together.
+
+### Phone layout
+
+- **Shell:** the sidebar hides; the page card sits above the `bottomBar`
+  (a `TabBar`, 48 tall), 10 around and between them, the bottom inset
+  `max(10, safe-area)`. The open menu (`NavSheet`) is the `overlay`, over
+  the page card.
+- **Scroll:** only the page card scrolls, so the browser's toolbars never
+  collapse and the height never changes under the user (about 620 tall to
+  design for). A template that fills the screen on desktop scrolls plainly
+  on phone, at `height: 100%`, never `100dvh - …`.
+- **Cards:** the page card rounds 16; every card on it rounds 12 and pads 12
+  (set as variables on `.content`). Page padding 12, 8 between blocks.
+- **Type:** headings and display styles one step smaller, overridden once in
+  `scale.css`.
+- **Grid:** every `Grid.Item` is full width unless it sets `spanPhone`.
 
 ### Scale - fluid, in rem
 
