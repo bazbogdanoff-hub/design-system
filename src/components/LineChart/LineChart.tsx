@@ -52,8 +52,24 @@ const MIN_HEIGHT_PX = 140; // pre-measurement / degenerate-container fallback
 // invisible columns for day labels + hover (line vertices stay edge→edge).
 const PADDING_PX = { top: 20, right: 16, bottom: 24, left: 48 };
 
-/** Catmull-Rom → cubic Bézier smoothing (tension 1/6) - the standard way to
- * draw a smooth curve through a set of points without overshooting them. */
+type Pt = { x: number; y: number };
+
+/** The Bézier control points of the segment p1 → p2 (Catmull-Rom, tension
+ * 1/6). Their y is held between p1's and p2's (2026-10-08): unclamped, a
+ * sharp dip overshot below its lowest point, past the axis floor and into
+ * the month labels. A segment now never leaves the band its ends span. */
+function controls(p0: Pt, p1: Pt, p2: Pt, p3: Pt): [Pt, Pt] {
+  const lo = Math.min(p1.y, p2.y);
+  const hi = Math.max(p1.y, p2.y);
+  const clamp = (y: number) => Math.min(hi, Math.max(lo, y));
+  return [
+    { x: p1.x + (p2.x - p0.x) / 6, y: clamp(p1.y + (p2.y - p0.y) / 6) },
+    { x: p2.x - (p3.x - p1.x) / 6, y: clamp(p2.y - (p3.y - p1.y) / 6) },
+  ];
+}
+
+/** Catmull-Rom → cubic Bézier smoothing (tension 1/6), its control points
+ * clamped (`controls`), so the curve never overshoots its points. */
 function smoothPath(points: { x: number; y: number }[]): string {
   if (points.length === 0) return '';
   if (points.length === 1) return `M${points[0]!.x},${points[0]!.y}`;
@@ -63,11 +79,8 @@ function smoothPath(points: { x: number; y: number }[]): string {
     const p1 = points[i]!;
     const p2 = points[i + 1]!;
     const p3 = points[i + 2] ?? p2;
-    const cp1x = p1.x + (p2.x - p0.x) / 6;
-    const cp1y = p1.y + (p2.y - p0.y) / 6;
-    const cp2x = p2.x - (p3.x - p1.x) / 6;
-    const cp2y = p2.y - (p3.y - p1.y) / 6;
-    d += ` C${cp1x},${cp1y} ${cp2x},${cp2y} ${p2.x},${p2.y}`;
+    const [c1, c2] = controls(p0, p1, p2, p3);
+    d += ` C${c1.x},${c1.y} ${c2.x},${c2.y} ${p2.x},${p2.y}`;
   }
   return d;
 }
@@ -85,8 +98,7 @@ function offsetPath(points: { x: number; y: number }[], offset: number, steps = 
     const p1 = points[i]!;
     const p2 = points[i + 1]!;
     const p3 = points[i + 2] ?? p2;
-    const c1 = { x: p1.x + (p2.x - p0.x) / 6, y: p1.y + (p2.y - p0.y) / 6 };
-    const c2 = { x: p2.x - (p3.x - p1.x) / 6, y: p2.y - (p3.y - p1.y) / 6 };
+    const [c1, c2] = controls(p0, p1, p2, p3);
     for (let k = i === 0 ? 0 : 1; k <= steps; k++) {
       const t = k / steps;
       const u = 1 - t;
@@ -151,7 +163,6 @@ export function LineChart({
   const height = fixedHeight ?? Math.max(MIN_HEIGHT, measuredSize.height);
   const intrinsicWidth = measuredSize.width || 640;
   const plotHeight = height - PADDING.top - PADDING.bottom;
-  const plotWidth = intrinsicWidth - PADDING.left - PADDING.right;
 
   const allValues = data.flatMap((d) => series.map((s) => d.values[s.key] ?? 0));
   if (reference) allValues.push(reference.value);
@@ -161,6 +172,13 @@ export function LineChart({
   );
   const ticks: number[] = [];
   for (let v = axisMin; v <= axisMax; v += axisStep) ticks.push(v);
+
+  // The value labels' column is as wide as its longest label, plus the 8 gap
+  // to the plot (2026-10-08: a fixed 48 left a wide gap beside "14%" on a
+  // phone). The same 7px a character as the category labels below.
+  const longestTick = Math.max(0, ...ticks.map((t) => valueFormatter(t).length));
+  PADDING.left = Math.min(PADDING_PX.left, longestTick * 7 + 12) * s;
+  const plotWidth = intrinsicWidth - PADDING.left - PADDING.right;
 
   // Line vertices run edge → edge. Hit targets are equal columns like
   // BarChart (each holds its own vertex); the crosshair, marker, tooltip and
