@@ -151,8 +151,22 @@ export function BridgeChart({
   // floating bar is an amount, its length.
   const amount = (r: { from: number; to: number }) => (r.from === 0 ? r.to : Math.abs(r.to - r.from));
 
+  // Phone draws the gridlines in each bar's strip (the CSS): the step
+  // between ticks and where zero sits, strong only when losses run left.
+  const gridVars = {
+    '--_tick-step': `${((scale.step / span) * 100).toFixed(3)}%`,
+    '--_zero-at': `${pos(0).toFixed(3)}%`,
+    '--_zero-color': hasNegative ? 'var(--color-border-strong)' : 'transparent',
+  } as CSSProperties;
+
   return (
-    <div className={cn(styles.chart, className)} role="group" aria-label={ariaLabel} {...rest}>
+    <div
+      className={cn(styles.chart, className)}
+      role="group"
+      aria-label={ariaLabel}
+      {...rest}
+      style={{ ...gridVars, ...rest.style }}
+    >
       <div className={styles.axisRow} aria-hidden="true">
         <span />
         <div className={styles.axis} ref={axisRef}>
