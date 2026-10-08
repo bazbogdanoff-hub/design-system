@@ -16,8 +16,11 @@
   cursor: pointer;
 }
 
-.row:hover:not([data-selected]) {
-  background-color: var(--color-scrollable-area-row-shadow-hover);
+/* Touch has no hover: a tap or a hold left the wash on (owner, 2026-10-08). */
+@media (hover: hover) {
+  .row:hover:not([data-selected]) {
+    background-color: var(--color-scrollable-area-row-shadow-hover);
+  }
 }
 
 /* Selected wears Tile's recipe exactly (owner, 2026-10-01) - the white
@@ -137,8 +140,11 @@
 .row[data-on='dark'] .time {
   color: color-mix(in srgb, var(--color-white) 60%, transparent);
 }
-.row[data-on='dark']:hover:not([data-selected]) {
-  background-color: var(--color-sidebar-nav-item-hover-fill);
+/* Touch has no hover: a tap or a hold left the wash on (owner, 2026-10-08). */
+@media (hover: hover) {
+  .row[data-on='dark']:hover:not([data-selected]) {
+    background-color: var(--color-sidebar-nav-item-hover-fill);
+  }
 }
 .row[data-on='dark'][data-selected] {
   background-color: var(--color-sidebar-panel-background);

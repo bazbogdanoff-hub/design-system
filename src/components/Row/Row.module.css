@@ -27,21 +27,25 @@
   box-shadow: none;
 }
 
-/* Top and bottom only: the side padding was a leftover from rows sitting in
-   a scroller (owner, 2026-10-06); a row lines up with what's around it. */
-.row[data-size='sm'] { padding: var(--space-8) 0; gap: var(--space-8); }
-.row[data-size='md'] { padding: var(--space-10) 0; gap: var(--space-10); }
-.row[data-size='lg'] { padding: var(--space-12) 0; gap: var(--space-12); }
+/* 4 at the sides (owner, 2026-10-08), so the text keeps off the edge of a
+   row's wash; it was 0 since 2026-10-06 (a leftover 8 from scrollers).
+   A heading over a list of rows pads 4 to line up with them. */
+.row[data-size='sm'] { padding: var(--space-8) var(--space-4); gap: var(--space-8); }
+.row[data-size='md'] { padding: var(--space-10) var(--space-4); gap: var(--space-10); }
+.row[data-size='lg'] { padding: var(--space-12) var(--space-4); gap: var(--space-12); }
 
 .row[data-interactive] {
   cursor: pointer;
 }
 
-.row:hover {
-  /* the token is a translucent wash (alpha-black), so a plain fill layers
-     on top of whatever's beneath instead of replacing it - no need for the
-     inset-shadow flood trick this token's name still references. */
-  background-color: var(--color-scrollable-area-row-shadow-hover);
+/* Touch has no hover: a tap or a hold left the wash on (owner, 2026-10-08). */
+@media (hover: hover) {
+  .row:hover {
+    /* the token is a translucent wash (alpha-black), so a plain fill layers
+       on top of whatever's beneath instead of replacing it - no need for the
+       inset-shadow flood trick this token's name still references. */
+    background-color: var(--color-scrollable-area-row-shadow-hover);
+  }
 }
 
 /* The shared keyboard-focus ring (owner, 2026-10-04): 2px of

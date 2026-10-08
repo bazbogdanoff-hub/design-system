@@ -16,8 +16,11 @@
   color: var(--color-text-strong);
 }
 
-.item:hover:not([data-variant='secondary']) {
-  background: var(--color-background-overlay-subtle);
+/* Touch has no hover: a tap or a hold left the wash on (owner, 2026-10-08). */
+@media (hover: hover) {
+  .item:hover:not([data-variant='secondary']) {
+    background: var(--color-background-overlay-subtle);
+  }
 }
 
 .label {
