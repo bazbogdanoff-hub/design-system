@@ -63,7 +63,10 @@ share of revenue), `onSelect?` (makes the row a button).
   and the gridlines stay at every tick.
 - **Phone** (owner, 2026-10-08): each line one block, a divider between
   lines. The label and the amount share a line, the bar the full width under
-  them. No axis and no gridlines: the amount carries the number.
+  them. No axis and no gridlines: the amount carries the number. Every bar
+  (and the last period's band) starts at the left, as zero, its length its
+  amount; a loss's amount is `color.text.danger`, a gain's
+  `color.text.success`.
 
 ## Colour (owner, 2026-10-05; validated)
 

@@ -1,5 +1,6 @@
 import { useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type HTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
+import { useTier } from '../../lib/breakpoints';
 import { ChartTooltip } from '../ChartTooltip';
 import styles from './BridgeChart.module.css';
 
@@ -92,6 +93,7 @@ export function BridgeChart({
   ...rest
 }: BridgeChartProps) {
   const [hovered, setHovered] = useState<string | null>(null);
+  const phone = useTier() === 'phone';
 
   // One scale for every row, zero always in it.
   const scale = useMemo(() => {
@@ -104,6 +106,17 @@ export function BridgeChart({
     left: `${pos(Math.min(a, b)).toFixed(3)}%`,
     width: `${(Math.abs(b - a) / span * 100).toFixed(3)}%`,
   });
+
+  // Phone (owner, 2026-10-08): with no axis, every bar starts at the left,
+  // as zero, and its length is its amount - a ranked list, not a bridge. The
+  // last period's band too, so the two still compare.
+  const longest = useMemo(
+    () => Math.max(1e-9, ...rows.flatMap((r) => [Math.abs(r.to - r.from), ...(r.compare ? [Math.abs(r.compare.to - r.compare.from)] : [])])),
+    [rows],
+  );
+  const placeBar = (a: number, b: number): CSSProperties =>
+    phone ? { left: '0%', width: `${((Math.abs(b - a) / longest) * 100).toFixed(3)}%` } : place(a, b);
+  const barEnd = (a: number, b: number) => (phone ? (Math.abs(b - a) / longest) * 100 : pos(Math.max(a, b)));
 
   const ticks = useMemo(() => {
     const out: number[] = [];
@@ -185,14 +198,14 @@ export function BridgeChart({
             >
               <span className={styles.label}>{r.label}</span>
               <span className={styles.track}>
-                {r.compare && <span className={styles.compare} style={place(r.compare.from, r.compare.to)} />}
+                {r.compare && <span className={styles.compare} style={placeBar(r.compare.from, r.compare.to)} />}
                 <span
                   className={styles.bar}
                   data-tone={r.tone}
                   // Grows from the end it starts at: a cost from the running
                   // total down, a loss from zero leftwards.
-                  data-origin={r.to < r.from ? 'right' : 'left'}
-                  style={place(r.from, r.to)}
+                  data-origin={!phone && r.to < r.from ? 'right' : 'left'}
+                  style={placeBar(r.from, r.to)}
                 />
                 {hovered === r.key && (
                   <ChartTooltip
@@ -205,15 +218,17 @@ export function BridgeChart({
                       ...(r.details ?? []).map((d) => ({ ...d, color: 'transparent' })),
                     ]}
                     style={{
-                      left: `${pos(Math.max(r.from, r.to)).toFixed(3)}%`,
+                      left: `${barEnd(r.from, r.to).toFixed(3)}%`,
                       top: 0,
                       whiteSpace: 'nowrap',
-                      transform: `translate(${pos(Math.max(r.from, r.to)) > 70 ? '-100%' : '-50%'}, calc(-100% - 0.25rem))`,
+                      transform: `translate(${barEnd(r.from, r.to) > 70 ? '-100%' : '-50%'}, calc(-100% - 0.25rem))`,
                     }}
                   />
                 )}
               </span>
-              <span className={styles.value}>{r.value}</span>
+              <span className={styles.value} data-tone={r.tone}>
+                {r.value}
+              </span>
             </Row>
           );
         })}

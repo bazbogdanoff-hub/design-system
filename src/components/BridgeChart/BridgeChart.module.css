@@ -198,6 +198,14 @@
     justify-self: end;
     padding: 0;
   }
+  /* A loss reads red, a profit green, in the amount as well as the bar
+     (owner, 2026-10-08). */
+  .value[data-tone='loss'] {
+    color: var(--color-text-danger);
+  }
+  .value[data-tone='gain'] {
+    color: var(--color-text-success);
+  }
   .track {
     grid-area: track;
     height: 1.25rem;
