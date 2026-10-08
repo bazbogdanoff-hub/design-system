@@ -129,8 +129,16 @@ export function TimelineChart({
   // The "Now" flag sits on the axis; a tick close to it would sit under the
   // flag, so it keeps its gridline but drops its label. "Close" is a share
   // of the tick spacing, not a fixed hour: with 6-hour ticks on a narrow
-  // card, 1.3 hours away still collided (owner, 2026-09-30).
-  const nearNow = (t: number) => nowShown && Math.abs(t - now.getTime()) < step * 0.3;
+  // card, 1.3 hours away still collided (owner, 2026-09-30). Measured in px
+  // once the axis is (2026-10-08: at 1440 a 0.3 share of a 2-hour step was
+  // 20px, and the flag still half covered its neighbour): half the flag and
+  // half a label, 2.5rem between centres.
+  const nearNow = (t: number) => {
+    if (!nowShown) return false;
+    if (axisPx == null || axisPx <= 0) return Math.abs(t - now.getTime()) < step * 0.3;
+    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    return (Math.abs(t - now.getTime()) / width) * axisPx < 2.5 * rem;
+  };
 
   return (
     <div className={cn(styles.chart, className)} role="group" aria-label={ariaLabel} {...rest}>
